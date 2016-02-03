@@ -1,0 +1,29 @@
+@import (reference) "../components.less";
+@import (reference) "../base.less";
+
+.bracket_body{
+  .flexDirection(row);
+  .flexDisplay;
+  min-width: 680px;
+  max-width: 100%;
+  min-height: 1000px;
+  height:100%;
+  background-color:#ccc;
+  &-left{
+    max-width:360px;
+    order:1;
+    background-color:red;
+  }
+  &-center{
+    width:100%;
+    order:2;
+    margin: 0 auto;
+    text-align: center;
+    background-color:@white;
+  }
+  &-faq{
+    width:360px;
+    order:3;
+    background-color:#ccc;
+  }
+}
