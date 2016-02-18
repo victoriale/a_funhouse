@@ -29,9 +29,6 @@ accounts-password
 meteorhacks:npm         # Complete NPM integration for Meteor
 npm-container           # Supports meteorhacks:npm container packages.json
 
-ian:accounts-ui-bootstrap-3 # Meteor accounts-ui styled with Twitter's Bootstrap 3, now with multi-language support
-twbs:bootstrap          # (if we ever get to it) best framework for developing responsive designs
-
 meteorhacks:ssr         # Server Side Rendering for Meteor
 meteorhacks:picker      # Server Side Routing for Meteor
 meteorhacks:kadira      # Allows Kadira to run on the the site for debugging
