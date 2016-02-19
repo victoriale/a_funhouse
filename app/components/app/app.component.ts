@@ -5,12 +5,13 @@ import {ListOfListModule} from '../../modules/listoflist/listoflist.module';
 import {TestModule} from '../../modules/test/test.module';
 import {VlePage} from '../../modules/vle/vle.module';
 import {testProfile} from '../../webpages/test.profile/test.profile';
+import {ApiTestModule} from "../../modules/apitest/apitest.module";
 
 @Component({
     selector: 'my-app',
     templateUrl: './app/components/app/app.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [ListOfListModule, TestModule, VlePage, testProfile, ROUTER_DIRECTIVES],
+    directives: [ListOfListModule, TestModule, VlePage, testProfile, ApiTestModule, ROUTER_DIRECTIVES],
     providers: [ROUTER_PROVIDERS]
 })
 
@@ -30,6 +31,11 @@ import {testProfile} from '../../webpages/test.profile/test.profile';
         path: '/vle',
         name: 'VLe',
         component: VlePage,
+    },
+    {
+        path: '/apitest',
+        name: 'Apitest',
+        component: ApiTestModule,
     },
     {
         path: '/testProfile',
