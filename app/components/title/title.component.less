@@ -1,0 +1,36 @@
+.page-title {
+  @defaultPageHdrHeight: 130px;
+  width: 680px;
+  height: @defaultPageHdrHeight;
+  line-height: @defaultPageHdrHeight;
+  .flexDisplay;
+  div:first-child {
+    .largeRoundImageLinkWithHover(100px, 2px, @greyBorder);
+    height: 100px;
+    width: 100px;
+    margin: 20px;
+  }
+  div:nth-child(2) {
+    width: 80%;
+    margin: 12px;
+    h1 {
+      .globalDefaultModFont(@hdingLineHeight, 900, @black);
+      @hdingLineHeight: 28px;
+      height: @hdingLineHeight;
+      overflow: hidden;
+    }
+    h2 {
+      .globalDefaultModFont(@hdingLineHeight, 300, @black);
+      @hdingLineHeight: 28px;
+      height: @hdingLineHeight;
+      overflow: hidden;
+    }
+    h3 {
+      .globalDefaultModFont(12px, 400, @black);
+    }
+    h4 {
+      .globalDefaultModFont(10px, 300, @greyUpdate);
+      margin-bottom: 12px;
+    }
+  }
+}
