@@ -1,11 +1,10 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import { Http, HTTP_PROVIDERS } from 'angular2/http';
 
 @Component({
     selector: 'apitest',
     template:
         `<h1>API Live Test</h1>
-        <button (click)="testApiCall()">Click Me!</button>
         <ul>
             <li class="item" *ngFor="#item of items">
                 <span><b>Name:</b> {{item.name}}</span><br />
@@ -44,31 +43,6 @@ export class ApiTestModule{
         console.error('There was an error: ' + err);
     }
 
-    // API call using Observables
-    // http://jsonplaceholder.typicode.com/users
-    //{
-    //    "id": 1,
-    //    "name": "Leanne Graham",
-    //    "username": "Bret",
-    //    "email": "Sincere@april.biz",
-    //    "address": {
-    //        "street": "Kulas Light",
-    //        "suite": "Apt. 556",
-    //        "city": "Gwenborough",
-    //        "zipcode": "92998-3874",
-    //        "geo": {
-    //            "lat": "-37.3159",
-    //            "lng": "81.1496"
-    //        }
-    //    },
-    //    "phone": "1-770-736-8031 x56442",
-    //    "website": "hildegard.org",
-    //    "company": {
-    //        "name": "Romaguera-Crona",
-    //        "catchPhrase": "Multi-layered client-server neural-net",
-    //        "bs": "harness real-time e-markets"
-    //    }
-    //}
     testApiCall() {
         this.http.get('http://jsonplaceholder.typicode.com/users')
             .map(res => res.json())
@@ -77,5 +51,9 @@ export class ApiTestModule{
                 err => this.logError(err),
                 () => console.log('Data has been returned.')
             );
+    }
+
+    ngOnInit() {
+        this.testApiCall();
     }
 }
