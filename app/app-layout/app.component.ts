@@ -7,7 +7,7 @@ import {HomePage} from "../webpages/home-page/home.page";
 
 @Component({
     selector: 'my-app',
-    templateUrl: './app/app/app.component.html',
+    templateUrl: './app/app-layout/app.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [ProfilePage, HomePage, ROUTER_DIRECTIVES],
     providers: [ROUTER_PROVIDERS]
