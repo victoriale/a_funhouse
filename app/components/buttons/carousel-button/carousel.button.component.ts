@@ -3,9 +3,9 @@ import {Component} from 'angular2/core';
 
 @Component({
     selector: 'carbutton-component',
-    templateUrl: './app/components/buttons/carbutton.component.html',
+    templateUrl: './app/components/buttons/carousel-button/carousel.button.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
 })
-export class CarButtonComponent{
+export class CarouselButtonComponent{
 
 }
