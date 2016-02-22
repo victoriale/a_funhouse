@@ -15,5 +15,3 @@ https://github.com/angular/angular/issues/6887
 
 Router fix:
 https://github.com/BrowserSync/browser-sync/issues/204
-
-
