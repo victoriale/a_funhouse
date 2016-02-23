@@ -3,6 +3,7 @@
 
 footer {
   width: 100%;
+  .globalDefaultModFont(12, 600, @black);
 }
   .footer-top-bar {
     display:flex;
@@ -15,9 +16,34 @@ footer {
   .footer-bottom {
     background: @lightGrey;
     height: 390px;
+    padding-top: 30px;
+    h1 {
+      color: #fff;
+      font-size: 24px;
+      text-align: center;
+    }
   }
 
   .footer-logo {
     margin-top: 19px;
     height: 22px;
   }
+
+  .footer-section-one {
+    display: inline;
+    color: #fff;
+    text-align: center;
+  }
+
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    .footer-section-one li {
+      display: inline;
+      .globalDefaultModFont(14, 400, @white);
+      color: #fff;
+      margin-right: 7px;
+      padding-right: 7px;
+      border-right: 1px solid #fff;
+    }
