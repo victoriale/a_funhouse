@@ -1,0 +1,38 @@
+@import (reference) "./app/global/stylesheets/components.less";
+@import (reference) "./app/global/stylesheets/base.less";
+
+.doc-main{
+  width:100%;
+  height:auto;
+
+  h1 {
+    text-align:center;
+    width:100%;
+    background-color:@masterBrandColor;
+    height:70px;
+  }
+  nav {
+    display:flex;
+    flex-direction:row;
+    justify-content: space-around;
+
+  }
+
+  .content{
+    .flexDisplay;
+    .flexJustify(center);
+  }
+
+  a {
+    text-align:center;
+    line-height:40px;
+    width:100px;
+    height:40px;
+    color:white;
+    background-color:black;
+    cursor:pointer;
+  }
+  aside {
+    float:right
+  }
+}

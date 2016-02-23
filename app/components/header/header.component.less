@@ -1,0 +1,46 @@
+@import (reference) "./app/global/stylesheets/components.less";
+@import (reference) "./app/global/stylesheets/base.less";
+
+header {
+  width: 100%;
+  .globalDefaultModFont(12, 600, @black);
+}
+  .header-top-bar {
+    display:flex;
+    flex-direction:row;
+    justify-content: space-around;
+    background-color: #fff;
+    height: 20px;
+    .tagline, .directory-link {
+      margin-top: 3px;
+    }
+    a:hover {
+      color: @joyfulHomeGreenHover;
+    }
+  }
+
+  .header-bottom-bar {
+    display:flex;
+    flex-direction:row;
+    justify-content: space-around;
+    background-color: @backgroundGrey;
+    height: 55px;
+  }
+
+  .header-logo {
+    margin-top: 15px;
+    height: 27px;
+    width: 147px;
+  }
+
+  .header-search {
+    margin-top: 10px;
+  }
+
+    .header-search input {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #cccccc;
+      width: 450px;
+    }
+
