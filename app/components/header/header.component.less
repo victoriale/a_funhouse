@@ -5,13 +5,22 @@ header {
   width: 100%;
   .globalDefaultModFont(12, 600, @black);
 }
+
+.header-top-bar-wrapper {
+  width: 100%;
+  background-color: #fff;
+  height: 20px;
+}
   .header-top-bar {
-    display:flex;
-    flex-direction:row;
-    justify-content: space-around;
-    background-color: #fff;
-    height: 20px;
+    width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     .tagline, .directory-link {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
       margin-top: 3px;
     }
     a:hover {
@@ -19,22 +28,33 @@ header {
     }
   }
 
+.header-bottom-bar-wrapper {
+  width: 100%;
+  background-color: @backgroundGrey;
+  height: 55px;
+}
   .header-bottom-bar {
-    display:flex;
-    flex-direction:row;
-    justify-content: space-around;
-    background-color: @backgroundGrey;
-    height: 55px;
+    width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   .header-logo {
     margin-top: 15px;
     height: 27px;
     width: 147px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   .header-search {
     margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
   }
 
     .header-search input {
