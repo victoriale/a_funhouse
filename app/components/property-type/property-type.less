@@ -3,72 +3,56 @@
 
 .property-type{
     width:100%;
+    padding:12px 11px;
 }
-
-.noselect {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+.type-title{
+  //.globalDefaultModFont(@fontSize, @fontWeight, @color)
+  .globalDefaultModFont(18px, 400, @black);
+  margin-bottom:10px;
 }
+.filters{
+  .flexDisplay;
+  .flexDirection(row);
+  flex-wrap:wrap;
+  .flexJustify(space-between);
+  &_frame{
+    font-family:@globalFont;
+    width:150px;
+    height:40px;
+    border-radius: 5px;
+    padding:10px;
+    border: 1px solid @masterStrokeColor;
+    background-color: @greyBorder;
+    img{
+      margin-right:5px;
+    }
+    span{
+      position:absolute;
+    }
+    input{
+      float:right;
 
-.filters_frame {
-  height: auto;
-  overflow: visible;
-  min-height: 500px;
-  &_proptype {
-    height: 94px;
-
-    &_opt {
-      width: 150px;
-      height: 40px;
-      margin: 10px 0 0 20px;
-      padding: 9px 0 0 40px;
-      float: left;
-      border: 1px solid @masterStrokeColor;
-      background-color: @greyBorder;
-      border-radius: 5px;
-      font-size: 14px;
-      color: @black;
-      text-align: left;
-      position: relative;
-      cursor: pointer;
-      &:hover {
-        border: 1px solid @black;
+      &[type=checkbox]{
+        padding-left:5px;
+        padding-right:5px;
+        border-radius:5px;
+        -webkit-appearance:checkbox;
+        border: solid 2px @masterStrokeColor;
+        background-color:@white;
+        color:@white;
+        outline:none;
+        width:20px;
+        height:20px;
       }
-
-      img {
-        position: absolute;
-        bottom: 13px;
-        left: 10px;
-      } // END .filters_frame_proptype_opt img
-    } // END .filters_frame_proptype_opt
-
-    input[type=checkbox] {
-      padding-left:5px;
-      padding-right:5px;
-      border-radius:15px;
-
-      -webkit-appearance:button;
-
-      border: double 2px #00F;
-
-      background-color:#0b0095;
-      color:#FFF;
-      white-space: nowrap;
-      overflow:hidden;
-
-      width:15px;
-      height:15px;
+      &[type=checkbox]:checked {
+        background-color:@white;
+        color:@white;
+      }
     }
-
-    input[type=checkbox]:checked {
-        background-color:#000;
-        border-left-color:#06F;
-        border-right-color:#06F;
+    &:hover{
+      border: 1px solid @black;
     }
-
-  } // END .filters_frame_proptype
+  }
 }
+
+

@@ -13,7 +13,7 @@ import {RouteParams} from 'angular2/router';
 })
 
 export class imageHeader implements OnInit{
-  image_url = './app/public/img_bckgnd.png';
+  image_url = './app/public/HeroBG.jpg';
   location = '';
     constructor(
         private _routeParams: RouteParams
