@@ -2,12 +2,13 @@ import {Component, OnInit} from 'angular2/core';
 
 import {List} from '../../global/global-interface';
 import {ListOfListService, BatchOne} from '../../global/global-service';
+import {contentList} from "../../components/contentlist/contentlist";
 
 @Component({
     selector: 'list-of-lists-module',
     templateUrl: './app/modules/listoflist/listoflist.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [],
+    directives: [contentList],
     providers: [ListOfListService, BatchOne]
 })
 

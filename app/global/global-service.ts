@@ -68,24 +68,6 @@ export class BatchOne {
                     './app/public/img_bckgnd.png',
                 ]
             },
-            {
-                'title': '[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet',
-                'bigImage': './app/public/img_bckgnd.png',
-                'location': 'someplace',
-                'smallImage': [
-                    './app/public/img_bckgnd.png',
-                    './app/public/img_bckgnd.png',
-                    './app/public/img_bckgnd.png',
-                ]
-            },
-            {
-                'title': '[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet',
-                'bigImage': './app/public/img_bckgnd.png',
-                'location': 'something',
-                'smallImage': [
-                    './app/public/img_bckgnd.png',
-                ]
-            },
         ];
         return Promise.resolve(BatchOne);
     }

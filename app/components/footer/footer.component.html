@@ -1,18 +1,52 @@
-<footer>
-    <div class="footer-top-bar">
+<div class="footer-top-bar-wrapper">
+    <footer class="footer-top-bar">
         <img class="footer-logo" src="./app/public/joyful_home_footer_logo.png" alt="Joyful Home | A Little Place to Call Home"/>
-        <div class="footer-social">Social Buttons</div>
-    </div>
-    <div class="footer-bottom">
-        <h1>National Real Estate Market</h1>
-        <section class="footer-section-one">
+        <div class="footer-social">
             <ul>
-                <li>Something</li>
-                <li>Something</li>
-                <li>Something</li>
-                <li>Something</li>
-                <li>Something</li>
+                <li><i class="fa fa-facebook "></i></li>
+                <li><i class="fa fa-twitter"></i></li>
+                <li><i class="fa fa-linkedin"></i></li>
+                <li><i class="fa fa-google-plus"></i></li>
+                <li><i class="fa fa-pinterest-p"></i></li>
             </ul>
-        </section>
-    </div>
+        </div>
+    </footer>
+</div>
+<footer class="footer-bottom">
+    <h1>{{title}}</h1>
+    <section class="footer-section-one">
+        <ul>
+            <li>States: </li>
+            <li *ngFor="#state of states"><a href="{{state.url}}">{{state.name}}</a></li>
+        </ul>
+    </section>
+    <hr />
+    <section class="footer-section-one">
+        <ul>
+            <li>Cities: </li>
+            <li *ngFor="#city of cities"><a href="{{city.url}}">{{city.name}}</a></li>
+        </ul>
+    </section>
+    <hr />
+    <section class="footer-section-two">
+        <ul>
+            <li>You Might Like: </li>
+            <li><a href="#">Trending Lists</a> <i class="fa fa-caret-right"></i></li>
+            <li><a href="#">Most Recent Listings in your Area</a> <i class="fa fa-caret-right"></i></li>
+            <li><a href="#">Largest Homes in your Area</a> <i class="fa fa-caret-right"></i></li>
+            <li><a href="#">Least Expensive Homes in your Area</a></li>
+        </ul>
+    </section>
+    <hr />
+    <section class="footer-section-three">
+        <ul>
+            <li class="joyful-link"><a href="#">Joyfulhome.com</a>  <i class="fa fa-caret-right"></i></li>
+            <li><a href="#">Advertise with Joyfulhome</a> <i class="fa fa-caret-right"></i></li>
+            <li><a href="#">Contact Us</a> <i class="fa fa-caret-right"></i></li><br />
+            <li><a href="#">Terms of Use</a> <i class="fa fa-caret-right"></i></li>
+            <li><a href="#">Privacy Policy</a> <i class="fa fa-caret-right"></i></li>
+            <li><a href="#">Sitemap</a> <i class="fa fa-caret-right"></i></li>
+            <li><a href="#">General Feedback</a></li>
+        </ul>
+    </section>
 </footer>
