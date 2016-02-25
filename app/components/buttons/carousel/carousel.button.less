@@ -1,5 +1,6 @@
+@ButtonLocation: 0px;
 .prev{
-  margin-top: 90px;
+  margin-top: @ButtonLocation;
   float: left;
   height: 80px;
   width: 40px;
@@ -8,9 +9,12 @@
   -webkit-border-radius: 0 80px 80px 0;
   background-color: #000;
   align-items: flex-start;
+  &:hover{
+    background-color: @masterBrandColor;
+  }
 }
 .next{
-  margin-top: 90px;
+  margin-top: @ButtonLocation;
   float: right;
   height: 80px;
   width: 40px;
@@ -19,7 +23,11 @@
   -webkit-border-radius: 80px 0 0 80px;
   background: #000;
   align-item: flex-end;
+  &:hover{
+    background-color: @masterBrandColor;
+  }
 }
+.next:hover{}
 .fa-angle-right{
   font-size: 36px;
   color: #fff;

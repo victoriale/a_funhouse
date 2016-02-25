@@ -3,6 +3,7 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/route
 
 import {ProfilePage} from "../webpages/profile-page/profile.page";
 import {HomePage} from "../webpages/home-page/home.page";
+import {ComponentPage} from "../webpages/component-page/component.page";
 import {HeaderComponent} from "../components/header/header.component";
 import {FooterComponent} from "../components/footer/footer.component";
 
@@ -10,7 +11,7 @@ import {FooterComponent} from "../components/footer/footer.component";
     selector: 'my-app',
     templateUrl: './app/app-layout/app.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [ProfilePage, HomePage, HeaderComponent, FooterComponent, ROUTER_DIRECTIVES],
+    directives: [ProfilePage, HomePage, ComponentPage, HeaderComponent, FooterComponent, ROUTER_DIRECTIVES],
     providers: [ROUTER_PROVIDERS]
 })
 
@@ -25,6 +26,11 @@ import {FooterComponent} from "../components/footer/footer.component";
         path: '/profile',
         name: 'Profile-page',
         component: ProfilePage,
+    },
+    {
+        path: '/component',
+        name: 'Component-page',
+        component: ComponentPage,
     }
 ])
 
