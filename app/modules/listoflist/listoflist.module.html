@@ -1,16 +1,7 @@
 <section class="listoflists">
-    <header class='mod-hdr-with-heading'>
-        <span></span>
-        <h3>{{profile_name}}</h3>
-    </header>
+    <module-header></module-header>
     <span *ngFor="#lol of lists">
         <contentlist [lol]="lol"></contentlist>
     </span>
-    <div class='footer'>
-        <a href='' class='footer-btn'>
-            <span></span>
-            <span>See The List</span>
-            <i class='fa fa-angle-right'></i>
-        </a>
-    </div>
+    <module-footer></module-footer>
 </section>

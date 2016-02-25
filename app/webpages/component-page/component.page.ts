@@ -13,12 +13,15 @@ import {HeadlineComponent} from '../../components/headline/headline.component';
 import {imageHeader} from '../../components/image-header/image-header';
 import {propertyType} from '../../components/property-type/property-type';
 import {ProfileHeader} from '../../modules/profile_header/profile_header.module';
+import {contentList} from "../../components/contentlist/contentlist";
+import {moduleHeader} from "../../components/module-header/module-header";
+import {moduleFooter} from "../../components/module-footer/module-footer";
 
 @Component({
     selector: 'component-page',
     templateUrl: './app/webpages/component-page/component.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [BackTabComponent, TitleComponent, TitleLocComponent, CarouselButton, Image180, Image100, HeadlineComponent, imageHeader, propertyType, ProfileHeader],
+    directives: [BackTabComponent, TitleComponent, TitleLocComponent, CarouselButton, Image180, Image100, HeadlineComponent, imageHeader, propertyType, ProfileHeader, contentList, moduleHeader, moduleFooter],
     providers: [],
 })
 
