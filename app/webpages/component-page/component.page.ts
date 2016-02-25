@@ -25,17 +25,6 @@ selector: 'component-page',
 })
 
 export class ComponentPage implements OnInit{}
-    //constructor(
-    //    private _test: TitleComponent,
-    //) { }
-    //
-    //test() {
-    //    this._test.titleComp();
-    //}
-    //
-    //ngOnInit(){
-    //    console.log(this.test());
-    //    console.log(this);
-    //}
+
 
 
