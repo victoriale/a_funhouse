@@ -12,12 +12,13 @@ import {Image100} from '../../components/images/image-100/image-100.component';
 import {HeadlineComponent} from '../../components/headline/headline.component';
 import {imageHeader} from '../../components/image-header/image-header';
 import {propertyType} from '../../components/property-type/property-type';
+import {ProfileHeader} from '../../modules/profile_header/profile_header.module';
 
 @Component({
     selector: 'component-page',
     templateUrl: './app/webpages/component-page/component.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [BackTabComponent, TitleComponent, TitleLocComponent, CarouselButton, Image180, Image100, HeadlineComponent, imageHeader, propertyType],
+    directives: [BackTabComponent, TitleComponent, TitleLocComponent, CarouselButton, Image180, Image100, HeadlineComponent, imageHeader, propertyType, ProfileHeader],
     providers: [],
 })
 

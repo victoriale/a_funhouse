@@ -10,6 +10,6 @@ import {Component} from 'angular2/core';
 })
 export class HeadlineComponent{
     heading= 'About';
-    city = '[City]';
-    state= '[State]';
+    name = '[Listing Name]';
+    icon = 'fa fa-map-marker';
 }

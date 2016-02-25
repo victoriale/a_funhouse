@@ -7,4 +7,6 @@ import {Component} from 'angular2/core';
 })
 export class Image180 {
     image_url = './app/public/img_bckgnd.png';
+    size = "180";
+
 }

@@ -3,11 +3,13 @@
   background-color: #ffffff;
   width: 680px;
   height: 60px;
-
+  position: relative;
   &-rec {
     background-color: @masterStrokeColor;
     width: 5px;
     height: 60px;
+    position: absolute;
+    left: 0;
   }
   &-about{
     margin: 18px 0 0 30px;
@@ -15,5 +17,13 @@
     font-size: 24px; /* Approximation due to font substitution */
     font-weight: 300;
     text-align: left;
+  }
+  &-icon{
+    margin: 17px 21px 0 0;
+    color: #cccccc;
+    font-size: 30px; /* Approximation due to font substitution */
+    font-weight: 400;
+    position: absolute;
+    right: 0;
   }
 }

@@ -9,8 +9,10 @@ import {Image100} from '../../components/images/image-100/image-100.component';
 })
 export class TitleComponent{
     titleImg = './app/public/img_bckgnd.png';
-    lastUpdate = 'Monday, February 23, 2016';
-    loc = ' United States of America';
-    mainTitle = 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet';
-    subTitle = 'Lorem ipsum dolor sit amet Lorem';
+    smallTxt1 = 'Monday, February 23, 2016';
+    smallTxt2 = ' United States of America';
+    Heading1 = 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet';
+    Heading2 = '';
+    Heading3 = 'Lorem ipsum dolor sit amet Lorem';
+    Heading4 = '';
 }
