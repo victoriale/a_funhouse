@@ -1,40 +1,37 @@
-@ButtonLocation: 0px;
+@ButtonLocation: 50px;
 .prev{
+  color: @white;
+  font-size: 36px;
   margin-top: @ButtonLocation;
+  padding-top: 20px;
   float: left;
   height: 80px;
   width: 40px;
   border-radius: 0 80px 80px 0;
   -moz-border-radius: 80px 80px 0 0;
   -webkit-border-radius: 0 80px 80px 0;
-  background-color: #000;
+  background-color: @black;
+  text-align: center;
   align-items: flex-start;
   &:hover{
     background-color: @masterBrandColor;
   }
 }
 .next{
+  color: @white;
+  font-size: 36px;
   margin-top: @ButtonLocation;
+  padding-top: 20px;
   float: right;
   height: 80px;
   width: 40px;
   border-radius: 80px 0 0 80px;
   -moz-border-radius: 80px 80px 0 0;
   -webkit-border-radius: 80px 0 0 80px;
-  background: #000;
+  background: @black;
+  text-align: center;
   align-item: flex-end;
   &:hover{
     background-color: @masterBrandColor;
   }
-}
-.next:hover{}
-.fa-angle-right{
-  font-size: 36px;
-  color: #fff;
-  margin: 20px 0 0 17px;
-}
-.fa-angle-left{
-  font-size: 36px;
-  color: #fff;
-  margin: 20px 0 0 10px;
 }
