@@ -28,4 +28,7 @@ selector: 'component-page',
     providers: [],
 })
 
-export class ComponentPage{}
+export class ComponentPage implements OnInit{}
+
+
+
