@@ -2,12 +2,12 @@
  * Created by Victoria on 2/18/2016.
  */
 import {Component} from 'angular2/core';
-import {CarouselButtonComponent} from "../buttons/carousel-button/carousel.button.component";
+import {CarouselButton} from "../buttons/carousel/carousel.button.ts";
 @Component({
     selector: 'carousel-component',
-    templateUrl: './app/components/buttons/carousel.button.component.html',
+    templateUrl: './app/components/buttons/carousel.button.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [CarouselButtonComponent]
+    directives: [CarouselButton]
 })
 export class CarouselComponent{
     text1 = "Lorem ipsum dolor sit amet";

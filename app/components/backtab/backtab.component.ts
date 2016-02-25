@@ -7,6 +7,6 @@ import {Component} from 'angular2/core';
 
 })
 export class BackTabComponent{
-    public backText = "Go Back To [Profile Name]'s Profile";
+    public backText = "[Profile Name]'s";
 
 }
