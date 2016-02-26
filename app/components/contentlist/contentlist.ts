@@ -31,7 +31,7 @@ export class contentList implements OnInit{
                     './app/public/img_bckgnd.png',
                 ]
             }
-            console.log("From contentlist.ts:",this);
+            console.log(this);
         }
     }
     ngOnInit(){
