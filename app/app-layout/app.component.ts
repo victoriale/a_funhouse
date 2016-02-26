@@ -6,12 +6,15 @@ import {HomePage} from "../webpages/home-page/home.page";
 import {ComponentPage} from "../webpages/component-page/component.page";
 import {HeaderComponent} from "../components/header/header.component";
 import {FooterComponent} from "../components/footer/footer.component";
+import {HeroComponent} from "../components/hero/hero.component";
+import {HeroSearchComponent} from "../components/hero/hero-search/hero-search.component";
+import {ExploreTilesComponent} from "../components/explore-tiles/explore-tiles.component";
 
 @Component({
     selector: 'my-app',
     templateUrl: './app/app-layout/app.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [ProfilePage, HomePage, ComponentPage, HeaderComponent, FooterComponent, ROUTER_DIRECTIVES],
+    directives: [ProfilePage, HomePage, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, ROUTER_DIRECTIVES],
     providers: [ROUTER_PROVIDERS]
 })
 

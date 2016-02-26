@@ -2,32 +2,27 @@
 @import (reference) "./app/global/stylesheets/base.less";
 
 .doc-main{
-  width: 1000px;
+  margin: 0 auto !important;
   height: auto;
-  margin: 0 auto;
   h1 {
     text-align:center;
     width:100%;
     background-color:@masterBrandColor;
     height:70px;
   }
-  nav {
-    display:flex;
-    flex-direction:row;
-    justify-content: space-around;
-  }
+}
 
-  .content{
-    .flexDisplay;
-    .flexJustify(center);
-    width: 680px;
-  }
-
+nav {
+  margin-bottom: 20px;
+  margin-top: 10px;
+  text-align: center;
+  .globalDefaultModFont(14, 300, @white);
   a {
     text-align:center;
     line-height:40px;
     width:100px;
     height:40px;
+    padding: 10px;
     color:white;
     background-color:black;
     cursor:pointer;
