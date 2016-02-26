@@ -15,4 +15,21 @@ export class TitleComponent{
     Heading2 = '';
     Heading3 = 'Lorem ipsum dolor sit amet Lorem';
     Heading4 = '';
+    //titleComp(titleImg, smallTxt1, smallTxt2,Heading1,Heading2,Heading3,Heading4){
+    //    console.log(smallTxt2);
+    //    return{
+    //        titleImg : titleImg,
+    //        smallTxt1 : smallTxt1,
+    //        smallTxt2 : smallTxt2,
+    //        Heading1 : Heading1,
+    //        Heading2 : Heading2,
+    //        Heading3 : Heading3,
+    //        Heading4 : Heading4,
+    //    }
+    //}
+    //
+    //ngOnInit(){
+    //    this.titleComp()
+    //}
+
 }

@@ -1,0 +1,30 @@
+<div class="contentlist">
+    <div class='imagebox'>
+        <a href=''>
+            <img src='{{lol.bigImage}}' alt='' />
+            <div>
+                <p>View</p>
+                <p>Profile</p>
+            </div>
+        </a>
+    </div>
+    <div class="contentbox">
+        <a href="">
+            <span><i class="fa fa-map-marker"></i>{{lol.location}}</span>
+        </a>
+        <span title="{{lol.title}}">{{lol.title}}</span>
+        <div class="content_bottom">
+            <div class='contentsubbox'>
+                <a *ngFor="#sImg of lol.smallImage" href=''>
+                    <img src='{{sImg}}' alt='' />
+                    <div><i class='fa fa-share'></i></div>
+                </a>
+            </div>
+            <a href='' class='list_button'>
+                <span></span>
+                <span>See The List</span>
+                <i class='fa fa-angle-right'></i>
+            </a>
+        </div>
+    </div>
+</div>
