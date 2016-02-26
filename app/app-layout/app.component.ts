@@ -9,12 +9,13 @@ import {FooterComponent} from "../components/footer/footer.component";
 import {HeroComponent} from "../components/hero/hero.component";
 import {HeroSearchComponent} from "../components/hero/hero-search/hero-search.component";
 import {ExploreTilesComponent} from "../components/explore-tiles/explore-tiles.component";
+import {HeroBottomComponent} from "../components/hero/hero-bottom/hero-bottom.component";
 
 @Component({
     selector: 'my-app',
     templateUrl: './app/app-layout/app.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [ProfilePage, HomePage, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, ROUTER_DIRECTIVES],
+    directives: [ProfilePage, HomePage, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, ROUTER_DIRECTIVES],
     providers: [ROUTER_PROVIDERS]
 })
 
