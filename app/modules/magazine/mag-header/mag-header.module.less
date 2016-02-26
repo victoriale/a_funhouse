@@ -16,6 +16,7 @@
     height: 75px;
     cursor: pointer;
     font-family: @globalFont;
+    font-weight: 400;
 
     &_bottom {
       display: none;
@@ -67,7 +68,8 @@
     &:hover .magheader_ex_image {
       background-image: url('http://images.joyfulhome.com/close_hover.png');
     }
-  } // END .magheader_ex
+  }
+  // END .magheader_ex
   &_logo {
     width: 200px;
     height: 75px;
@@ -87,7 +89,6 @@
     position: relative;
     margin-right: 20px;
     line-height: 75px;
-
     float: right;
 
     &_fb {
@@ -123,7 +124,8 @@
           border-left: 10px solid transparent;
           border-right: 10px solid transparent;
         }
-      } // END .magheader_soc_fb_cr
+      }
+      // END .magheader_soc_fb_cr
 
       &_l1 {
         line-height: 60px;
@@ -135,7 +137,8 @@
         .fa {
           margin-right: 10px;
         }
-      } // END .magheader_soc_fb_l1
+      }
+      // END .magheader_soc_fb_l1
 
       &_l2 {
         margin-left: 20px;
@@ -143,7 +146,8 @@
         font-size: 14px;
         padding: 0 15px 0 7px;
         line-height: 15px;
-      } // END .magheader_soc_fb_l2
+      }
+      // END .magheader_soc_fb_l2
 
       &_b1 {
         width: 70px;
@@ -157,7 +161,8 @@
         right: 102px;
         bottom: 10px;
         text-align: center;
-      } // END .magheader_soc_fb_b1
+      }
+      // END .magheader_soc_fb_b1
 
       &_b2 {
         width: 85px;
@@ -172,8 +177,10 @@
         right: 10px;
         bottom: 10px;
         text-align: center;
-      } // END .magheader_soc_fb_b2
-    } // END .magheader_soc_fb
+      }
+      // END .magheader_soc_fb_b2
+    }
+    // END .magheader_soc_fb
 
     &:hover {
       color: @fbblue;
@@ -181,7 +188,8 @@
 
     &.active .magheader_soc_fb {
       display: block;
-    } // END .magheader_soc:hover .magheader_soc_fb
+    }
+    // END .magheader_soc:hover .magheader_soc_fb
 
     a .fa {
       margin-right: 10px;
@@ -193,8 +201,10 @@
       background-color: @fbblue;
       text-align: center;
       color: @white;
-    } // END .magheader_soc .fa
-  } // END .magheader_soc
+    }
+    // END .magheader_soc .fa
+  }
+  // END .magheader_soc
 }
 
 @media (min-width: 1600px) {
@@ -271,6 +281,9 @@
     .fa-bars {
       display: none;
     }
+    input {
+      display: none;
+    }
   }
 }
 
@@ -309,6 +322,9 @@
         position: absolute;
         top: 75px;
         left: 374px;
+      }
+      input {
+        display: none;
       }
       // END .magheader_but input
     }
@@ -368,76 +384,169 @@
         display: block;
       }
     }
-  }
-}
+    input {
+      display: none;
 
-  @media (max-width: 749px) {
-    .magheader {
-      text-align: center;
-      &_but {
-        display: block;
-        padding: 25px 0 0 25px;
-        text-align: left;
-        position: relative;
-        height: 75px;
-        width: 100%;
-        border-top: 1px solid @black;
-
-        &:hover {
-          color: @white;
-          background-color: @black;
-        } // END .magheader_but:hover
-
-        input:checked + .magheader_but_bottom {
-          display: none;
-        } // END .magheader_but input:checked + .magheader_but_bottom
-
-        &_bottom {
-          display: none;
-        } // END .magheader_but_bottom
-
-        &_cont {
-          display: none;
-          width: 345px;
-          background-color: @textEmphasisGrey;
-          position: absolute;
-          top: 75px;
-          left: 0px;
-        }
-
-        input {
-          display: none;
-        } // END .magheader_but input
-      } // END .magheader_but
-      &_pagenum {
-        display: none;
-      }
-      // END .magheader_pagenum
-      &_sep {
-        display: none;
-      }
-      // END .magheader_sep
-      .fa-bars {
-        display: inline-block;
+      &:checked + .magheader_but {
         color: @joyfulHomeGreen;
-        font-size: 35px;
-        text-align: center;
-        cursor: pointer;
-        height: 75px;
-        width: 75px;
-        position: relative;
-        top: 0;
-        left: -4px;
-        padding-top: 20px;
-        float: left;
-
-        &.active {
-          background-color: @textEmphasisGrey;
-        }
-
-        &.active + .magheader_but_cont {
-          display: block;
-        }
       }
     }
   }
+}
+
+@media (max-width: 749px) {
+  .magheader {
+    text-align: center;
+    &_but {
+      display: block;
+      padding: 25px 0 0 25px;
+      text-align: left;
+      position: relative;
+      height: 75px;
+      width: 100%;
+      border-top: 1px solid @black;
+
+      &:hover {
+        color: @white;
+        background-color: @black;
+      }
+      // END .magheader_but:hover
+
+      input:checked + .magheader_but_bottom {
+        display: none;
+      }
+      // END .magheader_but input:checked + .magheader_but_bottom
+
+      &_bottom {
+        display: none;
+      }
+      // END .magheader_but_bottom
+
+      &_cont {
+        display: none;
+        width: 345px;
+        background-color: @textEmphasisGrey;
+        position: absolute;
+        top: 75px;
+        left: 0px;
+      }
+
+      input {
+        display: none;
+      }
+      // END .magheader_but input
+    }
+    // END .magheader_but
+    &_pagenum {
+      display: none;
+    }
+    // END .magheader_pagenum
+    &_sep {
+      display: none;
+    }
+    // END .magheader_sep
+    &_soc {
+      top: 0;
+      float: left;
+
+      &:hover {
+        color: @white;
+      }
+
+      &:active {
+        color: @joyfulHomeGreen;
+      }
+
+      span {
+        display: none;
+      }
+
+      .fa {
+        font-size: 35px;
+        line-height: 75px;
+      }
+    }
+    .fa-bars {
+      display: inline-block;
+      color: @joyfulHomeGreen;
+      font-size: 35px;
+      text-align: center;
+      cursor: pointer;
+      height: 75px;
+      width: 75px;
+      position: relative;
+      top: 0;
+      left: -4px;
+      padding-top: 20px;
+      float: left;
+
+      &.active {
+        background-color: @textEmphasisGrey;
+      }
+
+      &.active + .magheader_but_cont {
+        display: block;
+      }
+    }
+    input {
+      display: none;
+
+      &:checked + .magheader_but {
+        color: @joyfulHomeGreen;
+      }
+    }
+  }
+}
+@media (max-width: 450px) {
+  .magheader{
+    height: 40px;
+    position: fixed;
+    top: 0;
+
+    &_but {
+      height: 40px;
+      padding: 10px 0 0 25px;
+
+      &_cont {
+        width: 100%;
+        top: 40px;
+      }
+    }
+
+    &_ex {
+      width: 40px;
+      height: 40px;
+      font-size: 28px;
+      padding-top: 0;
+      margin-left: 0;
+
+      &_image {
+        margin: 5px 5px;
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    &_logo {
+      height: 30px;
+      width: 162px;
+      margin: 5px 0;
+    }
+
+    &_soc {
+
+      .fa {
+        font-size: 20px;
+        line-height: 40px;
+      }
+    }
+
+    .fa-bars {
+      width: 40px;
+      height: 40px;
+      padding-top: 10px;
+      font-size: 20px;
+      left: 0;
+    }
+  }
+}

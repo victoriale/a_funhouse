@@ -11,16 +11,21 @@
             </div>
         </div>
         <div class="mag_po_subimg">
-            <div class="mag_po_subimg_item" style="background-image: url('{{magCarousel.photos[counter-1]}}')" (click)="changeClick(counter-1)"
+            <div class="mag_po_subimg_item" style="background-image: url('{{magCarousel.photos[counter-1]}}')"
+                 (click)="changeClick(counter-1)"
                  id="{{counter-1}}"></div>
-            <div class="mag_po_subimg_item" style="background-image: url('{{magCarousel.photos[counter]}}')" (click)="changeClick(counter)"
+            <div class="mag_po_subimg_item" style="background-image: url('{{magCarousel.photos[counter]}}')"
+                 (click)="changeClick(counter)"
                  id="{{counter}}"></div>
-            <div class="mag_po_subimg_item" style="background-image: url('{{magCarousel.photos[counter+1]}}')" (click)="changeClick(counter+1)"
+            <div class="mag_po_subimg_item" style="background-image: url('{{magCarousel.photos[counter+1]}}')"
+                 (click)="changeClick(counter+1)"
                  id="{{counter+1}}"></div>
         </div>
         <div class="mag_po_imgnav">
-            <span>Image</span>
-            <span>{{counter + 1}} of {{imageLength}}</span><br>
+            <div style="font-style: @globalFont;">
+                <span style="font-weight: 300;">Image</span>
+                <span style="font-weight: 300;"><span style="font-weight: 900;">{{counter + 1}}</span> of <span style="font-weight: 900;">{{imageLength}}</span></span><br>
+            </div>
             <span class="mag_po_imgnav_dots" *ngFor="#images of magCarousel.photos; #i=index">
                 <span *ngIf="i == counter">
                     <i class="fa fa-circle" (click)="changeClick(i)" id="{{i}}"></i>

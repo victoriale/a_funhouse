@@ -14,6 +14,5 @@ import {NavRightComponent} from "../../components/magazine/mag-nav-right/mag-nav
     providers: [],
 })
 
-export class MagazinePage{
-
+export class MagazinePage {
 }

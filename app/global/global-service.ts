@@ -144,7 +144,7 @@ export class MagazineCarousel {
             {
                 listing_key: "3277-N-LONGFELLOW-CT-Wichita-KS",
                 listhub_key: "3yd-SCKMLSKS-515305",
-                street_address: "3277 N LONGFELLOW CT.",
+                street_address: "3277 N Longfellow Ct.",
                 city: "Wichita",
                 state: "KS",
                 zipcode: "67226",

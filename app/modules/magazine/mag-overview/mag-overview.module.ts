@@ -8,20 +8,25 @@ import {LearnMoreComponent} from "../../../components/magazine/mag-btns/learnmor
     selector: 'magazine-overview-module',
     templateUrl: './app/modules/magazine/mag-overview/mag-overview.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives:[AdzoneComponent, LearnMoreComponent],
+    directives: [AdzoneComponent, LearnMoreComponent],
     providers: [MagazineOverview],
 })
-export class MagOverviewModule implements OnInit{
-    data : MagOverviewData[];
+export class MagOverviewModule implements OnInit {
+    data:MagOverviewData[];
+    counter:number;
 
-    constructor(
-        private _magazineOverviewService: MagazineOverview
-    ) { }
+    constructor(private _magazineOverviewService:MagazineOverview) {
+    }
 
     getMagazineOverview() {
         this._magazineOverviewService.getMagazineOverview().then(data => this.data = data);
     }
+
     ngOnInit() {
-        this.getMagazineOverview();
+        this._magazineOverviewService.getMagazineOverview().then(data => {
+            this.data = data;
+        });
     }
+
+
 }

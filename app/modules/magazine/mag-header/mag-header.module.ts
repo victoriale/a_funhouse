@@ -7,6 +7,15 @@ import {CloseComponent} from "../../../components/magazine/mag-close/mag-close.c
     selector: 'magazine-header-module',
     templateUrl: './app/modules/magazine/mag-header/mag-header.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives:[MagTabComponent, ShareComponent, CloseComponent],
+    directives: [MagTabComponent, ShareComponent, CloseComponent],
 })
-export class MagHeaderModule{}
+export class MagHeaderModule {
+    openTabs() {
+        if (document.getElementById('tabs').classList.contains('active')) {
+            document.getElementById('tabs').classList.remove('active');
+        }
+        else {
+            document.getElementById('tabs').classList.add('active');
+        }
+    }
+}

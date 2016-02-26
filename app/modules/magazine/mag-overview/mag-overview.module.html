@@ -1,4 +1,4 @@
-<div class="mag_container mag_text">
+<div class="mag_container mag_text" id="test">
     <div *ngFor="#magOverview of data">
         <div class='mag_po_address'>
             <i class='fa fa-map-marker'></i>
@@ -10,16 +10,16 @@
         </div>
         <div class='mag_po_price'>Listed for: $124,900</div>
         <div class='mag-line'></div>
-        <span style="font-size: 1.08vw; line-height: 22px;">
-        {{magOverview.magtext1}}<br><br><br>
-        {{magOverview.magtext2}}<br><br><br>
-        <adzone-component></adzone-component>
-        {{magOverview.magtext3}}<br><br><br>
-        {{magOverview.magtext4}}<br><br><br>
-        {{magOverview.magtext5}}<br><br><br>
-        {{magOverview.magtext6}} <a href='http://www.joyfulhome.com/listing/3277-N-LONGFELLOW-CT-Wichita-KS'>the listing profile</a>
-        {{magOverview.magtext7}} <a href='mailto:pegbockus@cox.net'>pegbockus@cox.net</a>
-        {{magOverview.magtext8}}<br><br><br>
+        <span style="line-height: 1.42857143;">
+            {{magOverview.magtext1}}<br><br>
+            {{magOverview.magtext2}}<br><br>
+            <adzone-component></adzone-component>
+            {{magOverview.magtext3}}<br><br>
+            {{magOverview.magtext4}}<br><br>
+            {{magOverview.magtext5}}<br><br>
+            {{magOverview.magtext6}} <a href='http://www.joyfulhome.com/listing/3277-N-LONGFELLOW-CT-Wichita-KS'>the listing profile</a>
+            {{magOverview.magtext7}} <a href='mailto:pegbockus@cox.net'>pegbockus@cox.net</a>
+            {{magOverview.magtext8}}<br><br>
         </span>
         <learnmore-component></learnmore-component>
     </div>
