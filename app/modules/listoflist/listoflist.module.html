@@ -1,5 +1,5 @@
 <section class="listoflists">
-    <module-header></module-header>
+    <module-header [module_title]="module_title"></module-header>
     <span *ngFor="#lol of lists">
         <contentlist [lol]="lol"></contentlist>
     </span>
