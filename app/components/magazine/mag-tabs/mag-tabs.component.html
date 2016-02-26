@@ -1,0 +1,12 @@
+<!--/**-->
+<!--* Created by Christopher Lynch on 2/23/2016.-->
+<!--*/-->
+
+<span *ngFor="#magheader of tabs">
+    <input type="radio" name="PageType2" id='{{magheader.id}}' checked="{{magheader.checked}}">
+    <a class="magheader_but" href="javascript:void(0)">
+        {{magheader.name}}
+        <input type="radio" name="PageType" value="{{magheader.id}}" checked="{{magheader.checked}}">
+        <div class="magheader_but_bottom"></div>
+    </a>
+</span>
