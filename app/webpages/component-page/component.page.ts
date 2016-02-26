@@ -1,7 +1,7 @@
 /**
  * Created by Victoria on 2/23/2016.
  */
-import {Component, OnInit} from 'angular2/core';
+import {Component} from 'angular2/core';
 
 import {BackTabComponent} from '../../components/backtab/backtab.component';
 import {TitleComponent} from '../../components/title/title.component';
@@ -28,7 +28,7 @@ selector: 'component-page',
     providers: [],
 })
 
-export class ComponentPage implements OnInit{}
+export class ComponentPage {}
 
 
 
