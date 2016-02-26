@@ -1,12 +1,8 @@
 <header-component></header-component>
-<main class='doc-main'>
-    <nav>
-        <a [routerLink]="['Home-page']">Home Page</a>
-        <a [routerLink]="['Profile-page']">Profile Page</a>
-        <a [routerLink]="['Component-page']">Component Page</a>
-    </nav>
-    <section class='content'>
-        <router-outlet></router-outlet>
-    </section>
-</main>
+<nav class="twelve columns">
+    <a [routerLink]="['Home-page']">Home Page</a>
+    <a [routerLink]="['Profile-page']">Profile Page</a>
+    <a [routerLink]="['Component-page']">Component Page</a>
+</nav>
+<router-outlet></router-outlet>
 <footer-component></footer-component>
