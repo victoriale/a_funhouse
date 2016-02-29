@@ -108,7 +108,9 @@
     </section>
 
     <section class='doc-workspace'>
-        <tiles-component></tiles-component>
+        <div style="position:relative; width:680px;height:570px;background-color:#fff;">
+            <tiles-component></tiles-component>
+        </div>
         <div class='code-wrapper'>
       <pre><![CDATA[
       import {TilesComponent} from '../../components/tiles-component/tiles-component';
@@ -155,6 +157,26 @@
       <pre><![CDATA[
       import {moduleFooter} from "../../components/module-footer/module-footer";
       selector: 'module-footer',
+      ]]></pre>
+        </div>
+    </section>
+
+    <section class='doc-workspace'>
+        <about-us-module></about-us-module>
+        <div class='code-wrapper'>
+      <pre><![CDATA[
+      import {AboutUsModule} from "../../components/about-us-module/about-us-module";
+      selector: 'about-us-module',
+      ]]></pre>
+        </div>
+    </section>
+
+    <section class='doc-workspace'>
+        <share-module></share-module>
+        <div class='code-wrapper'>
+      <pre><![CDATA[
+      import {ShareModule} from "../../modules/share/share.module";
+      selector: 'share-module',
       ]]></pre>
         </div>
     </section>

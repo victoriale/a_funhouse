@@ -1,0 +1,28 @@
+.share{
+  background-color: @white;
+  border: solid 1px @greyBorder;
+  width: 680px;
+  height: 245px;
+  &-main{
+    .image-175{
+      margin: 10px 35px 0 20px;
+      .roundImage(175px, 3px, @masterStrokeColor);
+    }
+
+    .flexDisplay;
+    &-opt{
+      margin: 36px 0 0 0;
+      color: #666666;
+      font-size: 24px;
+      font-weight: 400;
+      .btns{
+        .mod-page-btn{
+          & > span:nth-child(2) {
+            width: 100px;
+            height: 40px;
+          }
+        }
+      }
+    }
+  }
+}
