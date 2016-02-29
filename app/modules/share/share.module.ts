@@ -15,5 +15,17 @@ import {moduleHeader} from "../../components/module-header/module-header";
 export class ShareModule{
     image_url = './app/public/img_bckgnd.png';
     share = 'Share [Profile] Below:';
+    icon1 = 'fa fa-facebook';
+    icon2 = 'fa fa-twitter';
+    icon3 = 'fa fa-google-plus';
+    icon4 = 'fa fa-pinterest';
+    shareOn1 = 'Facebook';
+    shareOn2 = 'Twitter';
+    shareOn3 = 'Google +';
+    shareOn4 = 'Pinterest';
+    Url1 = '';
+    Url2 = '';
+    Url3 = '';
+    Url4 = '';
 }
 
