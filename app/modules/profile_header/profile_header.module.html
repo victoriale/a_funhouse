@@ -1,5 +1,7 @@
 <section class="ph">
-    <title-loc-component></title-loc-component>
+    <span *ngFor="#titleComp of data">
+        <title-component [title]="titleComp"></title-component>
+    </span>
     <section class="header">
         <div class="img">
             <image-180></image-180>

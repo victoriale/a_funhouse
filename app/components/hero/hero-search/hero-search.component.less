@@ -1,0 +1,40 @@
+@import (reference) "./app/global/stylesheets/components.less";
+@import (reference) "./app/global/stylesheets/base.less";
+
+.hero-search {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.hero-search input {
+  width: 45%;
+  height: 50px;
+  color: #999 !important;
+  text-align: left;
+  border: none;
+  border-radius: 5px;
+  padding-left: 10px;
+  .globalDefaultModFont(18, 400, @black);
+}
+
+  .hero-search-button {
+    width: 70px;
+    height: 50px;
+    background-color: #44b224;
+    color: #ffffff;
+    font-size: 24px;
+    text-align: center;
+    position: relative;
+    top: 2px;
+    right: 15px;
+    border: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+    .fa-search{
+      font-size: 18px;
+      position: relative;
+      top: -27px;
+      right: 9px;
+    }
+  }

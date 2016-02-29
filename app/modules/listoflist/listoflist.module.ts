@@ -15,6 +15,7 @@ import {moduleFooter} from "../../components/module-footer/module-footer";
 })
 
 export class ListOfListModule implements OnInit{
+    module_title: string;
     public profile_name = "[Profile Name]'s [Module Title]";
     lists : List[];
     batch1: List[];
@@ -33,6 +34,7 @@ export class ListOfListModule implements OnInit{
     ngOnInit() {
         this.getListOfList();
         this.getBatchOne();
+        this.module_title = '[Profiles Name]\'s [Module Title]';
         console.log(this);
     }
 }

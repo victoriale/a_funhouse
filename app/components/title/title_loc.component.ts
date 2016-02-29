@@ -9,17 +9,23 @@ import {Image100} from '../../components/images/image-100/image-100.component';
     directives: [TitleComponent, Image100],
 })
 export class TitleLocComponent implements OnInit{
-    titleImg = './app/public/img_bckgnd.png';
-    lastUpdate = 'Monday, February 23, 2016';
-    smallTxt1 = '';
-    icon = 'fa fa-map-marker';
-    smallTxt2 = '';
-    Heading1 = '[City]';
-    Heading2 = '[State]';
-    Heading3 = '[##]';
-    Heading4 = 'Listings Available for Sale';
-    name () {
-        this.smallTxt2 = ' Last Update: ' + this.lastUpdate;
+    title:{};
+
+    name() {
+        if(typeof this.title == 'undefined'){
+            this.title =
+            {
+                titleImg : './app/public/img_bckgnd.png',
+                smallTxt1 : '',
+                smallTxt2 : 'Location: United States of America',
+                Heading1 : '[City]',
+                Heading2 : '[State]',
+                Heading3 : '[##]',
+                Heading4 : 'Listings Available for Sale',
+                icon : 'fa fa-map-marker',
+            };
+        }
+        console.log(this);
     }
 
     ngOnInit(){
