@@ -1,11 +1,14 @@
 import {Component} from 'angular2/core';
+import {ExploreButtonComponent} from "./explore-button/explore-button.component";
 
 @Component({
     selector: 'explore-tiles-component',
     templateUrl: './app/components/explore-tiles/explore-tiles.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [],
+    directives: [ExploreButtonComponent],
     providers: [],
 })
 
-export class ExploreTilesComponent{ }
+export class ExploreTilesComponent{
+
+}
