@@ -10,12 +10,14 @@ import {HeroComponent} from "../components/hero/hero.component";
 import {HeroSearchComponent} from "../components/hero/hero-search/hero-search.component";
 import {ExploreTilesComponent} from "../components/explore-tiles/explore-tiles.component";
 import {HeroBottomComponent} from "../components/hero/hero-bottom/hero-bottom.component";
+import {ExploreButtonComponent} from "../components/buttons/explore-button/explore-button.component";
+import {FeatureTilesComponent} from "../components/feature-tiles/feature-tiles.component";
 
 @Component({
     selector: 'my-app',
     templateUrl: './app/app-layout/app.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [ProfilePage, HomePage, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, ROUTER_DIRECTIVES],
+    directives: [ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ROUTER_DIRECTIVES],
     providers: [ROUTER_PROVIDERS]
 })
 

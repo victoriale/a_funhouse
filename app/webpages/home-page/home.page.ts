@@ -4,18 +4,22 @@ import {HeaderComponent} from "../../components/header/header.component";
 import {FooterComponent} from "../../components/footer/footer.component";
 import {HeroComponent} from "../../components/hero/hero.component";
 import {ExploreTilesComponent} from "../../components/explore-tiles/explore-tiles.component";
-import {ExploreButtonComponent} from "../../components/explore-tiles/explore-button/explore-button.component";
+import {ExploreButtonComponent} from "../../components/buttons/explore-button/explore-button.component";
 import {HeroBottomComponent} from "../../components/hero/hero-bottom/hero-bottom.component";
+import {FeatureTilesComponent} from "../../components/feature-tiles/feature-tiles.component";
 
 @Component({
     selector: 'profile-page',
     templateUrl: './app/webpages/home-page/home.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [HeaderComponent, FooterComponent, HeroComponent, ExploreTilesComponent, ExploreButtonComponent, HeroBottomComponent],
+    directives: [HeaderComponent, FooterComponent, HeroComponent, ExploreTilesComponent, ExploreButtonComponent, HeroBottomComponent, FeatureTilesComponent],
     providers: [],
 })
 
 export class HomePage {
+    // Location
+    citylocation: string = "Wichita";
+
     // Buttons
     buttontitle: string;
     buttonwidth: number;

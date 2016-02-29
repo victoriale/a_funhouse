@@ -1,5 +1,5 @@
 import {Component, Input} from 'angular2/core';
-import {ExploreButtonComponent} from "../../explore-tiles/explore-button/explore-button.component";
+import {ExploreButtonComponent} from "../../buttons/explore-button/explore-button.component";
 
 @Component({
     selector: 'hero-bottom-component',
