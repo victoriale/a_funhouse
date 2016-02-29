@@ -1,0 +1,30 @@
+<section class="module-container">
+    <module-header [module_title]="module_title"></module-header>
+    <div class="crime-stats">
+        <div class="crime-stats-header">
+            <i class="fa fa-th-large"></i>Crimes <span class="text-right">Net %</span>
+        </div>
+        <ul>
+            <li *ngFor="#item of stats" class="crime-stats-item" style="border-left-color: {{item.color}}">
+                {{item.title}} <span class="text-right text-bold">{{item.pct}}</span>
+            </li>
+        </ul>
+    </div>
+
+    <ul class="crime-list">
+        <li *ngFor = "#item of crime_list" class="crime-list-item">
+            <div class="crime-list-item-img">
+                <img id="{{item.img_id}}" src="{{item.img_src}}" />
+            </div>
+            <div class="crime-list-item-text">
+                <span class="title">
+                    Crime - <span class="bold">{{item.type}}</span>
+                </span>
+                <span class="description">
+                   {{item.description}} <span class="date">{{item.date}}</span>
+                </span>
+            </div>
+            <i class="fa fa-angle-right"></i>
+        </li>
+    </ul>
+</section>
