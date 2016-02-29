@@ -15,6 +15,28 @@ import {HeroBottomComponent} from "../../components/hero/hero-bottom/hero-bottom
     providers: [],
 })
 
-export class HomePage{
+export class HomePage {
+    // Buttons
+    buttontitle: string;
+    buttonwidth: number;
+    buttonicon: string;
+    herobuttontitle: string;
+    herobuttonwidth: number;
+    herobuttonicon: string;
+
+    // Top Tiles
+
+
+    constructor() {
+        // Buttons
+        this.buttontitle = "More";
+        this.buttonwidth = 160;
+        this.buttonicon = "fa fa-angle-double-down";
+        this.herobuttontitle = "See The List";
+        this.herobuttonwidth = 220;
+        this.herobuttonicon = "";
+
+        // Top Tiles
+    }
 
 }

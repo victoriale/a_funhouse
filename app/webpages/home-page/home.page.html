@@ -7,9 +7,12 @@
             </section>
         </main>
         <explore-tiles-component></explore-tiles-component>
+        <div class="row">
+            <explore-button-component [buttontitle]="buttontitle" [buttonwidth]="buttonwidth" [buttonicon]="buttonicon"></explore-button-component>
+        </div>
     </div>
 </div>
-<hero-bottom-component></hero-bottom-component>
+<hero-bottom-component [buttontitle]="herobuttontitle" [buttonwidth]="herobuttonwidth" [buttonicon]="herobuttonicon"></hero-bottom-component>
 <div class="content-wrapper">
     <div class="container">
         <main class='doc-main row'>
