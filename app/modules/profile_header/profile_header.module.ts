@@ -16,7 +16,6 @@ export class ProfileHeader implements OnInit{
     icon = 'fa fa-map-marker';
     title = 'Quick info about [City], [State]';
     description = 'The most popular neighborhood In  [City], [State] for new listings was [City], [State].  Did you know that the average age for a [City], [State] resident is [##] and the average home sells for $[###,###].';
-
     data:[{}];
 
     titleData(){
