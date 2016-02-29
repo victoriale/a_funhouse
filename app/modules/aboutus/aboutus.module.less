@@ -2,12 +2,17 @@
   border: solid 1px @greyBorder;
   height: 646px;
   width: 680px;
+  font-family: @globalFont;
   i{
     color: @masterBrandColor;
   }
+  &-body{
+    .flexDisplay;
+    .flexDirection(row);
+    padding:15px;
+  }
   &-disc{
-    position: absolute;
-    margin: 15px;
+    margin-right: 15px;
     border: solid 1px @strokeGrey;
     box-sizing: border-box;
     background-color: @white;
