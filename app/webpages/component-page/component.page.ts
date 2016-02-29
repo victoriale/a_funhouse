@@ -19,12 +19,14 @@ import {FeatureComponent} from '../../components/feature-list/feature-list.compo
 import {contentList} from "../../components/contentlist/contentlist";
 import {moduleHeader} from "../../components/module-header/module-header";
 import {moduleFooter} from "../../components/module-footer/module-footer";
+import {AboutUsModule} from "../../modules/aboutus/aboutus.module";
+import {ShareModule} from "../../modules/share/share.module";
 
 @Component({
 selector: 'component-page',
     templateUrl: './app/webpages/component-page/component.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [BackTabComponent, TitleComponent, TitleLocComponent, CarouselButton, InfinityButton, Image180, Image100, HeadlineComponent, imageHeader, propertyType, ProfileHeader, FeatureComponent, TilesComponent, contentList, moduleHeader, moduleFooter, FeatureComponent, TilesComponent],
+    directives: [BackTabComponent, TitleComponent, TitleLocComponent, CarouselButton, InfinityButton, Image180, Image100, HeadlineComponent, imageHeader, propertyType, ProfileHeader, FeatureComponent, TilesComponent, contentList, moduleHeader, moduleFooter, FeatureComponent, TilesComponent, AboutUsModule, ShareModule],
     providers: [],
 })
 
