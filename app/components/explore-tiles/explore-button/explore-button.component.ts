@@ -8,4 +8,6 @@ import {Component} from 'angular2/core';
     providers: [],
 })
 
-export class ExploreButtonComponent{ }
+export class ExploreButtonComponent{
+
+}

@@ -9,4 +9,6 @@ import {ExploreButtonComponent} from "./explore-button/explore-button.component"
     providers: [],
 })
 
-export class ExploreTilesComponent{ }
+export class ExploreTilesComponent{
+
+}
