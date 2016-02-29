@@ -1,7 +1,7 @@
 /**
  * Created by Larry on 2/23/2016.
  */
-import {Component} from 'angular2/core';
+import {Component, Input} from 'angular2/core';
 
 @Component({
     selector: 'module-header',
@@ -9,8 +9,9 @@ import {Component} from 'angular2/core';
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives:[],
     providers: [],
+    inputs: ['module_title']
 })
 
 export class moduleHeader{
-    public profile_name = "[Profile Name]'s [Module Title]";
+    public module_title: string;
 }
