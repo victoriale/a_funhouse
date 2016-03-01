@@ -1,4 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
+import {Router} from 'angular2/router';
 
 import {HeaderComponent} from "../../components/header/header.component";
 import {FooterComponent} from "../../components/footer/footer.component";
@@ -31,7 +32,7 @@ export class HomePage {
     // Top Tiles
 
 
-    constructor() {
+    constructor(public router: Router) {
         // Buttons
         this.buttontitle = "More";
         this.buttonwidth = 160;
@@ -40,7 +41,8 @@ export class HomePage {
         this.herobuttonwidth = 220;
         this.herobuttonicon = "";
 
-        // Top Tiles
+        // Get current route name
+        console.log('Route Name:', this.router.hostComponent.name);
     }
 
 }
