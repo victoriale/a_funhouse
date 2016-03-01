@@ -1,4 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
+import {Router} from 'angular2/router';
 import {ProfileHeader} from '../../modules/profile_header/profile_header.module';
 import {CrimeModule} from '../../modules/crime/crime.module';
 
@@ -11,4 +12,10 @@ import {CrimeModule} from '../../modules/crime/crime.module';
 })
 
 export class LocationPage{
+
+    //  Get current route name
+    constructor(public router: Router){
+        console.log('Route Name:', this.router.hostComponent.name);
+    }
+
 }
