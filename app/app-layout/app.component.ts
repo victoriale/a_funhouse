@@ -2,6 +2,7 @@ import {Component} from 'angular2/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
 
 import {ProfilePage} from "../webpages/profile-page/profile.page";
+import {LocationPage} from "../webpages/location-page/location.page";
 import {HomePage} from "../webpages/home-page/home.page";
 import {ComponentPage} from "../webpages/component-page/component.page";
 import {AboutUsPage} from "../webpages/aboutus-page/aboutus.page";
@@ -33,6 +34,11 @@ import {FeatureTilesComponent} from "../components/feature-tiles/feature-tiles.c
         path: '/profile',
         name: 'Profile-page',
         component: ProfilePage,
+    },
+    {
+        path: '/location',
+        name: 'Location-page',
+        component: LocationPage,
     },
     {
         path: '/component',

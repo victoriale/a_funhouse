@@ -20,7 +20,7 @@ export class ProfileHeader implements OnInit{
 
     titleData(){
         //TestData
-        var TD = [{
+        var TD = {
             titleImg : './app/public/img_bckgnd.png',
             smallTxt1 : 'Monday, February 26, 2016',
             smallTxt2 : ' Wichita, KS',
@@ -29,7 +29,7 @@ export class ProfileHeader implements OnInit{
             Heading3 : 'Sub Title with Info about Profile Header',
             Heading4 : '',
             icon: 'fa fa-map-marker',
-        }];
+        };
         this.data = TD;
         console.log(this);
     }
