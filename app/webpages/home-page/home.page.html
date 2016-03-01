@@ -3,13 +3,16 @@
     <div class="container">
         <main class='doc-main row'>
             <section class='content-main twelve columns'>
-                <h1 class="home-tagline"><img class="map-icon" src="./app/public/Icons_Explore.png" /> Explore <span class="thin">The Wichita Area</span></h1>
+                <h1 class="home-tagline"><img class="map-icon" src="./app/public/Icons_Explore.png" /> Explore <span class="thin">The {{citylocation}} Area</span></h1>
             </section>
         </main>
         <explore-tiles-component></explore-tiles-component>
+        <div class="row">
+            <explore-button-component [buttontitle]="buttontitle" [buttonwidth]="buttonwidth" [buttonicon]="buttonicon"></explore-button-component>
+        </div>
     </div>
 </div>
-<hero-bottom-component></hero-bottom-component>
+<hero-bottom-component [buttontitle]="herobuttontitle" [buttonwidth]="herobuttonwidth" [buttonicon]="herobuttonicon"></hero-bottom-component>
 <div class="content-wrapper">
     <div class="container">
         <main class='doc-main row'>
@@ -17,6 +20,6 @@
                 <h1 class="home-tagline"><img class="map-icon" src="./app/public/Icons_Explore.png" /> Features <span class="thin">To Note</span></h1>
             </section>
         </main>
-        <explore-tiles-component></explore-tiles-component>
+        <feature-tiles-component></feature-tiles-component>
     </div>
 </div>

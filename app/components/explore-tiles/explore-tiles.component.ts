@@ -1,5 +1,6 @@
 import {Component} from 'angular2/core';
-import {ExploreButtonComponent} from "./explore-button/explore-button.component";
+import {ExploreButtonComponent} from "../buttons/explore-button/explore-button.component";
+
 
 @Component({
     selector: 'explore-tiles-component',
@@ -9,6 +10,4 @@ import {ExploreButtonComponent} from "./explore-button/explore-button.component"
     providers: [],
 })
 
-export class ExploreTilesComponent{
-
-}
+export class ExploreTilesComponent{ }

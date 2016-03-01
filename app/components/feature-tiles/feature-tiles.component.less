@@ -1,0 +1,57 @@
+@import (reference) "./app/global/stylesheets/components.less";
+@import (reference) "./app/global/stylesheets/base.less";
+
+.feature {
+  text-align: center;
+}
+
+.feature-tiles {
+  text-align: center;
+  position: relative;
+  margin-bottom: 10px;
+  .globalDefaultModFont(32, 500, @white);
+}
+
+.feature-tile-title {
+  margin-top: 110px;
+  color: @white;
+}
+
+.feature-tile-title-long {
+  margin-top: 95px;
+  line-height: 36px;
+  color: @white;
+}
+
+.title-bold {
+  .globalDefaultModFont(32, 700, @white);
+}
+
+.feature-tile-1 {
+  width: 635px;
+  height: 250px;
+  margin-right: 10px;
+  background: url('./app/public/Image_Interactive_Map.png');
+}
+
+.feature-tile-2 {
+  width: 315px;
+  height: 250px;
+  background: #000;
+  float: right;
+}
+
+.feature-tile-3 {
+  width: 315px;
+  height: 250px;
+  background: url('./app/public/Image_Trending_News.png');
+  margin-right: 10px;
+}
+
+
+.feature-tile-4 {
+  width: 635px;
+  height: 250px;
+  background: url('./app/public/Image_Top_100_List.png');
+  float: right;
+}
