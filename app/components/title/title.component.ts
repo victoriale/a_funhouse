@@ -6,13 +6,13 @@ import {Image100} from '../../components/images/image-100/image-100.component';
     templateUrl: './app/components/title/title.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [Image100],
+    inputs: ['data']
 })
 export class TitleComponent{
-    @Input() title;
 
     titleComp(){
-        if(typeof this.title == 'undefined'){
-            this.title =
+        if(typeof this.data == 'undefined'){
+            this.data =
             {
                 titleImg : './app/public/img_bckgnd.png',
                 smallTxt1 : 'Monday, February 23, 2016',
@@ -22,6 +22,7 @@ export class TitleComponent{
                 Heading3 : 'Lorem ipsum dolor sit amet Lorem',
                 Heading4 : '',
                 icon: 'fa fa-map-marker',
+                hasHover: true
             };
         }
         console.log(this);
@@ -29,6 +30,7 @@ export class TitleComponent{
 
     ngOnInit(){
         this.titleComp();
+        console.log('TITLE COMP', this);
     }
 
 }

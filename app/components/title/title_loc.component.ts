@@ -7,13 +7,13 @@ import {Image100} from '../../components/images/image-100/image-100.component';
     styleUrls: ['./app/global/stylesheets/master.css'],
     templateUrl: './app/components/title/title.component.html',
     directives: [TitleComponent, Image100],
+    inputs: ['data']
 })
-export class TitleLocComponent implements OnInit{
-    title:{};
+export class TitleLocComponent implements OnInit{\
 
     name() {
-        if(typeof this.title == 'undefined'){
-            this.title =
+        if(typeof this.data == 'undefined'){
+            this.data =
             {
                 titleImg : './app/public/img_bckgnd.png',
                 smallTxt1 : '',
@@ -23,6 +23,7 @@ export class TitleLocComponent implements OnInit{
                 Heading3 : '[##]',
                 Heading4 : 'Listings Available for Sale',
                 icon : 'fa fa-map-marker',
+                hasHover: true
             };
         }
         console.log(this);

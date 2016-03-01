@@ -14,4 +14,5 @@ import {CrimeModule} from '../../modules/crime/crime.module';
 
 export class LocationPage implements OnInit{
     public headline_title = '[City], [State]';
+    public profile_type = 'location';
 }

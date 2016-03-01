@@ -1,4 +1,4 @@
-<div class='image-{{size}}'>
+<div *ngIf="hasHover === 'true'" class='image-{{size}}-hover'>
     <a href=''>
         <img src='{{image_url}}' alt='This is the main image' />
         <div>
@@ -10,4 +10,8 @@
         <img src='{{image_url}}' alt='Small image' />
         <div><i class='fa fa-share'></i></div>
     </a>
+</div>
+
+<div *ngIf="hasHover === 'false'">
+    <img class='image-{{size}}' src='{{image_url}}' alt='This is the main image' />
 </div>
