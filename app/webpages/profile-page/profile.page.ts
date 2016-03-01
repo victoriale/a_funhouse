@@ -1,4 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
+import {Router} from 'angular2/router';
 
 import {HeadlineComponent} from '../../components/headline/headline.component';
 import {ListOfListModule} from '../../modules/listoflist/listoflist.module';
@@ -13,6 +14,12 @@ import {FooterComponent} from "../../components/footer/footer.component";
     providers: [],
 })
 
+
 export class ProfilePage implements OnInit{
     public headline_title = '[Listing Name]';
+
+    //  Get current route name
+    constructor(public router: Router){
+        console.log('Route Name:', this.router.hostComponent.name);
+    }
 }
