@@ -16,7 +16,26 @@ import {FooterComponent} from "../../components/footer/footer.component";
 
 
 export class ProfilePage implements OnInit{
-    public headline_title = '[Listing Name]';
+    public headline_about = {
+        title: 'About [Listing Name]',
+        icon: 'fa-map-marker'
+    };
+    public headline_crime = {
+        title: 'Most Recent Crimes in [Listing Name]',
+        icon: 'fa-gavel'
+    };
+    public headline_amenities = {
+        title: 'Amenities in [Listing Name]',
+        icon: 'fa-cutlery'
+    };
+    public headline_otherHomes = {
+        title: 'Other Homes You May Be Interested In',
+        icon: 'fa-heart-o'
+    };
+    public headline_interact = {
+        title: 'Interact with Joyful Home',
+        icon: 'fa-comment-o'
+    };
 
     //  Get current route name
     constructor(public router: Router){

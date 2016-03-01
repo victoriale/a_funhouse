@@ -35,6 +35,10 @@ selector: 'component-page',
 export class ComponentPage implements OnInit{
     module_title: string;
     hasHover = true;
+    headline_example = {
+        title: '[Enter Title Here]',
+        icon: 'fa-map-marker'
+    };
 
     ngOnInit(){
         this.module_title = '[Profile Name]\'s [Module Title]';

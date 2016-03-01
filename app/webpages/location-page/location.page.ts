@@ -13,6 +13,21 @@ import {CrimeModule} from '../../modules/crime/crime.module';
 })
 
 export class LocationPage implements OnInit{
-    public headline_title = '[City], [State]';
+    public headline_about = {
+        title: 'About [City], [State]',
+        icon: 'fa-map-marker'
+    };
+    public headline_crime = {
+        title: 'Most Recent Crimes in [City], [State]',
+        icon: 'fa-gavel'
+    };
+    public headline_amenities = {
+        title: 'Schools & Amenities in [City], [State]',
+        icon: 'fa-graduation-cap'
+    };
+    public headline_interact = {
+        title: 'Interact with Joyful Home',
+        icon: 'fa-comment-o'
+    };
     public profile_type = 'location';
 }

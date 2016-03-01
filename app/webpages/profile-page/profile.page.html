@@ -2,8 +2,24 @@
     <div class="container">
         <main class='row'>
             <section class='content-main eight columns'>
-                <headline-component [title]="headline_title"></headline-component>
+                <!-- Modules Go Here -->
+
+                <!-- About Section -->
+                <headline-component [data]="headline_about"></headline-component>
                 <list-of-lists-module></list-of-lists-module>
+
+                <!-- Crime Section -->
+                <headline-component [data]="headline_crime"></headline-component>
+
+                <!-- Amenities Section -->
+                <headline-component [data]="headline_amenities"></headline-component>
+
+                <!-- Other Homes Section -->
+                <headline-component [data]="headline_otherHomes"></headline-component>
+
+                <!-- Interact Section -->
+                <headline-component [data]="headline_interact"></headline-component>
+
             </section>
             <aside class="four columns">
                 <div class="widget"></div>

@@ -3,9 +3,21 @@
         <main class='row'>
             <section class='content-main eight columns'>
                 <!-- Modules Go Here -->
-                <headline-component [title]="headline_title"></headline-component>
+
+                <!-- About Section -->
+                <headline-component [data]="headline_about"></headline-component>
                 <profile-header [profile_type]="profile_type"></profile-header>
+
+                <!-- Crime Section -->
+                <headline-component [data]="headline_crime"></headline-component>
                 <crime-module></crime-module>
+
+                <!-- Amenities Section -->
+                <headline-component [data]="headline_amenities"></headline-component>
+
+                <!-- Interact Section -->
+                <headline-component [data]="headline_interact"></headline-component>
+
             </section>
             <aside class="four columns">
                 <div class="widget"></div>

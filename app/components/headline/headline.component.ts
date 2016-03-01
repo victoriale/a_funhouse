@@ -7,8 +7,8 @@ import {Component, Input} from 'angular2/core';
     selector: 'headline-component',
     templateUrl: './app/components/headline/headline.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    inputs: ['title']
+    inputs: ['data']
 })
 export class HeadlineComponent{
-    public title: string;
+
 }
