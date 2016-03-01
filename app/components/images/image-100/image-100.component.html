@@ -1,4 +1,4 @@
-<div class='image-100'>
+<div *ngIf="hasHover === true" class='image-100-hover'>
     <a href='#'>
         <img src='{{image_url}}' alt='Big image example from snt verticals' />
         <div>
@@ -6,4 +6,8 @@
             <p>Profile</p>
         </div>
     </a>
+</div>
+
+<div *ngIf="hasHover === false">
+    <img class='image-100' src='{{image_url}}' alt='This is the main image' />
 </div>

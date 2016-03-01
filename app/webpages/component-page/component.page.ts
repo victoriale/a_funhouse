@@ -34,6 +34,7 @@ selector: 'component-page',
 
 export class ComponentPage implements OnInit{
     module_title: string;
+    hasHover = true;
 
     ngOnInit(){
         this.module_title = '[Profile Name]\'s [Module Title]';
