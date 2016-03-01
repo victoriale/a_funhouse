@@ -30,7 +30,6 @@ export class TitleComponent{
 
     ngOnInit(){
         this.titleComp();
-        console.log('TITLE COMP', this);
     }
 
 }
