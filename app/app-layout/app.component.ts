@@ -5,6 +5,8 @@ import {ProfilePage} from "../webpages/profile-page/profile.page";
 import {HomePage} from "../webpages/home-page/home.page";
 import {ComponentPage} from "../webpages/component-page/component.page";
 import {AboutUsPage} from "../webpages/aboutus-page/aboutus.page";
+import {ContactUsPage} from "../webpages/contactus-page/contactus.page";
+import {DisclaimerPage} from "../webpages/disclaimer-page/disclaimer.page";
 import {HeaderComponent} from "../components/header/header.component";
 import {FooterComponent} from "../components/footer/footer.component";
 import {HeroComponent} from "../components/hero/hero.component";
@@ -15,7 +17,7 @@ import {HeroBottomComponent} from "../components/hero/hero-bottom/hero-bottom.co
     selector: 'my-app',
     templateUrl: './app/app-layout/app.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [ProfilePage, HomePage, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, AboutUsPage, ROUTER_DIRECTIVES],
+    directives: [ProfilePage, HomePage, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, AboutUsPage, ContactUsPage, DisclaimerPage, ROUTER_DIRECTIVES],
     providers: [ROUTER_PROVIDERS]
 })
 
@@ -40,6 +42,16 @@ import {HeroBottomComponent} from "../components/hero/hero-bottom/hero-bottom.co
         path: '/aboutus',
         name: 'Aboutus-page',
         component: AboutUsPage,
+    },
+    {
+        path: '/contactus',
+        name: 'Contactus-page',
+        component: ContactUsPage,
+    },
+    {
+        path: '/disclaimer',
+        name: 'Disclaimer-page',
+        component: DisclaimerPage,
     }
 ])
 
