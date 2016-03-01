@@ -6,6 +6,8 @@ import {LocationPage} from "../webpages/location-page/location.page";
 import {HomePage} from "../webpages/home-page/home.page";
 import {ComponentPage} from "../webpages/component-page/component.page";
 import {AboutUsPage} from "../webpages/aboutus-page/aboutus.page";
+import {ContactUsPage} from "../webpages/contactus-page/contactus.page";
+import {DisclaimerPage} from "../webpages/disclaimer-page/disclaimer.page";
 import {HeaderComponent} from "../components/header/header.component";
 import {FooterComponent} from "../components/footer/footer.component";
 import {HeroComponent} from "../components/hero/hero.component";
@@ -49,8 +51,17 @@ import {FeatureTilesComponent} from "../components/feature-tiles/feature-tiles.c
         path: '/aboutus',
         name: 'Aboutus-page',
         component: AboutUsPage,
+    },
+    {
+        path: '/contactus',
+        name: 'Contactus-page',
+        component: ContactUsPage,
+    },
+    {
+        path: '/disclaimer',
+        name: 'Disclaimer-page',
+        component: DisclaimerPage,
     }
 ])
 
-export class AppComponent {
-}
+export class AppComponent { }
