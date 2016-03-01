@@ -1,4 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
+import {Router} from 'angular2/router';
 
 import {ListOfListModule} from '../../modules/listoflist/listoflist.module';
 import {CrimeModule} from '../../modules/crime/crime.module';
@@ -14,4 +15,10 @@ import {FooterComponent} from "../../components/footer/footer.component";
 })
 
 export class ProfilePage{
+
+    //  Get current route name
+    constructor(public router: Router){
+        console.log('Route Name:', this.router.hostComponent.name);
+    }
+
 }
