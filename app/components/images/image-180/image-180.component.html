@@ -1,4 +1,4 @@
-<div *ngIf="hasHover === 'true'" class='image-{{size}}-hover'>
+<div *ngIf="hasHover === true" class='image-{{size}}-hover'>
     <a href=''>
         <img src='{{image_url}}' alt='This is the main image' />
         <div>
@@ -12,6 +12,6 @@
     </a>
 </div>
 
-<div *ngIf="hasHover === 'false'">
+<div *ngIf="hasHover === false">
     <img class='image-{{size}}' src='{{image_url}}' alt='This is the main image' />
 </div>
