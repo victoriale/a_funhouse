@@ -1,5 +1,6 @@
 import {Component, OnInit} from 'angular2/core';
 
+import {HeadlineComponent} from '../../components/headline/headline.component';
 import {ListOfListModule} from '../../modules/listoflist/listoflist.module';
 import {HeaderComponent} from "../../components/header/header.component";
 import {FooterComponent} from "../../components/footer/footer.component";
@@ -8,9 +9,10 @@ import {FooterComponent} from "../../components/footer/footer.component";
     selector: 'profile-page',
     templateUrl: './app/webpages/profile-page/profile.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [ListOfListModule, HeaderComponent, FooterComponent],
+    directives: [HeadlineComponent, ListOfListModule, HeaderComponent, FooterComponent],
     providers: [],
 })
 
-export class ProfilePage{
+export class ProfilePage implements OnInit{
+    public headline_title = '[Listing Name]';
 }
