@@ -16,8 +16,8 @@ import {TitleComponent} from '../../components/title/title.component';
 
 export class AboutUsPage implements OnInit{
     whatis = 'Joyful Home?';
-    au_pa1 = "High Life street art selvage polaroid, mustache 90's Kickstarter brunch cold-pressed. Cliche swag freegan pour-over mixtape mustache. Art party twee asymmetrical, heirloom sustainable cray crucifix mlkshk Bushwick dreamcatcher master cleanse four dollar toast. Skateboard Pitchfork meditation Neutra wayfarers, cardigan put a bird on it blog American Apparel freegan post-ironic sartorial small batch tote bag. Pop-up art party brunch sustainable Blue Bottle, mustache salvia single-origin coffee cardigan Etsy Godard meggings lomo. Dreamcatcher 3 wolf moon High Life health goth gastropub, Echo Park raw denim try-hard. Freegan keytar fashion axe, crucifix migas tousled narwhal Brooklyn post-ironic Bushwick pug bicycle rights lo-fi cliche High Life.";
-    au_pa2 = " Art party you probably haven't heard of them Vice VHS jean shorts. Typewriter pug artisan, deep v lo-fi locavore shabby chic keytar gentrify asymmetrical PBR keffiyeh. Odd Future High Life XOXO chia, fixie paleo occupy cliche disrupt craft beer. Keytar photo booth chillwave scenester crucifix Schlitz. Paleo brunch mustache sustainable, flannel banh mi Odd Future. Seitan deep v heirloom craft beer Shoreditch lo-fi, pork belly taxidermy distillery yr letterpress ennui. Wayfarers narwhal taxidermy VHS.";
+    au_pa1 = "Founded in July, 2015, Wichita, Kan. - based Joyful Home is a trusted community marketplace for people to discover their prospective joyful home.";
+    au_pa2 = "Whether you are buying your first home, starting a family or looking to retire in the home of your dreams, Joyful Home connects you to real estate listings—from multi-million dollar mansions to budget-friendly starter homes—in over 3,000 counties in the United States. With an ever-growing database of listings from prime real estate agents across the United States, Joyful Home is the easiest way to purchase your next home.";
 
     au_icon1 = './app/public/icons/Listing_Icon.png';
     au_icon2 = './app/public/icons/Building_Icon.png';
