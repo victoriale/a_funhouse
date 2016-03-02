@@ -17,14 +17,14 @@ export class TilesComponent{
     url1 = '';
     icon1 = 'fa fa-info-circle';
     title1 = 'About Us';
-    desc1 = 'Kickstarter artisan meditation chillwave offal ethical. Kinfolk health goth deep v, put a bird on it locavore letterpress';
+    desc1 = '';
     url2 = '';
     icon2 = 'fa fa-phone';
     title2 = 'Contact Us';
-    desc2 = 'Kickstarter artisan meditation chillwave offal ethical. Kinfolk health goth deep v, put a bird on it locavore letterpress';
+    desc2 = '';
     url3 = '';
     icon3 = 'fa fa-folder-open-o';
     title3 = 'Disclaimer';
-    desc3 = 'Kickstarter artisan meditation chillwave offal ethical. Kinfolk health goth deep v, put a bird on it locavore letterpress';
+    desc3 = '';
 
 }

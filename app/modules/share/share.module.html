@@ -1,5 +1,5 @@
 <section class='share'>
-    <module-header></module-header>
+    <module-header [module_title]="module_title"></module-header>
     <div class="share-main">
         <img class="image-175" src='{{image_url}}' alt='Big image for share module' />
          <div class="share-main-opt">
@@ -9,10 +9,14 @@
                     <span><i class='{{icon1}}'></i></span>
                     <span>Share on {{shareOn1}}</span>
                 </a>
+
                 <a href='{{Url2}}' class='btn-twitter'>
                     <span><i class='{{icon2}}'></i></span>
                     <span>Share on {{shareOn2}}</span>
                 </a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+                </script>
+
                 <a href='{{Url3}}' class='btn-google'>
                     <span><i class='{{icon3}}'></i></span>
                     <span>Share on {{shareOn3}}</span>
