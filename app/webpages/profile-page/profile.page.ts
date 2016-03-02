@@ -41,4 +41,8 @@ export class ProfilePage implements OnInit{
     constructor(public router: Router){
         console.log('Route Name:', this.router.hostComponent.name);
     }
+
+    ngOnInit(){
+
+    }
 }

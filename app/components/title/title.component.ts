@@ -9,6 +9,7 @@ import {Image100} from '../../components/images/image-100/image-100.component';
     inputs: ['data']
 })
 export class TitleComponent{
+    public data: Object;
 
     titleComp(){
         if(typeof this.data == 'undefined'){
