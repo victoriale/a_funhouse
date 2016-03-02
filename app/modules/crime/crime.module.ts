@@ -1,4 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
+//import {Ng2Highcharts, Ng2Highmaps, Ng2Highstocks} from 'ng2-highcharts/ng2-highcharts';
 
 import {moduleHeader} from '../../components/module-header/module-header';
 
@@ -6,7 +7,7 @@ import {moduleHeader} from '../../components/module-header/module-header';
     selector: 'crime-module',
     templateUrl: './app/modules/crime/crime.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [moduleHeader],
+    //directives: [moduleHeader, Ng2Highcharts, Ng2Highmaps, Ng2Highstocks],
     providers: []
 })
 

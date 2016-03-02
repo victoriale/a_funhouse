@@ -9,7 +9,8 @@ import {Image100} from '../../components/images/image-100/image-100.component';
     directives: [TitleComponent, Image100],
     inputs: ['data']
 })
-export class TitleLocComponent implements OnInit{\
+export class TitleLocComponent implements OnInit{
+    public data: Object;
 
     name() {
         if(typeof this.data == 'undefined'){
