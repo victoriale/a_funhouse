@@ -1,7 +1,7 @@
 /**
  * Created by Victoria on 2/26/2016.
  */
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {moduleHeader} from "../../components/module-header/module-header";
 
 @Component({
@@ -12,7 +12,9 @@ import {moduleHeader} from "../../components/module-header/module-header";
     providers: [],
 })
 
-export class ShareModule{
+export class ShareModule implements OnInit{
+    module_title: string;
+
     image_url = './app/public/img_bckgnd.png';
     share = 'Share [Profile] Below:';
     icon1 = 'fa fa-facebook';
@@ -24,7 +26,11 @@ export class ShareModule{
     shareOn3 = 'Google +';
     shareOn4 = 'Pinterest';
     Url1 = '';
-    Url2 = '';
+    Url2 = 'https://twitter.com/share';
     Url3 = '';
     Url4 = '';
+
+    ngOnInit(){
+        this.module_title = 'Share This Profile With Your Friends';
+    }
 }
