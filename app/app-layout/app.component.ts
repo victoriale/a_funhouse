@@ -64,4 +64,9 @@ import {FeatureTilesComponent} from "../components/feature-tiles/feature-tiles.c
     }
 ])
 
-export class AppComponent { }
+export class AppComponent {
+
+    constructor(public router: Router){
+        console.log('RN', this.router);
+    }
+}
