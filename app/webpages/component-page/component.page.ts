@@ -23,12 +23,13 @@ import {moduleFooter} from "../../components/module-footer/module-footer";
 import {trendingCarousel} from "../../components/trending-carousel-list/trending-carousel-list";
 import {AboutUsModule} from "../../modules/aboutus/aboutus.module";
 import {ShareModule} from "../../modules/share/share.module";
+import {CommentModule} from "../../modules/comment/comment.module";
 
 @Component({
 selector: 'component-page',
     templateUrl: './app/webpages/component-page/component.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [BackTabComponent, TitleComponent, TitleLocComponent, CarouselButton, InfinityButton, Image180, Image100, HeadlineComponent, imageHeader, propertyType, ProfileHeader, FeatureComponent, TilesComponent, contentList, moduleHeader, moduleFooter, FeatureComponent, TilesComponent, trendingCarousel, AboutUsModule, ShareModule],
+    directives: [BackTabComponent, TitleComponent, TitleLocComponent, CarouselButton, InfinityButton, Image180, Image100, HeadlineComponent, imageHeader, propertyType, ProfileHeader, FeatureComponent, TilesComponent, contentList, moduleHeader, moduleFooter, FeatureComponent, TilesComponent, trendingCarousel, AboutUsModule, ShareModule, CommentModule],
     providers: [],
 })
 

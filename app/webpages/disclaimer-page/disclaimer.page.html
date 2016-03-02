@@ -2,16 +2,15 @@
     <div class="container">
         <main class='row'>
             <section class='content-main eight columns'>
-                <div class="au">
+                <div class="page-container au">
                     <backtab-component></backtab-component>
-                    <span *ngFor="#titleComp of data">
-                        <title-component [title]="titleComp"></title-component>
-                    </span>
-                </div>
-                <div class="au-hding"><b>Disclaimer</b></div>
-                <div class="au-desc">
-                    <p>{{disclaimer1}}</p><br/><p>{{disclaimer2}}</p><br/>
-                    <p>{{disclaimer3}}</p><br/><p>{{disclaimer4}}</p>
+                    <title-component [data]="title_data"></title-component>
+
+                    <div class="au-hding"><b>Disclaimer</b></div>
+                    <div class="au-desc">
+                        <p>{{disclaimer1}}</p><br/><p>{{disclaimer2}}</p><br/>
+                        <p>{{disclaimer3}}</p><br/><p>{{disclaimer4}}</p>
+                    </div>
                 </div>
             </section>
             <aside class="four columns">

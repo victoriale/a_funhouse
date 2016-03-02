@@ -37,11 +37,11 @@ export class AboutUsPage implements OnInit{
     maintxt4 = "[#,###,###]";
     maintxt_nat = "[#,###,###]+";
 
-    data:[{}];
+    title_data: {};
 
-    titleData(){
+    getData(){
         //About us data
-        var au_data = [{
+        this.title_data = {
             titleImg : './app/public/img_bckgnd.png',
             smallTxt1 : 'Last Updated: Monday, February 26, 2016',
             smallTxt2 : ' United States of America',
@@ -50,13 +50,12 @@ export class AboutUsPage implements OnInit{
             Heading3 : 'Take a seat and get to know us better.',
             Heading4 : '',
             icon: 'fa fa-map-marker',
-        }];
-        this.data = au_data;
-        console.log(this);
+            hasHover: false
+        };
     }
 
     ngOnInit(){
-        this.titleData();
+        this.getData();
     }
 
     //  Get current route name

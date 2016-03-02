@@ -2,11 +2,9 @@
     <div class="container">
         <main class='row'>
             <section class='content-main eight columns'>
-                <div class="au">
+                <div class="page-container au">
                     <backtab-component></backtab-component>
-                    <span *ngFor="#titleComp of data">
-                        <title-component [title]="titleComp"></title-component>
-                    </span>
+                    <title-component [data]="title_data"></title-component>
                     <div class="au-hding"><b>What is </b>{{whatis}}</div>
                     <div class="au-desc">
                         <p>{{au_pa1}}</p><br/><p>{{au_pa2}}</p>
