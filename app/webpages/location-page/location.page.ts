@@ -30,4 +30,8 @@ export class LocationPage implements OnInit{
         icon: 'fa-comment-o'
     };
     public profile_type = 'location';
+
+    ngOnInit(){
+
+    }
 }

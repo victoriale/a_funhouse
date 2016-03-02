@@ -17,6 +17,8 @@ export class ProfileHeader implements OnInit{
     public icon: string;
     public title: string;
     public description: string;
+    public main_hasHover: boolean;
+    public profile_type: string;
     title_data: {};
 
     getData(){
