@@ -27,6 +27,21 @@
   .globalDefaultModFont(32, 900, @white) !important;
 }
 
+.view-box {
+  width: 157px;
+  height: 40px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 20px;
+  visibility: hidden;
+}
+
+.view-text{
+  .globalDefaultModFont(16, 900, @white) !important;
+  padding:10px;
+}
+
 .feature-tile-1 {
   width: 635px;
   height: 250px;
@@ -36,6 +51,9 @@
 
   .feature-tile-1:hover {
     box-shadow: inset 0 0 0 1000px rgba(68, 178, 36, 0.75);
+    .view-box {
+      visibility: visible;
+    }
   }
 
 .feature-tile-2 {
@@ -55,6 +73,9 @@
 
   .feature-tile-3:hover {
     box-shadow: inset 0 0 0 1000px rgba(68, 178, 36, 0.75);
+    .view-box {
+      visibility: visible;
+    }
   }
 
 .feature-tile-4 {
@@ -66,4 +87,7 @@
 
   .feature-tile-4:hover {
     box-shadow: inset 0 0 0 1000px rgba(68, 178, 36, 0.75);
+    .view-box {
+      visibility: visible;
+    }
   }
