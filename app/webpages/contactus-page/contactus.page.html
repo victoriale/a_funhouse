@@ -4,7 +4,7 @@
             <section class='content-main eight columns'>
                 <div class="page-container cu">
                     <backtab-component></backtab-component>
-                    <span *ngFor="#titleComp of data"><title-component [title]="titleComp"></title-component></span>
+                    <title-component [data]="title_data"></title-component>
                     <div class="form">
                         <!--* rfs = required fields all fields required-->
                         <div class="rfs"><span class="rfs-red">*</span>All fields are required</div>
