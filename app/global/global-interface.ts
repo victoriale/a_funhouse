@@ -1,10 +1,3 @@
-export interface List {
-    title: string;
-    location: string;
-    bigImage: string;
-    smallImage: string[];
-}
-
 export interface MagHeaderData {
     checked: string;
     data: string;
@@ -62,4 +55,55 @@ export interface MagOverviewData {
     magtext6: string;
     magtext7: string;
     magtext8: string;
+}
+
+export interface MagNeighborhoodData {
+    magtext1: string;
+    magtext2: string;
+    magtext3: string;
+    magtext4: string;
+    magtext5: string;
+    magtext6: string;
+    magtext7: string;
+}
+
+export interface MagMapData {
+    listing_key: string;
+    listhub_key: string;
+    street_address: string;
+    city: string;
+    state: string;
+    zipcode: string;
+    list_price: string;
+    geocoded: {
+        normalized_address: string;
+        geometry: {
+            bounds: {
+                northeast: {
+                    lat: string;
+                    lng: string;
+                }
+                southwest: {
+                    lat: string;
+                    lng: string;
+                }
+            }
+            location: {
+                lat: string;
+                lng: string;
+            }
+            location_type: string;
+            viewport: {
+                northeast: {
+                    lat: string;
+                    lng: string;
+                }
+                southwest: {
+                    lat: string;
+                    lng: string;
+                }
+            }
+        }
+    }
+    photo: string;
 }

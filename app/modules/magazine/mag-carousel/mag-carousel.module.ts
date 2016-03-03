@@ -1,13 +1,11 @@
 import {Component, OnInit} from 'angular2/core';
 import {MagazineCarousel} from "../../../global/global-service";
 import {MagCarouselData} from "../../../global/global-interface";
-import {FORM_DIRECTIVES} from "angular2/common";
 
 @Component({
     selector: 'magazine-carousel-module',
     templateUrl: './app/modules/magazine/mag-carousel/mag-carousel.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [FORM_DIRECTIVES],
     providers: [MagazineCarousel],
 })
 export class MagCarouselModule implements OnInit {
@@ -27,7 +25,7 @@ export class MagCarouselModule implements OnInit {
         this._magazineCarouselService.getMagazineCarousel().then(data => {
             this.data = data;
             length = data[0].photos.length;
-            this.counter = 0
+            this.counter = 0;
             this.imageLength = length;
         });
     }

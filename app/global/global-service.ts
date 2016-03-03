@@ -5,94 +5,17 @@
  _@BATCH-1
  _@BATCH
  */
-
-import {List} from './global-interface';
 import {MagHeaderData} from './global-interface';
 import {MagCarouselData} from './global-interface';
 import {MagOverviewData} from './global-interface';
 import {Injectable} from 'angular2/core';
+import {MagNeighborhoodData} from "./global-interface";
+import {MagMapData} from "./global-interface";
 
 @Injectable()
 
 /*@LOCATIONPROFILE*/
 
-/*_@BATCH-1*/
-export class ListOfListService {
-    getListOfList() {
-        var Lol:List[] = [
-            {
-                'title': '[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet',
-                'bigImage': './app/public/img_bckgnd.png',
-                'location': 'somewhere',
-                'smallImage': [
-                    './app/public/img_bckgnd.png',
-                    './app/public/img_bckgnd.png',
-                    './app/public/img_bckgnd.png',
-                ]
-            },
-            {
-                'title': '[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet',
-                'bigImage': './app/public/img_bckgnd.png',
-                'location': 'someplace',
-                'smallImage': [
-                    './app/public/img_bckgnd.png',
-                    './app/public/img_bckgnd.png',
-                    './app/public/img_bckgnd.png',
-                    './app/public/img_bckgnd.png',
-                ]
-            },
-            {
-                'title': '[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet',
-                'bigImage': './app/public/img_bckgnd.png',
-                'location': 'something',
-                'smallImage': [
-                    './app/public/img_bckgnd.png',
-                    './app/public/img_bckgnd.png',
-                    './app/public/img_bckgnd.png',
-                    './app/public/img_bckgnd.png',
-                    './app/public/img_bckgnd.png',
-                ]
-            },
-        ];
-        return Promise.resolve(Lol);
-    }
-}
-
-export class BatchOne {
-    getBatchOne() {
-        var BatchOne:List[] = [
-            {
-                'title': '[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet',
-                'bigImage': './app/public/img_bckgnd.png',
-                'location': 'somewhere',
-                'smallImage': [
-                    './app/public/img_bckgnd.png',
-                    './app/public/img_bckgnd.png',
-                    './app/public/img_bckgnd.png',
-                ]
-            },
-            {
-                'title': '[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet',
-                'bigImage': './app/public/img_bckgnd.png',
-                'location': 'someplace',
-                'smallImage': [
-                    './app/public/img_bckgnd.png',
-                    './app/public/img_bckgnd.png',
-                    './app/public/img_bckgnd.png',
-                ]
-            },
-            {
-                'title': '[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet',
-                'bigImage': './app/public/img_bckgnd.png',
-                'location': 'something',
-                'smallImage': [
-                    './app/public/img_bckgnd.png',
-                ]
-            },
-        ];
-        return Promise.resolve(BatchOne);
-    }
-}
 
 export class MagazineHeader {
     getMagazineHeader() {
@@ -226,5 +149,62 @@ export class MagazineOverview {
             }
         ];
         return Promise.resolve(MagOverview);
+    }
+
+    z
+}
+
+export class MagazineNeighborhood {
+    getMagazineNeighborhood() {
+        var MagNeighborhood:MagNeighborhoodData[] = [
+            {
+                magtext1: "Choosing a home isn't just about the house itself. It's also about the surroundings.",
+                magtext2: "The home at 3277 N LONGFELLOW CT. is located within the 67226 zip code, which is home to amenities including Stearman Field Bar & Grill, Lina's Mexican Restaurant and Save-A-Lot.",
+                magtext3: "It's a relatively expensive place to live compared with the rest of the state. The median value of a residential property in the 67226 zip code is $185,800, which is substantially greater than the Kansas median of $128,400. This is an area where many people choose to own their own homes instead of renting. About 41.9 percent of occupied properties are rented. Homes in the area are newer than the statewide average.",
+                magtext4: "As a whole, the residents in this area make much more money than the statewide average, with a median income in the area of $70,311. People here are well educated, with about 52.9 percent of adults 25 and older having attained a bachelor's degree.",
+                magtext5: "The population in the 67226 zip code has remained stable since the 2010 Census. About 18,002 people live here now.",
+                magtext6: "The area's crime rate is above the national average, with thefts being the most common crime.",
+                magtext7: "Do you think the 433 area is right for you? It has 28 listings on the market, ranging from a 2-bedroom single family attached at &&& for $1,050 to a 3-bedroom single family detached at",
+            }
+        ];
+        return Promise.resolve(MagNeighborhood);
+    }
+}
+
+export class MagazineMap {
+    getMagazineMap() {
+        var MagMap:MagMapData[] = [
+            {
+                listing_key: "5048-N-PRESTWICK-Bel-Aire-KS",
+                listhub_key: "3yd-SCKMLSKS-504635",
+                street_address: "5048 N PRESTWICK",
+                city: "Bel Aire",
+                state: "KS",
+                zipcode: "67226",
+                list_price: "420000",
+                geocoded: {
+                    normalized_address: "5048 Prestwick Avenue, Bel Aire, KS 67226, USA",
+                    geometry: {
+                        location: {
+                            lat: "37.7752626",
+                            lng: "-97.24967"
+                        },
+                        location_type: "ROOFTOP",
+                        viewport: {
+                            northeast: {
+                                lat: "37.77661158029149",
+                                lng: "-97.2483210197085"
+                            },
+                            southwest: {
+                                lat: "37.77391361970849",
+                                lng: "-97.2510189802915"
+                            }
+                        }
+                    }
+                },
+                photo: "http://photos.listhub.net/SCKMLSKS/504635/0?lm=20150606T050836"
+            },
+        ];
+        return Promise.resolve(MagMap);
     }
 }

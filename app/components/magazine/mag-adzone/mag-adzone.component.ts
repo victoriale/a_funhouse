@@ -12,4 +12,7 @@ import {Component} from 'angular2/core';
 })
 
 
-export class AdzoneComponent {}
+export class AdzoneComponent {
+
+
+}

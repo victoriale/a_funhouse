@@ -1,38 +1,31 @@
 import {Component} from 'angular2/core';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
+import {OverviewPage} from "../webpages/magazine/overview/overview.page";
+import {NeighborhoodPage} from "../webpages/magazine/neighborhood/neighborhood.page";
 
-import {ListOfListModule} from '../modules/listoflist/listoflist.module';
-import {ProfilePage} from "../webpages/profile-page/profile.page";
-import {HomePage} from "../webpages/home-page/home.page";
-import {MagazinePage} from "../webpages/magazine/magazine.page";
 
 @Component({
     selector: 'my-app',
     templateUrl: './app/app-layout/app.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [ProfilePage, HomePage, MagazinePage, ROUTER_DIRECTIVES],
+    directives: [ OverviewPage, ROUTER_DIRECTIVES],
     providers: [ROUTER_PROVIDERS]
 })
 
 @RouteConfig([
     {
-        path: '/',
-        name: 'Home-page',
-        component: HomePage,
-        useAsDefault: true,
+        path: '/magazine/1',
+        name: 'Overview-page',
+        component: OverviewPage,
+        //useAsDefault: true,
     },
     {
-        path: '/profile',
-        name: 'Profile-page',
-        component: ProfilePage,
+        path: '/magazine/2',
+        name: 'Neighborhood-page',
+        component: NeighborhoodPage,
     },
-    {
-        path: '/magazine',
-        name: 'Magazine-page',
-        component: MagazinePage,
-    },
+
 ])
 
 export class AppComponent {
-    title = 'HEADER';
 }

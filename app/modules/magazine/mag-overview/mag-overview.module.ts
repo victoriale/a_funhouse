@@ -27,6 +27,4 @@ export class MagOverviewModule implements OnInit {
             this.data = data;
         });
     }
-
-
 }
