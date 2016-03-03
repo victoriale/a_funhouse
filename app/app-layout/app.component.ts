@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {Router, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
+import {Router, RouteData, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
 
 import {ProfilePage} from "../webpages/profile-page/profile.page";
 import {LocationPage} from "../webpages/location-page/location.page";
@@ -31,6 +31,11 @@ import {FeatureTilesComponent} from "../components/feature-tiles/feature-tiles.c
         name: 'Home-page',
         component: HomePage,
         useAsDefault: true,
+    },
+    {
+        // Redirects all unrecognized url's to home page
+        path: '/**',
+        redirectTo: ['Home-page'],
     },
     {
         path: '/profile',

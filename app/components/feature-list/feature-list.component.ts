@@ -18,26 +18,26 @@ export class FeatureComponent implements OnInit{
 
     getData(){
         //Variables for fields in profile header module
-        if(this.profile_type === 'location'){
-            this.main_hasHover = true;
-            this.title = 'Quick info about [City], [State]';
-            this.header = 'Trending Real Estate';
-            this.hding1 = '[Listing Address]';
-            this.hding2 = '[Listing Name] [Zip Code] - [Neighborhood]';
-            this.detail1 = 'Bedroom: 3 | Bathroom: 2';
-            this.detail2 = 'Asking Price: $[###,###]';
-            this.ListUrl = '';
-            //Data sent to title component
-        }else{
-            this.main_hasHover = true;
-            this.title = 'Quick info about [City], [State]';
-            this.header = 'Trending Real Estate';
-            this.hding1 = '[Listing Address]';
-            this.hding2 = '[Listing Name] [Zip Code] - [Neighborhood]';
-            this.detail1 = 'Bedroom: 3 | Bathroom: 2';
-            this.detail2 = 'Asking Price: $[###,###]';
-            this.ListUrl = '';
-        }
+        //if(this.profile_type === 'location'){
+        //    this.main_hasHover = true;
+        //    this.title = 'Quick info about [City], [State]';
+        //    this.header = 'Trending Real Estate';
+        //    this.hding1 = '[Listing Address]';
+        //    this.hding2 = '[Listing Name] [Zip Code] - [Neighborhood]';
+        //    this.detail1 = 'Bedroom: 3 | Bathroom: 2';
+        //    this.detail2 = 'Asking Price: $[###,###]';
+        //    this.ListUrl = '';
+        //    //Data sent to title component
+        //}else{
+        //    this.main_hasHover = true;
+        //    this.title = 'Quick info about [City], [State]';
+        //    this.header = 'Trending Real Estate';
+        //    this.hding1 = '[Listing Address]';
+        //    this.hding2 = '[Listing Name] [Zip Code] - [Neighborhood]';
+        //    this.detail1 = 'Bedroom: 3 | Bathroom: 2';
+        //    this.detail2 = 'Asking Price: $[###,###]';
+        //    this.ListUrl = '';
+        //}
     }
 
     ngOnInit(){
