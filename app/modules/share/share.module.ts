@@ -25,10 +25,10 @@ export class ShareModule implements OnInit{
     shareOn2 = 'Twitter';
     shareOn3 = 'Google +';
     shareOn4 = 'Pinterest';
-    Url1 = '';
-    Url2 = 'https://twitter.com/share';
-    Url3 = '';
-    Url4 = '';
+    Url1 = "http://www.facebook.com/sharer.php";
+    Url2 = "https://twitter.com/share?url=''";
+    Url3 = "https://plus.google.com/share";
+    Url4 = 'http://pinterest.com/pin/create/button/';
     main_hasHover = false;
 
     ngOnInit(){
