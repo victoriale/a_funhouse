@@ -8,7 +8,7 @@ import {NeighborhoodPage} from "../webpages/magazine/neighborhood/neighborhood.p
     selector: 'my-app',
     templateUrl: './app/app-layout/app.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [ OverviewPage, ROUTER_DIRECTIVES],
+    directives: [ OverviewPage, NeighborhoodPage, ROUTER_DIRECTIVES],
     providers: [ROUTER_PROVIDERS]
 })
 
@@ -17,12 +17,13 @@ import {NeighborhoodPage} from "../webpages/magazine/neighborhood/neighborhood.p
         path: '/magazine/1',
         name: 'Overview-page',
         component: OverviewPage,
-        //useAsDefault: true,
+
     },
     {
         path: '/magazine/2',
         name: 'Neighborhood-page',
         component: NeighborhoodPage,
+        useAsDefault: true,
     },
 
 ])

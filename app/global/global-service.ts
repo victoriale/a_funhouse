@@ -182,13 +182,11 @@ export class MagazineMap {
                 state: "KS",
                 zipcode: "67226",
                 list_price: "420000",
+                lat: 37.7752626,
+                lng: -97.24967,
                 geocoded: {
                     normalized_address: "5048 Prestwick Avenue, Bel Aire, KS 67226, USA",
                     geometry: {
-                        location: {
-                            lat: "37.7752626",
-                            lng: "-97.24967"
-                        },
                         location_type: "ROOFTOP",
                         viewport: {
                             northeast: {
@@ -203,6 +201,138 @@ export class MagazineMap {
                     }
                 },
                 photo: "http://photos.listhub.net/SCKMLSKS/504635/0?lm=20150606T050836"
+            },
+            {
+                listing_key: "8533-E-32nd-St-N-Wichita-KS",
+                listhub_key: "3yd-SCKMLSKS-377482",
+                street_address: "8533 E 32nd St N",
+                city: "Wichita",
+                state: "KS",
+                zipcode: "67226",
+                list_price: "1650000",
+                lat: 37.7422435,
+                lng: -97.2383007,
+                geocoded: {
+                    normalized_address: "8533 East 32nd Street North, Wichita, KS 67226, USA",
+                    geometry: {
+                        location_type: "ROOFTOP",
+                        viewport: {
+                            northeast: {
+                                lat: "37.7435924802915",
+                                lng: "-97.2369517197085"
+                            },
+                            southwest: {
+                                lat: "37.7408945197085",
+                                lng: "-97.2396496802915"
+                            }
+                        }
+                    }
+                },
+                photo: "http://photos.listhub.net/SCKMLSKS/377482/0?lm=20150209T181707"
+            },
+            {
+                listing_key: "5278-N-Rock-Spring-Rd-Bel-Aire-KS",
+                listhub_key: "3yd-SCKMLSKS-500255",
+                street_address: "5278 N Rock Spring Rd",
+                city: "Bel Aire",
+                state: "KS",
+                zipcode: "67226",
+                list_price: "194900",
+                lat: 37.7708346,
+                lng: -97.25989129999999,
+                geocoded: {
+                    normalized_address: "Bel Aire, KS, USA",
+                    geometry: {
+                        bounds: {
+                            northeast: {
+                                lat: "37.795964",
+                                lng: "-97.1897609"
+                            },
+                            southwest: {
+                                lat: "37.752288",
+                                lng: "-97.280773"
+                            }
+                        },
+                        location_type: "APPROXIMATE",
+                        viewport: {
+                            northeast: {
+                                lat: "37.795964",
+                                lng: "-97.1897609"
+                            },
+                            southwest: {
+                                lat: "37.752288",
+                                lng: "-97.280773"
+                            }
+                        }
+                    }
+                },
+                photo: "http://photos.listhub.net/SCKMLSKS/500255/0?lm=20150627T170831"
+            },
+            {
+                listing_key: "5089-N-Hampton-St-Bel-Aire-KS",
+                listhub_key: "3yd-SCKMLSKS-515959",
+                street_address: "5089 N Hampton St",
+                city: "Bel Aire",
+                state: "KS",
+                zipcode: "67226",
+                list_price: "2300",
+                lat: 37.7761102,
+                lng: -97.2521558,
+                geocoded: {
+                    normalized_address: "5089 N Hampton St, Bel Aire, KS 67226, USA",
+                    geometry: {
+                        bounds: {
+                            northeast: {
+                                lat: "37.7761208",
+                                lng: "-97.2521427"
+                            },
+                            southwest: {
+                                lat: "37.7761102",
+                                lng: "-97.2521558"
+                            }
+                        },
+                        location_type: "RANGE_INTERPOLATED",
+                        viewport: {
+                            northeast: {
+                                lat: "37.777464480291",
+                                lng: "-97.250800269708"
+                            },
+                            southwest: {
+                                lat: "37.774766519708",
+                                lng: "-97.253498230291"
+                            }
+                        }
+                    }
+                },
+                photo: null
+            },
+            {
+                listing_key: "2554-N-Fox-Run-Ct-Wichita-KS",
+                listhub_key: "3yd-SCKMLSKS-506190",
+                street_address: "2554 N Fox Run Ct",
+                city: "Wichita",
+                state: "KS",
+                zipcode: "67226",
+                list_price: "224900",
+                lat: 37.730161,
+                lng: -97.222556,
+                geocoded: {
+                    normalized_address: "2554 North Fox Run Court, Wichita, KS 67226, USA",
+                    geometry: {
+                        location_type: "ROOFTOP",
+                        viewport: {
+                            northeast: {
+                                lat: "37.73150998029149",
+                                lng: "-97.2212070197085"
+                            },
+                            southwest: {
+                                lat: "37.72881201970849",
+                                lng: "-97.22390498029151"
+                            }
+                        }
+                    }
+                },
+                photo: "http://photos.listhub.net/SCKMLSKS/506190/0?lm=20150625T231001"
             },
         ];
         return Promise.resolve(MagMap);
