@@ -8,6 +8,7 @@ import {BackTabComponent} from '../../components/backtab/backtab.component';
 import {TitleComponent} from '../../components/title/title.component';
 import {TitleLocComponent} from '../../components/title/title_loc.component';
 import {CarouselButton} from '../../components/buttons/carousel/carousel.button';
+import {CircleButton} from '../../components/buttons/circle/circle.button';
 import {InfinityButton} from '../../components/buttons/infinity/infinity.button';
 import {Image180} from '../../components/images/image-180/image-180.component';
 import {Image100} from '../../components/images/image-100/image-100.component';
@@ -27,10 +28,10 @@ import {CommentModule} from "../../modules/comment/comment.module";
 import {MediaFeatureModule} from "../../modules/media_features/media_features.module";
 
 @Component({
-selector: 'component-page',
+    selector: 'component-page',
     templateUrl: './app/webpages/component-page/component.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [BackTabComponent, TitleComponent, TitleLocComponent, CarouselButton, InfinityButton, Image180, Image100, HeadlineComponent, imageHeader, propertyType, ProfileHeader, FeatureComponent, TilesComponent, contentList, moduleHeader, moduleFooter, FeatureComponent, TilesComponent, trendingCarousel, AboutUsModule, ShareModule, CommentModule, MediaFeatureModule],
+    directives: [BackTabComponent, TitleComponent, TitleLocComponent, CarouselButton, CircleButton, InfinityButton, Image180, Image100, HeadlineComponent, imageHeader, propertyType, ProfileHeader, FeatureComponent, TilesComponent, contentList, moduleHeader, moduleFooter, FeatureComponent, TilesComponent, trendingCarousel, AboutUsModule, ShareModule, CommentModule, MediaFeatureModule],
     providers: [],
 })
 

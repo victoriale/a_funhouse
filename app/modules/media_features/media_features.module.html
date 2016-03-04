@@ -1,6 +1,7 @@
 <section class="module-container media">
     <module-header [module_title]="module_title"></module-header>
     <section class="media-images">
+        <circle-button></circle-button>
         <div class="plcholder">
             <img src="{{image_url}}" class="plcholder-img" alt="placeholder images" />
             <div class="plcholder-details">
@@ -13,6 +14,20 @@
                 <div class="details"><div>[#,###]</div><div>ACRES</div></div>
                 <div class="details"><div>$[#,###,###]</div><div>SALE PRICE</div></div>
             </div>
+        </div>
+        <div class="sm_images">
+            <img src="{{image_url}}" alt="small square images" />
+        </div>
+    </section>
+    <section class="features">
+        <div class="heading">
+            <span>Features Of This Property</span>
+            <span>Last Updated: Thursday, March 03, 2016</span>
+        </div>
+        <div class="features-info">
+            <ul>
+                <li>Price: $749,000</li>
+            </ul>
         </div>
     </section>
 </section>

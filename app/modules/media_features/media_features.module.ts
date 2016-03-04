@@ -3,12 +3,13 @@
  */
 import {Component} from 'angular2/core';
 import {moduleHeader} from "../../components/module-header/module-header";
+import {CircleButton} from "../../components/buttons/circle/circle.button";
 
 @Component({
     selector: 'media-features-module',
     templateUrl: './app/modules/media_features/media_features.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [moduleHeader],
+    directives: [moduleHeader, CircleButton],
     providers: [],
 })
 
