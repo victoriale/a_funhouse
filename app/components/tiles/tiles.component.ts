@@ -9,7 +9,7 @@ import {moduleHeader} from "../../components/module-header/module-header";
     templateUrl: './app/components/tiles/tiles.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [moduleHeader],
-    providers: [],
+    providers: []
 })
 
 export class TilesComponent{
