@@ -18,8 +18,9 @@ import {FeatureTilesComponent} from "../../components/feature-tiles/feature-tile
 })
 
 export class HomePage {
-    // Location
+    // Location Data
     citylocation: string = "Wichita";
+    statelocation: string = "KS";
 
     // Buttons
     buttontitle: string;
@@ -31,7 +32,6 @@ export class HomePage {
 
     // Top Tiles
 
-
     constructor(public router: Router) {
         // Buttons
         this.buttontitle = "More";
@@ -42,7 +42,6 @@ export class HomePage {
         this.herobuttonicon = "";
 
         // Get current route name
-        console.log('Route Name:', this.router.hostComponent.name);
+        console.log('Route Name:', this.router);
     }
-
 }
