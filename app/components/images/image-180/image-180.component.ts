@@ -1,3 +1,6 @@
+/**
+ * Created by Victoria on 3/1/2016.
+ */
 import {Component, Input} from 'angular2/core';
 
 @Component({

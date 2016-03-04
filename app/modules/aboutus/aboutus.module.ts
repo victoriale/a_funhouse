@@ -20,7 +20,7 @@ export class AboutUsModule{
     hding = 'Disclaimer';
     subtxt = 'Market data delayed 15 minutes.';
     maintxt = 'This site is powered by JoyfulHomes.ideas and opinions presented on this website are for informational and educational purposes only,and do not reflect the opinions of JoyfulHomes, or any of its alliates, subsidiaries or partners.';
-    provider = '© 2015 Data provided by ListHub®';
+    provider = '© 2016 Data provided by ListHub®';
     btn_txt = 'See The Full Disclaimer';
 
     ngOnInit(){

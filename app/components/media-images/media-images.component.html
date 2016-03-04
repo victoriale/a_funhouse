@@ -1,0 +1,41 @@
+<section class="media-images">
+    <circle-button></circle-button>
+    <div class="plcholder">
+        <a href='{{expand_url}}' class='feature-btn expand'>
+            Expand <i class='fa fa-expand'></i>
+        </a>
+        <a href='{{virtual_url}}' class='feature-btn virtual'>
+            Virtual Home Tour (1)
+        </a>
+        <a href='{{images_url}}' class='feature-btn images'>
+            <span><i class='fa fa-file-image-o'></i></span>
+            <span> Images (30)</span>
+            <i></i>
+        </a>
+        <img src="{{image_url}}" class="plcholder-img" alt="placeholder images" />
+
+        <div class="plcholder-details">
+            <div class="listings">
+                <div class="listings-name">{{list_name}}</div>
+                <div class="listings-addr">{{list_addr}}</div>
+                <div class="listings-days">{{list_day}}</div>
+            </div>
+
+            <div *ngIf="trending === false" class="details"><div>{{detail1}}</div><div>{{unit1}}</div></div>
+            <div *ngIf="trending === false" class="details"><div>{{detail2}}</div><div>{{unit2}}</div></div>
+
+            <div class="details"><div>{{price}}</div><div>{{price_name}}</div></div>
+            <a *ngIf="trending === true" href='' class='mod-page-btn'>
+                <span></span>
+                <span>View Your Home</span>
+                <i class='fa fa-angle-right'></i>
+            </a>
+
+        </div>
+    </div>
+    <div class="sm_images">
+        <div class="sm_images-img">
+            <img src="{{image_url}}" alt="small square images" />
+        </div>
+    </div>
+</section>
