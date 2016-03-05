@@ -1,11 +1,12 @@
 # JoyfulHome-Frontend
 Be sure to be in the `develop` branch
-1. `npm install
-      -g gulp-cli
-      gulp-less
-      gulp-concat
-      connect-history-api-fallback
-      browser-sync`
+install each one individually
+1. `npm install`
+      a.`-g gulp-cli`
+      b.`gulp-less`
+      c.`gulp-concat`
+      d.`connect-history-api-fallback`
+      e.`browser-sync`
 2. `npm i`
 3. `gulp serve`
 
