@@ -1,6 +1,11 @@
-# synapsys-front-end
-
-1. `npm install -g gulp-cli gulp-less gulp-concat connect-history-api-fallback`
+# JoyfulHome-Frontend
+Be sure to be in the `develop` branch
+1. `npm install
+      -g gulp-cli
+      gulp-less
+      gulp-concat
+      connect-history-api-fallback
+      browser-sync`
 2. `npm i`
 3. `gulp serve`
 
