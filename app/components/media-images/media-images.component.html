@@ -1,0 +1,43 @@
+<section class="media-images" *ngFor="#BatchTwo of BatchTwo">
+    <circle-button></circle-button>
+    <div class="plcholder">
+        <a href='' class='feature-btn expand'>
+            Expand <i class='fa fa-expand'></i>
+        </a>
+        <a href='' class='feature-btn virtual'>
+            Virtual Home Tour (1)
+        </a>
+        <a href='' class='feature-btn images'>
+            <span><i class='fa fa-file-image-o'></i></span>
+            <span> Images (30)</span>
+            <i></i>
+        </a>
+        <img src="{{BatchTwo.bigImage}}" class="plcholder-img" alt="placeholder images" />
+
+        <div class="plcholder-details">
+            <div class="listings">
+                <div class="listings-name">{{BatchTwo.list_name}}</div>
+                <div class="listings-addr">{{BatchTwo.list_addr}}</div>
+                <div class="listings-days">{{BatchTwo.list_day}}</div>
+            </div>
+
+            <div *ngIf="trending === false" class="details"><div>{{BatchTwo.detail1}}</div><div>{{BatchTwo.unit1}}</div></div>
+            <div *ngIf="trending === false" class="details"><div>{{BatchTwo.detail2}}</div><div>{{BatchTwo.unit2}}</div></div>
+
+            <div class="details"><div>{{BatchTwo.price}}</div><div>{{BatchTwo.price_name}}</div></div>
+            <a *ngIf="trending === true" href='' class='mod-page-btn'>
+                <span></span>
+                <span>View Your Home</span>
+                <i class='fa fa-angle-right'></i>
+            </a>
+
+        </div>
+    </div>
+    <div class="sm_images">
+        <div class="sm_images-img">
+            <a *ngFor="#sm_images of BatchTwo.smImg" href="">
+                <img src="{{BatchTwo.smallImage}}" alt="small square images" />
+            </a>
+        </div>
+    </div>
+</section>

@@ -15,6 +15,15 @@ import {CarouselButton} from '../../components/buttons/carousel/carousel.button'
 })
 
 export class FeatureComponent implements OnInit{
+    public title: string;
+    public main_hasHover: boolean;
+    public profile_type: string;
+    public header: string;
+    public hding1: string;
+    public hding2: string;
+    public detail1: string;
+    public detail2: string;
+    public ListUrl: string;
 
     getData(){
         //Variables for fields in profile header module

@@ -1,7 +1,7 @@
 /**
  * Created by Victoria on 2/25/2016.
  */
-import {Component} from 'angular2/core';
+import {Component, Input, OnInit} from 'angular2/core';
 import {moduleHeader} from "../../components/module-header/module-header";
 
 @Component({
@@ -10,21 +10,31 @@ import {moduleHeader} from "../../components/module-header/module-header";
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [moduleHeader],
     providers: [],
+    inputs: ['tile_data']
 })
 
-export class TilesComponent{
-    button_txt = 'Open Page';
-    url1 = '';
-    icon1 = 'fa fa-info-circle';
-    title1 = 'About Us';
-    desc1 = '';
-    url2 = '';
-    icon2 = 'fa fa-phone';
-    title2 = 'Contact Us';
-    desc2 = '';
-    url3 = '';
-    icon3 = 'fa fa-folder-open-o';
-    title3 = 'Disclaimer';
-    desc3 = '';
+export class TilesComponent implements OnInit{
+    tile_data: Object;
+
+    ngOnInit(){
+        //Check if tile_data exists
+        if(typeof this.tile_data === 'undefined'){
+            this.tile_data = {
+                button_txt: 'Open Page',
+                url1: '',
+                icon1: 'fa-info-circle',
+                title1: 'About Us',
+                desc1: '',
+                url2: '',
+                icon2: 'fa-phone',
+                title2: 'Contact Us',
+                desc2: '',
+                url3: '',
+                icon3: 'fa-folder-open-o',
+                title3: 'Disclaimer',
+                desc3: ''
+            }
+        }
+    }
 
 }
