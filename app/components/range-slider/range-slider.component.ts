@@ -1,11 +1,11 @@
 import {Component} from 'angular2/core';
 
 @Component({
-    selector: 'header-component',
-    templateUrl: './app/components/header/header.component.html',
+    selector: 'range-slider',
+    templateUrl: './app/components/range-slider/range-slider.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [],
     providers: [],
 })
 
-export class HeaderComponent{ }
+export class RangeSliderComponent { }

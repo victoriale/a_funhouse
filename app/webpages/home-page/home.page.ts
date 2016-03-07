@@ -1,6 +1,9 @@
 import {Component, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 
+import {HomePageData} from "../../global/global-interface";
+import {HomePageService} from '../../global/global-service'
+
 import {HeaderComponent} from "../../components/header/header.component";
 import {FooterComponent} from "../../components/footer/footer.component";
 import {HeroComponent} from "../../components/hero/hero.component";
@@ -14,13 +17,13 @@ import {FeatureTilesComponent} from "../../components/feature-tiles/feature-tile
     templateUrl: './app/webpages/home-page/home.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [HeaderComponent, FooterComponent, HeroComponent, ExploreTilesComponent, ExploreButtonComponent, HeroBottomComponent, FeatureTilesComponent],
-    providers: [],
+    providers: [HomePageService],
 })
 
 export class HomePage {
-    // Location Data
+    homepagedata: HomePageData[];
+
     citylocation: string = "Wichita";
-    statelocation: string = "KS";
 
     // Buttons
     buttontitle: string;
@@ -30,9 +33,17 @@ export class HomePage {
     herobuttonwidth: number;
     herobuttonicon: string;
 
-    // Top Tiles
+    // Explore Tiles
 
-    constructor(public router: Router) {
+    constructor(private _homePageService: HomePageService) { }
+
+    getHomepageService() {
+        this._homePageService.getHomePageService().then(homepagedata => this.homepagedata = homepagedata);
+    }
+
+    ngOnInit() {
+        this.getHomepageService();
+
         // Buttons
         this.buttontitle = "More";
         this.buttonwidth = 160;
@@ -41,7 +52,6 @@ export class HomePage {
         this.herobuttonwidth = 220;
         this.herobuttonicon = "";
 
-        // Get current route name
-        console.log('Route Name:', this.router);
+        console.log(this);
     }
 }

@@ -1,11 +1,11 @@
 import {Component} from 'angular2/core';
 
 @Component({
-    selector: 'header-component',
-    templateUrl: './app/components/header/header.component.html',
+    selector: 'List-page',
+    templateUrl: './app/webpages/list-page/list.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [],
     providers: [],
 })
 
-export class HeaderComponent{ }
+export class ListPage { }

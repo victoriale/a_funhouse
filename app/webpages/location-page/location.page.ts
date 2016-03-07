@@ -1,4 +1,5 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component} from 'angular2/core';
+import {RouteParams} from 'angular2/router';
 
 import {HeadlineComponent} from '../../components/headline/headline.component';
 import {ProfileHeader} from '../../modules/profile_header/profile_header.module';
@@ -12,7 +13,10 @@ import {CrimeModule} from '../../modules/crime/crime.module';
     providers: [],
 })
 
-export class LocationPage implements OnInit{
+export class LocationPage {
+
+    loc: string;
+
     public headline_about = {
         title: 'About [City], [State]',
         icon: 'fa-map-marker'
@@ -31,7 +35,8 @@ export class LocationPage implements OnInit{
     };
     public profile_type = 'location';
 
-    ngOnInit(){
-
+    constructor(params: RouteParams) {
+        this.loc = params.get('loc');
+        console.log(this.loc);
     }
 }

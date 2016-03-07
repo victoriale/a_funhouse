@@ -76,20 +76,19 @@ export class BatchOne {
 
 export class HomePageService {
     getHomePageService() {
-        var HomePageData: HomePageData[] =
-            [
-                {
-                    "citylocation": "Wichita",
-                    "statelocation": "KS",
-                    "cityarea": [
-                        {"city": "Wichita"},
-                        {"city": "Derby"},
-                        {"city": "Haysville"},
-                        {"city": "Valley Center"},
-                        {"city": "Mulvane"},
-                    ],
-                }
-            ];
+        var HomePageData: HomePageData[] = [
+            {
+                'citylocation': 'Wichita',
+                'statelocation': 'KS',
+                'cityarea': [
+                    'Wichita',
+                    'Derby',
+                    'Haysville',
+                    'Valley Center',
+                    'Mulvane',
+                ]
+            },
+        ];
         return Promise.resolve(HomePageData);
     }
 }
