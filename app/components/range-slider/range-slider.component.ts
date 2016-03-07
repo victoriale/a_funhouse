@@ -8,4 +8,5 @@ import {Component} from 'angular2/core';
     providers: [],
 })
 
-export class RangeSliderComponent { }
+export class RangeSliderComponent {
+}

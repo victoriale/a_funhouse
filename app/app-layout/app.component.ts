@@ -17,13 +17,12 @@ import {ExploreTilesComponent} from "../components/explore-tiles/explore-tiles.c
 import {HeroBottomComponent} from "../components/hero/hero-bottom/hero-bottom.component";
 import {ExploreButtonComponent} from "../components/buttons/explore-button/explore-button.component";
 import {FeatureTilesComponent} from "../components/feature-tiles/feature-tiles.component";
-import {RangeSliderComponent} from "../components/range-slider/range-slider.component";
 
 @Component({
     selector: 'my-app',
     templateUrl: './app/app-layout/app.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ListPage, RangeSliderComponent, ROUTER_DIRECTIVES],
+    directives: [ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ListPage, ROUTER_DIRECTIVES],
     providers: [ROUTER_PROVIDERS, ROUTER_DIRECTIVES]
 })
 
