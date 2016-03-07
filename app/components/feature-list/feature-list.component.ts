@@ -11,7 +11,7 @@ import {CarouselButton} from '../../components/buttons/carousel/carousel.button'
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [Image180, CarouselButton],
     providers: [],
-    inputs: ['profile_type'],
+    inputs: ['list_data'],
     outputs: ['scrollRight', 'scrollLeft']
 })
 

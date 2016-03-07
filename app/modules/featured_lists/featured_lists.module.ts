@@ -15,6 +15,7 @@ import {FeatureComponent} from '../../components/feature-list/feature-list.compo
 export class FeaturedListsModule implements OnInit{
     module_title: string;
     tile_data: Object;
+    list_data: Object;
 
     left(){
         console.log('left - module');
@@ -39,6 +40,15 @@ export class FeaturedListsModule implements OnInit{
             icon3: 'fa-th-large',
             title3: 'Similar Top 100 Lists',
             desc3: ''
+        }
+        this.list_data = {
+            header: 'Trending Real Estate',
+            title: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.',
+            hding1: '[Listing Address]',
+            hding2: '[Listing Name] [Zip Code] - [Neighborhood]',
+            detail1: 'Bedrooms: 3 | Bathrooms: 2',
+            detail2: 'Asking Price: ',
+            detail3: '$[###,###]'
         }
     }
 }
