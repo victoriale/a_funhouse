@@ -23,7 +23,7 @@ import {FeatureTilesComponent} from "../components/feature-tiles/feature-tiles.c
     templateUrl: './app/app-layout/app.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ListPage, ROUTER_DIRECTIVES],
-    providers: [ROUTER_PROVIDERS, ROUTER_DIRECTIVES]
+    providers: [ROUTER_PROVIDERS, ROUTER_DIRECTIVES],
 })
 
 @RouteConfig([
