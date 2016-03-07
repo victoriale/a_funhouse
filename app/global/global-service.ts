@@ -6,7 +6,7 @@
  _@BATCH
  */
 
-import {List} from './global-interface';
+import {List, List2} from './global-interface';
 import {Injectable} from 'angular2/core';
 
 @Injectable()
@@ -70,5 +70,31 @@ export class BatchOne {
             },
         ];
         return Promise.resolve(BatchOne);
+    }
+}
+export class MediaFeatureList{
+    getBatchTwo() {
+        var BatchTwo: List2[] = [
+            {
+                'bigImage' : "./app/public/placeholder_XL.png",
+                'list_name' : "[Listing Name] [Zip Code]",
+                'list_addr' : "[Listing Address]",
+                'list_day' : "Days on the market: [##]",
+
+                'detail1' : "[#,###]",
+                'unit1' : "SQ FT",
+                'detail2' : "[#,###]",
+                'unit2' : "ACRES",
+                'price' : "$[###,###]",
+                'price_name' : "SALE PRICE",
+                'smallImage': [
+                    './app/public/img_bckgnd.png',
+                    './app/public/img_bckgnd.png',
+                    './app/public/img_bckgnd.png',
+                ]
+            },
+        ];
+        console.log(BatchTwo);
+        return Promise.resolve(BatchTwo);
     }
 }

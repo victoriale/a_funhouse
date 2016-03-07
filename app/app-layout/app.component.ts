@@ -32,11 +32,11 @@ import {FeatureTilesComponent} from "../components/feature-tiles/feature-tiles.c
         component: HomePage,
         useAsDefault: true,
     },
-    {
-        // Redirects all unrecognized url's to home page
-        path: '/**',
-        redirectTo: ['Home-page'],
-    },
+    //{
+    //    // Redirects all unrecognized url's to home page
+    //    path: '/**',
+    //    redirectTo: ['Home-page'],
+    //},
     {
         path: '/profile',
         name: 'Profile-page',

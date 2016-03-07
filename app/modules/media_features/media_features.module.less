@@ -10,7 +10,7 @@
     width: 130px;
     height: 70px;
     &:active{
-      border: 2px slid @masterBrandColor;
+      border: 2px solid @masterBrandColor;
     }
   }
 }
@@ -20,6 +20,12 @@
   &-info{
     .globalDefaultModFont(14px, 400, @black);
 
+    ul{
+      list-style-type: disc;
+      li{
+        list-style-position: inside;
+      }
+    }
   }
 }
 .heading{
@@ -41,6 +47,3 @@
   }
 }
 
-ul{
-  list-style-type: disc;
-}
