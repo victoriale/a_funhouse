@@ -1,7 +1,7 @@
 /**
  * Created by Victoria on 2/25/2016.
  */
-import {Component, OnInit, Input} from 'angular2/core';
+import {Component, OnInit, Input, Output, EventEmitter} from 'angular2/core';
 import {Image180} from '../../components/images/image-180/image-180.component';
 import {CarouselButton} from '../../components/buttons/carousel/carousel.button';
 
@@ -11,46 +11,39 @@ import {CarouselButton} from '../../components/buttons/carousel/carousel.button'
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [Image180, CarouselButton],
     providers: [],
-    inputs: ['profile_type']
+    inputs: ['profile_type'],
+    outputs: ['scrollRight', 'scrollLeft']
 })
 
 export class FeatureComponent implements OnInit{
-    public title: string;
     public main_hasHover: boolean;
-    public profile_type: string;
-    public header: string;
-    public hding1: string;
-    public hding2: string;
-    public detail1: string;
-    public detail2: string;
-    public ListUrl: string;
+    list_data: Object;
 
-    getData(){
-        //Variables for fields in profile header module
-        //if(this.profile_type === 'location'){
-        //    this.main_hasHover = true;
-        //    this.title = 'Quick info about [City], [State]';
-        //    this.header = 'Trending Real Estate';
-        //    this.hding1 = '[Listing Address]';
-        //    this.hding2 = '[Listing Name] [Zip Code] - [Neighborhood]';
-        //    this.detail1 = 'Bedroom: 3 | Bathroom: 2';
-        //    this.detail2 = 'Asking Price: $[###,###]';
-        //    this.ListUrl = '';
-        //    //Data sent to title component
-        //}else{
-        //    this.main_hasHover = true;
-        //    this.title = 'Quick info about [City], [State]';
-        //    this.header = 'Trending Real Estate';
-        //    this.hding1 = '[Listing Address]';
-        //    this.hding2 = '[Listing Name] [Zip Code] - [Neighborhood]';
-        //    this.detail1 = 'Bedroom: 3 | Bathroom: 2';
-        //    this.detail2 = 'Asking Price: $[###,###]';
-        //    this.ListUrl = '';
-        //}
+    public scrollRight: EventEmitter<boolean> = new EventEmitter();
+    public scrollLeft: EventEmitter<boolean> = new EventEmitter();
+
+    left(){
+        this.scrollLeft.next(true);
+    }
+    right(){
+        this.scrollRight.next(true);
     }
 
     ngOnInit(){
-        this.getData();
+
+        this.main_hasHover = true;
+
+        if(typeof this.list_data === 'undefined'){
+            this.list_data = {
+                header: 'Trending Real Estate',
+                title: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.',
+                hding1: '[Listing Address]',
+                hding2: '[Listing Name] [Zip Code] - [Neighborhood]',
+                detail1: 'Bedrooms: 3 | Bathrooms: 2',
+                detail2: 'Asking Price: ',
+                detail3: '$[###,###]'
+            }
+        }
 
         console.log(this);
     }
