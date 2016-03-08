@@ -5,12 +5,13 @@ import {HeadlineComponent} from '../../components/headline/headline.component';
 import {ListOfListModule} from '../../modules/listoflist/listoflist.module';
 import {HeaderComponent} from "../../components/header/header.component";
 import {FooterComponent} from "../../components/footer/footer.component";
+import {FeaturedListsModule} from '../../modules/featured_lists/featured_lists.module';
 
 @Component({
     selector: 'profile-page',
     templateUrl: './app/webpages/profile-page/profile.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [HeadlineComponent, ListOfListModule, HeaderComponent, FooterComponent],
+    directives: [HeadlineComponent, ListOfListModule, HeaderComponent, FooterComponent, FeaturedListsModule],
     providers: [],
 })
 
