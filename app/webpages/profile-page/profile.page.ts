@@ -11,12 +11,12 @@ import {ListOfListModule} from "../../modules/listoflist/listoflist.module";
 import {AboutUsModule} from "../../modules/aboutus/aboutus.module";
 import {HeaderComponent} from "../../components/header/header.component";
 import {FooterComponent} from "../../components/footer/footer.component";
-
+import {LikeUs} from "../../modules/likeus/likeus.module";
 @Component({
     selector: 'profile-page',
     templateUrl: './app/webpages/profile-page/profile.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule,CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent],
+    directives: [HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs],
     providers: [],
 })
 

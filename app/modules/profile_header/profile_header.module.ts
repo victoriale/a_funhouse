@@ -55,11 +55,11 @@ export class ProfileHeader implements OnInit{
                 titleImg : './app/public/img_bckgnd.png',
                 //Empty string because profile header does not need this value
                 smallTxt1 : '',
-                smallTxt2 : 'Last Updated: Monday, Februrary 23, 2016',
-                Heading1 : '[City], [State]',
-                Heading2 : '',
-                Heading3 : '[##] Listings Available for Sale',
-                Heading4 : '',
+                smallTxt2 : '[City, ST]',
+                Heading1 : '[Property Address]',
+                Heading2 : '- Active',
+                Heading3 : 'Listing Price: $[###,###]',
+                Heading4 : '- Sq ft: [#,###] Sq ft.',
                 icon: 'fa fa-map-marker',
                 hasHover: false
             };

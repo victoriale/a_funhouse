@@ -4,33 +4,12 @@
 
     <section class="features">
         <div class="heading">
-            <span>Features Of This Property</span>
-            <span>Last Updated: Thursday, March 03, 2016</span>
+            <span>{{featureHeading}}</span>
+            <span>{{lastUpdate}}</span>
         </div>
         <div class="features-info">
             <ul>
-                <li> Price: $749,000</li>
-                <li> Price: $749,000</li>
-                <li> Price: $749,000</li>
-                <li> Price: $749,000</li>
-                <li> Price: $749,000</li>
-                <li> Price: $749,000</li>
-            </ul>
-            <ul>
-                <li> Price: $749,000</li>
-                <li> Price: $749,000</li>
-                <li> Price: $749,000</li>
-                <li> Price: $749,000</li>
-                <li> Price: $749,000</li>
-                <li> Price: $749,000</li>
-            </ul>
-            <ul>
-                <li> Price: $749,000</li>
-                <li> Price: $749,000</li>
-                <li> Price: $749,000</li>
-                <li> Price: $749,000</li>
-                <li> Price: $749,000</li>
-                <li> Price: $749,000</li>
+                <li *ngFor = "#item of prop_features"> {{item.details}}</li>
             </ul>
         </div>
     </section>
