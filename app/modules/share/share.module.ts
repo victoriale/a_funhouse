@@ -14,6 +14,7 @@ import {Image180} from '../../components/images/image-180/image-180.component';
 })
 
 export class ShareModule implements OnInit{
+    public main_hasSubImg: boolean;
     module_title: string;
     image_url = './app/public/img_bckgnd.png';
     share = 'Share [Profile] Below:';
@@ -29,9 +30,9 @@ export class ShareModule implements OnInit{
     Url2 = "https://twitter.com/share?url=''";
     Url3 = "https://plus.google.com/share";
     Url4 = 'http://pinterest.com/pin/create/button/';
-    main_hasHover = false;
 
     ngOnInit(){
         this.module_title = 'Share This Profile With Your Friends';
+        this.main_hasSubImg = false;
     }
 }
