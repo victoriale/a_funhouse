@@ -12,11 +12,11 @@ import {List2} from '../../global/global-interface';
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [CircleButton],
     providers: [MediaFeatureList],
-    //inputs: ['']
+    inputs: ['']
 })
 export class MediaImages implements OnInit {
     BatchTwo: List2[];
-    //public trending: boolean;
+    public trending: boolean;
 
     constructor(
         private _featureList: MediaFeatureList
@@ -28,7 +28,7 @@ export class MediaImages implements OnInit {
     }
     ngOnInit(){
         this.getData();
-        //this.trending = true;
+        this.trending = true;
         console.log(this);
     }
 }

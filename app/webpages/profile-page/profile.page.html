@@ -6,21 +6,44 @@
 
                 <!-- About Section -->
                 <headline-component [data]="headline_about"></headline-component>
-                <list-of-lists-module></list-of-lists-module>
+
+                <!--Listing Profile Header-->
+                <profile-header [profile_type]="profile_type"></profile-header>
+
+                <!--Media Feature Section-->
+                <media-features-module [trending]="media_feature"></media-features-module>
+
+                <!--Map Section-->
+
+                <!--Comment Section-->
+                <comment-module></comment-module>
 
                 <!-- Crime Section -->
                 <headline-component [data]="headline_crime"></headline-component>
+                <crime-module></crime-module>
 
                 <!-- Amenities Section -->
                 <headline-component [data]="headline_amenities"></headline-component>
 
                 <!-- Other Homes Section -->
                 <headline-component [data]="headline_otherHomes"></headline-component>
+                <media-features-module [trending]="trending_feature"></media-features-module>
+
+                <!--List of List Section-->
+                <list-of-lists-module></list-of-lists-module>
 
                 <!-- Interact Section -->
                 <headline-component [data]="headline_interact"></headline-component>
+
+                <!--Feature List Module-->
                 <featured_lists-module></featured_lists-module>
 
+                <!--Share Module-->
+                <share-module></share-module>
+                <!--Like Us On FB Module-->
+                <like-us-module></like-us-module>
+                <!--Learn More About Us-->
+                <about-us-module></about-us-module>
             </section>
             <aside class="four columns">
                 <div class="widget"></div>
