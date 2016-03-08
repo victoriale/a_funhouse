@@ -1,5 +1,5 @@
 {
-  "name": "synapsys-front-end",
+  "name": "joyful-home",
   "version": "1.0.0",
   "scripts": {
     "tsc": "tsc",
@@ -9,16 +9,16 @@
   },
   "license": "ISC",
   "dependencies": {
-    "angular2": "^2.0.0-beta.0",
+    "angular2": "^2.0.0-beta.7",
+    "connect-history-api-fallback": "^1.1.0",
     "es6-promise": "^3.0.2",
     "es6-shim": "^0.33.3",
-    "highcharts": "^4.2.1",
-    "ng2-highcharts": "^0.2.8",
-    "reflect-metadata": "^0.1.2",
-    "rxjs": "^5.0.0-beta.0",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.2",
     "systemjs": "0.19.6",
     "tsd": "^0.6.5",
-    "zone.js": "^0.5.10"
+    "zone.js": "^0.5.10",
+    "browser-sync": "^2.11.1"
   },
   "devDependencies": {
     "concurrently": "^1.0.0",
@@ -28,6 +28,7 @@
     "gulp-less": "^3.0.5",
     "gulp-typescript": "^2.8.0",
     "lite-server": "^2.0.1",
-    "typescript": "^1.7.5"
+    "typescript": "^1.7.5",
+    "browser-sync": "^2.11.1"
   }
 }

@@ -1,8 +1,9 @@
 import {Component} from 'angular2/core';
-import {Router, RouteData, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
+import {Router, RouteData, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, LocationStrategy} from 'angular2/router';
 
 import {ProfilePage} from "../webpages/profile-page/profile.page";
 import {LocationPage} from "../webpages/location-page/location.page";
+import {ListPage} from "../webpages/list-page/list.page";
 import {HomePage} from "../webpages/home-page/home.page";
 import {ComponentPage} from "../webpages/component-page/component.page";
 import {AboutUsPage} from "../webpages/aboutus-page/aboutus.page";
@@ -21,8 +22,8 @@ import {FeatureTilesComponent} from "../components/feature-tiles/feature-tiles.c
     selector: 'my-app',
     templateUrl: './app/app-layout/app.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ROUTER_DIRECTIVES],
-    providers: [ROUTER_PROVIDERS]
+    directives: [ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ListPage, ROUTER_DIRECTIVES],
+    providers: [ROUTER_PROVIDERS, ROUTER_DIRECTIVES],
 })
 
 @RouteConfig([
@@ -32,20 +33,20 @@ import {FeatureTilesComponent} from "../components/feature-tiles/feature-tiles.c
         component: HomePage,
         useAsDefault: true,
     },
-    //{
-    //    // Redirects all unrecognized url's to home page
-    //    path: '/**',
-    //    redirectTo: ['Home-page'],
-    //},
     {
         path: '/profile',
         name: 'Profile-page',
         component: ProfilePage,
     },
     {
-        path: '/location',
+        path: '/location/:loc',
         name: 'Location-page',
         component: LocationPage,
+    },
+    {
+        path: '/list',
+        name: 'List-page',
+        component: ListPage,
     },
     {
         path: '/component',
@@ -70,8 +71,5 @@ import {FeatureTilesComponent} from "../components/feature-tiles/feature-tiles.c
 ])
 
 export class AppComponent {
-
-    constructor(public router: Router){
-        console.log('RN', this.router);
-    }
+    cityStateLocation: string = "WICHITA_KS";
 }

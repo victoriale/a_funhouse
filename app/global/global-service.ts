@@ -8,6 +8,7 @@
 
 import {List, List2} from './global-interface';
 import {Injectable} from 'angular2/core';
+import {HomePageData} from "./global-interface";
 
 @Injectable()
 
@@ -72,6 +73,26 @@ export class BatchOne {
         return Promise.resolve(BatchOne);
     }
 }
+
+export class HomePageService {
+    getHomePageService() {
+        var HomePageData: HomePageData[] = [
+            {
+                'citylocation': 'Wichita',
+                'statelocation': 'KS',
+                'cityarea': [
+                    'Wichita',
+                    'Derby',
+                    'Haysville',
+                    'Valley Center',
+                    'Mulvane',
+                ]
+            },
+        ];
+        return Promise.resolve(HomePageData);
+    }
+}
+
 export class MediaFeatureList{
     getBatchTwo() {
         var BatchTwo: List2[] = [

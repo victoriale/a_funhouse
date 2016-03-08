@@ -33,8 +33,7 @@ gulp.task('copy:libs', ['clean'], function() {
       'node_modules/angular2/bundles/router.dev.js',
       'node_modules/angular2/bundles/http.js',
       'node_modules/node-uuid/uuid.js',
-      'node_modules/immutable/dist/immutable.js',
-      'node_modules/ng2-highchart'
+      'node_modules/immutable/dist/immutable.js'
     ])
     .pipe(gulp.dest('dist/lib'))
 });

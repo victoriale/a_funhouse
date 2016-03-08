@@ -25,6 +25,7 @@ import {trendingCarousel} from "../../components/trending-carousel-list/trending
 import {AboutUsModule} from "../../modules/aboutus/aboutus.module";
 import {ShareModule} from "../../modules/share/share.module";
 import {CommentModule} from "../../modules/comment/comment.module";
+import {RangeSliderComponent} from "../../components/range-slider/range-slider.component";
 import {MediaFeatureModule} from "../../modules/media_features/media_features.module";
 import {MediaImages} from "../../components/media-images/media-images.component";
 
@@ -32,7 +33,7 @@ import {MediaImages} from "../../components/media-images/media-images.component"
     selector: 'component-page',
     templateUrl: './app/webpages/component-page/component.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [BackTabComponent, TitleComponent, TitleLocComponent, CarouselButton, CircleButton, InfinityButton, Image180, Image100, HeadlineComponent, imageHeader, propertyType, ProfileHeader, FeatureComponent, TilesComponent, contentList, moduleHeader, moduleFooter, FeatureComponent, TilesComponent, trendingCarousel, AboutUsModule, ShareModule, CommentModule, MediaFeatureModule, MediaImages],
+    directives: [BackTabComponent, TitleComponent, TitleLocComponent, CarouselButton, CircleButton, InfinityButton, Image180, Image100, HeadlineComponent, imageHeader, propertyType, ProfileHeader, FeatureComponent, TilesComponent, contentList, moduleHeader, moduleFooter, FeatureComponent, TilesComponent, trendingCarousel, AboutUsModule, ShareModule, CommentModule, MediaFeatureModule, MediaImages, RangeSliderComponent],
     providers: [],
 })
 
