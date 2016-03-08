@@ -529,6 +529,21 @@ goalsHeader
   }
 }
 
+// BR both not linked
+.largeImgSmallNotLinkedImgBR(@liwh, @liss, @lisc, @siwh, @siss, @sisc) {
+  position: relative;
+  display: inline-block;
+  width: @liwh;
+  height: @liwh;
+  line-height: 0;
+  img:first-child {
+    .roundImage(@liwh, @liss, @lisc);
+  }
+  img:last-child {
+    .smallImgBR(@siwh, @siss, @sisc);
+  }
+}
+
 // BR: large => not linked; small => linked
 .largeImgSmallLinkedImgBL(@liwh, @liss, @lisc, @siwh, @siss, @sisc) {
   position: relative;

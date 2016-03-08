@@ -12,19 +12,15 @@ import {MediaImages} from "../../components/media-images/media-images.component"
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [moduleHeader, MediaImages],
     providers: [],
+    inputs: ['feature_type']
 })
 
 export class MediaFeatureModule implements OnInit{
     module_title: string;
     image_url = './app/public/placeholder_XL.png';
-    constructor(
-      private _aboutus: Router,
-      private _contactus: Router,
-      private _disclaimer: Router
-    ){}
+
     ngOnInit(){
         this.module_title = 'Property Images, Media & Features for [Profile Name]';
-
     }
 }
 

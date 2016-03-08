@@ -17,7 +17,7 @@ export class ProfileHeader implements OnInit{
     public icon: string;
     public title: string;
     public description: string;
-    public main_hasHover: boolean;
+    public main_hasSubImg: boolean;
     public profile_type: string;
     title_data: {};
 
@@ -29,7 +29,7 @@ export class ProfileHeader implements OnInit{
             this.icon = 'fa fa-map-marker';
             this.title = 'Quick info about [City], [State]';
             this.description = 'The most popular neighborhood In  [City], [State] for new listings was [City], [State].  Did you know that the average age for a [City], [State] resident is [##] and the average home sells for $[###,###].';
-            this.main_hasHover = false;
+            this.main_hasSubImg = false;
             //Data sent to title component
             this.title_data = {
                 titleImg : './app/public/img_bckgnd.png',
@@ -46,9 +46,10 @@ export class ProfileHeader implements OnInit{
         }else{
             //Listing Profile Header
             //Data used in profile header module
+            this.icon = 'fa fa-home';
             this.title = 'Read more about this listing';
             this.description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in';
-            this.main_hasHover = true;
+            this.main_hasSubImg = true;
             //Data sent to title component
             this.title_data = {
                 titleImg : './app/public/img_bckgnd.png',
@@ -67,7 +68,6 @@ export class ProfileHeader implements OnInit{
 
     ngOnInit(){
         this.getData();
-
         console.log(this);
     }
 }
