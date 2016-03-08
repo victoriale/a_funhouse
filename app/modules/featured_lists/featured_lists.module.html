@@ -1,0 +1,14 @@
+<section class="module-container">
+    <module-header [module_title]="module_title"></module-header>
+
+    <div class="fli-body">
+        <div class="fli-tiles">
+            <tiles-component [tile_data]="tile_data"></tiles-component>
+        </div>
+        <div>
+            <feature-component [list_data]="list_data" (scrollLeft)="left()" (scrollRight)="right()"></feature-component>
+        </div>
+    </div>
+
+
+</section>

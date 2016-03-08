@@ -2,7 +2,6 @@ import {Component, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 
 import {ProfileHeader} from '../../modules/profile_header/profile_header.module';
-
 import {HeadlineComponent} from '../../components/headline/headline.component';
 import {MediaFeatureModule} from "../../modules/media_features/media_features.module";
 import {CommentModule} from "../../modules/comment/comment.module";
@@ -12,14 +11,17 @@ import {AboutUsModule} from "../../modules/aboutus/aboutus.module";
 import {HeaderComponent} from "../../components/header/header.component";
 import {FooterComponent} from "../../components/footer/footer.component";
 import {LikeUs} from "../../modules/likeus/likeus.module";
+import {ShareModule} from "../../modules/share/share.module";
+import {FeaturedListsModule} from '../../modules/featured_lists/featured_lists.module';
+
 @Component({
     selector: 'profile-page',
     templateUrl: './app/webpages/profile-page/profile.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs],
+    directives: [HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs, ShareModule, FeaturedListsModule],
+
     providers: [],
 })
-
 
 export class ProfilePage implements OnInit{
     public headline_about = {
