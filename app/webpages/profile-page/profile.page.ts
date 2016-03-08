@@ -13,12 +13,13 @@ import {FooterComponent} from "../../components/footer/footer.component";
 import {LikeUs} from "../../modules/likeus/likeus.module";
 import {ShareModule} from "../../modules/share/share.module";
 import {FeaturedListsModule} from '../../modules/featured_lists/featured_lists.module';
+import {MediaImages} from "../../components/media-images/media-images.component";
 
 @Component({
     selector: 'profile-page',
     templateUrl: './app/webpages/profile-page/profile.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs, ShareModule, FeaturedListsModule],
+    directives: [MediaImages, HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs, ShareModule, FeaturedListsModule],
 
     providers: [],
 })

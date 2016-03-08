@@ -21,14 +21,16 @@ export class MediaImages implements OnInit {
     constructor(
         private _featureList: MediaFeatureList
     ){}
+
     getData(){
     console.log(this);
         console.log(this._featureList.getBatchTwo());
         this._featureList.getBatchTwo().then(batch2 => this.BatchTwo = batch2);
     }
+
     ngOnInit(){
         this.getData();
-        this.trending = true;
+        this.trending = false;
         console.log(this);
     }
 }
