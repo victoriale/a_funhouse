@@ -13,7 +13,19 @@ import {moduleHeader} from "../../components/module-header/module-header";
 export class LikeUs implements OnInit{
     module_title: string;
 
+
     ngOnInit(){
+        var script = document.createElement("script");
+        script.innerHTML =`
+            (function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+              fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        `
+        document.body.appendChild(script);
         this.module_title = 'Like JoyfulHome on Facebook';
     }
 }
