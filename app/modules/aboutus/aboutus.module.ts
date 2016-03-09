@@ -18,11 +18,11 @@ export class AboutUsModule{
 
     header = 'Joyful Home Disclaimer';
     logo = './app/public/joyfulhome_logo_large.png';
-    hding = 'Disclaimer';
-    subtxt = 'Market data delayed 15 minutes.';
-    maintxt = 'This site is powered by JoyfulHomes.ideas and opinions presented on this website are for informational and educational purposes only,and do not reflect the opinions of JoyfulHomes, or any of its alliates, subsidiaries or partners.';
+    heading = 'Disclaimer';
+    subText = 'Market data delayed 15 minutes.';
+    mainText = 'This site is powered by JoyfulHomes.ideas and opinions presented on this website are for informational and educational purposes only,and do not reflect the opinions of JoyfulHomes, or any of its alliates, subsidiaries or partners.';
     provider = '© 2016 Data provided by ListHub®';
-    btn_txt = 'See The Full Disclaimer';
+    buttonText = 'See The Full Disclaimer';
 
     constructor(
         private _router: Router
