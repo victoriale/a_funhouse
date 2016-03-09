@@ -23,7 +23,7 @@ import {FeatureTilesComponent} from "../../components/feature-tiles/feature-tile
 export class HomePage {
 
     homePageData: HomePageData[];
-    citylocation: string = "Wichita";
+    cityLocation: string = "Wichita";
 
     // Buttons
     buttonTitle: string;
