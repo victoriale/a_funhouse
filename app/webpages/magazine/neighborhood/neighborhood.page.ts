@@ -14,4 +14,5 @@ import {MagMapModule} from "../../../modules/magazine/mag-map/mag-map.module";
     providers: [],
 })
 
-export class NeighborhoodPage {}
+export class NeighborhoodPage {
+}

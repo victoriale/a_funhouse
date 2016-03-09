@@ -1,17 +1,16 @@
 import {Component} from 'angular2/core';
-import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
-import {OverviewPage} from "../webpages/magazine/overview/overview.page";
-import {NeighborhoodPage} from "../webpages/magazine/neighborhood/neighborhood.page";
-import {RecommendationsPage} from "../webpages/magazine/recommendations/recommendations.page";
-import {ContactPage} from "../webpages/magazine/contact/contact.page";
-
+import {Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, RouteParams } from 'angular2/router';
+import {OverviewPage} from "./overview/overview.page";
+import {NeighborhoodPage} from "./neighborhood/neighborhood.page";
+import {RecommendationsPage} from "./recommendations/recommendations.page";
+import {ContactPage} from "./contact/contact.page";
 
 @Component({
-    selector: 'my-app',
-    templateUrl: './app/app-layout/app.component.html',
+    selector: 'magazine-page',
+    templateUrl: './app/webpages/magazine/magazine.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [OverviewPage, NeighborhoodPage, RecommendationsPage, ContactPage, ROUTER_DIRECTIVES],
-    providers: [ROUTER_PROVIDERS]
+    providers: [ROUTER_PROVIDERS],
 })
 
 @RouteConfig([
@@ -19,7 +18,6 @@ import {ContactPage} from "../webpages/magazine/contact/contact.page";
         path: '/magazine/:addr/1',
         name: 'Overview-page',
         component: OverviewPage,
-        useAsDefault: true,
     },
     {
         path: '/magazine/:addr/2',
@@ -36,8 +34,11 @@ import {ContactPage} from "../webpages/magazine/contact/contact.page";
         name: 'Contact-page',
         component: ContactPage,
     },
-
 ])
 
-export class AppComponent {
+export class MagazinePage {
+    pagenum: string;
+    constructor(params: RouteParams){
+        this.pagenum = params.get('pagenum');
+    }
 }
