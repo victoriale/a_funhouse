@@ -19,7 +19,7 @@ import {ContactPage} from "../webpages/magazine/contact/contact.page";
         path: '/magazine/1',
         name: 'Overview-page',
         component: OverviewPage,
-
+        useAsDefault: true,
     },
     {
         path: '/magazine/2',
@@ -35,7 +35,6 @@ import {ContactPage} from "../webpages/magazine/contact/contact.page";
         path: '/magazine/4',
         name: 'Contact-page',
         component: ContactPage,
-        useAsDefault: true,
     },
 
 ])

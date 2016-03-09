@@ -1,11 +1,15 @@
 <div class="mag_container">
-    <a href="">
-        <div class="mag_cont_r">
-            <div class="mag_cont_r_btext">See what else there is to explore down the block</div>
-            <div class="mag_cont_r_line"></div>
-            <div class="mag_cont_r_box"></div>
-            <div class="mag_cont_r_loc"><br>United States</div>
-            <div class="mag_cont_r_button noclick"></div>
-        </div>
-    </a>
+    <span *ngFor="#magListings of listingData;">
+        <span *ngFor="#magContact of magListings.contactListing;">
+            <a href="{{magContact.address_key}}">
+                <div class="mag_cont_r">
+                    <div class="mag_cont_r_btext">See what else there is to explore down the block</div>
+                    <div class="mag_cont_r_line"></div>
+                    <div class="mag_cont_r_box">{{magContact.itemAddress}}</div>
+                    <div class="mag_cont_r_loc">{{magContact.city}}, {{magContact.state}}, {{magContact.zipcode}}<br>United States</div>
+                    <div class="mag_cont_r_button noclick"></div>
+                </div>
+            </a>
+        </span>
+    </span>
 </div>

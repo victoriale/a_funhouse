@@ -53,7 +53,7 @@ export class MagazineHeader {
                 'data': 'MagazineRealtor',
                 'hasLink': true,
                 'id': 'ContactRealtor',
-                'name': 'Contact Realtor',
+                'name': 'Contact Agent',
                 'pageNum': 4,
                 'template': 'mag_contact',
             },
@@ -369,6 +369,10 @@ export class MagazineSimilarListings {
                     magtext6: ". Continue reading to learn more about the 431 neighborhood and its demographics, amenities and schools."
                 }],
                 contactListing: [{
+                    address_key: "3277-N-LONGFELLOW-CT-Wichita-KS",
+                    city: "Wichita",
+                    state: "KS",
+                    zipcode: "67226",
                     itemAddress: "3277 N Longfellow Ct.",
                     magtext1: "Home buyers interested in learning more about the opportunity to own a Wichita home at 3018 E Kite St should contact listing agent Basem Krichati of Superior Realty. Krichati can be reached at (316) 440-6000 or at ",
                     magtext2: "Superior Realty, a part of Wichita Area Association of Realtors® is located at 1109 S. Rock Rd in Wichita, Kansas.",

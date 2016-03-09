@@ -1,8 +1,9 @@
 <div class="overview-page" (click)="checkTabs()">
     <magazine-header-module></magazine-header-module>
-    <magazine-recommendations-text-module [listingData]="listingData" [recommendations]="recommendations"></magazine-recommendations-text-module>
-    <magazine-contact-module></magazine-contact-module>
-    <magazine-recommendations-img-module [listingData]="listingData" [recommendations]="recommendations"></magazine-recommendations-img-module>
-    <mag-nav-right-component></mag-nav-right-component>
+    <div class="mag_container mag_container_left">
+        <magazine-recommendations-text-module [listingData]="listingData" [recommendations]="recommendations"></magazine-recommendations-text-module>
+        <magazine-recommendations-img-module [listingData]="listingData" [recommendations]="recommendations"></magazine-recommendations-img-module>
+    </div>
+    <magazine-contact-module [listingData]="listingData"></magazine-contact-module>
     <mag-footer-component></mag-footer-component>
 </div>

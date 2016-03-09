@@ -1,6 +1,6 @@
-<div class="mag_container mag_text mag_r1_text">
-    <span *ngFor="#magListings of listingData;">
-        <span *ngIf="recommendations">
+ <span *ngFor="#magListings of listingData;">
+     <span *ngIf="recommendations">
+         <div class="mag_container mag_text mag_r1_text">
             <span *ngFor="#magText1 of magListings.listing1;">
                 <div class="mag_ki_banner" style="margin-top: 1vw">Explore Similar Properties</div>
                 <div class="mag_po_address mag_po_address_sm"><i class="fa fa-map-marker"></i>{{magText1.itemAddress}}
@@ -25,16 +25,18 @@
                     {{magText2.magtext6}}<br><br>
                 </span>
             </span>
-        </span>
-        <span *ngIf="!recommendations">
-            <span *ngFor="#magText1 of magListings.contactListing;">
-                <div class="mag_ki_banner" style="margin-top: 1vw">Contact The Agent</div>
-                <div class="mag_po_address mag_po_address_sm"><i class="fa fa-map-marker"></i>{{magText1.itemAddress}}
-                </div>
-                {{magText1.magtext1}}<br><br>
-                {{magText1.magtext2}}<br><br>
-            </span>
-        </span>
-        <learnmore-component></learnmore-component>
-    </span>
-</div>
+         </div>
+     </span>
+     <span *ngIf="!recommendations">
+         <div class="mag_text">
+             <span *ngFor="#magText1 of magListings.contactListing;">
+                 <div class="mag_ki_banner" style="margin-top: 1vw">Contact The Agent</div>
+                 <div class="mag_po_address mag_po_address_sm"><i class="fa fa-map-marker"></i>{{magText1.itemAddress}}
+                 </div>
+                 {{magText1.magtext1}}<br><br>
+                 {{magText1.magtext2}}<br><br>
+             </span>
+             <learnmore-component></learnmore-component>
+         </div>
+     </span>
+ </span>

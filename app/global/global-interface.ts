@@ -121,6 +121,10 @@ export interface MagSimilarListingsData {
         magtext6: string;
     }]
     contactListing:[{
+        address_key: string;
+        city: string;
+        state: string;
+        zipcode: string;
         itemAddress: string;
         magtext1: string;
         magtext2: string;

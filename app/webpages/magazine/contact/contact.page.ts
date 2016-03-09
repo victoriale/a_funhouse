@@ -1,7 +1,6 @@
 import {Component, OnInit} from 'angular2/core';
 import {MagHeaderModule} from "../../../modules/magazine/mag-header/mag-header.module";
 import {FooterComponent} from "../../../components/magazine/mag-footer/mag-footer.component";
-import {NavRightComponent} from "../../../components/magazine/mag-nav-right/mag-nav-right.component";
 import {MagazineSimilarListings} from "../../../global/global-service";
 import {MagSimilarListingsData} from "../../../global/global-interface";
 import {MagRecommendationsTextModule} from "../../../modules/magazine/mag-recommendations-text/mag-recommendations-text";
@@ -12,7 +11,7 @@ import {MagContactModule} from "../../../modules/magazine/mag-contact/mag-contac
     selector: 'contact-page',
     templateUrl: './app/webpages/magazine/contact/contact.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [MagHeaderModule, FooterComponent, NavRightComponent, MagRecommendationsTextModule, MagRecommendationsImgModule, MagContactModule],
+    directives: [MagHeaderModule, FooterComponent, MagRecommendationsTextModule, MagRecommendationsImgModule, MagContactModule],
     providers: [MagazineSimilarListings],
 })
 
