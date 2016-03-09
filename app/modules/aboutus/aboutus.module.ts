@@ -19,8 +19,8 @@ export class AboutUsModule{
     header = 'Joyful Home Disclaimer';
     logo = './app/public/joyfulhome_logo_large.png';
     heading = 'Disclaimer';
-    subtext = 'Market data delayed 15 minutes.';
-    maintext = 'This site is powered by JoyfulHomes.ideas and opinions presented on this website are for informational and educational purposes only,and do not reflect the opinions of JoyfulHomes, or any of its alliates, subsidiaries or partners.';
+    subText = 'Market data delayed 15 minutes.';
+    mainText = 'This site is powered by JoyfulHomes.ideas and opinions presented on this website are for informational and educational purposes only,and do not reflect the opinions of JoyfulHomes, or any of its alliates, subsidiaries or partners.';
     provider = '© 2016 Data provided by ListHub®';
     buttonText = 'See The Full Disclaimer';
 
