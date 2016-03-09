@@ -5,12 +5,13 @@ import {HeadlineComponent} from '../../components/headline/headline.component';
 import {ProfileHeader} from '../../modules/profile_header/profile_header.module';
 import {CrimeModule} from '../../modules/crime/crime.module';
 import {FeaturedListsModule} from '../../modules/featured_lists/featured_lists.module';
+import {InfoListModule} from "../../modules/infolist/info-list.module";
 
 @Component({
     selector: 'location-page',
     templateUrl: './app/webpages/location-page/location.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule],
+    directives: [HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, InfoListModule],
     providers: [],
 })
 

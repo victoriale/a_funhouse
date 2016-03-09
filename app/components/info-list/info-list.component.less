@@ -1,0 +1,120 @@
+.info-list{
+  width:100%;
+  height:155px;
+  border-bottom: 1px solid @listgreyborder;
+  //border-right: 1px solid @listgreyborder;
+  //border-left: 1px solid @listgreyborder;
+  padding:15px 20px;
+  .flexDirection(row);
+  display: flex;
+  &.odd {
+    background: @backgroundGrey;
+  }
+  &.even {
+    background: @white;
+  }
+}
+
+//style for large image box
+.info-imagebox {
+  margin-right:25px;
+  .largeRoundImageNoHover(125px, 3px, @masterStrokeColor);
+  .info-rank {
+    text-align: center;
+    padding-top: 12px;
+    color: #000;
+    width: 42px;
+    height: 42px;
+    border: 1px solid @backgroundGrey;
+    border-radius: 50%;
+    position: relative;
+    top: -130px;
+    background-color: @white;
+  }
+}
+
+//styles all the content inside the list start from text to small images
+.info-content-box{
+  display: flex;
+  height:125px;
+  width:76.5%;
+  .flexDirection(column);
+  .flexJustify(space-around);
+  span:first-child{
+    font-size: 12px;
+    & > i{
+      color:@masterBrandColor;
+      padding-right:5px;
+    }
+    &:hover{
+      color:@masterBrandColor;
+    }
+  }
+
+  .info-content-row-wrapper {
+    display: flex;
+    .flexDirection(row);
+    .flexJustify(space-between);
+  }
+
+  .info-location {
+    .globalDefaultModFont(10px, 600, @black) !important;
+  }
+
+  .info-address {
+    .globalDefaultModFont(20px, 900, @black) !important;
+    margin-top: 5px;
+  }
+
+  .info-type {
+    .globalDefaultModFont(14px, 400, @black) !important;
+    margin-top: 5px;
+  }
+
+  .info-content-row2 {
+    text-align: right;
+  }
+
+    .info-market {
+      .globalDefaultModFont(12px, 400, @black) !important;
+    }
+
+    .info-date {
+      .globalDefaultModFont(20px, 900, @black) !important;
+    }
+
+  .info-price {
+    .globalDefaultModFont(12px, 400, @black) !important;
+  }
+
+  .info-content-bottom{
+    .globalDefaultModFont(12px, 400, @white) !important;
+    .flexDirection(column);
+    border: 1px solid @strokeGrey;
+    border-radius: 5px;
+    padding: 5px;
+    p {
+      .globalDefaultModFont(14px, 400, @black) !important;
+      margin-top: 8px;
+      margin-left: 5px;
+    }
+    &.odd {
+      background: @white;
+    }
+    &.even {
+      background: @backgroundGrey;
+    }
+  }
+  .info-content-subbox {
+    float:left;
+  }
+  .info-list-button{
+    .mod-page-btn;
+    position: relative;
+    float:right;
+    padding-right: 5px;
+    .info-icon {
+      margin-top: 3px;
+    }
+  }
+}
