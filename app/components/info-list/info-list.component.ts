@@ -10,6 +10,7 @@ import {Component, OnInit, Input} from 'angular2/core';
 })
 
 export class InfoListComponent{
+    moduleTitle: string;
     infoList: Object;
 
     ngOnInit(){

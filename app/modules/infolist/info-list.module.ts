@@ -9,13 +9,16 @@ import {InfoListComponent} from "../../components/info-list/info-list.component"
     templateUrl: './app/modules/infolist/info-list.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [moduleHeader, moduleFooter, InfoListComponent],
+    inputs: ['module_title'],
     providers: []
 })
 
 export class InfoListModule implements OnInit {
+    module_title: string;
     infoList: Object;
 
     ngOnInit() {
+        this.module_title = 'Recent Listings for [Listing Name]';
         this.infoList =
         {
             'address': '[Listing Address1]',
