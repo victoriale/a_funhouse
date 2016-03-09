@@ -11,6 +11,7 @@ import {MagOverviewData} from './global-interface';
 import {Injectable} from 'angular2/core';
 import {MagNeighborhoodData} from "./global-interface";
 import {MagMapData} from "./global-interface";
+import {MagSimilarListingsData} from "./global-interface";
 
 @Injectable()
 
@@ -336,5 +337,45 @@ export class MagazineMap {
             },
         ];
         return Promise.resolve(MagMap);
+    }
+}
+
+export class MagazineSimilarListings {
+    getMagazineSimilarListings() {
+        var MagSimilarListings:MagSimilarListingsData[] = [
+            {
+                listing1: [{
+                    itemAddress: "2461 N Winstead Cir.",
+                    itemImg: "http://photos.listhub.net/SCKMLSKS/516581/1?lm=20160307T232913",
+                    itemImg2: "http://photos.listhub.net/SCKMLSKS/516581/2?lm=20160307T232913",
+                    itemKey: "2461-N-Winstead-Cir-Wichita-KS",
+                    magtext1: "This informal New Traditional home at 2461 N Winstead Cir. Just hit the market in Wichita.",
+                    magtext2: "With 3 bedrooms and 3 and a half bathrooms, there's plenty of room for family in this minimal 1979 home.",
+                    magtext3: "Picture your friends and loved ones hosting a game night in the basement, sitting on the patio on a summer evening or spending time beneath beautiful vaulted ceilings.",
+                    magtext4: "Inside you will enjoy floor coverings including cozy carpet and easy-to-maintain vinyl.",
+                    magtext5: "Buyers who wish to learn more about this listing can visit",
+                    magtext6: ". Continue reading to learn more about the 431 neighborhood and its demographics, amenities and schools."
+                }],
+                listing2: [{
+                    itemAddress: "1324 N MANCHESTER CT",
+                    itemImg: "http://photos.listhub.net/SCKMLSKS/516570/1?lm=20160307T214535",
+                    itemImg2: "http://photos.listhub.net/SCKMLSKS/516570/2?lm=20160307T214535",
+                    itemKey: "1324-N-MANCHESTER-CT-Wichita-KS",
+                    magtext1: "This informal New Traditional home at 1324 N MANCHESTER CT just hit the market in Wichita.",
+                    magtext2: "With 4 bedrooms and 4 and a half bathrooms, there's plenty of room for family in this classic 1989 home.",
+                    magtext3: "Picture your friends and loved ones sitting on the patio on a summer evening, hosting a game night in the basement or spending lazy evenings on the porch.",
+                    magtext4: "Inside you will enjoy floor coverings including cozy carpet, beautiful wood, cool tile.",
+                    magtext5: "Buyers who wish to learn more about this listing can visit ",
+                    magtext6: ". Continue reading to learn more about the 431 neighborhood and its demographics, amenities and schools."
+                }],
+                contactListing: [{
+                    itemAddress: "3277 N Longfellow Ct.",
+                    magtext1: "Home buyers interested in learning more about the opportunity to own a Wichita home at 3018 E Kite St should contact listing agent Basem Krichati of Superior Realty. Krichati can be reached at (316) 440-6000 or at ",
+                    magtext2: "Superior Realty, a part of Wichita Area Association of Realtors® is located at 1109 S. Rock Rd in Wichita, Kansas.",
+                    photo: "http://photos.listhub.net/SCKMLSKS/515305/1?lm=20160207T192146",
+                }]
+            }
+        ];
+        return Promise.resolve(MagSimilarListings);
     }
 }

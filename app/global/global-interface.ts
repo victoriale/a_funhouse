@@ -94,3 +94,36 @@ export interface MagMapData {
     }
     photo: string;
 }
+
+export interface MagSimilarListingsData {
+    listing1:[{
+        itemAddress: string;
+        itemImg: string;
+        itemImg2: string;
+        itemKey: string;
+        magtext1: string;
+        magtext2: string;
+        magtext3: string;
+        magtext4: string;
+        magtext5: string;
+        magtext6: string;
+    }]
+    listing2:[{
+        itemAddress: string;
+        itemImg: string;
+        itemImg2: string;
+        itemKey: string;
+        magtext1: string;
+        magtext2: string;
+        magtext3: string;
+        magtext4: string;
+        magtext5: string;
+        magtext6: string;
+    }]
+    contactListing:[{
+        itemAddress: string;
+        magtext1: string;
+        magtext2: string;
+        photo:  string;
+    }]
+}
