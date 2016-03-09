@@ -34,12 +34,12 @@ export class ProfileHeader implements OnInit{
             this.title_data = {
                 titleImg : './app/public/img_bckgnd.png',
                 //Empty string because profile header does not need this value
-                smallTxt1 : '',
-                smallTxt2 : 'Last Updated: Monday, Februrary 23, 2016',
-                Heading1 : '[City], [State]',
-                Heading2 : '',
-                Heading3 : '[##] Listings Available for Sale',
-                Heading4 : '',
+                smallText1 : '',
+                smallText2 : 'Last Updated: Monday, Februrary 23, 2016',
+                heading1 : '[City], [State]',
+                heading2 : '',
+                heading3 : '[##] Listings Available for Sale',
+                heading4 : '',
                 icon: 'fa fa-map-marker',
                 hasHover: false
             };
@@ -54,12 +54,12 @@ export class ProfileHeader implements OnInit{
             this.title_data = {
                 titleImg : './app/public/img_bckgnd.png',
                 //Empty string because profile header does not need this value
-                smallTxt1 : '',
-                smallTxt2 : '[City, ST]',
-                Heading1 : '[Property Address]',
-                Heading2 : '- Active',
-                Heading3 : 'Listing Price: $[###,###]',
-                Heading4 : '- Sq ft: [#,###] Sq ft.',
+                smallText1 : '',
+                smallText2 : '[City, ST]',
+                heading1 : '[Property Address]',
+                heading2 : '- Active',
+                heading3 : 'Listing Price: $[###,###]',
+                heading4 : '- Sq ft: [#,###] Sq ft.',
                 icon: 'fa fa-map-marker',
                 hasHover: false
             };
