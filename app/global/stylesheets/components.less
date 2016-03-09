@@ -428,6 +428,18 @@ goalsHeader
   }
 }
 
+// Large image with no hover
+.largeRoundImageNoHover(@linkWidth, @shadowSize, @shadowColor) {
+  display: inline-block;
+  width: @linkWidth;
+  height: @linkWidth;
+  position: relative;
+  .borderRadiusPrefix(50%);
+  img {
+    .roundImage(@linkWidth, @shadowSize, @shadowColor);
+  }
+}
+
 /* @Large Link-Images with Small Images/Divs in Corners */
 // Small round links that contain an image and hover state
 // that accompany larger images
