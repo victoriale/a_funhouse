@@ -19,19 +19,46 @@ export class InfoListModule implements OnInit {
 
     ngOnInit() {
         this.module_title = 'Recent Listings for [Listing Name]';
-        this.infoList =
-        {
-            'address': '[Listing Address1]',
-            'type': '[Home Type1]: [#] Beds & [#] Baths',
-            'date': '[MM/DD/YYYY1]',
-            'price': '[$Value1]',
-            'bigImage': './app/public/img_bckgnd.png',
-            'location': '[City], [ST1] > [Zipcode]',
-            'smallImage': [
-                './app/public/img_bckgnd.png',
-                './app/public/img_bckgnd.png',
-                './app/public/img_bckgnd.png',
-            ]
-        }
+        this.infoList = [
+            {
+                'address': '[Listing Address1]',
+                'type': '[Home Type1]: [#] Beds & [#] Baths',
+                'date': '[MM/DD/YYYY1]',
+                'price': '[$Value1]',
+                'bigImage': './app/public/img_bckgnd.png',
+                'location': '[City], [ST1] > [Zipcode]',
+                'smallImage': [
+                    './app/public/img_bckgnd.png',
+                    './app/public/img_bckgnd.png',
+                    './app/public/img_bckgnd.png',
+                ]
+            },
+            {
+                'address': '[Listing Address2]',
+                'type': '[Home Type2]: [#] Beds & [#] Baths',
+                'date': '[MM/DD/YYYY2]',
+                'price': '[$Value2]',
+                'bigImage': './app/public/img_bckgnd.png',
+                'location': '[City], [ST2] > [Zipcode]',
+                'smallImage': [
+                    './app/public/img_bckgnd.png',
+                    './app/public/img_bckgnd.png',
+                    './app/public/img_bckgnd.png',
+                ]
+            },
+            {
+                'address': '[Listing Address3]',
+                'type': '[Home Type3: [#] Beds & [#] Baths',
+                'date': '[MM/DD/YYYY3]',
+                'price': '[$Value3]',
+                'bigImage': './app/public/img_bckgnd.png',
+                'location': '[City], [ST3] > [Zipcode]',
+                'smallImage': [
+                    './app/public/img_bckgnd.png',
+                    './app/public/img_bckgnd.png',
+                    './app/public/img_bckgnd.png',
+                ]
+            }
+        ]
     }
 }
