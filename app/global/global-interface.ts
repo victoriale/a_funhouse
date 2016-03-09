@@ -10,6 +10,7 @@ export interface HomePageData {
     statelocation: string;
     cityarea: any;
 }
+
 export interface List2 {
     bigImage: string;
     list_name: string;
@@ -24,3 +25,4 @@ export interface List2 {
     smallImage: string[];
     details: string[];
 }
+
