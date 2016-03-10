@@ -17,12 +17,12 @@ export class TitleLocComponent implements OnInit{
             this.data =
             {
                 titleImg : './app/public/img_bckgnd.png',
-                smallTxt1 : '',
-                smallTxt2 : 'Location: United States of America',
-                Heading1 : '[City]',
-                Heading2 : '[State]',
-                Heading3 : '[##]',
-                Heading4 : 'Listings Available for Sale',
+                smallText1 : '',
+                smallText2 : 'Location: United States of America',
+                heading1 : '[City]',
+                heading2 : '[State]',
+                heading3 : '[##]',
+                heading4 : 'Listings Available for Sale',
                 icon : 'fa fa-map-marker',
                 hasHover: true
             };
