@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {RouteParams} from 'angular2/router';
 
 import {HeadlineComponent} from '../../components/headline/headline.component';
@@ -15,17 +15,19 @@ import {InfoListModule} from "../../modules/infolist/info-list.module";
     providers: [],
 })
 
-export class LocationPage {
+export class LocationPage implements OnInit {
 
     loc: string;
-    locCity: any;
-    locState: any;
+    locCity: string;
+    locState: string;
 
     constructor(private _params: RouteParams) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
+    }
 
-        this.loc = _params.get('loc');
+    ngOnInit() {
+        this.loc = this._params.get('loc');
         this.locCity = this.loc.split('_')[0];
         this.locState = this.loc.split('_')[1];
 
@@ -33,9 +35,10 @@ export class LocationPage {
     }
 
     public headline_about = {
-        title: this.locCity + ", " + this.locState,
+        title: 'About ' + this.locCity,
         icon: 'fa-map-marker'
     };
+
     public headline_crime = {
         title: 'Most Recent Crimes in [City], [State]',
         icon: 'fa-gavel'
