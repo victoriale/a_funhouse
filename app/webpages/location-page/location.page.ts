@@ -22,9 +22,13 @@ export class LocationPage {
     locState: any;
 
     constructor(private _params: RouteParams) {
+        // Scroll page to top to fix routerLink bug
+        window.scrollTo(0, 0);
+
         this.loc = _params.get('loc');
         this.locCity = this.loc.split('_')[0];
         this.locState = this.loc.split('_')[1];
+
         console.log('City, State: ', this.locCity, this.locState);
     }
 

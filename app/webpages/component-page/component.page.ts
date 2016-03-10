@@ -80,6 +80,9 @@ export class ComponentPage implements OnInit{
 
     //  Get current route name
     constructor(public router: Router){
+        // Scroll page to top to fix routerLink bug
+        window.scrollTo(0, 0);
+
         console.log('Route Name:', this.router.hostComponent.name);
     }
 

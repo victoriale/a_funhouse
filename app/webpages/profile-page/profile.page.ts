@@ -1,5 +1,4 @@
 import {Component, OnInit} from 'angular2/core';
-import {Router} from 'angular2/router';
 
 import {ProfileHeader} from '../../modules/profile_header/profile_header.module';
 import {HeadlineComponent} from '../../components/headline/headline.component';
@@ -51,8 +50,9 @@ export class ProfilePage implements OnInit{
     public trending_feature = true;
 
     //  Get current route name
-    constructor(public router: Router){
-        console.log('Route Name:', this.router.hostComponent.name);
+    constructor(){
+        // Scroll page to top to fix routerLink bug
+        window.scrollTo(0, 0);
     }
 
     ngOnInit(){

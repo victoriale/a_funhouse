@@ -11,4 +11,10 @@ import {ListViewCarousel} from '../../components/carousel/list-view/list-view.co
     providers: [],
 })
 
-export class ListPage { }
+export class ListPage {
+
+    constructor() {
+        // Scroll page to top to fix routerLink bug
+        window.scrollTo(0, 0);
+    }
+}

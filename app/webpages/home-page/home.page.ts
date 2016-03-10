@@ -35,7 +35,10 @@ export class HomePage {
 
     // Explore Tiles
 
-    constructor(private _homePageService: HomePageService) { }
+    constructor(private _homePageService: HomePageService) {
+        // Scroll page to top to fix routerLink bug
+        window.scrollTo(0, 0);
+    }
 
     getHomepageService() {
         this._homePageService.getHomePageService().then(homePageData => this.homePageData = homePageData);

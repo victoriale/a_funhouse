@@ -23,6 +23,11 @@ export class DisclaimerPage implements OnInit{
     disclaimer6 = "This site disclaimer was last updated on Saturday, December 19, 2015. Should we update, amend or make any changes to this document, those changes will be prominently posted here.";
     title_data: {};
 
+    constructor() {
+        // Scroll page to top to fix routerLink bug
+        window.scrollTo(0, 0);
+    }
+
     getData(){
         //disclaimer data
         this.title_data = {
