@@ -1,5 +1,5 @@
-<section class="module-container ph">
-    <title-component [data]="title_data"></title-component>
+<section *ngIf="profileHeaderData" class="module-container ph">
+    <title-component [data]="profileHeaderData.title_data"></title-component>
     <section class="header">
         <div class="img">
             <image-180 [hasSubImg]="main_hasSubImg"></image-180>
@@ -9,7 +9,7 @@
                 <div class="hding-desc-icon"><i class="{{icon}}"></i></div>
                 <div class="hding-desc-title">{{title}}</div>
             </div>
-            <div class="hding-pag">{{description}}</div>
+            <div class="hding-pag">{{profileHeaderData.description}}</div>
         </div>
     </section>
 </section>

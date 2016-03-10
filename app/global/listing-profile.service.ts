@@ -10,25 +10,18 @@ export class ListingProfileService{
     }
 
     //API for listing profile
-    getListingProfile(input){
+    getListingProfile(address){
         //Configure HTTP Headers
         var headers = new Headers();
-        headers.append('X-SNT-TOKEN', 'BApA7KEfj');
+        //headers.append('X-SNT-TOKEN', 'BApA7KEfj');
 
-        console.log('Listing Profile Service Input', input);
+        console.log('Listing Profile Service Input', address);
 
-        this.http.get('./app/public/dummy-profile-header.json', {
-               headers: headers
-            })
-            .map(
-                res => res.json()
-            )
-            .subscribe(
-                data => this.result = data,
-                err => console.log('There was an error', err),
-                () => console.log('Listing Profile API - complete', this.result)
-            );
-
-        return Promise.resolve(this.result);
+        return this.http.get('http://api2.joyfulhome.com:280/listing/profileHeader/' + address, {
+            headers: headers
+        })
+        .map(
+            res => res.json()
+        )
     }
 }
