@@ -8,15 +8,14 @@ import {MagazinePage} from "../webpages/magazine/magazine.page";
     templateUrl: './app/app-layout/app.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [MagazinePage, ROUTER_DIRECTIVES],
-    providers: [ROUTER_PROVIDERS]
+    providers: [ROUTER_DIRECTIVES, ROUTER_PROVIDERS]
 })
 
 @RouteConfig([
     {
         path: '/magazine/:addr/...',
         name: 'Magazine-page',
-        component: MagazinePage,
-        useAsDefault: true,
+        component: MagazinePage
     },
 ])
 

@@ -12,7 +12,7 @@ import {NavRightComponent} from "../../../components/magazine/mag-nav-right/mag-
     providers: [ROUTER_PROVIDERS],
 })
 
-export class OverviewModule {
+export class PropertyOverview {
     pagenum: string;
     id: string;
     constructor(params: RouteParams){

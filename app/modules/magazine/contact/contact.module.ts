@@ -14,7 +14,7 @@ import {MagSimilarListingsData} from "../../../global/global-interface";
     providers: [MagazineSimilarListings],
 })
 
-export class ContactModule implements OnInit {
+export class Contact implements OnInit {
     listingData:MagSimilarListingsData[];
     recommendations:boolean;
 

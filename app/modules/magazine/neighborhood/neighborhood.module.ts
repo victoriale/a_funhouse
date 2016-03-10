@@ -12,5 +12,5 @@ import {NavLeftComponent} from "../../../components/magazine/mag-nav-left/mag-na
     providers: [],
 })
 
-export class NeighborhoodModule {
+export class Neighborhood {
 }

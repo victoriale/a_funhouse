@@ -52,7 +52,7 @@ export class MagazineHeader {
                 'checked': '',
                 'data': 'MagazineRealtor',
                 'hasLink': true,
-                'id': 'ContactRealtor',
+                'id': 'Contact',
                 'name': 'Contact Agent',
                 'pageNum': 4,
                 'template': 'mag_contact',
