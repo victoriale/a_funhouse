@@ -34,7 +34,7 @@ import {FeatureTilesComponent} from "../components/feature-tiles/feature-tiles.c
         useAsDefault: true,
     },
     {
-        path: '/profile',
+        path: '/profile/:address',
         name: 'Profile-page',
         component: ProfilePage,
     },
@@ -72,4 +72,5 @@ import {FeatureTilesComponent} from "../components/feature-tiles/feature-tiles.c
 
 export class AppComponent {
     cityStateLocation: string = "WICHITA_KS";
+    address: string = "503-C-Avenue-Vinton-IA";
 }

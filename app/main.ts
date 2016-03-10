@@ -3,8 +3,9 @@
 
 import {bootstrap}    from 'angular2/platform/browser'
 import {AppComponent} from './app-layout/app.component'
+import {HTTP_PROVIDERS} from 'angular2/http';
 
 // Needed for http map on observables
 import 'rxjs/add/operator/map';
 
-bootstrap(AppComponent);
+bootstrap(AppComponent, [HTTP_PROVIDERS]);
