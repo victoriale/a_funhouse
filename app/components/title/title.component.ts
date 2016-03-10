@@ -21,7 +21,7 @@ export class TitleComponent{
                 heading1 : 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet',
                 heading2 : '',
                 heading3 : 'Lorem ipsum dolor sit amet Lorem',
-                hseading4 : '',
+                heading4 : '',
                 icon: 'fa fa-map-marker',
                 hasHover: true
             };
