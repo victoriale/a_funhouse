@@ -2,22 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1f7f4ac1-a9f1-4543-be0d-1e489dfb6f9c" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/webpages/magazine/contact/contact.page.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/webpages/magazine/contact/contact.page.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/webpages/magazine/contact/contact.page.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/webpages/magazine/neighborhood/neighborhood.page.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/webpages/magazine/neighborhood/neighborhood.page.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/webpages/magazine/neighborhood/neighborhood.page.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/webpages/magazine/overview/overview.page.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/webpages/magazine/overview/overview.page.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/webpages/magazine/overview/overview.page.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/webpages/magazine/recommendations/recommendations.page.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/webpages/magazine/recommendations/recommendations.page.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/webpages/magazine/recommendations/recommendations.page.ts" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/magazine/mag-contact/mag-contact.module.html" afterPath="$PROJECT_DIR$/app/modules/magazine/mag-explore/mag-explore.module.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/magazine/mag-contact/mag-contact.module.less" afterPath="$PROJECT_DIR$/app/modules/magazine/mag-explore/mag-explore.module.less" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/magazine/mag-contact/mag-contact.module.ts" afterPath="$PROJECT_DIR$/app/modules/magazine/mag-explore/mag-explore.module.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app-layout/app.component.ts" afterPath="$PROJECT_DIR$/app/app-layout/app.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/magazine/mag-adzone/mag-adzone.component.ts" afterPath="$PROJECT_DIR$/app/components/magazine/mag-adzone/mag-adzone.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/magazine/mag-nav-right/mag-nav-right.component.ts" afterPath="$PROJECT_DIR$/app/components/magazine/mag-nav-right/mag-nav-right.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/magazine/mag-contact/mag-contact.module.html" afterPath="$PROJECT_DIR$/app/modules/magazine/mag-contact/mag-contact.module.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/magazine/mag-contact/mag-contact.module.less" afterPath="$PROJECT_DIR$/app/modules/magazine/mag-contact/mag-contact.module.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/magazine/mag-map/mag-map.module.less" afterPath="$PROJECT_DIR$/app/modules/magazine/mag-map/mag-map.module.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/magazine/mag-overview/mag-overview.module.less" afterPath="$PROJECT_DIR$/app/modules/magazine/mag-overview/mag-overview.module.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/magazine/mag-recommendations-img/mag-recommendations-img.html" afterPath="$PROJECT_DIR$/app/modules/magazine/mag-recommendations-img/mag-recommendations-img.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/webpages/magazine/contact/contact.page.html" afterPath="$PROJECT_DIR$/app/webpages/magazine/contact/contact.page.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/webpages/magazine/contact/contact.page.ts" afterPath="$PROJECT_DIR$/app/webpages/magazine/contact/contact.page.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/webpages/magazine/neighborhood/neighborhood.page.html" afterPath="$PROJECT_DIR$/app/webpages/magazine/neighborhood/neighborhood.page.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/webpages/magazine/neighborhood/neighborhood.page.ts" afterPath="$PROJECT_DIR$/app/webpages/magazine/neighborhood/neighborhood.page.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/webpages/magazine/overview/overview.page.ts" afterPath="$PROJECT_DIR$/app/webpages/magazine/overview/overview.page.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/webpages/magazine/recommendations/recommendations.page.html" afterPath="$PROJECT_DIR$/app/webpages/magazine/recommendations/recommendations.page.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/webpages/magazine/recommendations/recommendations.page.ts" afterPath="$PROJECT_DIR$/app/webpages/magazine/recommendations/recommendations.page.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/magazine/mag-tabs/mag-tabs.component.html" afterPath="$PROJECT_DIR$/app/components/magazine/mag-tabs/mag-tabs.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/magazine/mag-tabs/mag-tabs.component.ts" afterPath="$PROJECT_DIR$/app/components/magazine/mag-tabs/mag-tabs.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/main.ts" afterPath="$PROJECT_DIR$/app/main.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/magazine/mag-carousel/mag-carousel.module.ts" afterPath="$PROJECT_DIR$/app/modules/magazine/mag-carousel/mag-carousel.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/magazine/mag-header/mag-header.module.ts" afterPath="$PROJECT_DIR$/app/modules/magazine/mag-header/mag-header.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/webpages/magazine/magazine.page.html" afterPath="$PROJECT_DIR$/app/webpages/magazine/magazine.page.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/webpages/magazine/magazine.page.ts" afterPath="$PROJECT_DIR$/app/webpages/magazine/magazine.page.ts" />
     </list>
     <ignored path="JoyfulHome-frontend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,14 +45,84 @@
     <favorites_list name="JoyfulHome-frontend" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.4395887">
+    <splitter split-orientation="horizontal" split-proportion="0.716792">
       <split-first>
-        <leaf>
-          <file leaf-file-name="app.component.ts" pinned="false" current-in-tab="true">
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="mag-tabs.component.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/components/magazine/mag-tabs/mag-tabs.component.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-4.576923">
+                  <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="magazine.page.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/webpages/magazine/magazine.page.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="42" column="4" selection-start-line="42" selection-start-column="6" selection-end-line="46" selection-end-column="7" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="overview.module.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/modules/magazine/overview/overview.module.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="3" column="70" selection-start-line="3" selection-start-column="70" selection-end-line="3" selection-end-column="70" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="recommendations.module.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/modules/magazine/recommendations/recommendations.module.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="0" column="47" selection-start-line="0" selection-start-column="47" selection-end-line="0" selection-end-column="47" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="magazine.page.html" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/webpages/magazine/magazine.page.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="53" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="mag-header.module.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/modules/magazine/mag-header/mag-header.module.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="10" column="32" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="32" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="mag-header.module.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/modules/magazine/mag-header/mag-header.module.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-5.8846154">
+                  <caret line="9" column="45" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="45" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="app.component.ts" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/app-layout/app.component.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.508046">
-                  <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
                   <folding />
                 </state>
               </provider>
@@ -54,12 +132,14 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="overview.page.ts" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/webpages/magazine/overview/overview.page.ts">
+          <file leaf-file-name="mag-tabs.component.ts" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/components/magazine/mag-tabs/mag-tabs.component.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.44942528">
-                  <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
-                  <folding />
+                <state vertical-scroll-proportion="0.23421355">
+                  <caret line="12" column="51" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
+                  <folding>
+                    <element signature="n#!!doc" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -74,20 +154,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/modules/magazine/mag-neighborhood/mag.neighborhood.module.ts" />
-        <option value="$PROJECT_DIR$/app/modules/magazine/mag-neighborhood/mag.neighborhood.module.less" />
-        <option value="$PROJECT_DIR$/app/modules/magazine/mag-neighborhood/mag.neighborhood.module.html" />
-        <option value="$PROJECT_DIR$/app/modules/magazine/mag-neighborhood/mag-neighborhood.module.html" />
-        <option value="$PROJECT_DIR$/app/modules/magazine/mag-neighborhood/mag-neighborhood.module.less" />
-        <option value="$PROJECT_DIR$/app/main.ts" />
-        <option value="$PROJECT_DIR$/gulpfile.js" />
-        <option value="$PROJECT_DIR$/app/global/stylesheets/components.less" />
-        <option value="$PROJECT_DIR$/app/components/mapMarker/mapMarker.component.less" />
-        <option value="$PROJECT_DIR$/app/components/mapMarker/mapMarker.component.ts" />
-        <option value="$PROJECT_DIR$/app/components/mapMarker/mapMarker.component.html" />
-        <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/app/modules/magazine/mag-map/mag-map.module.html" />
-        <option value="$PROJECT_DIR$/app/modules/magazine/mag-map/mag-map.module.ts" />
         <option value="$PROJECT_DIR$/app/modules/magazine/mag-recommendations-img/mag-recommendations-img.less" />
         <option value="$PROJECT_DIR$/app/app-layout/app.component.less" />
         <option value="$PROJECT_DIR$/app/modules/magazine/mag-recommendations-text/mag-recommendations-text.less" />
@@ -96,13 +162,8 @@
         <option value="$PROJECT_DIR$/app/modules/magazine/mag-recommendations-img/mag-recommendations-img.ts" />
         <option value="$PROJECT_DIR$/app/modules/magazine/mag-contact/mag-contact.module.ts" />
         <option value="$PROJECT_DIR$/app/modules/magazine/mag-recommendations-text/mag-recommendations-text.html" />
-        <option value="$PROJECT_DIR$/app/global/global-interface.ts" />
-        <option value="$PROJECT_DIR$/app/global/global-service.ts" />
-        <option value="$PROJECT_DIR$/app/webpages/magazine/magazine.page.html" />
         <option value="$PROJECT_DIR$/app/modules/magazine/mag-overview/mag-overview.module.ts" />
-        <option value="$PROJECT_DIR$/app/webpages/magazine/magazine.page.ts" />
         <option value="$PROJECT_DIR$/app/components/magazine/mag-nav-right/mag-nav-right.component.html" />
-        <option value="$PROJECT_DIR$/app/modules/magazine/mag-header/mag-header.module.ts" />
         <option value="$PROJECT_DIR$/app/app-layout/app.component.html" />
         <option value="$PROJECT_DIR$/app/modules/magazine/mag-header/mag-header.module.html" />
         <option value="$PROJECT_DIR$/app/components/magazine/mag-adzone/mag-adzone.component.ts" />
@@ -113,7 +174,6 @@
         <option value="$PROJECT_DIR$/app/modules/magazine/mag-recommendations-img/mag-recommendations-img.html" />
         <option value="$PROJECT_DIR$/app/components/magazine/mag-nav-left/mag-nav-left.html" />
         <option value="$PROJECT_DIR$/app/components/magazine/mag-nav-left/mag-nav-left.ts" />
-        <option value="$PROJECT_DIR$/app/webpages/magazine/contact/contact.page.ts" />
         <option value="$PROJECT_DIR$/app/webpages/magazine/contact/contact.page.html" />
         <option value="$PROJECT_DIR$/app/components/magazine/mag-nav-left/mag-nav-left.component.html" />
         <option value="$PROJECT_DIR$/app/modules/magazine/mag-overview/mag-overview.module.less" />
@@ -124,7 +184,27 @@
         <option value="$PROJECT_DIR$/app/webpages/magazine/recommendations/recommendations.page.ts" />
         <option value="$PROJECT_DIR$/app/webpages/magazine/recommendations/recommendations.page.html" />
         <option value="$PROJECT_DIR$/app/webpages/magazine/overview/overview.page.ts" />
+        <option value="$PROJECT_DIR$/app/modules/magazine/mag-carousel/mag-carousel.module.ts" />
+        <option value="$PROJECT_DIR$/app/global/global-interface.ts" />
+        <option value="$PROJECT_DIR$/app/global/global-service.ts" />
+        <option value="$PROJECT_DIR$/app/modules/magazine/mag-explore/mag-explore.module.ts" />
+        <option value="$PROJECT_DIR$/app/modules/magazine/contact/contact.page.ts" />
+        <option value="$PROJECT_DIR$/app/webpages/magazine/contact/contact.page.ts" />
+        <option value="$PROJECT_DIR$/app/main.ts" />
+        <option value="$PROJECT_DIR$/app/modules/magazine/mag-header/mag-header.module.ts" />
         <option value="$PROJECT_DIR$/app/app-layout/app.component.ts" />
+        <option value="$PROJECT_DIR$/app/components/magazine/mag-tabs/mag-tabs.component.html" />
+        <option value="$PROJECT_DIR$/app/components/magazine/mag-tabs/mag-tabs.component.ts" />
+        <option value="$PROJECT_DIR$/app/modules/magazine/contact/contact.module.html" />
+        <option value="$PROJECT_DIR$/app/modules/magazine/contact/contact.module.ts" />
+        <option value="$PROJECT_DIR$/app/modules/magazine/neighborhood/neighborhood.module.html" />
+        <option value="$PROJECT_DIR$/app/modules/magazine/neighborhood/neighborhood.module.ts" />
+        <option value="$PROJECT_DIR$/app/modules/magazine/overview/overview.module.html" />
+        <option value="$PROJECT_DIR$/app/modules/magazine/overview/overview.module.ts" />
+        <option value="$PROJECT_DIR$/app/modules/magazine/recommendations/recommendations.module.html" />
+        <option value="$PROJECT_DIR$/app/modules/magazine/recommendations/recommendations.module.ts" />
+        <option value="$PROJECT_DIR$/app/webpages/magazine/magazine.page.ts" />
+        <option value="$PROJECT_DIR$/app/webpages/magazine/magazine.page.html" />
       </list>
     </option>
   </component>
@@ -185,7 +265,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -254,7 +333,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="webpages" />
+              <option name="myItemId" value="modules" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -262,7 +341,73 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="overview" />
+              <option name="myItemId" value="recommendations" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JoyfulHome-frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JoyfulHome-frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="magazine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JoyfulHome-frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JoyfulHome-frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="magazine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mag-header" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JoyfulHome-frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JoyfulHome-frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -287,6 +432,7 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -299,13 +445,14 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Repo\JoyfulHome-frontend\app\components\magazine" />
-      <recent name="C:\Repo\JoyfulHome-frontend\app\webpages\magazine" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Repo\JoyfulHome-frontend\app\webpages\magazine\overview" />
       <recent name="C:\Repo\JoyfulHome-frontend\app\webpages" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Repo\JoyfulHome-frontend\app\modules\magazine" />
+      <recent name="C:\Repo\JoyfulHome-frontend\app\components\magazine" />
+      <recent name="C:\Repo\JoyfulHome-frontend\app\webpages\magazine" />
     </key>
   </component>
   <component name="RunManager">
@@ -372,10 +519,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18018967" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15911485" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925472" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925472" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -440,36 +587,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/modules/magazine/mag-neighborhood/mag-neighborhood.module.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/webpages/magazine/neighborhood/neighborhood.page.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/global/stylesheets/base.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2049809">
-          <caret line="118" column="1" selection-start-line="118" selection-start-column="1" selection-end-line="118" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/main.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="31" selection-start-line="10" selection-start-column="37" selection-end-line="11" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.076923">
@@ -481,7 +598,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.219512">
           <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -496,15 +612,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.020782396">
           <caret line="1" column="57" selection-start-line="1" selection-start-column="57" selection-end-line="1" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/webpages/magazine/recommendations/recommendations.page.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -512,7 +619,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.0">
           <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -538,19 +644,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/webpages/magazine/contact/contact.page.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/magazine/mag-recommendations-text/mag-recommendations-text.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -561,58 +658,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/magazine/mag-contact/mag-contact.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21469575">
-          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/global/global-service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.78530425">
-          <caret line="380" column="13" selection-start-line="345" selection-start-column="12" selection-end-line="380" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/global/global-interface.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.72675085">
-          <caret line="123" column="19" selection-start-line="123" selection-start-column="8" selection-end-line="123" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/magazine/mag-overview/mag-overview.module.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.038462">
-          <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/magazine/mag-overview/mag-overview.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4098737">
-          <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="91" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/components/magazine/mag-adzone/mag-adzone.component.less">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15525672">
           <caret line="22" column="2" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/magazine/mag-header/mag-header.module.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.9615384">
-          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -630,39 +679,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.62469435">
           <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/magazine/mag-carousel/mag-carousel.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32376578">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/webpages/magazine/magazine.page.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8197474">
-          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/webpages/magazine/magazine.page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/app-layout/app.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.020118343">
-          <caret line="1" column="29" selection-start-line="1" selection-start-column="29" selection-end-line="1" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -670,23 +686,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34201184">
           <caret line="17" column="14" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/magazine/mag-contact/mag-contact.module.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2816568">
-          <caret line="14" column="6" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/magazine/mag-contact/mag-contact.module.less">
+    <entry file="file://$PROJECT_DIR$/app/modules/magazine/mag-explore/mag-explore.module.less">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7200489">
           <caret line="86" column="24" selection-start-line="86" selection-start-column="24" selection-end-line="86" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -694,15 +700,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="26" selection-start-line="0" selection-start-column="26" selection-end-line="0" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/magazine/mag-header/mag-header.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31228474">
-          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -710,7 +707,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -730,15 +726,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="61" selection-start-line="0" selection-start-column="61" selection-end-line="0" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/webpages/magazine/overview/overview.page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -746,7 +733,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.37530562">
           <caret line="163" column="16" selection-start-line="163" selection-start-column="16" selection-end-line="163" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -754,7 +740,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -762,23 +747,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0">
           <caret line="0" column="62" selection-start-line="0" selection-start-column="62" selection-end-line="0" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/webpages/magazine/neighborhood/neighborhood.page.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/webpages/magazine/neighborhood/neighborhood.page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08047337">
-          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -798,50 +766,198 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/webpages/magazine/contact/contact.page.ts">
+    <entry file="file://$PROJECT_DIR$/app/modules/magazine/mag-explore/mag-explore.module.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2816568">
+          <caret line="14" column="6" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/magazine/mag-explore/mag-explore.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.019517796">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/magazine/mag-carousel/mag-carousel.module.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="144" selection-start-line="14" selection-start-column="126" selection-end-line="14" selection-end-column="144" />
+          <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/webpages/magazine/contact/contact.page.html">
+    <entry file="file://$PROJECT_DIR$/app/main.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08047337">
-          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.078071184">
+          <caret line="4" column="55" selection-start-line="4" selection-start-column="55" selection-end-line="4" selection-end-column="55" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/global/global-interface.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="32" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/webpages/magazine/recommendations/recommendations.page.html">
+    <entry file="file://$PROJECT_DIR$/app/global/global-service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.06035503">
-          <caret line="3" column="53" selection-start-line="3" selection-start-column="53" selection-end-line="3" selection-end-column="53" />
+        <state vertical-scroll-proportion="0.13662457">
+          <caret line="22" column="41" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/webpages/magazine/recommendations/recommendations.page.ts">
+    <entry file="file://$PROJECT_DIR$/app/modules/magazine/mag-overview/mag-overview.module.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27324915">
-          <caret line="14" column="128" selection-start-line="14" selection-start-column="128" selection-end-line="14" selection-end-column="128" />
+        <state vertical-scroll-proportion="0.46272188">
+          <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/magazine/mag-overview/mag-overview.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15614237">
+          <caret line="8" column="51" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/magazine/mag-tabs/mag-tabs.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23421355">
+          <caret line="12" column="51" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/magazine/contact/contact.module.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.230769">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/magazine/mag-tabs/mag-tabs.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.576923">
+          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/magazine/contact/contact.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19517796">
+          <caret line="10" column="36" selection-start-line="8" selection-start-column="7" selection-end-line="10" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/magazine/neighborhood/neighborhood.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="48" selection-start-line="0" selection-start-column="48" selection-end-line="0" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/magazine/neighborhood/neighborhood.module.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12071006">
+          <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/magazine/overview/overview.module.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="49" selection-start-line="0" selection-start-column="49" selection-end-line="0" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/magazine/recommendations/recommendations.module.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12071006">
+          <caret line="6" column="145" selection-start-line="6" selection-start-column="145" selection-end-line="6" selection-end-column="145" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/magazine/mag-header/mag-header.module.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.8846154">
+          <caret line="9" column="45" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/magazine/overview/overview.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="70" selection-start-line="3" selection-start-column="70" selection-end-line="3" selection-end-column="70" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/app-layout/app.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.508046">
-          <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/webpages/magazine/overview/overview.page.ts">
+    <entry file="file://$PROJECT_DIR$/app/app-layout/app.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44942528">
-          <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.040236685">
+          <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/magazine/recommendations/recommendations.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="47" selection-start-line="0" selection-start-column="47" selection-end-line="0" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/magazine/mag-header/mag-header.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="32" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/webpages/magazine/magazine.page.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="42" column="4" selection-start-line="42" selection-start-column="6" selection-end-line="46" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/webpages/magazine/magazine.page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="53" />
           <folding />
         </state>
       </provider>

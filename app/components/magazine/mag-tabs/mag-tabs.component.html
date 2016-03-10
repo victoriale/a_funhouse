@@ -4,7 +4,7 @@
 
 <span *ngFor="#magheader of tabs">
     <input type="radio" name="PageType2" id='{{magheader.id}}' checked="{{magheader.checked}}">
-    <a class="magheader_but" href="javascript:void(0)">
+    <a [routerLink]="['Magazine-page', {addr: address}, 'Overview-module']" class="magheader_but">
         {{magheader.name}}
         <input type="radio" name="PageType" value="{{magheader.id}}" checked="{{magheader.checked}}">
         <div class="magheader_but_bottom"></div>

@@ -9,10 +9,10 @@ import {MagCarouselData} from "../../../global/global-interface";
     providers: [MagazineCarousel],
 })
 export class MagCarouselModule implements OnInit {
-    data:MagCarouselData[];
-    length:'';
-    counter:number;
-    imageLength:number;
+    data: MagCarouselData[];
+    length: number;
+    counter: number;
+    imageLength: number;
 
     constructor(private _magazineCarouselService:MagazineCarousel) {
     }

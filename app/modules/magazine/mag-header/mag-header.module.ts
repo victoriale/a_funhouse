@@ -14,7 +14,6 @@ import {CloseComponent} from "../../../components/magazine/mag-close/mag-close.c
 export class MagHeaderModule {
     pagenum: string;
     constructor(params: RouteParams){
-        console.log(params);
         this.pagenum = params.get('pagenum');
     }
     openTabs() {
