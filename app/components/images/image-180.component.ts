@@ -5,7 +5,7 @@ import {Component, Input} from 'angular2/core';
 
 @Component({
     selector: 'image-180',
-    templateUrl: './app/components/images/image-180/image-180.component.html',
+    templateUrl: './app/components/images/image.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     inputs: ['hasSubImg']
 })
