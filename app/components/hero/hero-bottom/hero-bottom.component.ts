@@ -5,13 +5,13 @@ import {ExploreButtonComponent} from "../../buttons/explore-button/explore-butto
     selector: 'hero-bottom-component',
     templateUrl: './app/components/hero/hero-bottom/hero-bottom.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    inputs: ['buttontitle', 'buttonwidth', 'buttonicon'],
+    inputs: ['buttonTitle', 'buttonWidth', 'buttonIcon'],
     directives: [ExploreButtonComponent],
     providers: [],
 })
 
 export class HeroBottomComponent {
-    public buttontitle: string;
-    public buttonwidth: number;
-    public buttonicon: string;
+    public buttonTitle: string;
+    public buttonWidth: number;
+    public buttonIcon: string;
 }

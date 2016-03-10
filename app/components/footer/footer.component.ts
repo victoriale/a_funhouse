@@ -10,7 +10,7 @@ import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from "angular2/router";
 })
 
 export class FooterComponent{
-
+    isMyHouseKit: boolean = false;
     title = "National Real Estate";
 
     states = [
