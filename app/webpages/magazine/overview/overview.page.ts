@@ -17,8 +17,8 @@ import {Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, RouteParams } 
 
 export class OverviewPage {
     pagenum: string;
-    pagenum = '1';
-    //constructor(params: RouteParams){
-    //    this.pagenum = params.get('pagenum');
-    //}
+    id: string;
+    constructor(params: RouteParams){
+        this.pagenum = params.get('pagenum');
+    }
 }

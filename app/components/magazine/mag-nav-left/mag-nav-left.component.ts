@@ -7,15 +7,15 @@ import {Component} from 'angular2/core';
 import {Router} from 'angular2/router';
 
 @Component({
-    selector: 'mag-nav-right-component',
-    templateUrl: './app/components/magazine/mag-nav-right/mag-nav-right.component.html',
+    selector: 'mag-nav-left-component',
+    templateUrl: './app/components/magazine/mag-nav-left/mag-nav-left.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [],
-    //outputs: ['navRight']
+    //outputs: ['navLeft']
 })
 
 
-export class NavRightComponent {
+export class NavLeftComponent {
     //counter:number;
     //_router:Router;
     //public constructor(_router:Router){
@@ -26,7 +26,7 @@ export class NavRightComponent {
     //right(){
     //    this.counter = 0;
     //    this._router.navigate('Overview-page',{pagenum:(this.counter++)});
-    //    //this.navRight.next(true);
-    //    //console.log(this.navRight);
+        //this.navRight.next(true);
+        //console.log(this.navRight);
     //}
 }

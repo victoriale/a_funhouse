@@ -13,11 +13,10 @@ import {Component, OnInit} from 'angular2/core';
 
 
 export class AdzoneComponent implements OnInit {
-    ngOnInit() {
+    displayAd() {
         var embedURL = "http://content.synapsys.us/embeds/realestate/standard/joyful.js";
         var widgetURL = "";  //ad-stack only (solo)
         var domain = "joyfulhome.com";
-
         if ($('#adzone').width() == 300) {
             var adUnitName = "joyfulhome_com_realestate_magazine_300x250";
         } else if ($('#adzone').width() == 468) {
@@ -47,5 +46,10 @@ export class AdzoneComponent implements OnInit {
             }).join("&");
         $('#adzone').html('');
         $('#adzone')[0].appendChild(newScript);
+    }
+
+
+    ngOnInit() {
+        this.displayAd();
     }
 }

@@ -6,12 +6,13 @@ import {MagRecommendationsImgModule} from "../../../modules/magazine/mag-recomme
 import {MagRecommendationsTextModule} from "../../../modules/magazine/mag-recommendations-text/mag-recommendations-text";
 import {MagazineSimilarListings} from "../../../global/global-service";
 import {MagSimilarListingsData} from "../../../global/global-interface";
+import {NavLeftComponent} from "../../../components/magazine/mag-nav-left/mag-nav-left.component";
 
 @Component({
     selector: 'recommendations-page',
     templateUrl: './app/webpages/magazine/recommendations/recommendations.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [MagHeaderModule, FooterComponent, NavRightComponent, MagRecommendationsImgModule, MagRecommendationsTextModule],
+    directives: [MagHeaderModule, FooterComponent, NavRightComponent, MagRecommendationsImgModule, MagRecommendationsTextModule, NavLeftComponent],
     providers: [MagazineSimilarListings],
 })
 

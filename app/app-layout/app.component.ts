@@ -16,7 +16,7 @@ import {ContactPage} from "../webpages/magazine/contact/contact.page";
 
 @RouteConfig([
     {
-        path: '/magazine/:addr/1',
+        path: '/magazine/:addr/:pagenum',
         name: 'Overview-page',
         component: OverviewPage,
         useAsDefault: true,
@@ -36,7 +36,6 @@ import {ContactPage} from "../webpages/magazine/contact/contact.page";
         name: 'Contact-page',
         component: ContactPage,
     },
-
 ])
 
 export class AppComponent {

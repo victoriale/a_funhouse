@@ -6,12 +6,13 @@ import {MagSimilarListingsData} from "../../../global/global-interface";
 import {MagRecommendationsTextModule} from "../../../modules/magazine/mag-recommendations-text/mag-recommendations-text";
 import {MagRecommendationsImgModule} from "../../../modules/magazine/mag-recommendations-img/mag-recommendations-img";
 import {MagContactModule} from "../../../modules/magazine/mag-contact/mag-contact.module";
+import {NavLeftComponent} from "../../../components/magazine/mag-nav-left/mag-nav-left.component";
 
 @Component({
     selector: 'contact-page',
     templateUrl: './app/webpages/magazine/contact/contact.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [MagHeaderModule, FooterComponent, MagRecommendationsTextModule, MagRecommendationsImgModule, MagContactModule],
+    directives: [MagHeaderModule, FooterComponent, MagRecommendationsTextModule, MagRecommendationsImgModule, MagContactModule, NavLeftComponent],
     providers: [MagazineSimilarListings],
 })
 
