@@ -16,12 +16,12 @@ export class TitleComponent{
             this.data =
             {
                 titleImg : './app/public/joyfulhome_house.png',
-                smallTxt1 : 'Monday, February 23, 2016',
-                smallTxt2 : ' United States of America',
-                Heading1 : 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet',
-                Heading2 : '',
-                Heading3 : 'Lorem ipsum dolor sit amet Lorem',
-                Heading4 : '',
+                smallText1 : 'Monday, February 23, 2016',
+                smallText2 : ' United States of America',
+                heading1 : 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet',
+                heading2 : '',
+                heading3 : 'Lorem ipsum dolor sit amet Lorem',
+                heading4 : '',
                 icon: 'fa fa-map-marker',
                 hasHover: true
             };

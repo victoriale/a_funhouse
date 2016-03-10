@@ -69,17 +69,17 @@ export class ProfilePage implements OnInit{
                  var transformData = {
                      title_data: {
                          titleImg: data.listingImage,
-                         smallTxt1: '',
-                         smallTxt2: data.city + ', ' + data.state,
-                         Heading1: data.address,
-                         Heading2: '- Active',
-                         Heading3: 'Listing Price: $' + data.listingPrice,
-                         Heading4: '- Sq ft: ' + data.squareFeet + ' Sq ft.',
+                         smallText1: '',
+                         smallText2: data.city + ', ' + data.state,
+                         heading1: data.address,
+                         heading2: '- Active',
+                         heading3: 'Listing Price: $' + data.listingPrice,
+                         heading4: '- Sq ft: ' + data.squareFeet + ' Sq ft.',
                          icon: 'fa fa-map-marker',
                          hasHover: false
                      },
                      description: 'The listing is located at ' + data.address + ', ' + data.city + ', ' + data.state + '. The live area is around ' + data.squareFeet + ' sq ft. If you\'re interested in more information, please contact ' + data.agent + ' at phone number ' + data.phoneNumber + '.',
-                     title: 'Quick info about ' + data.city + ', ' + data.state;
+                     title: 'Quick info about ' + data.city + ', ' + data.state
                  }
                  console.log('Lutz - PROFILE HEADER TRANSFORM DATA:', transformData);
                  return transformData;
