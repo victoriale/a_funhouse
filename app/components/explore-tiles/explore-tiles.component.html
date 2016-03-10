@@ -1,16 +1,16 @@
 <div class="explore row">
     <section class="explore-tiles">
-        <a href="#">
+        <a [routerLink]='["Location-page", {loc: tileUrls[0]}]'>
             <div class="explore-tile-1 eight columns">
-                <p class="explore-tile-title">Wichita, KS</p>
+                <p class="explore-tile-title">{{tileLocations[0]}}</p>
                 <div class="view-box">
                     <p class="view-text">View This Area</p>
                 </div>
             </div>
         </a>
-        <a href="#">
+        <a [routerLink]='["Location-page", {loc: tileUrls[1]}]'>
             <div class="explore-tile-2 two columns">
-                <p class="explore-tile-title">Derby, KS</p>
+                <p class="explore-tile-title">{{tileLocations[1]}}</p>
                 <div class="view-box">
                     <p class="view-text">View This Area</p>
                 </div>
@@ -23,9 +23,9 @@
                 <span class="title-bold">Here are 5 of 18</span><br /> cities within 20<br /> miles of your<br />location
             </p>
         </div>
-        <a href="#">
+        <a [routerLink]='["Location-page", {loc: tileUrls[2]}]'>
             <div class="explore-tile-4 two columns">
-                <p class="explore-tile-title">Haysville, KS</p>
+                <p class="explore-tile-title">{{tileLocations[2]}}</p>
                 <div class="view-box">
                     <p class="view-text">View This Area</p>
                 </div>
@@ -33,17 +33,17 @@
         </a>
     </section>
     <section class="explore-tiles">
-        <a href="#">
+        <a [routerLink]='["Location-page", {loc: tileUrls[3]}]'>
             <div class="explore-tile-5 eight columns">
-                <p class="explore-tile-title">Valley Center, KS</p>
+                <p class="explore-tile-title">{{tileLocations[3]}}</p>
                 <div class="view-box">
                     <p class="view-text">View This Area</p>
                 </div>
             </div>
         </a>
-        <a href="#">
+        <a [routerLink]='["Location-page", {loc: tileUrls[4]}]'>
             <div class="explore-tile-6 two columns">
-                <p class="explore-tile-title">Mulvane, KS</p>
+                <p class="explore-tile-title">{{tileLocations[4]}}</p>
                 <div class="view-box">
                     <p class="view-text">View This Area</p>
                 </div>

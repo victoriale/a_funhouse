@@ -428,6 +428,18 @@ goalsHeader
   }
 }
 
+// Large image with no hover
+.largeRoundImageNoHover(@linkWidth, @shadowSize, @shadowColor) {
+  display: inline-block;
+  width: @linkWidth;
+  height: @linkWidth;
+  position: relative;
+  .borderRadiusPrefix(50%);
+  img {
+    .roundImage(@linkWidth, @shadowSize, @shadowColor);
+  }
+}
+
 /* @Large Link-Images with Small Images/Divs in Corners */
 // Small round links that contain an image and hover state
 // that accompany larger images
@@ -830,10 +842,12 @@ goalsHeader
     background-color: @masterBrandColor;
     .borderRadiusPrefix(5px 5px 0 0);
     span:first-child {
+      border-radius: 50%;
       width: 25px;
       height: 25px;
       margin-left: 10px;
       background-image: url(@masterIcon);
+      background-color: @black;
       background-position: center center;
       background-repeat: no-repeat;
     }
@@ -847,12 +861,12 @@ goalsHeader
       font-weight: 900;
     }
     &:hover {
-      background-color: darken(@black, 10%);
+      background-color: darken(@masterBrandColor, 10%);
     }
     &:active {
       background-color: @black;
       span:first-child {
-        background-image: url(@masterIconHover);
+        background-color: @masterBrandColor;
         background-position: center center;
         background-repeat: no-repeat;
       }
@@ -869,8 +883,10 @@ goalsHeader
   & > span:first-child {
     width: 25px;
     height: 25px;
+    border-radius: 50%;
     margin-left: 10px;
     background-image: url(@masterIcon);
+    background-color: @black;
     background-position: center center;
     background-repeat: no-repeat;
   }
@@ -889,7 +905,7 @@ goalsHeader
   &:active {
     background-color: @black;
     span:first-child {
-      background-image: url(@masterIconHover);
+      background-color: @masterBrandColor;
       background-position: center center;
       background-repeat: no-repeat;
     }
@@ -1158,6 +1174,7 @@ goalsHeader
       p {
         margin-top: 20px;
         line-height: 26px;
+        width: 120px;
         .globalDefaultModFont(22px, 300, @white);
       }
     }

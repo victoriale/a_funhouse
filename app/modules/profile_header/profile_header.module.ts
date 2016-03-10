@@ -3,7 +3,7 @@
  */
 import {Component, OnInit, Input, ChangeDetectionStrategy} from 'angular2/core';
 import {TitleComponent} from '../../components/title/title.component';
-import {Image180} from '../../components/images/image-180/image-180.component';
+import {Image180} from '../../components/images/image-180.component';
 
 @Component({
     selector: 'profile-header',

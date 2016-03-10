@@ -1,15 +1,16 @@
 import {Component} from 'angular2/core';
+import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from "angular2/router";
 
 @Component({
     selector: 'footer-component',
     templateUrl: './app/components/footer/footer.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [],
-    providers: [],
+    directives: [ROUTER_DIRECTIVES],
+    providers: [ROUTER_PROVIDERS],
 })
 
 export class FooterComponent{
-
+    isMyHouseKit: boolean = false;
     title = "National Real Estate";
 
     states = [

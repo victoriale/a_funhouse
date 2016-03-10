@@ -7,5 +7,5 @@ import {Component, Input} from 'angular2/core';
     inputs: ['hasHover']
 })
 export class Image100{
-    image_url = './app/public/img_bckgnd.png';
+    image_url = './app/public/joyfulhome_house.png';
 }

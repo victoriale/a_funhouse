@@ -2,7 +2,7 @@
  * Created by Victoria on 2/25/2016.
  */
 import {Component, OnInit, Input, Output, EventEmitter} from 'angular2/core';
-import {Image180} from '../../components/images/image-180/image-180.component';
+import {Image180} from '../../components/images/image-180.component';
 import {CarouselButton} from '../../components/buttons/carousel/carousel.button';
 
 @Component({
@@ -16,7 +16,7 @@ import {CarouselButton} from '../../components/buttons/carousel/carousel.button'
 })
 
 export class FeatureComponent implements OnInit{
-    public main_hasHover: boolean;
+    public main_hasSubImg: boolean;
     list_data: Object;
 
     public scrollRight: EventEmitter<boolean> = new EventEmitter();
@@ -31,7 +31,7 @@ export class FeatureComponent implements OnInit{
 
     ngOnInit(){
 
-        this.main_hasHover = true;
+        this.main_hasSubImg = true;
 
         if(typeof this.list_data === 'undefined'){
             this.list_data = {

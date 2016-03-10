@@ -24,15 +24,15 @@ export class TilesComponent implements OnInit{
                 url1: '',
                 icon1: 'fa-info-circle',
                 title1: 'About Us',
-                desc1: '',
+                desc1: 'What is Joyful Home?',
                 url2: '',
                 icon2: 'fa-phone',
                 title2: 'Contact Us',
-                desc2: '',
+                desc2: 'Help us help you faster.',
                 url3: '',
                 icon3: 'fa-folder-open-o',
                 title3: 'Disclaimer',
-                desc3: ''
+                desc3: 'Read the full disclaimer.'
             }
         }
     }

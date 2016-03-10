@@ -13,7 +13,9 @@ import {HeaderComponent} from "../../components/header/header.component";
 import {FooterComponent} from "../../components/footer/footer.component";
 import {LikeUs} from "../../modules/likeus/likeus.module";
 import {ShareModule} from "../../modules/share/share.module";
+import {AmenitiesModule} from "../../modules/amenities/amenities.module";
 import {FeaturedListsModule} from '../../modules/featured_lists/featured_lists.module';
+import {MediaImages} from "../../components/media-images/media-images.component";
 
 import {ListingProfileService} from '../../global/listing-profile.service';
 
@@ -21,8 +23,8 @@ import {ListingProfileService} from '../../global/listing-profile.service';
     selector: 'profile-page',
     templateUrl: './app/webpages/profile-page/profile.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs, ShareModule, FeaturedListsModule],
-    providers: [ListingProfileService],
+    directives: [MediaImages, HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs, ShareModule, FeaturedListsModule, AmenitiesModule],
+    providers: [ListingProfileService]
 })
 
 export class ProfilePage implements OnInit{

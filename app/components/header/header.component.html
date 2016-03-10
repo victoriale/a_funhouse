@@ -1,7 +1,12 @@
 <div class="header-top-bar-wrapper">
     <div class="container">
         <div class="header-top-bar row">
-            <div class="tagline six columns"><a href="#">Joyful Home | A Little Place to Call Home</a></div>
+            <div *ngIf="isMyHouseKit === false" class="tagline six columns">
+                <a href="#">Joyful Home | A Little Place to Call Home</a>
+            </div>
+            <div *ngIf="isMyHouseKit === true" class="tagline six columns">
+                <a href="#">MyHouseKit | A Little Place to Call Home</a>
+            </div>
             <div class="directory-link six columns"><a href="#">Directories</a></div>
         </div>
     </div>
@@ -9,8 +14,16 @@
 <div class="header-bottom-bar-wrapper">
     <div class="container">
         <div class="header-bottom-bar row">
-            <div class="header-logo six columns"><img src="./app/public/joyful_home_logo.png" width="147px" height="27px" alt="Joyful Home | A Little Place to Call Home"/></div>
-            <div class="header-search six columns"><input type="text" placeholder="Where do you want to live? (City, ST)"><i class="fa fa-search"></i></div>
+            <div *ngIf="isMyHouseKit === false" class="header-logo six columns">
+                <img src="./app/public/joyful_home_logo.png" width="147px" height="27px" alt="Joyful Home | A Little Place to Call Home"/>
+            </div>
+            <div *ngIf="isMyHouseKit === true" class="header-logo six columns">
+            </div>
+            <div *ngIf="isHomePage === false" class="header-search six columns">
+                <input type="text" placeholder="Where do you want to live? (City, ST)"><i class="fa fa-search"></i>
+            </div>
+            <div *ngIf="isHomePage === true" class="header-search six columns">
+            </div>
         </div>
     </div>
 </div>

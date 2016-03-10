@@ -22,15 +22,15 @@ export class ContactUsPage implements OnInit{
     title_data: {};
 
     getData(){
-        //About us data
+        //Contact us data
         this.title_data = {
             titleImg : './app/public/img_bckgnd.png',
-            smallTxt1 : 'Last Updated: Monday, February 26, 2016',
-            smallTxt2 : ' United States of America',
-            Heading1 : 'Contact Us',
-            Heading2 : '',
-            Heading3 : 'Help Us, Help You Faster.',
-            Heading4 : '',
+            smallText1 : 'Last Updated: Monday, February 26, 2016',
+            smallText2 : ' United States of America',
+            heading1 : 'Contact Us',
+            heading2 : '',
+            heading3 : 'Help Us, Help You Faster.',
+            heading4 : '',
             icon: 'fa fa-map-marker',
             hasHover: false
         };

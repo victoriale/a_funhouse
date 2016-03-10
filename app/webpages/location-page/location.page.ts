@@ -5,21 +5,31 @@ import {HeadlineComponent} from '../../components/headline/headline.component';
 import {ProfileHeader} from '../../modules/profile_header/profile_header.module';
 import {CrimeModule} from '../../modules/crime/crime.module';
 import {FeaturedListsModule} from '../../modules/featured_lists/featured_lists.module';
+import {InfoListModule} from "../../modules/infolist/info-list.module";
 
 @Component({
     selector: 'location-page',
     templateUrl: './app/webpages/location-page/location.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule],
+    directives: [HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, InfoListModule],
     providers: [],
 })
 
 export class LocationPage {
 
     loc: string;
+    locCity: any;
+    locState: any;
+
+    constructor(private _params: RouteParams) {
+        this.loc = _params.get('loc');
+        this.locCity = this.loc.split('_')[0];
+        this.locState = this.loc.split('_')[1];
+        console.log('City, State: ', this.locCity, this.locState);
+    }
 
     public headline_about = {
-        title: 'About [City], [State]',
+        title: this.locCity + ", " + this.locState,
         icon: 'fa-map-marker'
     };
     public headline_crime = {
@@ -35,9 +45,4 @@ export class LocationPage {
         icon: 'fa-comment-o'
     };
     public profile_type = 'location';
-
-    constructor(params: RouteParams) {
-        this.loc = params.get('loc');
-        console.log(this.loc);
-    }
 }
