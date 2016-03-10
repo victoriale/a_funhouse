@@ -71,5 +71,5 @@ import {FeatureTilesComponent} from "../components/feature-tiles/feature-tiles.c
 ])
 
 export class AppComponent {
-    cityStateLocation: string = "WICHITA_KS";
+    cityStateLocation: string = "Wichita_KS";
 }

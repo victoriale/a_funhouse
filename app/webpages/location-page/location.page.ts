@@ -20,6 +20,12 @@ export class LocationPage implements OnInit {
     loc: string;
     locCity: string;
     locState: string;
+    locDisplay: string;
+    public headline_about: any;
+    public headline_crime: any;
+    public headline_amenities: any;
+    public headline_interact: any;
+    public profile_type: string;
 
     constructor(private _params: RouteParams) {
         // Scroll page to top to fix routerLink bug
@@ -30,26 +36,31 @@ export class LocationPage implements OnInit {
         this.loc = this._params.get('loc');
         this.locCity = this.loc.split('_')[0];
         this.locState = this.loc.split('_')[1];
+        this.locDisplay = decodeURI(this.locCity + ', ' + this.locState);
+
+        this.headline_about = {
+            title: 'About ' + this.locDisplay,
+            icon: 'fa-map-marker'
+        };
+
+        this.headline_crime = {
+            title: 'Most Recent Crimes in ' + this.locDisplay,
+            icon: 'fa-gavel'
+        };
+
+        this.headline_amenities = {
+            title: 'Schools & Amenities in ' + this.locDisplay,
+            icon: 'fa-graduation-cap'
+        };
+
+        this.headline_interact = {
+            title: 'Interact with Joyful Home',
+            icon: 'fa-comment-o'
+        };
+
+        this.profile_type = 'location';
 
         console.log('City, State: ', this.locCity, this.locState);
     }
 
-    public headline_about = {
-        title: 'About ' + this.locCity,
-        icon: 'fa-map-marker'
-    };
-
-    public headline_crime = {
-        title: 'Most Recent Crimes in [City], [State]',
-        icon: 'fa-gavel'
-    };
-    public headline_amenities = {
-        title: 'Schools & Amenities in [City], [State]',
-        icon: 'fa-graduation-cap'
-    };
-    public headline_interact = {
-        title: 'Interact with Joyful Home',
-        icon: 'fa-comment-o'
-    };
-    public profile_type = 'location';
 }
