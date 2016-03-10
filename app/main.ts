@@ -6,5 +6,9 @@ import {AppComponent} from './app-layout/app.component'
 
 // Needed for http map on observables
 import 'rxjs/add/operator/map';
+import {HTTP_PROVIDERS} from "angular2/http";
 
-bootstrap(AppComponent);
+bootstrap(AppComponent, [
+    HTTP_PROVIDERS
+    ]
+);

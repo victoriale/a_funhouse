@@ -8,4 +8,9 @@ import {Component} from 'angular2/core';
     providers: [],
 })
 
-export class HeaderComponent{ }
+export class HeaderComponent{
+
+    isHomePage: boolean = false;
+    isMyHouseKit: boolean = false;
+
+}
