@@ -2,9 +2,10 @@
 ///<reference path="../node_modules/angular2/typings/es6-promise/es6-promise.d.ts"/>
 
 import {bootstrap}    from 'angular2/platform/browser'
-import {AppComponent} from './app-layout/app.component'
+import {ROUTER_PROVIDERS} from 'angular2/router'
+import {AppDomain} from './app-domain/app-domain'
 
 // Needed for http map on observables
 import 'rxjs/add/operator/map';
 
-bootstrap(AppComponent);
+bootstrap(AppDomain,[ROUTER_PROVIDERS]);
