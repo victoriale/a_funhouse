@@ -3,7 +3,7 @@
  */
 import {Component, OnInit} from 'angular2/core';
 import {moduleHeader} from "../../components/module-header/module-header";
-import {Image180} from '../../components/images/image-180/image-180.component';
+import {Image180} from '../../components/images/image-180.component';
 
 @Component({
     selector: 'share-module',
