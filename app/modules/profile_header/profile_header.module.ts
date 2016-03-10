@@ -1,7 +1,7 @@
 /**
  * Created by Victoria on 2/24/2016.
  */
-import {Component, OnInit, Input} from 'angular2/core';
+import {Component, OnInit, Input, ChangeDetectionStrategy} from 'angular2/core';
 import {TitleComponent} from '../../components/title/title.component';
 import {Image180} from '../../components/images/image-180/image-180.component';
 
@@ -11,7 +11,8 @@ import {Image180} from '../../components/images/image-180/image-180.component';
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [TitleComponent, Image180],
     providers: [],
-    inputs: ['profile_type']
+    inputs: ['profile_type', 'profileHeaderData'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileHeader implements OnInit{
     public icon: string;
@@ -68,6 +69,6 @@ export class ProfileHeader implements OnInit{
 
     ngOnInit(){
         this.getData();
-        console.log(this);
+        console.log('profileHeader', this);
     }
 }

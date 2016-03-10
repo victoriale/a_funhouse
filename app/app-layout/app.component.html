@@ -1,7 +1,7 @@
 <header-component></header-component>
 <nav class="twelve columns">
     <a [routerLink]="['Home-page']">Home Page</a>
-    <a [routerLink]="['Profile-page']">Profile Page</a>
+    <a [routerLink]="['Profile-page', {address: address}]">Profile Page</a>
     <a [routerLink]="['Location-page', {loc: cityStateLocation}]">Location Page</a>
     <a [routerLink]="['List-page']">List Page</a>
     <a [routerLink]="['Component-page']">Component Page</a>

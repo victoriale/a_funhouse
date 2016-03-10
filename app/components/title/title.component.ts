@@ -26,7 +26,7 @@ export class TitleComponent{
                 hasHover: true
             };
         }
-        console.log(this);
+        console.log('Title Component Data', this);
     }
 
     ngOnInit(){
