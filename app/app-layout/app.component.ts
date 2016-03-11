@@ -71,7 +71,7 @@ import {FeatureTilesComponent} from "../components/feature-tiles/feature-tiles.c
     }
 ])
 
-export class AppComponent {
+export class appComponent {
     partner_id: string = "latimes.com";
     cityStateLocation: string = "WICHITA_KS";
 }

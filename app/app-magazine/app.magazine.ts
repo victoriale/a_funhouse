@@ -23,7 +23,7 @@ import {magazine} from "../magazine/magazine";
     }
 ])
 
-export class magazineAppComponent {
+export class magazineApp {
     partner_id: string = "latimes.com";
     cityStateLocation: string = "WICHITA_KS";
 }

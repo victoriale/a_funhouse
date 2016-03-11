@@ -1,14 +1,13 @@
 import {Component} from 'angular2/core';
 import {Router, RouteData, RouteConfig, ROUTER_DIRECTIVES, LocationStrategy} from 'angular2/router';
 
-import {AppComponent} from "../app-layout/app.component";
-import {webpageAppComponent} from "../app-layout/webpage.component";
+import {webApp} from "../app-layout/webpage.component";
 
 @Component({
     selector: 'app-domain',
     templateUrl: './app/app-domain/app-domain.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [webpageAppComponent, AppComponent, ROUTER_DIRECTIVES],
+    directives: [webApp, ROUTER_DIRECTIVES],
     providers: [ROUTER_DIRECTIVES],
 })
 
@@ -16,16 +15,16 @@ import {webpageAppComponent} from "../app-layout/webpage.component";
     {
         path: '/...',
         name: 'Default-home',
-        component: webpageAppComponent,
+        component: webApp,
         useAsDefault: true
     },
     {
         path: '/:partner_id/...',
         name: 'Partner-home',
-        component: webpageAppComponent,
+        component: webApp,
     },
 ])
 
-export class AppDomain {
+export class appDomain {
     cityStateLocation: string = "WICHITA_KS";
 }

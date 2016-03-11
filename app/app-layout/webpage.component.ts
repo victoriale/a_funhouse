@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
-import {AppComponent} from "../app-layout/app.component";
-import {magazineAppComponent} from "../app-magazine/app.magazine";
+import {appComponent} from "../app-layout/app.component";
+import {magazineApp} from "../app-magazine/app.magazine";
 
 import {Router, RouteData, RouteConfig, RouterOutlet, ROUTER_DIRECTIVES, LocationStrategy} from 'angular2/router';
 
@@ -8,7 +8,7 @@ import {Router, RouteData, RouteConfig, RouterOutlet, ROUTER_DIRECTIVES, Locatio
     selector: 'web-app',
     templateUrl: './app/app-layout/webpage.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [magazineAppComponent, AppComponent,RouterOutlet, ROUTER_DIRECTIVES],
+    directives: [magazineApp, appComponent,RouterOutlet, ROUTER_DIRECTIVES],
     providers: [ROUTER_DIRECTIVES],
 })
 
@@ -16,15 +16,15 @@ import {Router, RouteData, RouteConfig, RouterOutlet, ROUTER_DIRECTIVES, Locatio
     {
        path: '/...',
        name: 'Webpages',
-       component: AppComponent,
+       component: appComponent,
     },
     {
        path: '/magazine/...',
        name: 'Magazine',
-       component: magazineAppComponent,
+       component: magazineApp,
     },
 ])
 
-export class webpageAppComponent {
+export class webApp {
 
 }
