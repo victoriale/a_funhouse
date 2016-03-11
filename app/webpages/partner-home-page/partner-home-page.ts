@@ -13,44 +13,44 @@ import {HeroBottomComponent} from "../../components/hero/hero-bottom/hero-bottom
 import {FeatureTilesComponent} from "../../components/feature-tiles/feature-tiles.component";
 
 @Component({
-    selector: 'PartnerHomePage',
+    selector: 'partner-profile-page',
     templateUrl: './app/webpages/home-page/home.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [HeaderComponent, FooterComponent, HeroComponent, ExploreTilesComponent, ExploreButtonComponent, HeroBottomComponent, FeatureTilesComponent],
     providers: [HomePageService],
 })
 
-export class HomePage {
+export class PartnerHomePage {
+    homepagedata: HomePageData[];
 
-    homePageData: HomePageData[];
-    cityLocation: string = "Wichita";
+    citylocation: string = "Wichita";
 
     // Buttons
-    buttonTitle: string;
-    buttonWidth: number;
-    buttonIcon: string;
-    heroButtonTitle: string;
-    heroButtonWidth: number;
-    heroButtonIcon: string;
+    buttontitle: string;
+    buttonwidth: number;
+    buttonicon: string;
+    herobuttontitle: string;
+    herobuttonwidth: number;
+    herobuttonicon: string;
 
     // Explore Tiles
 
     constructor(private _homePageService: HomePageService) { }
 
     getHomepageService() {
-        this._homePageService.getHomePageService().then(homePageData => this.homePageData = homePageData);
+        this._homePageService.getHomePageService().then(homepagedata => this.homepagedata = homepagedata);
     }
 
     ngOnInit() {
         this.getHomepageService();
 
         // Buttons
-        this.buttonTitle = "More";
-        this.buttonWidth = 160;
-        this.buttonIcon = "fa fa-angle-double-down";
-        this.heroButtonTitle = "See The List";
-        this.heroButtonWidth = 220;
-        this.heroButtonIcon = "";
+        this.buttontitle = "More";
+        this.buttonwidth = 160;
+        this.buttonicon = "fa fa-angle-double-down";
+        this.herobuttontitle = "See The List";
+        this.herobuttonwidth = 220;
+        this.herobuttonicon = "";
 
         console.log(this);
     }

@@ -1,7 +1,6 @@
 import {Component, OnInit} from 'angular2/core';
 import {Router, RouteParams} from 'angular2/router';
 
-
 import {ProfileHeader} from '../../modules/profile_header/profile_header.module';
 import {HeadlineComponent} from '../../components/headline/headline.component';
 import {MediaFeatureModule} from "../../modules/media_features/media_features.module";
