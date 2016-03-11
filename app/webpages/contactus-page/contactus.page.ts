@@ -21,6 +21,11 @@ export class ContactUsPage implements OnInit{
 
     title_data: {};
 
+    constructor() {
+        // Scroll page to top to fix routerLink bug
+        window.scrollTo(0, 0);
+    }
+
     getData(){
         //Contact us data
         this.title_data = {

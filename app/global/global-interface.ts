@@ -23,7 +23,6 @@ export interface List2 {
     price: string;
     price_name: string;
     smallImage: string[];
-    details: string[];
 }
 
 export interface MagHeaderData {
