@@ -60,7 +60,7 @@ export class LocationPage implements OnInit {
 
         this.profile_type = 'location';
 
-        console.log('City, State: ', this.locCity, this.locState);
+        console.log('City, State: ', this.locDisplay);
     }
 
 }
