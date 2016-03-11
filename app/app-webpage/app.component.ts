@@ -1,6 +1,5 @@
 import {Component} from 'angular2/core';
 import {Router, RouteData, RouteConfig, RouterOutlet, ROUTER_DIRECTIVES, LocationStrategy} from 'angular2/router';
-
 import {ProfilePage} from "../webpages/profile-page/profile.page";
 import {LocationPage} from "../webpages/location-page/location.page";
 import {ListPage} from "../webpages/list-page/list.page";
@@ -20,7 +19,7 @@ import {FeatureTilesComponent} from "../components/feature-tiles/feature-tiles.c
 
 @Component({
     selector: 'my-app',
-    templateUrl: './app/app-layout/app.component.html',
+    templateUrl: './app/app-webpage/app.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [RouterOutlet, ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ListPage, ROUTER_DIRECTIVES],
     providers: [ROUTER_DIRECTIVES],
@@ -71,7 +70,7 @@ import {FeatureTilesComponent} from "../components/feature-tiles/feature-tiles.c
     }
 ])
 
-export class appComponent {
+export class AppComponent {
     partner_id: string = "latimes.com";
     cityStateLocation: string = "WICHITA_KS";
     address: string = "503-C-Avenue-Vinton-IA";
