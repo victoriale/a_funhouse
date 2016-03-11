@@ -1,7 +1,11 @@
 <div class="footer-top-bar-wrapper">
     <div class="container">
         <div class="footer-top-bar row">
-            <div class="footer-logo six columns"><img src="./app/public/joyful_home_footer_logo.png" width="120px" alt="Joyful Home | A Little Place to Call Home"/></div>
+            <div *ngIf="isMyHouseKit === false" class="footer-logo six columns">
+                <img src="./app/public/joyful_home_footer_logo.png" width="120px" alt="Joyful Home | A Little Place to Call Home"/>
+            </div>
+            <div *ngIf="isMyHouseKit === true" class="footer-logo six columns">
+            </div>
             <div class="footer-social six columns">
                 <ul>
                     <li><i class="fa fa-facebook "></i></li>
@@ -43,7 +47,18 @@
                     </ul>
                 </section>
                 <hr />
-                <section class="footer-section-three">
+                <section *ngIf="isMyHouseKit === true" class="footer-section-three">
+                    <ul>
+                        <li class="joyful-link"><a href="#">Myhousekit.com</a>  <i class="fa fa-caret-right"></i></li>
+                        <li><a href="#">Advertise with MyHouseKit</a> <i class="fa fa-caret-right"></i></li>
+                        <li><a href="#">Contact Us</a> <i class="fa fa-caret-right"></i></li><br />
+                        <li><a href="#">Terms of Use</a> <i class="fa fa-caret-right"></i></li>
+                        <li><a href="#">Privacy Policy</a> <i class="fa fa-caret-right"></i></li>
+                        <li><a href="#">Sitemap</a> <i class="fa fa-caret-right"></i></li>
+                        <li><a href="#">General Feedback</a></li>
+                    </ul>
+                </section>
+                <section *ngIf="isMyHouseKit === false" class="footer-section-three">
                     <ul>
                         <li class="joyful-link"><a href="#">Joyfulhome.com</a>  <i class="fa fa-caret-right"></i></li>
                         <li><a href="#">Advertise with Joyful Home</a> <i class="fa fa-caret-right"></i></li>

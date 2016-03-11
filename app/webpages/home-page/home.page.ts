@@ -21,36 +21,36 @@ import {FeatureTilesComponent} from "../../components/feature-tiles/feature-tile
 })
 
 export class HomePage {
-    homepagedata: HomePageData[];
 
-    citylocation: string = "Wichita";
+    homePageData: HomePageData[];
+    cityLocation: string = "Wichita";
 
     // Buttons
-    buttontitle: string;
-    buttonwidth: number;
-    buttonicon: string;
-    herobuttontitle: string;
-    herobuttonwidth: number;
-    herobuttonicon: string;
+    buttonTitle: string;
+    buttonWidth: number;
+    buttonIcon: string;
+    heroButtonTitle: string;
+    heroButtonWidth: number;
+    heroButtonIcon: string;
 
     // Explore Tiles
 
     constructor(private _homePageService: HomePageService) { }
 
     getHomepageService() {
-        this._homePageService.getHomePageService().then(homepagedata => this.homepagedata = homepagedata);
+        this._homePageService.getHomePageService().then(homePageData => this.homePageData = homePageData);
     }
 
     ngOnInit() {
         this.getHomepageService();
 
         // Buttons
-        this.buttontitle = "More";
-        this.buttonwidth = 160;
-        this.buttonicon = "fa fa-angle-double-down";
-        this.herobuttontitle = "See The List";
-        this.herobuttonwidth = 220;
-        this.herobuttonicon = "";
+        this.buttonTitle = "More";
+        this.buttonWidth = 160;
+        this.buttonIcon = "fa fa-angle-double-down";
+        this.heroButtonTitle = "See The List";
+        this.heroButtonWidth = 220;
+        this.heroButtonIcon = "";
 
         console.log(this);
     }

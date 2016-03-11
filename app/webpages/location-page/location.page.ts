@@ -18,9 +18,18 @@ import {InfoListModule} from "../../modules/infolist/info-list.module";
 export class LocationPage {
 
     loc: string;
+    locCity: any;
+    locState: any;
+
+    constructor(private _params: RouteParams) {
+        this.loc = _params.get('loc');
+        this.locCity = this.loc.split('_')[0];
+        this.locState = this.loc.split('_')[1];
+        console.log('City, State: ', this.locCity, this.locState);
+    }
 
     public headline_about = {
-        title: 'About [City], [State]',
+        title: this.locCity + ", " + this.locState,
         icon: 'fa-map-marker'
     };
     public headline_crime = {
@@ -36,9 +45,4 @@ export class LocationPage {
         icon: 'fa-comment-o'
     };
     public profile_type = 'location';
-
-    constructor(params: RouteParams) {
-        this.loc = params.get('loc');
-        console.log(this.loc);
-    }
 }

@@ -7,5 +7,6 @@ import {appDomain} from './app-domain/app-domain'
 
 // Needed for http map on observables
 import 'rxjs/add/operator/map';
+import {HTTP_PROVIDERS} from "angular2/http";
 
-bootstrap(appDomain,[ROUTER_PROVIDERS,ROUTER_DIRECTIVES]);
+bootstrap(appDomain,[ROUTER_PROVIDERS, HTTP_PROVIDERS, ROUTER_DIRECTIVES]);

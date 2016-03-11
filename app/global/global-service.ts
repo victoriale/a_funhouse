@@ -112,19 +112,6 @@ export class MediaFeatureList{
                     './app/public/img_bckgnd.png',
                     './app/public/img_bckgnd.png',
                     './app/public/img_bckgnd.png',
-                ],
-                'details': [
-                    'Price: $749,000',
-                    '3 Bedrooms',
-                    'Condo',
-                    'Details',
-                    'Details',
-                    'Details',
-                    'Details',
-                    'Details',
-                    'Details',
-                    'Details',
-                    'Details',
                 ]
             },
         ];

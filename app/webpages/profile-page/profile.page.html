@@ -8,7 +8,7 @@
                 <headline-component [data]="headline_about"></headline-component>
 
                 <!--Listing Profile Header-->
-                <profile-header [profile_type]="profile_type"></profile-header>
+                <profile-header [profile_type]="profile_type" [profileHeaderData]="profileHeaderData | async"></profile-header>
 
                 <!--Media Feature Section-->
                 <media-features-module [trending]="media_feature"></media-features-module>
@@ -24,7 +24,7 @@
 
                 <!-- Amenities Section -->
                 <headline-component [data]="headline_amenities"></headline-component>
-
+                <amenities-module></amenities-module>
                 <!-- Other Homes Section -->
                 <headline-component [data]="headline_otherHomes"></headline-component>
                 <media-images [trending]="trending_feature"></media-images>

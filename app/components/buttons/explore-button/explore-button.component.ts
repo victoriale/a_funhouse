@@ -4,13 +4,13 @@ import {Component, Input} from 'angular2/core';
     selector: 'explore-button-component',
     templateUrl: './app/components/buttons/explore-button/explore-button.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    inputs: ['buttontitle', 'buttonwidth', 'buttonicon'],
+    inputs: ['buttonTitle', 'buttonWidth', 'buttonIcon'],
     directives: [],
     providers: []
 })
 
 export class ExploreButtonComponent{
-    public buttontitle: string;
-    public buttonwidth: number;
-    public buttonicon: string;
+    public buttonTitle: string;
+    public buttonWidth: number;
+    public buttonIcon: string;
 }

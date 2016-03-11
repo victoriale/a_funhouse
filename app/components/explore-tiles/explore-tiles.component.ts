@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
 import {ExploreButtonComponent} from "../buttons/explore-button/explore-button.component";
-import {Router, RouteData, LocationStrategy, ROUTER_PROVIDERS, ROUTER_DIRECTIVES} from 'angular2/router';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 
 @Component({
@@ -8,7 +8,15 @@ import {Router, RouteData, LocationStrategy, ROUTER_PROVIDERS, ROUTER_DIRECTIVES
     templateUrl: './app/components/explore-tiles/explore-tiles.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [ROUTER_DIRECTIVES, ExploreButtonComponent],
-    providers: [ROUTER_PROVIDERS],
+    providers: [],
 })
 
-export class ExploreTilesComponent{ }
+export class ExploreTilesComponent{
+
+    tileLocations = ["Wichita, KS", "Derby, KS", "Haysville, KS", "Valley Center, KS", "Mulvane, KS"];
+    tileUrls = ["Wichita_KS", "Derby_KS", "Haysville_KS", "Valley Center_KS", "Mulvane_KS"];
+
+    constructor(){
+        console.log(this.tileLocations, this.tileUrls);
+    }
+}

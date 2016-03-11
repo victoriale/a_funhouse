@@ -10,7 +10,7 @@ import {TitleLocComponent} from '../../components/title/title_loc.component';
 import {CarouselButton} from '../../components/buttons/carousel/carousel.button';
 import {CircleButton} from '../../components/buttons/circle/circle.button';
 import {InfinityButton} from '../../components/buttons/infinity/infinity.button';
-import {Image180} from '../../components/images/image-180/image-180.component';
+import {Image180} from '../../components/images/image-180.component';
 import {Image100} from '../../components/images/image-100/image-100.component';
 import {HeadlineComponent} from '../../components/headline/headline.component';
 import {imageHeader} from '../../components/image-header/image-header';
