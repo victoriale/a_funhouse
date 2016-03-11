@@ -1,18 +1,18 @@
 <div class="footer-top-bar-wrapper">
     <div class="container">
         <div class="footer-top-bar row">
-            <div *ngIf="isMyHouseKit === false" class="footer-logo six columns">
+            <div *ngIf="!isMyHouseKit" class="footer-logo six columns">
                 <a href="/"><img src="./app/public/joyful_home_footer_logo.png" width="120px" alt="Joyful Home | A Little Place to Call Home"/></a>
             </div>
-            <div *ngIf="isMyHouseKit === true" class="footer-logo six columns">
+            <div *ngIf="isMyHouseKit" class="footer-logo six columns">
             </div>
             <div class="footer-social six columns">
                 <ul>
-                    <li><i class="fa fa-facebook "></i></li>
-                    <li><i class="fa fa-twitter"></i></li>
-                    <li><i class="fa fa-linkedin"></i></li>
-                    <li><i class="fa fa-google-plus"></i></li>
-                    <li><i class="fa fa-pinterest-p"></i></li>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=http://joyfulhome.com/" target="_blank"><li><i class="fa fa-facebook "></i></li></a>
+                    <a href="https://twitter.com/home?status=http://joyfulhome.com/" target="_blank"><li><i class="fa fa-twitter"></i></li></a>
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://joyfulhome.com/" target="_blank"><li><i class="fa fa-linkedin"></i></li></a>
+                    <a href="https://plus.google.com/share?url=http://joyfulhome.com/" target="_blank"> <li><i class="fa fa-google-plus"></i></li></a>
+                    <a href="https://pinterest.com/pin/create/button/?url=&media=http://joyfulhome.com/" target="_blank"><li><i class="fa fa-pinterest-p"></i></li></a>
                 </ul>
             </div>
         </div>
@@ -47,7 +47,7 @@
                     </ul>
                 </section>
                 <hr />
-                <section *ngIf="isMyHouseKit === true" class="footer-section-three">
+                <section *ngIf="isMyHouseKit" class="footer-section-three">
                     <ul>
                         <li class="joyful-link"><a href="#">Myhousekit.com</a>  <i class="fa fa-caret-right"></i></li>
                         <li><a href="#">Advertise with MyHouseKit</a> <i class="fa fa-caret-right"></i></li>
@@ -58,7 +58,7 @@
                         <li><a href="#">General Feedback</a></li>
                     </ul>
                 </section>
-                <section *ngIf="isMyHouseKit === false" class="footer-section-three">
+                <section *ngIf="!isMyHouseKit" class="footer-section-three">
                     <ul>
                         <li class="joyful-link"><a href="/">Joyfulhome.com</a>  <i class="fa fa-caret-right"></i></li>
                         <li><a href="#">Advertise with Joyful Home</a> <i class="fa fa-caret-right"></i></li>
