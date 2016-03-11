@@ -1,13 +1,13 @@
 import {Component} from 'angular2/core';
 import {ExploreButtonComponent} from "../buttons/explore-button/explore-button.component";
-import {Router, RouteData, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, LocationStrategy} from 'angular2/router';
+import {Router, RouteData, LocationStrategy, ROUTER_PROVIDERS, ROUTER_DIRECTIVES} from 'angular2/router';
 
 
 @Component({
     selector: 'explore-tiles-component',
     templateUrl: './app/components/explore-tiles/explore-tiles.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [ExploreButtonComponent, ROUTER_DIRECTIVES],
+    directives: [ROUTER_DIRECTIVES, ExploreButtonComponent],
     providers: [ROUTER_PROVIDERS],
 })
 

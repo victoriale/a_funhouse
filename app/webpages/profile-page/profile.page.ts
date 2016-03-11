@@ -1,5 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
-import {Router} from 'angular2/router';
+import {Router, RouteParams} from 'angular2/router';
 
 import {ProfileHeader} from '../../modules/profile_header/profile_header.module';
 import {HeadlineComponent} from '../../components/headline/headline.component';
@@ -20,7 +20,6 @@ import {MediaImages} from "../../components/media-images/media-images.component"
     templateUrl: './app/webpages/profile-page/profile.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [MediaImages, HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs, ShareModule, FeaturedListsModule],
-
     providers: [],
 })
 
@@ -50,11 +49,12 @@ export class ProfilePage implements OnInit{
     public trending_feature = true;
 
     //  Get current route name
-    constructor(public router: Router){
+    constructor(public router: Router,
+    public params:RouteParams){
         console.log('Route Name:', this.router.hostComponent.name);
     }
 
     ngOnInit(){
-
+      console.log(this);
     }
 }
