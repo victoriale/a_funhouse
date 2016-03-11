@@ -10,7 +10,7 @@
             <div class="directory-link six columns">
                 <a (click)="directoryToggle()">Directories</a>
             </div>
-            <div class="directory-dropdown-wrapper" [hidden]="!visible">
+            <div class="directory-dropdown-wrapper" [hidden]="!directoryVisible">
                 <ul *ngFor="#directoryItem of directoryList">
                     <li><i class="fa fa-angle-right"></i> {{directoryItem}}</li>
                 </ul>
