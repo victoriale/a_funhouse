@@ -18,6 +18,9 @@
       margin-top: 4px;
       text-align: right;
       margin-right: 0 !important;
+      a {
+        cursor: pointer;
+      }
     }
     a:hover {
       color: @joyfulHomeGreenHover;
@@ -32,4 +35,35 @@
   .header-logo {
     margin-top: 15px;
   }
+
+.directory-dropdown-wrapper {
+  min-height: 30px;
+  max-height: 240px;
+  width: 240px;
+  overflow-x: auto;
+  position: absolute;
+  z-index: 21;
+  right: 10px;
+  top: 25px;
+  border: 1px solid @greyBorder;
+  li {
+    height: 30px;
+    width: auto;
+    line-height: 30px;
+    padding: 0 10px 0 15px;
+    color: #000000;
+    background-color: #ffffff;
+    cursor: pointer;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    .fa {
+      margin-right: 10px;
+    }
+    &:hover {
+      color: #ffffff;
+      background-color: @joyfulHomeGreen;
+    }
+  }
+}
+
 

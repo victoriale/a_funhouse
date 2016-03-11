@@ -7,10 +7,10 @@
   padding:15px 20px;
   .flexDirection(row);
   display: flex;
-  &.odd {
+  &:nth-child(odd) {
     background: @backgroundGrey;
   }
-  &.even {
+  &:nth-child(even) {
     background: @white;
   }
 }

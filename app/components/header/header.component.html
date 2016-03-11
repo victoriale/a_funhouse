@@ -7,7 +7,14 @@
             <div *ngIf="isMyHouseKit === true" class="tagline six columns">
                 <a href="#">MyHouseKit | A Little Place to Call Home</a>
             </div>
-            <div class="directory-link six columns"><a href="#">Directories</a></div>
+            <div class="directory-link six columns">
+                <a (click)="directoryToggle()">Directories</a>
+            </div>
+            <div class="directory-dropdown-wrapper" [hidden]="!visible">
+                <ul *ngFor="#directoryItem of directoryList">
+                    <li><i class="fa fa-angle-right"></i> {{directoryItem}}</li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
