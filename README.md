@@ -6,7 +6,7 @@ Be sure to be in the `develop` branch
 
 install each one individually
 
-1. `npm install` [a-...](individuall)
+1. `npm install` (individually
 
       a.`-g gulp-cli`
 
