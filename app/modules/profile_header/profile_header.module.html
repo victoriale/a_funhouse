@@ -1,15 +1,28 @@
 <section *ngIf="profileHeaderData" class="module-container ph">
-    <title-component [data]="profileHeaderData.title_data"></title-component>
+    <title-component [data]="titleComponentData"></title-component>
     <section class="header">
         <div class="img">
-            <image-180 [hasSubImg]="main_hasSubImg"></image-180>
+            <image-180 [hasSubImg]="main_hasSubImg" [imageURL]="mainImageURL" [imageURL2]="subImageURL"></image-180>
         </div>
         <div class="hding">
             <div class="hding-desc">
-                <div class="hding-desc-icon"><i class="{{icon}}"></i></div>
-                <div class="hding-desc-title">{{title}}</div>
+                <div class="hding-desc-icon"><i class="fa {{icon}}"></i></div>
+                <div class="hding-desc-title">{{descriptionTitle}}</div>
             </div>
-            <div class="hding-pag">{{profileHeaderData.description}}</div>
+            <div class="hding-pag">
+                {{descriptionAddress}}
+                {{descriptionSquareFeet}}
+                <span *ngIf="profileHeaderData.agent !== null">
+                    If you're interested in more information, please contact
+                    <a href="{{emailLink}}" *ngIf="profileHeaderData.email !== null" class="green-text">
+                        {{profileHeaderData.agent}}
+                    </a>
+                    <span *ngIf="profileHeaderData.email === nul">
+                        {{profileHeaderData.agent}}
+                    </span>
+                    {{descriptionContact}}
+                </span>
+            </div>
         </div>
     </section>
 </section>
