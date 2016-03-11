@@ -25,6 +25,26 @@ export interface List2 {
     smallImage: string[];
 }
 
+//Interface for Listing Profile Header Module
+export interface ListingProfileHeaderInterface {
+    address: string;
+    agent: string;
+    brokerageLogoURL: string;
+    city: string;
+    email: string;
+    lastUpdated: string;
+    listingID: string;
+    listingImage: string;
+    listingPrice: string;
+    listingStatus: string;
+    officeNumber: number;
+    originalLink: string;
+    phoneNumber: number;
+    squareFeet: string;
+    state: string;
+    zipCode: string;
+}
+
 export interface MagHeaderData {
     checked: string;
     data: string;
