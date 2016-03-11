@@ -56,14 +56,15 @@ export class ProfileHeader implements OnInit{
             smallText2: data.city + ', ' + data.state,
             heading1: data.address,
             heading2: data.listingStatus === null ? '' : '- ' + data.listingStatus,
-            heading3: 'Listing Price: $' + this.commaSeperateNumber(data.listingPrice),
-            heading4: data.squareFeet === null ? '' : '- Sq ft: ' + this.commaSeperateNumber(data.squareFeet) + ' Sq ft.',
+            heading3: 'Listing Price: $' + this.commaSeparateNumber(data.listingPrice),
+            heading4: data.squareFeet === null ? '' : '- Area: ' + this.commaSeparateNumber(data.squareFeet) + ' Sq ft.',
             icon: 'fa fa-map-marker',
-            hasHover: false
+            hasHover: false,
+            originalLink: data.originalLink
         };
         //Build profile header description
         this.descriptionAddress = 'The listing is located at ' + data.address + ', ' + data.city + ', ' + data.state + '.';
-        this.descriptionSquareFeet = data.squareFeet === null ? '' : 'The living area is around ' + this.commaSeperateNumber(data.squareFeet) + ' sq ft.';
+        this.descriptionSquareFeet = data.squareFeet === null ? '' : 'The living area is around ' + this.commaSeparateNumber(data.squareFeet) + ' sq ft.';
         this.descriptionContact = '';
         if(data.phoneNumber !== null && data.officeNumber !== null && data.phoneNumber !== data.officeNumber){
             this.descriptionContact += 'at the phone number ' + this.formatPhoneNumber(data.phoneNumber) + ', or their office phone number ' + this.formatPhoneNumber(data.officeNumber) + '.';
@@ -96,7 +97,7 @@ export class ProfileHeader implements OnInit{
         return val;
     }
 
-    commaSeperateNumber(val){
+    commaSeparateNumber(val){
         while (/(\d+)(\d{3})/.test(val.toString())){
             val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
         }
@@ -110,8 +111,9 @@ export class ProfileHeader implements OnInit{
 
     //On Change Call
     ngOnChanges(event){
+        //Get changed input
         var currentProfileHeaderData = event.profileHeaderData.currentValue;
-
+        //If the data input is valid run transform data function
         if(currentProfileHeaderData !== null && currentProfileHeaderData !== false){
             this.transformData();
         }
