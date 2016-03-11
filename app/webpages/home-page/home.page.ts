@@ -13,7 +13,7 @@ import {HeroBottomComponent} from "../../components/hero/hero-bottom/hero-bottom
 import {FeatureTilesComponent} from "../../components/feature-tiles/feature-tiles.component";
 
 @Component({
-    selector: 'profile-page',
+    selector: 'PartnerHomePage',
     templateUrl: './app/webpages/home-page/home.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [HeaderComponent, FooterComponent, HeroComponent, ExploreTilesComponent, ExploreButtonComponent, HeroBottomComponent, FeatureTilesComponent],
@@ -35,7 +35,10 @@ export class HomePage {
 
     // Explore Tiles
 
-    constructor(private _homePageService: HomePageService) { }
+    constructor(private _homePageService: HomePageService) {
+        // Scroll page to top to fix routerLink bug
+        window.scrollTo(0, 0);
+    }
 
     getHomepageService() {
         this._homePageService.getHomePageService().then(homePageData => this.homePageData = homePageData);

@@ -1,0 +1,38 @@
+<div class="mag_container mag_container_left">
+    <span *ngFor="#magCarousel of data; #i=index">
+        <div class="mag_po_mainimg" style="background-image: url('{{magCarousel.photos[counter]}}')" id="{{counter}}">
+            <span class="fa fa-angle-left mag_po_mainimg_nav" (click)="prevClick()"></span>
+            <span class="fa fa-angle-right mag_po_mainimg_nav" (click)="nextClick()"></span>
+            <div class="mag_po_info">
+                <div class="mag_po_info_label">HOME GALLERY</div>
+                <div class="mag_po_info_address">{{magCarousel.street_address}} | {{magCarousel.city}},
+                    {{magCarousel.state}} {{magCarousel.zipcode}}
+                </div>
+            </div>
+        </div>
+        <div class="mag_po_subimg">
+            <div class="mag_po_subimg_item" style="background-image: url('{{magCarousel.photos[counter-1]}}')"
+                 (click)="changeClick(counter-1)"
+                 id="{{counter-1}}"></div>
+            <div class="mag_po_subimg_item" style="background-image: url('{{magCarousel.photos[counter]}}')"
+                 (click)="changeClick(counter)"
+                 id="{{counter}}"></div>
+            <div class="mag_po_subimg_item" style="background-image: url('{{magCarousel.photos[counter+1]}}')"
+                 (click)="changeClick(counter+1)"
+                 id="{{counter+1}}"></div>
+        </div>
+        <div class="mag_po_imgnav">
+            <div class="mag_po_imgnav_count">
+                Image <span style="font-weight: 900;">{{counter + 1}}</span> of <span style="font-weight: 900;">{{imageLength}}</span><br>
+            </div>
+            <span class="mag_po_imgnav_dots" *ngFor="#images of magCarousel.photos; #i=index">
+                <span *ngIf="i == counter">
+                    <i class="fa fa-circle" (click)="changeClick(i)" id="{{i}}"></i>
+                </span>
+                <span *ngIf="i != counter">
+                    <i class="fa fa-circle-o" (click)="changeClick(i)" id="{{i}}"></i>
+                </span>
+            </span>
+        </div>
+    </span>
+</div>

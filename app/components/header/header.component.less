@@ -18,6 +18,9 @@
       margin-top: 4px;
       text-align: right;
       margin-right: 0 !important;
+      a {
+        cursor: pointer;
+      }
     }
     a:hover {
       color: @joyfulHomeGreenHover;
@@ -32,26 +35,35 @@
   .header-logo {
     margin-top: 15px;
   }
-  .header-search {
-    margin-top: 10px;
-    text-align: right;
+
+.directory-dropdown-wrapper {
+  min-height: 30px;
+  max-height: 240px;
+  width: 240px;
+  overflow-x: auto;
+  position: absolute;
+  z-index: 21;
+  right: 10px;
+  top: 25px;
+  border: 1px solid @greyBorder;
+  li {
+    height: 30px;
+    width: auto;
+    line-height: 30px;
+    padding: 0 10px 0 15px;
+    color: #000000;
+    background-color: #ffffff;
+    cursor: pointer;
+    overflow-x: hidden;
+    overflow-y: hidden;
     .fa {
-      color: #44b224;
-      font-size: 18px;
-      float: right;
-      position: relative;
-      top: -27px;
-      right: 9px;
+      margin-right: 10px;
+    }
+    &:hover {
+      color: #ffffff;
+      background-color: @joyfulHomeGreen;
     }
   }
-    .header-search input {
-      padding: 10px;
-      border-radius: 5px;
-      width: 100%;
-      border: 1px solid #ccc;
-      &:focus {
-        border: 1px solid #666;
-        outline: none;
-      }
-    }
+}
+
 

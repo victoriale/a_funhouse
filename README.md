@@ -1,9 +1,12 @@
 # JoyfulHome-Frontend
+
+install the latest version of node.js https://nodejs.org/en/
+
 Be sure to be in the `develop` branch
 
 install each one individually
 
-1. `npm install`
+1. `npm install` (individually
 
       a.`-g gulp-cli`
 

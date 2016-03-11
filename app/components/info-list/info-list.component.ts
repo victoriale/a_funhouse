@@ -17,6 +17,7 @@ export class InfoListComponent{
         if(typeof this.infoList === 'undefined'){
             this.infoList =
             {
+                'bgClass': 'odd',
                 'address': '[Listing Address]',
                 'type': '[Home Type]: [#] Beds & [#] Baths',
                 'date': '[MM/DD/YYYY]',
