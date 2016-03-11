@@ -13,6 +13,13 @@ export class FooterComponent{
     isMyHouseKit: boolean = false;
     title = "National Real Estate";
 
+    // Get current URL for social sharing
+    currentUrl: string = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname;
+
+    constructor() {
+        console.log(this.currentUrl);
+    }
+
     states = [
         { "name": "Alabama", "url": "#" },
         { "name": "Alaska", "url": "#" },

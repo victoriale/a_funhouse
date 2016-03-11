@@ -72,6 +72,6 @@ import {FeatureTilesComponent} from "../components/feature-tiles/feature-tiles.c
 
 export class AppComponent {
     partner_id: string = "latimes.com";
-    cityStateLocation: string = "WICHITA_KS";
+    cityStateLocation: string = "Wichita-KS";
     address: string = "503-C-Avenue-Vinton-IA";
 }
