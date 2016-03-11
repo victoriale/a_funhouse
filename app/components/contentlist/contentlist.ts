@@ -1,12 +1,13 @@
 import {Component, Input, OnInit} from 'angular2/core';
 import {List} from '../../global/global-interface';
 import {ListOfListService} from '../../global/global-service';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({
     selector: 'contentlist',
     templateUrl: './app/components/contentlist/contentlist.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [],
+    directives: [ROUTER_DIRECTIVES],
     providers: [ListOfListService],
 })
 
