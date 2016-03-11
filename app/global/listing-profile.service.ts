@@ -4,7 +4,6 @@ import {Http, Headers} from 'angular2/http';
 @Injectable()
 
 export class ListingProfileService{
-    result: Object;
     constructor(public http: Http){
 
     }
