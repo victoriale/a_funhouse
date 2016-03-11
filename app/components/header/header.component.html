@@ -2,10 +2,10 @@
     <div class="container">
         <div class="header-top-bar row">
             <div *ngIf="isMyHouseKit === false" class="tagline six columns">
-                <a href="#">Joyful Home | A Little Place to Call Home</a>
+                <a href="/">Joyful Home | A Little Place to Call Home</a>
             </div>
             <div *ngIf="isMyHouseKit === true" class="tagline six columns">
-                <a href="#">MyHouseKit | A Little Place to Call Home</a>
+                <a href="/">MyHouseKit | A Little Place to Call Home</a>
             </div>
             <div class="directory-link six columns">
                 <a (click)="directoryToggle()">Directories</a>
@@ -22,7 +22,7 @@
     <div class="container">
         <div class="header-bottom-bar row">
             <div *ngIf="isMyHouseKit === false" class="header-logo six columns">
-                <img src="./app/public/joyful_home_logo.png" width="147px" height="27px" alt="Joyful Home | A Little Place to Call Home"/>
+                <a href="/"><img src="./app/public/joyful_home_logo.png" width="147px" height="27px" alt="Joyful Home | A Little Place to Call Home"/></a>
             </div>
             <div *ngIf="isMyHouseKit === true" class="header-logo six columns">gu
             </div>
