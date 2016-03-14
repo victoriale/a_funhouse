@@ -50,5 +50,6 @@ export class FeaturedListsModule implements OnInit{
             detail2: 'Asking Price: ',
             detail3: '$[###,###]'
         }
+
     }
 }

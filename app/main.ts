@@ -4,9 +4,10 @@
 import {bootstrap}    from 'angular2/platform/browser'
 import {ROUTER_PROVIDERS, ROUTER_DIRECTIVES} from 'angular2/router'
 import {AppDomain} from './app-domain/app-domain'
+import {GlobalFunctions} from './global/global-functions'
 
 // Needed for http map on observables
 import 'rxjs/add/operator/map';
 import {HTTP_PROVIDERS} from "angular2/http";
 import jQuery = require('jquery');
-bootstrap(AppDomain,[ROUTER_PROVIDERS, HTTP_PROVIDERS, ROUTER_DIRECTIVES]);
+bootstrap(AppDomain,[ROUTER_PROVIDERS, HTTP_PROVIDERS, ROUTER_DIRECTIVES, GlobalFunctions]);
