@@ -14,7 +14,7 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 export class ExploreTilesComponent{
 
     tileLocations = ["Wichita, KS", "Derby, KS", "Haysville, KS", "Valley Center, KS", "Mulvane, KS"];
-    tileUrls = ["Wichita-KS", "Derby-KS", "Haysville-KS", "Valley Center-KS", "Mulvane-KS"];
+    tileUrls = ["WICHITA_KS", "DERBY_KS", "HAYSVILLE_KS", "VALLEY CENTER_KS", "MULVANE_KS"];
 
     constructor(){
         console.log(this.tileLocations, this.tileUrls);
