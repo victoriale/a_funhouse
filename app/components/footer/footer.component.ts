@@ -1,23 +1,23 @@
-import {Component} from 'angular2/core';
-import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from "angular2/router";
+import {Component, OnInit} from 'angular2/core';
+import {ROUTER_DIRECTIVES} from "angular2/router";
 
 @Component({
     selector: 'footer-component',
     templateUrl: './app/components/footer/footer.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [ROUTER_DIRECTIVES],
-    providers: [ROUTER_PROVIDERS],
+    providers: [],
 })
 
-export class FooterComponent{
+export class FooterComponent implements OnInit {
     isMyHouseKit: boolean = false;
     title = "National Real Estate";
+    currentUrl: any;
 
-    // Get current URL for social sharing
-    currentUrl: string = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname;
-
-    constructor() {
-        console.log(this.currentUrl);
+    ngOnInit() {
+        // Get current URL for social sharing
+        this.currentUrl = window.location.href;
+        console.log('Current URL', this.currentUrl);
     }
 
     states = [
