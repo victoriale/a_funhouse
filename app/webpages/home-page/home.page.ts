@@ -9,6 +9,7 @@ import {ExploreButtonComponent} from "../../components/buttons/explore-button/ex
 import {HeroBottomComponent} from "../../components/hero/hero-bottom/hero-bottom.component";
 import {FeatureTilesComponent} from "../../components/feature-tiles/feature-tiles.component";
 import {GeoLocationService} from "../../global/geo-location.service";
+import map = webdriver.promise.map;
 
 @Component({
     selector: 'PartnerHomePage',
@@ -20,11 +21,9 @@ import {GeoLocationService} from "../../global/geo-location.service";
 
 export class HomePage implements OnInit {
 
-    //Geo location call
-    //http://w1.synapsys.us/listhuv/?action=get_remote_addr
-
     public geoLocationData: Object;
     city: string;
+    state: string;
 
     // Buttons
     buttonTitle: string;
@@ -41,11 +40,19 @@ export class HomePage implements OnInit {
         window.scrollTo(0, 0);
     }
 
-    getGeo() {
+    getGeoLocation() {
+        this._geoLocationService.getGeoLocation()
+            .subscribe(
+                geoLocationData => {
+                    this.city = geoLocationData[0].city;
+                    this.state = geoLocationData[0].state;
+                }
+            );
     }
 
     ngOnInit() {
-        this.getGeo();
+
+        this.getGeoLocation();
 
         // Buttons
         this.buttonTitle = "More";
