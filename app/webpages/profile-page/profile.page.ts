@@ -29,28 +29,28 @@ import {ListingProfileService} from '../../global/listing-profile.service';
 })
 
 export class ProfilePage implements OnInit{
-    public headline_about = {
+    public headlineAbout  = {
         title: 'About [Listing Name]',
         icon: 'fa-map-marker'
     };
-    public headline_crime = {
+    public headlineCrime  = {
         title: 'Most Recent Crimes in [Listing Name]',
         icon: 'fa-gavel'
     };
-    public headline_amenities = {
+    public headlineAmenities = {
         title: 'Amenities in [Listing Name]',
         icon: 'fa-cutlery'
     };
-    public headline_otherHomes = {
+    public headlineOtherHomes = {
         title: 'Other Homes You May Be Interested In',
         icon: 'fa-heart-o'
     };
-    public headline_interact = {
+    public headlineInteract = {
         title: 'Interact with Joyful Home',
         icon: 'fa-comment-o'
     };
-    public media_feature = false;
-    public trending_feature = true;
+    public mediaFeature = false;
+    public trendingFeature = true;
 
     public paramAddress: string;
 

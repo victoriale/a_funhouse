@@ -5,13 +5,13 @@
                 <!-- Modules Go Here -->
 
                 <!-- About Section -->
-                <headline-component [data]="headline_about"></headline-component>
+                <headline-component [data]="headlineAbout"></headline-component>
 
                 <!--Listing Profile Header-->
                 <profile-header [profileHeaderData]="profileHeaderData | async"></profile-header>
 
                 <!--Media Feature Section-->
-                <media-features-module [trending]="media_feature"></media-features-module>
+                <media-features-module [trending]="mediaFeature"></media-features-module>
 
                 <!--Map Section-->
 
@@ -19,23 +19,23 @@
                 <comment-module></comment-module>
 
                 <!-- Crime Section -->
-                <headline-component [data]="headline_crime"></headline-component>
+                <headline-component [data]="headlineCrime"></headline-component>
                 <crime-module></crime-module>
 
                 <!-- Amenities Section -->
-                <headline-component [data]="headline_amenities"></headline-component>
+                <headline-component [data]="headlineAmenities"></headline-component>
                 <amenities-module></amenities-module>
                 <!-- Other Homes Section -->
-                <headline-component [data]="headline_otherHomes"></headline-component>
+                <headline-component [data]="headlineOtherHomes"></headline-component>
 
                 <!--Trending Section-->
-                <trending-homes [trending]="media_feature"></trending-homes>
+                <trending-homes [trending]="trendingFeature"></trending-homes>
 
                 <!--List of List Section-->
                 <list-of-lists-module></list-of-lists-module>
 
                 <!-- Interact Section -->
-                <headline-component [data]="headline_interact"></headline-component>
+                <headline-component [data]="headlineInteract"></headline-component>
 
                 <!--Feature List Module-->
                 <featured_lists-module></featured_lists-module>
