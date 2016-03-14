@@ -22,6 +22,7 @@ export class ProfileHeader implements OnInit{
     public descriptionAddress: string;
     public descriptionSquareFeet: string;
     public descriptionContact: string;
+    public descriptionLocation: string;
     public emailLink: string;
     public mainImageURL: string;
     public subImageURL: string;
@@ -48,38 +49,69 @@ export class ProfileHeader implements OnInit{
 
     transformData(){
         var data = this.profileHeaderData;
+        //Sanitize city value
+        data.city = this.toTitleCase(data.city);
 
-        this.titleComponentData = {
-            imageURL: data.listingImage,
-            //Unused field of component for this module
-            smallText: '',
-            smallText2: data.city + ', ' + data.state,
-            heading1: data.address,
-            heading2: data.listingStatus === null ? '' : '- ' + data.listingStatus,
-            heading3: 'Listing Price: $' + this.commaSeparateNumber(data.listingPrice),
-            heading4: data.squareFeet === null ? '' : '- Area: ' + this.commaSeparateNumber(data.squareFeet) + ' Sq ft.',
-            icon: 'fa fa-map-marker',
-            hasHover: false,
-            originalLink: data.originalLink
-        };
-        //Build profile header description
-        this.descriptionAddress = 'The listing is located at ' + data.address + ', ' + data.city + ', ' + data.state + '.';
-        this.descriptionSquareFeet = data.squareFeet === null ? '' : 'The living area is around ' + this.commaSeparateNumber(data.squareFeet) + ' sq ft.';
-        this.descriptionContact = '';
-        if(data.phoneNumber !== null && data.officeNumber !== null && data.phoneNumber !== data.officeNumber){
-            this.descriptionContact += 'at the phone number ' + this.formatPhoneNumber(data.phoneNumber) + ', or their office phone number ' + this.formatPhoneNumber(data.officeNumber) + '.';
-        }else if(data.phoneNumber !== null && data.officeNumber !== null && data.phoneNumber === data.officeNumber){
-            this.descriptionContact += 'at the phone number ' + this.formatPhoneNumber(data.phoneNumber) + '.';
-        }else if(data.phoneNumber !== null && data.officeNumber === null){
-            this.descriptionContact += 'at the phone number ' + this.formatPhoneNumber(data.phoneNumber) + '.';
-        }else if(data.phoneNumber === null && data.officeNumber !== null){
-            this.descriptionContact += 'at their office number ' + this.formatPhoneNumber(data.officeNumber) + '.';
+        if(this.profileType== 'LocationPage'){
+            //Location Profile Header
+
+            this.titleComponentData = {
+                imageURL: null,
+                //Unused field of component for this module
+                smallText: '',
+                smallText2: 'Last Updated: ',
+                heading1: data.city + ', ' + data.state,
+                heading2: '',
+                heading3: this.commaSeparateNumber(data.numberOfListings) + ' Listings Available for Sale',
+                heading4: '',
+                icon: 'fa fa-map-marker',
+                hasHover: false
+            }
+
+            this.descriptionTitle = data.city + ', ' + data.state;
+            this.descriptionLocation = 'Did you know that';
+
+            this.descriptionLocation += data.averageAge === null ? '' : ' the average age for a ' + data.city + ' resident is ' + data.averageAge + ',';
+            this.descriptionLocation += data.averageRentalPrice === null ? '' : ' the average rental price is $' + this.commaSeparateNumber(data.averageRentalPrice) + '/month,';
+            this.descriptionLocation += data.averageListingPrice === null ? '?' : ' and the average home sells for $' + this.commaSeparateNumber(data.averageListingPrice) + '?';
+            this.mainImageURL = null;
+
+        }else if(this.profileType === 'ProfilePage') {
+            //Listing Profile Header
+
+            this.titleComponentData = {
+                imageURL: data.listingImage,
+                //Unused field of component for this module
+                smallText: '',
+                smallText2: data.city + ', ' + data.state,
+                heading1: data.address,
+                heading2: data.listingStatus === null ? '' : '- ' + data.listingStatus,
+                heading3: 'Listing Price: $' + this.commaSeparateNumber(data.listingPrice),
+                heading4: data.squareFeet === null ? '' : '- Area: ' + this.commaSeparateNumber(data.squareFeet) + ' Sq ft.',
+                icon: 'fa fa-map-marker',
+                hasHover: false,
+                originalLink: data.originalLink
+            };
+            //Build profile header description
+            this.descriptionAddress = 'The listing is located at ' + data.address + ', ' + data.city + ', ' + data.state + '.';
+            this.descriptionSquareFeet = data.squareFeet === null ? '' : 'The living area is around ' + this.commaSeparateNumber(data.squareFeet) + ' sq ft.';
+            this.descriptionContact = '';
+            if (data.phoneNumber !== null && data.officeNumber !== null && data.phoneNumber !== data.officeNumber) {
+                this.descriptionContact += 'at the phone number ' + this.formatPhoneNumber(data.phoneNumber) + ', or their office phone number ' + this.formatPhoneNumber(data.officeNumber) + '.';
+            } else if (data.phoneNumber !== null && data.officeNumber !== null && data.phoneNumber === data.officeNumber) {
+                this.descriptionContact += 'at the phone number ' + this.formatPhoneNumber(data.phoneNumber) + '.';
+            } else if (data.phoneNumber !== null && data.officeNumber === null) {
+                this.descriptionContact += 'at the phone number ' + this.formatPhoneNumber(data.phoneNumber) + '.';
+            } else if (data.phoneNumber === null && data.officeNumber !== null) {
+                this.descriptionContact += 'at their office number ' + this.formatPhoneNumber(data.officeNumber) + '.';
+            }
+            //Build email link for realtor
+            this.emailLink = data.email === null ? '' : 'mailto:' + data.email;
+            this.mainImageURL = data.listingImage;
+            this.subImageURL = data.brokerageLogoURL;
+            this.descriptionTitle = 'Read more about this listing';
+
         }
-        //Build email link for realtor
-        this.emailLink = data.email === null ? '' : 'mailto:' + data.email;
-        this.mainImageURL = data.listingImage;
-        this.subImageURL = data.brokerageLogoURL;
-        this.descriptionTitle = 'Read more about this listing';
     }
 
     formatPhoneNumber(val){
@@ -102,6 +134,10 @@ export class ProfileHeader implements OnInit{
             val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
         }
         return val;
+    }
+
+    toTitleCase = function(str){
+        return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     }
 
     //Initialization Call

@@ -7,12 +7,14 @@ import {CrimeModule} from '../../modules/crime/crime.module';
 import {FeaturedListsModule} from '../../modules/featured_lists/featured_lists.module';
 import {InfoListModule} from "../../modules/infolist/info-list.module";
 
+import {LocationProfileService} from '../../global/location-profile.service';
+
 @Component({
     selector: 'location-page',
     templateUrl: './app/webpages/location-page/location.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, InfoListModule],
-    providers: [],
+    providers: [LocationProfileService],
 })
 
 export class LocationPage implements OnInit {
@@ -25,17 +27,21 @@ export class LocationPage implements OnInit {
     public headlineCrime: any;
     public headlineAmenities: any;
     public headlineInteract: any;
-    public profile_type: string;
+    public profileHeaderData: Object;
 
-    constructor(private _params: RouteParams) {
+    constructor(private _params: RouteParams, private _locationProfileService: LocationProfileService) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }
 
+    getLocationData(){
+        this.profileHeaderData = this._locationProfileService.getLocationProfile(this.locCity, this.locState);
+    }
+
     ngOnInit() {
         this.loc = this._params.get('loc');
-        this.locCity = this.loc.split('-')[0];
-        this.locState = this.loc.split('-')[1];
+        this.locCity = this.loc.split('_')[0];
+        this.locState = this.loc.split('_')[1];
         this.locDisplay = decodeURI(this.locCity + ', ' + this.locState);
 
         this.headlineAbout = {
@@ -58,9 +64,9 @@ export class LocationPage implements OnInit {
             icon: 'fa-comment-o'
         };
 
-        this.profile_type = 'location';
-
         console.log('City, State: ', this.locDisplay);
+
+        this.getLocationData();
     }
 
 }
