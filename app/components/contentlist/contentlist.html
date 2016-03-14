@@ -1,7 +1,7 @@
 <div class="contentlist">
     <div class='imagebox'>
         <a href=''>
-            <img src='{{lol.bigImage}}' alt='' />
+            <img src='{{data.bigImage}}' alt='' />
             <div>
                 <p>View</p>
                 <p>Profile</p>
@@ -9,14 +9,13 @@
         </a>
     </div>
     <div class="contentbox">
-      <!-- <a [routerLink]="['../../Magazine','Page']">Magazine Page</a> -->
         <a href="">
-            <span><i class="fa fa-map-marker"></i>{{lol.location}}</span>
+            <span><i class="fa fa-map-marker"></i>{{data.location}}</span>
         </a>
-        <span title="{{lol.title}}">{{lol.title}}</span>
+        <span title="{{data.title}}">{{data.title}}</span>
         <div class="content_bottom">
             <div class='contentsubbox'>
-                <a *ngFor="#sImg of lol.smallImage" href=''>
+                <a *ngFor="#sImg of data.smallImage" href=''>
                     <img src='{{sImg}}' alt='' />
                     <div><i class='fa fa-share'></i></div>
                 </a>

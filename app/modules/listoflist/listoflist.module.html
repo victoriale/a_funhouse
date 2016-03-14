@@ -1,7 +1,7 @@
 <section class="module-container">
     <module-header [module_title]="module_title"></module-header>
-    <span *ngFor="#lol of lists">
-        <contentlist [lol]="lol"></contentlist>
+    <span *ngFor="#item of lists">
+        <contentlist [data]="item"></contentlist>
     </span>
     <module-footer></module-footer>
 </section>
