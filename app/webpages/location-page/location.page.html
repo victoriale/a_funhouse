@@ -5,20 +5,30 @@
                 <!-- Modules Go Here -->
 
                 <!-- About Section -->
-                <headline-component [data]="headline_about"></headline-component>
-                <profile-header [profile_type]="profile_type"></profile-header>
+                <headline-component [data]="headlineAbout"></headline-component>
+                <profile-header [profileHeaderData]="profileHeaderData | async"></profile-header>
+                <comment-module></comment-module>
                 <info-list-module></info-list-module>
 
                 <!-- Crime Section -->
-                <headline-component [data]="headline_crime"></headline-component>
+                <headline-component [data]="headlineCrime"></headline-component>
                 <crime-module></crime-module>
 
                 <!-- Amenities Section -->
-                <headline-component [data]="headline_amenities"></headline-component>
+                <headline-component [data]="headlineAmenities"></headline-component>
+
+                <amenities-module></amenities-module>
 
                 <!-- Interact Section -->
-                <headline-component [data]="headline_interact"></headline-component>
-                <featured_lists-module></featured_lists-module>
+                <headline-component [data]="headlineInteract"></headline-component>
+                <featured-lists-module></featured-lists-module>
+
+                <!--Share Module-->
+                <share-module></share-module>
+                <!--Like Us On FB Module-->
+                <like-us-module></like-us-module>
+                <!--Learn More About Us-->
+                <about-us-module></about-us-module>
 
             </section>
             <aside class="four columns">

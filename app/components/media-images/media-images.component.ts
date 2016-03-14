@@ -12,7 +12,7 @@ import {List2} from '../../global/global-interface';
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [CircleButton],
     providers: [MediaFeatureList],
-    inputs: ['']
+    inputs: ['trending']
 })
 export class MediaImages implements OnInit {
     BatchTwo: List2[];
@@ -24,13 +24,11 @@ export class MediaImages implements OnInit {
 
     getData(){
     console.log(this);
-        console.log(this._featureList.getBatchTwo());
         this._featureList.getBatchTwo().then(batch2 => this.BatchTwo = batch2);
     }
 
     ngOnInit(){
         this.getData();
-        this.trending = false;
         console.log(this);
     }
 }

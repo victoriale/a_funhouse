@@ -27,10 +27,10 @@ export interface List2 {
 
 //Interface for Listing Profile Header Module
 export interface ListingProfileHeaderInterface {
+    //Listing data
     address: string;
     agent: string;
     brokerageLogoURL: string;
-    city: string;
     email: string;
     lastUpdated: string;
     listingID: string;
@@ -41,8 +41,15 @@ export interface ListingProfileHeaderInterface {
     originalLink: string;
     phoneNumber: number;
     squareFeet: string;
-    state: string;
     zipCode: string;
+    //Location data
+    numberOfListings: string;
+    averageListingPrice: string;
+    averageRentalPrice: string;
+    averageAge: string;
+    //Shared data
+    city: string;
+    state: string;
 }
 
 export interface MagHeaderData {

@@ -1,15 +1,15 @@
-<section *ngIf="profileHeaderData" class="module-container ph">
+<section *ngIf="profileHeaderData" class="module-container">
     <title-component [data]="titleComponentData"></title-component>
-    <section class="header">
-        <div class="img">
+    <section class="ph-content">
+        <div class="ph-content-image">
             <image-180 [hasSubImg]="main_hasSubImg" [imageURL]="mainImageURL" [imageURL2]="subImageURL"></image-180>
         </div>
-        <div class="hding">
-            <div class="hding-desc">
-                <div class="hding-desc-icon"><i class="fa {{icon}}"></i></div>
-                <div class="hding-desc-title">{{descriptionTitle}}</div>
+        <div class="ph-content-description">
+            <div class="ph-content-description-title">
+                <div class="ph-content-description-title-icon"><i class="fa {{icon}}"></i></div>
+                <div class="ph-content-description-title-text">{{descriptionTitle}}</div>
             </div>
-            <div class="hding-pag">
+            <div *ngIf="profileType === 'ProfilePage'" class="ph-content-description-text">
                 {{descriptionAddress}}
                 {{descriptionSquareFeet}}
                 <span *ngIf="profileHeaderData.agent !== null">
@@ -22,6 +22,9 @@
                     </span>
                     {{descriptionContact}}
                 </span>
+            </div>
+            <div *ngIf="profileType === 'LocationPage'" class="ph-content-description-text">
+                {{descriptionLocation}}
             </div>
         </div>
     </section>
