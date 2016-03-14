@@ -15,9 +15,16 @@
 <div class="list-carousel-footer">
     <div class="left">
         <p>Interested in discovering more about [List Name]?</p>
-        <p>Profile Last Updated On: 03/14/2016</p>
+        <p class="list-updated">Profile Last Updated On: 03/14/2016</p>
     </div>
     <div class="right">
-
+        <a href='' class='list-page-button'>
+            <span></span>
+            <span>See The List</span>
+            <i class='fa fa-angle-right'></i>
+        </a>
     </div>
 </div>
+<span *ngFor="#lol of lists">
+    <contentlist [lol]="lol"></contentlist>
+</span>

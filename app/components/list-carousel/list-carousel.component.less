@@ -57,12 +57,21 @@
   height: 76px;
   font-family: @globalFont;
   color: @white;
+  font-weight: 400;
   .flexDisplay;
-  &-left {
-
+  .left {
+    .flexJustify(space-between);
+    font-size: 18px;
+    padding: 17px;
+    .list-updated {
+      font-size: 14px;
+    }
   }
-  &-right {
-
+  .right {
+    .flexJustify(space-between);
+    padding: 17px;
+    margin-left: 40px;
+    float: right;
   }
 }
 
@@ -91,5 +100,33 @@
   &:hover{
     color: @hoverColor;
     border-color: @hoverColor;
+  }
+}
+
+.list-page-button {
+  .inlineFlexDisplay;
+  .flexDirection(row);
+  .flexAlignItems(center);
+  width: 180px;
+  height: 35px;
+  background-color: @masterBrandColor;
+  .borderRadiusPrefix(5px);
+  span:first-child {
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+    //background-image: url('Icon-basketball.png');
+  }
+  span:nth-child(2) {
+    .globalDefaultModFont(14px, 400, @white);
+    margin-left: 10px;
+  }
+  i {
+    margin: 0 10px 0 10px;
+    color: @white;
+    font-weight: 400;
+  }
+  &:hover {
+    background-color: darken(@masterBrandColor, 10%);
   }
 }
