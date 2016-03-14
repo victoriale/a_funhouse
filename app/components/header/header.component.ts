@@ -13,10 +13,10 @@ export class HeaderComponent{
 
     public isHomePage: boolean = false;
     public isMyHouseKit: boolean = false;
-    visible: boolean;
+    directoryVisible: boolean;
 
     constructor() {
-       this.visible = false;
+       this.directoryVisible = false;
     }
 
     directoryList = [
@@ -42,7 +42,7 @@ export class HeaderComponent{
     ];
 
     directoryToggle() {
-        this.visible = !this.visible;
+        this.directoryVisible = !this.directoryVisible;
     }
 
 }
