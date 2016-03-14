@@ -11,7 +11,7 @@
                 <profile-header [profileHeaderData]="profileHeaderData | async"></profile-header>
 
                 <!--Media Feature Section-->
-                <media-features-module [trending]="media_feature"></media-features-module>
+                <media-features-module [trending]="mediaFeature"></media-features-module>
 
                 <!--Map Section-->
 
@@ -27,7 +27,9 @@
                 <amenities-module></amenities-module>
                 <!-- Other Homes Section -->
                 <headline-component [data]="headlineOtherHomes"></headline-component>
-                <media-images [trending]="trending_feature"></media-images>
+
+                <!--Trending Section-->
+                <trending-homes [trending]="trendingFeature"></trending-homes>
 
                 <!--List of List Section-->
                 <list-of-lists-module></list-of-lists-module>

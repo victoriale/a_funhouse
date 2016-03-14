@@ -114,7 +114,6 @@ export class MediaFeatureList{
                 ],
             }
         ];
-        console.log(BatchTwo);
         return Promise.resolve(BatchTwo);
     }
 }

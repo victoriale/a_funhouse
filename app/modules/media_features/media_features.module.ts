@@ -25,7 +25,6 @@ export class MediaFeatureModule implements OnInit{
     details = "Price: $749,000";
     ngOnInit(){
         this.module_title = 'Property Images, Media & Features for [Profile Name]';
-        this.trending = true;
+        this.trending = false;
     }
 }
-
