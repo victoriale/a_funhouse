@@ -177,7 +177,7 @@ export class MagazineMap {
                 city: "Bel Aire",
                 state: "KS",
                 zipcode: "67226",
-                list_price: "420000",
+                list_price: 420000,
                 lat: 37.7752626,
                 lng: -97.24967,
                 geocoded: {
@@ -186,12 +186,12 @@ export class MagazineMap {
                         location_type: "ROOFTOP",
                         viewport: {
                             northeast: {
-                                lat: "37.77661158029149",
-                                lng: "-97.2483210197085"
+                                lat: 37.77661158029149,
+                                lng: -97.2483210197085
                             },
                             southwest: {
-                                lat: "37.77391361970849",
-                                lng: "-97.2510189802915"
+                                lat: 37.77391361970849,
+                                lng: -97.2510189802915
                             }
                         }
                     }
@@ -205,7 +205,7 @@ export class MagazineMap {
                 city: "Wichita",
                 state: "KS",
                 zipcode: "67226",
-                list_price: "1650000",
+                list_price: 1650000,
                 lat: 37.7422435,
                 lng: -97.2383007,
                 geocoded: {
@@ -214,12 +214,12 @@ export class MagazineMap {
                         location_type: "ROOFTOP",
                         viewport: {
                             northeast: {
-                                lat: "37.7435924802915",
-                                lng: "-97.2369517197085"
+                                lat: 37.7435924802915,
+                                lng: -97.2369517197085
                             },
                             southwest: {
-                                lat: "37.7408945197085",
-                                lng: "-97.2396496802915"
+                                lat: 37.7408945197085,
+                                lng: -97.2396496802915
                             }
                         }
                     }
@@ -233,7 +233,7 @@ export class MagazineMap {
                 city: "Bel Aire",
                 state: "KS",
                 zipcode: "67226",
-                list_price: "194900",
+                list_price: 194900,
                 lat: 37.7708346,
                 lng: -97.25989129999999,
                 geocoded: {
@@ -241,23 +241,23 @@ export class MagazineMap {
                     geometry: {
                         bounds: {
                             northeast: {
-                                lat: "37.795964",
-                                lng: "-97.1897609"
+                                lat: 37.795964,
+                                lng: -97.1897609
                             },
                             southwest: {
-                                lat: "37.752288",
-                                lng: "-97.280773"
+                                lat: 37.752288,
+                                lng: -97.280773
                             }
                         },
                         location_type: "APPROXIMATE",
                         viewport: {
                             northeast: {
-                                lat: "37.795964",
-                                lng: "-97.1897609"
+                                lat: 37.795964,
+                                lng: -97.1897609
                             },
                             southwest: {
-                                lat: "37.752288",
-                                lng: "-97.280773"
+                                lat: 37.752288,
+                                lng: -97.280773
                             }
                         }
                     }
@@ -271,7 +271,7 @@ export class MagazineMap {
                 city: "Bel Aire",
                 state: "KS",
                 zipcode: "67226",
-                list_price: "2300",
+                list_price: 2300,
                 lat: 37.7761102,
                 lng: -97.2521558,
                 geocoded: {
@@ -279,23 +279,23 @@ export class MagazineMap {
                     geometry: {
                         bounds: {
                             northeast: {
-                                lat: "37.7761208",
-                                lng: "-97.2521427"
+                                lat: 37.7761208,
+                                lng: -97.2521427
                             },
                             southwest: {
-                                lat: "37.7761102",
-                                lng: "-97.2521558"
+                                lat: 37.7761102,
+                                lng: -97.2521558
                             }
                         },
                         location_type: "RANGE_INTERPOLATED",
                         viewport: {
                             northeast: {
-                                lat: "37.777464480291",
-                                lng: "-97.250800269708"
+                                lat: 37.777464480291,
+                                lng: -97.250800269708
                             },
                             southwest: {
-                                lat: "37.774766519708",
-                                lng: "-97.253498230291"
+                                lat: 37.774766519708,
+                                lng: -97.253498230291
                             }
                         }
                     }
@@ -309,7 +309,7 @@ export class MagazineMap {
                 city: "Wichita",
                 state: "KS",
                 zipcode: "67226",
-                list_price: "224900",
+                list_price: 224900,
                 lat: 37.730161,
                 lng: -97.222556,
                 geocoded: {
@@ -318,12 +318,12 @@ export class MagazineMap {
                         location_type: "ROOFTOP",
                         viewport: {
                             northeast: {
-                                lat: "37.73150998029149",
-                                lng: "-97.2212070197085"
+                                lat: 37.73150998029149,
+                                lng: -97.2212070197085
                             },
                             southwest: {
-                                lat: "37.72881201970849",
-                                lng: "-97.22390498029151"
+                                lat: 37.72881201970849,
+                                lng: -97.22390498029151
                             }
                         }
                     }

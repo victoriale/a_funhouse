@@ -126,22 +126,33 @@ export interface MagMapData {
     listhub_key: string;
     street_address: string;
     city: string;
+    state: string;
     zipcode: string;
-    list_price?: string;
+    list_price?: number;
     lat: number;
     lng: number;
     geocoded: {
         normalized_address: string;
         geometry: {
+            bounds?: {
+                northeast?: {
+                    lat: number;
+                    lng: number;
+                }
+                southwest?: {
+                    lat: number;
+                    lng: number;
+                }
+            }
             location_type: string;
             viewport: {
                 northeast: {
-                    lat: string;
-                    lng: string;
+                    lat: number;
+                    lng: number;
                 }
                 southwest: {
-                    lat: string;
-                    lng: string;
+                    lat: number;
+                    lng: number;
                 }
             }
         }

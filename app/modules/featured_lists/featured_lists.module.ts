@@ -13,7 +13,7 @@ import {FeatureComponent} from '../../components/feature-list/feature-list.compo
 })
 
 export class FeaturedListsModule implements OnInit{
-    module_title: string;
+    moduleTitle: string;
     tileData: Object;
     listData: Object;
 
