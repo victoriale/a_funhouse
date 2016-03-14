@@ -15,6 +15,8 @@ import {ShareModule} from "../../modules/share/share.module";
 import {AmenitiesModule} from "../../modules/amenities/amenities.module";
 import {FeaturedListsModule} from '../../modules/featured_lists/featured_lists.module';
 import {MediaImages} from "../../components/media-images/media-images.component";
+import {TrendingHomes} from "../../modules/trending-homes/trending-homes.module";
+
 
 import {ListingProfileService} from '../../global/listing-profile.service';
 
@@ -22,28 +24,28 @@ import {ListingProfileService} from '../../global/listing-profile.service';
     selector: 'profile-page',
     templateUrl: './app/webpages/profile-page/profile.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [MediaImages, HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs, ShareModule, FeaturedListsModule, AmenitiesModule],
+    directives: [TrendingHomes, MediaImages, HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs, ShareModule, FeaturedListsModule, AmenitiesModule],
     providers: [ListingProfileService]
 })
 
 export class ProfilePage implements OnInit{
-    public headlineAbout = {
+    public headline_about = {
         title: 'About [Listing Name]',
         icon: 'fa-map-marker'
     };
-    public headlineCrime = {
+    public headline_crime = {
         title: 'Most Recent Crimes in [Listing Name]',
         icon: 'fa-gavel'
     };
-    public headlineAmenities = {
+    public headline_amenities = {
         title: 'Amenities in [Listing Name]',
         icon: 'fa-cutlery'
     };
-    public headlineOtherHomes = {
+    public headline_otherHomes = {
         title: 'Other Homes You May Be Interested In',
         icon: 'fa-heart-o'
     };
-    public headlineInteract = {
+    public headline_interact = {
         title: 'Interact with Joyful Home',
         icon: 'fa-comment-o'
     };

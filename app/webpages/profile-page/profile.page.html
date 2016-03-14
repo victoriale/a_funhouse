@@ -5,7 +5,7 @@
                 <!-- Modules Go Here -->
 
                 <!-- About Section -->
-                <headline-component [data]="headlineAbout"></headline-component>
+                <headline-component [data]="headline_about"></headline-component>
 
                 <!--Listing Profile Header-->
                 <profile-header [profileHeaderData]="profileHeaderData | async"></profile-header>
@@ -19,21 +19,23 @@
                 <comment-module></comment-module>
 
                 <!-- Crime Section -->
-                <headline-component [data]="headlineCrime"></headline-component>
+                <headline-component [data]="headline_crime"></headline-component>
                 <crime-module></crime-module>
 
                 <!-- Amenities Section -->
-                <headline-component [data]="headlineAmenities"></headline-component>
+                <headline-component [data]="headline_amenities"></headline-component>
                 <amenities-module></amenities-module>
                 <!-- Other Homes Section -->
-                <headline-component [data]="headlineOtherHomes"></headline-component>
-                <media-images [trending]="trending_feature"></media-images>
+                <headline-component [data]="headline_otherHomes"></headline-component>
+
+                <!--Trending Section-->
+                <trending-homes [trending]="media_feature"></trending-homes>
 
                 <!--List of List Section-->
                 <list-of-lists-module></list-of-lists-module>
 
                 <!-- Interact Section -->
-                <headline-component [data]="headlineInteract"></headline-component>
+                <headline-component [data]="headline_interact"></headline-component>
 
                 <!--Feature List Module-->
                 <featured_lists-module></featured_lists-module>
