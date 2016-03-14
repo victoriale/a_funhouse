@@ -1,23 +1,27 @@
-<div class="content-wrapper">
-    <div class="container">
-        <main class='row'>
-            <section class='content-main eight columns'>
-                <section class="page-container lv">
-                    <div class="menu">
-                        <span><i class="fa fa-th-list"></i> LIST</span>
-                        <span><i class="fa fa-file-photo-o"></i> PHOTO</span>
-                        <span><i class="fa fa-compass"></i> MAP</span>
-                    </div>
+<section class="page-container lv">
+  <div class="lv-menu">
+      <span><i class="fa fa-th-list"></i> LIST</span>
+      <span><i class="fa fa-file-photo-o"></i> PHOTO</span>
+      <span><i class="fa fa-compass"></i> MAP</span>
+  </div>
 
-                    <list-vew-carousel></list-vew-carousel>
+  <list-vew-carousel></list-vew-carousel>
+  <div class="lv-sort">
+    <dropdown-component></dropdown-component>
+    <div class="lv-sort-filter">Filter <i class="fa fa-cog"></i></div>
+  </div>
 
-
-                </section>
-
-            </section>
-            <aside class="four columns">
-                <div class="widget"></div>
-            </aside>
-        </main>
+  <div *ngFor="#data of amenitiesView" class="lv-image">
+    <img src='{{data.imageURL}}' class="lv-image-placeHolder" />
+    <div class="lv-image-details">
+      <div>{{data.homePrice}}</div>
+      <div>{{data.address}}</div>
+      <div>
+          <span>{{data.bedrooms}}</span> |
+          <span>{{data.bathrooms}}</span> |
+          <span>{{data.area}}</span>
+      </div>
     </div>
-</div>
+  </div>
+
+</section>
