@@ -5,7 +5,7 @@ import {TilesComponent} from '../../components/tiles/tiles.component';
 import {FeatureComponent} from '../../components/feature-list/feature-list.component';
 
 @Component({
-    selector: 'featured_lists-module',
+    selector: 'featured-lists-module',
     templateUrl: './app/modules/featured_lists/featured_lists.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [moduleHeader, TilesComponent, FeatureComponent],
@@ -14,8 +14,8 @@ import {FeatureComponent} from '../../components/feature-list/feature-list.compo
 
 export class FeaturedListsModule implements OnInit{
     module_title: string;
-    tile_data: Object;
-    list_data: Object;
+    tileData: Object;
+    listData: Object;
 
     left(){
         console.log('left - module');
@@ -25,8 +25,8 @@ export class FeaturedListsModule implements OnInit{
     }
 
     ngOnInit(){
-        this.module_title = 'Featured Lists for [Listing Name]';
-        this.tile_data = {
+        this.moduleTitle = 'Featured Lists for [Listing Name]';
+        this.tileData = {
             button_txt: 'Open Page',
             url1: '',
             icon1: 'fa-list-ul',
@@ -34,14 +34,14 @@ export class FeaturedListsModule implements OnInit{
             desc1: '',
             url2: '',
             icon2: 'fa-trophy',
-            title2: '[Listing Location] Top 10 Lists',
+            title2: 'Top 10 Lists',
             desc2: '',
             url3: '',
             icon3: 'fa-th-large',
             title3: 'Similar Top 100 Lists',
             desc3: ''
         }
-        this.list_data = {
+        this.listData = {
             header: 'Trending Real Estate',
             title: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.',
             hding1: '[Listing Address]',

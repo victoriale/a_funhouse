@@ -6,6 +6,11 @@ import {ProfileHeader} from '../../modules/profile_header/profile_header.module'
 import {CrimeModule} from '../../modules/crime/crime.module';
 import {FeaturedListsModule} from '../../modules/featured_lists/featured_lists.module';
 import {InfoListModule} from "../../modules/infolist/info-list.module";
+import {CommentModule} from '../../modules/comment/comment.module';
+import {LikeUs} from '../../modules/likeus/likeus.module';
+import {ShareModule} from '../../modules/share/share.module';
+import {AboutUsModule} from '../../modules/aboutus/aboutus.module';
+import {AmenitiesModule} from "../../modules/amenities/amenities.module";
 
 import {LocationProfileService} from '../../global/location-profile.service';
 
@@ -13,7 +18,7 @@ import {LocationProfileService} from '../../global/location-profile.service';
     selector: 'location-page',
     templateUrl: './app/webpages/location-page/location.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, InfoListModule],
+    directives: [HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, AmenitiesModule],
     providers: [LocationProfileService],
 })
 
