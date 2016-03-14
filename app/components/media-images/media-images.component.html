@@ -21,11 +21,11 @@
                 <div class="listings-days">{{BatchTwo.list_day}}</div>
             </div>
 
-            <div *ngIf="trending === false" class="details"><div>{{BatchTwo.detail1}}</div><div>{{BatchTwo.unit1}}</div></div>
-            <div *ngIf="trending === false" class="details"><div>{{BatchTwo.detail2}}</div><div>{{BatchTwo.unit2}}</div></div>
+            <div *ngIf="!trending" class="details"><div>{{BatchTwo.detail1}}</div><div>{{BatchTwo.unit1}}</div></div>
+            <div *ngIf="!trending" class="details"><div>{{BatchTwo.detail2}}</div><div>{{BatchTwo.unit2}}</div></div>
 
             <div class="details"><div>{{BatchTwo.price}}</div><div>{{BatchTwo.price_name}}</div></div>
-            <a *ngIf="trending === true" href='' class='mod-page-btn'>
+            <a *ngIf="trending" href='' class='mod-page-btn'>
                 <span></span>
                 <span>View Your Home</span>
                 <i class='fa fa-angle-right'></i>

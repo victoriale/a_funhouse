@@ -15,6 +15,8 @@ import {ShareModule} from "../../modules/share/share.module";
 import {AmenitiesModule} from "../../modules/amenities/amenities.module";
 import {FeaturedListsModule} from '../../modules/featured_lists/featured_lists.module';
 import {MediaImages} from "../../components/media-images/media-images.component";
+import {TrendingHomes} from "../../modules/trending-homes/trending-homes.module";
+
 
 import {ListingProfileService} from '../../global/listing-profile.service';
 
@@ -22,16 +24,16 @@ import {ListingProfileService} from '../../global/listing-profile.service';
     selector: 'profile-page',
     templateUrl: './app/webpages/profile-page/profile.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [MediaImages, HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs, ShareModule, FeaturedListsModule, AmenitiesModule],
+    directives: [TrendingHomes, MediaImages, HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs, ShareModule, FeaturedListsModule, AmenitiesModule],
     providers: [ListingProfileService]
 })
 
 export class ProfilePage implements OnInit{
-    public headlineAbout = {
+    public headlineAbout  = {
         title: 'About [Listing Name]',
         icon: 'fa-map-marker'
     };
-    public headlineCrime = {
+    public headlineCrime  = {
         title: 'Most Recent Crimes in [Listing Name]',
         icon: 'fa-gavel'
     };
@@ -47,8 +49,8 @@ export class ProfilePage implements OnInit{
         title: 'Interact with Joyful Home',
         icon: 'fa-comment-o'
     };
-    public media_feature = false;
-    public trending_feature = true;
+    public mediaFeature = false;
+    public trendingFeature = true;
 
     public paramAddress: string;
 
