@@ -1,9 +1,6 @@
 import {Component, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 
-import {HomePageData} from "../../global/global-interface";
-import {HomePageService} from '../../global/global-service'
-
 import {HeaderComponent} from "../../components/header/header.component";
 import {FooterComponent} from "../../components/footer/footer.component";
 import {HeroComponent} from "../../components/hero/hero.component";
@@ -11,19 +8,22 @@ import {ExploreTilesComponent} from "../../components/explore-tiles/explore-tile
 import {ExploreButtonComponent} from "../../components/buttons/explore-button/explore-button.component";
 import {HeroBottomComponent} from "../../components/hero/hero-bottom/hero-bottom.component";
 import {FeatureTilesComponent} from "../../components/feature-tiles/feature-tiles.component";
+import {GeoLocationService} from "../../global/geo-location.service";
+import map = webdriver.promise.map;
 
 @Component({
     selector: 'PartnerHomePage',
     templateUrl: './app/webpages/home-page/home.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [HeaderComponent, FooterComponent, HeroComponent, ExploreTilesComponent, ExploreButtonComponent, HeroBottomComponent, FeatureTilesComponent],
-    providers: [HomePageService],
+    providers: [GeoLocationService],
 })
 
-export class HomePage {
+export class HomePage implements OnInit {
 
-    homePageData: HomePageData[];
-    cityLocation: string = "Wichita";
+    public geoLocationData: Object;
+    city: string;
+    state: string;
 
     // Buttons
     buttonTitle: string;
@@ -35,17 +35,24 @@ export class HomePage {
 
     // Explore Tiles
 
-    constructor(private _homePageService: HomePageService) {
+    constructor(private _geoLocationService: GeoLocationService) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }
 
-    getHomepageService() {
-        this._homePageService.getHomePageService().then(homePageData => this.homePageData = homePageData);
+    getGeoLocation() {
+        this._geoLocationService.getGeoLocation()
+            .subscribe(
+                geoLocationData => {
+                    this.city = geoLocationData[0].city;
+                    this.state = geoLocationData[0].state;
+                }
+            );
     }
 
     ngOnInit() {
-        this.getHomepageService();
+
+        this.getGeoLocation();
 
         // Buttons
         this.buttonTitle = "More";

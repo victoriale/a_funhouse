@@ -5,8 +5,8 @@
                 <backtab-component></backtab-component>
                 <title-component></title-component>
                 <list-carousel-component></list-carousel-component>
-                <span *ngFor="#lol of lists">
-                   <contentlist [lol]="lol"></contentlist>
+                <span *ngFor="#item of lists">
+                    <contentlist [data]="item"></contentlist>
                 </span>
                 <hero-list-component></hero-list-component>
             </section>
