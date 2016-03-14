@@ -23,5 +23,10 @@ export class ListingProfileService{
         .map(
             res => res.json()
         )
+        .map(
+            data => {
+                return data.data;
+            }
+        )
     }
 }
