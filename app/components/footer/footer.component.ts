@@ -1,17 +1,24 @@
-import {Component} from 'angular2/core';
-import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from "angular2/router";
+import {Component, OnInit} from 'angular2/core';
+import {ROUTER_DIRECTIVES} from "angular2/router";
 
 @Component({
     selector: 'footer-component',
     templateUrl: './app/components/footer/footer.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [ROUTER_DIRECTIVES],
-    providers: [ROUTER_PROVIDERS],
+    providers: [],
 })
 
-export class FooterComponent{
+export class FooterComponent implements OnInit {
     isMyHouseKit: boolean = false;
     title = "National Real Estate";
+    currentUrl: any;
+
+    ngOnInit() {
+        // Get current URL for social sharing
+        this.currentUrl = window.location.href;
+        console.log('Current URL', this.currentUrl);
+    }
 
     states = [
         { "name": "Alabama", "url": "#" },
@@ -89,5 +96,6 @@ export class FooterComponent{
         { "name": "Washington, D.C", "url": "#" },
         { "name": "More Cities...", "url": "#" }
     ];
+
 
 }
