@@ -21,10 +21,10 @@ export class LocationPage implements OnInit {
     locCity: string;
     locState: string;
     locDisplay: string;
-    public headline_about: any;
-    public headline_crime: any;
-    public headline_amenities: any;
-    public headline_interact: any;
+    public headlineAbout: any;
+    public headlineCrime: any;
+    public headlineAmenities: any;
+    public headlineInteract: any;
     public profile_type: string;
 
     constructor(private _params: RouteParams) {
@@ -38,22 +38,22 @@ export class LocationPage implements OnInit {
         this.locState = this.loc.split('-')[1];
         this.locDisplay = decodeURI(this.locCity + ', ' + this.locState);
 
-        this.headline_about = {
+        this.headlineAbout = {
             title: 'About ' + this.locDisplay,
             icon: 'fa-map-marker'
         };
 
-        this.headline_crime = {
+        this.headlineCrime = {
             title: 'Most Recent Crimes in ' + this.locDisplay,
             icon: 'fa-gavel'
         };
 
-        this.headline_amenities = {
+        this.headlineAmenities = {
             title: 'Schools & Amenities in ' + this.locDisplay,
             icon: 'fa-graduation-cap'
         };
 
-        this.headline_interact = {
+        this.headlineInteract = {
             title: 'Interact with Joyful Home',
             icon: 'fa-comment-o'
         };
