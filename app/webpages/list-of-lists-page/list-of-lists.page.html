@@ -5,6 +5,10 @@
                 <backtab-component></backtab-component>
                 <title-component></title-component>
                 <list-carousel-component></list-carousel-component>
+                <span *ngFor="#lol of lists">
+                   <contentlist [lol]="lol"></contentlist>
+                </span>
+                <hero-list-component></hero-list-component>
             </section>
             <aside class="four columns">
                 <div class="widget"></div>
