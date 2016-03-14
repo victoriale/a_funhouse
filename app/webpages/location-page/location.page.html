@@ -6,7 +6,7 @@
 
                 <!-- About Section -->
                 <headline-component [data]="headlineAbout"></headline-component>
-                <profile-header [profile_type]="profile_type"></profile-header>
+                <profile-header [profileHeaderData]="profileHeaderData | async"></profile-header>
                 <info-list-module></info-list-module>
 
                 <!-- Crime Section -->

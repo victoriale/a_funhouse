@@ -9,7 +9,7 @@
                 <div class="ph-content-description-title-icon"><i class="fa {{icon}}"></i></div>
                 <div class="ph-content-description-title-text">{{descriptionTitle}}</div>
             </div>
-            <div class="ph-content-description-text">
+            <div *ngIf="profileType === 'ProfilePage'" class="ph-content-description-text">
                 {{descriptionAddress}}
                 {{descriptionSquareFeet}}
                 <span *ngIf="profileHeaderData.agent !== null">
@@ -22,6 +22,9 @@
                     </span>
                     {{descriptionContact}}
                 </span>
+            </div>
+            <div *ngIf="profileType === 'LocationPage'" class="ph-content-description-text">
+                {{descriptionLocation}}
             </div>
         </div>
     </section>
