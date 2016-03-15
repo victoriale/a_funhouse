@@ -21,7 +21,7 @@
 
                 <!-- Interact Section -->
                 <headline-component [data]="headlineInteract"></headline-component>
-                <featured-lists-module></featured-lists-module>
+                <featured-lists-module [featuredListData]="featuredListData | async"></featured-lists-module>
 
                 <!--Share Module-->
                 <share-module></share-module>
