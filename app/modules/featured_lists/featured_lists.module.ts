@@ -4,6 +4,7 @@ import {Router} from 'angular2/router';
 import {moduleHeader} from '../../components/module-header/module-header';
 import {TilesComponent} from '../../components/tiles/tiles.component';
 import {FeatureComponent} from '../../components/feature-list/feature-list.component';
+import {FeaturedListInterface} from '../../global/global-interface';
 import {GlobalFunctions} from '../../global/global-functions';
 
 @Component({
@@ -15,11 +16,12 @@ import {GlobalFunctions} from '../../global/global-functions';
 })
 
 export class FeaturedListsModule implements OnInit{
+    profileType: string;
     moduleTitle: string;
     tileData: Object;
     listData: Object;
     index: number;
-    @Input() featuredListData: Object;
+    @Input() featuredListData: FeaturedListInterface;
 
     constructor(private router: Router, private globalFunctions: GlobalFunctions){
         //Determine what page the profile header module is on
