@@ -17,12 +17,13 @@ import {ExploreTilesComponent} from "../components/explore-tiles/explore-tiles.c
 import {HeroBottomComponent} from "../components/hero/hero-bottom/hero-bottom.component";
 import {ExploreButtonComponent} from "../components/buttons/explore-button/explore-button.component";
 import {FeatureTilesComponent} from "../components/feature-tiles/feature-tiles.component";
+import {DirectoryPage} from "../webpages/directory-page/directory.page";
 
 @Component({
     selector: 'my-app',
     templateUrl: './app/app-webpage/app.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [RouterOutlet, ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ListPage, ListOfListsPage, ROUTER_DIRECTIVES],
+    directives: [RouterOutlet, ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, DirectoryPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ListPage, ListOfListsPage, ROUTER_DIRECTIVES],
     providers: [ROUTER_DIRECTIVES],
 })
 
@@ -73,6 +74,11 @@ import {FeatureTilesComponent} from "../components/feature-tiles/feature-tiles.c
         path: '/disclaimer',
         name: 'Disclaimer-page',
         component: DisclaimerPage,
+    },
+    {
+        path: '/directory',
+        name: 'Directory-page',
+        component: DirectoryPage
     }
 ])
 
