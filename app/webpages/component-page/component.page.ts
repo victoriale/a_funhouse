@@ -29,6 +29,7 @@ import {RangeSliderComponent} from "../../components/range-slider/range-slider.c
 import {MediaFeatureModule} from "../../modules/media_features/media_features.module";
 import {MediaImages} from "../../components/media-images/media-images.component";
 import {InfoListComponent} from "../../components/info-list/info-list.component";
+import {PaginationFooter} from "../../components/pagination-footer/pagination-footer.component";
 
 @Component({
     selector: 'component-page',
@@ -61,7 +62,8 @@ import {InfoListComponent} from "../../components/info-list/info-list.component"
         MediaFeatureModule,
         MediaImages,
         RangeSliderComponent,
-        InfoListComponent
+        InfoListComponent,
+        PaginationFooter
     ],
     providers: [],
 })

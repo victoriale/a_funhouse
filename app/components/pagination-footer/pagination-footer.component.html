@@ -1,0 +1,16 @@
+<footer class="pagination-container">
+    <div class="pagination-row">
+        <button class="pagination-button-angle">
+            <i class="fa fa-angle-left"></i>
+        </button>
+        <button *ngFor="#item of paginationButtons" class="pagination-button-circle" [ngClass]="{active: index === item}">
+            {{item}}
+        </button>
+        <button class="pagination-button-angle">
+            <i class="fa fa-angle-right"></i>
+        </button>
+    </div>
+    <div class="pagination-view-all-container">
+        <infinity-button></infinity-button>
+    </div>
+</footer>
