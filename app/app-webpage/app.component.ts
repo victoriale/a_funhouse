@@ -52,7 +52,7 @@ import {DirectoryPage} from "../webpages/directory-page/directory.page";
         component: ListPage,
     },
     {
-        path: '/list-of-lists',
+        path: '/list-of-lists/:listname/:state/:city',
         name: 'List-of-lists-page',
         component: ListOfListsPage,
     },
