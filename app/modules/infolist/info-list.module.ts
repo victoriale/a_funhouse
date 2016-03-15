@@ -22,45 +22,51 @@ export class InfoListModule implements OnInit {
         this.infoList = [
             {
                 'bgClass': 'odd',
-                'address': '[Listing Address1]',
                 'type': '[Home Type1]: [#] Beds & [#] Baths',
-                'date': '[MM/DD/YYYY1]',
+                'date': '[MM/DD/YYYY]',
                 'price': '[$Value1]',
                 'bigImage': './app/public/img_bckgnd.png',
-                'location': '[City], [ST1] > [Zipcode]',
-                'smallImage': [
-                    './app/public/img_bckgnd.png',
-                    './app/public/img_bckgnd.png',
-                    './app/public/img_bckgnd.png',
-                ]
+                'counter': '1',
+                'address': '[Listing Address]',
+                'line1': 'On The Market Since',
+                'line2': '[MM/DD/YYYY]',
+                'line3': 'Asking Price: [$Value]',
+                'location1': '[City], [ST]',
+                'location2': '[Zip Code]',
+                'question': 'Want more information about this listing?',
+                'buttonName': 'View Your Home'
             },
             {
                 'bgClass': 'even',
-                'address': '[Listing Address2]',
-                'type': '[Home Type2]: [#] Beds & [#] Baths',
-                'date': '[MM/DD/YYYY2]',
-                'price': '[$Value2]',
+                'type': '[Home Type1]: [#] Beds & [#] Baths',
+                'date': '[MM/DD/YYYY]',
+                'price': '[$Value1]',
                 'bigImage': './app/public/img_bckgnd.png',
-                'location': '[City], [ST2] > [Zipcode]',
-                'smallImage': [
-                    './app/public/img_bckgnd.png',
-                    './app/public/img_bckgnd.png',
-                    './app/public/img_bckgnd.png',
-                ]
+                'counter': '2',
+                'address': '[Listing Address]',
+                'line1': 'On The Market Since',
+                'line2': '[MM/DD/YYYY]',
+                'line3': 'Asking Price: [$Value]',
+                'location1': '[City], [ST]',
+                'location2': '[Zip Code]',
+                'question': 'Want more information about this listing?',
+                'buttonName': 'View Your Home'
             },
             {
                 'bgClass': 'odd',
-                'address': '[Listing Address3]',
-                'type': '[Home Type3: [#] Beds & [#] Baths',
-                'date': '[MM/DD/YYYY3]',
-                'price': '[$Value3]',
+                'type': '[Home Type1]: [#] Beds & [#] Baths',
+                'date': '[MM/DD/YYYY]',
+                'price': '[$Value1]',
                 'bigImage': './app/public/img_bckgnd.png',
-                'location': '[City], [ST3] > [Zipcode]',
-                'smallImage': [
-                    './app/public/img_bckgnd.png',
-                    './app/public/img_bckgnd.png',
-                    './app/public/img_bckgnd.png',
-                ]
+                'counter': '3',
+                'address': '[Listing Address]',
+                'line1': 'On The Market Since',
+                'line2': '[MM/DD/YYYY]',
+                'line3': 'Asking Price: [$Value]',
+                'location1': '[City], [ST]',
+                'location2': '[Zip Code]',
+                'question': 'Want more information about this listing?',
+                'buttonName': 'View Your Home'
             }
         ]
     }
