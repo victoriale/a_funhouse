@@ -27,5 +27,10 @@ export class NearByCitiesService {
             .map(
                 res => res.json()
             )
+            .map(
+                data => {
+                    return data.data;
+                }
+            )
     }
 }
