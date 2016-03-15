@@ -1,5 +1,6 @@
 import {Component, OnInit} from 'angular2/core';
-//import {Ng2Highcharts, Ng2Highmaps, Ng2Highstocks} from 'ng2-highcharts/ng2-highcharts';
+import {Router, RouteParams} from 'angular2/router';
+import {GlobalFunctions} from '../../global/global-functions';
 
 import {moduleHeader} from '../../components/module-header/module-header';
 
@@ -7,13 +8,14 @@ import {moduleHeader} from '../../components/module-header/module-header';
     selector: 'crime-module',
     templateUrl: './app/modules/crime/crime.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    //directives: [moduleHeader, Ng2Highcharts, Ng2Highmaps, Ng2Highstocks],
+    directives: [moduleHeader],
     providers: []
 })
 
 export class CrimeModule implements OnInit{
-    module_title: string;
-    stats = [
+    public moduleTitle: string;
+    public profileType: string;
+    public stats: Array<Object> = [
         {
             title: 'Thefts',
             color: '#44b244',
@@ -35,38 +37,65 @@ export class CrimeModule implements OnInit{
             pct: '5%'
         }
     ];
-    crime_list = [
+    public crimeList: Array<Object> = [
         {
             type: 'Shooting',
             description: 'Shooting/Stabbing. CPD o/s with person stabbed in head during quarrel. Victim is in good condition...',
             date: '02/23/2016',
-            img_id: 'shooting',
-            img_src: './app/public/icons/Icon_Shooting.png'
+            imgId: 'shooting',
+            imgSrc: './app/public/icons/Icon_Shooting.png'
         },
         {
             type: 'Arrest',
             description: 'INTERFERENCE WITH PUBLIC OFFICER. OBSTRUCTING JUSTICE. Location description: STREET...',
             date: '02/23/2016',
-            img_id: 'arrest',
-            img_src: './app/public/icons/Icon_Arrest.png'
+            imgId: 'arrest',
+            imgSrc: './app/public/icons/Icon_Arrest.png'
         },
         {
             type: 'Vandalism',
             description: 'CRIMINAL DAMAGE TO VEHICLE. Location description: CHA PARKING LOT/GROUNDS...',
             date: '02/23/2016',
-            img_id: 'vandalism',
-            img_src: './app/public/icons/Icon_Vandalism.png'
+            imgId: 'vandalism',
+            imgSrc: './app/public/icons/Icon_Vandalism.png'
         },
         {
             type: 'Theft',
             description: 'THEFT. $500 AND UNDER. Location description. GAS STATION...',
             date: '02/23/2016',
-            img_id: 'theft',
-            img_src: './app/public/icons/Icon_Theft.png'
+            imgId: 'theft',
+            imgSrc: './app/public/icons/Icon_Theft.png'
         }
-    ]
+    ];
+
+    constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions){
+        //Determine what page the profile header module is on
+        this.profileType = this.router.hostComponent.name;
+    }
+
+    //Build Module Title
+    setModuleTitle(){
+
+        if(this.profileType === 'LocationPage'){
+            //Location Crime Module
+            var paramLocation: string = this._params.get('loc');
+            var paramCity: string = this.globalFunctions.toTitleCase(paramLocation.split('_')[0]);
+            var paramState: string = paramLocation.split('_')[1];
+
+            this.moduleTitle = 'Crime Activity In ' + paramCity + ', ' + paramState;
+        }else if(this.profileType === 'ProfilePage'){
+            //Listing Crime Module
+            var paramAddress = this._params.get('address').split('-');
+            var paramState = paramAddress[paramAddress.length -1];
+            var paramCity = paramAddress [paramAddress.length - 2];
+            var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
+            var address = tempArr.join(' ');
+
+            this.moduleTitle = 'Crime Activity In and Around ' + address + ' ' + paramCity + ', ' + paramState;
+        }
+    }
 
     ngOnInit(){
-        this.module_title = 'Crime Activity In and Around [Listing Name]';
+        this.setModuleTitle();
     }
 }
