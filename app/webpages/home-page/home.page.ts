@@ -9,6 +9,7 @@ import {ExploreButtonComponent} from "../../components/buttons/explore-button/ex
 import {HeroBottomComponent} from "../../components/hero/hero-bottom/hero-bottom.component";
 import {FeatureTilesComponent} from "../../components/feature-tiles/feature-tiles.component";
 import {GeoLocationService} from "../../global/geo-location.service";
+import {NearByCitiesService} from "../../global/geo-location.service";
 import map = webdriver.promise.map;
 
 @Component({
@@ -16,14 +17,14 @@ import map = webdriver.promise.map;
     templateUrl: './app/webpages/home-page/home.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [HeaderComponent, FooterComponent, HeroComponent, ExploreTilesComponent, ExploreButtonComponent, HeroBottomComponent, FeatureTilesComponent],
-    providers: [GeoLocationService],
+    providers: [GeoLocationService, NearByCitiesService],
 })
 
 export class HomePage implements OnInit {
 
-    public geoLocationData: Object;
     city: string;
     state: string;
+    nearByCities: Object;
 
     // Buttons
     buttonTitle: string;
@@ -35,7 +36,7 @@ export class HomePage implements OnInit {
 
     // Explore Tiles
 
-    constructor(private _geoLocationService: GeoLocationService) {
+    constructor(private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }
@@ -46,13 +47,25 @@ export class HomePage implements OnInit {
                 geoLocationData => {
                     this.city = geoLocationData[0].city;
                     this.state = geoLocationData[0].state;
-                }
+                },
+            err => console.log(err),
+            () => this.getNearByCities()
+            );
+    }
+
+    getNearByCities() {
+        this._nearByCitiesService.getNearByCities(this.state, this.city)
+            .subscribe(
+                nearByCities => { this.nearByCities = nearByCities },
+                err => console.log(err),
+                () => console.log('Nearby Cities Received!')
             );
     }
 
     ngOnInit() {
 
         this.getGeoLocation();
+        console.log(this.state);
 
         // Buttons
         this.buttonTitle = "More";

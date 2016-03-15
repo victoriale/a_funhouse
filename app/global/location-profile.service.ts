@@ -4,6 +4,7 @@ import {Http, Headers} from 'angular2/http';
 @Injectable()
 
 export class LocationProfileService{
+
     constructor(public http: Http){
 
     }
