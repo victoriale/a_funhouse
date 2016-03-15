@@ -97,7 +97,7 @@ export class MediaFeatureList{
     getBatchTwo() {
         var BatchTwo: List2[] = [
             {
-                'bigImage': './app/public/placeholder_XL.png',
+                'bigImage': "http://photos.listhub.net/BCMLSIA/12787/1?lm=20160203T155029",
                 'list_name': '[Listing Name] [Zip Code]',
                 'list_addr': '[Listing Address]',
                 'list_day': 'Days on the market: [##]',
@@ -108,9 +108,19 @@ export class MediaFeatureList{
                 'price': '$[###,###]',
                 'price_name': 'SALE PRICE',
                 'smallImage': [
-                    './app/public/img_bckgnd.png',
-                    './app/public/img_bckgnd.png',
-                    './app/public/img_bckgnd.png',
+                  "http://photos.listhub.net/BCMLSIA/12787/1?lm=20160203T155029",
+                  "http://photos.listhub.net/BCMLSIA/12787/2?lm=20160203T155029",
+                  "http://photos.listhub.net/BCMLSIA/12787/3?lm=20160203T155029",
+                  "http://photos.listhub.net/BCMLSIA/12787/4?lm=20160203T155029",
+                  "http://photos.listhub.net/BCMLSIA/12787/5?lm=20160203T155029",
+                  "http://photos.listhub.net/BCMLSIA/12787/6?lm=20160203T155029",
+                  "http://photos.listhub.net/BCMLSIA/12787/7?lm=20160203T155029",
+                  "http://photos.listhub.net/BCMLSIA/12787/8?lm=20160203T155029",
+                  "http://photos.listhub.net/BCMLSIA/12787/9?lm=20160203T155029",
+                  "http://photos.listhub.net/BCMLSIA/12787/10?lm=20160203T155029",
+                  "http://photos.listhub.net/BCMLSIA/12787/11?lm=20160203T155029",
+                  "http://photos.listhub.net/BCMLSIA/12787/12?lm=20160203T155029",
+                  "http://photos.listhub.net/BCMLSIA/12787/13?lm=20160203T155029"
                 ],
             }
         ];

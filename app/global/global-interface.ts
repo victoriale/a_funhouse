@@ -1,3 +1,9 @@
+export interface PropertyImages {
+    listingID: string;
+    imageCount: string;
+    listingImages: any;
+}
+
 export interface List {
     title: string;
     location: string;
