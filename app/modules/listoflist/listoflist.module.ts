@@ -14,7 +14,7 @@ import {moduleFooter} from "../../components/module-footer/module-footer";
     providers: [ListOfListService, BatchOne]
 })
 
-export class ListOfListModule implements OnInit{
+export class ListOfListModule {
     module_title: string;
     public profile_name = "[Profile Name]'s [Module Title]";
     lists : List[];

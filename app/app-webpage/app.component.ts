@@ -4,6 +4,7 @@ import {ProfilePage} from "../webpages/profile-page/profile.page";
 import {LocationPage} from "../webpages/location-page/location.page";
 import {ListPage} from "../webpages/list-page/list.page";
 import {ListOfListsPage} from "../webpages/list-of-lists-page/list-of-lists.page";
+import {AmenitiesListPage} from "../webpages/amenities-lists/amenities-lists.page";
 import {HomePage} from "../webpages/home-page/home.page";
 import {ComponentPage} from "../webpages/component-page/component.page";
 import {AboutUsPage} from "../webpages/aboutus-page/aboutus.page";
@@ -23,7 +24,7 @@ import {DirectoryPage} from "../webpages/directory-page/directory.page";
     selector: 'my-app',
     templateUrl: './app/app-webpage/app.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [RouterOutlet, ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, DirectoryPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ListPage, ListOfListsPage, ROUTER_DIRECTIVES],
+    directives: [RouterOutlet, ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ListPage, ListOfListsPage, AmenitiesListPage, ROUTER_DIRECTIVES, DirectoryPage],
     providers: [ROUTER_DIRECTIVES],
 })
 
@@ -54,6 +55,11 @@ import {DirectoryPage} from "../webpages/directory-page/directory.page";
         path: '/list-of-lists',
         name: 'List-of-lists-page',
         component: ListOfListsPage,
+    },
+    {
+        path: '/amenities-lists-page',
+        name: 'Amenities-lists-page',
+        component: AmenitiesListPage,
     },
     {
         path: '/component',

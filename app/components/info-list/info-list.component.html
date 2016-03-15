@@ -2,31 +2,31 @@
     <div class='info-imagebox'>
         <a href=''>
             <img src='{{infoList.bigImage}}' alt='' />
-            <div class="info-rank">#1</div>
+            <div class="info-rank">#{{infoList.counter}}</div>
         </a>
     </div>
     <div class="info-content-box">
         <div class="info-content-row-wrapper">
             <div class="info-content-row1">
                 <a href="">
-                    <span class="info-location"><i class="fa fa-map-marker"></i>{{infoList.location}}</span>
+                    <span class="info-location"><i class="fa fa-map-marker"></i>{{infoList.location1}} <i class="fa fa-angle-right"></i> {{infoList.location2}}</span>
                 </a>
                 <p class="info-address">{{infoList.address}}</p>
                 <p class="info-type">{{infoList.type}}</p>
             </div>
             <div class="info-content-row2">
-                <p class="info-market">On The Market Since</p>
-                <p class="info-date">{{infoList.date}}</p>
-                <p class="info-price">Asking Price: {{infoList.price}}</p>
+                <p class="info-market">{{infoList.line1}}</p>
+                <p class="info-date">{{infoList.line2}}</p>
+                <p class="info-price">{{infoList.line3}}</p>
             </div>
         </div>
         <div class="info-content-bottom {{infoList.bgClass}}">
             <div class='info-content-subbox'>
-                <p>Want more information about this listing?</p>
+                <p>{{infoList.question}}</p>
             </div>
             <a href='' class='info-list-button'>
                 <span><img class="info-icon" src="./app/public/realestate_icon.png" /></span>
-                <span>View Your Home</span>
+                <span>{{infoList.buttonName}}</span>
                 <i class='fa fa-angle-right'></i>
             </a>
         </div>
