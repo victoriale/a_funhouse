@@ -9,28 +9,30 @@ import {Component, OnInit, Input} from 'angular2/core';
     inputs: ['infoList'],
 })
 
-export class InfoListComponent{
+export class InfoListComponent implements OnInit{
     infoList: Object;
 
     ngOnInit(){
 
         if(typeof this.infoList === 'undefined'){
-            this.infoList =
-            {
-                'bgClass': 'odd',
-                'address': '[Listing Address]',
-                'type': '[Home Type]: [#] Beds & [#] Baths',
-                'date': '[MM/DD/YYYY]',
-                'price': '[$Value]',
-                'bigImage': './app/public/img_bckgnd.png',
-                'location': '[City], [ST] > [Zipcode]',
-                'smallImage': [
-                    './app/public/img_bckgnd.png',
-                    './app/public/img_bckgnd.png',
-                    './app/public/img_bckgnd.png',
-                ]
-            }
+            this.infoList =[
+              {
+                  'counter': '1',
+                  'bgClass': 'odd',
+                  'address': '[Listing Address]',
+                  'type': '[Home Type]: [#] Beds & [#] Baths',
+                  'line1': 'On The Market Since',
+                  'line2': '[MM/DD/YYYY]',
+                  'line3': 'Asking Price: [$Value]',
+                  'bigImage': './app/public/img_bckgnd.png',
+                  'location1': '[City], [ST]',
+                  'location2': '[Zip Code]',
+                  'question': 'Want more information about this listing?',
+                  'buttonName': 'View Your Home'
+              }
+           ]
         }
+
 
         console.log(this);
     }
