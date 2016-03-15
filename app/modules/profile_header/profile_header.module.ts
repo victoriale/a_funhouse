@@ -6,7 +6,7 @@ import {Router} from 'angular2/router';
 
 import {TitleComponent} from '../../components/title/title.component';
 import {Image180} from '../../components/images/image-180.component';
-import {ListingProfileHeaderInterface} from '../../global/global-interface';
+import {ProfileHeaderInterface} from '../../global/global-interface';
 import {GlobalFunctions} from '../../global/global-functions';
 
 @Component({
@@ -29,7 +29,7 @@ export class ProfileHeader implements OnInit{
     public subImageURL: string;
     public main_hasSubImg: boolean;
     public titleComponentData: {};
-    @Input() profileHeaderData: ListingProfileHeaderInterface;
+    @Input() profileHeaderData: ProfileHeaderInterface;
 
     constructor(private router: Router, private globalFunctions: GlobalFunctions){
         //Determine what page the profile header module is on
