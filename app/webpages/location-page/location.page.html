@@ -1,39 +1,41 @@
 <div class="content-wrapper">
-    <div class="container">
-        <main class='row'>
-            <section class='content-main eight columns'>
-                <!-- Modules Go Here -->
+    <div class="wrapper">
+        <div class="inner-wrapper">
+            <main>
+                <section class='content-main eight-col'>
+                    <!-- Modules Go Here -->
 
-                <!-- About Section -->
-                <headline-component [data]="headlineAbout"></headline-component>
-                <profile-header [profileHeaderData]="profileHeaderData | async"></profile-header>
-                <comment-module></comment-module>
-                <info-list-module></info-list-module>
+                    <!-- About Section -->
+                    <headline-component [data]="headlineAbout"></headline-component>
+                    <profile-header [profileHeaderData]="profileHeaderData | async"></profile-header>
+                    <comment-module></comment-module>
+                    <info-list-module></info-list-module>
 
-                <!-- Crime Section -->
-                <headline-component [data]="headlineCrime"></headline-component>
-                <crime-module></crime-module>
+                    <!-- Crime Section -->
+                    <headline-component [data]="headlineCrime"></headline-component>
+                    <crime-module></crime-module>
 
-                <!-- Amenities Section -->
-                <headline-component [data]="headlineAmenities"></headline-component>
+                    <!-- Amenities Section -->
+                    <headline-component [data]="headlineAmenities"></headline-component>
 
-                <amenities-module></amenities-module>
+                    <amenities-module></amenities-module>
 
-                <!-- Interact Section -->
-                <headline-component [data]="headlineInteract"></headline-component>
-                <featured-lists-module [featuredListData]="featuredListData | async"></featured-lists-module>
+                    <!-- Interact Section -->
+                    <headline-component [data]="headlineInteract"></headline-component>
+                    <featured-lists-module [featuredListData]="featuredListData | async"></featured-lists-module>
 
-                <!--Share Module-->
-                <share-module></share-module>
-                <!--Like Us On FB Module-->
-                <like-us-module></like-us-module>
-                <!--Learn More About Us-->
-                <about-us-module></about-us-module>
+                    <!--Share Module-->
+                    <share-module></share-module>
+                    <!--Like Us On FB Module-->
+                    <like-us-module></like-us-module>
+                    <!--Learn More About Us-->
+                    <about-us-module></about-us-module>
 
-            </section>
-            <aside class="four columns">
-                <div class="widget"></div>
-            </aside>
-        </main>
+                </section>
+                <aside class="four-col">
+                    <div class="widget"></div>
+                </aside>
+            </main>
+        </div>
     </div>
 </div>
