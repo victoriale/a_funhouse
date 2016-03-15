@@ -1,0 +1,53 @@
+<div class="content-wrapper">
+    <div class="directory-container">
+        <header class="directory-header">
+            <div class="directory-header-location">
+                <i class="fa fa-map-marker"></i> United States
+            </div>
+            <div class="directory-header-title">
+                Most Recent Listings
+            </div>
+        </header>
+        <div class="directory-nav">
+            <div class="directory-nav-title">
+                State Sub Directory
+            </div>
+            <div class="directory-nav-links">
+                <a *ngFor="#item of navLinks">
+                    {{item.title}} |
+                </a>
+            </div>
+        </div>
+        <div class="directory-pagination">
+            Showing: 11-20 of 3981754
+            <a class="directory-pagination-button">
+                Next <i class="fa fa-angle-right"></i>
+            </a>
+            <a class="directory-pagination-button">
+                <i class="fa fa-angle-left"></i> Back
+            </a>
+        </div>
+        <ul class="directory-list">
+            <li *ngFor="#item of listingItems" class="directory-list-item">
+                <span class="line-one">
+                    Last updated: 2016-03-15
+                </span>
+                <span class="line-two">
+                    7312 Wellington Avenue | St Louis, MO, 63130 | University City
+                </span>
+                <span class="line-three">
+                    1277 sq. ft > Bedrooms > 2 Bathrooms
+                </span>
+            </li>
+        </ul>
+        <div class="directory-pagination">
+            Showing: 11-20 of 3981754
+            <a class="directory-pagination-button">
+                Next <i class="fa fa-angle-right"></i>
+            </a>
+            <a class="directory-pagination-button">
+                <i class="fa fa-angle-left"></i> Back
+            </a>
+        </div>
+    </div>
+</div>
