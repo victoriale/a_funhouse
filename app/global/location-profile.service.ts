@@ -4,19 +4,29 @@ import {Http, Headers} from 'angular2/http';
 @Injectable()
 
 export class LocationProfileService{
+    public apiUrl: string = 'http://api2.joyfulhome.com:280';
+    public apiToken: string = 'BApA7KEfj';
+    public headerName: string = 'X-SNT-TOKEN';
 
     constructor(public http: Http){
 
     }
 
-    getLocationProfile(city, state){
-        //Configure HTTP Headers
+    //Function to set custom headers
+    setToken(){
         var headers = new Headers();
-        //headers.append('X-SNT-TOKEN', 'BApA7KEfj');
+        //headers.append(this.headerName, this.apiToken);
+        return headers;
+    }
 
-        console.log('Location Profile Service Input', city, state);
+    getLocationFeaturedList(city, state){
+        //Configure HTTP Headers
+        var headers = this.setToken();
 
-        return this.http.get('http://api2.joyfulhome.com:280/location/profileHeader/' + state + '/' + city, {
+        city = encodeURI(city);
+        state = encodeURI(state);
+
+        return this.http.get(this.apiUrl + '/location/featuredListsInLocation/' + state + '/' + city, {
                 headers: headers
             })
             .map(
@@ -24,8 +34,33 @@ export class LocationProfileService{
             )
             .map(
                 data => {
+                    //console.log('Lutz - featured list output', data);
                     return data.data;
                 }
             )
     }
+
+    getLocationProfile(city, state){
+        //Configure HTTP Headers
+        var headers = this.setToken();
+
+        city = encodeURI(city);
+        state = encodeURI(state);
+
+        return this.http.get(this.apiUrl + '/location/profileHeader/' + state + '/' + city, {
+                headers: headers
+            })
+            .map(
+                res => res.json()
+            )
+            .map(
+                data => {
+                    //console.log('Lutz - profile header output', data);
+                    return data.data;
+                }
+            )
+    }
+
+
+
 }

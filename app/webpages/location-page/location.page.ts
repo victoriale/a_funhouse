@@ -33,6 +33,7 @@ export class LocationPage implements OnInit {
     public headlineAmenities: any;
     public headlineInteract: any;
     public profileHeaderData: Object;
+    public featuredListData: Object;
 
     constructor(private _params: RouteParams, private _locationProfileService: LocationProfileService) {
         // Scroll page to top to fix routerLink bug
@@ -41,6 +42,10 @@ export class LocationPage implements OnInit {
 
     getLocationData(){
         this.profileHeaderData = this._locationProfileService.getLocationProfile(this.locCity, this.locState);
+    }
+
+    getFeaturedList(){
+        this.featuredListData = this._locationProfileService.getLocationFeaturedList(this.locCity, this.locState);
     }
 
     ngOnInit() {
@@ -72,6 +77,7 @@ export class LocationPage implements OnInit {
         console.log('City, State: ', this.locDisplay);
 
         this.getLocationData();
+        this.getFeaturedList();
     }
 
 }

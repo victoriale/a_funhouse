@@ -4,12 +4,13 @@
 import {Component} from 'angular2/core';
 import {ListViewCarousel} from '../../components/carousel/list-view/list-view.component';
 import {DropdownComponent} from '../../components/buttons/sort-by/sort-by.component';
+import {ListMenuComponent} from '../../components/list-menu/list-menu.component';
 
 @Component({
     selector: 'List-page',
     templateUrl: './app/webpages/list-page/list.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [ListViewCarousel, DropdownComponent],
+    directives: [ListViewCarousel, DropdownComponent, ListMenuComponent],
     providers: [],
 })
 

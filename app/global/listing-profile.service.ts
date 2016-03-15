@@ -4,19 +4,31 @@ import {Http, Headers} from 'angular2/http';
 @Injectable()
 
 export class ListingProfileService{
+    public apiUrl: string = 'http://api2.joyfulhome.com:280';
+    public apiToken: string = 'BApA7KEfj';
+    public headerName: string = 'X-SNT-TOKEN';
+
     constructor(public http: Http){
 
+    }
+
+    //Function to set custom headers
+    setToken(){
+        var headers = new Headers();
+        //headers.append(this.headerName, this.apiToken);
+        return headers;
     }
 
     //API for listing profile
     getListingProfile(address){
         //Configure HTTP Headers
-        var headers = new Headers();
-        //headers.append('X-SNT-TOKEN', 'BApA7KEfj');
+        var headers = this.setToken();
+
+        address = encodeURI(address);
 
         console.log('Listing Profile Service Input', address);
 
-        return this.http.get('http://api2.joyfulhome.com:280/listing/profileHeader/' + address, {
+        return this.http.get(this.apiUrl + '/listing/profileHeader/' + address, {
             headers: headers
         })
         .map(

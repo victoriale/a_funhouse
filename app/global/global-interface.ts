@@ -25,8 +25,8 @@ export interface List2 {
     smallImage: string[];
 }
 
-//Interface for Listing Profile Header Module
-export interface ListingProfileHeaderInterface {
+//Interface for Profile Header Module
+export interface ProfileHeaderInterface {
     //Listing data
     address: string;
     agent: string;
@@ -50,6 +50,25 @@ export interface ListingProfileHeaderInterface {
     //Shared data
     city: string;
     state: string;
+}
+
+//Interface for Featured List Module
+export interface FeaturedListInterface {
+    featured_list: Array<{
+        address: string;
+        bathrooms: string;
+        bedrooms: string;
+        listPrice: string;
+        listingImage: string;
+        listingName: string;
+        neighborhood: string;
+        zipcode: string;
+    }>;
+    url_mod: {
+        "list-of-lists": string;
+        top10Local: string;
+        top10National: string;
+    }
 }
 
 export interface MagHeaderData {
