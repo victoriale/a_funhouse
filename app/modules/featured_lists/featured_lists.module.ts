@@ -15,7 +15,6 @@ import {GlobalFunctions} from '../../global/global-functions';
 })
 
 export class FeaturedListsModule implements OnInit{
-    public profileType: string;
     moduleTitle: string;
     tileData: Object;
     listData: Object;

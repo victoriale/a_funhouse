@@ -9,5 +9,5 @@ import {GlobalFunctions} from './global/global-functions'
 // Needed for http map on observables
 import 'rxjs/add/operator/map';
 import {HTTP_PROVIDERS} from "angular2/http";
-import jQuery = require('jquery');
+
 bootstrap(AppDomain,[ROUTER_PROVIDERS, HTTP_PROVIDERS, ROUTER_DIRECTIVES, GlobalFunctions]);

@@ -4,6 +4,8 @@
 
 import {Component, OnInit} from 'angular2/core';
 
+declare var jQuery: any;
+
 @Component({
     selector: 'adzone-component',
     templateUrl: './app/components/magazine/mag-adzone/mag-adzone.component.html',
@@ -17,11 +19,11 @@ export class AdzoneComponent implements OnInit {
         var embedURL = "http://content.synapsys.us/embeds/realestate/standard/joyful.js";
         var widgetURL = "";  //ad-stack only (solo)
         var domain = "joyfulhome.com";
-        if ($('#adzone').width() == 300) {
+        if (jQuery('#adzone').width() == 300) {
             var adUnitName = "joyfulhome_com_realestate_magazine_300x250";
-        } else if ($('#adzone').width() == 468) {
+        } else if (jQuery('#adzone').width() == 468) {
             var adUnitName = "joyfulhome_com_realestate_magazine_468x60";
-        } else if ($('#adzone').width() == 320) {
+        } else if (jQuery('#adzone').width() == 320) {
             var adUnitName = "joyfulhome_com_realestate_magazine_320x50";
         } else {
             console.log('There be no size!');
@@ -44,8 +46,8 @@ export class AdzoneComponent implements OnInit {
         newScript.src = "http://content.synapsys.us/l/n/index-jh.php?" + Object.keys(q).map(function (key) {
                 return encodeURIComponent(key) + "=" + encodeURIComponent(q[key])
             }).join("&");
-        $('#adzone').html('');
-        $('#adzone')[0].appendChild(newScript);
+        jQuery('#adzone').html('');
+        jQuery('#adzone')[0].appendChild(newScript);
     }
 
 

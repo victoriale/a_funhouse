@@ -1,0 +1,18 @@
+<div class="content-wrapper">
+    <div class="container">
+        <main class='row'>
+            <section class='lol-main eight columns'>
+                <backtab-component></backtab-component>
+                <title-component></title-component>
+                <list-carousel-component></list-carousel-component>
+                <span *ngFor="#item of lists">
+                    <contentlist [data]="item"></contentlist>
+                </span>
+                <hero-list-component></hero-list-component>
+            </section>
+            <aside class="four columns">
+                <div class="widget"></div>
+            </aside>
+        </main>
+    </div>
+</div>

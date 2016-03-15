@@ -3,8 +3,9 @@ import {bootstrap} from 'angular2/platform/browser';
 import {MagazineMap} from "../../../global/global-mag-service";
 import {MagMapData} from "../../../global/global-interface";
 import {MapMarkerComponent} from "../../../components/mapMarker/mapMarker.component";
-import jQuery = require('jquery');
 
+declare var google: any;
+declare var jQuery: any;
 
 @Component({
     encapsulation: ViewEncapsulation.None,
@@ -41,10 +42,10 @@ export class MagMapModule implements OnInit {
             for (var i = 0; i < data.length; i++) {
                 var home = new google.maps.LatLng(this.data[i]);
 
-                if (this.data[i].list_price >= 1000000) {
-                    var priceString = "$" + (Math.round(this.data[i].list_price / 100000) / 10) + "M";
+                if (+this.data[i].list_price >= 1000000) {
+                    var priceString = "$" + (Math.round(+this.data[i].list_price / 100000) / 10) + "M";
                 } else {
-                    var priceString = "$" + (Math.round(this.data[i].list_price / 1000)) + "K";
+                    var priceString = "$" + (Math.round(+this.data[i].list_price / 1000)) + "K";
                 }
                 if (i == 0) {
                     var winString = '<div class="googleMap_item focus" id="' + i + '">' + priceString + '</div>';
@@ -58,13 +59,13 @@ export class MagMapModule implements OnInit {
                 console.log(this.data[i].photo);
                 infoWindow.open(map);
                 google.maps.event.addListener(infoWindow, 'domready', function () {
-                    $('.gm-style-iw').prev().addClass('hide');
-                    $('.gm-style-iw').next().addClass('hide');
-                    $('.gm-style-iw').parent().addClass('zSize');
-                    $('.googleMap_item').click(function() {
+                    jQuery('.gm-style-iw').prev().addClass('hide');
+                    jQuery('.gm-style-iw').next().addClass('hide');
+                    jQuery('.gm-style-iw').parent().addClass('zSize');
+                    jQuery('.googleMap_item').click(function() {
                         var index = document.getElementById("id").id;
                         console.log(index);
-                        $('.mag_n1_img').css("background-image", 'url('+this.data[index].photo+')');
+                        jQuery('.mag_n1_img').css("background-image", 'url('+this.data[index].photo+')');
                     });
                 });
             }
