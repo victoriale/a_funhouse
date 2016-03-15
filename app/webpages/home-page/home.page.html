@@ -3,16 +3,16 @@
     <div class="container">
         <main class='doc-main row'>
             <section class='content-main twelve columns'>
-                <h1 class="home-tagline"><img class="map-icon" src="./app/public/Icons_Explore.png" /> Explore <span class="thin">The {{city}} Area</span></h1>
+                <h1 class="home-tagline"><img class="map-icon" src="./app/public/Icons_Explore.png" /> Explore <span class="thin">The {{cityLocation}} Area</span></h1>
             </section>
         </main>
-        <explore-tiles-component></explore-tiles-component>
+        <explore-tiles-component *ngIf="nearByCities" [nearByCities]="nearByCities"></explore-tiles-component>
         <div class="row">
             <explore-button-component [buttonTitle]="buttonTitle" [buttonWidth]="buttonWidth" [buttonIcon]="buttonIcon"></explore-button-component>
         </div>
     </div>
 </div>
-<hero-bottom-component [buttonTitle]="heroButtonTitle" [buttonWidth]="heroButtonWidth" [buttonIcon]="heroButtonIcon"></hero-bottom-component>
+<hero-bottom-component [buttonTitle]="heroButtonTitle" [buttonWidth]="heroButtonWidth" [buttonIcon]="heroButtonIcon" [cityLocation]="cityLocation"></hero-bottom-component>
 <div class="content-wrapper">
     <div class="container">
         <main class='doc-main row'>
