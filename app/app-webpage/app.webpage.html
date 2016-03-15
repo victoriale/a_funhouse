@@ -1,19 +1,23 @@
 <div id="partner"></div>
 <header-component></header-component>
-<nav class="twelve columns">
-    <a [routerLink]="['Home-page']">Home Page</a>
-    <a [routerLink]='["Profile-page", {address: address}]'>Profile Page</a>
-    <a [routerLink]="['Location-page', {loc: cityStateLocation}]">Location Page</a>
-    <a [routerLink]="['List-page']">List Page</a>
-    <a [routerLink]="['Amenities-lists-page']">Amenities Page</a>
-    <a [routerLink]="['List-of-lists-page']">LOL Page</a>
-    <a [routerLink]="['Component-page']">Component Page</a>
-    <a [routerLink]="['Aboutus-page']">About Us Page</a>
-    <a [routerLink]="['Contactus-page']">Contact Us Page</a>
-    <a [routerLink]="['Disclaimer-page']">Disclaimer Page</a>
-    <a [routerLink]="['Directory-page']">Directory Page</a>
-</nav>
-<div class="page-wrapper">
+<div class="wrapper">
+    <div class="inner-wrapper">
+        <nav class="twelve-col">
+            <a [routerLink]="['Home-page']">Home Page</a>
+            <a [routerLink]='["Profile-page", {address: address}]'>Profile Page</a>
+            <a [routerLink]="['Location-page', {loc: cityStateLocation}]">Location Page</a>
+            <a [routerLink]="['List-page']">List Page</a>
+            <a [routerLink]="['Amenities-lists-page']">Amenities Page</a>
+            <a [routerLink]="['List-of-lists-page']">LOL Page</a>
+            <a [routerLink]="['Component-page']">Component Page</a>
+            <a [routerLink]="['Aboutus-page']">About Us Page</a>
+            <a [routerLink]="['Contactus-page']">Contact Us Page</a>
+            <a [routerLink]="['Disclaimer-page']">Disclaimer Page</a>
+            <a [routerLink]="['Directory-page']">Directory Page</a>
+        </nav>
+    </div>
+</div>
+<div class="container">
     <router-outlet></router-outlet>
 </div>
 <footer-component></footer-component>

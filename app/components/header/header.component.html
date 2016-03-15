@@ -1,32 +1,36 @@
 <div class="header-top-bar-wrapper">
-    <div class="container">
-        <div class="header-top-bar row">
-            <div *ngIf="!isMyHouseKit" class="tagline six columns">
-                <a href="/">Joyful Home | A Little Place to Call Home</a>
-            </div>
-            <div *ngIf="isMyHouseKit" class="tagline six columns">
-                <a href="/">MyHouseKit | A Little Place to Call Home</a>
-            </div>
-            <div class="directory-link six columns">
-                <a (click)="directoryToggle()">Directories</a>
-            </div>
-            <div class="directory-dropdown-wrapper" [hidden]="!directoryVisible">
-                <ul *ngFor="#directoryItem of directoryList">
-                    <li><i class="fa fa-angle-right"></i> {{directoryItem}}</li>
-                </ul>
+    <div class="wrapper">
+        <div class="inner-wrapper">
+            <div class="header-top-bar">
+                <div *ngIf="!isMyHouseKit" class="tagline six-col">
+                    <a href="/">Joyful Home | A Little Place to Call Home</a>
+                </div>
+                <div *ngIf="isMyHouseKit" class="tagline six col">
+                    <a href="/">MyHouseKit | A Little Place to Call Home</a>
+                </div>
+                <div class="directory-link six-col">
+                    <a (click)="directoryToggle()">Directories</a>
+                </div>
+                <div class="directory-dropdown-wrapper" [hidden]="!directoryVisible">
+                    <ul>
+                        <li *ngFor="#directoryItem of directoryList"><i class="fa fa-angle-right"></i> {{directoryItem}}</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </div>
 <div class="header-bottom-bar-wrapper">
-    <div class="container">
-        <div class="header-bottom-bar row">
-            <div *ngIf="!isMyHouseKit" class="header-logo six columns">
-                <a href="/"><img src="./app/public/joyful_home_logo.png" width="147px" height="27px" alt="Joyful Home | A Little Place to Call Home"/></a>
+    <div class="wrapper">
+        <div class="inner-wrapper">
+            <div class="header-bottom-bar">
+                <div *ngIf="!isMyHouseKit" class="header-logo six-col">
+                    <a href="/"><img src="./app/public/joyful_home_logo.png" width="147px" height="27px" alt="Joyful Home | A Little Place to Call Home"/></a>
+                </div>
+                <div *ngIf="isMyHouseKit" class="header-logo six-col">
+                </div>
+                <header-search-component [isHomePage]="isHomePage"></header-search-component>
             </div>
-            <div *ngIf="isMyHouseKit" class="header-logo six columns">
-            </div>
-            <header-search-component [isHomePage]="isHomePage"></header-search-component>
         </div>
     </div>
 </div>

@@ -5,7 +5,7 @@ import {ExploreButtonComponent} from "../../buttons/explore-button/explore-butto
     selector: 'hero-bottom-component',
     templateUrl: './app/components/hero/hero-bottom/hero-bottom.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    inputs: ['buttonTitle', 'buttonWidth', 'buttonIcon'],
+    inputs: ['buttonTitle', 'buttonWidth', 'buttonIcon', 'cityLocation'],
     directives: [ExploreButtonComponent],
     providers: [],
 })
@@ -14,4 +14,5 @@ export class HeroBottomComponent {
     public buttonTitle: string;
     public buttonWidth: number;
     public buttonIcon: string;
+    public cityLocation: string;
 }
