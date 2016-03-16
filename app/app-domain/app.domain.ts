@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 import {Router, RouteData, RouteConfig, ROUTER_DIRECTIVES, LocationStrategy} from 'angular2/router';
 
-import {WebApp} from "../app-layout/webpage.layout";
+import {WebApp} from "../app-layout/app.layout";
 
 @Component({
     selector: 'app-domain',
