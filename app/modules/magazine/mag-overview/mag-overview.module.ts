@@ -13,26 +13,21 @@ import {MagazinePage} from "../../../app-webpage/magazine.webpage";
     directives: [AdzoneComponent, LearnMoreComponent],
 })
 export class MagOverviewModule implements OnInit {
-    data: MagOverviewData[];
-    testing: string = "<a href='http://google.com'>testing link</a> and more text here.";
     counter: number;
-    address: any;
-    magOverview: any;
+    address: string;
+    magOverview: MagOverviewData;
 
     constructor( private _injector: Injector, private _magazineDataService: MagazineDataService ) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
         this.address = _injector.get(MagazinePage).address;
-        //console.log("address!!!:", this.address);
     }
 
     getMagazineOverview() {
-        //this._magazineDataService.getMagazineData(this.address)
         this._magazineDataService.getMagazineData("5170-Benton-Tama-Road-Buckingham-IA")
             .subscribe(
                 magData => {
                     this.magOverview = magData.overview;
-                    //console.log("magOverview:",this.magOverview);
                 },
                 err => console.log("error in getData", err)
             )
@@ -40,16 +35,5 @@ export class MagOverviewModule implements OnInit {
 
     ngOnInit() {
       this.getMagazineOverview();
-          //console.log("magOverview:", this.magOverview);
-          //console.log(this);
-    }
-
-
-    ngOnChanges(event){
-        console.log("EVENT:!!!", event);
-        if( event.toc.currentValue !== undefined ) {
-            //console.log("OnChange Event", event.toc.currentValue);
-            //console.log("Footer OnChange toc:!!!!", this.toc);
-        }
     }
 }

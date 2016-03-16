@@ -113,18 +113,18 @@ export interface MagCarouselData {
 }
 
 export interface MagOverviewData {
-    pageTitle: string;
-    menuTitle: string;
-    address: string;
-    city: string;
-    state: string;
-    zipcode: string;
-    county: string;
-    country: string;
-    price: number;
-    key: string;
-    content: string[];
-    photos: string[];
+    pageTitle?: string;
+    menuTitle?: string;
+    address?: string;
+    city?: string;
+    state?: string;
+    zipCode?: string;
+    county?: string;
+    country?: string;
+    price?: number;
+    key?: string;
+    content?: string[];
+    photos?: string[];
 }
 
 export interface MagNeighborhoodData {
