@@ -1,8 +1,8 @@
-<!-- <div style="width:100%; height:auto;"><iframe id="partner_header" src="http://altustimes.com/section/mainheader/" style="display: block; width:100%; height:50px; border:0; overflow:hidden;" frameborder="0" scrolling="no" allowtransparency="true"></iframe></div> -->
+<div id="partner"></div>
 <header-component></header-component>
 <div class="wrapper">
     <div class="inner-wrapper">
-        <nav class="twelve-col">
+        <nav class="twelve-col testLinks">
             <a [routerLink]="['Home-page']">Home Page</a>
             <a [routerLink]='["Profile-page", {address: address}]'>Profile Page</a>
             <a [routerLink]="['Location-page', {loc: cityStateLocation}]">Location Page</a>
@@ -14,6 +14,7 @@
             <a [routerLink]="['Contactus-page']">Contact Us Page</a>
             <a [routerLink]="['Disclaimer-page']">Disclaimer Page</a>
             <a [routerLink]="['Directory-page']">Directory Page</a>
+            <a [routerLink]="['Search-page', {query: 'stuff'}]">Search Page</a>
         </nav>
     </div>
 </div>

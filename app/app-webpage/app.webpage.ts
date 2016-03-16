@@ -1,5 +1,5 @@
-import {Component} from 'angular2/core';
-import {Router, RouteData, RouteConfig, RouterOutlet, ROUTER_DIRECTIVES, LocationStrategy} from 'angular2/router';
+import {Component, OnInit, Injector} from 'angular2/core';
+import {RouteParams, Router, RouteData, RouteConfig, RouterOutlet, ROUTER_DIRECTIVES, LocationStrategy} from 'angular2/router';
 import {ProfilePage} from "../webpages/profile-page/profile.page";
 import {LocationPage} from "../webpages/location-page/location.page";
 import {ListPage} from "../webpages/list-page/list.page";
@@ -19,13 +19,17 @@ import {HeroBottomComponent} from "../components/hero/hero-bottom/hero-bottom.co
 import {ExploreButtonComponent} from "../components/buttons/explore-button/explore-button.component";
 import {FeatureTilesComponent} from "../components/feature-tiles/feature-tiles.component";
 import {DirectoryPage} from "../webpages/directory-page/directory.page";
+import {SearchPage} from "../webpages/search-page/search.page";
+
+import {WebApp} from "../app-layout/app.layout";
+import {PartnerHeader} from "../global/global-service";
 
 @Component({
     selector: 'my-app',
-    templateUrl: './app/app-webpage/app.component.html',
+    templateUrl: './app/app-webpage/app.webpage.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [RouterOutlet, ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ListPage, ListOfListsPage, AmenitiesListPage, ROUTER_DIRECTIVES, DirectoryPage],
-    providers: [ROUTER_DIRECTIVES],
+    providers: [PartnerHeader, ROUTER_DIRECTIVES],
 })
 
 @RouteConfig([
@@ -85,11 +89,44 @@ import {DirectoryPage} from "../webpages/directory-page/directory.page";
         path: '/directory',
         name: 'Directory-page',
         component: DirectoryPage
+    },
+    {
+        path: '/search/:query',
+        name: 'Search-page',
+        component: SearchPage
     }
 ])
 
 export class AppComponent {
-    partner_id: string = "latimes.com";
+
+    //declare variables to grab potential partner header
+    public partnerID: string;
+    public partnerData: Object;
+    public partnerScript:string;
     cityStateLocation: string = "Wichita_KS";
     address: string = "503-C-Avenue-Vinton-IA";
+
+    constructor(private _injector: Injector,private _partnerData: PartnerHeader, private _params: RouteParams){
+      var parentParams = this._injector.get(WebApp);
+      console.log(parentParams);
+      if(typeof parentParams.partnerID != 'undefined'){
+        this.partnerID = parentParams.partnerID;
+      }
+    }
+
+    getPartnerHeader(){
+      console.log(this);
+      this.partnerID = this.partnerID.replace('-','.');
+      console.log(this.partnerID);
+
+      this._partnerData.getPartnerData(this.partnerID).subscribe(
+          partnerScript => this.partnerData = partnerScript
+      );
+    }
+
+    ngOnInit(){
+      if (this.partnerID != null){
+        this.getPartnerHeader();
+      }
+    }
 }

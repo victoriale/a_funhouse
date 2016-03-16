@@ -1,0 +1,73 @@
+.search_tab{
+  width:680px;
+  height:auto;
+  background-color: @white;
+  box-shadow: @modBoxShadow;
+  &-menu{
+    //from components.less
+    .tabRowBottomBorder(100%,50px, 3, 2px);
+    ul{
+      margin:0;
+      padding:0;
+    }
+  }
+}//end search_tab
+
+.search-box{
+  height:265px;
+  width:100%;
+  background-color:grey;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.search_results{
+  width:100%;
+  height: auto;
+  overflow: hidden;
+  box-sizing: border-box;
+  background-color: @white;
+  .globalDefaultModFont(14px, 400, @fontIconGrey);
+  &-showing{
+    height:45px;
+    width:100%;
+    padding-top:14px;
+    padding-left:18px;
+    text-align: left;
+  }
+  &-info{
+    width:91%;
+    height:auto;
+    padding: 18px 30px;
+    margin: 0 30px;
+    border-bottom: 1px solid @strokeGrey;
+    text-align: left;
+    color: @black;
+    &:hover {
+      background-color: @masterBrandColor;
+      color: @white;
+    }
+    .fa {
+      float: right;
+    }
+    &-h1{
+      font-size: 20px;
+      // color:@black;
+      line-height:24px;
+      text-align: left;
+    }
+    &-link{
+      font-size: 14px;
+      color:@masterBrandColor;
+      line-height:24px;
+      text-align: left;
+      padding: 5px 0;
+    }
+    &-desc{
+      font-size: 14px;
+      color:@black;
+      line-height:24px;
+      text-align: left;
+    }
+  }
+}
