@@ -10,7 +10,7 @@ import {CommentModule} from '../../modules/comment/comment.module';
 import {LikeUs} from '../../modules/likeus/likeus.module';
 import {ShareModule} from '../../modules/share/share.module';
 import {AboutUsModule} from '../../modules/aboutus/aboutus.module';
-import {SchoolModule} from "../../modules/school/school.module";
+import {AmenitiesModule} from "../../modules/amenities/amenities.module";
 
 import {LocationProfileService} from '../../global/location-profile.service';
 
@@ -18,7 +18,7 @@ import {LocationProfileService} from '../../global/location-profile.service';
     selector: 'location-page',
     templateUrl: './app/webpages/location-page/location.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule],
+    directives: [HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, AmenitiesModule],
     providers: [LocationProfileService],
 })
 
@@ -65,7 +65,7 @@ export class LocationPage implements OnInit {
         };
 
         this.headlineAmenities = {
-            title: 'Schools in ' + this.locDisplay,
+            title: 'Schools & Amenities in ' + this.locDisplay,
             icon: 'fa-graduation-cap'
         };
 

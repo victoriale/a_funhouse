@@ -4,8 +4,8 @@
     <div class="ac-carousel">
         <!--Carousel Heading and Lising Name-->
         <div class="ac-carousel-heading">
-            <div>{{list_data.header}}</div>
-            <div><i class="fa fa-map-marker"></i><span> {{list_data.name}}</span></div>
+            <div>What's the highest rated restaurant in this area?</div>
+            <div><i class="fa fa-map-marker"></i><span> [Listing Name]</span></div>
         </div>
         <!--Image Placeholder and Carousel Buttons for Next and Previous-->
         <carousel-button (scrollLeft)="left()" (scrollRight)="right()"></carousel-button>
@@ -13,7 +13,7 @@
         <image-150 [hasSubImg]="main_hasSubImg"></image-150>
         <!--Establishment, Address, Location-->
         <div class="ac-carousel-est">
-            <div>{{list_data.establishment}}</div>
+            <div>[Establishment]</div>
             <div><span>[Establishment Address]</span>. <span>[Location]</span></div>
         </div>
         <!--Button to See The List-->
@@ -44,7 +44,7 @@
 
     </div>
     <!--Footer Button to See All Amenities-->
-    <div *ngIf="hasFooterButton" class="footer">
+    <div class="footer">
         <a href='{{list_data.ListUrl}}' class='footer-btn'>
             <span></span>
             <span>See All Amenities</span>
