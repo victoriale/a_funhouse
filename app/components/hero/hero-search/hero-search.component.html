@@ -2,7 +2,7 @@
     <div class="hero-search 8-col">
         <div id="hero-search-full-container">
             <input type="text" (click)="focusResults($event)" (focus)="focusResults($event)" (blur)="blurResults($event)" (keyup)="searchText($event)" placeholder="Where do you want to live? (City, ST)"><button class="hero-search-button fa fa-search"></button>
-            <search-results (mousedown)="preventBlur()" [showResults]="showResults" [searchResults]="searchResults"></search-results>
+            <search-results (mousedown)="preventBlur()" [showResults]="showResults" [searchResults]="searchResults | async"></search-results>
         </div>
     </div>
 </div>

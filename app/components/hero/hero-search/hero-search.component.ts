@@ -1,6 +1,7 @@
 import {Component} from 'angular2/core';
 import {SearchService} from '../../../global/search-service';
 import {SearchResults} from '../../search-results/search-results.component';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'hero-search-component',
@@ -11,7 +12,8 @@ import {SearchResults} from '../../search-results/search-results.component';
 })
 
 export class HeroSearchComponent{
-    searchResults: Array<Object>
+    //searchResults: Array<Object>;
+    searchResults: Observable<Array<Object>>;
     showResults: boolean;
 
     constructor(private _searchService: SearchService){
@@ -38,12 +40,14 @@ export class HeroSearchComponent{
             return false;
         }
 
-        this._searchService.getSearchResults(input, 'list')
-            .subscribe(
-                data => {
-                    this.searchResults = data;
-                }
-            )
+        this.searchResults = this._searchService.getSearchResults(input, 'list');
+
+        //this._searchService.getSearchResults(input, 'list')
+        //.subscribe(
+        //    data => {
+        //        this.searchResults = data;
+        //    }
+        //)
     }
 
     //Function to prevent blur from happening when user clicks on dropdown. (search results component) This is so the anchor tag links can navigate properly

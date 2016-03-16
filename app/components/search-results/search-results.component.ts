@@ -1,5 +1,6 @@
 import {Component, Input, OnChanges} from 'angular2/core';
 import {ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'search-results',
@@ -13,15 +14,15 @@ import {ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
 export class SearchResults{
     showResults: boolean;
     noResultsFound: boolean
-    searchResults: Array<Object>;
-    displaySearchResults: Array<Object>;
+    searchResults: Observable<Array<Object>>;
+    //searchResults: Array<Object>;
 
     closeResults(event){
         this.showResults = false;
     }
 
     ngOnChanges(event){
-        //console.log('Lutz - search changes', event);
+        //console.log('Lutz - search changes', event, this);
         if(typeof event.searchResults !== 'undefined'){
             var currentValue = event.searchResults.currentValue;
             var previousValue = event.searchResults.previousValue;
@@ -34,7 +35,7 @@ export class SearchResults{
                 this.noResultsFound = false;
             }
             //this.showResults = true;
-            this.displaySearchResults = currentValue;
+
         }
     }
 }
