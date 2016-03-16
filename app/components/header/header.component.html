@@ -20,7 +20,7 @@
         </div>
     </div>
 </div>
-<div class="header-bottom-bar-wrapper">
+<div class="header-bottom-bar-wrapper" (window:scroll)="onScroll($event)" [class.stick]="isScrolling">
     <div class="wrapper">
         <div class="inner-wrapper">
             <div class="header-bottom-bar">
