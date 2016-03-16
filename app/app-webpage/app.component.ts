@@ -47,12 +47,12 @@ import {DirectoryPage} from "../webpages/directory-page/directory.page";
         component: LocationPage,
     },
     {
-        path: '/list',
+        path: '/list/:listname/:state/:city',
         name: 'List-page',
         component: ListPage,
     },
     {
-        path: '/list-of-lists/:listname/:state/:city',
+        path: '/list-of-lists',
         name: 'List-of-lists-page',
         component: ListOfListsPage,
     },

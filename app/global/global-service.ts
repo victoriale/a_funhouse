@@ -8,13 +8,11 @@
 
 import {List, List2} from './global-interface';
 import {Injectable} from 'angular2/core';
+import {Http} from 'angular2/http';
 import {HomePageData} from "./global-interface";
 
 @Injectable()
 
-/*@LOCATIONPROFILE*/
-
-/*_@BATCH-1*/
 export class ListOfListService {
     getListOfList() {
         var Lol: List[] = [
