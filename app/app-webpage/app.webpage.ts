@@ -19,6 +19,7 @@ import {HeroBottomComponent} from "../components/hero/hero-bottom/hero-bottom.co
 import {ExploreButtonComponent} from "../components/buttons/explore-button/explore-button.component";
 import {FeatureTilesComponent} from "../components/feature-tiles/feature-tiles.component";
 import {DirectoryPage} from "../webpages/directory-page/directory.page";
+import {SearchPage} from "../webpages/search-page/search.page";
 
 import {WebApp} from "../app-layout/app.layout";
 import {PartnerHeader} from "../global/global-service";
@@ -88,6 +89,11 @@ import {PartnerHeader} from "../global/global-service";
         path: '/directory',
         name: 'Directory-page',
         component: DirectoryPage
+    },
+    {
+        path: '/search/:query',
+        name: 'Search-page',
+        component: SearchPage
     }
 ])
 
