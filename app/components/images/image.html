@@ -1,8 +1,8 @@
-<div *ngIf="hasSubImg === true" class='image-{{size}}-smallImgBR'>
+<div *ngIf="hasSubImg" class='image-{{size}}-smallImgBR'>
     <img src='{{imageURL}}' alt='This is the main image' />
     <img src='{{imageURL2}}' alt='Small image' />
 </div>
 
-<div *ngIf="hasSubImg === false">
+<div *ngIf="!hasSubImg">
     <img class='image-{{size}}' src='{{imageURL}}' alt='This is the main image' />
 </div>
