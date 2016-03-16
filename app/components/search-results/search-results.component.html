@@ -1,7 +1,7 @@
 <ul *ngIf="searchResults && showResults" class="search-results">
     <div class="caret-top"></div>
     <i (click)="closeResults($event)" class="fa fa-times search-results-close"></i>
-    <a *ngFor = "#item of searchResults" [routerLink]="[item.page, item.params]" (click)="closeResults($event)">
+    <a *ngFor = "#item of displaySearchResults" [routerLink]="[item.page, item.params]" (click)="closeResults($event)">
         <li>
             {{item.title}}
         </li>

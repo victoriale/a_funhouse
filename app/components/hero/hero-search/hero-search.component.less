@@ -14,7 +14,6 @@
   border: 1px solid #DDDDDD;
   border-radius: 5px;
   padding-left: 10px;
-  margin-left: 69px;
   .globalDefaultModFont(18, 400, @black);
 
   // Glow animation
@@ -32,14 +31,14 @@
 
   .hero-search-button {
     width: 70px;
-    height: 50px;
     background-color: #44b224;
     color: #ffffff;
     font-size: 24px;
     text-align: center;
-    position: relative;
-    top: 2px;
-    right: 69px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
     border: none;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -51,4 +50,11 @@
       top: -27px;
       right: 9px;
     }
+  }
+
+  //Needed id styling to group search input and results dropdown. results dropdown is absolutely bound to this container
+  #hero-search-full-container{
+    position: relative;
+    margin: 0 auto;
+    width: 500px;
   }
