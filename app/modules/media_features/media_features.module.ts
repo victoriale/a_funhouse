@@ -2,7 +2,7 @@
  * Created by Victoria on 3/2/2016.
  */
 import {Component, OnInit, Input} from 'angular2/core';
-import {Router} from 'angular2/router';
+import {Router, RouteParams} from 'angular2/router';
 import {moduleHeader} from "../../components/module-header/module-header";
 import {MediaImages} from "../../components/media-images/media-images.component";
 import {PropertyListingInterface} from '../../global/global-interface';
@@ -17,7 +17,7 @@ import {GlobalFunctions} from '../../global/global-functions';
 })
 
 export class MediaFeatureModule implements OnInit{
-    module_title: string;
+    public moduleTitle: string;
     public trending: boolean;
     public prop_features: any;
     public profileType: string;
@@ -27,7 +27,7 @@ export class MediaFeatureModule implements OnInit{
 
     @Input() propertyListingData: PropertyListingInterface;
 
-    constructor(private router: Router, private globalFunctions: GlobalFunctions){
+    constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions){
         //Determine what page the profile header module is on
         this.profileType = this.router.hostComponent.name;
     }
@@ -37,8 +37,29 @@ export class MediaFeatureModule implements OnInit{
       console.log('media feature data: ', data);
     }
 
+    //Build Module Title
+    setModuleTitle(){
+
+        if(this.profileType === 'LocationPage'){
+            //Location Crime Module
+            var paramLocation: string = this._params.get('loc');
+            var paramCity: string = this.globalFunctions.toTitleCase(paramLocation.split('_')[0]);
+            var paramState: string = paramLocation.split('_')[1];
+
+            this.moduleTitle = 'Property Images, Media & Features for ' + paramCity + ', ' + paramState;
+        }else if(this.profileType === 'ProfilePage'){
+            //Listing Crime Module
+            var paramAddress = this._params.get('address').split('-');
+            var paramState = paramAddress[paramAddress.length -1];
+            var paramCity = paramAddress [paramAddress.length - 2];
+            var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
+            var address = tempArr.join(' ');
+
+            this.moduleTitle = 'Property Images, Media & Features for ' + address + ' ' + paramCity + ', ' + paramState;
+        }
+    }
     ngOnInit(){
-        this.module_title = 'Property Images, Media & Features for [Profile Name]';
+      this.setModuleTitle();
         this.trending = false;
         this.getData();
         this.prop_features = [
@@ -46,7 +67,6 @@ export class MediaFeatureModule implements OnInit{
             details: "Price: $749,000"
           }
         ];
-        console.log(this.getData());
     }
 
     //On Change Call
