@@ -8,6 +8,7 @@
 
 import {List, List2} from './global-interface';
 import {Injectable} from 'angular2/core';
+import {Http} from 'angular2/http';
 import {HomePageData} from "./global-interface";
 import {Http, Headers} from 'angular2/http';
 

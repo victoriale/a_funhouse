@@ -2,7 +2,7 @@
     <section class="explore-tiles">
         <a [routerLink]='["Location-page", {loc: nearByCities[0].city + "_" + nearByCities[0].state}]'>
             <div class="explore-tile-1 eight-col">
-                <p class="explore-tile-title">{{nearByCities[0].city}}, {{nearByCities[0].state}}</p>
+                <p class="explore-tile-title">{{citiesDisplay[0]}}, {{nearByCities[0].state}}</p>
                 <div class="view-box">
                     <p class="view-text">View This Area</p>
                 </div>
@@ -10,7 +10,7 @@
         </a>
         <a [routerLink]='["Location-page", {loc: nearByCities[1].city + "_" + nearByCities[1].state}]'>
             <div class="explore-tile-2 two-col">
-                <p class="explore-tile-title">{{nearByCities[1].city}}, {{nearByCities[1].state}}</p>
+                <p class="explore-tile-title">{{citiesDisplay[1]}}, {{nearByCities[1].state}}</p>
                 <div class="view-box">
                     <p class="view-text">View This Area</p>
                 </div>
@@ -20,12 +20,12 @@
     <section class="explore-tiles">
         <div class="explore-tile-3 eight-col">
             <p class="explore-tile-title-long">
-                <span class="title-bold">Here are 5 of 18</span><br /> cities within 20<br /> miles of your<br />location
+                <span class="title-bold">Here are 5 of {{nearByCities.citiesCount}}</span><br /> cities within 20<br /> miles of your<br />location
             </p>
         </div>
         <a [routerLink]='["Location-page", {loc: nearByCities[2].city + "_" + nearByCities[2].state}]'>
             <div class="explore-tile-4 two-col">
-                <p class="explore-tile-title">{{nearByCities[2].city}}, {{nearByCities[2].state}}</p>
+                <p class="explore-tile-title">{{citiesDisplay[2]}}, {{nearByCities[2].state}}</p>
                 <div class="view-box">
                     <p class="view-text">View This Area</p>
                 </div>
@@ -35,7 +35,7 @@
     <section class="explore-tiles">
         <a [routerLink]='["Location-page", {loc: nearByCities[3].city + "_" + nearByCities[3].state}]'>
             <div class="explore-tile-5 eight-col">
-                <p class="explore-tile-title">{{nearByCities[3].city}}, {{nearByCities[3].state}}</p>
+                <p class="explore-tile-title">{{citiesDisplay[3]}}, {{nearByCities[3].state}}</p>
                 <div class="view-box">
                     <p class="view-text">View This Area</p>
                 </div>
@@ -43,7 +43,7 @@
         </a>
         <a [routerLink]='["Location-page", {loc: nearByCities[4].city + "_" + nearByCities[4].state}]'>
             <div class="explore-tile-6 two-col">
-                <p class="explore-tile-title">{{nearByCities[4].city}}, {{nearByCities[4].state}}</p>
+                <p class="explore-tile-title">{{citiesDisplay[4]}}, {{nearByCities[4].state}}</p>
                 <div class="view-box">
                     <p class="view-text">View This Area</p>
                 </div>
