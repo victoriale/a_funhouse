@@ -8,14 +8,14 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [ROUTER_DIRECTIVES, ExploreButtonComponent],
     providers: [],
-    inputs: ['nearByCities', 'citiesDisplay'],
+    inputs: ['nearByCities'],
 })
 
 export class ExploreTilesComponent implements OnInit {
 
-    citiesDisplay: Array<any> = [];
+    nearByCities: Object;
 
     ngOnInit() {
-        console.log('hi', this.citiesDisplay);
+        console.log('hi', this.nearByCities);
     }
 }
