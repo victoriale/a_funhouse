@@ -14,27 +14,27 @@ export class SearchResults{
     showResults: boolean;
     noResultsFound: boolean
     searchResults: Array<Object>;
+    displaySearchResults: Array<Object>;
 
     closeResults(event){
         this.showResults = false;
     }
 
     ngOnChanges(event){
-        //console.log('Lutz - search changes', event, this);
+        //console.log('Lutz - search changes', event);
         if(typeof event.searchResults !== 'undefined'){
             var currentValue = event.searchResults.currentValue;
             var previousValue = event.searchResults.previousValue;
 
-            if(currentValue !== null && currentValue.length === 0){
-                console.log('Lutz - No results found');
+            //If returned result is an empty array, display no results found
+            if(typeof currentValue !== 'undefined' && currentValue !== null && currentValue.length === 0){
+                //console.log('Lutz - No results found');
                 this.noResultsFound = true;
             }else{
                 this.noResultsFound = false;
             }
-            //console.log('Lutz - search check', JSON.stringify(currentValue), JSON.stringify(previousValue), JSON.stringify(currentValue) !== JSON.stringify(previousValue));
-            if(JSON.stringify(currentValue) !== JSON.stringify(previousValue) && this.showResults !== false){
-                this.showResults = true;
-            }
+            //this.showResults = true;
+            this.displaySearchResults = currentValue;
         }
     }
 }
