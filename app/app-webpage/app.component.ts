@@ -91,5 +91,7 @@ import {DirectoryPage} from "../webpages/directory-page/directory.page";
 export class AppComponent {
     partner_id: string = "latimes.com";
     cityStateLocation: string = "Wichita_KS";
+    cityLocation: string = "WICHITA";
+    stateLocation: string = "KS";
     address: string = "503-C-Avenue-Vinton-IA";
 }
