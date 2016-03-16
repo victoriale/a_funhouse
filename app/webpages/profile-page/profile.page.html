@@ -1,55 +1,57 @@
 <div class="content-wrapper">
-    <div class="container">
-        <main class='row'>
-            <section class='content-main eight columns'>
-                <!-- Modules Go Here -->
+    <div class="wrapper">
+        <div class="inner-wrapper">
+            <main>
+                <section class='content-main eight-col'>
+                    <!-- Modules Go Here -->
 
-                <!-- About Section -->
-                <headline-component [data]="headlineAbout"></headline-component>
+                    <!-- About Section -->
+                    <headline-component [data]="headlineAbout"></headline-component>
 
-                <!--Listing Profile Header-->
-                <profile-header [profileHeaderData]="profileHeaderData | async"></profile-header>
+                    <!--Listing Profile Header-->
+                    <profile-header [profileHeaderData]="profileHeaderData | async"></profile-header>
 
-                <!--Media Feature Section-->
-                <media-features-module [trending]="mediaFeature"></media-features-module>
+                    <!--Media Feature Section-->
+                    <media-features-module [trending]="mediaFeature"></media-features-module>
 
-                <!--Map Section-->
+                    <!--Map Section-->
 
-                <!--Comment Section-->
-                <comment-module></comment-module>
+                    <!--Comment Section-->
+                    <comment-module></comment-module>
 
-                <!-- Crime Section -->
-                <headline-component [data]="headlineCrime"></headline-component>
-                <crime-module></crime-module>
+                    <!-- Crime Section -->
+                    <headline-component [data]="headlineCrime"></headline-component>
+                    <crime-module></crime-module>
 
-                <!-- Amenities Section -->
-                <headline-component [data]="headlineAmenities"></headline-component>
-                <amenities-module></amenities-module>
-                <!-- Other Homes Section -->
-                <headline-component [data]="headlineOtherHomes"></headline-component>
+                    <!-- Amenities Section -->
+                    <headline-component [data]="headlineAmenities"></headline-component>
+                    <amenities-module></amenities-module>
+                    <!-- Other Homes Section -->
+                    <headline-component [data]="headlineOtherHomes"></headline-component>
 
-                <!--Trending Section-->
-                <trending-homes [trending]="trendingFeature"></trending-homes>
+                    <!--Trending Section-->
+                    <trending-homes [trending]="trendingFeature"></trending-homes>
 
-                <!--List of List Section-->
-                <list-of-lists-module></list-of-lists-module>
+                    <!--List of List Section-->
+                    <list-of-lists-module></list-of-lists-module>
 
-                <!-- Interact Section -->
-                <headline-component [data]="headlineInteract"></headline-component>
+                    <!-- Interact Section -->
+                    <headline-component [data]="headlineInteract"></headline-component>
 
-                <!--Feature List Module-->
-                <featured-lists-module></featured-lists-module>
+                    <!--Feature List Module-->
+                    <featured-lists-module></featured-lists-module>
 
-                <!--Share Module-->
-                <share-module></share-module>
-                <!--Like Us On FB Module-->
-                <like-us-module></like-us-module>
-                <!--Learn More About Us-->
-                <about-us-module></about-us-module>
-            </section>
-            <aside class="four columns">
-                <div class="widget"></div>
-            </aside>
-        </main>
+                    <!--Share Module-->
+                    <share-module></share-module>
+                    <!--Like Us On FB Module-->
+                    <like-us-module></like-us-module>
+                    <!--Learn More About Us-->
+                    <about-us-module></about-us-module>
+                </section>
+                <aside class="four-col">
+                    <div class="widget"></div>
+                </aside>
+            </main>
+        </div>
     </div>
 </div>

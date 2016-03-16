@@ -1,25 +1,23 @@
 <hero-component></hero-component>
-<div class="content-wrapper">
-    <div class="container">
-        <main class='doc-main row'>
-            <section class='content-main twelve columns'>
-                <h1 class="home-tagline"><img class="map-icon" src="./app/public/Icons_Explore.png" /> Explore <span class="thin">The {{city}} Area</span></h1>
-            </section>
-        </main>
-        <explore-tiles-component></explore-tiles-component>
-        <div class="row">
+<div class="wrapper">
+    <div class="inner-wrapper">
+        <section class='content-main twelve-col'>
+            <h1 class="home-tagline"><img class="map-icon" src="./app/public/Icons_Explore.png" /> Explore <span class="thin">The {{cityLocation}} Area</span></h1>
+        </section>
+        <div class="twelve-col">
+            <explore-tiles-component *ngIf="nearByCities" [nearByCities]="nearByCities"></explore-tiles-component>
+        </div>
+        <div class="twelve-col">
             <explore-button-component [buttonTitle]="buttonTitle" [buttonWidth]="buttonWidth" [buttonIcon]="buttonIcon"></explore-button-component>
         </div>
     </div>
 </div>
-<hero-bottom-component [buttonTitle]="heroButtonTitle" [buttonWidth]="heroButtonWidth" [buttonIcon]="heroButtonIcon"></hero-bottom-component>
-<div class="content-wrapper">
-    <div class="container">
-        <main class='doc-main row'>
-            <section class='content-main twelve columns'>
-                <h1 class="home-tagline"><img class="map-icon" src="./app/public/Icons_Features.png" /> Features <span class="thin">To Note</span></h1>
-            </section>
-        </main>
+<hero-bottom-component [buttonTitle]="heroButtonTitle" [buttonWidth]="heroButtonWidth" [buttonIcon]="heroButtonIcon" [cityLocation]="cityLocation"></hero-bottom-component>
+<div class="wrapper">
+    <div class="inner-wrapper">
+        <section class='content-main twelve-col'>
+            <h1 class="home-tagline"><img class="map-icon" src="./app/public/Icons_Features.png" /> Features <span class="thin">To Note</span></h1>
+        </section>
         <feature-tiles-component></feature-tiles-component>
     </div>
 </div>
