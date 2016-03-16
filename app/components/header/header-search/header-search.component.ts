@@ -21,19 +21,18 @@ export class HeaderSearchComponent{
 
     }
 
+    //Function to tell search results component to show when input is focused
     focusResults(event){
-        console.log('Lutz - Focus search')
-        //this.showResults = true;
+        this.showResults = true;
+    }
+    //Function to tell search results component to hide when input is blurred
+    blurResults(event){
+        this.showResults = false;
     }
 
     searchText(event){
         var input = event.target.value;
         console.log('Lutz - Search event', input);
-        //If input is empty, exit function
-        if(input === ''){
-            //this.searchResults = {};
-            return false;
-        }
         this.searchResults = this._searchService.getSearchResults(input)
             //.subscribe(
             //    data => {

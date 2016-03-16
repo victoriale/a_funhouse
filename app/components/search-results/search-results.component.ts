@@ -7,7 +7,7 @@ import {ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [ROUTER_DIRECTIVES],
     providers: [],
-    inputs: ['searchResults']
+    inputs: ['searchResults', 'showResults']
 })
 
 export class SearchResults{
@@ -21,6 +21,18 @@ export class SearchResults{
 
     ngOnChanges(event){
         console.log('Lutz - search changes', event);
-        this.showResults = true;
+        //this.showResults = true;
+        if(typeof event.searchResults !== 'undefined') {
+            var currentValue = event.searchResults.currentValue;
+            var previousValue = event.searchResults.previousValue;
+
+            if(currentValue === []){
+                console.log('Lutz - No results found');
+            }
+
+            if(JSON.stringify(currentValue) !== JSON.stringify(previousValue) && this.showResults !== false){
+                this.showResults = true;
+            }
+        }
     }
 }
