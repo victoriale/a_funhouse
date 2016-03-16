@@ -2,11 +2,11 @@ import {Component} from 'angular2/core';
 
 @Component({
     selector: 'widget',
-    templateUrl: './app/components/widget/widget.component.html',
+    templateUrl: './app/modules/widget/widget.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [],
     providers: [],
 })
 
-export class WidgetComponent {
+export class WidgetModule {
 }

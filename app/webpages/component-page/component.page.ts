@@ -28,7 +28,6 @@ import {CommentModule} from "../../modules/comment/comment.module";
 import {RangeSliderComponent} from "../../components/range-slider/range-slider.component";
 import {MediaFeatureModule} from "../../modules/media_features/media_features.module";
 import {MediaImages} from "../../components/media-images/media-images.component";
-import {InfoListComponent} from "../../components/info-list/info-list.component";
 import {PaginationFooter} from "../../components/pagination-footer/pagination-footer.component";
 
 @Component({
@@ -62,8 +61,7 @@ import {PaginationFooter} from "../../components/pagination-footer/pagination-fo
         MediaFeatureModule,
         MediaImages,
         RangeSliderComponent,
-        InfoListComponent,
-        PaginationFooter
+        PaginationFooter,
     ],
     providers: [],
 })
