@@ -30,7 +30,7 @@ export class MagHeaderModule {
     ngOnChanges(event){
         if( event.toc.currentValue !== undefined ) {
             //console.log("OnChange Event", event.toc.currentValue);
-            //console.log("OnChange toc:!!!!", this.toc);
+            console.log("OnChange toc:!!!!", this.toc);
         }
     }
 }
