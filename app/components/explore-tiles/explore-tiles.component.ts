@@ -16,6 +16,6 @@ export class ExploreTilesComponent implements OnInit {
     nearByCities: Object;
 
     ngOnInit() {
-        console.log('Nearby Cities: ', this.nearByCities);
+        console.log('hi', this.nearByCities);
     }
 }

@@ -15,6 +15,7 @@
     z-index: 5;
     font-size: 16px;
     text-align: left;
+    font-family: @globalFont;
 
     &-close{
       position: absolute;
@@ -49,7 +50,6 @@
       border-bottom: 1px solid @strokeGrey;
       display: block;
       color: @black;
-      font-family: @globalFont;
 
       &:last-child{
         border-bottom: none;
@@ -62,6 +62,12 @@
 
     &.active{
       display: block;
+    }
+
+    &-no-results{
+      height: 25px;
+      line-height: 25px;
+      width: 100%;
     }
   }
 }

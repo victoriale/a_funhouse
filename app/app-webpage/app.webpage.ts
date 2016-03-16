@@ -51,7 +51,7 @@ import {PartnerHeader} from "../global/global-service";
         component: LocationPage,
     },
     {
-        path: '/list',
+        path: '/list/:listname/:state/:city',
         name: 'List-page',
         component: ListPage,
     },
@@ -104,6 +104,8 @@ export class AppComponent {
     public partnerData: Object;
     public partnerScript:string;
     cityStateLocation: string = "Wichita_KS";
+    cityLocation: string = "WICHITA";
+    stateLocation: string = "KS";
     address: string = "503-C-Avenue-Vinton-IA";
 
     constructor(private _injector: Injector,private _partnerData: PartnerHeader, private _params: RouteParams){

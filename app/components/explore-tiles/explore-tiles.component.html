@@ -20,7 +20,7 @@
     <section class="explore-tiles">
         <div class="explore-tile-3 eight-col">
             <p class="explore-tile-title-long">
-                <span class="title-bold">Here are 5 of 18</span><br /> cities within 20<br /> miles of your<br />location
+                <span class="title-bold">Here are 5 of {{nearByCities.citiesCount}}</span><br /> cities within 20<br /> miles of your<br />location
             </p>
         </div>
         <a [routerLink]='["Location-page", {loc: nearByCities[2].city + "_" + nearByCities[2].state}]'>
