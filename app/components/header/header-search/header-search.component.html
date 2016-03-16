@@ -1,5 +1,8 @@
 <div *ngIf="!isHomePage" class="header-search six-col">
-    <input type="text" placeholder="Where do you want to live? (City, ST)"><i class="fa fa-search"></i>
+    <div style="position: relative;">
+        <input type="text" (focus)="focusResults($event)" (keyup)="searchText($event)" type="text" placeholder="Where do you want to live? (City, ST)"><i class="fa fa-search"></i>
+        <search-results [showResults]="showResults" [searchResults]="searchResults | async"></search-results>
+    </div>
 </div>
 <div *ngIf="isHomePage" class="header-search six-col">
 </div>
