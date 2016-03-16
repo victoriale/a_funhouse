@@ -4,17 +4,36 @@
       <div class="search_tab">
         <backtab-component></backtab-component>
         <div style="height:auto;">
-          <div class="search-box" style="background-image:url('{{searchImage}}')"></div>
+          <div class="search-box" style="background-image:url('{{searchImage}}')">
+            <div class="search-headline">
+              <h3>Discover More Homes In Real Estate</h3>
+              <h4>Find Homes in Your Area or an Address</h4>
+            </div>
+            <div class="search-area">
+              <input type="text" name="keyword" class="search-area-text" (focus)="focusResults($event)" (keyup)="searchText($event)" type="text" placeholder="Where do you want to live? (City, ST)">
+              <button class="search-area-btn fa fa-search"></button>
+            </div>
+          </div>
           <nav class="search_tab-menu">
             <ul id='tab-list-three'>
               <li>
-                <a id=''class='active'>
+                <a class='search-tab active' id='address' (click)="tabTarget($event)">
                   <i class='fa fa-circle'></i>
-                  Tab One
+                  Address
                 </a>
               </li>
-              <li><a id=''>Tab Two</a></li>
-              <li><a id=''>Tab Three</a></li>
+              <li>
+                <a class='search-tab' id='location' (click)="tabTarget($event)">
+                  <i class=''></i>
+                  Location
+                </a>
+              </li>
+              <li>
+                <a class='search-tab' id='zipcode' (click)="tabTarget($event)">
+                  <i class=''></i>
+                  Zip Code
+                </a>
+              </li>
             </ul>
           </nav>
         </div>
@@ -23,16 +42,14 @@
         <!--below tabs where results are to be displayed-->
         <div class="search_results">
           <div class="search_results-showing">
-            Showing
-            {currentResult}
-            results of
-            {totalResults}
+            Showing {{currentTotal}} results of {{showTotal}}
           </div>
 
           <!--RESULTS FROM API BELOW-->
-          <a href="">
+
+          <a *ngFor="#data of displayData" href="">
             <div class="search_results-info">
-              <div class="search_results-info-h1"></div>
+              <div class="search_results-info-h1">{{data.address_key}}</div>
             </div>
           </a>
           <!--below tabs where results are to be displayed END-->
