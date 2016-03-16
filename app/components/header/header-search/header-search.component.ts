@@ -27,18 +27,19 @@ export class HeaderSearchComponent{
     }
     //Function to tell search results component to hide when input is blurred
     blurResults(event){
+        console.log('Lutz - Blur Event', event);
         this.showResults = false;
     }
 
     searchText(event){
         var input = event.target.value;
         console.log('Lutz - Search event', input);
-        this.searchResults = this._searchService.getSearchResults(input)
-            //.subscribe(
-            //    data => {
-            //        console.log('Lutz - Search results', data);
-            //        this.searchResults = data;
-            //    }
-            //)
+        this.showResults = true;
+        this.searchResults = this._searchService.getSearchResults(input, 'list');
+    }
+
+    //Function to prevent blur from happening when user clicks on dropdown. (search results component) This is so the anchor tag links can navigate properly
+    preventBlur(){
+        return false;
     }
 }
