@@ -128,13 +128,13 @@ export class MagazineOverview {
                 menuTitle: "Property Overview",
                 address: "5170 Benton Tama Road",
                 key: "5170-Benton-Tama-Road-Buckingham-IA",
-                content:[
+                content: [
                     "Look no further — this lovely home at 5170 Benton Tama Road has plenty to offer to eager Buckingham homebuyers.",
                     "With four bedrooms and two full bathrooms, this inviting 1915 home is perfect for small families, growing families and single prospective homeowners alike.",
                     "This structure's exterior is covered in practical vinyl siding.",
                     "Nearby private schools include Don Bosco High School, Columbus High School and Immaculate Conception-St Joseph School.",
                     "Grocery stores close to this home are Randall's Stop'n Shop, Hy-Vee Food Stores and Fareway Stores. Other nearby amenities include a Cafes eatery, KE Black Mercantile; a Restaurants dining establishment, Jack'n Arnies Steakhouse South; and 1901 Chop Haus, a steakhouse.",
-                    "Buyers who wish to learn more about this listing can visit <a target="_blank" href="http://www.joyfulhome.com/listing/5170-Benton-Tama-Road-Buckingham-IA">the listing profile</a> or contact David Wessling of Iowa Land Management Co at 3194725353 or <a href="mailto:dave.iowaland@mebbs.com">dave.iowaland@mebbs.com</a>. Continue reading to learn more about the 52349-0000 ZIP code and its demographics, amenities and schools."
+                    "Buyers who wish to learn more about this listing can visit <a target=\"_blank\" href=\"http://www.joyfulhome.com/listing/5170-Benton-Tama-Road-Buckingham-IA\">the listing profile</a> or contact David Wessling of Iowa Land Management Co at 3194725353 or <a href=\"mailto:dave.iowaland@mebbs.com\">dave.iowaland@mebbs.com</a>. Continue reading to learn more about the 52349-0000 ZIP code and its demographics, amenities and schools."
                 ],
                 photos: [
                     "http://photos.listhub.net/BCMLSIA/12794/1?lm=20160304T212303",
@@ -148,11 +148,10 @@ export class MagazineOverview {
                     "http://photos.listhub.net/BCMLSIA/12794/9?lm=20160304T212303",
                     "http://photos.listhub.net/BCMLSIA/12794/10?lm=20160304T212303"
                 ]
+            }
         ];
         return Promise.resolve(MagOverview);
     }
-
-    z
 }
 
 @Injectable()
