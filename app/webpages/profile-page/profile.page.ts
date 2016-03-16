@@ -55,10 +55,10 @@ export class ProfilePage implements OnInit{
     public paramAddress: string;
 
     public profileHeaderData: Object;
+    public propertyListingData: Object;
 
     //  Get current route name
     constructor(public router: Router, private _listingProfileService: ListingProfileService, params: RouteParams){
-
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
 
@@ -68,6 +68,10 @@ export class ProfilePage implements OnInit{
 
     getListingData(){
         this.profileHeaderData = this._listingProfileService.getListingProfile(this.paramAddress);
+    }
+
+    getPropertyData(){
+        this.propertyListingData = this._listingProfileService.getPropertyListing(this.paramAddress);
     }
 
     ngOnInit(){

@@ -13,5 +13,5 @@ import {CircleButton} from "../../components/buttons/circle/circle.button";
 })
 export class MediaImages{
     public trending: boolean;
-    public data: Object;
+    public data: Object; 
 }

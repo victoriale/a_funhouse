@@ -40,4 +40,26 @@ export class ListingProfileService{
             }
         )
     }
+
+    //API for Property Image and feature listing profile
+    getPropertyListing(address){
+        //Configure HTTP Headers
+        var headers = this.setToken();
+
+        address = encodeURI(address);
+        console.log('Listing Profile Service Input', address);
+
+        return this.http.get(this.apiUrl + '/listing/propertyImagesForListing/' + address, {
+            headers: headers
+        })
+        .map(
+            res => res.json()
+        )
+        .map(
+            data => {
+                return data.data;
+            }
+        )
+    }
+
 }
