@@ -59,7 +59,7 @@ export class HeaderComponent{
         }
 
 
-        console.log('scroll event', event, scrollTop, this.isScrolling);
+       //console.log('scroll event', event, scrollTop, this.isScrolling);
     }
 
 }
