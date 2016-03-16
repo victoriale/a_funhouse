@@ -25,7 +25,9 @@ export class InfoListComponent implements OnInit{
           'buttonName': 'View Your Home'
       }
 
-      ngOnInit(){
-        console.log(this); 
+    infoList: Object;
+
+    ngOnInit(){
+        console.log(this);
     }
 }
