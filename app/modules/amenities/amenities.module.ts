@@ -14,6 +14,7 @@ import {AmenitiesComponent} from '../../components/amenities/amenities.component
     providers: []
 })
 export class AmenitiesModule implements OnInit{
+    public hasFooterButton: boolean;
     module_title: string;
     tile_data: Object;
     list_data: Object;
@@ -26,6 +27,7 @@ export class AmenitiesModule implements OnInit{
     }
 
     ngOnInit(){
+        this.hasFooterButton = true;
         this.module_title = 'Top Rated Amenities In and Around [Listing Name]';
         this.tile_data = {
             button_txt: 'Open Page',

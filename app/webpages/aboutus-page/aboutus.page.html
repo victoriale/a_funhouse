@@ -1,56 +1,59 @@
 <div class="content-wrapper">
-    <div class="container">
-        <main class='row'>
-            <section class='content-main eight columns'>
-                <div class="page-container au">
-                    <backtab-component></backtab-component>
-                    <title-component [data]="title_data"></title-component>
-                    <div class="au-heading"><b>What is </b>{{whatIs}}</div>
-                    <div class="au-desc">
-                        <p>{{au_pa1}}</p><br/><p>{{au_pa2}}</p>
+    <div class="wrapper">
+        <div class="inner-wrapper">
+            <main class='row'>
+                <section class='content-main eight-col'>
+                    <div class="page-container au">
+                        <backtab-component></backtab-component>
+                        <title-component [data]="title_data"></title-component>
+                        <div class="au-heading"><b>What is </b>{{whatIs}}</div>
+                        <div class="au-desc">
+                            <p>{{au_pa1}}</p>
+                            <p>{{au_pa2}}</p>
+                        </div>
+                        <div class="au-blocks">
+                            <div class="au-blocks-block">
+                                <span><img src="{{au_icon1}}" /></span>
+                                <span>
+                                    <div>{{subText1}}</div>
+                                    <div>{{mainText1}}</div>
+                                </span>
+                            </div>
+                            <div class="au-blocks-block">
+                                <span><img src="{{au_icon2}}" /></span>
+                                <span>
+                                    <div>{{subText2}}</div>
+                                    <div>{{mainText2}}</div>
+                                </span>
+                            </div>
+                            <div class="au-blocks-block">
+                                <span><img src="{{au_icon3}}" /></span>
+                                <span>
+                                    <div>{{subText3}}</div>
+                                    <div>{{mainText3}}</div>
+                                </span>
+                            </div>
+                            <div class="au-blocks-block">
+                                <span><img src="{{au_icon4}}" /></span>
+                                <span>
+                                    <div>{{subText4}}</div>
+                                    <div>{{mainText4}}</div>
+                                </span>
+                            </div>
+                        </div>
+                        <!--Blocks End-->
+                        <div class="au-nat">
+                            <div>{{subText_nat}}</div>
+                            <div>{{mainText_nat}}</div>
+                            <img src="{{nat_map}}" alt="nationwide image" />
+                        </div>
                     </div>
-                    <div class="au-blocks">
-                        <div class="au-blocks-block">
-                            <span><img src="{{au_icon1}}" /></span>
-                            <span>
-                                <div>{{subText1}}</div>
-                                <div>{{mainText1}}</div>
-                            </span>
-                        </div>
-                        <div class="au-blocks-block">
-                            <span><img src="{{au_icon2}}" /></span>
-                            <span>
-                                <div>{{subText2}}</div>
-                                <div>{{mainText2}}</div>
-                            </span>
-                        </div>
-                        <div class="au-blocks-block">
-                            <span><img src="{{au_icon3}}" /></span>
-                            <span>
-                                <div>{{subText3}}</div>
-                                <div>{{mainText3}}</div>
-                            </span>
-                        </div>
-                        <div class="au-blocks-block">
-                            <span><img src="{{au_icon4}}" /></span>
-                            <span>
-                                <div>{{subText4}}</div>
-                                <div>{{mainText4}}</div>
-                            </span>
-                        </div>
-                    </div>
-                    <!--Blocks End-->
-                    <div class="au-nat">
-                        <div>{{subText_nat}}</div>
-                        <div>{{mainText_nat}}</div>
-                        <img src="{{nat_map}}" alt="nationwide image" />
-                    </div>
-                </div>
 
-            </section>
-            <aside class="four columns">
-                <div class="widget"></div>
-            </aside>
-        </main>
+                </section>
+                <aside class="four-col">
+                    <div class="widget"></div>
+                </aside>
+            </main>
+        </div>
     </div>
 </div>

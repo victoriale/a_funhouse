@@ -1,5 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
-import {Router, RouteParams} from 'angular2/router';
+import {RouteParams} from 'angular2/router';
 
 import {ProfileHeader} from '../../modules/profile_header/profile_header.module';
 import {HeadlineComponent} from '../../components/headline/headline.component';
@@ -17,7 +17,6 @@ import {FeaturedListsModule} from '../../modules/featured_lists/featured_lists.m
 import {MediaImages} from "../../components/media-images/media-images.component";
 import {TrendingHomes} from "../../modules/trending-homes/trending-homes.module";
 
-
 import {ListingProfileService} from '../../global/listing-profile.service';
 
 @Component({
@@ -29,40 +28,22 @@ import {ListingProfileService} from '../../global/listing-profile.service';
 })
 
 export class ProfilePage implements OnInit{
-    public headlineAbout  = {
-        title: 'About [Listing Name]',
-        icon: 'fa-map-marker'
-    };
-    public headlineCrime  = {
-        title: 'Most Recent Crimes in [Listing Name]',
-        icon: 'fa-gavel'
-    };
-    public headlineAmenities = {
-        title: 'Amenities in [Listing Name]',
-        icon: 'fa-cutlery'
-    };
-    public headlineOtherHomes = {
-        title: 'Other Homes You May Be Interested In',
-        icon: 'fa-heart-o'
-    };
-    public headlineInteract = {
-        title: 'Interact with Joyful Home',
-        icon: 'fa-comment-o'
-    };
+    paramAddress: string;
+    address: string;
+    public headlineAbout: any;
+    public headlineCrime: any;
+    public headlineAmenities: any;
+    public headlineOtherHomes: any;
+    public headlineInteract: any;
     public mediaFeature = false;
     public trendingFeature = true;
-
-    public paramAddress: string;
-
     public profileHeaderData: Object;
+    public propertyListingData: Object;
 
     //  Get current route name
-    constructor(public router: Router, private _listingProfileService: ListingProfileService, params: RouteParams){
-
+    constructor(public _params: RouteParams, private _listingProfileService: ListingProfileService, params: RouteParams){
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
-
-        console.log('Route Name:', this.router.hostComponent.name);
         this.paramAddress = params.get('address');
     }
 
@@ -70,7 +51,33 @@ export class ProfilePage implements OnInit{
         this.profileHeaderData = this._listingProfileService.getListingProfile(this.paramAddress);
     }
 
+    getPropertyListing(){
+      this.propertyListingData = this._listingProfileService.getPropertyListing(this.paramAddress);
+    }
+
     ngOnInit(){
+        this.address = this._params.get('address');
+        console.log(this.address);
         this.getListingData();
+        this.headlineAbout  = {
+            title: 'About ' + this.address,
+            icon: 'fa-map-marker'
+        };
+        this.headlineCrime  = {
+            title: 'Most Recent Crimes in ' + this.address,
+            icon: 'fa-gavel'
+        };
+        this.headlineAmenities = {
+            title: 'Amenities in ' + this.address,
+            icon: 'fa-cutlery'
+        };
+        this.headlineOtherHomes = {
+            title: 'Other Homes You May Be Interested In',
+            icon: 'fa-heart-o'
+        };
+        this.headlineInteract = {
+            title: 'Interact with Joyful Home',
+            icon: 'fa-comment-o'
+        };
     }
 }

@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, Input, OnInit} from 'angular2/core';
 import {ExploreButtonComponent} from "../buttons/explore-button/explore-button.component";
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 
@@ -8,10 +8,14 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [ROUTER_DIRECTIVES, ExploreButtonComponent],
     providers: [],
+    inputs: ['nearByCities'],
 })
 
-export class ExploreTilesComponent {
+export class ExploreTilesComponent implements OnInit {
 
-    tileLocations = ["Wichita, KS", "Derby, KS", "Haysville, KS", "Valley Center, KS", "Mulvane, KS"];
-    tileUrls = ["WICHITA_KS", "DERBY_KS", "HAYSVILLE_KS", "VALLEY CENTER_KS", "MULVANE_KS"];
+    nearByCities: Object;
+
+    ngOnInit() {
+        console.log('hi', this.nearByCities);
+    }
 }
