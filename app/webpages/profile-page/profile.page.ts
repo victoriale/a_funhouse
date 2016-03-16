@@ -44,6 +44,7 @@ export class ProfilePage implements OnInit{
     constructor(public _params: RouteParams, private _listingProfileService: ListingProfileService, params: RouteParams){
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
+        this.paramAddress = params.get('address');
     }
 
     getListingData(){

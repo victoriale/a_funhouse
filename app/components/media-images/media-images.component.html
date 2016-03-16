@@ -1,4 +1,4 @@
-<section class="media-images" *ngFor="#data of data">
+<section class="media-images" *ngFor="#BatchTwo of BatchTwo">
     <circle-button></circle-button>
     <div class="plcholder">
         <a href='' class='feature-btn expand'>
@@ -12,19 +12,19 @@
             <span> Images (30)</span>
             <i></i>
         </a>
-        <img src="{{data.bigImage}}" class="plcholder-img" alt="placeholder images" mode="fit" />
+        <img src="{{BatchTwo.bigImage}}" class="plcholder-img" alt="placeholder images" />
 
         <div class="plcholder-details">
             <div class="listings">
-                <div class="listings-name">{{data.list_name}}</div>
-                <div class="listings-addr">{{data.list_addr}}</div>
-                <div class="listings-days">{{data.list_day}}</div>
+                <div class="listings-name">{{BatchTwo.list_name}}</div>
+                <div class="listings-addr">{{BatchTwo.list_addr}}</div>
+                <div class="listings-days">{{BatchTwo.list_day}}</div>
             </div>
 
-            <div *ngIf="!trending" class="details"><div>{{data.detail1}}</div><div>{{data.unit1}}</div></div>
-            <div *ngIf="!trending" class="details"><div>{{data.detail2}}</div><div>{{data.unit2}}</div></div>
+            <div *ngIf="!trending" class="details"><div>{{BatchTwo.detail1}}</div><div>{{BatchTwo.unit1}}</div></div>
+            <div *ngIf="!trending" class="details"><div>{{BatchTwo.detail2}}</div><div>{{BatchTwo.unit2}}</div></div>
 
-            <div class="details"><div>{{data.price}}</div><div>{{data.price_name}}</div></div>
+            <div class="details"><div>{{BatchTwo.price}}</div><div>{{BatchTwo.price_name}}</div></div>
             <a *ngIf="trending" href='' class='mod-page-btn'>
                 <span></span>
                 <span>View Your Home</span>
@@ -35,7 +35,7 @@
     </div>
     <div class="sm_images">
         <div class="sm_images-img">
-            <a *ngFor="#sm_images of data.smallImage" href="">
+            <a *ngFor="#sm_images of BatchTwo.smallImage" href="">
                 <img src="{{sm_images}}" alt="small square images" />
             </a>
         </div>

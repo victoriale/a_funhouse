@@ -1,17 +1,34 @@
 /**
  * Created by Victoria on 3/4/2016.
  */
-import {Component} from 'angular2/core';
+import {Component, OnInit, Input} from 'angular2/core';
 import {CircleButton} from "../../components/buttons/circle/circle.button";
+import {MediaFeatureList} from '../../global/global-service';
+import {List2} from '../../global/global-interface';
 
 @Component({
     selector: 'media-images',
     templateUrl: './app/components/media-images/media-images.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [CircleButton],
-    inputs: ['trending', 'data']
+    providers: [MediaFeatureList],
+    inputs: ['trending']
 })
-export class MediaImages{
+export class MediaImages implements OnInit {
+    BatchTwo: List2[];
     public trending: boolean;
-    public data: Object; 
+
+    constructor(
+        private _featureList: MediaFeatureList
+    ){}
+
+    getData(){
+    console.log(this);
+        this._featureList.getBatchTwo().then(batch2 => this.BatchTwo = batch2);
+    }
+
+    ngOnInit(){
+        this.getData();
+        console.log(this);
+    }
 }

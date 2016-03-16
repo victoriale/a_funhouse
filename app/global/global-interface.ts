@@ -1,7 +1,18 @@
-export interface PropertyImages {
+export interface PropertyListingInterface {
     listingID: string;
     imageCount: string;
+    numBathrooms: string;
+    numBedrooms: string;
+    fullBathrooms: string;
+    halfBathrooms: string;
+    architecturalStyle: string;
+    numFloors: string;
+    hasBasement: string;
     listingImages: any;
+    appliance: string;
+    heating: string;
+    exterior: string;
+    roof: string;
 }
 
 export interface List {
