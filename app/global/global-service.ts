@@ -10,9 +10,41 @@ import {List, List2} from './global-interface';
 import {Injectable} from 'angular2/core';
 import {Http} from 'angular2/http';
 import {HomePageData} from "./global-interface";
+import {Http, Headers} from 'angular2/http';
 
 @Injectable()
 
+export class PartnerHeader{
+    public protocolToUse: string = (location.protocol == "https:") ? "https" : "http";
+    public apiUrl: string = 'apireal.synapsys.us/listhuv/?action=get_partner_data&domain=';
+
+    constructor(public http: Http){
+
+    }
+
+    //API for listing profile
+    getPartnerData(partner_id){
+
+        console.log('Grabbing Partner Data', partner_id);
+
+        var fullUrl = this.protocolToUse + '://' + this.apiUrl + partner_id;
+        console.log(fullUrl);
+        return this.http.get(fullUrl, {
+        })
+        .map(
+            res => res.json()
+        )
+        .map(
+            data => {
+                return data;
+            }
+        )
+    }
+}
+
+/*@LOCATIONPROFILE*/
+
+/*_@BATCH-1*/
 export class ListOfListService {
     getListOfList() {
         var Lol: List[] = [
