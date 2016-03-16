@@ -13,12 +13,13 @@ import {AboutUsModule} from '../../modules/aboutus/aboutus.module';
 import {SchoolModule} from "../../modules/school/school.module";
 
 import {LocationProfileService} from '../../global/location-profile.service';
+import {WidgetModule} from "../../modules/widget/widget.module";
 
 @Component({
     selector: 'location-page',
     templateUrl: './app/webpages/location-page/location.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule],
+    directives: [HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule, WidgetModule],
     providers: [LocationProfileService],
 })
 

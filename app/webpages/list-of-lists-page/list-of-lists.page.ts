@@ -6,12 +6,13 @@ import {ListOfListService, BatchOne} from '../../global/global-service';
 import {contentList} from "../../components/contentlist/contentlist";
 import {List} from "../../global/global-interface";
 import {HeroListComponent} from "../../components/hero/hero-list/hero-list.component";
+import {WidgetModule} from "../../modules/widget/widget.module";
 
 @Component({
     selector: 'list-of-lists-page',
     templateUrl: './app/webpages/list-of-lists-page/list-of-lists.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [BackTabComponent, TitleComponent, ListCarouselComponent, contentList, HeroListComponent],
+    directives: [BackTabComponent, TitleComponent, ListCarouselComponent, contentList, HeroListComponent, WidgetModule],
     providers: [ListOfListService],
 })
 
