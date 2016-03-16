@@ -1,0 +1,43 @@
+<div class="content-wrapper">
+  <div class="wrapper">
+    <div class="inner-wrapper">
+      <div class="search_tab">
+        <backtab-component></backtab-component>
+        <div style="height:auto;">
+          <div class="search-box" style="background-image:url('{{searchImage}}')"></div>
+          <nav class="search_tab-menu">
+            <ul id='tab-list-three'>
+              <li>
+                <a id=''class='active'>
+                  <i class='fa fa-circle'></i>
+                  Tab One
+                </a>
+              </li>
+              <li><a id=''>Tab Two</a></li>
+              <li><a id=''>Tab Three</a></li>
+            </ul>
+          </nav>
+        </div>
+        <!--menu options-->
+
+        <!--below tabs where results are to be displayed-->
+        <div class="search_results">
+          <div class="search_results-showing">
+            Showing
+            {currentResult}
+            results of
+            {totalResults}
+          </div>
+
+          <!--RESULTS FROM API BELOW-->
+          <a href="">
+            <div class="search_results-info">
+              <div class="search_results-info-h1"></div>
+            </div>
+          </a>
+          <!--below tabs where results are to be displayed END-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
