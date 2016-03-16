@@ -44,8 +44,8 @@ export class SearchService{
         var maxCount = 10;
         var searchArray = [];
 
-        //If addresses are defined in api return iterate through addresses
-        if(typeof data.address !== 'undefined') {
+        //If addresses are not null in api return iterate through addresses
+        if(typeof data.address !== 'undefined' && data.address !== null) {
             data.address.forEach(function (item, index) {
                 searchArray.push({
                     title: item.address_key.replace(/-/g, ' '),
@@ -59,8 +59,8 @@ export class SearchService{
             });
         }
 
-        //If location cities are defined in api return iterate through cities
-        if(typeof data.location_city !== 'undefined') {
+        //If location cities are not null in api return iterate through cities
+        if(typeof data.location_city !== 'undefined' && data.location_city !== null) {
             data.location_city.forEach(function (item, index) {
                 searchArray.push({
                     title: item.city + ', ' + item.state_or_province,
@@ -74,8 +74,8 @@ export class SearchService{
             });
         }
 
-        //If zipcodes are defined in api return iterate through zipcodes
-        if(typeof data.zipcode !== 'undefined' && count < 10){
+        //If zipcodes are not null in api return iterate through zipcodes
+        if(typeof data.zipcode !== 'undefined' && data.zipcode !== null && count < 10){
             data.zipcode.forEach(function(item, index){
                 //If count is 10 skip over remaining zipcodes
                 if(count < maxCount) {
