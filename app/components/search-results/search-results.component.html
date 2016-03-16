@@ -6,4 +6,7 @@
             {{item.title}}
         </li>
     </a>
+    <div *ngIf="noResultsFound" class="search-results-no-results">
+        No Results Found
+    </div>
 </ul>

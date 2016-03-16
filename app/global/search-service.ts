@@ -12,7 +12,7 @@ export class SearchService{
     }
 
     //API for search bar
-    getSearchResults(input){
+    getSearchResults(input, type){
         //Configure HTTP Headers
         var headers = new Headers();
         //headers.append('X-SNT-TOKEN', 'BApA7KEfj');
@@ -21,8 +21,6 @@ export class SearchService{
         if(input === ''){
             return Observable([]);
         }
-
-        console.log('input in service', input);
 
         input = encodeURI(input);
 
@@ -34,16 +32,16 @@ export class SearchService{
             )
             .map(
                 data => {
-                    console.log('Lutz - map function', data.data);
-                    data = this.dataToLink(data.data);
+                    data = data.data;
+
+                    //If type is set to list, extract array out of data
+                    if(type === 'list') {
+                        data = this.dataToLink(data);
+                    }
+
                     return data;
                 }
-            )
-            //.subscribe(
-            //    data => this.result = this.dataToLink(data),
-            //    err => console.log('There was an error: ', err),
-            //    () => console.log('Search API - complete ', this.result)
-            //);
+            );
 
     }
 
@@ -73,6 +71,18 @@ export class SearchService{
             });
             count++;
         });
+
+        if(typeof data.zipcode !== 'undefined' && count < 10){
+            data.zipcode.forEach(function(item, index){
+                searchArray.push({
+                    title: item.city + ', ' + item.state_or_province,
+                    page: 'Location-page',
+                    params: {
+                        loc: item.city + '_' + item.state_or_province
+                    }
+                })
+            })
+        }
 
         return searchArray;
     }
