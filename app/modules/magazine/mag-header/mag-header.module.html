@@ -5,9 +5,9 @@
         </div>
     <div class="magheader_logo"></div>
     <div class="magheader_sep"></div>
-    <i class="fa fa-bars" id="tabs" (click)="openTabs()"></i>
+    <i class="fa fa-bars" id="tabs" (click)="toggleTabs()"></i>
     <div class="magheader_but_cont">
-        <magtab-component></magtab-component>
+        <magtab-component [toc]="toc"></magtab-component>
     </div>
     <close-component></close-component>
     <share-component></share-component>

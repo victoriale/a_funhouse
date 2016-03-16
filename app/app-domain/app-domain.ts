@@ -8,7 +8,7 @@ import {WebApp} from "../app-layout/webpage.component";
     templateUrl: './app/app-domain/app-domain.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [WebApp, ROUTER_DIRECTIVES],
-    providers: [ROUTER_DIRECTIVES],
+    providers: []
 })
 
 @RouteConfig([

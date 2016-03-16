@@ -1,26 +1,19 @@
 <div class="mag_container mag_text" id="test">
-    <div *ngFor="#magOverview of data">
+    <div>
         <div class='mag_po_address'>
             <i class='fa fa-map-marker'></i>
-            {{magOverview.street_address}}
+            {{magOverview.address}}
         </div>
         <div class='mag_po_loc'>
-            {{magOverview.neighborhood}} | {{magOverview.city}}, {{magOverview.state}} {{magOverview.zipcode}}
+            {{magOverview?.neighborhood}} | {{magOverview.address}}
             Sedgwick County, US
         </div>
         <div class='mag_po_price'>Listed for: $124,900</div>
         <div class='mag-line'></div>
-        <span style="line-height: 1.42857143;">
-            {{magOverview.magtext1}}<br><br>
-            {{magOverview.magtext2}}<br><br>
-            <!-- <adzone-component></adzone-component> -->
-            {{magOverview.magtext3}}<br><br>
-            {{magOverview.magtext4}}<br><br>
-            {{magOverview.magtext5}}<br><br>
-            {{magOverview.magtext6}} <a href='http://www.joyfulhome.com/listing/3277-N-LONGFELLOW-CT-Wichita-KS'>the listing profile</a>
-            {{magOverview.magtext7}} <a href='mailto:pegbockus@cox.net'>pegbockus@cox.net</a>
-            {{magOverview.magtext8}}<br><br>
-        </span>
+        <p *ngFor="#p of magOverview.content; #i=index">
+            {{p}}
+            <!--<adzone-component [hidden]=true></adzone-component>-->
+        </p>
         <learnmore-component></learnmore-component>
     </div>
 </div>

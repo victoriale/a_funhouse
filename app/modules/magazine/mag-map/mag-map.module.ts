@@ -32,7 +32,7 @@ export class MagMapModule implements OnInit {
     ngOnInit() {
         this._magazineMapService.getMagazineMap().then(data => {
             this.data = data;
-            console.log(this.data);
+            //console.log(this.data);
             var myLatlng = new google.maps.LatLng(this.data[1]);
             var mapOptions = {
                 zoom: 12,
@@ -56,15 +56,16 @@ export class MagMapModule implements OnInit {
                     content: winString,
                     position: home
                 });
-                console.log(this.data[i].photo);
+                //console.log(this.data[i].photo);
                 infoWindow.open(map);
                 google.maps.event.addListener(infoWindow, 'domready', function () {
-                    jQuery('.gm-style-iw').prev().addClass('hide');
-                    jQuery('.gm-style-iw').next().addClass('hide');
-                    jQuery('.gm-style-iw').parent().addClass('zSize');
+                    var infoWindow = jQuery('.gm-style-iw');
+                    infoWindow.prev().addClass('hide');
+                    infoWindow.next().addClass('hide');
+                    infoWindow.parent().addClass('zSize');
                     jQuery('.googleMap_item').click(function() {
                         var index = document.getElementById("id").id;
-                        console.log(index);
+                        //console.log(index);
                         jQuery('.mag_n1_img').css("background-image", 'url('+this.data[index].photo+')');
                     });
                 });

@@ -9,7 +9,7 @@ import {Router, RouteData, RouteConfig, RouterOutlet, ROUTER_DIRECTIVES, Locatio
     templateUrl: './app/app-layout/webpage.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [MagazinePage, AppComponent,RouterOutlet, ROUTER_DIRECTIVES],
-    providers: [ROUTER_DIRECTIVES],
+    providers: [],
 })
 
 @RouteConfig([

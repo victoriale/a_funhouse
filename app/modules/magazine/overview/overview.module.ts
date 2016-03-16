@@ -13,9 +13,11 @@ import {NavRightComponent} from "../../../components/magazine/mag-nav-right/mag-
 })
 
 export class PropertyOverview {
+    /*
     pagenum: string;
     id: string;
     constructor(params: RouteParams){
         this.pagenum = params.get('pagenum');
     }
+    */
 }
