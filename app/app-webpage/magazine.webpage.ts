@@ -67,7 +67,7 @@ export class MagazinePage {
 
     buildToc( magazineData ) {
         console.log("MAGAZINE DATA!!!!:", magazineData);
-        var toc: Array = [];
+        var toc: any = [];
         if( magazineData.overview != null ){
             toc.push( { label: "Property Overview", routeName: "PropertyOverview" } );
         }

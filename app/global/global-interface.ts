@@ -116,6 +116,12 @@ export interface MagOverviewData {
     pageTitle: string;
     menuTitle: string;
     address: string;
+    city: string;
+    state: string;
+    zipcode: string;
+    county: string;
+    country: string;
+    price: number;
     key: string;
     content: string[];
     photos: string[];
