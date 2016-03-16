@@ -14,8 +14,20 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 export class ExploreTilesComponent implements OnInit {
 
     nearByCities: Object;
+    citiesDisplay: Array<any> = [];
+
+    transformData() {
+        var data = this.nearByCities;
+
+        // Transform city names to lowercase and push to array for display
+        for (var index in data) {
+            if(data[index].hasOwnProperty("city")) {
+                this.citiesDisplay.push(data[index].city.toLowerCase());
+            }
+        }
+    }
 
     ngOnInit() {
-        console.log('Nearby Cities: ', this.nearByCities);
+        this.transformData();
     }
 }
