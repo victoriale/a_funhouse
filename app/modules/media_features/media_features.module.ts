@@ -5,6 +5,8 @@ import {Component, OnInit, Input} from 'angular2/core';
 import {Router, RouteParams} from 'angular2/router';
 import {moduleHeader} from "../../components/module-header/module-header";
 import {MediaImages} from "../../components/media-images/media-images.component";
+import {PropertyListingInterface} from '../../global/global-interface';
+import {GlobalFunctions} from '../../global/global-functions';
 
 @Component({
     selector: 'media-features-module',
@@ -12,7 +14,6 @@ import {MediaImages} from "../../components/media-images/media-images.component"
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [moduleHeader, MediaImages],
     providers: [],
-    //inputs: ['feature_type']
 })
 
 export class MediaFeatureModule implements OnInit{

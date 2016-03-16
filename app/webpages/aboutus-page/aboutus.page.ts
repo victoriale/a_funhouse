@@ -44,10 +44,10 @@ export class AboutUsPage implements OnInit{
         window.scrollTo(0, 0);
     }
 
-    getData(){
+    getData(){ 
         //About us data
         this.title_data = {
-            titleImg : './app/public/img_bckgnd.png',
+            imageURL : './app/public/joyfulhome_house.png',
             smallText1 : 'Last Updated: Monday, February 26, 2016',
             smallText2 : ' United States of America',
             heading1 : 'About Us',

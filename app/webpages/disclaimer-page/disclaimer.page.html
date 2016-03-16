@@ -7,18 +7,26 @@
                         <backtab-component></backtab-component>
                         <title-component [data]="title_data"></title-component>
 
-                        <div class="au-heading"><b>{{heading}}</b>
-
+                        <div class="au-heading">
+                          <div><b>{{heading}}</b></div>
+                          <div class = "au-heading-dropdown">
+                            Now Reading:
+                            <select id="sort_by" style = "margin-top: 1px;">
+                              <option value="disclaimer">Disclaimer</option>
+                              <option value="aboutUs">About Us</option>
+                              <option value="contactUs">Contact Us</option>
+                            </select>
+                          </div>
                         </div>
                         <div class="au-desc">
                             <p>{{disclaimer1}}</p><p>{{disclaimer2}}</p>
                             <p>{{disclaimer3}}</p><p>{{disclaimer4}}</p><br/>
-                            <div><b>Consent</b></div>
+                            <div class="au-desc-headline"><b>Consent</b></div>
                             <p>{{disclaimer5}}</p><br/>
-                            <div><b>Update</b></div>
+                            <div class="au-desc-headline"><b>Update</b></div>
                             <p>{{disclaimer6}}</p>
                             <p style="font-style: italic; font-size: 12px; line-height: 0px;">{{disclaimer7}}</p><br/>
-                            <div><b>Contact Us</b></div>
+                            <div class="au-desc-headline"><b>Contact Us</b></div>
                             <p>{{disclaimer8}}</p><br/>
                         </div>
                     </div>

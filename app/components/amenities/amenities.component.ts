@@ -11,7 +11,7 @@ import {CarouselButton} from '../../components/buttons/carousel/carousel.button'
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [Image150, CarouselButton],
     providers: [],
-    inputs: ['list_data'],
+    inputs: ['list_data', 'hasFooterButton'],
     outputs: ['scrollRight', 'scrollLeft']
 })
 
@@ -35,9 +35,9 @@ export class AmenitiesComponent implements OnInit{
 
         if(typeof this.list_data === 'undefined'){
             this.list_data = {
-                header: 'Trending Real Estate',
-                title: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.',
-                hding1: '[Listing Address]',
+                header: "What's the highest rated restaurant in this area?",
+                name: '[Listing Name]',
+                establishment: '[Establishment]',
                 hding2: '[Listing Name] [Zip Code] - [Neighborhood]',
                 detail1: 'Bedrooms: 3 | Bathrooms: 2',
                 detail2: 'Asking Price: ',
