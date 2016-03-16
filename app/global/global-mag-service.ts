@@ -25,51 +25,6 @@ export class MagazineDataService {
 }
 
 @Injectable()
-export class MagazineHeader {
-    getMagazineHeader() {
-        var MagHeader:MagHeaderData[] = [
-            {
-                'checked': 'checked',
-                'data': 'MagazineListing',
-                'hasLink': true,
-                'id': 'PropertyOverview',
-                'name': 'Property Overview',
-                'pageNum': 1,
-                'template': 'mag_property_overview',
-            },
-            {
-                'checked': '',
-                'data': 'MagazineNeighborhood',
-                'hasLink': true,
-                'id': 'Neighborhood',
-                'name': 'The Neighborhood',
-                'pageNum': 2,
-                'template': 'mag_neighborhood1',
-            },
-            {
-                'checked': '',
-                'data': 'MagazineSimilarListings',
-                'hasLink': true,
-                'id': 'Recommendations',
-                'name': 'Recommendations',
-                'pageNum': 3,
-                'template': 'mag_recommendations1',
-            },
-            {
-                'checked': '',
-                'data': 'MagazineRealtor',
-                'hasLink': true,
-                'id': 'Contact',
-                'name': 'Contact Agent',
-                'pageNum': 4,
-                'template': 'mag_contact',
-            },
-        ];
-        return Promise.resolve(MagHeader);
-    }
-}
-
-@Injectable()
 export class MagazineCarousel {
     getMagazineCarousel() {
         var MagCarousel:MagCarouselData[] = [
