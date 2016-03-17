@@ -1,9 +1,9 @@
 <section class="module-container amen">
-    <module-header [module_title]="module_title"></module-header>
+    <module-header [module_title]="moduleTitle"></module-header>
 
     <div class="amen-body">
         <div>
-            <amenities-component [list_data]="list_data" (scrollLeft)="left()" (scrollRight)="right()"></amenities-component>
+            <amenities-component [hasFooterButton]="hasFooterButton" [list_data]="list_data" (scrollLeft)="left()" (scrollRight)="right()"></amenities-component>
         </div>
 
         <div class="amen-tiles">

@@ -1,6 +1,6 @@
 <div *ngIf="!isHomePage" class="header-search six-col">
     <div id="header-search-full-container">
-        <input type="text" (click)="focusResults($event)" (focus)="focusResults($event)" (blur)="blurResults($event)" (keyup)="searchText($event)" type="text" placeholder="Where do you want to live? (City, ST)"><i (mousedown)="preventBlur()" class="fa fa-search"></i>
+        <input type="text" (click)="focusResults($event)" (focus)="focusResults($event)" (blur)="blurResults($event)" (keyup)="searchText($event)" placeholder="Where do you want to live? (City, ST)"><i (mousedown)="preventBlur()" class="fa fa-search"></i>
         <search-results (mousedown)="preventBlur()" [showResults]="showResults" [searchResults]="searchResults | async"></search-results>
     </div>
 </div>

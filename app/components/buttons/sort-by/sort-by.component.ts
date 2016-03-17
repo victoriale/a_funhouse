@@ -9,5 +9,5 @@
      inputs: ['data'],
  })
  export class DropdownComponent {
-   heading = 'Now Reading: ';
+  //  heading = 'Now Reading: ';
  }

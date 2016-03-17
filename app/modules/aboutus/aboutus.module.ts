@@ -15,12 +15,13 @@ import {Router} from 'angular2/router';
 })
 export class AboutUsModule{
     module_title: string;
-
+    aboutUsData: any;
     header = 'Joyful Home Disclaimer';
     logo = './app/public/joyfulhome_logo_large.png';
+    tileUrl = '/disclaimer';
     heading = 'Disclaimer';
     subText = 'Market data delayed 15 minutes.';
-    mainText = 'This site is powered by JoyfulHomes.ideas and opinions presented on this website are for informational and educational purposes only,and do not reflect the opinions of JoyfulHomes, or any of its alliates, subsidiaries or partners.';
+    mainText = 'This site is powered by JoyfulHomes. Ideas and opinions presented on this website are for informational and educational purposes only,and do not reflect the opinions of JoyfulHomes, or any of its alliates, subsidiaries or partners.';
     provider = '© 2016 Data provided by ListHub®';
     buttonText = 'See The Full Disclaimer';
 
@@ -30,6 +31,20 @@ export class AboutUsModule{
 
     ngOnInit(){
         this.module_title = 'Learn More About Joyful Home';
-        console.log(this);
+        this.aboutUsData = {
+          button_txt: 'Open Page',
+          url1: '/aboutus',
+          icon1: 'fa-info-circle',
+          title1: 'About Us',
+          desc1: 'What is Joyful Home?',
+          url2: '/contactus',
+          icon2: 'fa-phone',
+          title2: 'Contact Us',
+          desc2: 'Help us help you faster.',
+          url3: '/disclaimer',
+          icon3: 'fa-folder-open-o',
+          title3: 'Disclaimer',
+          desc3: 'Read the full disclaimer.'
+        }
     }
 }
