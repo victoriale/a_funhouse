@@ -1,73 +1,54 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component, Input, OnInit} from 'angular2/core';
 
 import {moduleHeader} from "../../components/module-header/module-header";
 import {moduleFooter} from "../../components/module-footer/module-footer";
 import {InfoListComponent} from "../../components/info-list/info-list.component";
+import {GlobalFunctions} from "../../global/global-functions";
 
 @Component({
     selector: 'info-list-module',
     templateUrl: './app/modules/infolist/info-list.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [moduleHeader, moduleFooter, InfoListComponent],
-    inputs: ['module_title'],
-    providers: []
+    inputs: ['module_title', 'recentListingsData', 'locDisplay'],
+    providers: [],
 })
 
 export class InfoListModule implements OnInit {
     module_title: string;
-    infoList: Object;
+    infoList: any;
+    recentListingsData: any;
+    locDisplay: string;
+
+    constructor(private _globalFunctions: GlobalFunctions){}
+
+    dataTransform() {
+        this.infoList = this.recentListingsData;
+        var self = this;
+        var counter = 1;
+        this.recentListingsData.forEach(function(val) {
+            val.list_price = self._globalFunctions.commaSeparateNumber(val.list_price);
+            val.listing_date = val.listing_date.split(' ')[0];
+            val.counter = counter++1;
+            if(counter % 2 == 0) {
+                val.bgClass = "even";
+            }else{
+                val.bgClass = "odd";
+            }
+            val.buttonName = "View Your Home";
+            if(val.num_bathrooms == 0 || val.num_bathrooms == 'undefined' || val.num_bathrooms == null) {
+                val.num_bathrooms = "N/A";
+            }
+            if(val.num_bedrooms == 0 || val.num_bedrooms == 'undefined' || val.num_bedrooms == null) {
+                val.num_bedrooms = "N/A";
+            }
+        });
+    }
 
     ngOnInit() {
-        this.module_title = 'Recent Listings for [Listing Name]';
-        this.infoList = [
-            {
-                'counter': '1',
-                'bgClass': 'odd',
-                'type': '[Home Type1]: [#] Beds & [#] Baths',
-                'date': '[MM/DD/YYYY]',
-                'price': '[$Value1]',
-                'bigImage': './app/public/img_bckgnd.png',
-                'address': '[Listing Address]',
-                'line1': 'On The Market Since',
-                'line2': '[MM/DD/YYYY]',
-                'line3': 'Asking Price: [$Value]',
-                'location1': '[City], [ST]',
-                'location2': '[Zip Code]',
-                'question': 'Want more information about this listing?',
-                'buttonName': 'View Your Home'
-            },
-            {
-                'counter': '2',
-                'bgClass': 'even',
-                'type': '[Home Type1]: [#] Beds & [#] Baths',
-                'date': '[MM/DD/YYYY]',
-                'price': '[$Value1]',
-                'bigImage': './app/public/img_bckgnd.png',
-                'address': '[Listing Address]',
-                'line1': 'On The Market Since',
-                'line2': '[MM/DD/YYYY]',
-                'line3': 'Asking Price: [$Value]',
-                'location1': '[City], [ST]',
-                'location2': '[Zip Code]',
-                'question': 'Want more information about this listing?',
-                'buttonName': 'View Your Home'
-            },
-            {
-                'counter': '3',
-                'bgClass': 'odd',
-                'type': '[Home Type1]: [#] Beds & [#] Baths',
-                'date': '[MM/DD/YYYY]',
-                'price': '[$Value1]',
-                'bigImage': './app/public/img_bckgnd.png',
-                'address': '[Listing Address]',
-                'line1': 'On The Market Since',
-                'line2': '[MM/DD/YYYY]',
-                'line3': 'Asking Price: [$Value]',
-                'location1': '[City], [ST]',
-                'location2': '[Zip Code]',
-                'question': 'Want more information about this listing?',
-                'buttonName': 'View Your Home'
-            }
-        ]
+        this.module_title = 'Recent Listings for ' + this.locDisplay;
+
+        this.dataTransform();
+        console.log(this);
     }
 }

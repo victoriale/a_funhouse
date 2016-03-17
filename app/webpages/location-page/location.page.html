@@ -9,7 +9,7 @@
                     <headline-component [data]="headlineAbout"></headline-component>
                     <profile-header [profileHeaderData]="profileHeaderData | async"></profile-header>
                     <comment-module></comment-module>
-                    <info-list-module></info-list-module>
+                    <info-list-module *ngIf="recentListingsData" [recentListingsData]="recentListingsData" [locDisplay]="locDisplay"></info-list-module>
 
                     <!-- Crime Section -->
                     <headline-component [data]="headlineCrime"></headline-component>

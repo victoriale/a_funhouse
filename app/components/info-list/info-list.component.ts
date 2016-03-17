@@ -10,7 +10,8 @@ import {Component, OnInit, Input} from 'angular2/core';
 })
 
 export class InfoListComponent implements OnInit{
-    infoList: Object;
+    buttonName: string;
+    infoList: any;
     dummyData() {
         if (typeof this.infoList == 'undefined') {
             this.infoList = [
