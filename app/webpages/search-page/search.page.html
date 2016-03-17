@@ -47,9 +47,9 @@
 
           <!--RESULTS FROM API BELOW-->
 
-          <a *ngFor="#data of displayData" href="">
+          <a *ngFor="#item of displayData" [routerLink]="[item.page, item.params]">
             <div class="search_results-info">
-              <div class="search_results-info-h1">{{data.address_key}}</div>
+              <div class="search_results-info-h1">{{item.display}}</div>
             </div>
           </a>
           <!--below tabs where results are to be displayed END-->

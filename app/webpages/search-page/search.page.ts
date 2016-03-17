@@ -2,14 +2,14 @@ import {Component, OnInit, Input, OnChanges} from 'angular2/core';
 import {BackTabComponent} from '../../components/backtab/backtab.component';
 import {SearchService} from '../../global/search-service';
 import {Observable} from "rxjs/Observable";
-
+import {ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
 declare var jQuery: any;
 
 @Component({
   selector: 'Search-page',
   templateUrl: './app/webpages/search-page/search.page.html',
   styleUrls: ['./app/global/stylesheets/master.css'],
-  directives: [BackTabComponent],
+  directives: [ROUTER_DIRECTIVES, BackTabComponent],
   providers: [SearchService],
   inputs: ['searchResults', 'showResults']
 })
@@ -29,9 +29,9 @@ export class SearchPage implements OnInit {
   //Function to tell search results component to show when input is focused
   focusResults(event) {
     this.showResults = true;
-    console.log('focus = ', this.showResults);
   }
 
+  //used as a click event on tabs to grab selected tab
   tabTarget(event){
     this.tab = event.target.id;
     var icon = "<i class='fa fa-circle'></i>";
@@ -46,7 +46,8 @@ export class SearchPage implements OnInit {
     if(typeof this.searchResults !== 'undefined'){
       this.displayData = this.searchResults[this.tab];
       this.currentTotal = this.displayData['length'];
-      console.log(this.tab," => ",this.displayData);
+
+      // console.log(this.tab," => ",this.displayData);
       return this.displayData;
     }
   }
@@ -56,7 +57,7 @@ export class SearchPage implements OnInit {
     var input = event.target.value;
     //makes sure the input is not empty and do an unneccesary call
     if(input != ''){
-      console.log('Search page event', input);
+      // console.log('Search page event', input);
       this.searchResults = this._searchService.getSearchResults(input, 'raw')
       .subscribe(
         data => {
@@ -79,32 +80,54 @@ export class SearchPage implements OnInit {
     var showLimit: number = 10;
     var tab: string;
 
-    //group zipcodes together
+    //group zipcodes together, routerLink links to city, state
     if(typeof data.zipcode !=='undefined'){
       data.zipcode.forEach(function(item, index){
-        zipcode.push(item);
+        var zip = {
+          addr : item.address_key,
+          page: 'Location-page',
+          params: {loc: item.city + "_" + item.state_or_province},
+          display: '[' + item.zipcode + '] - ' + item.city + " " + item.state_or_province,
+        };
+        zipcode.push(zip);
         total++;
       });
     }
 
-    //group address's together
+    //group address's together, routerLink goes to Magazine
     if(typeof data.address !=='undefined'){
       data.address.forEach(function(item, index){
-        address.push(item);
+        var dataAddr = {
+          addr: item.address_key,
+          page: 'Profile-page',
+          params: {address: item.address_key},
+          display: item.address_key + " - " + item.city + " " + item.state_or_province,
+        }
+        address.push(dataAddr);
         total++;
       });
     }
 
-    //group location together
-    if(typeof data.location_city !=='undefined'){
-      data.location_city.forEach(function(item, index){
-        location.push(item);
+    //group location together, routerLink goes go location page
+    if(typeof data.city !=='undefined'){
+      data.city.forEach(function(item, index){
+        var locationData = {
+          page: 'Location-page',
+          params: {loc: item.city + "_" + item.state_or_province},
+          display: item.city + " - " + item.state_or_province,
+        }
+        location.push(locationData);
         total++;
       });
     }
-    if(typeof data.location_state !=='undefined'){
-      data.location_state.forEach(function(item, index){
-        location.push(item);
+    if(typeof data.location_city !=='undefined'){
+      data.location_city.forEach(function(item, index){
+        var locationData = {
+          page: 'Location-page',
+          params: {loc: item.city + "_" + item.state_or_province},
+          display: item.city + " - " + item.state_or_province,
+        }
+        location.push(locationData);
         total++;
       });
     }
@@ -125,14 +148,14 @@ export class SearchPage implements OnInit {
   }
 
   ngOnChanges(event) {
-    console.log('Larry - search changes', event);
+    // console.log('search changes', event);
     //this.showResults = true;
     if (typeof event.searchResults !== 'undefined') {
       var currentValue = event.searchResults.currentValue;
       var previousValue = event.searchResults.previousValue;
 
       if (currentValue === []) {
-        console.log('Larry - No results found');
+        // console.log('No results found');
       }
 
       if (JSON.stringify(currentValue) !== JSON.stringify(previousValue) && this.showResults !== false) {
