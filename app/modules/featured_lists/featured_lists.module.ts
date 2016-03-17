@@ -20,7 +20,7 @@ export class FeaturedListsModule implements OnInit{
     public moduleTitle: string;
     public tileData: Object;
     public listData: Object;
-    public index: number;
+    public index: number = 0;
     @Input() featuredListData: FeaturedListInterface;
 
     constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions){
@@ -87,9 +87,6 @@ export class FeaturedListsModule implements OnInit{
 
     //Initialization Call
     ngOnInit(){
-        //Initialize index value
-        this.index = 0;
-
         this.setModuleTitle();
         //Set static data - Will remove when routes further defined
         this.tileData = {
