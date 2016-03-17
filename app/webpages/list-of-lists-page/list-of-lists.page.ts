@@ -35,5 +35,6 @@ export class ListOfListsPage implements OnInit{
 
     ngOnInit(){
         this.getListOfList();
+        console.log(this.lists);
     }
 }

@@ -26,14 +26,7 @@ export class WidgetModule {
             this.isScrollingPage = true;
         }
 
-        if ((scrollBottom - 600) < scrollBottom) {
-            this.isBottom = true;
-        }else{
-            this.isBottom = false;
-        }
-
-
-        console.log('scroll event', event, scrollTop, scrollBottom, this.isScrollingPage);
+        //console.log('scroll event', event, scrollTop, scrollBottom, this.isScrollingPage);
     }
 
 }
