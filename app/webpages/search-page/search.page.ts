@@ -79,20 +79,7 @@ export class SearchPage implements OnInit {
     var total: number = 0;
     var showLimit: number = 10;
     var tab: string;
-
-    //group zipcodes together, routerLink links to city, state
-    if(typeof data.zipcode !=='undefined'){
-      data.zipcode.forEach(function(item, index){
-        var zip = {
-          addr : item.address_key,
-          page: 'Location-page',
-          params: {loc: item.city + "_" + item.state_or_province},
-          display: '[' + item.zipcode + '] - ' + item.city + " " + item.state_or_province,
-        };
-        zipcode.push(zip);
-        total++;
-      });
-    }
+    console.log(data);
 
     //group address's together, routerLink goes to Magazine
     if(typeof data.address !=='undefined'){
@@ -108,27 +95,49 @@ export class SearchPage implements OnInit {
       });
     }
 
-    //group location together, routerLink goes go location page
+    //group city together, routerLink goes go Listing page
     if(typeof data.city !=='undefined'){
       data.city.forEach(function(item, index){
-        var locationData = {
+        console.log(location);
+        var dataAddr = {
+          addr: item.address_key,
+          page: 'Profile-page',
+          params: {address: item.address_key},
+          display: item.address_key + " - " + item.city + " " + item.state_or_province,
+        }
+        address.push(dataAddr);
+        total++;
+      });
+    }
+
+    //group zipcodes && location together, routerLink links to city, state
+    if(typeof data.zipcode !=='undefined'){
+      data.zipcode.forEach(function(item, index){
+        var zip = {
+          addr : item.address_key,
           page: 'Location-page',
           params: {loc: item.city + "_" + item.state_or_province},
-          display: item.city + " - " + item.state_or_province,
-        }
-        location.push(locationData);
+          display: '[' + item.zipcode + '] - ' + item.city + " " + item.state_or_province,
+        };
+        zipcode.push(zip);
         total++;
       });
     }
     if(typeof data.location_city !=='undefined'){
       data.location_city.forEach(function(item, index){
-        var locationData = {
-          page: 'Location-page',
-          params: {loc: item.city + "_" + item.state_or_province},
-          display: item.city + " - " + item.state_or_province,
-        }
-        location.push(locationData);
-        total++;
+        if(typeof location !== 'undefined'){
+          location.forEach(function(data, i){
+            if(item.city != data.city){
+              var locationData = {
+                page: 'Location-page',
+                params: {loc: item.city + "_" + item.state_or_province},
+                display: item.city + " - " + item.state_or_province,
+              }
+              total++;
+              location.push(locationData);
+            }
+          })//end forEach
+        }//end if
       });
     }
 
