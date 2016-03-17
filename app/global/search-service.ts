@@ -1,5 +1,6 @@
 import {Injectable} from 'angular2/core';
 import {Http, Headers} from 'angular2/http';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 
@@ -16,6 +17,9 @@ export class SearchService{
         //headers.append('X-SNT-TOKEN', 'BApA7KEfj');
 
         input = encodeURI(input);
+        if(input === ''){
+            //return new Observable.return([]);
+        }
 
         return this.http.get('http://api2.joyfulhome.com:280/search/' + input, {
                 headers: headers
