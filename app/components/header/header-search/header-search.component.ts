@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 import {SearchService} from '../../../global/search-service';
 import {SearchResults} from '../../search-results/search-results.component';
-import {Observable} from "rxjs/Observable";
+import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'header-search-component',
@@ -14,6 +14,7 @@ import {Observable} from "rxjs/Observable";
 
 export class HeaderSearchComponent{
     isHomePage: boolean;
+    //searchResults: Array<Object>;
     searchResults: Observable<Array<Object>>;
     showResults: boolean;
 
@@ -25,17 +26,30 @@ export class HeaderSearchComponent{
     focusResults(event){
         this.showResults = true;
     }
+
     //Function to tell search results component to hide when input is blurred
     blurResults(event){
-        console.log('Lutz - Blur Event', event);
         this.showResults = false;
     }
 
+    //Function to fire search api
     searchText(event){
         var input = event.target.value;
-        console.log('Lutz - Search event', input);
         this.showResults = true;
+        if(input === ''){
+            this.showResults = false;
+            this.searchResults = undefined;
+            return false;
+        }
+
         this.searchResults = this._searchService.getSearchResults(input, 'list');
+
+        //this._searchService.getSearchResults(input, 'list')
+            //.subscribe(
+            //    data => {
+            //        this.searchResults = data;
+            //    }
+            //)
     }
 
     //Function to prevent blur from happening when user clicks on dropdown. (search results component) This is so the anchor tag links can navigate properly
