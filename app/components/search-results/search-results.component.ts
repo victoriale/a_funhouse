@@ -13,9 +13,8 @@ import {Observable} from 'rxjs/Observable';
 
 export class SearchResults{
     showResults: boolean;
-    noResultsFound: boolean
-    searchResults: Observable<Array<Object>>;
-    //searchResults: Array<Object>;
+    noResultsFound: boolean;
+    searchResults: Array<Object>;
 
     closeResults(event){
         this.showResults = false;
@@ -34,8 +33,11 @@ export class SearchResults{
             }else{
                 this.noResultsFound = false;
             }
-            //this.showResults = true;
 
+            //Needed if user clicks on close button (input stays focused so extra typing does not cause dropdown to appear)
+            if(JSON.stringify(currentValue) !== JSON.stringify(previousValue)){
+                this.showResults = true;
+            }
         }
     }
 }
