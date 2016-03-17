@@ -2,26 +2,27 @@ import {Component} from 'angular2/core';
 import {ROUTER_DIRECTIVES, RouteConfig, AsyncRoute} from 'angular2/router';
 import {Contact} from "../modules/magazine/contact/contact.module";
 import {Neighborhood} from "../modules/magazine/neighborhood/neighborhood.module";
-import {PropertyOverview} from "../modules/magazine/overview/overview.module";
 import {Recommendations} from "../modules/magazine/recommendations/recommendations.module";
 import {RouteParams} from "angular2/router";
 import {MagHeaderModule} from "../modules/magazine/mag-header/mag-header.module";
 import {FooterComponent} from "../components/magazine/mag-footer/mag-footer.component";
 import {MagazineDataService} from "../global/global-mag-service";
 import {Router} from "angular2/router";
+import {MagOverviewModule} from "../modules/magazine/mag-overview/mag-overview.module";
+import {MagOverview, MagData} from "../global/global-interface";
 
 @Component({
     selector: 'magazine-page',
     templateUrl: './app/app-webpage/magazine.webpage.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [Contact, Neighborhood, PropertyOverview, Recommendations, MagHeaderModule, FooterComponent, ROUTER_DIRECTIVES],
+    directives: [Contact, Neighborhood, Recommendations, MagHeaderModule, FooterComponent, ROUTER_DIRECTIVES, MagOverviewModule],
     providers: [MagazineDataService],
 })
 
 @RouteConfig([
     new AsyncRoute({
         path: '/overview',
-        loader: () => Promise.resolve(PropertyOverview),
+        loader: () => Promise.resolve(MagOverviewModule),
         name: 'PropertyOverview'
     }),
     new AsyncRoute({
@@ -54,11 +55,13 @@ import {Router} from "angular2/router";
 export class MagazinePage {
     address: string;
     toc: any;
+    magazineData: MagData;
 
-    getData() {
+    getMagServiceData() {
         this._magazineDataService.getMagazineData(this.address)
             .subscribe(
                 rawData => {
+                    this.magazineData = rawData;
                     this.toc = this.buildToc(rawData);
                 },
                 err => console.log("error in getData", err)
@@ -66,7 +69,7 @@ export class MagazinePage {
     }
 
     buildToc( magazineData ) {
-        console.log("MAGAZINE DATA!!!!:", magazineData);
+        //console.log("MAGAZINE DATA!!!!:", magazineData);
         var toc: any = [];
         if( magazineData.overview != null ){
             toc.push( { label: "Property Overview", routeName: "PropertyOverview" } );
@@ -89,9 +92,9 @@ export class MagazinePage {
         return toc;
     }
 
-    constructor(private _params: RouteParams, private _magazineDataService: MagazineDataService, private _router: Router ) {
+    constructor( private _params: RouteParams, private _magazineDataService: MagazineDataService, private _router: Router ) {
         this.address = _params.get('addr');
         //console.log("this.address!!!", this.address);
-        this.getData();
+        this.getMagServiceData();
     }
 }

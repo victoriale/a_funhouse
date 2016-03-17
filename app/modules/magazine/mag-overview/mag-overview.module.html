@@ -1,21 +1,24 @@
-<div class="mag_container mag_text">
-    <div>
-        <div class='mag_po_address'>
-            <i class='fa fa-map-marker'></i>
-            {{magOverview?.address}}
+<div class="overview-page">
+    <magazine-carousel-module [photos]="magOverviewData"></magazine-carousel-module>
+    <div class="mag_container mag_text">
+        <div>
+            <div class='mag_po_address'>
+                <i class='fa fa-map-marker'></i>
+                {{magOverview?.address?.fullStreetAddress}}
+            </div>
+            <div *ngIf="magOverview?.address" class='mag_po_loc'>
+                {{magOverview.address.fullStreetAddress}}
+                {{magOverview.address.county}},
+                {{magOverview.address.country}}
+            </div>
+            <div class='mag_po_price'>Listed for: PriceTODO{{magOverview?.price | currency:'USD' :true}}</div>
+            <div class='mag-line'></div>
+            <div *ngFor="#p of magOverview?.content; #i=index">
+                <adzone-component *ngIf="i === 2"></adzone-component>
+                <p [innerHTML]="p"></p>
+            </div>
+            <learnmore-component></learnmore-component>
         </div>
-        <div class='mag_po_loc'>
-            {{magOverview?.address}}
-            CountyTODO{{magOverview?.county}},
-            CountryTODO{{magOverview?.country}}
-        </div>
-        <div class='mag_po_price'>Listed for: PriceTODO{{magOverview?.price | currency:'USD' :true}}</div>
-        <div class='mag-line'></div>
-        <div *ngFor="#p of magOverview?.content; #i=index">
-            <adzone-component *ngIf="i === 2"></adzone-component>
-            <p [innerHTML]="p"></p>
-        </div>
-        <learnmore-component></learnmore-component>
     </div>
+    <mag-nav-right-component></mag-nav-right-component>
 </div>
-

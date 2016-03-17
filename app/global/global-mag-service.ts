@@ -6,20 +6,24 @@
  _@BATCH
  */
 import {Injectable} from 'angular2/core';
-import {MagHeaderData, MagCarouselData, MagOverviewData, MagNeighborhoodData, MagMapData, MagSimilarListingsData} from './global-interface';
+import {MagOverview, MagData} from './global-interface';
 import {HTTP_PROVIDERS, Http, Response, Headers} from "angular2/http";
 import {Observable} from 'rxjs/Rx';
-
 
 @Injectable()
 
 export class MagazineDataService {
     constructor(public http: Http) {}
+    storedData: MagData;
 
     getMagazineData(address?){
         return this.http.get('http://dev-realestate-ai.synapsys.us:280/' + address)
             .map(
-                res => res.json()
+                res => {
+                    this.storedData = res.json();
+                    console.log( "this.storedData", this.storedData );
+                    return this.storedData;
+                }
             )
     }
 }
@@ -27,7 +31,7 @@ export class MagazineDataService {
 @Injectable()
 export class MagazineCarousel {
     getMagazineCarousel() {
-        var MagCarousel:MagCarouselData[] = [
+        var MagCarousel = [
             {
                 listing_key: "3277-N-LONGFELLOW-CT-Wichita-KS",
                 listhub_key: "3yd-SCKMLSKS-515305",
@@ -77,7 +81,7 @@ export class MagazineCarousel {
 @Injectable()
 export class MagazineOverview {
     getMagazineOverview() {
-        var MagOverview:MagOverviewData[] = [
+        var MagOverview = [
             {
                 pageTitle: "Overview Page",
                 menuTitle: "Property Overview",
@@ -112,7 +116,7 @@ export class MagazineOverview {
 @Injectable()
 export class MagazineNeighborhood {
     getMagazineNeighborhood() {
-        var MagNeighborhood:MagNeighborhoodData[] = [
+        var MagNeighborhood = [
             {
                 magtext1: "Choosing a home isn't just about the house itself. It's also about the surroundings.",
                 magtext2: "The home at 3277 N LONGFELLOW CT. is located within the 67226 zip code, which is home to amenities including Stearman Field Bar & Grill, Lina's Mexican Restaurant and Save-A-Lot.",
@@ -130,7 +134,7 @@ export class MagazineNeighborhood {
 @Injectable()
 export class MagazineMap {
     getMagazineMap() {
-        var MagMap:MagMapData[] = [
+        var MagMap = [
             {
                 listing_key: "5048-N-PRESTWICK-Bel-Aire-KS",
                 listhub_key: "3yd-SCKMLSKS-504635",
@@ -299,7 +303,7 @@ export class MagazineMap {
 @Injectable()
 export class MagazineSimilarListings {
     getMagazineSimilarListings() {
-        var MagSimilarListings:MagSimilarListingsData[] = [
+        var MagSimilarListings = [
             {
                 listing1: [{
                     itemAddress: "2461 N Winstead Cir.",

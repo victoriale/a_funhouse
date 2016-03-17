@@ -1,6 +1,6 @@
 import {Component, OnInit, Injector} from 'angular2/core';
 import {MagazineOverview} from "../../../global/global-mag-service";
-import {MagOverviewData} from "../../../global/global-interface";
+import {MagOverview} from "../../../global/global-interface";
 import {AdzoneComponent} from "../../../components/magazine/mag-adzone/mag-adzone.component";
 import {LearnMoreComponent} from "../../../components/magazine/mag-btns/learnmore-btn/learnmore-btn.component";
 import {MagazineDataService} from "../../../global/global-mag-service";
@@ -15,7 +15,7 @@ import {MagazinePage} from "../../../app-webpage/magazine.webpage";
 export class MagOverviewModule implements OnInit {
     counter: number;
     address: string;
-    magOverview: MagOverviewData;
+    magOverview: MagOverview;
 
     constructor( private _injector: Injector, private _magazineDataService: MagazineDataService ) {
         // Scroll page to top to fix routerLink bug

@@ -1,7 +1,6 @@
 import {Component, provide, OnInit,ViewEncapsulation, ViewChild, ElementRef} from 'angular2/core';
 import {bootstrap} from 'angular2/platform/browser';
 import {MagazineMap} from "../../../global/global-mag-service";
-import {MagMapData} from "../../../global/global-interface";
 import {MapMarkerComponent} from "../../../components/mapMarker/mapMarker.component";
 
 declare var google: any;
@@ -18,7 +17,7 @@ declare var jQuery: any;
 
 
 export class MagMapModule implements OnInit {
-    data:MagMapData[];
+    data: any;
 
     constructor(private _magazineMapService:MagazineMap) {
     }

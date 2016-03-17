@@ -1,33 +1,25 @@
-import {Component, OnInit} from 'angular2/core';
-import {MagazineCarousel} from "../../../global/global-mag-service";
-import {MagCarouselData} from "../../../global/global-interface";
+import {Component, OnInit, Injector} from 'angular2/core';
+import {MagazinePage} from "../../../app-webpage/magazine.webpage";
+import {MagOverview} from "../../../global/global-interface";
+import {MagazineDataService} from "../../../global/global-mag-service";
 
 @Component({
     selector: 'magazine-carousel-module',
     templateUrl: './app/modules/magazine/mag-carousel/mag-carousel.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    providers: [MagazineCarousel],
 })
 export class MagCarouselModule implements OnInit {
-    data: MagCarouselData[];
+    photos: MagOverview;
     length: number;
-    counter: number;
+    counter: number = 10;
+    address: string;
+    magOverview: MagOverview;
     imageLength: number;
 
-    constructor(private _magazineCarouselService:MagazineCarousel) {
-    }
-
-    getMagazineCarousel() {
-        this._magazineCarouselService.getMagazineCarousel().then(data => this.data = data);
-    }
-
-    ngOnInit() {
-        this._magazineCarouselService.getMagazineCarousel().then(data => {
-            this.data = data;
-            length = data[0].photos.length;
-            this.counter = 0;
-            this.imageLength = length;
-        });
+    constructor( private _injector: Injector, private _magazineDataService: MagazineDataService ) {
+        // Scroll page to top to fix routerLink bug
+        window.scrollTo(0, 0);
+        this.address = _injector.get(MagazinePage).address;
     }
 
     nextClick() {
@@ -55,4 +47,19 @@ export class MagCarouselModule implements OnInit {
             this.counter = i;
         }
     }
+
+    getMagazineOverview() {
+        this._magazineDataService.getMagazineData("5170-Benton-Tama-Road-Buckingham-IA")
+            .subscribe(
+                magData => {
+                    this.magOverview = magData.overview;
+                },
+                err => console.log("error in getData", err)
+            )
+    }
+
+    ngOnInit() {
+        this.getMagazineOverview();
+    }
+
 }
