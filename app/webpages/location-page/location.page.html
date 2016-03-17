@@ -7,7 +7,7 @@
 
                     <!-- About Section -->
                     <headline-component [data]="headlineAbout"></headline-component>
-                    <profile-header [profileHeaderData]="profileHeaderData | async"></profile-header>
+                    <profile-header *ngIf="profileHeaderData" [profileHeaderData]="profileHeaderData"></profile-header>
                     <comment-module></comment-module>
                     <info-list-module></info-list-module>
 
@@ -22,7 +22,7 @@
 
                     <!-- Interact Section -->
                     <headline-component [data]="headlineInteract"></headline-component>
-                    <featured-lists-module [featuredListData]="featuredListData | async"></featured-lists-module>
+                    <featured-lists-module *ngIf="featuredListData" [featuredListData]="featuredListData"></featured-lists-module>
 
                     <!--Share Module-->
                     <share-module></share-module>
