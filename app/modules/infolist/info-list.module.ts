@@ -21,7 +21,6 @@ export class InfoListModule implements OnInit {
         this.module_title = 'Recent Listings for [Listing Name]';
         this.infoList = [
             {
-                'counter': '1',
                 'bgClass': 'odd',
                 'type': '[Home Type1]: [#] Beds & [#] Baths',
                 'date': '[MM/DD/YYYY]',
@@ -38,7 +37,6 @@ export class InfoListModule implements OnInit {
                 'buttonName': 'View Your Home'
             },
             {
-                'counter': '2',
                 'bgClass': 'even',
                 'type': '[Home Type1]: [#] Beds & [#] Baths',
                 'date': '[MM/DD/YYYY]',
@@ -55,7 +53,6 @@ export class InfoListModule implements OnInit {
                 'buttonName': 'View Your Home'
             },
             {
-                'counter': '3',
                 'bgClass': 'odd',
                 'type': '[Home Type1]: [#] Beds & [#] Baths',
                 'date': '[MM/DD/YYYY]',

@@ -20,7 +20,8 @@ export class AmenitiesModule implements OnInit{
     public moduleTitle: string;
     public profileType: string;
     tile_data: Object;
-    list_data: Object;
+    amenitiesData: Object;
+    listView: Object;
     provider_logo = './app/public/amenities_yelp.png';
     left(){
         console.log('left - module');
@@ -71,14 +72,12 @@ export class AmenitiesModule implements OnInit{
             title3: 'Nearby Banks',
             desc3: ''
         }
-        this.list_data = {
-            header: 'Trending Real Estate',
-            title: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.',
-            hding1: '[Listing Address]',
-            hding2: '[Listing Name] [Zip Code] - [Neighborhood]',
-            detail1: 'Bedrooms: 3 | Bathrooms: 2',
-            detail2: 'Asking Price: ',
-            detail3: '$[###,###]'
+        this.amenitiesData = {
+          header: "What's the highest rated restaurant in this area?",
+          name: '[Listing Name]',
+          establishment: '[Establishment]',
+          address: '[Listing Name] [Zip Code]',
+          location: '[Location]'
         }
     }
 }
