@@ -4,47 +4,76 @@
             <div class="directory-container">
                 <header class="directory-header">
                     <div class="directory-header-location">
-                        <i class="fa fa-map-marker"></i> United States
+                        <i class="fa fa-map-marker"></i>
+                        <a [routerLink]="['Directory-page', {listTitle: paramListTitle, pageNumber: 1}]">United States</a>
+                        <i *ngIf="pageType === 'state' || pageType === 'city' || pageType === 'zipcode'" class="fa fa-angle-right"></i>
+                        <a [routerLink]="['Directory-page-state', {listTitle: paramListTitle, pageNumber: 1, state: paramState}]" *ngIf="pageType === 'state' || pageType === 'city' || pageType === 'zipcode'">{{fullState}}</a>
+                        <i *ngIf="pageType === 'city' || pageType === 'zipcode'" class="fa fa-angle-right"></i>
+                        <a [routerLink]="['Directory-page-city', {listTitle: paramListTitle, pageNumber: 1, state: paramState, city: paramCity}]"*ngIf="pageType === 'city' || pageType === 'zipcode'">{{paramCity}}</a>
+                        <i *ngIf="pageType === 'zipcode'" class="fa fa-angle-right"></i>
+                        <span *ngIf="pageType === 'zipcode'">{{paramZipcode}}</span>
                     </div>
                     <div class="directory-header-title">
-                        Most Recent Listings
+                        {{displayListTitle}}
                     </div>
                 </header>
-                <div class="directory-nav">
+                <div *ngIf="linkListDisplayed" class="directory-nav">
                     <div class="directory-nav-title">
-                        State Sub Directory
+                        {{linkTitle}}
                     </div>
                     <div class="directory-nav-links">
-                        <a *ngFor="#item of navLinks">
+                        <a [routerLink]="[item.page, item.params]" *ngFor="#item of navigationLinks">
                             {{item.title}} |
                         </a>
                     </div>
                 </div>
                 <div class="directory-pagination">
                     Showing: 11-20 of 3981754
-                    <a class="directory-pagination-button">
+                    <a [routerLink]="[pageName, nextParams]" class="directory-pagination-button">
                         Next <i class="fa fa-angle-right"></i>
                     </a>
                     <a class="directory-pagination-button">
                         <i class="fa fa-angle-left"></i> Back
                     </a>
                 </div>
-                <ul class="directory-list">
+                <ul *ngIf="listingItems" class="directory-list">
                     <li *ngFor="#item of listingItems" class="directory-list-item">
-                        <span class="line-one">
-                            Last updated: 2016-03-15
+                        <span *ngIf="item.lastUpdated" class="line-one">
+                            {{item.lastUpdated}}
                         </span>
                         <span class="line-two">
-                            7312 Wellington Avenue | St Louis, MO, 63130 | University City
+                            <a *ngIf="item.address" [routerLink]="['Profile-page', {address: item.addressKey}]">
+                                {{item.address}}
+                            </a>
+                            |
+                            <a *ngIf="item.city" [routerLink]="['Directory-page-city', {state: item.state, city: item.city, listTitle: paramListTitle, pageNumber: 1}]">
+                                {{item.city}},
+                            </a>
+                            <a *ngIf="item.state" [routerLink]="['Directory-page-state', {state: item.state, listTitle: paramListTitle, pageNumber: 1}]">
+                                {{item.state}},
+                            </a>
+                            <a *ngIf="item.zipcode" [routerLink]="['Directory-page-zipcode', {state: item.state, city: item.city, zipcode: item.zipcode, listTitle: paramListTitle, pageNumber: 1}]">
+                                {{item.zipcode}}
+                            </a>
                         </span>
                         <span class="line-three">
-                            1277 sq. ft > Bedrooms > 2 Bathrooms
+                            <span *ngIf="item.squareFeet">
+                                {{item.squareFeet}}
+                            </span>
+                            <i *ngIf="(item.bedrooms && item.squareFeet)" class="fa fa-angle-right"></i>
+                            <span *ngIf="item.bedrooms">
+                                {{item.bedrooms}}
+                            </span>
+                            <i *ngIf="(item.bathrooms && item.squareFeet) || (item.bathrooms && item.bedrooms)" class="fa fa-angle-right"></i>
+                            <span *ngIf="item.bathrooms">
+                                {{item.bathrooms}}
+                            </span>
                         </span>
                     </li>
                 </ul>
                 <div class="directory-pagination">
                     Showing: 11-20 of 3981754
-                    <a class="directory-pagination-button">
+                    <a [routerLink]="[pageName, nextParams]" class="directory-pagination-button">
                         Next <i class="fa fa-angle-right"></i>
                     </a>
                     <a class="directory-pagination-button">
