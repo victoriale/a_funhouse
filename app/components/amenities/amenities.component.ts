@@ -35,7 +35,7 @@ export class AmenitiesComponent implements OnInit{
 
         if(typeof this.data === 'undefined'){
             this.data = {
-                header: "",
+                header: "Heading 1",
                 name: '[Listing Name]',
                 establishment: '[Establishment]',
                 address: '[Listing Name] [Zip Code]',
@@ -43,25 +43,25 @@ export class AmenitiesComponent implements OnInit{
             }
             this.listView = [
               {
-                category: "Groceries",
+                category: "Category 1",
                 count: "## near this listing",
                 viewUrl: '',
                 viewMore: "See All"
               },
               {
-                category: "Groceries",
+                category: "Category 2",
                 count: "## near this listing",
                 viewUrl: '',
                 viewMore: "See All"
               },
               {
-                category: "Groceries",
+                category: "Category 3",
                 count: "## near this listing",
                 viewUrl: '',
                 viewMore: "See All"
               },
               {
-                category: "Groceries",
+                category: "Category4",
                 count: "## near this listing",
                 viewUrl: '',
                 viewMore: "See All"

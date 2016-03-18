@@ -72,12 +72,12 @@ export class AmenitiesModule implements OnInit{
             title3: 'Nearby Banks',
             desc3: ''
         }
-        this.amenitiesData = {
-          header: "What's the highest rated restaurant in this area?",
-          name: '[Listing Name]',
-          establishment: '[Establishment]',
-          address: '[Listing Name] [Zip Code]',
-          location: '[Location]'
-        }
+        // this.amenitiesData = {
+        //   header: "What's the highest rated restaurant in this area?",
+        //   name: '[Listing Name]',
+        //   establishment: '[Establishment]',
+        //   address: '[Listing Name] [Zip Code]',
+        //   location: '[Location]'
+        // }
     }
 }
