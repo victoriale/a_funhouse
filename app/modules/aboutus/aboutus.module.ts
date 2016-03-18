@@ -21,7 +21,7 @@ export class AboutUsModule{
     tileUrl = '/disclaimer';
     heading = 'Disclaimer';
     subText = 'Market data delayed 15 minutes.';
-    mainText = 'This site is powered by JoyfulHomes.ideas and opinions presented on this website are for informational and educational purposes only,and do not reflect the opinions of JoyfulHomes, or any of its alliates, subsidiaries or partners.';
+    mainText = 'This site is powered by JoyfulHomes. Ideas and opinions presented on this website are for informational and educational purposes only,and do not reflect the opinions of JoyfulHomes, or any of its alliates, subsidiaries or partners.';
     provider = '© 2016 Data provided by ListHub®';
     buttonText = 'See The Full Disclaimer';
 

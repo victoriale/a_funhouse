@@ -42,12 +42,22 @@ export class LocationPage implements OnInit {
         window.scrollTo(0, 0);
     }
 
-    getLocationData(){
-        this.profileHeaderData = this._locationProfileService.getLocationProfile(this.locCity, this.locState);
+    getProfileHeader(){
+        this._locationProfileService.getLocationProfile(this.locCity, this.locState)
+            .subscribe(
+                data => {
+                    this.profileHeaderData = data;
+                }
+            )
     }
 
     getFeaturedList(){
-        this.featuredListData = this._locationProfileService.getLocationFeaturedList(this.locCity, this.locState);
+        this._locationProfileService.getLocationFeaturedList(this.locCity, this.locState)
+            .subscribe(
+                data => {
+                    this.featuredListData = data;
+                }
+            );
     }
 
     getRecentListings() {
@@ -87,7 +97,7 @@ export class LocationPage implements OnInit {
 
         console.log('City, State: ', this.locDisplay);
 
-        this.getLocationData();
+        this.getProfileHeader();
         this.getFeaturedList();
         this.getRecentListings();
 

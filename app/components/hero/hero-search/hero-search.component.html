@@ -1,5 +1,10 @@
 <div class="container">
     <div class="hero-search 8-col">
-        <input type="text" placeholder="Where do you want to live? (City, ST)"><button class="hero-search-button fa fa-search"></button>
+        <div id="hero-search-full-container">
+            <form (ngSubmit)="onSubmit($event)">
+                <input type="text" (focus)="focusResults($event)" (blur)="blurResults($event)" [ngFormControl]="term" placeholder="Where do you want to live? (City, ST)"><button type="submit" class="hero-search-button fa fa-search"></button>
+                <search-results (mousedown)="preventBlur()" [showResults]="showResults" [searchResults]="searchResults"></search-results>
+            </form>
+        </div>
     </div>
 </div>

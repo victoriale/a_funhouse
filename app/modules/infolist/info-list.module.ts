@@ -19,7 +19,7 @@ export class InfoListModule implements OnInit {
     infoList: any;
     recentListingsData: any;
     locDisplay: string;
-
+    
     constructor(private _globalFunctions: GlobalFunctions){}
 
     dataTransform() {
