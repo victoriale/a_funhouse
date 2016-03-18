@@ -11,14 +11,14 @@ import {CarouselButton} from '../../components/buttons/carousel/carousel.button'
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [Image150, CarouselButton],
     providers: [],
-    inputs: ['list_data', 'hasFooterButton'],
+    inputs: ['data', 'hasFooterButton'],
     outputs: ['scrollRight', 'scrollLeft']
 })
 
 export class AmenitiesComponent implements OnInit{
     public main_hasSubImg: boolean;
-    list_data: Object;
-
+    data: Object;
+    listView: Object;
     public scrollRight: EventEmitter<boolean> = new EventEmitter();
     public scrollLeft: EventEmitter<boolean> = new EventEmitter();
 
@@ -33,18 +33,41 @@ export class AmenitiesComponent implements OnInit{
 
         this.main_hasSubImg = false;
 
-        if(typeof this.list_data === 'undefined'){
-            this.list_data = {
-                header: "What's the highest rated restaurant in this area?",
+        if(typeof this.data === 'undefined'){
+            this.data = {
+                header: "Heading 1",
                 name: '[Listing Name]',
                 establishment: '[Establishment]',
-                hding2: '[Listing Name] [Zip Code] - [Neighborhood]',
-                detail1: 'Bedrooms: 3 | Bathrooms: 2',
-                detail2: 'Asking Price: ',
-                detail3: '$[###,###]'
+                address: '[Listing Name] [Zip Code]',
+                location: '[Location]'
             }
+            this.listView = [
+              {
+                category: "Category 1",
+                count: "## near this listing",
+                viewUrl: '',
+                viewMore: "See All"
+              },
+              {
+                category: "Category 2",
+                count: "## near this listing",
+                viewUrl: '',
+                viewMore: "See All"
+              },
+              {
+                category: "Category 3",
+                count: "## near this listing",
+                viewUrl: '',
+                viewMore: "See All"
+              },
+              {
+                category: "Category4",
+                count: "## near this listing",
+                viewUrl: '',
+                viewMore: "See All"
+              },
+            ]
         }
 
-        console.log(this);
     }
 }
