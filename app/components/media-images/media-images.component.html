@@ -1,18 +1,18 @@
 <section class="media-images" *ngFor="#BatchTwo of BatchTwo">
-    <circle-button></circle-button>
+    <circle-button (scrollLeft) = "left()" (scrollRight) = "right()"></circle-button>
     <div class="plcholder">
-        <a href='' class='feature-btn expand'>
+        <a  class='feature-btn expand'>
             Expand <i class='fa fa-expand'></i>
         </a>
         <a href='' class='feature-btn virtual'>
-            Virtual Home Tour (1)
+            Virtual Home Tour ({{BatchTwo.virtualTourCount}})
         </a>
         <a href='' class='feature-btn images'>
             <span><i class='fa fa-file-image-o'></i></span>
-            <span> Images (30)</span>
+            <span> Images ({{BatchTwo.imageCount}})</span>
             <i></i>
         </a>
-        <img src="{{BatchTwo.bigImage}}" class="plcholder-img" alt="placeholder images" />
+        <img *ngIf= "largeImage" src="{{largeImage}}" class="plcholder-img" alt="placeholder images" />
 
         <div class="plcholder-details">
             <div class="listings">
@@ -35,8 +35,8 @@
     </div>
     <div class="sm_images">
         <div class="sm_images-img">
-            <a *ngFor="#sm_images of BatchTwo.smallImage" href="">
-                <img src="{{sm_images}}" alt="small square images" />
+            <a *ngFor="#sm_images of mediaImages; #i = index">
+                <img src="{{sm_images}}" alt="small square images" (click)="changeMain(i)" />
             </a>
         </div>
     </div>
