@@ -44,6 +44,10 @@ export class InfoListModule implements OnInit {
             }else{
                 val.bgClass = "odd";
             }
+            // Check for no photos
+            if(val.photos.length <= 0) {
+                val.photos[0] = "app/public/no_photo_images/House_1.png";
+            }
             // Check for 0's on # beds and # bath, display N/A's
             if(val.num_bathrooms == 0 || val.num_bathrooms == 'undefined' || val.num_bathrooms == null) {
                 val.num_bathrooms = "N/A";
