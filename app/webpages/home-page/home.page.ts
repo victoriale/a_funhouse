@@ -26,7 +26,6 @@ export class HomePage implements OnInit {
     cityLocation: string;
     stateLocation: string;
     nearByCities: Object;
-    citiesDisplay: Array<any> = [];
 
     selectValue: string;
 

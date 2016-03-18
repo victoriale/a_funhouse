@@ -1,7 +1,7 @@
 <div class="info-list {{infoList.bgClass}}">
     <div class='info-imagebox'>
         <a href=''>
-            <img src='{{infoList.bigImage}}' alt='' />
+            <img src='{{infoList.photos[0]}}' alt='' />
             <div class="info-rank">#{{infoList.counter}}</div>
         </a>
     </div>
@@ -9,20 +9,20 @@
         <div class="info-content-row-wrapper">
             <div class="info-content-row1">
                 <a href="">
-                    <span class="info-location"><i class="fa fa-map-marker"></i>{{infoList.location1}} <i class="fa fa-angle-right"></i> {{infoList.location2}}</span>
+                    <span class="info-location"><i class="fa fa-map-marker"></i>{{infoList.loc}} {{infoList.postal_code}} | {{infoList.living_area}}</span>
                 </a>
-                <p class="info-address">{{infoList.address}}</p>
-                <p class="info-type">{{infoList.type}}</p>
+                <p class="info-address">{{infoList.full_street_address}}</p>
+                <p class="info-type">{{infoList.property_sub_type}} - {{infoList.num_bedrooms}} Bed - {{infoList.num_bathrooms}} Bath</p>
             </div>
             <div class="info-content-row2">
-                <p class="info-market">{{infoList.line1}}</p>
-                <p class="info-date">{{infoList.line2}}</p>
-                <p class="info-price">{{infoList.line3}}</p>
+                <p class="info-market">On The Market Since</p>
+                <p class="info-date">{{infoList.listing_date}}</p>
+                <p class="info-price">${{infoList.list_price}}</p>
             </div>
         </div>
         <div class="info-content-bottom {{infoList.bgClass}}">
             <div class='info-content-subbox'>
-                <p>{{infoList.question}}</p>
+                <p>Want more information about this listing?</p>
             </div>
             <a href='' class='info-list-button'>
                 <span><img class="info-icon" src="./app/public/realestate_icon.png" /></span>
