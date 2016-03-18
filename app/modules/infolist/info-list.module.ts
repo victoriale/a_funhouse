@@ -29,13 +29,18 @@ export class InfoListModule implements OnInit {
         this.recentListingsData.forEach(function(val) {
             // Format price
             val.list_price = self._globalFunctions.commaSeparateNumber(val.list_price);
-            // Grab date from date/timestamp
-            val.listing_date = val.listing_date.split(' ')[0];
-            // Pull out year
-            val.listing_date_y = val.listing_date.split('-')[0];
-            // Pull out month and day and remove leading zeros
-            val.listing_date_m = val.listing_date.split('-')[1].replace(/\b0+/g, '');
-            val.listing_date_d = val.listing_date.split('-')[2].replace(/\b0+/g, '');
+            // Check for null, Grab date from date/timestamp
+            if(val.listing_date === null) {
+                val.listing_date = "N/A";
+            }else {
+                val.listing_date = val.listing_date.split(' ')[0];
+                // Pull out year
+                val.listing_date_y = val.listing_date.split('-')[0];
+                // Pull out month and day and remove leading zeros
+                val.listing_date_m = val.listing_date.split('-')[1].replace(/\b0+/g, '');
+                val.listing_date_d = val.listing_date.split('-')[2].replace(/\b0+/g, '');
+                val.listing_date = val.listing_date_m + '/' + val.listing_date_d + '/' + val.listing_date_y;
+            }
             // Counter for rank #
             val.counter = counter++;
             // Check if even or odd for BG color class
