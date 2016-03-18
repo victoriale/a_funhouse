@@ -31,7 +31,7 @@ export class InfoListModule implements OnInit {
             val.full_street_address = self._globalFunctions.titleCase(val.full_street_address);
             // Format price
             val.list_price = self._globalFunctions.commaSeparateNumber(val.list_price);
-            // Check for null, Grab date from date/timestamp
+            // Check for no data, if data Grab date from date/timestamp
             if(val.listing_date === null || val.listing_date == 'undefined') {
                 val.listing_date = "N/A";
             }else {
