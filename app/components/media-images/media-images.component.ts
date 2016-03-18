@@ -35,7 +35,6 @@ export class MediaImages implements OnInit {
   getPropertyData(input) {
     var data = this.mediaImages;
     console.log('hallo',data);
-
   }
 
   left() {
@@ -54,9 +53,8 @@ export class MediaImages implements OnInit {
   ngOnChanges(event){
       if(typeof event.mediaImages !== 'undefined'){
         //if data coming from module to variable mediaImages changes in what way then reset to first image and rerun function
-        console.log(this.mediaImages);
-        this.largeImage = this.mediaImages[0];
-        this.getPropertyData('');
+        // this.changeMain(1);
+        this.getPropertyData(0);
       }
   }
 

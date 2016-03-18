@@ -11,7 +11,7 @@
             </div>
             <div class="search-area">
               <input type="text" name="keyword" class="search-area-text" (focus)="focusResults($event)" (keyup)="searchText($event)" type="text" placeholder="Where do you want to live? (City, ST)">
-              <button class="search-area-btn fa fa-search"></button>
+              <button class="search-area-btn fa fa-search" (click)="searchRedirect()"></button>
             </div>
           </div>
           <nav class="search_tab-menu">
@@ -19,19 +19,19 @@
               <li>
                 <a class='search-tab active' id='address' (click)="tabTarget($event)">
                   <i class='fa fa-circle'></i>
-                  Address
+                  Address ({{searchResults.addrCount}})
                 </a>
               </li>
               <li>
                 <a class='search-tab' id='location' (click)="tabTarget($event)">
                   <i class=''></i>
-                  Location
+                  Location ({{searchResults.locCount}})
                 </a>
               </li>
               <li>
                 <a class='search-tab' id='zipcode' (click)="tabTarget($event)">
                   <i class=''></i>
-                  Zip Code
+                  Zip Code ({{searchResults.zipCount}})
                 </a>
               </li>
             </ul>
