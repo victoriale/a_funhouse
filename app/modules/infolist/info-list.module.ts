@@ -27,6 +27,8 @@ export class InfoListModule implements OnInit {
         var self = this;
         var counter = 1;
         this.recentListingsData.forEach(function(val) {
+            // Format address to Title Case
+            val.full_street_address = self._globalFunctions.titleCase(val.full_street_address);
             // Format price
             val.list_price = self._globalFunctions.commaSeparateNumber(val.list_price);
             // Check for null, Grab date from date/timestamp
