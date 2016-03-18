@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from 'angular2/core';
+import {Component, Input} from 'angular2/core';
 import {ExploreButtonComponent} from "../buttons/explore-button/explore-button.component";
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 
@@ -11,11 +11,6 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
     inputs: ['nearByCities'],
 })
 
-export class ExploreTilesComponent implements OnInit {
-
+export class ExploreTilesComponent{
     nearByCities: Object;
-
-    ngOnInit() {
-        console.log('hi', this.nearByCities);
-    }
 }

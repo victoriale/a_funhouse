@@ -4,6 +4,7 @@
 .property-type{
     width:100%;
     padding:12px 11px;
+    border-bottom: 1px solid @backgroundGrey;
 }
 .type-title{
   //.globalDefaultModFont(@fontSize, @fontWeight, @color)
@@ -17,17 +18,21 @@
   .flexJustify(space-between);
   &_frame{
     font-family:@globalFont;
+    font-size: 14px;
     width:150px;
     height:40px;
     border-radius: 5px;
-    padding:10px;
+    padding:5px;
     border: 1px solid @masterStrokeColor;
     background-color: @greyBorder;
     img{
       margin-right:5px;
+      margin-left: 5px;
+      margin-top: 5px;
     }
     span{
       position:absolute;
+      margin-top: 8px;
     }
     input{
       float:right;
