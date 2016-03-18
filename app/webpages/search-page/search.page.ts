@@ -2,7 +2,7 @@ import {Component, OnInit, Input, OnChanges} from 'angular2/core';
 import {BackTabComponent} from '../../components/backtab/backtab.component';
 import {SearchService} from '../../global/search-service';
 import {Observable} from "rxjs/Observable";
-import {ROUTER_DIRECTIVES, RouteConfig, RouteParams} from 'angular2/router';
+import {ROUTER_DIRECTIVES, RouteConfig, RouteParams, Router} from 'angular2/router';
 import {WidgetModule} from "../../modules/widget/widget.module";
 declare var jQuery: any;
 
