@@ -110,6 +110,11 @@ export class FeaturedListsModule implements OnInit{
     transformData(){
         var data = this.featuredListData;
 
+        Exit function if no list data is found
+        if(data.featured_list.length === 0){
+            return false;
+        }
+
         var listData = data.featured_list[this.index];
 
         this.listData = {
@@ -130,7 +135,13 @@ export class FeaturedListsModule implements OnInit{
         var currentFeaturedListData = event.featuredListData.currentValue;
         //If the data input is valid run transform data function
         if(currentFeaturedListData !== null && currentFeaturedListData !== false) {
-            this.transformData();
+            //Perform try catch to make sure module doesnt break page
+            try{
+                this.transformData();
+            }catch(e){
+                console.log('Error - Featured List Module ', e);
+                this.featuredListData = undefined;
+            }
         }
     }
 }
