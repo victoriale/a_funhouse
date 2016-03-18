@@ -5,12 +5,13 @@ import {Component, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 import {BackTabComponent} from '../../components/backtab/backtab.component';
 import {TitleComponent} from '../../components/title/title.component';
+import {WidgetModule} from "../../modules/widget/widget.module";
 
 @Component({
     selector: 'Aboutus-page',
     templateUrl: './app/webpages/aboutus-page/aboutus.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [BackTabComponent, TitleComponent],
+    directives: [BackTabComponent, TitleComponent, WidgetModule],
     providers: [],
 })
 

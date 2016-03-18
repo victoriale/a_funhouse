@@ -20,7 +20,7 @@ export class FeaturedListsModule implements OnInit{
     public moduleTitle: string;
     public tileData: Object;
     public listData: Object;
-    public index: number;
+    public index: number = 0;
     @Input() featuredListData: FeaturedListInterface;
 
     constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions){
@@ -87,9 +87,6 @@ export class FeaturedListsModule implements OnInit{
 
     //Initialization Call
     ngOnInit(){
-        //Initialize index value
-        this.index = 0;
-
         this.setModuleTitle();
         //Set static data - Will remove when routes further defined
         this.tileData = {
@@ -113,6 +110,11 @@ export class FeaturedListsModule implements OnInit{
     transformData(){
         var data = this.featuredListData;
 
+        Exit function if no list data is found
+        if(data.featured_list.length === 0){
+            return false;
+        }
+
         var listData = data.featured_list[this.index];
 
         this.listData = {
@@ -133,7 +135,13 @@ export class FeaturedListsModule implements OnInit{
         var currentFeaturedListData = event.featuredListData.currentValue;
         //If the data input is valid run transform data function
         if(currentFeaturedListData !== null && currentFeaturedListData !== false) {
-            this.transformData();
+            //Perform try catch to make sure module doesnt break page
+            try{
+                this.transformData();
+            }catch(e){
+                console.log('Error - Featured List Module ', e);
+                this.featuredListData = undefined;
+            }
         }
     }
 }

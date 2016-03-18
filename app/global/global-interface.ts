@@ -49,7 +49,6 @@ export interface ProfileHeaderInterface {
     agent: string;
     brokerageLogoURL: string;
     email: string;
-    lastUpdated: string;
     listingID: string;
     listingImage: string;
     listingPrice: string;
@@ -64,9 +63,11 @@ export interface ProfileHeaderInterface {
     averageListingPrice: string;
     averageRentalPrice: string;
     averageAge: string;
+    locationImage: string;
     //Shared data
     city: string;
     state: string;
+    lastUpdated: string;
 }
 
 //Interface for Featured List Module

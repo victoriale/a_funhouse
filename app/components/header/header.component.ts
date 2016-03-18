@@ -15,7 +15,7 @@ export class HeaderComponent{
     public isHomePage: boolean = false;
     public isMyHouseKit: boolean = false;
     directoryVisible: boolean;
-    isScrolling: boolean = false;
+    isScrolling: boolean;
 
     constructor() {
        this.directoryVisible = false;

@@ -9,14 +9,12 @@ install each one individually
 1. `npm install` (individually
 
       a.`-g gulp-cli`
-
       b.`gulp-less`
-
       c.`gulp-concat`
-
       d.`connect-history-api-fallback`
-
       e.`browser-sync`
+      f.`bootstrap`
+      g.`ng2-bs3-modal`
 
 2. `npm i`
 
