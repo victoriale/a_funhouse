@@ -3,13 +3,14 @@ import {BackTabComponent} from '../../components/backtab/backtab.component';
 import {SearchService} from '../../global/search-service';
 import {Observable} from "rxjs/Observable";
 import {ROUTER_DIRECTIVES, RouteConfig, RouteParams} from 'angular2/router';
+import {WidgetModule} from "../../modules/widget/widget.module";
 declare var jQuery: any;
 
 @Component({
   selector: 'Search-page',
   templateUrl: './app/webpages/search-page/search.page.html',
   styleUrls: ['./app/global/stylesheets/master.css'],
-  directives: [ROUTER_DIRECTIVES, BackTabComponent],
+  directives: [ROUTER_DIRECTIVES, BackTabComponent, WidgetModule],
   providers: [SearchService],
   inputs: ['searchResults', 'showResults']
 })
