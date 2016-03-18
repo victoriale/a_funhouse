@@ -61,6 +61,20 @@ export class LocationProfileService{
             )
     }
 
+    getRecentListings(city, state) {
 
+        city = encodeURI(city);
+        state = encodeURI(state);
+
+        return this.http.get(this.apiUrl + '/list/listingsMostRecent/' + state + '/' + city)
+            .map(
+                res => res.json()
+            )
+            .map(
+                data => {
+                    return data.data;
+                }
+            )
+    }
 
 }

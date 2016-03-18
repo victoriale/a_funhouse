@@ -4,12 +4,13 @@
 import {Component, OnInit} from 'angular2/core';
 import {BackTabComponent} from '../../components/backtab/backtab.component';
 import {TitleComponent} from '../../components/title/title.component';
+import {WidgetModule} from "../../modules/widget/widget.module";
 
 @Component({
     selector: 'Contactus-page',
     templateUrl: './app/webpages/contactus-page/contactus.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [BackTabComponent, TitleComponent],
+    directives: [BackTabComponent, TitleComponent, WidgetModule],
     providers: [],
 })
 

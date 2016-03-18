@@ -2,18 +2,18 @@
     <div class="wrapper">
         <div class="inner-wrapper">
             <main>
-                <section class='lol-main eight-col'>
+                <section class='content-main eight-col'>
                     <backtab-component></backtab-component>
                     <title-component></title-component>
-                    <list-carousel-component></list-carousel-component>
+                    <list-carousel-component *ngIf="lists" [lists]="lists"></list-carousel-component>
                     <span *ngFor="#item of lists">
                         <contentlist [data]="item"></contentlist>
                     </span>
                     <hero-list-component></hero-list-component>
                 </section>
-                <aside class="four-col">
-                    <div class="widget"></div>
-                </aside>
+                <div class="four-col">
+                    <widget-module></widget-module>
+                </div>
             </main>
         </div>
     </div>

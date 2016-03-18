@@ -9,7 +9,7 @@
                     <headline-component [data]="headlineAbout"></headline-component>
                     <profile-header *ngIf="profileHeaderData" [profileHeaderData]="profileHeaderData"></profile-header>
                     <comment-module></comment-module>
-                    <info-list-module></info-list-module>
+                    <info-list-module *ngIf="recentListingsData" [recentListingsData]="recentListingsData" [locDisplay]="locDisplay"></info-list-module>
 
                     <!-- Crime Section -->
                     <headline-component [data]="headlineCrime"></headline-component>
@@ -32,9 +32,9 @@
                     <about-us-module></about-us-module>
 
                 </section>
-                <aside class="four-col">
-                    <div class="widget"></div>
-                </aside>
+                <div class="four-col">
+                    <widget-module></widget-module>
+                </div>
             </main>
         </div>
     </div>

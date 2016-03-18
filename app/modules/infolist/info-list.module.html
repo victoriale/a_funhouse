@@ -1,6 +1,6 @@
 <section class="module-container">
     <module-header [module_title]="module_title"></module-header>
-    <span *ngFor="#infoList of infoList">
+    <span *ngFor="#infoList of infoList | slice:0:4">
         <info-list [infoList]="infoList"></info-list>
     </span>
     <module-footer></module-footer>

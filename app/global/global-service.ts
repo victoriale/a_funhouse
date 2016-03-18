@@ -48,7 +48,7 @@ export class ListOfListService {
     getListOfList() {
         var Lol: List[] = [
             {
-                'title': '[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet',
+                'title': '[List Name Here1] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet',
                 'bigImage': './app/public/img_bckgnd.png',
                 'location': 'somewhere',
                 'smallImage': [
@@ -58,7 +58,7 @@ export class ListOfListService {
                 ]
             },
             {
-                'title': '[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet',
+                'title': '[List Name Here2] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet',
                 'bigImage': './app/public/img_bckgnd.png',
                 'location': 'someplace',
                 'smallImage': [
@@ -69,7 +69,7 @@ export class ListOfListService {
                 ]
             },
             {
-                'title': '[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet',
+                'title': '[List Name Here3] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet',
                 'bigImage': './app/public/img_bckgnd.png',
                 'location': 'something',
                 'smallImage': [

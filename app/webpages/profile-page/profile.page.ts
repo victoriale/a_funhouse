@@ -16,14 +16,14 @@ import {AmenitiesModule} from "../../modules/amenities/amenities.module";
 import {FeaturedListsModule} from '../../modules/featured_lists/featured_lists.module';
 import {MediaImages} from "../../components/media-images/media-images.component";
 import {TrendingHomes} from "../../modules/trending-homes/trending-homes.module";
-
 import {ListingProfileService} from '../../global/listing-profile.service';
+import {WidgetModule} from "../../modules/widget/widget.module";
 
 @Component({
     selector: 'profile-page',
     templateUrl: './app/webpages/profile-page/profile.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [TrendingHomes, MediaImages, HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs, ShareModule, FeaturedListsModule, AmenitiesModule],
+    directives: [TrendingHomes, MediaImages, HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs, ShareModule, FeaturedListsModule, AmenitiesModule, WidgetModule],
     providers: [ListingProfileService]
 })
 

@@ -13,12 +13,13 @@ import {AboutUsModule} from '../../modules/aboutus/aboutus.module';
 import {SchoolModule} from "../../modules/school/school.module";
 
 import {LocationProfileService} from '../../global/location-profile.service';
+import {WidgetModule} from "../../modules/widget/widget.module";
 
 @Component({
     selector: 'location-page',
     templateUrl: './app/webpages/location-page/location.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule],
+    directives: [HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule, WidgetModule],
     providers: [LocationProfileService],
 })
 
@@ -27,13 +28,14 @@ export class LocationPage implements OnInit {
     loc: string;
     locCity: string;
     locState: string;
-    locDisplay: string;
+    public locDisplay: string;
     public headlineAbout: any;
     public headlineCrime: any;
     public headlineAmenities: any;
     public headlineInteract: any;
     public profileHeaderData: Object;
     public featuredListData: Object;
+    public recentListingsData: Object;
 
     constructor(private _params: RouteParams, private _locationProfileService: LocationProfileService) {
         // Scroll page to top to fix routerLink bug
@@ -55,6 +57,15 @@ export class LocationPage implements OnInit {
                 data => {
                     this.featuredListData = data;
                 }
+            );
+    }
+
+    getRecentListings() {
+        this._locationProfileService.getRecentListings(this.locCity, this.locState)
+            .subscribe(
+                recentListingsData => { this.recentListingsData = recentListingsData },
+                err => console.log(err),
+                () => console.log('Recent Listings Data Acquired!')
             );
     }
 
@@ -88,6 +99,9 @@ export class LocationPage implements OnInit {
 
         this.getProfileHeader();
         this.getFeaturedList();
+        this.getRecentListings();
+
+        console.log(this);
     }
 
 }
