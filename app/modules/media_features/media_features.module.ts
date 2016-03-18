@@ -50,7 +50,6 @@ export class MediaFeatureModule implements OnInit {
     var featureHaves = [];
 
     for (var feature in originalData) {
-      console.log(feature, originalData[feature]);
       if (originalData[feature] != null) {
         if(feature != 'listingImages' && feature != 'imageCount' && feature != 'listingID'){
           featureHaves.push({
@@ -64,8 +63,6 @@ export class MediaFeatureModule implements OnInit {
     if (originalData.listingImages === null || originalData.listingImages == '' || typeof originalData.listingImages == 'undefined') {
       originalData.listingImages = [this.image_url];
     }
-
-    console.log(featureHaves);
 
     return {
       imageArray: originalData.listingImages,
