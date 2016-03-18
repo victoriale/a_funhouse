@@ -5,11 +5,11 @@
             Expand <i class='fa fa-expand'></i>
         </a>
         <a href='' class='feature-btn virtual'>
-            Virtual Home Tour (1)
+            Virtual Home Tour ({{BatchTwo.virtualTourCount}})
         </a>
         <a href='' class='feature-btn images'>
             <span><i class='fa fa-file-image-o'></i></span>
-            <span> Images (30)</span>
+            <span> Images ({{BatchTwo.imageCount}})</span>
             <i></i>
         </a>
         <img *ngIf= "largeImage" src="{{largeImage}}" class="plcholder-img" alt="placeholder images" />

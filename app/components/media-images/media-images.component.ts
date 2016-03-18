@@ -24,9 +24,7 @@ export class MediaImages implements OnInit {
 
   constructor(
     private _featureList: MediaFeatureList
-    ) {
-
-    }
+    ) {}
 
   getData() {
     this._featureList.getBatchTwo().then(batch2 => this.BatchTwo = batch2);

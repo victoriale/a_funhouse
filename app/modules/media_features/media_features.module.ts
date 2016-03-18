@@ -24,10 +24,10 @@ export class MediaFeatureModule implements OnInit {
   public profileType: string;
 
   private propertyData: any;//data to send from module into components
-
+  private date;
   image_url = './app/public/placeholder_XL.png';
   featureHeading = "Features Of This Property";
-  lastUpdate = "Last Updated: Thursday, March 03, 2016";
+  lastUpdate = "Last Updated: ";
 
   @Input() propertyListingData: PropertyListingInterface;
 
@@ -50,14 +50,12 @@ export class MediaFeatureModule implements OnInit {
     var featureHaves = [];
 
     for (var feature in originalData) {
-      if (originalData[feature] != null) {
-        if(feature != 'listingImages' && feature != 'imageCount' && feature != 'listingID'){
+        if(feature != 'listingImages' && feature != 'imageCount' && feature != 'listingID' && originalData[feature] != "" && originalData[feature] != null){
           featureHaves.push({
-            featureName: feature,
+            featureName: this.featureProperty(feature),
             featureValue: originalData[feature]
           });
         }//end if
-      }//end if
     }//end for loop
 
     if (originalData.listingImages === null || originalData.listingImages == '' || typeof originalData.listingImages == 'undefined') {
@@ -68,9 +66,27 @@ export class MediaFeatureModule implements OnInit {
       imageArray: originalData.listingImages,
       featureData: featureHaves
     }
-  }
+  }//end of dataFormatter
 
-    //Build Module Title
+featureProperty(name){
+  var featureProp = {
+    numBathrooms: 'Bathrooms',
+    fullBathrooms: 'Full Bathrooms',
+    halfBathrooms: 'Half Bathrooms',
+    numBedrooms: 'Bedrooms',
+    hasBasement: 'Basement',
+    roof: 'Roof',
+    heatingFuel: 'Heating Fuel',
+    architecturalStyle: 'Architectural Style',
+    heating: 'Heating',
+    cooling: 'Cooling',
+    numFloors: 'Num. of Floors',
+    exterior: 'Extorior',
+    parking: 'Parking'
+  };
+  return featureProp[name];
+}
+  //Build Module Title
   setModuleTitle() {
 
     if (this.profileType === 'LocationPage') {
