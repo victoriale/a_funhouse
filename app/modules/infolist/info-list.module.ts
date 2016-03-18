@@ -27,21 +27,32 @@ export class InfoListModule implements OnInit {
         var self = this;
         var counter = 1;
         this.recentListingsData.forEach(function(val) {
+            // Format price
             val.list_price = self._globalFunctions.commaSeparateNumber(val.list_price);
+            // Grab date from date/timestamp
             val.listing_date = val.listing_date.split(' ')[0];
-            val.counter = counter++1;
+            // Pull out year
+            val.listing_date_y = val.listing_date.split('-')[0];
+            // Pull out month and day and remove leading zeros
+            val.listing_date_m = val.listing_date.split('-')[1].replace(/\b0+/g, '');
+            val.listing_date_d = val.listing_date.split('-')[2].replace(/\b0+/g, '');
+            // Counter for rank #
+            val.counter = counter++;
+            // Check if even or odd for BG color class
             if(counter % 2 == 0) {
                 val.bgClass = "even";
             }else{
                 val.bgClass = "odd";
             }
-            val.buttonName = "View Your Home";
+            // Check for 0's on # beds and # bath, display N/A's
             if(val.num_bathrooms == 0 || val.num_bathrooms == 'undefined' || val.num_bathrooms == null) {
                 val.num_bathrooms = "N/A";
             }
             if(val.num_bedrooms == 0 || val.num_bedrooms == 'undefined' || val.num_bedrooms == null) {
                 val.num_bedrooms = "N/A";
             }
+            // Button text
+            val.buttonName = "View Your Home";
         });
     }
 
