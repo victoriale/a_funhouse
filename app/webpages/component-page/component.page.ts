@@ -26,7 +26,6 @@ import {AboutUsModule} from "../../modules/aboutus/aboutus.module";
 import {ShareModule} from "../../modules/share/share.module";
 import {CommentModule} from "../../modules/comment/comment.module";
 import {RangeSliderComponent} from "../../components/range-slider/range-slider.component";
-import {MediaFeatureModule} from "../../modules/media_features/media_features.module";
 import {MediaImages} from "../../components/media-images/media-images.component";
 import {PaginationFooter} from "../../components/pagination-footer/pagination-footer.component";
 import {WidgetModule} from "../../modules/widget/widget.module";
@@ -59,7 +58,6 @@ import {WidgetModule} from "../../modules/widget/widget.module";
         AboutUsModule,
         ShareModule,
         CommentModule,
-        MediaFeatureModule,
         MediaImages,
         RangeSliderComponent,
         PaginationFooter,
