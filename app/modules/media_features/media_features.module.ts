@@ -37,7 +37,6 @@ export class MediaFeatureModule implements OnInit {
   }
 
   getData() {
-    console.log(this._params.get('address'));
     this.propertyData = this._listingService.getPropertyListing(this._params.get('address'))
       .subscribe(data => {
       this.propertyData = this.dataFormatter(data);
@@ -45,8 +44,6 @@ export class MediaFeatureModule implements OnInit {
   }
 
   dataFormatter(originalData) {
-    console.log(originalData);
-
     var featureHaves = [];
 
     for (var feature in originalData) {
