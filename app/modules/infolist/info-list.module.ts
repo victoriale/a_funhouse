@@ -30,7 +30,7 @@ export class InfoListModule implements OnInit {
             // Format price
             val.list_price = self._globalFunctions.commaSeparateNumber(val.list_price);
             // Check for null, Grab date from date/timestamp
-            if(val.listing_date === null) {
+            if(val.listing_date === null || val.listing_date == 'undefined') {
                 val.listing_date = "N/A";
             }else {
                 val.listing_date = val.listing_date.split(' ')[0];
