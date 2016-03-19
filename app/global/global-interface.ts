@@ -87,36 +87,8 @@ export interface address {
 export interface MagMap {
     key?: string;
     photo?: string;
-    listing_key?: string;
-    listhub_key?: string;
     address?: address;
     list_price?: number;
-    geocoded?: {
-        normalized_address?: string;
-        geometry?: {
-            bounds?: {
-                northeast?: {
-                    lat?: number;
-                    lng?: number;
-                }
-                southwest?: {
-                    lat?: number;
-                    lng?: number;
-                }
-            }
-            location_type?: string;
-            viewport?: {
-                northeast?: {
-                    lat?: number;
-                    lng?: number;
-                }
-                southwest?: {
-                    lat?: number;
-                    lng?: number;
-                }
-            }
-        }
-    }
 }
 
 export interface MagAmenity {

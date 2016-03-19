@@ -49,7 +49,7 @@ export class MagCarouselModule implements OnInit {
     }
 
     getMagazineOverview() {
-        this._magazineDataService.getMagazineData("5170-Benton-Tama-Road-Buckingham-IA")
+        this._magazineDataService.getMagazineData(this.address)
             .subscribe(
                 magData => {
                     this.magOverview = magData.overview;
