@@ -57,17 +57,17 @@ export class ProfileHeader implements OnInit{
             //Location Profile Header
 
             this.titleComponentData = {
-                imageURL: null,
+                imageURL: data.locationImage,
                 //Unused field of component for this module
                 smallText: '',
-                smallText2: 'Last Updated: ',
+                smallText2: 'Last Updated: ' + data.lastUpdated,
                 heading1: data.city + ', ' + data.state,
                 heading2: '',
                 heading3: this.globalFunctions.commaSeparateNumber(data.numberOfListings) + ' Listings Available for Sale',
                 heading4: '',
                 icon: 'fa fa-map-marker',
                 hasHover: false
-            }
+            };
 
             this.descriptionTitle = data.city + ', ' + data.state;
             this.descriptionLocation = 'Did you know that';
@@ -75,7 +75,7 @@ export class ProfileHeader implements OnInit{
             this.descriptionLocation += data.averageAge === null ? '' : ' the average age for a ' + data.city + ' resident is ' + data.averageAge + ',';
             this.descriptionLocation += data.averageRentalPrice === null ? '' : ' the average rental price is $' + this.globalFunctions.commaSeparateNumber(data.averageRentalPrice) + '/month,';
             this.descriptionLocation += data.averageListingPrice === null ? '?' : ' and the average home sells for $' + this.globalFunctions.commaSeparateNumber(data.averageListingPrice) + '?';
-            this.mainImageURL = null;
+            this.mainImageURL = data.locationImage;
 
         }else if(this.profileType === 'ProfilePage') {
             //Listing Profile Header
@@ -84,7 +84,7 @@ export class ProfileHeader implements OnInit{
                 imageURL: data.listingImage,
                 //Unused field of component for this module
                 smallText: '',
-                smallText2: data.city + ', ' + data.state,
+                smallText2: data.city + ', ' + data.state + ' > ' + 'Last Updated: ' + data.lastUpdated,
                 heading1: data.address,
                 heading2: data.listingStatus === null ? '' : '- ' + data.listingStatus,
                 heading3: 'Listing Price: $' + this.globalFunctions.commaSeparateNumber(data.listingPrice),

@@ -48,6 +48,34 @@ export interface MagContact {
     photos?: string[];
 }
 
+//Interface for Profile Header Module
+export interface ProfileHeaderInterface {
+    //Listing data
+    address: string;
+    agent: string;
+    brokerageLogoURL: string;
+    email: string;
+    listingID: string;
+    listingImage: string;
+    listingPrice: string;
+    listingStatus: string;
+    officeNumber: number;
+    originalLink: string;
+    phoneNumber: number;
+    squareFeet: string;
+    zipCode: string;
+    //Location data
+    numberOfListings: string;
+    averageListingPrice: string;
+    averageRentalPrice: string;
+    averageAge: string;
+    locationImage: string;
+    //Shared data
+    city: string;
+    state: string;
+    lastUpdated: string;
+}
+
 export interface MagAmenities {
     pageTitle?: string;
     menuTitle?: string;

@@ -26,10 +26,9 @@ import {AboutUsModule} from "../../modules/aboutus/aboutus.module";
 import {ShareModule} from "../../modules/share/share.module";
 import {CommentModule} from "../../modules/comment/comment.module";
 import {RangeSliderComponent} from "../../components/range-slider/range-slider.component";
-import {MediaFeatureModule} from "../../modules/media_features/media_features.module";
 import {MediaImages} from "../../components/media-images/media-images.component";
-import {InfoListComponent} from "../../components/info-list/info-list.component";
 import {PaginationFooter} from "../../components/pagination-footer/pagination-footer.component";
+import {WidgetModule} from "../../modules/widget/widget.module";
 
 @Component({
     selector: 'component-page',
@@ -59,11 +58,10 @@ import {PaginationFooter} from "../../components/pagination-footer/pagination-fo
         AboutUsModule,
         ShareModule,
         CommentModule,
-        MediaFeatureModule,
         MediaImages,
         RangeSliderComponent,
-        InfoListComponent,
-        PaginationFooter
+        PaginationFooter,
+        WidgetModule,
     ],
     providers: [],
 })
