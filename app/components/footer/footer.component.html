@@ -29,14 +29,14 @@
                     <section class="footer-section-one">
                         <ul>
                             <li>States: </li>
-                            <li *ngFor="#state of states"><a href="{{state.url}}">{{state.name}}</a></li>
+                            <li *ngFor="#state of states"><a [routerLink]='["Directory-page-state", { state: state.abr, listTitle: listTitle, pageNumber: pageNumber }]'>{{state.name}}</a></li>
                         </ul>
                     </section>
                     <hr />
                     <section class="footer-section-one">
                         <ul>
                             <li>Cities: </li>
-                            <li *ngFor="#city of cities"><a href="{{city.url}}">{{city.name}}</a></li>
+                            <li *ngFor="#city of cities"><a [routerLink]='["Directory-page-city", { state: city.state, city: city.name,  listTitle: listTitle, pageNumber: pageNumber }]'>{{city.name}}</a></li>
                         </ul>
                     </section>
                     <hr />
