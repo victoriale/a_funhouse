@@ -5,12 +5,13 @@ import {Component, OnInit} from 'angular2/core';
 import {BackTabComponent} from '../../components/backtab/backtab.component';
 import {TitleComponent} from '../../components/title/title.component';
 import {WidgetModule} from "../../modules/widget/widget.module";
+import {Router,ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({
     selector: 'Disclaimer-page',
     templateUrl: './app/webpages/disclaimer-page/disclaimer.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [BackTabComponent, TitleComponent, WidgetModule],
+    directives: [BackTabComponent, TitleComponent, WidgetModule, ROUTER_DIRECTIVES],
     providers: [],
 })
 
@@ -26,7 +27,22 @@ export class DisclaimerPage implements OnInit{
     disclaimer8 = "If you require any more information or have any questions about our site's disclaimer, please feel free to contact us by email at www.joyfulhome.com/contactus.";
     title_data: {};
 
-    constructor() {
+    nav(event){
+      var value = event.target.value;
+      switch(value){
+        case "About":
+          this._router.navigate(['Aboutus-page']);
+          break;
+        case "Contact":
+          this._router.navigate(['Contactus-page']);
+          break;
+        case "Disclaimer":
+          this._router.navigate(['Disclaimer-page']);
+          break;
+      }
+    }
+
+    constructor(private _router: Router) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }
