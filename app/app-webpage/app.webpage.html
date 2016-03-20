@@ -13,7 +13,7 @@
             <a [routerLink]="['Aboutus-page']">About Us Page</a>
             <a [routerLink]="['Contactus-page']">Contact Us Page</a>
             <a [routerLink]="['Disclaimer-page']">Disclaimer Page</a>
-            <a [routerLink]="['Directory-page']">Directory Page</a>
+            <a [routerLink]="['Directory-page', {listTitle: listTitle, pageNumber: pageNumber}]">Directory Page</a>
             <a [routerLink]="['Search-page', {query: '9'}]">Search Page</a>
         </nav>
     </div>

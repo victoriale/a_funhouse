@@ -109,7 +109,7 @@ export class FeaturedListsModule implements OnInit{
 
     transformData(){
         var data = this.featuredListData;
-
+        
         // Exit function if no list data is found
         if(data.featured_list.length === 0){
             return false;
