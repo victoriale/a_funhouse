@@ -11,13 +11,14 @@
                           <div><b>{{heading}}</b></div>
                           <div class = "au-heading-dropdown">
                             Now Reading:
-                            <select id="sort_by" style = "margin-top: 1px;">
-                              <option value="disclaimer">Disclaimer</option>
-                              <option value="aboutUs">About Us</option>
-                              <option value="contactUs">Contact Us</option>
+                            <select (change) ='nav($event)' id="sortBy" style = "margin-top: 1px;">
+                              <option value="Disclaimer">Disclaimer</option>
+                              <option value="About">About Us</option>
+                              <option value="Contact">Contact Us</option>
                             </select>
                           </div>
                         </div>
+
                         <div class="au-desc">
                             <p>{{disclaimer1}}</p><p>{{disclaimer2}}</p>
                             <p>{{disclaimer3}}</p><p>{{disclaimer4}}</p><br/>
@@ -30,7 +31,7 @@
                             <p>{{disclaimer8}}</p><br/>
                         </div>
                     </div>
-                </section>
+                </section> 
                 <div class="four-col">
                     <widget-module></widget-module>
                 </div>
