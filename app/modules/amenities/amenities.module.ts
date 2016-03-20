@@ -59,25 +59,18 @@ export class AmenitiesModule implements OnInit{
         this.setModuleTitle();
         this.tile_data = {
             button_txt: 'Open Page',
-            url1: '',
+            url1: 'Aboutus-page',
             icon1: 'fa-cutlery',
             title1: 'Nearby Restaurants',
             desc1: '',
-            url2: '',
+            url2: 'Contactus-page',
             icon2: 'fa-shopping-cart',
             title2: 'Nearby Groceries',
             desc2: '',
-            url3: '',
+            url3: 'Disclaimer-page',
             icon3: ' fa-dollar',
             title3: 'Nearby Banks',
             desc3: ''
         }
-        // this.amenitiesData = {
-        //   header: "What's the highest rated restaurant in this area?",
-        //   name: '[Listing Name]',
-        //   establishment: '[Establishment]',
-        //   address: '[Listing Name] [Zip Code]',
-        //   location: '[Location]'
-        // }
     }
 }
