@@ -85,9 +85,28 @@ import {PartnerHeader} from "../global/global-service";
         name: 'Disclaimer-page',
         component: DisclaimerPage,
     },
+    //National directory page
     {
-        path: '/directory',
+        path: '/directory/:listTitle/page/:pageNumber',
         name: 'Directory-page',
+        component: DirectoryPage
+    },
+    //State directory page
+    {
+        path: '/directory/:state/:listTitle/page/:pageNumber',
+        name: 'Directory-page-state',
+        component: DirectoryPage
+    },
+    //City directory page
+    {
+        path: '/directory/:state/:city/:listTitle/page/:pageNumber',
+        name: 'Directory-page-city',
+        component: DirectoryPage
+    },
+    //Zipcode directory page
+    {
+        path: '/directory/:state/:city/:zipcode/:listTitle/page/:pageNumber',
+        name: 'Directory-page-zipcode',
         component: DirectoryPage
     },
     {
@@ -102,6 +121,8 @@ export class AppComponent {
     //declare variables to grab potential partner header
     public partnerID: string;
     public partnerData: Object;
+    public listTitle: string = 'homes-largest';
+    public pageNumber: number = 1;
     public partnerScript:string;
     cityStateLocation: string = "Wichita_KS";
     cityLocation: string = "WICHITA";
