@@ -14,6 +14,7 @@ import {List2} from '../../global/global-interface';
   providers: [MediaFeatureList],
   inputs: ['trending', 'mediaImages']
 })
+
 export class MediaImages implements OnInit {
   BatchTwo: List2[];
   public trending: boolean;
@@ -24,10 +25,11 @@ export class MediaImages implements OnInit {
 
   constructor(
     private _featureList: MediaFeatureList
-    ) {}
+  ) {}
 
   getData() {
     this._featureList.getBatchTwo().then(batch2 => this.BatchTwo = batch2);
+    console.log(this.BatchTwo);
   }
 
   getPropertyData(input) {
@@ -52,6 +54,9 @@ export class MediaImages implements OnInit {
       if(typeof event.mediaImages !== 'undefined'){
         //if data coming from module to variable mediaImages changes in what way then reset to first image and rerun function
         // this.changeMain(1);
+        console.log(this.BatchTwo);
+          this.mediaImages = this.BatchTwo;
+          console.log(this.mediaImages);
         this.getPropertyData(0);
       }
   }

@@ -2,9 +2,12 @@
  * Created by Victoria on 3/1/2016.
  */
 import {Component, OnInit} from 'angular2/core';
+import {FORM_PROVIDERS, FormBuilder, Validators} from 'angular2/common';
 import {BackTabComponent} from '../../components/backtab/backtab.component';
 import {TitleComponent} from '../../components/title/title.component';
 import {WidgetModule} from "../../modules/widget/widget.module";
+
+declare var jQuery: any;
 
 @Component({
     selector: 'Contactus-page',
@@ -19,7 +22,7 @@ export class ContactUsPage implements OnInit{
     full_name = "John Smith";
     email = "johnSmith@sntmedia.com";
     text_area = "Detailed description of your question here...";
-
+    submit: boolean = false;
     title_data: {};
 
     constructor() {
@@ -42,6 +45,30 @@ export class ContactUsPage implements OnInit{
         };
     }
 
+    formSubmit(){
+      if(jQuery(".ff-fullname").val() == "")
+      {
+        alert("Please Fill in your name.");
+        this.submit = false;
+      }
+      if(jQuery(".ff-email").val() == "")
+      {
+        alert("Please enter in an email.");
+        this.submit = false;
+      }
+      if(jQuery(".ff-textfield").val() == "")
+      {
+        alert("Please enter in your message.");
+        this.submit = false;
+      }
+      this.submit = true;
+      console.log(this.submit);
+      return this.submit;
+    }
+
+    form(){
+      return this.submit;
+    }
 
     ngOnInit(){
         this.getData();
