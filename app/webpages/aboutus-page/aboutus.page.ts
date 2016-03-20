@@ -2,16 +2,16 @@
  * Created by Victoria on 2/29/2016.
  */
 import {Component, OnInit} from 'angular2/core';
-import {Router} from 'angular2/router';
 import {BackTabComponent} from '../../components/backtab/backtab.component';
 import {TitleComponent} from '../../components/title/title.component';
 import {WidgetModule} from "../../modules/widget/widget.module";
+import {Router,ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({
     selector: 'Aboutus-page',
     templateUrl: './app/webpages/aboutus-page/aboutus.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [BackTabComponent, TitleComponent, WidgetModule],
+    directives: [BackTabComponent, TitleComponent, WidgetModule, ROUTER_DIRECTIVES],
     providers: [],
 })
 
@@ -40,12 +40,12 @@ export class AboutUsPage implements OnInit{
 
     title_data: {};
 
-    constructor() {
+    constructor(private _router: Router) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }
 
-    getData(){ 
+    getData(){
         //About us data
         this.title_data = {
             imageURL : './app/public/joyfulhome_house.png',
@@ -58,6 +58,21 @@ export class AboutUsPage implements OnInit{
             icon: 'fa fa-map-marker',
             hasHover: false
         };
+    }
+
+    nav(event){
+      var value = event.target.value;
+      switch(value){
+        case "About":
+          this._router.navigate(['Aboutus-page']);
+          break;
+        case "Contact":
+          this._router.navigate(['Contactus-page']);
+          break;
+        case "Disclaimer":
+          this._router.navigate(['Disclaimer-page']);
+          break;
+      }
     }
 
     ngOnInit(){
