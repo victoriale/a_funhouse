@@ -2,7 +2,7 @@ import {Component, OnInit, Input, OnChanges} from 'angular2/core';
 import {BackTabComponent} from '../../components/backtab/backtab.component';
 import {SearchService} from '../../global/search-service';
 import {Observable} from "rxjs/Observable";
-import {ROUTER_DIRECTIVES, RouteConfig, RouteParams} from 'angular2/router';
+import {ROUTER_DIRECTIVES, RouteConfig, RouteParams, Router} from 'angular2/router';
 import {WidgetModule} from "../../modules/widget/widget.module";
 declare var jQuery: any;
 
@@ -23,7 +23,8 @@ export class SearchPage implements OnInit {
   showTotal: number = 0;
   currentTotal: number = 0;
   displayData: {}; //this is what is being inputed into the DOM
-  constructor(private _searchService: SearchService, private params: RouteParams) {
+  dataInput:string;
+  constructor(private _searchService: SearchService, private params: RouteParams, private _router:Router) {
     this.loadCall(params['params']['query']);
   }
 
@@ -32,6 +33,9 @@ export class SearchPage implements OnInit {
     this.showResults = true;
   }
 
+  searchRedirect(){
+    this._router.navigate(['Search-page', {query: this.dataInput}]);
+  }
   //USES JQUERY not angular2
   //used as a click event on tabs to grab selected tab
   tabTarget(event) {
@@ -49,13 +53,19 @@ export class SearchPage implements OnInit {
       this.displayData = this.searchResults[this.tab];
       this.currentTotal = this.displayData['length'];
       // console.log(this.tab," => ",this.displayData);
+      // console.log("Results => ",this.searchResults);
       return this.displayData;
     }
   }
 
   //with the keyup inside the html this function will make a search call on every keystroke
   searchText(event) {
+    console.log(event);
+    if(event.code == 'Enter'){
+      this._router.navigate(['Search-page', {query: this.dataInput}]);
+    }
     var input = event.target.value;
+    this.dataInput = input;
     //makes sure the input is not empty and do an unneccesary call
     if (input != '') {
       // console.log('Search page event', input);
@@ -91,6 +101,11 @@ export class SearchPage implements OnInit {
     var total: number = 0;
     var showLimit: number = 10;
     var tab: string;
+
+    var addrCount = 0;
+    var zipCount = 0;
+    var locCount = 0;
+
     //group address's together, routerLink goes to Magazine
     if (typeof data.address !== 'undefined' && data.address !== null) {
       data.address.forEach(function(item, index) {
@@ -101,6 +116,7 @@ export class SearchPage implements OnInit {
           display: item.address_key + " - " + item.city + " " + item.state_or_province,
         }
         address.push(dataAddr);
+        addrCount++;
         total++;
       });
     }
@@ -115,6 +131,7 @@ export class SearchPage implements OnInit {
           display: item.address_key + " - " + item.city + " " + item.state_or_province,
         }
         address.push(dataAddr);
+        addrCount++;
         total++;
       });
     }
@@ -130,8 +147,9 @@ export class SearchPage implements OnInit {
           params: { address: item.address_key },
           display: '[' + item.zipcode + '] - ' + item.city + " " + item.state_or_province + " - " + item.address_key,
         };
-        total++;
         zipcode.push(zip);
+        zipCount++;
+        total++;
       });
     }
     if (typeof data.location_city !== 'undefined' && data.location_city !== null) {
@@ -143,8 +161,9 @@ export class SearchPage implements OnInit {
           params: { loc: item.city + "_" + item.state_or_province },
           display: item.city + " - " + item.state_or_province,
         }
-        total++;
         location.push(locationData);
+        locCount++;
+        total++;
       });
     }
 
@@ -159,6 +178,9 @@ export class SearchPage implements OnInit {
       'address': address,
       'zipcode': zipcode,
       'location': location,
+      'addrCount': addrCount,
+      'zipCount': zipCount,
+      'locCount': locCount,
       'total': total
     };
   }
