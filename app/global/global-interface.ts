@@ -1,11 +1,52 @@
+export interface TrendingListInterface{
+  full_street_address: string;
+  list_price: string;
+  loc: string;
+  postal_code: string;
+}
+
+export interface AmenitiesNearListingInterface {
+  restaurant: any;
+  grocers: any;
+  banks: any;
+  total: number;
+  businesses: any;
+  is_claimed: boolean;
+  is_closed: boolean;
+  mobile_url: string;
+  rating_img_url: string;
+  review_count: number;
+  name: string;
+  rating_img_url_small: string;
+  url: string;
+  categories: any;
+  phone: string;
+  display_phone: string;
+  snippet_text: string;
+  image_url: string;
+  snippet_image_url: string;
+  rating_img_url_large: string;
+  location: any;
+}
+
 export interface AboutUsPageInterface {
   counties: string;
   listings: string;
   brokers: string;
   cities: string;
 }
+
 export interface PropertyListingInterface {
     listingID: string;
+    listPrice: string;
+    squareFeet: string;
+    lotSize: string;
+    listingDate: string;
+    daysOnMarket: string;
+    address: string;
+    zipCode: string;
+    city: string;
+    state: string;
     imageCount: string;
     numBathrooms: string;
     numBedrooms: string;
@@ -36,14 +77,16 @@ export interface HomePageData {
 
 export interface List2 {
     bigImage: string;
-    list_name: string;
-    list_addr: string;
-    list_day: string;
-    detail1: string;
+    city: string;
+    state: string;
+    zipCode: string;
+    address: string;
+    daysOnMarket: number;
+    lotSize: string;
     unit1: string;
-    detail2: string;
+    squareFeet: string;
     unit2: string;
-    price: string;
+    listPrice: string;
     price_name: string;
     smallImage: string[];
 }

@@ -45,23 +45,23 @@ export class MediaFeatureModule implements OnInit {
 
   dataFormatter(originalData) {
     var featureHaves = [];
-
     for (var feature in originalData) {
         if(feature != 'listingImages' && feature != 'imageCount' && feature != 'listingID' && originalData[feature] != "" && originalData[feature] != null){
-          featureHaves.push({
-            featureName: this.featureProperty(feature),
-            featureValue: originalData[feature]
-          });
-        }//end if
+            if (feature != 'listPrice' && feature != 'squareFeet' && feature != 'lotSize' && feature != 'listingDate' && feature != 'address' && feature != 'zipCode' && feature != 'city' && feature != 'state' && feature != 'daysOnMarket'){
+            featureHaves.push({
+              featureName: this.featureProperty(feature),
+              featureValue: originalData[feature]
+            });
+          }//end else if statement
+        }//end if else statement
     }//end for loop
 
-    if (originalData.listingImages === null || originalData.listingImages == '' || typeof originalData.listingImages == 'undefined') {
+    if(originalData.listingImages === null || originalData.listingImages == '' || typeof originalData.listingImages == 'undefined') {
       originalData.listingImages = [this.image_url];
     }
-
     return {
       imageArray: originalData.listingImages,
-      featureData: featureHaves
+      featureData: featureHaves,
     }
   }//end of dataFormatter
 
@@ -79,7 +79,8 @@ featureProperty(name){
     cooling: 'Cooling',
     numFloors: 'Num. of Floors',
     exterior: 'Extorior',
-    parking: 'Parking'
+    parking: 'Parking',
+    view: 'View'
   };
   return featureProp[name];
 }

@@ -16,15 +16,15 @@
 
         <div class="plcholder-details">
             <div class="listings">
-                <div class="listings-name">{{BatchTwo.list_name}}</div>
-                <div class="listings-addr">{{BatchTwo.list_addr}}</div>
-                <div class="listings-days">{{BatchTwo.list_day}}</div>
+                <div class="listings-name">{{BatchTwo.city}}, {{BatchTwo.state}} {{BatchTwo.zipCode}}</div>
+                <div class="listings-addr">{{BatchTwo.address}}</div>
+                <div class="listings-days">Days on Market: [{{BatchTwo.daysOnMarket}}]</div>
             </div>
 
-            <div *ngIf="!trending" class="details"><div>{{BatchTwo.detail1}}</div><div>{{BatchTwo.unit1}}</div></div>
-            <div *ngIf="!trending" class="details"><div>{{BatchTwo.detail2}}</div><div>{{BatchTwo.unit2}}</div></div>
+            <div *ngIf="!trending" class="details"><div>{{BatchTwo.squareFeet}}</div><div>{{BatchTwo.unit1}}</div></div>
+            <div *ngIf="!trending" class="details"><div>{{BatchTwo.lotSize}}</div><div>{{BatchTwo.unit2}}</div></div>
 
-            <div class="details"><div>{{BatchTwo.price}}</div><div>{{BatchTwo.price_name}}</div></div>
+            <div class="details"><div>{{BatchTwo.listPrice}}</div><div>{{BatchTwo.price_name}}</div></div>
             <a *ngIf="trending" href='' class='mod-page-btn'>
                 <span></span>
                 <span>View Your Home</span>

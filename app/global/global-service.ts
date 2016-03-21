@@ -127,14 +127,16 @@ export class MediaFeatureList{
         var BatchTwo: List2[] = [
             {
                 'bigImage': "http://photos.listhub.net/BCMLSIA/12787/1?lm=20160203T155029",
-                'list_name': '[Listing Name] [Zip Code]',
-                'list_addr': '[Listing Address]',
-                'list_day': 'Days on the market: [##]',
-                'detail1': '[#,###]',
+                'city': '[city]',
+                'state': '[state]',
+                'zipCode': '[zip code]',
+                'address': '[Listing Address]',
+                'daysOnMarket': 1,
+                'squareFeet': '[#,###]',
                 'unit1': 'SQ FT',
-                'detail2': '[#,###]',
+                'lotSize': '[#,###]',
                 'unit2': 'ACRES',
-                'price': '$[###,###]',
+                'listPrice': '$[###,###]',
                 'price_name': 'SALE PRICE',
                 'smallImage': [
                   "http://photos.listhub.net/BCMLSIA/12787/1?lm=20160203T155029",

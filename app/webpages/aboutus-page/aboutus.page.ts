@@ -41,7 +41,7 @@ export class AboutUsPage implements OnInit{
     mainText4 = "[#,###,###]"; // United States' counties
     mainText_nat = "[#,###,###]+"; // listings nationwide
 
-    title_data: {};
+    titleData: {};
 
     constructor(private _router: Router, private _aboutUs: GlobalPage, private globalFunctions: GlobalFunctions) {
         // Scroll page to top to fix routerLink bug
@@ -57,7 +57,7 @@ export class AboutUsPage implements OnInit{
            this.mainText_nat = this.globalFunctions.commaSeparateNumber(data.listings);
       })
       //About us title
-      this.title_data = {
+      this.titleData = {
           imageURL : './app/public/joyfulhome_house.png',
           smallText1 : 'Last Updated: Monday, February 26, 2016',
           smallText2 : ' United States of America',
