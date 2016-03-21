@@ -4,6 +4,7 @@ import {SearchService} from '../../global/search-service';
 import {Observable} from "rxjs/Observable";
 import {ROUTER_DIRECTIVES, RouteConfig, RouteParams, Router} from 'angular2/router';
 import {WidgetModule} from "../../modules/widget/widget.module";
+
 declare var jQuery: any;
 
 @Component({
@@ -60,7 +61,7 @@ export class SearchPage implements OnInit {
 
   //with the keyup inside the html this function will make a search call on every keystroke
   searchText(event) {
-    console.log(event);
+    // console.log(event);
     if(event.code == 'Enter'){
       this._router.navigate(['Search-page', {query: this.dataInput}]);
     }
@@ -137,7 +138,6 @@ export class SearchPage implements OnInit {
     }
 
     //group zipcodes && location together, routerLink links to city, state
-    console.log(data.zipcode);
     if (typeof data.zipcode !== 'undefined' && data.zipcode !== null) {
       data.zipcode.forEach(function(item, index) {
         var zip = {
@@ -154,8 +154,6 @@ export class SearchPage implements OnInit {
     }
     if (typeof data.location_city !== 'undefined' && data.location_city !== null) {
       data.location_city.forEach(function(item, index) {
-        console.log(location[0]);
-        console.log(item);
         var locationData = {
           page: 'Location-page',
           params: { loc: item.city + "_" + item.state_or_province },
