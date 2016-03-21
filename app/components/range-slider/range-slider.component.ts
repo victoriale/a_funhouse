@@ -1,4 +1,5 @@
 import {Component} from 'angular2/core';
+declare var jQuery: any;
 
 @Component({
     selector: 'range-slider',
