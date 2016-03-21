@@ -19,6 +19,7 @@ export class contentList implements OnInit{
             {
                 'title': '[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet',
                 'bigImage': './app/public/img_bckgnd.png',
+                'url': '#',
                 'location': 'somewhere',
                 'smallImage': [
                     './app/public/img_bckgnd.png',
