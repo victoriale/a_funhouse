@@ -32,7 +32,6 @@ export class MediaImages implements OnInit {
 
   getPropertyData(input) {
     var data = this.mediaImages;
-    console.log('hallo',data);
   }
 
   left() {
@@ -43,9 +42,7 @@ export class MediaImages implements OnInit {
   }
 
   changeMain(num){
-    console.log(num);
     this.largeImage = this.mediaImages[num];
-    console.log(this.largeImage);
   }
 
   ngOnChanges(event){
