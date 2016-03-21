@@ -6,13 +6,16 @@ import {BackTabComponent} from '../../components/backtab/backtab.component';
 import {TitleComponent} from '../../components/title/title.component';
 import {WidgetModule} from "../../modules/widget/widget.module";
 import {Router,ROUTER_DIRECTIVES} from 'angular2/router';
+import {GlobalPage} from '../../global/global-service';
+import {AboutUsPageInterface} from '../../global/global-interface';
+import {GlobalFunctions} from '../../global/global-functions';
 
 @Component({
     selector: 'Aboutus-page',
     templateUrl: './app/webpages/aboutus-page/aboutus.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [BackTabComponent, TitleComponent, WidgetModule, ROUTER_DIRECTIVES],
-    providers: [],
+    providers: [GlobalPage],
 })
 
 export class AboutUsPage implements OnInit{
@@ -27,37 +30,44 @@ export class AboutUsPage implements OnInit{
     nat_map = './app/public/icons/AboutUs_Map.png';
 
     subText1 = "Listings For Sale";
-    subText2 = "United Stats' Cities";
+    subText2 = "Cities in United States";
     subText3 = "Real Estate Agents";
-    subText4 = "United States' Counties";
+    subText4 = "Counties in United States";
     subText_nat = "Listings Nationwide";
 
-    mainText1 = "[#,###,###]+";
-    mainText2 = "[#,###,###]";
-    mainText3 = "[#,###,###]";
-    mainText4 = "[#,###,###]";
-    mainText_nat = "[#,###,###]+";
+    mainText1 = "[#,###,###]+"; // this is for listing for sale
+    mainText2 = "[#,###,###]"; // number of cities in the U.S.
+    mainText3 = "[#,###,###]"; // Real Easte Angents
+    mainText4 = "[#,###,###]"; // United States' counties
+    mainText_nat = "[#,###,###]+"; // listings nationwide
 
     title_data: {};
 
-    constructor(private _router: Router) {
+    constructor(private _router: Router, private _aboutUs: GlobalPage, private globalFunctions: GlobalFunctions) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }
 
     getData(){
-        //About us data
-        this.title_data = {
-            imageURL : './app/public/joyfulhome_house.png',
-            smallText1 : 'Last Updated: Monday, February 26, 2016',
-            smallText2 : ' United States of America',
-            heading1 : 'About Us',
-            heading2 : '',
-            heading3 : 'Take a seat and get to know us better.',
-            heading4 : '',
-            icon: 'fa fa-map-marker',
-            hasHover: false
-        };
+      this._aboutUs.getAboutUsData().subscribe(data => {
+           this.mainText1 = this.globalFunctions.commaSeparateNumber(data.listings);
+           this.mainText2 = this.globalFunctions.commaSeparateNumber(data.cities);
+           this.mainText3 = this.globalFunctions.commaSeparateNumber(data.brokers);
+           this.mainText4 = this.globalFunctions.commaSeparateNumber(data.counties);
+           this.mainText_nat = this.globalFunctions.commaSeparateNumber(data.listings);
+      })
+      //About us title
+      this.title_data = {
+          imageURL : './app/public/joyfulhome_house.png',
+          smallText1 : 'Last Updated: Monday, February 26, 2016',
+          smallText2 : ' United States of America',
+          heading1 : 'About Us',
+          heading2 : '',
+          heading3 : 'Take a seat and get to know us better.',
+          heading4 : '',
+          icon: 'fa fa-map-marker',
+          hasHover: false
+      };
     }
 
     nav(event){
@@ -78,5 +88,4 @@ export class AboutUsPage implements OnInit{
     ngOnInit(){
         this.getData();
     }
-
 }

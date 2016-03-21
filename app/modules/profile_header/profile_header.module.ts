@@ -115,7 +115,7 @@ export class ProfileHeader implements OnInit{
         }
     }
 
-    //Initialization Call
+    //Initialization Call 
     ngOnInit(){
         this.setStaticData();
     }

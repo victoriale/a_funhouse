@@ -91,15 +91,15 @@ export class FeaturedListsModule implements OnInit{
         //Set static data - Will remove when routes further defined
         this.tileData = {
             button_txt: 'Open Page',
-            url1: '',
+            url1: 'Aboutus-page', // this will need to be change
             icon1: 'fa-list-ul',
             title1: 'Trending Lists',
             desc1: '',
-            url2: '',
+            url2: 'Aboutus-page',// this will need to be change
             icon2: 'fa-trophy',
             title2: 'Top 10 Lists',
             desc2: '',
-            url3: '',
+            url3: 'Aboutus-page',// this will need to be change
             icon3: 'fa-th-large',
             title3: 'Similar Top 100 Lists',
             desc3: ''
@@ -109,7 +109,7 @@ export class FeaturedListsModule implements OnInit{
 
     transformData(){
         var data = this.featuredListData;
-        
+
         // Exit function if no list data is found
         if(data.featured_list.length === 0){
             return false;
