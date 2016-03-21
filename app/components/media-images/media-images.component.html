@@ -5,14 +5,14 @@
             Expand <i class='fa fa-expand'></i>
         </a>
         <a href='' class='feature-btn virtual'>
-            Virtual Home Tour ({{BatchTwo.virtualTourCount}})
+            Virtual Home Tour ({{virtualTourCount}})
         </a>
         <a href='' class='feature-btn images'>
             <span><i class='fa fa-file-image-o'></i></span>
-            <span> Images ({{BatchTwo.imageCount}})</span>
+            <span> Images ({{totalImageCount}})</span>
             <i></i>
         </a>
-        <img *ngIf= "largeImage" src="{{largeImage}}" class="plcholder-img" alt="placeholder images" />
+        <img *ngIf="mediaImages" src="{{largeImage}}" class="plcholder-img" alt="placeholder images" />
 
         <div class="plcholder-details">
             <div class="listings">
@@ -35,8 +35,8 @@
     </div>
     <div class="sm_images">
         <div class="sm_images-img">
-            <a *ngFor="#sm_images of mediaImages; #i = index">
-                <img src="{{sm_images}}" alt="small square images" (click)="changeMain(i)" />
+            <a *ngFor="#sm_images of smallImage">
+                <img src="{{sm_images.image}}" alt="small square images" (click)="changeMain(sm_images.id)" />
             </a>
         </div>
     </div>

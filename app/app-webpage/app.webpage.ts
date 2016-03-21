@@ -138,12 +138,14 @@ export class AppComponent {
     }
 
     getPartnerHeader(){
-      console.log(this);
       this.partnerID = this.partnerID.replace('-','.');
-      console.log(this.partnerID);
-
-      this._partnerData.getPartnerData(this.partnerID).subscribe(
-          partnerScript => this.partnerData = partnerScript
+     
+      this._partnerData.getPartnerData(this.partnerID)
+      .subscribe(
+          partnerScript => {
+            this.partnerData = partnerScript;
+            this.partnerScript = this.partnerData['results'].header.script;
+          }
       );
     }
 
