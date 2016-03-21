@@ -13,18 +13,19 @@ import {Observable} from 'rxjs/Rx';
 @Injectable()
 
 export class MagazineDataService {
-    constructor(public http: Http) {}
-    storedData: MagData;
+    cachedData : MagData;
+    constructor(public http: Http) {};
 
-    getMagazineData(address?){
-        return this.http.get('http://dev-realestate-ai.synapsys.us:280/' + address)
-            .map(
-                res => {
-                    this.storedData = res.json();
-                    console.log( "this.storedData", this.storedData );
-                    return this.storedData;
-                }
-            )
+    getMagazineData(address) {
+        if ( this.cachedData ) {
+            return Observable.of(this.cachedData);
+        } else {
+            return this.http.get('http://dev-realestate-ai.synapsys.us:280/' + address)
+                .map(res => res.json())
+                .do((data) => {
+                    this.cachedData = data;
+                });
+        }
     }
 }
 
