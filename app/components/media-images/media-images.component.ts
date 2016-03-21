@@ -21,7 +21,13 @@ export class MediaImages implements OnInit {
   leftCircle: boolean;
   rightCircle: boolean;
   mediaImages: any;//need to create interface
+
+  smallImage: any;
+  smallObjCounter: number = 0;
   largeImage: string;
+  virtualTourCount: number = 0;
+  totalImageCount: number = 0;
+  imageCounter: number = 0;
 
   constructor(
     private _featureList: MediaFeatureList
@@ -29,35 +35,81 @@ export class MediaImages implements OnInit {
 
   getData() {
     this._featureList.getBatchTwo().then(batch2 => this.BatchTwo = batch2);
-    console.log(this.BatchTwo);
-  }
-
-  getPropertyData(input) {
-    var data = this.mediaImages;
-    console.log('hallo',data);
   }
 
   left() {
-    console.log('eventFired', 'left');
+    //make a check to see if the obj array is below 0 change the obj array to the top level
+    if(this.imageCounter == 0){
+      this.smallObjCounter--;
+      //makes sure to change to new obj before checking the length to know what position the array should be starting at
+      if(this.smallObjCounter < 0){
+        this.smallObjCounter = (this.mediaImages.totalObj - 1);
+      }
+      this.imageCounter = (this.mediaImages[this.smallObjCounter].length - 1);
+    }else{
+      this.imageCounter--;
+    }
+    //run the changeMain function to change the main image once a new array has been established
+    this.changeMain(this.imageCounter);
   }
+
   right() {
-    console.log('eventFired', 'right');
+    //check to see if the end of the obj array of images has reached the end and will go on the the next obj with new set of array
+    if(this.imageCounter == (this.mediaImages[this.smallObjCounter].length - 1)){
+      this.imageCounter = 0;
+      this.smallObjCounter++;
+      //if the obj array is at the end then restart by setting the object counter back to 0
+      if(this.smallObjCounter == (this.mediaImages.totalObj)){
+        this.smallObjCounter = 0;
+      }
+    }else{
+      this.imageCounter++;
+    }
+    //run the changeMain function to change the main image once a new array has been established
+    this.changeMain(this.imageCounter);
   }
 
+  //this is where the angular2 decides what is the main image
   changeMain(num){
-    console.log(num);
-    this.largeImage = this.mediaImages[num];
-    console.log(this.largeImage);
+    if(typeof this.smallImage == 'undefined'){
+      this.smallImage = this.mediaImages[0];
+    }else{
+      this.smallImage = this.mediaImages[this.smallObjCounter];
+    }
+     this.largeImage = this.smallImage[num].image;
   }
 
+  //take the input from the module and put them into groups of 5 obj array
+  modifyMedia(images){
+    var totalImgs = images.length;
+    var newImageArray = [];
+    var objCount = 0;
+
+    //loops through and put each image into groups of 5 for the square container
+    for(var i = 0; i < totalImgs; i++){
+      if(typeof newImageArray[objCount] == 'undefined'){
+        newImageArray[objCount] = [];
+      }
+
+      newImageArray[objCount].push({id:i, image:images[i]});
+
+      if(newImageArray[objCount].length == 5){
+        objCount++;
+      }
+    }
+    newImageArray['totalImages'] = totalImgs;
+    newImageArray['totalObj'] = objCount + 1;
+    return newImageArray;
+  }
+
+  //makes sure to show first image and run the modifyMedia function once data has been established
   ngOnChanges(event){
-      if(typeof event.mediaImages !== 'undefined'){
+      if(typeof this.mediaImages != 'undefined'){
         //if data coming from module to variable mediaImages changes in what way then reset to first image and rerun function
-        // this.changeMain(1);
-        console.log(this.BatchTwo);
-          this.mediaImages = this.BatchTwo;
-          console.log(this.mediaImages);
-        this.getPropertyData(0);
+        this.mediaImages = this.modifyMedia(this.mediaImages);
+
+        this.totalImageCount = this.mediaImages.totalImages;
+        this.changeMain(0);
       }
   }
 
