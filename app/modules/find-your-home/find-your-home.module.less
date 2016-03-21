@@ -1,0 +1,32 @@
+.property-options {
+  width:100%;
+  padding:12px 11px;
+  .type-title{
+    //.globalDefaultModFont(@fontSize, @fontWeight, @color)
+    .globalDefaultModFont(18px, 400, @black);
+    margin-bottom:10px;
+  }
+  .property-options-select {
+    width: 100%;
+    select {
+      width: 149px;
+      height: 40px;
+      margin-left: 0px;
+      margin-right: 20px;
+      margin-bottom: 20px;
+      padding: 3px 0 0 7px;
+      float: left;
+      border: 1px solid @strokeGrey;
+      background-color: @borderGrey;
+      border-radius: 5px;
+      font-size: 14px;
+      color: @black;
+      text-align: left;
+      position: relative;
+      cursor: pointer;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
