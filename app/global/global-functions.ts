@@ -93,4 +93,14 @@ export class GlobalFunctions{
         };
         return stateName[state];
     }
+
+    //Transforms camel case to regular case (Words split up and capitalized)
+    camelCaseToRegularCase = function(str){
+        str = str
+            // insert a space before all caps
+            .replace(/([A-Z0-9])/g, ' $1')
+            // uppercase the first character
+            .replace(/^./, function(str){ return str.toUpperCase(); })
+        return str;
+    }
 }

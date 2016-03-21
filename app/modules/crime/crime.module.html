@@ -4,7 +4,7 @@
         <div class="crime-stats-header">
             <i class="fa fa-th-large"></i>Crimes <span class="text-right">Net %</span>
         </div>
-        <ul>
+        <ul class="crime-stats-list">
             <li *ngFor="#item of stats" class="crime-stats-item" style="border-left-color: {{item.color}}">
                 {{item.title}} <span class="text-right text-bold">{{item.pct}}</span>
             </li>
