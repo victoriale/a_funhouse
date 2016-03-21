@@ -11,7 +11,7 @@ import {MagazineDataService} from "../../../global/global-mag-service";
 export class MagCarouselModule implements OnInit {
     @Input() magOverview: MagOverview;
     length: number;
-    counter: number = 10;
+    counter: number;
     address: string;
     imageLength: number;
 
@@ -46,8 +46,24 @@ export class MagCarouselModule implements OnInit {
             this.counter = i;
         }
     }
+
+    setupImages() {
+        if(this.magOverview) {
+            length = this.magOverview.photos.length;
+            this.counter = 0;
+            this.imageLength = length;
+        }
+    }
+
     ngOnInit() {
+        this.counter = 0;
+        this.setupImages();
         console.log("Carousel:", this.magOverview);
+    }
+
+    ngOnChanges() {
+        this.setupImages();
+        //console.log("Carousel Changed:", this.magOverview);
     }
 
 }
