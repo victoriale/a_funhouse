@@ -9,7 +9,7 @@
                     <headline-component [data]="headlineAbout"></headline-component>
 
                     <!--Listing Profile Header-->
-                    <profile-header [profileHeaderData]="profileHeaderData | async"></profile-header>
+                    <profile-header *ngIf="profileHeaderData" [profileHeaderData]="profileHeaderData"></profile-header>
 
                     <!--Media Feature Section-->
                     <media-features-module [trending]="mediaFeature"></media-features-module>
@@ -39,7 +39,7 @@
                     <headline-component [data]="headlineInteract"></headline-component>
 
                     <!--Feature List Module-->
-                    <featured-lists-module></featured-lists-module>
+                    <featured-lists-module *ngIf="featuredListData" [featuredListData]="featuredListData"></featured-lists-module>
 
                     <!--Share Module-->
                     <share-module></share-module>

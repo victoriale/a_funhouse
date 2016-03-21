@@ -47,7 +47,8 @@ export class LocationPage implements OnInit {
             .subscribe(
                 data => {
                     this.profileHeaderData = data;
-                }
+                },
+                err => console.log('Error - Location Profile Header Data: ', err)
             )
     }
 
@@ -56,7 +57,8 @@ export class LocationPage implements OnInit {
             .subscribe(
                 data => {
                     this.featuredListData = data;
-                }
+                },
+                err => console.log('Error - Location Profile ')
             );
     }
 

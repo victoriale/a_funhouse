@@ -39,6 +39,7 @@ export class ProfilePage implements OnInit{
     public trendingFeature = true;
     public profileHeaderData: Object;
     public propertyListingData: Object;
+    public featuredListData: Object;
 
     //  Get current route name
     constructor(public _params: RouteParams, private _listingProfileService: ListingProfileService, params: RouteParams){
@@ -47,8 +48,24 @@ export class ProfilePage implements OnInit{
         this.paramAddress = params.get('address');
     }
 
-    getListingData(){
-        this.profileHeaderData = this._listingProfileService.getListingProfile(this.paramAddress);
+    getProfileHeader(){
+        this._listingProfileService.getListingProfile(this.paramAddress)
+            .subscribe(
+                data => {
+                    this.profileHeaderData = data;
+                },
+                err => console.log('Error - Listing Profile Header Data: ', err)
+            )
+    }
+
+    getFeaturedList(){
+        this._listingProfileService.getListingFeaturedList(this.paramAddress)
+            .subscribe(
+                data => {
+                    this.featuredListData = data;
+                },
+                err => console.log('Error - Listing Featured List Data: ', err)
+            )
     }
 
     getPropertyListing(){
@@ -58,7 +75,8 @@ export class ProfilePage implements OnInit{
     ngOnInit(){
         this.address = this._params.get('address');
         console.log(this.address);
-        this.getListingData();
+        this.getProfileHeader();
+        this.getFeaturedList();
         this.headlineAbout  = {
             title: 'About ' + this.address,
             icon: 'fa-map-marker'

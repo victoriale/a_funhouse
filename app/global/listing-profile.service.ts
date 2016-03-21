@@ -19,6 +19,26 @@ export class ListingProfileService{
         return headers;
     }
 
+    //API to get featured list data
+    getListingFeaturedList(address){
+        //Configure HTTP Headers
+        var headers = this.setToken();
+
+        address = encodeURI(address);
+
+        return this.http.get(this.apiUrl + '/list/randomByAddress/' + address, {
+            headers: headers
+        })
+        .map(
+            res => res.json()
+        )
+        .map(
+            data => {
+                return data.data;
+            }
+        )
+    }
+
     //API for listing profile
     getListingProfile(address){
         //Configure HTTP Headers

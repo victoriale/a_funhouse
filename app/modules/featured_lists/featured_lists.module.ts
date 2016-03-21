@@ -93,7 +93,7 @@ export class FeaturedListsModule implements OnInit{
             button_txt: 'Open Page',
             url1: 'Aboutus-page', // this will need to be change
             icon1: 'fa-list-ul',
-            title1: 'Trending Lists',
+            title1: 'Real Estate Trending Lists',
             desc1: '',
             url2: 'Aboutus-page',// this will need to be change
             icon2: 'fa-trophy',
@@ -101,7 +101,7 @@ export class FeaturedListsModule implements OnInit{
             desc2: '',
             url3: 'Aboutus-page',// this will need to be change
             icon3: 'fa-th-large',
-            title3: 'Similar Top 100 Lists',
+            title3: 'Similar Top 10 Lists',
             desc3: ''
         }
 
@@ -117,12 +117,28 @@ export class FeaturedListsModule implements OnInit{
 
         var listData = data.listData[this.index];
 
+        //Build heading 2 description
+        if((listData.num_bedrooms === null || listData.num_bedrooms === 0) && (listData.num_bathrooms === null || listData.num_bedrooms === 0)){
+            //No bedrooms or bathrooms defined
+            var heading2 = '';
+        }else if((listData.num_bedrooms !== null && listData.num_bedrooms !== 0) && (listData.num_bathrooms === null || listData.num_bathrooms === 0)){
+            //Bedrooms defined, bathrooms undefined
+            var heading2 = 'Bedrooms: ' + listData.num_bedrooms;
+        }else if((listData.num_bedrooms === null || listData.num_bedrooms === 0) && (listData.num_bedrooms !== null && listData.num_bedrooms !== 0)){
+            //Bedrooms undefined, bathrooms defined
+            var heading2 = 'Bathrooms: ' + listData.num_bathrooms;
+        }else if((listData.num_bedrooms !== null && listData.num_bedrooms !== 0) && (listData.num_bedrooms !== null && listData.num_bathrooms !== 0)){
+            //Bedrooms and bathrooms defined
+            var heading2 = 'Bedrooms: ' + listData.num_bedrooms + ' | Bathrooms: ' + listData.num_bathrooms;
+        }
+
+        //Used for both location and listing profile
         this.listData = {
             header: 'Trending Real Estate',
             title: this.globalFunctions.camelCaseToRegularCase(data.listName),
             hding1: listData.full_street_address,
             hding2: listData.city + ', ' + listData.state_or_province + ' ' + listData.postal_code,
-            detail1: 'Bedrooms: ' + listData.num_bedrooms + ' | Bathrooms: ' + listData.num_bathrooms,
+            detail1: heading2,
             detail2: listData.listPrice === null ? '' : 'Asking Price: ',
             detail3: listData.list_price === null ? '' : '$' + this.globalFunctions.commaSeparateNumber(listData.list_price),
             imageUrl: listData.photos === null ? null : listData.photos[0]
