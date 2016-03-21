@@ -11,13 +11,13 @@
             </div>
         </div>
         <div class="mag_po_subimg">
-            <div class="mag_po_subimg_item" style="background-image: url('{{magOverview?.photos[1]}}')"
+            <div class="mag_po_subimg_item" style="background-image: url('{{magOverview?.photos[counter]}}')"
                  (click)="changeClick(counter-1)"
                  id="{{counter-1}}"></div>
-            <div class="mag_po_subimg_item" style="background-image: url('{{magOverview?.photos[counter]}}')"
+            <div class="mag_po_subimg_item" style="background-image: url('{{magOverview?.photos[counter+1]}}')"
                  (click)="changeClick(counter)"
                  id="{{counter}}"></div>
-            <div class="mag_po_subimg_item" style="background-image: url('{{magOverview?.photos[counter+1]}}')"
+            <div class="mag_po_subimg_item" style="background-image: url('{{magOverview?.photos[counter+2]}}')"
                  (click)="changeClick(counter+1)"
                  id="{{counter+1}}"></div>
         </div>
