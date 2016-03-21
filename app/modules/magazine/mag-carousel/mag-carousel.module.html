@@ -1,6 +1,6 @@
 <div *ngIf="magOverview" class="mag_container mag_container_left">
     <span>
-        <div class="mag_po_mainimg" style="background-image: url('{{magOverview?.photos[0]}}')" id="{{counter}}">
+        <div class="mag_po_mainimg" style="background-image: url('{{magOverview?.photos[counter]}}')" id="{{counter}}">
             <span class="fa fa-angle-left mag_po_mainimg_nav" (click)="prevClick()"></span>
             <span class="fa fa-angle-right mag_po_mainimg_nav" (click)="nextClick()"></span>
             <div class="mag_po_info">
@@ -11,13 +11,13 @@
             </div>
         </div>
         <div class="mag_po_subimg">
-            <div class="mag_po_subimg_item" style="background-image: url('{{magOverview?.photos[counter]}}')"
+            <div class="mag_po_subimg_item" style="background-image: url('{{magOverview?.photos[counter-1]}}')"
                  (click)="changeClick(counter-1)"
                  id="{{counter-1}}"></div>
-            <div class="mag_po_subimg_item" style="background-image: url('{{magOverview?.photos[counter+1]}}')"
+            <div class="mag_po_subimg_item" style="background-image: url('{{magOverview?.photos[counter]}}')"
                  (click)="changeClick(counter)"
                  id="{{counter}}"></div>
-            <div class="mag_po_subimg_item" style="background-image: url('{{magOverview?.photos[counter+2]}}')"
+            <div class="mag_po_subimg_item" style="background-image: url('{{magOverview?.photos[counter+1]}}')"
                  (click)="changeClick(counter+1)"
                  id="{{counter+1}}"></div>
         </div>

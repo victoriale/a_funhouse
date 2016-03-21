@@ -45,6 +45,7 @@ export class MagCarouselModule implements OnInit {
         else {
             this.counter = i;
         }
+
     }
 
     setupImages() {
