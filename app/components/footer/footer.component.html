@@ -43,7 +43,7 @@
                     <section class="footer-section-two">
                         <ul>
                             <li>You Might Like: </li>
-                            <li><a href="#">Trending Lists</a> <i class="fa fa-caret-right"></i></li>
+                            <li><a [routerLink]="['List-of-lists-page']">Trending Lists</a> <i class="fa fa-caret-right"></i></li>
                             <li><a href="#">Most Recent Listings in your Area</a> <i class="fa fa-caret-right"></i></li>
                             <li><a href="#">Largest Homes in your Area</a> <i class="fa fa-caret-right"></i></li>
                             <li><a href="#">Least Expensive Homes in your Area</a></li>
@@ -52,24 +52,20 @@
                     <hr />
                     <section *ngIf="isMyHouseKit" class="footer-section-three">
                         <ul>
-                            <li class="joyful-link"><a href="#">Myhousekit.com</a>  <i class="fa fa-caret-right"></i></li>
-                            <li><a href="#">Advertise with MyHouseKit</a> <i class="fa fa-caret-right"></i></li>
-                            <li><a href="#">Contact Us</a> <i class="fa fa-caret-right"></i></li><br />
-                            <li><a href="#">Terms of Use</a> <i class="fa fa-caret-right"></i></li>
-                            <li><a href="#">Privacy Policy</a> <i class="fa fa-caret-right"></i></li>
-                            <li><a href="#">Sitemap</a> <i class="fa fa-caret-right"></i></li>
-                            <li><a href="#">General Feedback</a></li>
+                            <li class="joyful-link"><a href="http://www.myhousekit.com">Myhousekit.com</a>  <i class="fa fa-caret-right"></i></li>
+                            <li><a [routerLink]="['Contactus-page']">Advertise with MyHouseKit</a> <i class="fa fa-caret-right"></i></li>
+                            <li><a [routerLink]="['Contactus-page']">Contact Us</a> <i class="fa fa-caret-right"></i></li><br />
+                            <li><a [routerLink]="['Contactus-page']">Terms of Use</a> <i class="fa fa-caret-right"></i></li>
+                            <li><a [routerLink]="['Contactus-page']">General Feedback</a></li>
                         </ul>
                     </section>
                     <section *ngIf="!isMyHouseKit" class="footer-section-three">
                         <ul>
-                            <li class="joyful-link"><a href="/">Joyfulhome.com</a>  <i class="fa fa-caret-right"></i></li>
-                            <li><a href="#">Advertise with Joyful Home</a> <i class="fa fa-caret-right"></i></li>
-                            <li><a href="#">Contact Us</a> <i class="fa fa-caret-right"></i></li><br />
-                            <li><a href="#">Terms of Use</a> <i class="fa fa-caret-right"></i></li>
-                            <li><a href="#">Privacy Policy</a> <i class="fa fa-caret-right"></i></li>
-                            <li><a href="#">Sitemap</a> <i class="fa fa-caret-right"></i></li>
-                            <li><a href="#">General Feedback</a></li>
+                            <li class="joyful-link"><a href="http://www.joyfulhome.com">Joyfulhome.com</a>  <i class="fa fa-caret-right"></i></li>
+                            <li><a [routerLink]="['Contactus-page']">Advertise with Joyful Home</a> <i class="fa fa-caret-right"></i></li>
+                            <li><a [routerLink]="['Contactus-page']">Contact Us</a> <i class="fa fa-caret-right"></i></li><br />
+                            <li><a [routerLink]="['Contactus-page']">Terms of Use</a> <i class="fa fa-caret-right"></i></li>
+                            <li><a [routerLink]="['Contactus-page']">General Feedback</a></li>
                         </ul>
                     </section>
                 </div>
