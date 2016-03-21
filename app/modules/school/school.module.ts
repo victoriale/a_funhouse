@@ -17,7 +17,7 @@ export class SchoolModule implements OnInit{
     public hasFooterButton: boolean;
     module_title: string;
     tile_data: Object;
-    
+
     left(){
         console.log('left - module');
     }
@@ -30,15 +30,15 @@ export class SchoolModule implements OnInit{
         this.module_title = 'School In and Around [Listing Name]';
         this.tile_data = {
             button_txt: 'Open Page',
-            url1: '',
+            url1: 'Aboutus-page', //THIS WILL NEED TO BE CHANGE
             icon1: 'fa-pencil',
             title1: 'Elementary Schools',
             desc1: '',
-            url2: '',
+            url2: 'Aboutus-page',//THIS WILL NEED TO BE CHANGE
             icon2: 'fa-child',
             title2: 'Middle Schools',
             desc2: '',
-            url3: '',
+            url3: 'Aboutus-page',//THIS WILL NEED TO BE CHANGE
             icon3: 'fa-graduation-cap',
             title3: 'High Schools',
             desc3: ''
