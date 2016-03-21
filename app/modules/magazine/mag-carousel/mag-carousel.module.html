@@ -5,8 +5,8 @@
             <span class="fa fa-angle-right mag_po_mainimg_nav" (click)="nextClick()"></span>
             <div class="mag_po_info">
                 <div class="mag_po_info_label">HOME GALLERY</div>
-                <div class="mag_po_info_address">{{magOverview?.address}} | {{magOverview?.city}},
-                    {{magOverview?.state}} {{magOverview?.zipcode}}
+                <div class="mag_po_info_address">{{magOverview?.address?.fullStreetAddress}} | {{magOverview?.address?.city}},
+                    {{magOverview?.address?.state}} {{magOverview?.address?.zipcode}}
                 </div>
             </div>
         </div>
