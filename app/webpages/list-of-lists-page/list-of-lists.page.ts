@@ -25,6 +25,7 @@ export class ListOfListsPage implements OnInit{
     public cityLocation: string;
     public stateLocation: string;
     listOfLists: any;
+    lists: Array<any> = [];
 
     constructor(private _params: RouteParams, private _listOfListPageService: ListOfListPage) {
         // Scroll page to top to fix routerLink bug
@@ -36,15 +37,22 @@ export class ListOfListsPage implements OnInit{
             .subscribe(
                 listOfLists => this.listOfLists = listOfLists,
                 err => console.log(err),
-                () => console.log('LOL Page data grabbed!')
+                () => this.transformData()
             );
     }
 
     transformData() {
         var self = this;
-        this.listOfLists.forEach(function(val) {
-            
-        });
+
+        // Convert object to array
+        for( var i in this.listOfLists ) {
+            if (this.listOfLists.hasOwnProperty(i)){
+                this.lists.push(this.listOfLists[i]);
+            }
+        }
+        //Reformat for contentlist component
+        //this.lists.forEach(function(val, index){
+        //});
     }
 
     ngOnInit(){

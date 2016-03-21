@@ -32,5 +32,6 @@ export class contentList implements OnInit{
     }
     ngOnInit(){
         this.dummyData();
+        console.log(this);
     }
 }
