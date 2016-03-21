@@ -5,12 +5,13 @@ import {AdzoneComponent} from "../../../components/magazine/mag-adzone/mag-adzon
 import {LearnMoreComponent} from "../../../components/magazine/mag-btns/learnmore-btn/learnmore-btn.component";
 import {MagazineDataService} from "../../../global/global-mag-service";
 import {MagazinePage} from "../../../app-webpage/magazine.webpage";
+import {MagCarouselModule} from "../mag-carousel/mag-carousel.module";
 
 @Component({
     selector: 'magazine-overview-module',
     templateUrl: './app/modules/magazine/mag-overview/mag-overview.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [AdzoneComponent, LearnMoreComponent],
+    directives: [AdzoneComponent, LearnMoreComponent, MagCarouselModule],
 })
 export class MagOverviewModule implements OnInit {
     counter: number;
@@ -30,6 +31,7 @@ export class MagOverviewModule implements OnInit {
                 magData => {
                     this.magOverview = magData.overview;
                     this.price = +magData.overview.price;
+                    console.log("magData:", magData);
                 },
                 err => console.log("error in getData", err)
             )

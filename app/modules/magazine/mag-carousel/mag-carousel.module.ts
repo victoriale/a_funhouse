@@ -1,4 +1,4 @@
-import {Component, OnInit, Injector} from 'angular2/core';
+import {Component, OnInit, Injector, Input} from 'angular2/core';
 import {MagazinePage} from "../../../app-webpage/magazine.webpage";
 import {MagOverview} from "../../../global/global-interface";
 import {MagazineDataService} from "../../../global/global-mag-service";
@@ -9,11 +9,10 @@ import {MagazineDataService} from "../../../global/global-mag-service";
     styleUrls: ['./app/global/stylesheets/master.css'],
 })
 export class MagCarouselModule implements OnInit {
-    photos: MagOverview;
+    @Input() magOverview: MagOverview;
     length: number;
     counter: number = 10;
     address: string;
-    magOverview: MagOverview;
     imageLength: number;
 
     constructor( private _injector: Injector, private _magazineDataService: MagazineDataService ) {
@@ -47,19 +46,8 @@ export class MagCarouselModule implements OnInit {
             this.counter = i;
         }
     }
-
-    getMagazineOverview() {
-        this._magazineDataService.getMagazineData(this.address)
-            .subscribe(
-                magData => {
-                    this.magOverview = magData.overview;
-                },
-                err => console.log("error in getData", err)
-            )
-    }
-
     ngOnInit() {
-        this.getMagazineOverview();
+        console.log("Carousel:", this.magOverview);
     }
 
 }
