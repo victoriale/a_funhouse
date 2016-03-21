@@ -10,7 +10,7 @@
                             <!--* rfs = required fields all fields required-->
                             <div class="rfs"><span class="rfs-red">*</span>All fields are required</div>
                             <!--Contact us fields begin-->
-                            <form [ngFormModel]="submissionform" action="mailto: larrypham1991@yahoo.com" (submit)>
+                            <form name="submissionform" ngNoForm (submit)="formSubmit()" action="mailto:support@joyfulhome.com" method="post" enctype="text/plain">
                                 <div class="fields">
                                     <div class="fields-text">Full Name</div>
                                     <input class="fields-field ff-fullname" type="text" name="FullName" placeholder=" {{full_name}}">
@@ -43,7 +43,7 @@
                                 <!--My questions END-->
                                 <!--Contact us fields END-->
                                 <!--submission and clear button-->
-                                <button type="submit" class="mod-page-btn btn_submit" (click)="formSubmit()">Submit <i class="fa fa-angle-right"></i></button>
+                                <button type="submit" class="mod-page-btn btn_submit">Submit <i class="fa fa-angle-right"></i></button>
                                 <input type="reset" class="btn_reset" value="RESET">
                             </form>
                         </div>

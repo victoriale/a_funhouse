@@ -2,7 +2,6 @@
  * Created by Victoria on 3/1/2016.
  */
 import {Component, OnInit} from 'angular2/core';
-import {FORM_PROVIDERS, FormBuilder, Validators} from 'angular2/common';
 import {BackTabComponent} from '../../components/backtab/backtab.component';
 import {TitleComponent} from '../../components/title/title.component';
 import {WidgetModule} from "../../modules/widget/widget.module";
@@ -22,13 +21,13 @@ export class ContactUsPage implements OnInit{
     full_name = "John Smith";
     email = "johnSmith@sntmedia.com";
     text_area = "Detailed description of your question here...";
-    submit: boolean = false;
     title_data: {};
+    submissionform: any;
 
     constructor() {
-        // Scroll page to top to fix routerLink bug
-        window.scrollTo(0, 0);
-    }
+    // Scroll page to top to fix routerLink bug
+    window.scrollTo(0, 0);
+  }
 
     getData(){
         //Contact us data
@@ -49,25 +48,20 @@ export class ContactUsPage implements OnInit{
       if(jQuery(".ff-fullname").val() == "")
       {
         alert("Please Fill in your name.");
-        this.submit = false;
+        return false;
       }
       if(jQuery(".ff-email").val() == "")
       {
         alert("Please enter in an email.");
-        this.submit = false;
+        return false;
       }
       if(jQuery(".ff-textfield").val() == "")
       {
         alert("Please enter in your message.");
-        this.submit = false;
+        return false;
       }
-      this.submit = true;
-      console.log(this.submit);
-      return this.submit;
-    }
-
-    form(){
-      return this.submit;
+      console.log(this);
+      return true;
     }
 
     ngOnInit(){
