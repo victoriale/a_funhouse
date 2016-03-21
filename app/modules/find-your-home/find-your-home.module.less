@@ -1,6 +1,8 @@
 .property-options {
   width:100%;
+  height: 100px;
   padding:12px 11px;
+  border-bottom: 1px solid @backgroundGrey;
   .type-title{
     //.globalDefaultModFont(@fontSize, @fontWeight, @color)
     .globalDefaultModFont(18px, 400, @black);
@@ -14,7 +16,7 @@
       margin-left: 0px;
       margin-right: 20px;
       margin-bottom: 20px;
-      padding: 3px 0 0 7px;
+      padding: 2px 0 0 7px;
       float: left;
       border: 1px solid @strokeGrey;
       background-color: @borderGrey;
@@ -26,6 +28,48 @@
       cursor: pointer;
       &:last-child {
         margin-right: 0;
+      }
+    }
+  }
+}
+.property-buttons {
+  padding:12px 11px;
+  display: flex;
+  .globalDefaultModFont(16px, 400, @black);
+  .flexDirection(row);
+  .flexJustify(space-between);
+  .button-clear {
+    border-radius: 5px;
+    background-color: #cccccc;
+    width: 286px;
+    height: 40px;
+    cursor: pointer;
+    .clear-text {
+      padding: 10px;
+      text-align: center;
+      margin: 0;
+      .fa.fa-times {
+        padding-right: 10px;
+      }
+      .fa.fa-angle-right {
+        padding-left: 10px;
+      }
+    }
+  }
+  .button-view {
+    border-radius: 5px;
+    color: @white;
+    background-color:  @masterBrandColor;
+    width: 358px;
+    height: 40px;
+    cursor: pointer;
+    .view-button-text {
+      padding: 10px;
+      text-align: center;
+      margin: 0;
+      .fa.fa-angle-right {
+        color: @white;
+        padding-left: 10px;
       }
     }
   }
