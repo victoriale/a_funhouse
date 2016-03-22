@@ -4,10 +4,10 @@
             <main>
                 <section class='content-main eight-col'>
                     <backtab-component></backtab-component>
-                    <title-component></title-component>
+                    <title-component *ngIf="titleData" [titleData]="titleData"></title-component>
                     <!--<list-carousel-component *ngIf="lists" [lists]="lists"></list-carousel-component>-->
                     <span *ngIf="data" *ngFor="#item of lists">
-                        <contentlist [data]="item"></contentlist>
+                        <contentlist [data]="item" [cityLocation]="cityLocation" [stateLocation]="stateLocation"></contentlist>
                     </span>
                     <hero-list-component></hero-list-component>
                 </section>
