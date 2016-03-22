@@ -34,10 +34,10 @@ import {PartnerHeader} from "../global/global-service";
 
 @RouteConfig([
     {
-       path: '/',
-       name: 'Home-page',
-       component: HomePage,
-       useAsDefault: true,
+        path: '/',
+        name: 'Home-page',
+        component: HomePage,
+        useAsDefault: true,
     },
     {
         path: '/profile/:address',
@@ -103,6 +103,13 @@ import {PartnerHeader} from "../global/global-service";
         name: 'Directory-page-city',
         component: DirectoryPage
     },
+    //All Cities directory page
+    //Currently Disabled: Currently No known way to pull router name to use this route. (This route conflicts with the Directory-page-state route. We can't differentiate in the code between this route and the state route) Query parameter is used instead for now
+    //{
+    //    path: '/directory/:state/all-cities/:listTitle/page/:pageNumber',
+    //    name: 'Directory-page-all-cities',
+    //    component: DirectoryPage
+    //},
     //Zipcode directory page
     {
         path: '/directory/:state/:city/:zipcode/:listTitle/page/:pageNumber',
@@ -130,28 +137,28 @@ export class AppComponent {
     address: string = "503-C-Avenue-Vinton-IA";
 
     constructor(private _injector: Injector,private _partnerData: PartnerHeader, private _params: RouteParams){
-      var parentParams = this._injector.get(WebApp);
-      console.log(parentParams);
-      if(typeof parentParams.partnerID != 'undefined'){
-        this.partnerID = parentParams.partnerID;
-      }
+        var parentParams = this._injector.get(WebApp);
+        console.log(parentParams);
+        if(typeof parentParams.partnerID != 'undefined'){
+            this.partnerID = parentParams.partnerID;
+        }
     }
 
     getPartnerHeader(){
-      this.partnerID = this.partnerID.replace('-','.');
+        this.partnerID = this.partnerID.replace('-','.');
 
-      this._partnerData.getPartnerData(this.partnerID)
-      .subscribe(
-          partnerScript => {
-            this.partnerData = partnerScript;
-            this.partnerScript = this.partnerData['results'].header.script;
-          }
-      );
+        this._partnerData.getPartnerData(this.partnerID)
+            .subscribe(
+                partnerScript => {
+                    this.partnerData = partnerScript;
+                    this.partnerScript = this.partnerData['results'].header.script;
+                }
+            );
     }
 
     ngOnInit(){
-      if (this.partnerID != null){
-        this.getPartnerHeader();
-      }
+        if (this.partnerID != null){
+            this.getPartnerHeader();
+        }
     }
 }
