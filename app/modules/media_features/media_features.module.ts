@@ -1,10 +1,9 @@
 /**
  * Created by Victoria on 3/2/2016.
  */
-import {Component, OnInit, Input, Injector} from 'angular2/core';
+import {Component, OnInit, Input} from 'angular2/core';
 import {Router, RouteParams} from 'angular2/router';
 import {moduleHeader} from "../../components/module-header/module-header";
-import {ProfileHeader} from "../../modules/profile_header/profile_header.module";
 import {MediaImages} from "../../components/media-images/media-images.component";
 import {PropertyListingInterface} from '../../global/global-interface';
 import {GlobalFunctions} from '../../global/global-functions';
@@ -15,7 +14,7 @@ import {ListingProfileService} from '../../global/listing-profile.service';
   templateUrl: './app/modules/media_features/media_features.module.html',
   styleUrls: ['./app/global/stylesheets/master.css'],
   directives: [moduleHeader, MediaImages],
-  providers: [ProfileHeader],
+  providers: [],
 })
 
 export class MediaFeatureModule implements OnInit {
@@ -32,7 +31,7 @@ export class MediaFeatureModule implements OnInit {
 
   @Input() propertyListingData: PropertyListingInterface;
 
-  constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions, private injector:Injector, private _listingService: ListingProfileService) {
+  constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions, private _listingService: ListingProfileService) {
     //Determine what page the profile header module is on
     this.profileType = this.router.hostComponent.name;
   }
@@ -45,7 +44,7 @@ export class MediaFeatureModule implements OnInit {
   }
 
   dataFormatter(originalData) {
-    console.log(originalData);
+    // console.log(originalData);
     var featureHaves = [];
 
     for (var feature in originalData) {

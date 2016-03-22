@@ -103,7 +103,6 @@ export class MediaImages implements OnInit {
       if(typeof this.mediaImages != 'undefined'){
         //if data coming from module to variable mediaImages changes in what way then reset to first image and rerun function
         this.mediaImages = this.modifyMedia(this.mediaImages);
-        console.log(this.featureListing);
         this.totalImageCount = this.mediaImages.totalImages;
         this.changeMain(0);
       }
