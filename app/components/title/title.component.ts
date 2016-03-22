@@ -6,14 +6,14 @@ import {Image100} from '../../components/images/image-100/image-100.component';
     templateUrl: './app/components/title/title.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [Image100],
-    inputs: ['data']
+    inputs: ['titleData']
 })
 export class TitleComponent{
-    public data: Array<Object>;
+    public titleData: Array<Object>;
 
     titleComp(){
-        if(typeof this.data == 'undefined'){
-            this.data =
+        if(typeof this.titleData == 'undefined'){
+            this.titleData =
             [{
                 imageURL : './app/public/joyfulhome_house.png',
                 smallText1 : 'Monday, February 23, 2016',
@@ -30,7 +30,6 @@ export class TitleComponent{
 
     ngOnInit(){
         this.titleComp();
-        console.log(this.data);
     }
 
 }
