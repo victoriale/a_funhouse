@@ -2,14 +2,14 @@
     <span (click)="clickLeft()"><i class="fa fa-angle-left list-circles"></i></span>
     <span (click)="clickRight()"><i class="fa fa-angle-right list-circles"></i></span>
     <div class="list-img">
-        <image-180 [hasSubImg]="main_hasSubImg" [imageURL]="lists[carCount].bigImage"></image-180>
+        <image-180 [hasSubImg]="main_hasSubImg" [imageURL]="lists[0].listData[0].photo"></image-180>
     </div>
     <div class="list-heading">
         <div class="list-heading-details">
             <div class="list-heading-details-icon"><i class="{{icon}}"></i></div>
             <div class="list-heading-details-title">{{location}}</div>
         </div>
-        <div class="list-heading-description">{{lists[carCount].title}}</div>
+        <div class="list-heading-description"></div>
     </div>
 </section>
 <div class="list-carousel-footer">
