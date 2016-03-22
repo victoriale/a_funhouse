@@ -7,7 +7,6 @@
     margin: 10px auto;
     padding: 20px;
     font-family: @globalFont;
-    box-shadow: @modBoxShadow;
   }
 
   &-header{
@@ -52,18 +51,12 @@
     }
 
     &-links{
-      line-height: 20px;
-
       a{
         color: @black;
 
         &:hover{
           color: @masterBrandColor;
         }
-      }
-
-      &-more{
-        color: @masterBrandColor !important;
       }
     }
   }
@@ -99,7 +92,7 @@
         margin-left: 4px;
       }
 
-      &.active{
+      .active{
         background-color: @masterBrandColor;
       }
     }

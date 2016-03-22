@@ -58,7 +58,7 @@ export class LocationPage implements OnInit {
                 data => {
                     this.featuredListData = data;
                 },
-                err => console.log('Error - Location Profile: ', err)
+                err => console.log('Error - Location Profile ')
             );
     }
 
