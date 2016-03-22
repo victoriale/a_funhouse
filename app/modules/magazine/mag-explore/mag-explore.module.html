@@ -1,15 +1,24 @@
 <div class="mag_container">
-    <span *ngFor="#magListings of listingData;">
-        <span *ngFor="#magContact of magListings.contactListing;">
-            <a href="{{magContact.address_key}}">
-                <div class="mag_cont_r">
-                    <div class="mag_cont_r_btext">See what else there is to explore down the block</div>
-                    <div class="mag_cont_r_line"></div>
-                    <div class="mag_cont_r_box">{{magContact.itemAddress}}</div>
-                    <div class="mag_cont_r_loc">{{magContact.city}}, {{magContact.state}}  {{magContact.zipcode}}<br>United States</div>
-                    <div class="mag_cont_r_button noclick"></div>
+    <span *ngIf="isNull">
+        <div class="mag_cont_r">
+            <div class="mag_cont_r_btext">See what else there is to explore down the block</div>
+            <div class="mag_cont_r_line"></div>
+            <div class="test"><list-of-lists-module style="margin-top: -30px; position: absolute; clip: rect(45px,680px,200px,0px);"></list-of-lists-module>
+            </div>
+        </div>
+    </span>
+    <span *ngIf="!isNull">
+        <a href="profile/{{magContact?.key}}">
+            <div class="mag_cont_r">
+                <div class="mag_cont_r_btext">See what else there is to explore down the block</div>
+                <div class="mag_cont_r_line"></div>
+                <div class="mag_cont_r_box">{{magContact?.address?.fullStreetAddress}}</div>
+                <div class="mag_cont_r_loc">{{magContact?.address?.city}}, {{magContact?.address?.state}}
+                    {{magContact?.address?.zipcode}}<br>United
+                    States
                 </div>
-            </a>
-        </span>
+                <div class="mag_cont_r_button noclick"></div>
+            </div>
+        </a>
     </span>
 </div>

@@ -15,7 +15,7 @@ export class MagCarouselModule implements OnInit {
     address: string;
     imageLength: number;
 
-    constructor( private _injector: Injector, private _magazineDataService: MagazineDataService ) {
+    constructor(private _injector:Injector, private _magazineDataService:MagazineDataService) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
         this.address = _injector.get(MagazinePage).address;
@@ -49,7 +49,7 @@ export class MagCarouselModule implements OnInit {
     }
 
     setupImages() {
-        if(this.magOverview) {
+        if (this.magOverview) {
             length = this.magOverview.photos.length;
             this.counter = 0;
             this.imageLength = length;
@@ -64,7 +64,6 @@ export class MagCarouselModule implements OnInit {
 
     ngOnChanges() {
         this.setupImages();
-        //console.log("Carousel Changed:", this.magOverview);
     }
 
 }

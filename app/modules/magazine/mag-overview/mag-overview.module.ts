@@ -14,12 +14,11 @@ import {MagCarouselModule} from "../mag-carousel/mag-carousel.module";
     directives: [AdzoneComponent, LearnMoreComponent, MagCarouselModule],
 })
 export class MagOverviewModule implements OnInit {
-    counter: number;
     address: string;
     magOverview: MagOverview;
     price: number;
 
-    constructor( private _injector: Injector, private _magazineDataService: MagazineDataService ) {
+    constructor(private _injector:Injector, private _magazineDataService:MagazineDataService) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
         this.address = _injector.get(MagazinePage).address;
@@ -38,6 +37,6 @@ export class MagOverviewModule implements OnInit {
     }
 
     ngOnInit() {
-      this.getMagazineOverview();
+        this.getMagazineOverview();
     }
 }

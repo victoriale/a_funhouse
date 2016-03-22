@@ -10,12 +10,13 @@ import {MagazineDataService} from "../global/global-mag-service";
 import {Router} from "angular2/router";
 import {MagOverviewModule} from "../modules/magazine/mag-overview/mag-overview.module";
 import {MagOverview, MagData} from "../global/global-interface";
+import {Amenities} from "../modules/magazine/mag-amenities/mag-amenities.module";
 
 @Component({
     selector: 'magazine-page',
     templateUrl: './app/app-webpage/magazine.webpage.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [Contact, Neighborhood, Recommendations, MagHeaderModule, FooterComponent, ROUTER_DIRECTIVES, MagOverviewModule],
+    directives: [Contact, Neighborhood, Recommendations, Amenities, MagHeaderModule, FooterComponent, ROUTER_DIRECTIVES, MagOverviewModule],
     providers: [MagazineDataService],
 })
 
@@ -42,7 +43,7 @@ import {MagOverview, MagData} from "../global/global-interface";
     }),
     new AsyncRoute({
         path: '/amenities',
-        loader: () => Promise.resolve(Neighborhood),
+        loader: () => Promise.resolve(Amenities),
         name: 'Amenities'
     }),
     new AsyncRoute({
