@@ -21,19 +21,19 @@
                   <li>
                     <a class='search-tab active' id='address' (click)="tabTarget($event)">
                       <i class='fa fa-circle'></i>
-                      Address
+                      Address({{searchResults.addrCount}})
                     </a>
                   </li>
                   <li>
                     <a class='search-tab' id='location' (click)="tabTarget($event)">
                       <i class=''></i>
-                      Location
+                      Location({{searchResults.locCount}})
                     </a>
                   </li>
                   <li>
                     <a class='search-tab' id='zipcode' (click)="tabTarget($event)">
                       <i class=''></i>
-                      Zip Code
+                      Zip Code({{searchResults.zipCount}})
                     </a>
                   </li>
                 </ul>

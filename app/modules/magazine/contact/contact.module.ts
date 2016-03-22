@@ -1,34 +1,42 @@
-import {Component, OnInit} from 'angular2/core';
-import {MagRecommendationsTextModule} from "../mag-recommendations-text/mag-recommendations-text";
-import {MagRecommendationsImgModule} from "../mag-recommendations-img/mag-recommendations-img";
+import {Component, OnInit, Injector} from 'angular2/core';
 import {MagExploreModule} from "../mag-explore/mag-explore.module";
 import {NavLeftComponent} from "../../../components/magazine/mag-nav-left/mag-nav-left.component";
-import {MagazineSimilarListings} from "../../../global/global-mag-service";
-import {MagSimilarListingsData} from "../../../global/global-interface";
+import {MagRecommendations} from "../../../global/global-interface";
+import {MagazinePage} from "../../../app-webpage/magazine.webpage";
+import {MagazineDataService} from "../../../global/global-mag-service";
+import {MagContact} from "../../../global/global-interface";
+import {LearnMoreComponent} from "../../../components/magazine/mag-btns/learnmore-btn/learnmore-btn.component";
 
 @Component({
     selector: 'contact-module',
     templateUrl: './app/modules/magazine/contact/contact.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [MagRecommendationsTextModule, MagRecommendationsImgModule, MagExploreModule, NavLeftComponent],
-    providers: [MagazineSimilarListings],
+    directives: [MagExploreModule, NavLeftComponent, LearnMoreComponent],
 })
 
 export class Contact implements OnInit {
-    listingData:MagSimilarListingsData[];
-    recommendations:boolean;
+    address: string;
+    magContact:MagContact;
 
-    constructor(private _magazineSimilarListingsService:MagazineSimilarListings) {
+    constructor( private _injector: Injector, private _magazineDataService: MagazineDataService ) {
+        // Scroll page to top to fix routerLink bug
+        window.scrollTo(0, 0);
+        this.address = _injector.get(MagazinePage).address;
     }
 
-    getMagazineSimilarListings() {
-        this._magazineSimilarListingsService.getMagazineSimilarListings().then(listingData => {
-            this.listingData = listingData;
-        });
+    getMagazineContact() {
+        this._magazineDataService.getMagazineData(this.address)
+            .subscribe(
+                magData => {
+                    this.magContact = magData.contact;
+                    console.log(magData);
+                },
+
+                err => console.log("error in getData", err)
+            )
     }
 
     ngOnInit() {
-        this.getMagazineSimilarListings();
-        this.recommendations = false;
+        this.getMagazineContact();
     }
 }
