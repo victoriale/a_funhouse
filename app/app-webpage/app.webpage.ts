@@ -57,7 +57,7 @@ import {PartnerHeader} from "../global/global-service";
         component: ListPage,
     },
     {
-        path: '/list-of-lists',
+        path: '/list-of-lists/:state/:city',
         name: 'List-of-lists-page',
         component: ListOfListsPage,
     },
@@ -104,6 +104,13 @@ import {PartnerHeader} from "../global/global-service";
         name: 'Directory-page-city',
         component: DirectoryPage
     },
+    //All Cities directory page
+    //Currently Disabled: Currently No known way to pull router name to use this route. (This route conflicts with the Directory-page-state route. We can't differentiate in the code between this route and the state route) Query parameter is used instead for now
+    //{
+    //    path: '/directory/:state/all-cities/:listTitle/page/:pageNumber',
+    //    name: 'Directory-page-all-cities',
+    //    component: DirectoryPage
+    //},
     //Zipcode directory page
     {
         path: '/directory/:state/:city/:zipcode/:listTitle/page/:pageNumber',
@@ -136,7 +143,6 @@ export class AppComponent {
     address: string = "503-C-Avenue-Vinton-IA";
 
     constructor(private _injector: Injector,private _partnerData: PartnerHeader, private _params: RouteParams, private route: Router, private routeData: RouteData, private routerLink: RouterLink){
-      console.log(this);
       var parentParams = this._injector.get(WebApp);
       if(typeof parentParams.partnerID != 'undefined'){
         this.partnerID = parentParams.partnerID;

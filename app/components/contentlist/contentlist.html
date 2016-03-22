@@ -1,7 +1,7 @@
 <div class="contentlist">
     <div class='imagebox'>
-        <a href=''>
-            <img src='{{data.bigImage}}' alt='' />
+        <a [routerLink]="['../../Magazine', {addr: data.listData[0].addressKey}, 'PropertyOverview' ]">
+            <img src='{{data.listData[0].photo}}' alt='' />
             <div>
                 <p>View</p>
                 <p>Profile</p>
@@ -9,18 +9,20 @@
         </a>
     </div>
     <div class="contentbox">
-        <a href="">
-            <span><i class="fa fa-map-marker"></i>{{data.location}}</span>
+        <a [routerLink]="['Location-page', {loc: cityLocation + stateLocation}]">
+            <span><i class="fa fa-map-marker"></i>{{location}}</span>
         </a>
-        <span title="{{data.title}}">{{data.title}}</span>
+        <span title="{{data.listTitle}}">{{data.listTitle}}</span>
         <div class="content_bottom">
             <div class='contentsubbox'>
-                <a *ngFor="#sImg of data.smallImage" href=''>
-                    <img src='{{sImg}}' alt='' />
-                    <div><i class='fa fa-share'></i></div>
-                </a>
+                <div *ngFor="#item of data.listData; #i = index">
+                    <a *ngIf="i != 0" [routerLink]="['../../Magazine', {addr: item.addressKey}, 'PropertyOverview' ]">
+                        <img src='{{item.photo}}' alt='' />
+                        <div><i class='fa fa-share'></i></div>
+                    </a>
+                </div>
             </div>
-            <a href='' class='list_button'>
+            <a [routerLink]="['List-page', {listname: data.listTitleOrig, state: stateLocation, city: cityLocation}]" class='list_button'>
                 <span></span>
                 <span>See The List</span>
                 <i class='fa fa-angle-right'></i>
