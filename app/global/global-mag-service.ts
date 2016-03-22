@@ -5,61 +5,34 @@
  _@BATCH-1
  _@BATCH
  */
- import {Injectable} from 'angular2/core';
-import {MagHeaderData, MagCarouselData, MagOverviewData, MagNeighborhoodData, MagMapData, MagSimilarListingsData} from './global-interface';
+import {Injectable} from 'angular2/core';
+import {MagOverview, MagData} from './global-interface';
+import {HTTP_PROVIDERS, Http, Response, Headers} from "angular2/http";
+import {Observable} from 'rxjs/Rx';
 
 @Injectable()
 
-/*@LOCATIONPROFILE*/
+export class MagazineDataService {
+    cachedData : MagData;
+    constructor(public http: Http) {};
 
-
-export class MagazineHeader {
-    getMagazineHeader() {
-        var MagHeader:MagHeaderData[] = [
-            {
-                'checked': 'checked',
-                'data': 'MagazineListing',
-                'hasLink': true,
-                'id': 'PropertyOverview',
-                'name': 'Property Overview',
-                'pageNum': 1,
-                'template': 'mag_property_overview',
-            },
-            {
-                'checked': '',
-                'data': 'MagazineNeighborhood',
-                'hasLink': true,
-                'id': 'Neighborhood',
-                'name': 'The Neighborhood',
-                'pageNum': 2,
-                'template': 'mag_neighborhood1',
-            },
-            {
-                'checked': '',
-                'data': 'MagazineSimilarListings',
-                'hasLink': true,
-                'id': 'Recommendations',
-                'name': 'Recommendations',
-                'pageNum': 3,
-                'template': 'mag_recommendations1',
-            },
-            {
-                'checked': '',
-                'data': 'MagazineRealtor',
-                'hasLink': true,
-                'id': 'Contact',
-                'name': 'Contact Agent',
-                'pageNum': 4,
-                'template': 'mag_contact',
-            },
-        ];
-        return Promise.resolve(MagHeader);
+    getMagazineData(address) {
+        if ( this.cachedData ) {
+            return Observable.of(this.cachedData);
+        } else {
+            return this.http.get('http://dev-realestate-ai.synapsys.us:280/' + address)
+                .map(res => res.json())
+                .do((data) => {
+                    this.cachedData = data;
+                });
+        }
     }
 }
 
+@Injectable()
 export class MagazineCarousel {
     getMagazineCarousel() {
-        var MagCarousel:MagCarouselData[] = [
+        var MagCarousel = [
             {
                 listing_key: "3277-N-LONGFELLOW-CT-Wichita-KS",
                 listhub_key: "3yd-SCKMLSKS-515305",
@@ -106,53 +79,45 @@ export class MagazineCarousel {
     }
 }
 
+@Injectable()
 export class MagazineOverview {
     getMagazineOverview() {
-        var MagOverview:MagOverviewData[] = [
+        var MagOverview = [
             {
-                listing_key: "3yd-SCKMLSKS-515305",
-                address_key: "3277-N-LONGFELLOW-CT-Wichita-KS",
-                listing_status: "Active",
-                listhub_url: "http://listings.listhub.net/pages/SCKMLSKS/515305/?channel=passfail",
-                street_address: "3277 N LONGFELLOW CT.",
-                city: "Wichita",
-                state: "KS",
-                zipcode: "67226",
-                list_price: "124900",
-                realtor_company: "Coldwell Banker Plaza Real Estate",
-                realtor_logo: "http://brokerlogos.listhub.net/SCKMLSKS/c5ababc31c28802d011c2880d99d002a/20150406163507701.png",
-                realtor_phone: "(316) 686-7121",
-                realtor_email: "jmckenzie@plazare.com",
-                agent_name: "PEGGY BOCKUS",
-                agent_phone: "3167220030",
-                agent_office_phone: "3167220030",
-                agent_email: "pegbockus@cox.net",
-                living_area: "1386",
-                bedrooms: 3,
-                bathrooms: 2,
-                neighborhood: "433",
-                photo: "http://photos.listhub.net/SCKMLSKS/515305/1?lm=20160207T192146",
-                listing_desc: "",
-                views: "0",
-                magtext1: "This informal ranch home at 3277 N LONGFELLOW CT. just hit the market in Wichita.",
-                magtext2: "With 3 bedrooms and 2 full bathrooms, there's plenty of room for family and guests in this minimal 1987 home.",
-                magtext3: "Picture your friends and loved ones gathering around the fireplace on a cold winter's night, hosting a game night in the basement or relaxing on the deck with a refreshing beverage.",
-                magtext4: "Inside, you will enjoy floor coverings including cozy carpet, low-maintenance laminate, cool tile and beautiful wood.",
-                magtext5: "Grocery stores close to this home are Walmart Supercenter, KC's Oriental Food Market and Leeker's Family Foods. Other nearby amenities include Carrabba's Italian Grill, serving Italian fare; Yaya's Euro Bistro, an American (New) restaurant; and The Good Egg, a Breakfast & Brunch restaurant.",
-                magtext6: "Buyers who wish to learn more about this listing can visit",
-                magtext7: "or contact PEGGY BOCKUS of Coldwell Banker Plaza Real Estate - W 13th at (316) 722-0030 or",
-                magtext8: ". To learn more about the 433 neighborhood and its demographics, amenities and schools please continue reading.",
+                pageTitle: "Overview Page",
+                menuTitle: "Property Overview",
+                address: "5170 Benton Tama Road",
+                key: "5170-Benton-Tama-Road-Buckingham-IA",
+                content: [
+                    "Look no further — this lovely home at 5170 Benton Tama Road has plenty to offer to eager Buckingham homebuyers.",
+                    "With four bedrooms and two full bathrooms, this inviting 1915 home is perfect for small families, growing families and single prospective homeowners alike.",
+                    "This structure's exterior is covered in practical vinyl siding.",
+                    "Nearby private schools include Don Bosco High School, Columbus High School and Immaculate Conception-St Joseph School.",
+                    "Grocery stores close to this home are Randall's Stop'n Shop, Hy-Vee Food Stores and Fareway Stores. Other nearby amenities include a Cafes eatery, KE Black Mercantile; a Restaurants dining establishment, Jack'n Arnies Steakhouse South; and 1901 Chop Haus, a steakhouse.",
+                    "Buyers who wish to learn more about this listing can visit <a target=\"_blank\" href=\"http://www.joyfulhome.com/listing/5170-Benton-Tama-Road-Buckingham-IA\">the listing profile</a> or contact David Wessling of Iowa Land Management Co at 3194725353 or <a href=\"mailto:dave.iowaland@mebbs.com\">dave.iowaland@mebbs.com</a>. Continue reading to learn more about the 52349-0000 ZIP code and its demographics, amenities and schools."
+                ],
+                photos: [
+                    "http://photos.listhub.net/BCMLSIA/12794/1?lm=20160304T212303",
+                    "http://photos.listhub.net/BCMLSIA/12794/2?lm=20160304T212303",
+                    "http://photos.listhub.net/BCMLSIA/12794/3?lm=20160304T212303",
+                    "http://photos.listhub.net/BCMLSIA/12794/4?lm=20160304T212303",
+                    "http://photos.listhub.net/BCMLSIA/12794/5?lm=20160304T212303",
+                    "http://photos.listhub.net/BCMLSIA/12794/6?lm=20160304T212303",
+                    "http://photos.listhub.net/BCMLSIA/12794/7?lm=20160304T212303",
+                    "http://photos.listhub.net/BCMLSIA/12794/8?lm=20160304T212303",
+                    "http://photos.listhub.net/BCMLSIA/12794/9?lm=20160304T212303",
+                    "http://photos.listhub.net/BCMLSIA/12794/10?lm=20160304T212303"
+                ]
             }
         ];
         return Promise.resolve(MagOverview);
     }
-
-    z
 }
 
+@Injectable()
 export class MagazineNeighborhood {
     getMagazineNeighborhood() {
-        var MagNeighborhood:MagNeighborhoodData[] = [
+        var MagNeighborhood = [
             {
                 magtext1: "Choosing a home isn't just about the house itself. It's also about the surroundings.",
                 magtext2: "The home at 3277 N LONGFELLOW CT. is located within the 67226 zip code, which is home to amenities including Stearman Field Bar & Grill, Lina's Mexican Restaurant and Save-A-Lot.",
@@ -167,9 +132,10 @@ export class MagazineNeighborhood {
     }
 }
 
+@Injectable()
 export class MagazineMap {
     getMagazineMap() {
-        var MagMap:MagMapData[] = [
+        var MagMap = [
             {
                 listing_key: "5048-N-PRESTWICK-Bel-Aire-KS",
                 listhub_key: "3yd-SCKMLSKS-504635",
@@ -335,9 +301,10 @@ export class MagazineMap {
     }
 }
 
+@Injectable()
 export class MagazineSimilarListings {
     getMagazineSimilarListings() {
-        var MagSimilarListings:MagSimilarListingsData[] = [
+        var MagSimilarListings = [
             {
                 listing1: [{
                     itemAddress: "2461 N Winstead Cir.",

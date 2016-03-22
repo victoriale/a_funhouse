@@ -7,7 +7,7 @@ import {LearnMoreComponent} from "../../../components/magazine/mag-btns/learnmor
     templateUrl: './app/modules/magazine/mag-recommendations-text/mag-recommendations-text.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [AdzoneComponent, LearnMoreComponent],
-    inputs: ['listingData', 'recommendations'],
+    inputs: ['magRecommendations', 'recommendations'],
 })
 
 export class MagRecommendationsTextModule{

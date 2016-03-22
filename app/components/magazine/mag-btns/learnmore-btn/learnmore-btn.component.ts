@@ -2,7 +2,7 @@
  * Created by Christopher Lynch on 2/24/2016.
  */
 
-import {Component} from 'angular2/core';
+import {Component, OnInit, Injector} from 'angular2/core';
 
 @Component({
     selector: 'learnmore-component',

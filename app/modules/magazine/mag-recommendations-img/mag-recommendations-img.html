@@ -1,33 +1,31 @@
 <div class="mag_container_left">
-    <span *ngFor="#magListings of listingData;">
-    <span *ngIf="recommendations">
-        <span *ngFor="#magImage1 of magListings.listing1;">
-            <div class="mag_n1_img" style="background-image: url('{{magImage1.itemImg}}')" id="i">
+    <span *ngFor="#magListings of magRecommendations?.similar; #i=index">
+        <span *ngIf="i === 0">
+            <div class="mag_n1_img" style="background-image: url('{{magListings.photos[0]}}')" id="i">
                 <div class="mag_n1_img_overlay">
-                    <div class="mag_n1_img_text">{{magImage1.itemAddress}}</div>
+                    <div class="mag_n1_img_text">{{magListings.address.fullStreetAddress}}</div>
                     <div class="mag_n1_img_bar"></div>
-                    <a class="mag_n1_img_view" href="magazine/{{magImage1.itemKey}}/1">View <i class="fa fa-eye"></i></a>
+                    <a class="mag_n1_img_view" href="magazine/{{magListings.key}}/overview">View <i class="fa fa-eye"></i></a>
                 </div>
             </div>
         </span>
-        <span *ngFor="#magImage2 of magListings.listing2;">
-            <div class="mag_n1_img" style="background-image: url('{{magImage2.itemImg}}')" id="i">
+        <span *ngIf="i === 1">
+            <div class="mag_n1_img" style="background-image: url('{{magListings.photos[0]}}')" id="i">
                 <div class="mag_n1_img_overlay">
-                    <div class="mag_n1_img_text">{{magImage2.itemAddress}}</div>
+                    <div class="mag_n1_img_text">{{magListings.address.fullStreetAddress}}</div>
                     <div class="mag_n1_img_bar"></div>
-                    <a class="mag_n1_img_view" href="magazine/{{magImage2.itemKey}}/1">View <i class="fa fa-eye"></i></a>
+                    <a class="mag_n1_img_view" href="magazine/{{magListings.key}}/overview">View <i class="fa fa-eye"></i></a>
                 </div>
             </div>
         </span>
-    </span>
-    <span *ngIf="!recommendations">
-        <span *ngFor="#magImage1 of magListings.contactListing;">
-            <div class="mag_n1_img" style="background-image: url('{{magImage1.photo}}')" id="i">
-                <div class="mag_n1_img_overlay">
-                    <div class="mag_n1_img_text">{{magImage1.itemAddress}}</div>
-                </div>
-            </div>
-        </span>
-    </span>
+    <!--<span *ngIf="!recommendations">-->
+        <!--<span *ngFor="#magImage1 of magListings.contactListing;">-->
+            <!--<div class="mag_n1_img" style="background-image: url('{{magImage1.photo}}')" id="i">-->
+                <!--<div class="mag_n1_img_overlay">-->
+                    <!--<div class="mag_n1_img_text">{{magImage1.itemAddress}}</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</span>-->
+    <!--</span>-->
     </span>
 </div>

@@ -1,16 +1,8 @@
 <div class="mag_container mag_container_left mag_text">
     <div class="banner">Explore the Neighborhood</div>
-    <div *ngFor="#magNeighborhood of data">
-        <span style="line-height: 1.42857143;">
-            {{magNeighborhood.magtext1}}<br><br>
-            {{magNeighborhood.magtext2}}<br><br>
-            <adzone-component></adzone-component>
-            {{magNeighborhood.magtext3}}<br><br>
-            {{magNeighborhood.magtext4}}<br><br>
-            {{magNeighborhood.magtext5}}<br><br>
-            {{magNeighborhood.magtext6}}<br><br>
-            {{magNeighborhood.magtext7}}<br><br>
-        </span>
+    <div *ngFor="#p of magNeighborhood?.content; #i=index">
+            <adzone-component *ngIf="i === 2"></adzone-component>
+            <p style="line-height: 1.42857143;" [innerHTML]="p"></p>
     </div>
     <learnmore-component></learnmore-component>
 </div>
