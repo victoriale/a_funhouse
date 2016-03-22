@@ -118,30 +118,32 @@ export class FeaturedListsModule implements OnInit{
         var listData = data.listData[this.index];
 
         //Build heading 2 description
-        if((listData.num_bedrooms === null || listData.num_bedrooms === 0) && (listData.num_bathrooms === null || listData.num_bedrooms === 0)){
-            //No bedrooms or bathrooms defined
-            var heading2 = '';
-        }else if((listData.num_bedrooms !== null && listData.num_bedrooms !== 0) && (listData.num_bathrooms === null || listData.num_bathrooms === 0)){
-            //Bedrooms defined, bathrooms undefined
-            var heading2 = 'Bedrooms: ' + listData.num_bedrooms;
-        }else if((listData.num_bedrooms === null || listData.num_bedrooms === 0) && (listData.num_bedrooms !== null && listData.num_bedrooms !== 0)){
-            //Bedrooms undefined, bathrooms defined
-            var heading2 = 'Bathrooms: ' + listData.num_bathrooms;
-        }else if((listData.num_bedrooms !== null && listData.num_bedrooms !== 0) && (listData.num_bedrooms !== null && listData.num_bathrooms !== 0)){
-            //Bedrooms and bathrooms defined
-            var heading2 = 'Bedrooms: ' + listData.num_bedrooms + ' | Bathrooms: ' + listData.num_bathrooms;
-        }
+        //Disabled until component can handle empty values for descriptions
+        //if((listData.numBedrooms === null || listData.numBedrooms === '0') && (listData.numBathrooms === null || listData.numBedrooms === '0')){
+        //    //No bedrooms or bathrooms defined
+        //    var heading2 = '';
+        //}else if((listData.numBedrooms !== null && listData.numBedrooms !== '0') && (listData.numBathrooms === null || listData.numBathrooms === '0')){
+        //    //Bedrooms defined, bathrooms undefined
+        //    var heading2 = 'Bedrooms: ' + listData.numBedrooms;
+        //}else if((listData.numBedrooms === null || listData.numBedrooms === '0') && (listData.numBathrooms !== null && listData.numBathrooms !== '0')){
+        //    //Bedrooms undefined, bathrooms defined
+        //    var heading2 = 'Bathrooms: ' + listData.numBathrooms;
+        //}else if((listData.numBedrooms !== null && listData.numBedrooms !== '0') && (listData.numBathrooms !== null && listData.numBathrooms !== '0')){
+        //    //Bedrooms and bathrooms defined
+        //    var heading2 = 'Bedrooms: ' + listData.numBedrooms + ' | Bathrooms: ' + listData.numBathrooms;
+        //}
+        var heading2 = 'Bedrooms: ' + listData.numBedrooms + ' | Bathrooms: ' + listData.numBathrooms;
 
         //Used for both location and listing profile
         this.listData = {
             header: 'Trending Real Estate',
             title: this.globalFunctions.camelCaseToRegularCase(data.listName),
-            hding1: listData.full_street_address,
-            hding2: listData.city + ', ' + listData.state_or_province + ' ' + listData.postal_code,
+            hding1: listData.fullStreetAddress,
+            hding2: listData.city + ', ' + listData.stateOrProvince + ' ' + listData.postalCode,
             detail1: heading2,
             detail2: listData.listPrice === null ? '' : 'Asking Price: ',
-            detail3: listData.list_price === null ? '' : '$' + this.globalFunctions.commaSeparateNumber(listData.list_price),
-            imageUrl: listData.photos === null ? null : listData.photos[0]
+            detail3: listData.listPrice === null ? '' : '$' + this.globalFunctions.commaSeparateNumber(listData.listPrice),
+            imageUrl: listData.photos.length === 0 ? null : listData.photos[0]
         }
     }
 
@@ -151,8 +153,14 @@ export class FeaturedListsModule implements OnInit{
         var currentFeaturedListData = event.featuredListData.currentValue;
         //If the data input is valid run transform data function
         if(currentFeaturedListData !== null && currentFeaturedListData !== false) {
+
             //Perform try catch to make sure module doesnt break page
             try{
+                //If featured list data has no list data (length of 0) throw error to hide module
+                if(this.featuredListData.listData.length === 0){
+                    throw 'No Data available for featured list - hiding module';
+                }
+
                 this.transformData();
             }catch(e){
                 console.log('Error - Featured List Module ', e);
