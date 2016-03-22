@@ -1,6 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
-import {NgClass} from 'angular2/common';
-import {RouteParams, ROUTER_DIRECTIVES, RouteConfig, Router} from 'angular2/router';
+import {RouteParams, ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
 import {GlobalFunctions} from '../../global/global-functions';
 import {DirectoryService} from '../../global/directory.service';
 
@@ -8,7 +7,7 @@ import {DirectoryService} from '../../global/directory.service';
     selector: 'Directory-page',
     templateUrl: './app/webpages/directory-page/directory.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [ROUTER_DIRECTIVES, NgClass],
+    directives: [ROUTER_DIRECTIVES],
     providers: [DirectoryService],
 })
 
@@ -16,7 +15,6 @@ export class DirectoryPage {
     public navigationLinks: Array<Object>;
     public listingItems: Array<Object>;
 
-    public listingsLimit: number = 20;
     //linkTitle determines title of the link navigation section
     //linkListDisplayed determines if the link navigation section is displayed at all
     public linkTitle: string;
@@ -39,25 +37,10 @@ export class DirectoryPage {
     public pageName: string;
     public nextParams: Object;
     public backParams: Object;
-    //Determines if active class needs to be applied to buttons
-    public backHighlighted: boolean;
-    public nextHighlighted: boolean;
-    //maxPageCount is the maximum number of pages allowed for particular directory scope
-    public maxPageCount: Object;
-    //rangeDisplay is what results range is displayed (ex. 1-20)
-    public rangeDisplay: string;
-    //totalListings number amount of listings that are available based on parameters
-    //totalListingsDisplayed display value (with commas) of total listings amount
-    public totalListings: number;
-    public totalListingsDisplayed: string;
-    //Determines if more cities link should be displayed
-    public moreCitiesAvailable: boolean = false;
 
-    constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions, private _directoryService: DirectoryService){//Grab static parameters
-
+    constructor(private _params: RouteParams, private globalFunctions: GlobalFunctions, private _directoryService: DirectoryService){//Grab static parameters
         this.paramListTitle = this._params.get('listTitle');
         this.paramPageNumber = this._params.get('pageNumber');
-
         //Determine what type of page the directory is display (options are national, state city, or zipcode)
         if(this._params.get('zipcode') !== null){
             this.pageType = 'zipcode';
@@ -72,12 +55,6 @@ export class DirectoryPage {
             this.paramCity = this._params.get('city');
         }else if(this._params.get('state') !== null){
             this.pageType = 'state';
-
-            //Special Case - If query parameter allCities is defined, set page to all Cities. This lets the reset of the page know what needs to be displayed
-            if(this._params.get('allCities') !== null){
-                this.pageType = 'allCities';
-            }
-
             //Grab dynamic parameters
             this.paramState = this._params.get('state');
         }else{
@@ -107,11 +84,6 @@ export class DirectoryPage {
                 this.linkListDisplayed = true;
                 this.pageName = 'Directory-page-state';
                 break;
-            case 'allCities':
-                this.linkTitle = '';
-                this.linkListDisplayed = false;
-                this.pageName = 'Directory-page-state';
-                break;
             case 'city':
                 //No link list displayed
                 this.linkTitle = '';
@@ -134,19 +106,13 @@ export class DirectoryPage {
         //Make data calls here
         switch(this.pageType){
             case 'national':
-                //Data call to get state list for navigation
+                //Make data calls for national directory page
                 this._directoryService.getStateList()
                     .subscribe(
                         data => {
                             var navigationArray = [];
-
-                            this.totalListings = Number(data.totalListings);
-                            this.totalListingsDisplayed = this.globalFunctions.commaSeparateNumber(this.totalListings);
-
-                            this.getPaginationParameters();
-
                             //Build states array for navigation links
-                            data.states.forEach(function(item, index){
+                            data.forEach(function(item, index){
                                 navigationArray.push({
                                     title: self.globalFunctions.fullstate(item),
                                     page: 'Directory-page-state',
@@ -159,38 +125,30 @@ export class DirectoryPage {
                             });
 
                             self.navigationLinks = navigationArray;
-                        },
-                        err => console.log('Error - Directory National State List: ', err)
+                        }
                     );
-                //Data call to get directory list data
+
                 this._directoryService.getDirectoryData(this.paramPageNumber, this.paramListTitle, null, null, null)
                     .subscribe(
                         data => {
                             this.listingItems = this.formatList(data);
-                        },
-                        err => console.log('Error - Directory National Data: ', err)
+                        }
                     );
 
+                //Build back and next button parameters
+                this.nextParams = {
+                    listTitle: this.paramListTitle,
+                    pageNumber: Number(this.paramPageNumber) + 1
+                };
                 break;
             case 'state':
-                //Data call to get city list for navigation
+                //Make data calls for state directory page
                 this._directoryService.getCityList(this.paramState)
                     .subscribe(
                         data => {
                             var navigationArray = [];
-
-                            this.totalListings = Number(data.totalListings);
-                            this.totalListingsDisplayed = this.globalFunctions.commaSeparateNumber(this.totalListings);
-
-                            this.getPaginationParameters();
-
-                            //If there are 20 cities returned display more cities link
-                            if(data.cities.length === 20){
-                                this.moreCitiesAvailable = true;
-                            }
-
                             //Build cities array for navigation links
-                            data.cities.forEach(function(item, index){
+                            data.forEach(function(item, index){
                                 navigationArray.push({
                                     title: item,
                                     page: 'Directory-page-city',
@@ -204,84 +162,57 @@ export class DirectoryPage {
                             });
 
                             self.navigationLinks = navigationArray;
-                        },
-                        err => console.log('Error - Directory State City List: ', err)
+                        }
                     );
-                //Data call to get directory list data
+
                 this._directoryService.getDirectoryData(this.paramPageNumber, this.paramListTitle, this.paramState, null, null)
                     .subscribe(
                         data => {
                             this.listingItems = this.formatList(data);
-                        },
-                        err => console.log('Error - Directory State Data: ', err)
+                        }
                     );
 
-                break;
-            case 'allCities':
-                console.log('Lutz - all cities page', this);
-                //Data call to get cities listings
-                this._directoryService.getAllCities(this.paramPageNumber, this.paramState)
-                    .subscribe(
-                        data=> {
-                            this.totalListings = Number(data.totalCities);
-                            this.totalListingsDisplayed = this.globalFunctions.commaSeparateNumber(this.totalListings);
-
-                            this.getPaginationParameters();
-
-                            var returnArray = [];
-                            var self = this;
-                            data.cities.forEach(function(item, index){
-                                returnArray.push({
-                                    city: item,
-                                    state: self.paramState
-                                })
-                            });
-                            this.listingItems = returnArray;
-                        },
-                        err => console.log('Error - Directory All Cities Data: ', err)
-                    );
+                //Build back and next button parameters
+                this.nextParams = {
+                    state: this.paramState,
+                    listTitle: this.paramListTitle,
+                    pageNumber: Number(this.paramPageNumber) + 1
+                };
                 break;
             case 'city':
-                //Data call to get city listings count
-                this._directoryService.getCityListingsNumber(this.paramState, this.paramCity)
-                    .subscribe(
-                        data => {
-                            this.totalListings = Number(data.totalListings);
-                            this.totalListingsDisplayed = this.globalFunctions.commaSeparateNumber(this.totalListings);
-
-                            this.getPaginationParameters();
-                        },
-                        err => console.log('Error - Directory City Listings Count: ', err)
-                    );
-                //Data call to get directory list data
+                //Make data call for city directory page
                 this._directoryService.getDirectoryData(this.paramPageNumber, this.paramListTitle, this.paramState, this.paramCity, null)
                     .subscribe(
                         data => {
                             this.listingItems = this.formatList(data);
-                        },
-                        err => console.log('Error - Directory City Data: ', err)
+                        }
                     );
+
+                //Build back and next button parameters
+                this.nextParams = {
+                    state: this.paramState,
+                    city: this.paramCity,
+                    listTitle: this.paramListTitle,
+                    pageNumber: Number(this.paramPageNumber) + 1
+                };
                 break;
             case 'zipcode':
-                //Data call to get zipcode listings count
-                this._directoryService.getZipcodeListingNumber(this.paramZipcode)
-                    .subscribe(
-                        data => {
-                            this.totalListings = Number(data.totalListings);
-                            this.totalListingsDisplayed = this.globalFunctions.commaSeparateNumber(this.totalListings);
-
-                            this.getPaginationParameters();
-                        },
-                        err => console.log('Error - Directory Zipcode Listings Count: ', err)
-                    );
-                //Data call to get directory list data
+                //Make data call for zipcode directory page
                 this._directoryService.getDirectoryData(this.paramPageNumber, this.paramListTitle, this.paramState, this.paramCity, this.paramZipcode)
                     .subscribe(
                         data => {
                             this.listingItems = this.formatList(data);
-                        },
-                        err => console.log('Error - Directory Zipcode Data: ', err)
+                        }
                     );
+
+                //Build back and next button parameters
+                this.nextParams = {
+                    state: this.paramState,
+                    city: this.paramCity,
+                    zipcode: this.paramZipcode,
+                    listTitle: this.paramListTitle,
+                    pageNumber: Number(this.paramPageNumber) + 1
+                };
                 break;
         }
     }
@@ -299,125 +230,36 @@ export class DirectoryPage {
         data.forEach(function(item, index){
             var listing = {};
 
-            listing['lastUpdated'] = item.listingDate === null ? null : 'Last Updated: ' + item.listingDate;
-            listing['addressKey'] = item.addressKey;
-            listing['address'] = item.fullStreetAddress;
+            listing['lastUpdated'] = item.listing_date === null ? null : 'Last Updated: ' + item.listing_date;
+            listing['addressKey'] = item.address_key;
+            listing['address'] = item.full_street_address;
             listing['city'] = item.city;
-            listing['state'] = item.stateOrProvince;
-            listing['zipcode'] = item.postalCode;
-            listing['squareFeet'] = item.livingArea === null ? null : self.globalFunctions.commaSeparateNumber(item.livingArea) + ' sq. ft';
+            listing['state'] = item.state_or_province;
+            listing['zipcode'] = item.postal_code;
+            listing['squareFeet'] = item.living_area === null ? null : self.globalFunctions.commaSeparateNumber(item.living_area) + ' sq. ft';
 
-            if(item.numBedrooms === null || item.numBedrooms === '0'){
+            if(item.num_bedrooms === null || item.num_bedrooms === '0'){
                 listing['bedrooms'] = null;
-            }else if(item.numBedrooms === '1'){
+            }else if(item.num_bedrooms === '1'){
                 listing['bedrooms'] = '1 Bedroom';
             }else{
-                listing['bedrooms'] = item.numBedrooms + ' Bedrooms';
+                listing['bedrooms'] = item.num_bedrooms + ' Bedrooms';
             }
 
-            if(item.numBathrooms === null || item.numBathrooms === '0'){
+            if(item.num_bathrooms === null || item.num_bathrooms === '0'){
                 listing['bathrooms'] = null;
-            }else if(item.numBathrooms === '1'){
+            }else if(item.num_bathrooms === '1'){
                 listing['bathrooms'] = '1 Bathroom';
             }else{
-                listing['bathrooms'] = item.numBedrooms + ' Bathrooms';
+                listing['bathrooms'] = item.num_bedrooms + ' Bathrooms';
             }
 
             returnArray.push(listing);
         });
 
+        //console.log('Lutz - Directory return array', returnArray);
+
         return returnArray;
-    }
-
-    //Function to determine pagination parameters
-    getPaginationParameters(){
-        //Set pageNum variable to use inside function
-        var pageNum = Number(this.paramPageNumber);
-        //Get max page count to determine next and back button parameters
-        var maxPageCount = Math.ceil(this.totalListings / this.listingsLimit);
-
-        switch(this.pageType){
-            case 'national':
-                //Build back and next button parameters
-                this.nextParams = {
-                    listTitle: this.paramListTitle,
-                    pageNumber: Number(this.paramPageNumber) + 1 <= maxPageCount ? Number(this.paramPageNumber) + 1 : this.paramPageNumber
-                };
-                this.backParams = {
-                    listTitle: this.paramListTitle,
-                    pageNumber: Number(this.paramPageNumber) - 1 > 0 ? Number(this.paramPageNumber) - 1 : 1
-                };
-                break;
-            case 'state':
-                //Build back and next button parameters
-                this.nextParams = {
-                    listTitle: this.paramListTitle,
-                    pageNumber: Number(this.paramPageNumber) + 1 <= maxPageCount ? Number(this.paramPageNumber) + 1 : this.paramPageNumber,
-                    state: this.paramState
-                };
-                this.backParams = {
-                    listTitle: this.paramListTitle,
-                    pageNumber: Number(this.paramPageNumber) - 1 > 0 ? Number(this.paramPageNumber) - 1 : 1,
-                    state: this.paramState
-                };
-                break;
-            case 'allCities':
-                //Build back and next button parameters
-                this.nextParams = {
-                    listTitle: this.paramListTitle,
-                    pageNumber: Number(this.paramPageNumber) + 1 <= maxPageCount ? Number(this.paramPageNumber) + 1 : this.paramPageNumber,
-                    state: this.paramState
-                };
-                this.backParams = {
-                    listTitle: this.paramListTitle,
-                    pageNumber: Number(this.paramPageNumber) - 1 > 0 ? Number(this.paramPageNumber) - 1 : 1,
-                    state: this.paramState
-                };
-                break;
-            case 'city':
-                //Build back and next button parameters
-                this.nextParams = {
-                    listTitle: this.paramListTitle,
-                    pageNumber: Number(this.paramPageNumber) + 1 <= maxPageCount ? Number(this.paramPageNumber) + 1 : this.paramPageNumber,
-                    state: this.paramState,
-                    city: this.paramCity
-                };
-                this.backParams = {
-                    listTitle: this.paramListTitle,
-                    pageNumber: Number(this.paramPageNumber) - 1 > 0 ? Number(this.paramPageNumber) - 1 : 1,
-                    state: this.paramState,
-                    city: this.paramCity
-                };
-                break;
-            case 'zipcode':
-                //Build back and next button parameters
-                this.nextParams = {
-                    listTitle: this.paramListTitle,
-                    pageNumber: Number(this.paramPageNumber) + 1 <= maxPageCount ? Number(this.paramPageNumber) + 1 : this.paramPageNumber,
-                    state: this.paramState,
-                    city: this.paramCity,
-                    zipcode: this.paramZipcode
-                };
-                this.backParams = {
-                    listTitle: this.paramListTitle,
-                    pageNumber: Number(this.paramPageNumber) - 1 > 0 ? Number(this.paramPageNumber) - 1 : 1,
-                    state: this.paramState,
-                    city: this.paramCity,
-                    zipcode: this.paramZipcode
-                };
-                break;
-        }
-
-        //Determine if next and back buttons should be highlighted
-        this.nextHighlighted = Number(this.paramPageNumber) + 1 <= maxPageCount;
-        this.backHighlighted = Number(this.paramPageNumber) !== 1;
-
-        //Determine range display for directory page (ex. 1-20, 22-40, etc)
-        if(pageNum * this.listingsLimit <= this.totalListings){
-            this.rangeDisplay = this.globalFunctions.commaSeparateNumber((pageNum - 1) * this.listingsLimit + 1) + '-' + this.globalFunctions.commaSeparateNumber(pageNum * this.listingsLimit);
-        }else{
-            this.rangeDisplay = this.globalFunctions.commaSeparateNumber((pageNum - 1) * this.listingsLimit + 1) + '-' + this.globalFunctions.commaSeparateNumber(this.totalListings);
-        }
     }
 
     ngOnInit(){
