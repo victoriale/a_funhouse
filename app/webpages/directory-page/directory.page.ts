@@ -129,7 +129,7 @@ export class DirectoryPage {
                             this.totalListings = Number(data.totalListings);
                             this.totalListingsDisplayed = this.globalFunctions.commaSeparateNumber(this.totalListings);
 
-                            this.getPagingationParameters();
+                            this.getPaginationParameters();
 
                             //Build states array for navigation links
                             data.states.forEach(function(item, index){
@@ -249,8 +249,6 @@ export class DirectoryPage {
     formatList(data){
         var self = this;
 
-        console.log('Lutz - adfadsdsfasd', data);
-
         var returnArray = [];
         //If input is empty exit function
         if(data.length === 0){
@@ -293,7 +291,7 @@ export class DirectoryPage {
     }
 
     //Function to determine pagination parameters
-    getPagingationParameters(){
+    getPaginationParameters(){
         var pageNum = Number(this.paramPageNumber);
 
         if(pageNum * this.listingsLimit <= this.totalListings){
