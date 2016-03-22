@@ -46,7 +46,7 @@ export class ListOfListsPage implements OnInit{
 
     transformData() {
         var self = this;
-        var counter = 0;
+        var counter = 1;
         // Format data and convert object to array
         for( var i in this.listOfLists ) {
             if (this.listOfLists.hasOwnProperty(i)){
@@ -65,7 +65,7 @@ export class ListOfListsPage implements OnInit{
                 // Check for empty list
                 if(this.listOfLists[i].listData.length <= 0) {
                 }else {
-                    //Check for no image
+                    //Check for no image and no url
                     this.listOfLists[i].listData.map(function(item){
                     if(item.photo === false || item.photo === null) {
                         item.photo = "app/public/no_photo_images/House_1.png";
