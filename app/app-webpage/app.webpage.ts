@@ -103,6 +103,13 @@ import {PartnerHeader} from "../global/global-service";
         name: 'Directory-page-city',
         component: DirectoryPage
     },
+    //All Cities directory page
+    //Currently Disabled: Currently No known way to pull router name to use this route. (This route conflicts with the Directory-page-state route. We can't differentiate in the code between this route and the state route) Query parameter is used instead for now
+    //{
+    //    path: '/directory/:state/all-cities/:listTitle/page/:pageNumber',
+    //    name: 'Directory-page-all-cities',
+    //    component: DirectoryPage
+    //},
     //Zipcode directory page
     {
         path: '/directory/:state/:city/:zipcode/:listTitle/page/:pageNumber',
