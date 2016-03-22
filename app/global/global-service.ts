@@ -156,3 +156,24 @@ export class MediaFeatureList{
         return Promise.resolve(BatchTwo);
     }
 }
+
+@Injectable()
+
+export class GlobalPage {
+  public apiUrl: string = 'http://api2.joyfulhome.com:280';
+
+  constructor(public http: Http){}
+  //Function to set custom headers
+
+  getAboutUsData() {
+      return this.http.get(this.apiUrl + '/aboutUs')
+      .map(
+          res => res.json()
+      )
+      .map(
+          data => {
+              return data.data;
+          }
+      )
+  }
+}

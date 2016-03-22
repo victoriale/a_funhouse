@@ -6,6 +6,8 @@ import {BackTabComponent} from '../../components/backtab/backtab.component';
 import {TitleComponent} from '../../components/title/title.component';
 import {WidgetModule} from "../../modules/widget/widget.module";
 
+declare var jQuery: any;
+
 @Component({
     selector: 'Contactus-page',
     templateUrl: './app/webpages/contactus-page/contactus.page.html',
@@ -19,13 +21,13 @@ export class ContactUsPage implements OnInit{
     full_name = "John Smith";
     email = "johnSmith@sntmedia.com";
     text_area = "Detailed description of your question here...";
-
     title_data: {};
+    submissionform: any;
 
     constructor() {
-        // Scroll page to top to fix routerLink bug
-        window.scrollTo(0, 0);
-    }
+    // Scroll page to top to fix routerLink bug
+    window.scrollTo(0, 0);
+  }
 
     getData(){
         //Contact us data
@@ -42,6 +44,25 @@ export class ContactUsPage implements OnInit{
         };
     }
 
+    formSubmit(){
+      if(jQuery(".ff-fullname").val() == "")
+      {
+        alert("Please Fill in your name.");
+        return false;
+      }
+      if(jQuery(".ff-email").val() == "")
+      {
+        alert("Please enter in an email.");
+        return false;
+      }
+      if(jQuery(".ff-textfield").val() == "")
+      {
+        alert("Please enter in your message.");
+        return false;
+      }
+      console.log(this);
+      return true;
+    }
 
     ngOnInit(){
         this.getData();

@@ -6,7 +6,7 @@
                     <i class='fa {{tile_data.icon1}}'></i>
                     <p>{{tile_data.title1}}</p>
                 </div>
-                <a href='{{tile_data.url1}}' class='tile-back-one'>
+                <a [routerLink]="[tile_data.url1]" class='tile-back-one'>
                     <span><i class='fa {{tile_data.icon1}}'></i> {{tile_data.title1}}</span>
                     <span>{{tile_data.desc1}}</span>
                     <span>{{tile_data.button_txt}} <i class='fa fa-mail-forward'></i></span>
@@ -19,7 +19,7 @@
                     <i class='fa {{tile_data.icon2}}'></i>
                     <p>{{tile_data.title2}}</p>
                 </div>
-                <a href='{{tile_data.url2}}' class='tile-back-two'>
+                <a [routerLink]="[tile_data.url2]" class='tile-back-two'>
                     <span><i class='fa {{tile_data.icon2}}'></i> {{tile_data.title2}} </span>
                     <span>{{tile_data.desc2}}</span>
                     <span>{{tile_data.button_txt}} <i class='fa fa-mail-forward'></i></span>
@@ -32,7 +32,7 @@
                     <i class='fa {{tile_data.icon3}}'></i>
                     <p>{{tile_data.title3}}</p>
                 </div>
-                <a href='{{tile_data.url3}}' class='tile-back-three'>
+                <a [routerLink]="[tile_data.url3]" class='tile-back-three'>
                     <span><i class='fa {{tile_data.icon3}}'></i> {{tile_data.title3}}</span>
                     <span>{{tile_data.desc3}}</span>
                     <span>{{tile_data.button_txt}}<i class='fa fa-mail-forward'></i></span>

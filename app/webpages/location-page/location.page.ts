@@ -11,15 +11,15 @@ import {LikeUs} from '../../modules/likeus/likeus.module';
 import {ShareModule} from '../../modules/share/share.module';
 import {AboutUsModule} from '../../modules/aboutus/aboutus.module';
 import {SchoolModule} from "../../modules/school/school.module";
-
 import {LocationProfileService} from '../../global/location-profile.service';
 import {WidgetModule} from "../../modules/widget/widget.module";
+import {FindYourHomeModule} from "../../modules/find-your-home/find-your-home.module";
 
 @Component({
     selector: 'location-page',
     templateUrl: './app/webpages/location-page/location.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule, WidgetModule],
+    directives: [HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, FindYourHomeModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule, WidgetModule],
     providers: [LocationProfileService],
 })
 
@@ -47,7 +47,8 @@ export class LocationPage implements OnInit {
             .subscribe(
                 data => {
                     this.profileHeaderData = data;
-                }
+                },
+                err => console.log('Error - Location Profile Header Data: ', err)
             )
     }
 
@@ -56,7 +57,8 @@ export class LocationPage implements OnInit {
             .subscribe(
                 data => {
                     this.featuredListData = data;
-                }
+                },
+                err => console.log('Error - Location Profile ')
             );
     }
 

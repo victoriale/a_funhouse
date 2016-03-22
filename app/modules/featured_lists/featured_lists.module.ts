@@ -21,7 +21,7 @@ export class FeaturedListsModule implements OnInit{
     public tileData: Object;
     public listData: Object;
     public index: number = 0;
-    @Input() featuredListData: FeaturedListInterface;
+    @Input() featuredListData: any;
 
     constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions){
         //Determine what page the profile header module is on
@@ -56,7 +56,7 @@ export class FeaturedListsModule implements OnInit{
             return false;
         }
 
-        var max = this.featuredListData.featured_list.length - 1;
+        var max = this.featuredListData.listData.length - 1;
 
         if(this.index > 0){
             this.index -= 1;
@@ -69,12 +69,12 @@ export class FeaturedListsModule implements OnInit{
 
     }
     right(){
-        console.log('right - module');
+        console.log('right - module', this.index);
         if(this.featuredListData === null){
             return false;
         }
 
-        var max = this.featuredListData.featured_list.length - 1;
+        var max = this.featuredListData.listData.length - 1;
 
         if(this.index < max){
             this.index += 1;
@@ -91,17 +91,17 @@ export class FeaturedListsModule implements OnInit{
         //Set static data - Will remove when routes further defined
         this.tileData = {
             button_txt: 'Open Page',
-            url1: '',
+            url1: 'Aboutus-page', // this will need to be change
             icon1: 'fa-list-ul',
-            title1: 'Trending Lists',
+            title1: 'Real Estate Trending Lists',
             desc1: '',
-            url2: '',
+            url2: 'Aboutus-page',// this will need to be change
             icon2: 'fa-trophy',
             title2: 'Top 10 Lists',
             desc2: '',
-            url3: '',
+            url3: 'Aboutus-page',// this will need to be change
             icon3: 'fa-th-large',
-            title3: 'Similar Top 100 Lists',
+            title3: 'Similar Top 10 Lists',
             desc3: ''
         }
 
@@ -109,23 +109,39 @@ export class FeaturedListsModule implements OnInit{
 
     transformData(){
         var data = this.featuredListData;
-        
+
         // Exit function if no list data is found
-        if(data.featured_list.length === 0){
+        if(data.listData.length === 0){
             return false;
         }
 
-        var listData = data.featured_list[this.index];
+        var listData = data.listData[this.index];
 
+        //Build heading 2 description
+        if((listData.num_bedrooms === null || listData.num_bedrooms === 0) && (listData.num_bathrooms === null || listData.num_bedrooms === 0)){
+            //No bedrooms or bathrooms defined
+            var heading2 = '';
+        }else if((listData.num_bedrooms !== null && listData.num_bedrooms !== 0) && (listData.num_bathrooms === null || listData.num_bathrooms === 0)){
+            //Bedrooms defined, bathrooms undefined
+            var heading2 = 'Bedrooms: ' + listData.num_bedrooms;
+        }else if((listData.num_bedrooms === null || listData.num_bedrooms === 0) && (listData.num_bedrooms !== null && listData.num_bedrooms !== 0)){
+            //Bedrooms undefined, bathrooms defined
+            var heading2 = 'Bathrooms: ' + listData.num_bathrooms;
+        }else if((listData.num_bedrooms !== null && listData.num_bedrooms !== 0) && (listData.num_bedrooms !== null && listData.num_bathrooms !== 0)){
+            //Bedrooms and bathrooms defined
+            var heading2 = 'Bedrooms: ' + listData.num_bedrooms + ' | Bathrooms: ' + listData.num_bathrooms;
+        }
+
+        //Used for both location and listing profile
         this.listData = {
             header: 'Trending Real Estate',
-            title: 'List Title',
-            hding1: listData.address,
-            hding2: listData.listingName + ' ' + listData.zipcode,
-            detail1: 'Bedrooms: ' + listData.bedrooms + ' | Bathrooms: ' + listData.bathrooms,
+            title: this.globalFunctions.camelCaseToRegularCase(data.listName),
+            hding1: listData.full_street_address,
+            hding2: listData.city + ', ' + listData.state_or_province + ' ' + listData.postal_code,
+            detail1: heading2,
             detail2: listData.listPrice === null ? '' : 'Asking Price: ',
-            detail3: listData.listPrice === null ? '' : '$' + this.globalFunctions.commaSeparateNumber(listData.listPrice),
-            imageUrl: listData.listingImage
+            detail3: listData.list_price === null ? '' : '$' + this.globalFunctions.commaSeparateNumber(listData.list_price),
+            imageUrl: listData.photos === null ? null : listData.photos[0]
         }
     }
 

@@ -1,3 +1,4 @@
+/*BELOW IS MAGAZINE INTERFACE*/
 export interface MagData{
     overview?: MagOverview;
     recommendations?: MagRecommendations;
@@ -46,34 +47,6 @@ export interface MagContact {
     key?: string;
     content?: string[];
     photos?: string[];
-}
-
-//Interface for Profile Header Module
-export interface ProfileHeaderInterface {
-    //Listing data
-    address: string;
-    agent: string;
-    brokerageLogoURL: string;
-    email: string;
-    listingID: string;
-    listingImage: string;
-    listingPrice: string;
-    listingStatus: string;
-    officeNumber: number;
-    originalLink: string;
-    phoneNumber: number;
-    squareFeet: string;
-    zipCode: string;
-    //Location data
-    numberOfListings: string;
-    averageListingPrice: string;
-    averageRentalPrice: string;
-    averageAge: string;
-    locationImage: string;
-    //Shared data
-    city: string;
-    state: string;
-    lastUpdated: string;
 }
 
 export interface MagAmenities {
@@ -125,3 +98,101 @@ export interface MagAmenity {
     photo?: string;
 }
 
+/*ABOVE IS MAGAZINE INTERFACE*/
+
+export interface AboutUsPageInterface {
+  counties: string;
+  listings: string;
+  brokers: string;
+  cities: string;
+}
+export interface PropertyListingInterface {
+    listingID: string;
+    imageCount: string;
+    numBathrooms: string;
+    numBedrooms: string;
+    fullBathrooms: string;
+    halfBathrooms: string;
+    architecturalStyle: string;
+    numFloors: string;
+    hasBasement: string;
+    listingImages: any;
+    appliance: string;
+    heating: string;
+    exterior: string;
+    roof: string;
+}
+
+export interface List {
+    title: string;
+    location: string;
+    bigImage: string;
+    smallImage: any;
+}
+
+export interface HomePageData {
+    citylocation: string;
+    statelocation: string;
+    cityarea: any;
+}
+
+export interface List2 {
+    bigImage: string;
+    list_name: string;
+    list_addr: string;
+    list_day: string;
+    detail1: string;
+    unit1: string;
+    detail2: string;
+    unit2: string;
+    price: string;
+    price_name: string;
+    smallImage: string[];
+}
+
+//Interface for Profile Header Module
+export interface ProfileHeaderInterface {
+    //Listing data
+    address: string;
+    agent: string;
+    brokerageLogoURL: string;
+    email: string;
+    listingID: string;
+    listingImage: string;
+    listingPrice: string;
+    listingStatus: string;
+    officeNumber: number;
+    originalLink: string;
+    phoneNumber: number;
+    squareFeet: string;
+    zipCode: string;
+    //Location data
+    numberOfListings: string;
+    averageListingPrice: string;
+    averageRentalPrice: string;
+    averageAge: string;
+    locationImage: string;
+    //Shared data
+    city: string;
+    state: string;
+    lastUpdated: string;
+}
+
+//Interface for Featured List Module
+export interface FeaturedListInterface {
+    featured_list: Array<{
+        address: string;
+        bathrooms: string;
+        bedrooms: string;
+        listPrice: string;
+        listingImage: string;
+        listingName: string;
+        neighborhood: string;
+        zipcode: string;
+    }>;
+    url_mod: {
+        "list-of-lists": string;
+        top10Local: string;
+        top10National: string;
+    }
+}

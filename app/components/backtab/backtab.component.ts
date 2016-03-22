@@ -7,6 +7,8 @@ import {Component} from 'angular2/core';
 
 })
 export class BackTabComponent{
-    public backText = "[Profile Name]'s";
     backgroundImg = './app/public/header_texture.png';
+    goBack() {
+      window.history.back();
+    }
 }

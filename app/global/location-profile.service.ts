@@ -26,7 +26,7 @@ export class LocationProfileService{
         city = encodeURI(city);
         state = encodeURI(state);
 
-        return this.http.get(this.apiUrl + '/location/featuredListsInLocation/' + state + '/' + city, {
+        return this.http.get(this.apiUrl + '/list/random/' + state + '/' + city, {
                 headers: headers
             })
             .map(
