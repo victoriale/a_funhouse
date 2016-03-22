@@ -54,11 +54,29 @@ export class MediaFeatureModule implements OnInit {
           if(feature == 'listingDate'){
             originalData[feature] = originalData[feature].split(' ')[0];
           }
-          console.log(feature, originalData[feature]);
-          featureHaves.push({
-            featureName: this.featureProperty(feature),
-            featureValue: originalData[feature]
-          });
+          switch(feature){
+            //if feautre is any below do not push into featureHaves array
+            case 'city':
+            case 'state':
+            case 'zipCode':
+            case 'address':
+            break;
+            case 'daysOnMarket':
+            originalData['daysOnMarket'] = "Days on Market: " + originalData['daysOnMarket'];
+            break;
+            case 'listingDate':
+            originalData['listingDate'] = originalData['listingDate'].split(' ')[0];
+            break;
+            //below just modify and then go to default as well
+            case 'listPrice':
+            originalData['listPrice'] = this.globalFunctions.commaSeparateNumber(originalData['listPrice']);
+            default:
+            featureHaves.push({
+              featureName: this.featureProperty(feature),
+              featureValue: originalData[feature]
+            });
+            break;
+          }
         }//end if
     }//end for loop
 
