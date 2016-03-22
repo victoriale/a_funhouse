@@ -1,5 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
-import {RouteParams, ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
+import {RouteParams, ROUTER_DIRECTIVES, RouteConfig, Router} from 'angular2/router';
 import {GlobalFunctions} from '../../global/global-functions';
 import {DirectoryService} from '../../global/directory.service';
 
@@ -15,6 +15,7 @@ export class DirectoryPage {
     public navigationLinks: Array<Object>;
     public listingItems: Array<Object>;
 
+    public listingsLimit: number = 20;
     //linkTitle determines title of the link navigation section
     //linkListDisplayed determines if the link navigation section is displayed at all
     public linkTitle: string;
@@ -37,8 +38,21 @@ export class DirectoryPage {
     public pageName: string;
     public nextParams: Object;
     public backParams: Object;
+    //rangeDisplay is what results range is displayed (ex. 1-20)
+    public rangeDisplay: string;
+    //totalListings number amount of listings that are available based on parameters
+    //totalListingsDisplayed display value (with commas) of total listings amount
+    public totalListings: number;
+    public totalListingsDisplayed: string;
+    //Determines if more cities link should be displayed
+    public moreCitiesAvailable: boolean = false;
 
-    constructor(private _params: RouteParams, private globalFunctions: GlobalFunctions, private _directoryService: DirectoryService){//Grab static parameters
+    constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions, private _directoryService: DirectoryService){//Grab static parameters
+        router.subscribe(
+            url => {
+                router.recognize(url).then(instruction => console.log('Lutz - page', instruction))
+            }
+        );
         this.paramListTitle = this._params.get('listTitle');
         this.paramPageNumber = this._params.get('pageNumber');
         //Determine what type of page the directory is display (options are national, state city, or zipcode)
@@ -111,8 +125,14 @@ export class DirectoryPage {
                     .subscribe(
                         data => {
                             var navigationArray = [];
+
+                            this.totalListings = Number(data.totalListings);
+                            this.totalListingsDisplayed = this.globalFunctions.commaSeparateNumber(this.totalListings);
+
+                            this.getPagingationParameters();
+
                             //Build states array for navigation links
-                            data.forEach(function(item, index){
+                            data.states.forEach(function(item, index){
                                 navigationArray.push({
                                     title: self.globalFunctions.fullstate(item),
                                     page: 'Directory-page-state',
@@ -147,8 +167,16 @@ export class DirectoryPage {
                     .subscribe(
                         data => {
                             var navigationArray = [];
+
+                            this.totalListings = Number(data.totalListings);
+
+                            //If there are 26 cities returned (There are more than 25 cities) display more cities link
+                            if(data.cities.length === 26){
+                                this.moreCitiesAvailable = true;
+                            }
+
                             //Build cities array for navigation links
-                            data.forEach(function(item, index){
+                            data.cities.forEach(function(item, index){
                                 navigationArray.push({
                                     title: item,
                                     page: 'Directory-page-city',
@@ -221,6 +249,8 @@ export class DirectoryPage {
     formatList(data){
         var self = this;
 
+        console.log('Lutz - adfadsdsfasd', data);
+
         var returnArray = [];
         //If input is empty exit function
         if(data.length === 0){
@@ -230,28 +260,28 @@ export class DirectoryPage {
         data.forEach(function(item, index){
             var listing = {};
 
-            listing['lastUpdated'] = item.listing_date === null ? null : 'Last Updated: ' + item.listing_date;
-            listing['addressKey'] = item.address_key;
-            listing['address'] = item.full_street_address;
+            listing['lastUpdated'] = item.listingDate === null ? null : 'Last Updated: ' + item.listingDate;
+            listing['addressKey'] = item.addressKey;
+            listing['address'] = item.fullStreetAddress;
             listing['city'] = item.city;
-            listing['state'] = item.state_or_province;
-            listing['zipcode'] = item.postal_code;
-            listing['squareFeet'] = item.living_area === null ? null : self.globalFunctions.commaSeparateNumber(item.living_area) + ' sq. ft';
+            listing['state'] = item.stateOrProvince;
+            listing['zipcode'] = item.postalCode;
+            listing['squareFeet'] = item.livingArea === null ? null : self.globalFunctions.commaSeparateNumber(item.livingArea) + ' sq. ft';
 
-            if(item.num_bedrooms === null || item.num_bedrooms === '0'){
+            if(item.numBedrooms === null || item.numBedrooms === '0'){
                 listing['bedrooms'] = null;
-            }else if(item.num_bedrooms === '1'){
+            }else if(item.numBedrooms === '1'){
                 listing['bedrooms'] = '1 Bedroom';
             }else{
-                listing['bedrooms'] = item.num_bedrooms + ' Bedrooms';
+                listing['bedrooms'] = item.numBedrooms + ' Bedrooms';
             }
 
-            if(item.num_bathrooms === null || item.num_bathrooms === '0'){
+            if(item.numBathrooms === null || item.numBathrooms === '0'){
                 listing['bathrooms'] = null;
-            }else if(item.num_bathrooms === '1'){
+            }else if(item.numBathrooms === '1'){
                 listing['bathrooms'] = '1 Bathroom';
             }else{
-                listing['bathrooms'] = item.num_bedrooms + ' Bathrooms';
+                listing['bathrooms'] = item.numBedrooms + ' Bathrooms';
             }
 
             returnArray.push(listing);
@@ -260,6 +290,17 @@ export class DirectoryPage {
         //console.log('Lutz - Directory return array', returnArray);
 
         return returnArray;
+    }
+
+    //Function to determine pagination parameters
+    getPagingationParameters(){
+        var pageNum = Number(this.paramPageNumber);
+
+        if(pageNum * this.listingsLimit <= this.totalListings){
+            this.rangeDisplay = ((pageNum - 1) * this.listingsLimit + 1) + '-' + (pageNum * this.listingsLimit);
+        }else{
+            this.rangeDisplay = ((pageNum - 1) * this.listingsLimit + 1) + '-' + (this.totalListings);
+        }
     }
 
     ngOnInit(){

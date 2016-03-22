@@ -25,10 +25,13 @@
                         <a [routerLink]="[item.page, item.params]" *ngFor="#item of navigationLinks">
                             {{item.title}} |
                         </a>
+                        <a [routerLink]="['Directory-page-all-cities', {listTitle: paramListTitle, pageNumber: 1, state: paramState}]" *ngIf="moreCitiesAvailable">
+                            More Cities
+                        </a>
                     </div>
                 </div>
-                <div class="directory-pagination">
-                    Showing: 11-20 of 3981754
+                <div *ngIf="totalListingsDisplayed" class="directory-pagination">
+                    Showing: {{rangeDisplay}} of {{totalListingsDisplayed}}
                     <a [routerLink]="[pageName, nextParams]" class="directory-pagination-button">
                         Next <i class="fa fa-angle-right"></i>
                     </a>
