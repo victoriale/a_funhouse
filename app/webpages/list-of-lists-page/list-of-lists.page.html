@@ -6,9 +6,9 @@
                     <backtab-component></backtab-component>
                     <title-component></title-component>
                     <!--<list-carousel-component *ngIf="lists" [lists]="lists"></list-carousel-component>-->
-                    <!--<span *ngFor="#item of lists">-->
-                        <!--<contentlist [data]="item"></contentlist>-->
-                    <!--</span>-->
+                    <span *ngIf="data" *ngFor="#item of lists">
+                        <contentlist [data]="item"></contentlist>
+                    </span>
                     <hero-list-component></hero-list-component>
                 </section>
                 <div class="four-col">

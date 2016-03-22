@@ -50,8 +50,8 @@ export class ListOfListsPage implements OnInit{
                 this.lists.push(this.listOfLists[i]);
             }
         }
-        //Reformat for contentlist component
         //this.lists.forEach(function(val, index){
+        //    val.title = val.listTitle;
         //});
     }
 
