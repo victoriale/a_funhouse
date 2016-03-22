@@ -41,7 +41,7 @@ import {PartnerHeader} from "../global/global-service";
        useAsDefault: true,
     },
     {
-        path: '/profile/:address',
+        path: '/listing/:address',
         name: 'Profile-page',
         component: ProfilePage,
         // useAsDefault: true,
