@@ -1,9 +1,10 @@
 /**
  * Created by Victoria on 3/2/2016.
  */
-import {Component, OnInit, Input} from 'angular2/core';
+import {Component, OnInit, Input, Injector} from 'angular2/core';
 import {Router, RouteParams} from 'angular2/router';
 import {moduleHeader} from "../../components/module-header/module-header";
+import {ProfileHeader} from "../../modules/profile_header/profile_header.module";
 import {MediaImages} from "../../components/media-images/media-images.component";
 import {PropertyListingInterface} from '../../global/global-interface';
 import {GlobalFunctions} from '../../global/global-functions';
@@ -14,7 +15,7 @@ import {ListingProfileService} from '../../global/listing-profile.service';
   templateUrl: './app/modules/media_features/media_features.module.html',
   styleUrls: ['./app/global/stylesheets/master.css'],
   directives: [moduleHeader, MediaImages],
-  providers: [],
+  providers: [ProfileHeader],
 })
 
 export class MediaFeatureModule implements OnInit {
@@ -31,7 +32,7 @@ export class MediaFeatureModule implements OnInit {
 
   @Input() propertyListingData: PropertyListingInterface;
 
-  constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions, private _listingService: ListingProfileService) {
+  constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions, private injector:Injector, private _listingService: ListingProfileService) {
     //Determine what page the profile header module is on
     this.profileType = this.router.hostComponent.name;
   }
@@ -44,10 +45,16 @@ export class MediaFeatureModule implements OnInit {
   }
 
   dataFormatter(originalData) {
+    console.log(originalData);
     var featureHaves = [];
 
     for (var feature in originalData) {
         if(feature != 'listingImages' && feature != 'imageCount' && feature != 'listingID' && originalData[feature] != "" && originalData[feature] != null){
+          //get the date
+          if(feature == 'listingDate'){
+            originalData[feature] = originalData[feature].split(' ')[0];
+          }
+          console.log(feature, originalData[feature]);
           featureHaves.push({
             featureName: this.featureProperty(feature),
             featureValue: originalData[feature]
@@ -59,14 +66,36 @@ export class MediaFeatureModule implements OnInit {
       originalData.listingImages = [this.image_url];
     }
 
+    //grab featured data about listing
+    var featureListing = {
+      city: originalData.city,
+      state: originalData.state,
+      squareFeet: originalData.squareFeet ,
+      daysOnMarket : originalData.daysOnMarket ,
+      listPrice : originalData.listPrice ,
+      zipCode: originalData.zipCode,
+      lotSize: originalData.lotSize,
+      address: originalData.address,
+    }
+
     return {
       imageArray: originalData.listingImages,
-      featureData: featureHaves
+      featureData: featureHaves,
+      featureListing: featureListing,
     }
   }//end of dataFormatter
 
 featureProperty(name){
   var featureProp = {
+    daysOnMarket: 'Days On Market',
+    listPrice: 'Price',
+    squareFeet: 'Square Feet',
+    lotSize: 'Lot Size',
+    listingDate: 'Listing Date',
+    address: 'Address',
+    zipCode: 'Zipe Code',
+    city: 'City',
+    state: 'State',
     numBathrooms: 'Bathrooms',
     fullBathrooms: 'Full Bathrooms',
     halfBathrooms: 'Half Bathrooms',
@@ -79,7 +108,10 @@ featureProperty(name){
     cooling: 'Cooling',
     numFloors: 'Num. of Floors',
     exterior: 'Extorior',
-    parking: 'Parking'
+    parking: 'Parking',
+    view: 'View',
+    floor: 'Floor',
+    appliance: 'Appliances'
   };
   return featureProp[name];
 }

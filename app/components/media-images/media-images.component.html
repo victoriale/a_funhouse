@@ -1,13 +1,13 @@
-<section class="media-images" *ngFor="#BatchTwo of BatchTwo">
+<section *ngIf="featureListing" class="media-images" *ngFor="#data of featureListing">
     <circle-button (scrollLeft) = "left()" (scrollRight) = "right()"></circle-button>
     <div class="plcholder">
-        <a  class='feature-btn expand'>
+        <a class='feature-btn expand'>
             Expand <i class='fa fa-expand'></i>
         </a>
-        <a href='' class='feature-btn virtual'>
+        <a class='feature-btn virtual'>
             Virtual Home Tour ({{virtualTourCount}})
         </a>
-        <a href='' class='feature-btn images'>
+        <a class='feature-btn images'>
             <span><i class='fa fa-file-image-o'></i></span>
             <span> Images ({{totalImageCount}})</span>
             <i></i>
@@ -16,15 +16,15 @@
 
         <div class="plcholder-details">
             <div class="listings">
-                <div class="listings-name">{{BatchTwo.list_name}}</div>
-                <div class="listings-addr">{{BatchTwo.list_addr}}</div>
-                <div class="listings-days">{{BatchTwo.list_day}}</div>
+                <div class="listings-name">{{data.city}}, {{data.state}} - {{data.zipCode}}</div>
+                <div class="listings-addr">{{data.address}}</div>
+                <div class="listings-days">{{data.daysOnMarket}}</div>
             </div>
 
-            <div *ngIf="!trending" class="details"><div>{{BatchTwo.detail1}}</div><div>{{BatchTwo.unit1}}</div></div>
-            <div *ngIf="!trending" class="details"><div>{{BatchTwo.detail2}}</div><div>{{BatchTwo.unit2}}</div></div>
+            <div *ngIf="!trending" class="details"><div>{{data.detail1}}</div><div>{{data.unit1}}</div></div>
+            <div *ngIf="!trending" class="details"><div>{{data.detail2}}</div><div>{{data.unit2}}</div></div>
 
-            <div class="details"><div>{{BatchTwo.price}}</div><div>{{BatchTwo.price_name}}</div></div>
+            <div class="details"><div>{{data.listPrice}}</div><div>{{data.squareFeet}}</div></div>
             <a *ngIf="trending" href='' class='mod-page-btn'>
                 <span></span>
                 <span>View Your Home</span>
@@ -36,7 +36,7 @@
     <div class="sm_images">
         <div class="sm_images-img">
             <a *ngFor="#sm_images of smallImage">
-                <img src="{{sm_images.image}}" alt="small square images" (click)="changeMain(sm_images.id)" />
+                <img id="smImg-{{sm_images.id}}" [ngClass]="{'squareImage-active': sm_images.id == imageCounter}" class="squareImage" src="{{sm_images.image}}" alt="small square images" (click)="changeMain(sm_images.id)" />
             </a>
         </div>
     </div>
