@@ -1,0 +1,25 @@
+<div class="content-wrapper">
+  <div class="wrapper">
+    <div class="inner-wrapper">
+      <main>
+        <section class='content-main eight-col'>
+          <section class="page-container lv">
+            <title-component [data]="headerData"></title-component>
+            <list-view-carousel [carouselData]="carouselData"></list-view-carousel>
+            <!-- <div class="lv-sort">
+              <dropdown-component></dropdown-component>
+              <div class="lv-sort-filter">Filter <i class="fa fa-cog"></i></div>
+            </div> -->
+            <div *ngIf="listData">
+              <detailed-list [listData]="listData"></detailed-list>
+            </div>
+            <pagination-footer></pagination-footer>
+          </section>
+        </section>
+        <div class="four-col">
+          <widget-module></widget-module>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>

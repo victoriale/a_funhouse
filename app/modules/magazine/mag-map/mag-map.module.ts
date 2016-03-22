@@ -41,7 +41,7 @@ export class MagMapModule implements OnInit {
                         zoom: 12,
                         center: myLatlng
                     };
-                    $('.mag_n1_img').css("background-image", 'url(' + this.data[0].photos[0] + ')');
+                    jQuery('.mag_n1_img').css("background-image", 'url(' + this.data[0].photos[0] + ')');
                     this.imgAddress = this.data[0].address.fullStreetAddress;
                     this.imgURL = 'magazine/' + this.data[0].key + '/overview';
                     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
@@ -75,10 +75,10 @@ export class MagMapModule implements OnInit {
                                 var index = this.id;
                                 jQuery('.mag_n1_img').css("background-image", 'url(' + magData.neighborhood.neighbors[index].photos[0] + ')');
                                 jQuery('.mag_n1_img_text').html(magData.neighborhood.neighbors[index].address.fullStreetAddress);
-                                $('.mag_n1_img_view').attr("href", 'magazine/' + magData.neighborhood.neighbors[index].key + '/overview');
+                                jQuery('.mag_n1_img_view').attr("href", 'magazine/' + magData.neighborhood.neighbors[index].key + '/overview');
                                 //e.preventDefault();
-                                $('.googleMap_item').removeClass('focus');
-                                $(this).addClass('focus');
+                                jQuery('.googleMap_item').removeClass('focus');
+                                jQuery(this).addClass('focus');
                             });
                         });
                     }
