@@ -25,9 +25,10 @@ export class MediaFeatureModule implements OnInit {
 
   private propertyData: any;//data to send from module into components
   private date;
+  lastUpdated = "";
   image_url = './app/public/placeholder_XL.png';
   featureHeading = "Features Of This Property";
-  lastUpdate = "Last Updated: ";
+  lastUpdate = "";
 
   @Input() propertyListingData: PropertyListingInterface;
 
@@ -61,7 +62,11 @@ export class MediaFeatureModule implements OnInit {
             case 'address':
             break;
             case 'daysOnMarket':
-            originalData['daysOnMarket'] = "Days on Market: " + originalData['daysOnMarket'];
+            if(originalData['daysOnMarket'] == '1'){
+              originalData['daysOnMarket'] = "Day on Market: " + "["+originalData['daysOnMarket']+"]";
+            } else {
+              originalData['daysOnMarket'] = "Days on Market: " + "["+originalData['daysOnMarket']+"]";
+            }
             break;
             case 'listingDate':
             originalData['listingDate'] = originalData['listingDate'].split(' ')[0];
@@ -88,9 +93,9 @@ export class MediaFeatureModule implements OnInit {
       city: originalData.city,
       state: originalData.state,
       daysOnMarket : originalData.daysOnMarket,
-      price : "$"+originalData.listPrice,
-      priceName: 'Sale',
-      detail1: originalData.squareFeet ,
+      price : "$"+(originalData.listPrice),
+      priceName: 'Sale Price',
+      detail1:  this.globalFunctions.commaSeparateNumber(originalData['squareFeet']) ,
       unit1: 'Sq Ft',
       detail2: originalData.lotSize ,
       unit2: 'Acres',
@@ -158,9 +163,7 @@ featureProperty(name){
 
   ngOnInit() {
     this.setModuleTitle();
-    console.log(this.trending);
     this.trending = false;
-    console.log(this.trending);
     this.getData();
   }
 

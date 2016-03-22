@@ -99,6 +99,14 @@ export interface MagAmenity {
 }
 
 /*ABOVE IS MAGAZINE INTERFACE*/
+export interface AmenitiesNearListingInterface {
+  name: string;
+  url: string;
+  categories: string[];
+  location: Object;
+  display_address: string[];
+  display_phone: string;
+}
 
 export interface AboutUsPageInterface {
   counties: string;
