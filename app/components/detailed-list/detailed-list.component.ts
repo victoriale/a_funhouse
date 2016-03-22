@@ -37,6 +37,5 @@ export class DetailedListComponent implements OnInit{
 
     ngOnInit(){
       this.getData();
-        console.log(this);
     }
 }

@@ -98,7 +98,6 @@ export class DynamicListPage implements OnInit {
 
   ngOnInit() {
     this.getDynamicList();
-    console.log(this.data);
   }
 
 }
