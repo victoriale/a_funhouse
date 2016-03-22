@@ -1,13 +1,12 @@
 <div class="content-wrapper">
     <div class="wrapper">
         <div class="inner-wrapper">
-            <main>
+            <main *ngIf="lists">
                 <section class='content-main eight-col'>
                     <backtab-component></backtab-component>
-                    <title-component></title-component>
-                    <list-carousel-component *ngIf="lists" [lists]="lists"></list-carousel-component>
-                    <span *ngFor="#item of lists">
-                        <contentlist [data]="item"></contentlist>
+                    <title-component *ngIf="titleData" [titleData]="titleData"></title-component>
+                    <span *ngIf="data" *ngFor="#item of lists">
+                        <contentlist [data]="item" [cityLocation]="cityLocation" [stateLocation]="stateLocation"></contentlist>
                     </span>
                     <hero-list-component></hero-list-component>
                 </section>
