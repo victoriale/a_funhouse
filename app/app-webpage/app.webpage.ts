@@ -1,5 +1,5 @@
 import {Component, OnInit, Injector} from 'angular2/core';
-import {RouteParams, Router, RouteData, RouteConfig, RouterOutlet, ROUTER_DIRECTIVES, LocationStrategy} from 'angular2/router';
+import {RouteParams, Router, RouteData, RouteConfig, RouterOutlet, ROUTER_DIRECTIVES, LocationStrategy, RouterLink} from 'angular2/router';
 import {ProfilePage} from "../webpages/profile-page/profile.page";
 import {LocationPage} from "../webpages/location-page/location.page";
 import {ListPage} from "../webpages/list-page/list.page";
@@ -20,6 +20,7 @@ import {ExploreButtonComponent} from "../components/buttons/explore-button/explo
 import {FeatureTilesComponent} from "../components/feature-tiles/feature-tiles.component";
 import {DirectoryPage} from "../webpages/directory-page/directory.page";
 import {SearchPage} from "../webpages/search-page/search.page";
+import {DynamicListPage} from "../webpages/dynamic-list-page/dynamic-list.page";
 
 import {WebApp} from "../app-layout/app.layout";
 import {PartnerHeader} from "../global/global-service";
@@ -56,7 +57,7 @@ import {PartnerHeader} from "../global/global-service";
         component: ListPage,
     },
     {
-        path: '/list-of-lists/:state/:city',
+        path: '/list-of-lists',
         name: 'List-of-lists-page',
         component: ListOfListsPage,
     },
@@ -113,6 +114,11 @@ import {PartnerHeader} from "../global/global-service";
         path: '/search/:query',
         name: 'Search-page',
         component: SearchPage
+    },
+    {
+        path: '/wlist',
+        name: 'Widget-page',
+        component: DynamicListPage
     }
 ])
 
@@ -129,9 +135,9 @@ export class AppComponent {
     stateLocation: string = "KS";
     address: string = "503-C-Avenue-Vinton-IA";
 
-    constructor(private _injector: Injector,private _partnerData: PartnerHeader, private _params: RouteParams){
+    constructor(private _injector: Injector,private _partnerData: PartnerHeader, private _params: RouteParams, private route: Router, private routeData: RouteData, private routerLink: RouterLink){
+      console.log(this);
       var parentParams = this._injector.get(WebApp);
-      console.log(parentParams);
       if(typeof parentParams.partnerID != 'undefined'){
         this.partnerID = parentParams.partnerID;
       }
@@ -139,7 +145,7 @@ export class AppComponent {
 
     getPartnerHeader(){
       this.partnerID = this.partnerID.replace('-','.');
-     
+
       this._partnerData.getPartnerData(this.partnerID)
       .subscribe(
           partnerScript => {

@@ -4,24 +4,14 @@
       <main>
         <section class='content-main eight-col'>
           <section class="page-container lv">
-            <list-menu-component></list-menu-component>
+            <title-component [data]="headerData"></title-component>
             <list-vew-carousel></list-vew-carousel>
-            <div class="lv-sort">
+            <!-- <div class="lv-sort">
               <dropdown-component></dropdown-component>
               <div class="lv-sort-filter">Filter <i class="fa fa-cog"></i></div>
-            </div>
-
-            <div *ngFor="#data of amenitiesView" class="lv-image">
-              <img src='{{data.imageURL}}' class="lv-image-placeHolder" />
-              <div class="lv-image-details">
-                <div>{{data.homePrice}}</div>
-                <div>{{data.address}}</div>
-                <div>
-                  <span>{{data.bedrooms}}</span> |
-                  <span>{{data.bathrooms}}</span> |
-                  <span>{{data.area}}</span>
-                </div>
-              </div>
+            </div> -->
+            <div *ngIf="listData">
+              <detailed-list [listData]="listData"></detailed-list>
             </div>
           </section>
         </section>

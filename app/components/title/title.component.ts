@@ -9,12 +9,12 @@ import {Image100} from '../../components/images/image-100/image-100.component';
     inputs: ['data']
 })
 export class TitleComponent{
-    public data: Object;
+    public data: Array<Object>;
 
     titleComp(){
         if(typeof this.data == 'undefined'){
             this.data =
-            {
+            [{
                 imageURL : './app/public/joyfulhome_house.png',
                 smallText1 : 'Monday, February 23, 2016',
                 smallText2 : ' United States of America',
@@ -24,13 +24,13 @@ export class TitleComponent{
                 heading4 : '',
                 icon: 'fa fa-map-marker',
                 hasHover: true
-            };
+            }];
         }
-        console.log('Title Component Data', this);
     }
 
     ngOnInit(){
         this.titleComp();
+        console.log(this.data);
     }
 
 }
