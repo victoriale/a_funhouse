@@ -84,8 +84,8 @@ export class ListOfListsPage implements OnInit{
     }
 
     ngOnInit(){
-        this.stateLocation = this._params.get('state');
-        this.cityLocation = this._params.get('city');
+        this.stateLocation = decodeURI(this._params.get('state'));
+        this.cityLocation = decodeURI(this._params.get('city'));
         this.location = this._globalFunctions.toTitleCase(this.cityLocation) + ', ' + this.stateLocation;
 
         this.getListOfListPage();

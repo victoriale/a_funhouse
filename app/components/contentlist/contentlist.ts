@@ -14,9 +14,8 @@ export class contentList implements OnInit{
     @Input() data;
     @Input() cityLocation;
     @Input() stateLocation;
-
-    cityLocation: string;
-    stateLocation: string;
+    
+    location: string;
 
     ngOnInit(){
         this.location = this.cityLocation + ', ' + this.stateLocation;
