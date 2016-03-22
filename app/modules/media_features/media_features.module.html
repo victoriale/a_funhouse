@@ -1,6 +1,6 @@
 <section class="module-container media">
     <module-header [module_title]="moduleTitle"></module-header>
-    <media-images *ngIf="propertyData" [mediaImages] = "propertyData.imageArray"></media-images>
+    <media-images *ngIf="propertyData" [mediaImages] = "propertyData.imageArray" [featureListing]="propertyData.featureListing"></media-images>
 
     <section class="features">
         <div class="heading">

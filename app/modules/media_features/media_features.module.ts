@@ -44,14 +44,38 @@ export class MediaFeatureModule implements OnInit {
   }
 
   dataFormatter(originalData) {
+    // console.log(originalData);
     var featureHaves = [];
 
     for (var feature in originalData) {
         if(feature != 'listingImages' && feature != 'imageCount' && feature != 'listingID' && originalData[feature] != "" && originalData[feature] != null){
-          featureHaves.push({
-            featureName: this.featureProperty(feature),
-            featureValue: originalData[feature]
-          });
+          //get the date
+          if(feature == 'listingDate'){
+            originalData[feature] = originalData[feature].split(' ')[0];
+          }
+          switch(feature){
+            //if feautre is any below do not push into featureHaves array
+            case 'city':
+            case 'state':
+            case 'zipCode':
+            case 'address':
+            break;
+            case 'daysOnMarket':
+            originalData['daysOnMarket'] = "Days on Market: " + originalData['daysOnMarket'];
+            break;
+            case 'listingDate':
+            originalData['listingDate'] = originalData['listingDate'].split(' ')[0];
+            break;
+            //below just modify and then go to default as well
+            case 'listPrice':
+            originalData['listPrice'] = this.globalFunctions.commaSeparateNumber(originalData['listPrice']);
+            default:
+            featureHaves.push({
+              featureName: this.featureProperty(feature),
+              featureValue: originalData[feature]
+            });
+            break;
+          }
         }//end if
     }//end for loop
 
@@ -59,14 +83,38 @@ export class MediaFeatureModule implements OnInit {
       originalData.listingImages = [this.image_url];
     }
 
+    //grab featured data about listing
+    var featureListing = {
+      city: originalData.city,
+      state: originalData.state,
+      daysOnMarket : originalData.daysOnMarket,
+      price : "$"+originalData.listPrice,
+      priceName: 'Sale',
+      detail1: originalData.squareFeet ,
+      unit1: 'Sq Ft',
+      detail2: originalData.lotSize ,
+      unit2: 'Acres',
+      zipCode: originalData.zipCode,
+      address: originalData.address,
+    };
     return {
       imageArray: originalData.listingImages,
-      featureData: featureHaves
+      featureData: featureHaves,
+      featureListing: featureListing,
     }
   }//end of dataFormatter
 
 featureProperty(name){
   var featureProp = {
+    daysOnMarket: 'Days On Market',
+    listPrice: 'Price',
+    squareFeet: 'Square Feet',
+    lotSize: 'Lot Size',
+    listingDate: 'Listing Date',
+    address: 'Address',
+    zipCode: 'Zipe Code',
+    city: 'City',
+    state: 'State',
     numBathrooms: 'Bathrooms',
     fullBathrooms: 'Full Bathrooms',
     halfBathrooms: 'Half Bathrooms',
@@ -79,7 +127,10 @@ featureProperty(name){
     cooling: 'Cooling',
     numFloors: 'Num. of Floors',
     exterior: 'Extorior',
-    parking: 'Parking'
+    parking: 'Parking',
+    view: 'View',
+    floor: 'Floor',
+    appliance: 'Appliances'
   };
   return featureProp[name];
 }
@@ -107,7 +158,9 @@ featureProperty(name){
 
   ngOnInit() {
     this.setModuleTitle();
+    console.log(this.trending);
     this.trending = false;
+    console.log(this.trending);
     this.getData();
   }
 
