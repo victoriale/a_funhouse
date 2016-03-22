@@ -3,25 +3,26 @@
  */
 import {Component, OnInit, Input} from 'angular2/core';
 import {CircleButton} from "../../components/buttons/circle/circle.button";
-import {MediaFeatureList} from '../../global/global-service';
+// import {MediaFeatureList} from '../../global/global-service';
 import {List2} from '../../global/global-interface';
 
+declare var jQuery : any;
 @Component({
   selector: 'media-images',
   templateUrl: './app/components/media-images/media-images.component.html',
   styleUrls: ['./app/global/stylesheets/master.css'],
   directives: [CircleButton],
-  providers: [MediaFeatureList],
-  inputs: ['trending', 'mediaImages']
+  providers: [],
+  inputs: ['trending', 'mediaImages', 'featureListing']
 })
 
 export class MediaImages implements OnInit {
-  BatchTwo: List2[];
+  featureListing: any;
   public trending: boolean;
   leftCircle: boolean;
   rightCircle: boolean;
-  mediaImages: any;//need to create interface
 
+  mediaImages: any;//need to create interface
   smallImage: any;
   smallObjCounter: number = 0;
   largeImage: string;
@@ -29,13 +30,20 @@ export class MediaImages implements OnInit {
   totalImageCount: number = 0;
   imageCounter: number = 0;
 
-  constructor(
-    private _featureList: MediaFeatureList
-  ) {}
+  //create objects for the dom
+  // city:string;
+  // state:string;
+  // zipCode:string;
+  // address:string;
+  // daysOnMarket:any;
+  // detail1:any;
+  // unit1:string;
+  // detail2:any;
+  // unit2:string;
+  // price:any;
+  // priceName:string;
 
-  getData() {
-    this._featureList.getBatchTwo().then(batch2 => this.BatchTwo = batch2);
-  }
+  constructor() {}
 
   left() {
     //make a check to see if the obj array is below 0 change the obj array to the top level
@@ -71,6 +79,7 @@ export class MediaImages implements OnInit {
 
   //this is where the angular2 decides what is the main image
   changeMain(num){
+    this.imageCounter = num;
     if(typeof this.smallImage == 'undefined'){
       this.smallImage = this.mediaImages[0];
     }else{
@@ -91,7 +100,7 @@ export class MediaImages implements OnInit {
         newImageArray[objCount] = [];
       }
 
-      newImageArray[objCount].push({id:i, image:images[i]});
+      newImageArray[objCount].push({id:(i%5), image:images[i]});
 
       if(newImageArray[objCount].length == 5){
         objCount++;
@@ -104,16 +113,14 @@ export class MediaImages implements OnInit {
 
   //makes sure to show first image and run the modifyMedia function once data has been established
   ngOnChanges(event){
-      if(typeof this.mediaImages != 'undefined'){
+      if(typeof this.mediaImages != 'undefined' || typeof this.featureListing != 'undefined'){
         //if data coming from module to variable mediaImages changes in what way then reset to first image and rerun function
         this.mediaImages = this.modifyMedia(this.mediaImages);
-
         this.totalImageCount = this.mediaImages.totalImages;
         this.changeMain(0);
       }
   }
 
   ngOnInit() {
-    this.getData();
   }
 }
