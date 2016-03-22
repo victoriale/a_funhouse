@@ -8,9 +8,7 @@
     <div class="info-content-box">
         <div class="info-content-row-wrapper">
             <div class="info-content-row1">
-                <a [routerLink]="['Location-page', {loc: infoList.city + infoList.stateOrProvince}]">
-                    <span class="info-location"><i class="fa fa-map-marker"></i>{{infoList.loc}} {{infoList.postalCode}} | {{infoList.livingArea}}</span>
-                </a>
+                <span class="info-location"><i class="fa fa-map-marker"></i>{{infoList.loc}} {{infoList.postalCode}} | {{infoList.livingArea}}</span>
                 <p class="info-address">{{infoList.fullStreetAddress}}</p>
                 <p class="info-type">{{infoList.propertySubType}} - {{infoList.numBedrooms}} Bed - {{infoList.numBathrooms}} Bath</p>
             </div>

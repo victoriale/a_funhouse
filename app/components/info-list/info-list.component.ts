@@ -13,8 +13,10 @@ import {ROUTER_DIRECTIVES} from "angular2/router";
 export class InfoListComponent implements OnInit{
     buttonName: string;
     infoList: any;
+    locationURL: string;
 
     ngOnInit(){
+        this.locationURL = this.infoList.city + '_' + this.infoList.stateOrProvince;
         console.log(this);
     }
 }
