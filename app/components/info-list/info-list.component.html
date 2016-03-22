@@ -1,6 +1,6 @@
 <div class="info-list {{infoList.bgClass}}">
     <div class='info-imagebox'>
-        <a href=''>
+        <a [routerLink]="['../../Magazine', {addr: infoList.addressKey}, 'PropertyOverview' ]">
             <img src='{{infoList.photos[0]}}' alt='' />
             <div class="info-rank">#{{infoList.counter}}</div>
         </a>
@@ -8,7 +8,7 @@
     <div class="info-content-box">
         <div class="info-content-row-wrapper">
             <div class="info-content-row1">
-                <a href="">
+                <a [routerLink]="['Location-page', {loc: infoList.city + infoList.stateOrProvince}]">
                     <span class="info-location"><i class="fa fa-map-marker"></i>{{infoList.loc}} {{infoList.postalCode}} | {{infoList.livingArea}}</span>
                 </a>
                 <p class="info-address">{{infoList.fullStreetAddress}}</p>
@@ -24,7 +24,7 @@
             <div class='info-content-subbox'>
                 <p>Want more information about this listing?</p>
             </div>
-            <a href='' class='info-list-button'>
+            <a [routerLink]="['../../Magazine', {addr: infoList.addressKey}, 'PropertyOverview' ]" class='info-list-button'>
                 <span><img class="info-icon" src="./app/public/realestate_icon.png" /></span>
                 <span>{{infoList.buttonName}}</span>
                 <i class='fa fa-angle-right'></i>

@@ -46,10 +46,18 @@ export class ListOfListsPage implements OnInit{
 
     transformData() {
         var self = this;
-
+        var counter = 0;
         // Format data and convert object to array
         for( var i in this.listOfLists ) {
             if (this.listOfLists.hasOwnProperty(i)){
+                // Counter for rank #
+                this.listOfLists[i].counter = counter++;
+                // Check if even or odd for BG color class
+                if(this.listOfLists[i].counter % 2 == 0) {
+                    this.listOfLists[i].bgClass = "even";
+                }else{
+                    this.listOfLists[i].bgClass = "odd";
+                }
                 // Save original for url
                 this.listOfLists[i].listTitleOrig = this.listOfLists[i].listTitle;
                 // Fix list title using global function cameCaseToRegularCase
