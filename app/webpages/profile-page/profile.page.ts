@@ -74,7 +74,6 @@ export class ProfilePage implements OnInit{
 
     ngOnInit(){
         this.address = this._params.get('address');
-        console.log(this.address);
         this.getProfileHeader();
         this.getFeaturedList();
         this.headlineAbout  = {

@@ -61,7 +61,7 @@ import {PartnerHeader} from "../global/global-service";
         component: ListOfListsPage,
     },
     {
-        path: '/amenities-lists-page',
+        path: '/amenities-lists-page/:address',
         name: 'Amenities-lists-page',
         component: AmenitiesListPage,
     },
@@ -139,7 +139,7 @@ export class AppComponent {
 
     getPartnerHeader(){
       this.partnerID = this.partnerID.replace('-','.');
-     
+
       this._partnerData.getPartnerData(this.partnerID)
       .subscribe(
           partnerScript => {
