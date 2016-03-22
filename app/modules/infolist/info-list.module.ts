@@ -28,20 +28,24 @@ export class InfoListModule implements OnInit {
         var counter = 1;
         this.recentListingsData.forEach(function(val) {
             // Format address to Title Case
-            val.full_street_address = self._globalFunctions.toTitleCase(val.full_street_address);
-            // Format price
-            val.list_price = self._globalFunctions.commaSeparateNumber(val.list_price);
-            // Check for no data, if data Grab date from date/timestamp
-            if(val.listing_date === null || val.listing_date == 'undefined') {
-                val.listing_date = "N/A";
+            if(val.fullStreetAddress === null || val.fullStreetAddress == 'undefined') {
+                val.fullStreetAddress = "N/A";
             }else {
-                val.listing_date = val.listing_date.split(' ')[0];
+                val.fullStreetAddress = self._globalFunctions.toTitleCase(val.fullStreetAddress);
+            }
+            // Format price
+            val.listPrice = self._globalFunctions.commaSeparateNumber(val.listPrice);
+            // Check for no data, if data Grab date from date/timestamp
+            if(val.listingDate === null || val.listingDate == 'undefined') {
+                val.listingDate = "N/A";
+            }else {
+                val.listingDate = val.listingDate.split(' ')[0];
                 // Pull out year
-                val.listing_date_y = val.listing_date.split('-')[0];
+                val.listingDateY = val.listingDate.split('-')[0];
                 // Pull out month and day and remove leading zeros
-                val.listing_date_m = val.listing_date.split('-')[1].replace(/\b0+/g, '');
-                val.listing_date_d = val.listing_date.split('-')[2].replace(/\b0+/g, '');
-                val.listing_date = val.listing_date_m + '/' + val.listing_date_d + '/' + val.listing_date_y;
+                val.listingDateM = val.listingDate.split('-')[1].replace(/\b0+/g, '');
+                val.listingDateD = val.listingDate.split('-')[2].replace(/\b0+/g, '');
+                val.listingDate = val.listingDateM + '/' + val.listingDateD + '/' + val.listingDateY;
             }
             // Counter for rank #
             val.counter = counter++;
@@ -56,11 +60,11 @@ export class InfoListModule implements OnInit {
                 val.photos[0] = "app/public/no_photo_images/House_1.png";
             }
             // Check for 0's on # beds and # bath, display N/A's
-            if(val.num_bathrooms == 0 || val.num_bathrooms == 'undefined' || val.num_bathrooms == null) {
-                val.num_bathrooms = "N/A";
+            if(val.numBathrooms == 0 || val.numBathrooms == 'undefined' || val.numBathrooms == null) {
+                val.numBathrooms = "N/A";
             }
-            if(val.num_bedrooms == 0 || val.num_bedrooms == 'undefined' || val.num_bedrooms == null) {
-                val.num_bedrooms = "N/A";
+            if(val.numBedrooms == 0 || val.numBedrooms == 'undefined' || val.numBedrooms == null) {
+                val.numBedrooms = "N/A";
             }
             // Button text
             val.buttonName = "View Your Home";

@@ -1,12 +1,13 @@
 import {Component} from 'angular2/core';
 import {HeaderSearchComponent} from "./header-search/header-search.component";
+import {ROUTER_DIRECTIVES} from "angular2/router";
 declare var jQuery: any;
 
 @Component({
     selector: 'header-component',
     templateUrl: './app/components/header/header.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [HeaderSearchComponent],
+    directives: [HeaderSearchComponent, ROUTER_DIRECTIVES],
     providers: [],
 })
 
@@ -16,31 +17,32 @@ export class HeaderComponent{
     public isMyHouseKit: boolean = false;
     directoryVisible: boolean;
     isScrolling: boolean;
+    pageNum: string = "1";
 
     constructor() {
        this.directoryVisible = false;
     }
 
     directoryList = [
-        "Most expensive 2 bedroom homes",
-        "Most expensive 3 bedroom homes",
-        "Most expensive condos",
-        "Least expensive homes with waterfront",
-        "Largest homes",
-        "Most expensive homes",
-        "Cheapest Homes",
-        "Least expensive homes with a swimming pool",
-        "Least expensive brick houses",
-        "Homes less than 5 years old",
-        "Listings with more than 5 photos",
-        "Listings with virtual tours",
-        "Homes with sprinkler system and deck",
-        "New traditional homes",
-        "Homes with vaulted ceiling and security",
-        "Listings in wealthiest ZIP code in area",
-        "Homes at least 5 years old",
-        "Listings with more than 10 photos",
-        "Listings with long descriptions",
+        { "listName": "Most expensive 2 bedroom homes", "listUrl": "Most-expensive-2-bedroom-homes" },
+        { "listName": "Most expensive 3 bedroom homes", "listUrl": "Most-expensive-3-bedroom-homes" },
+        { "listName": "Most expensive condos", "listUrl": "Most-expensive-condos" },
+        { "listName": "Least expensive homes with waterfront", "listUrl": "Least-expensive-homes-with-waterfront" },
+        { "listName": "Largest homes", "listUrl": "Largest-homes" },
+        { "listName": "Most expensive homes", "listUrl": "Most-expensive-homes" },
+        { "listName": "Cheapest Homes", "listUrl": "Cheapest-Homes" },
+        { "listName": "Least expensive homes with a swimming pool", "listUrl": "Least-expensive-homes-with-a-swimming-pool" },
+        { "listName": "Least expensive brick houses", "listUrl": "Least-expensive-brick-houses" },
+        { "listName": "Homes less than 5 years old", "listUrl": "Homes-less-than-5-years-old" },
+        { "listName": "Listings with more than 5 photos", "listUrl": "Listings-with-more-than-5-photos" },
+        { "listName": "Listings with virtual tours", "listUrl": "Listings-with-virtual-tours" },
+        { "listName": "Homes with sprinkler system and deck", "listUrl": "Homes-with-sprinkler-system-and-deck" },
+        { "listName": "New traditional homes", "listUrl": "New-traditional-homes" },
+        { "listName": "Homes with vaulted ceiling and security", "listUrl": "Homes-with-vaulted-ceiling-and-security" },
+        { "listName": "Listings in wealthiest ZIP code in area", "listUrl": "Listings-in-wealthiest-ZIP-code-in-area" },
+        { "listName": "Homes at least 5 years old", "listUrl": "Homes-at-least-5-years-old" },
+        { "listName": "Listings with more than 10 photos", "listUrl": "Listings-with-more-than-10-photos" },
+        { "listName": "Listings with long descriptions", "listUrl": "Listings-with-long-descriptions" }
     ];
 
     directoryToggle() {

@@ -13,7 +13,7 @@
                 </div>
                 <div class="directory-dropdown-wrapper" [hidden]="!directoryVisible">
                     <ul>
-                        <li *ngFor="#directoryItem of directoryList"><i class="fa fa-angle-right"></i> {{directoryItem}}</li>
+                        <a *ngFor="#directoryList of directoryList" [routerLink]="['Directory-page', { listTitle: directoryList.listUrl, pageNumber: pageNum }]"><li><i class="fa fa-angle-right"></i> {{directoryList.listName}}</li></a>
                     </ul>
                 </div>
             </div>

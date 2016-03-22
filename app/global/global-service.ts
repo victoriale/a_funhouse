@@ -44,6 +44,28 @@ export class PartnerHeader{
 /*@LOCATIONPROFILE*/
 
 /*_@BATCH-1*/
+
+@Injectable()
+export class ListOfListPage {
+
+    constructor(public http: Http) {}
+
+    public apiUrl: string = 'http://api2.joyfulhome.com:280';
+
+    getListOfListPage(state, city){
+        //Nearby Cities call (Returns city, state, distance)
+        return this.http.get(this.apiUrl + '/list/listOfLists/' + state + '/' + city)
+            .map(
+                res => res.json()
+            )
+            .map(
+                data => {
+                    return data.data;
+                }
+            )
+    }
+}
+
 export class ListOfListService {
     getListOfList() {
         var Lol: List[] = [
