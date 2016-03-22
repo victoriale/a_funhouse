@@ -21,14 +21,27 @@ export class MediaImages implements OnInit {
   public trending: boolean;
   leftCircle: boolean;
   rightCircle: boolean;
-  mediaImages: any;//need to create interface
 
+  mediaImages: any;//need to create interface
   smallImage: any;
   smallObjCounter: number = 0;
   largeImage: string;
   virtualTourCount: number = 0;
   totalImageCount: number = 0;
   imageCounter: number = 0;
+
+  //create objects for the dom
+  // city:string;
+  // state:string;
+  // zipCode:string;
+  // address:string;
+  // daysOnMarket:any;
+  // detail1:any;
+  // unit1:string;
+  // detail2:any;
+  // unit2:string;
+  // price:any;
+  // priceName:string;
 
   constructor() {}
 
@@ -100,7 +113,7 @@ export class MediaImages implements OnInit {
 
   //makes sure to show first image and run the modifyMedia function once data has been established
   ngOnChanges(event){
-      if(typeof this.mediaImages != 'undefined'){
+      if(typeof this.mediaImages != 'undefined' || typeof this.featureListing != 'undefined'){
         //if data coming from module to variable mediaImages changes in what way then reset to first image and rerun function
         this.mediaImages = this.modifyMedia(this.mediaImages);
         this.totalImageCount = this.mediaImages.totalImages;

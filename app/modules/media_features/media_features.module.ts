@@ -87,14 +87,16 @@ export class MediaFeatureModule implements OnInit {
     var featureListing = {
       city: originalData.city,
       state: originalData.state,
-      squareFeet: originalData.squareFeet ,
-      daysOnMarket : originalData.daysOnMarket ,
-      listPrice : originalData.listPrice ,
+      daysOnMarket : originalData.daysOnMarket,
+      price : "$"+originalData.listPrice,
+      priceName: 'Sale',
+      detail1: originalData.squareFeet ,
+      unit1: 'Sq Ft',
+      detail2: originalData.lotSize ,
+      unit2: 'Acres',
       zipCode: originalData.zipCode,
-      lotSize: originalData.lotSize,
       address: originalData.address,
-    }
-
+    };
     return {
       imageArray: originalData.listingImages,
       featureData: featureHaves,
@@ -156,7 +158,9 @@ featureProperty(name){
 
   ngOnInit() {
     this.setModuleTitle();
+    console.log(this.trending);
     this.trending = false;
+    console.log(this.trending);
     this.getData();
   }
 
