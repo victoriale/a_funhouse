@@ -9,7 +9,7 @@ import {RouteParams, Router, RouteData, RouteConfig, RouterOutlet, ROUTER_DIRECT
     templateUrl: './app/app-layout/app.layout.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [MagazinePage, AppComponent,RouterOutlet, ROUTER_DIRECTIVES],
-    providers: [ROUTER_DIRECTIVES],
+    providers: [],
 })
 
 @RouteConfig([
