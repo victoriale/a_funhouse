@@ -81,7 +81,7 @@ export class MagazinePage {
         if( magazineData.recommendations != null ){
             toc.push( { label: "Recommendations", routeName: "Recommendations" } );
         }
-        if( magazineData.schools != null ){
+        if( magazineData.info != null ){
             toc.push( { label: "Key Information", routeName: "KeyInformation" } );
         }
         if( magazineData.amenities != null ){

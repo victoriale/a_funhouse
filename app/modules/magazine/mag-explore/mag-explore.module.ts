@@ -2,13 +2,13 @@ import {Component, Input, Injector} from 'angular2/core';
 import {MagazinePage} from "../../../app-webpage/magazine.webpage";
 import {MagazineDataService} from "../../../global/global-mag-service";
 import {MagRecommendations} from "../../../global/global-interface";
-import {ListOfListModule} from "../../listoflist/listoflist.module";
+import {contentList} from "../../../components/contentlist/contentlist";
 
 @Component({
     selector: 'magazine-contact-module',
     templateUrl: './app/modules/magazine/mag-explore/mag-explore.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [ListOfListModule],
+    directives: [contentList],
     inputs: ['magContact'],
 })
 
