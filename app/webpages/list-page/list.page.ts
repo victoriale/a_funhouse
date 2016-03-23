@@ -1,13 +1,14 @@
 /**
  * Created by Victoria on 3/8/2016.
  */
-import {Component} from 'angular2/core';
+import {Component, OnChanges} from 'angular2/core';
 import {RouteParams, ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
 
 import {ListViewCarousel} from '../../components/carousel/list-view/list-view.component';
 import {DropdownComponent} from '../../components/buttons/sort-by/sort-by.component';
 import {ListMenuComponent} from '../../components/list-menu/list-menu.component';
 import {DetailedListComponent} from '../../components/detailed-list/detailed-list.component';
+import {PhotoListComponent} from '../../components/photo-list/photo-list.component';
 import {WidgetModule} from "../../modules/widget/widget.module";
 import {GlobalFunctions} from "../../global/global-functions";
 import {TitleComponent} from '../../components/title/title.component';
@@ -18,7 +19,7 @@ import {listViewPage} from '../../global/global-service';
     selector: 'List-page',
     templateUrl: './app/webpages/list-page/list.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [ROUTER_DIRECTIVES, DetailedListComponent, ListViewCarousel, DropdownComponent, ListMenuComponent, WidgetModule],
+    directives: [PhotoListComponent, ROUTER_DIRECTIVES, DetailedListComponent, ListViewCarousel, DropdownComponent, ListMenuComponent, WidgetModule],
     providers: [listViewPage],
 })
 
@@ -27,10 +28,22 @@ export class ListPage {
   listData:any = [];
   headerData: any;
   data: any;
+  view: string = 'list'; // set to default list view
 
   constructor(private _params: RouteParams, private globalFunctions: GlobalFunctions, private listViewData: listViewPage) {
     // Scroll page to top to fix routerLink bug
     window.scrollTo(0, 0);
+  }
+
+  viewType(menu){
+    this.view = menu;
+  }
+
+  // On Change Call
+  ngOnChanges(event) {
+    if(typeof this.carouselData == 'undefined' || typeof this.listData == 'undefined'){
+
+    }
   }
 
   getListView() {// GET DATA FROM GLOBAL SERVICE
@@ -57,7 +70,6 @@ export class ListPage {
 
     //grab data for the list
     var originalData = data.data;
-    console.log('Transforming data', originalData);
     var listData = [];
     var carouselData = [];
     var globeFunc = this.globalFunctions;
@@ -67,19 +79,18 @@ export class ListPage {
           img : val.photos[0],
           list_sub : val.propertyType + ": " + val.numBedrooms + " Beds & " + val.numBathrooms + " Baths",
           title : val.addressKey.replace(/-/g, ' '),
-          numBed : val.numBedrooms,
-          numBath: val.numBathrooms,
+          numBed : val.numBedrooms + " Beds ",
+          numBath: val.numBathrooms + " Baths ",
           date: val.modificationTimestamp,
           value: "$"+ val.listPrice,
           tag: val.livingArea + ' sqft',
           buttonName: 'View Profile',
           icon: 'fa fa-map-marker',
           location: val.loc + ' - ' + val.postalCode,
-          market:'Build in ' + val.yearBuilt,
+          market:'Built in ' + val.yearBuilt,
           rank: (i+1),
           desc: val.listingDescription,
       };
-      console.log({addr:val.addressKey});
       newData['url1'] = "../../Magazine";
       newData['url2'] = {addr:val.addressKey};
       newData['url3'] = "PropertyOverview";

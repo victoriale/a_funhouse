@@ -66,7 +66,6 @@ export class listViewPage {
 
     //list/homesAtLeast5YearsOld/KS/Wichita/empty/10/1
     for (var q in query) {
-      console.log(q, query[q]);
       if (query[q] == null || query[q] == 'empty') {
         query[q] = '/empty';
       } else {
@@ -78,9 +77,6 @@ export class listViewPage {
       fullUrl += query[q];
     }
 
-    console.log('Grabbing List Data', listname, state, city, limit, page);
-
-    console.log(fullUrl);
     return this.http.get(fullUrl, {
     })
       .map(

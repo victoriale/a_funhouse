@@ -1,0 +1,12 @@
+<div *ngFor="#data of listData" class="lv-image" >
+  <img src='{{data.img}}' class="lv-image-placeHolder" />
+  <div class="lv-image-details">
+    <div>{{data.value}}</div>
+    <div>{{data.title}}</div>
+    <div>
+      <span>{{data.numBed}}</span> |
+      <span>{{data.numBath}}</span> |
+      <span>{{data.tag}}</span>
+    </div>
+  </div>
+</div>
