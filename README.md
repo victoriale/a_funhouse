@@ -18,7 +18,7 @@ install each one individually
       
       e.`browser-sync`
 
-      f.'highcharts'
+      f.`highcharts`
 
 2. `npm i`
 
