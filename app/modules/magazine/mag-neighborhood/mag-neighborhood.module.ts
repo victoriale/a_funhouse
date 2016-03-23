@@ -26,7 +26,7 @@ export class MagNeighborhoodModule implements OnInit {
             .subscribe(
                 magData => {
                     this.magNeighborhood = magData.neighborhood;
-                    console.log("magData:", magData);
+                    //console.log("magData:", magData);
                 },
                 err => console.log("error in getData", err)
             )
