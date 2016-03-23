@@ -1,11 +1,11 @@
 import {Component, Input, Output, OnInit, OnChanges, EventEmitter} from 'angular2/core';
-import {InfinityButton} from '../buttons/infinity/infinity.button';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({
     selector: 'pagination-footer',
     templateUrl: './app/components/pagination-footer/pagination-footer.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives:[InfinityButton],
+    directives:[ROUTER_DIRECTIVES],
     providers: [],
     outputs: ['newIndex']
 })
@@ -36,7 +36,7 @@ import {InfinityButton} from '../buttons/infinity/infinity.button';
 
  */
 
-export class PaginationFooter implements OnInit{
+export class PaginationFooter implements OnChanges{
     @Input() paginationParameters: {
         index: number,
         max: number,
@@ -50,16 +50,22 @@ export class PaginationFooter implements OnInit{
     //Booleans to determine if max/min skip buttons should be shown
     public showMinSkip: boolean = false;
     public showMaxSkip: boolean = false;
+    //Button (anchor tag) parameters for min, max, previous angle, and next angle buttons
+    public minButtonParameters: Object;
+    public maxButtonParameters: Object;
+    public previousButtonParameters: Object;
+    public nextButtonParameters: Object;
     //Number to determine +- range of buttons. (ex. buttonRange of 2 with an index of 6 yields buttons, 4 5 6 7 8)
     public buttonRange: number = 2;
-    //Array of what indexes are displayed
-    public paginationButtons: Array<Number>;
+    //Array of what indexes are displayed. paginationButtonsModule is used for paginationType module. paginationButtonsPage is used for paginationType page
+    public paginationButtonsModule: Array<Number>;
+    public paginationButtonsPage: Array<{
+        index: number,
+        page: string;
+        params: Object;
+    }>;
     //Output event emitter
     public newIndex: EventEmitter<number> = new EventEmitter();
-
-    ngOnInit(){
-
-    }
 
     //Verifies component input. If any issues are detected console warning is thrown
     verifyInput(){
@@ -103,40 +109,147 @@ export class PaginationFooter implements OnInit{
         }
     }
 
-    //Build button structure that is used
-    buildButtons(){
+    //Build button structure for pagination Type module
+    buildModuleButtons(){
         var index = this.paginationParameters.index;
         var max = this.paginationParameters.max;
         var range = this.buttonRange;
 
-        this.paginationButtons = [];
+        this.paginationButtonsModule = [];
 
         //Determine values before index that can be added to button array
         for(var p = range; p > 0; p--){
             if(index - p >= 1){
-                this.paginationButtons.push(index - p);
+                this.paginationButtonsModule.push(index - p);
             }
         }
+
         //Push index value to array
-        this.paginationButtons.push(index);
+        this.paginationButtonsModule.push(index);
+
         //Determine values after index that can be added to button array
         for(var n = 1; n <= range; n++){
             if(index + n <= max){
-                this.paginationButtons.push(index + n);
+                this.paginationButtonsModule.push(index + n);
             }
         }
+
         //Determine if absolute first button should be shown
-        if(this.paginationButtons[0] !== 1){
+        if(this.paginationButtonsModule[0] !== 1){
             this.showMinSkip = true;
         }else{
             this.showMinSkip = false;
         }
+
         //Determine if absolute last button should be shown
-        if((this.paginationButtons[this.paginationButtons.length - 1]) !== max){
+        if((this.paginationButtonsModule[this.paginationButtonsModule.length - 1]) !== max){
             this.showMaxSkip = true;
         }else{
             this.showMaxSkip = false;
         }
+    }
+
+    //Build button(anchor tag) structure for pagination Type page
+    buildPageButtons(){
+        var index = this.paginationParameters.index;
+        var max = this.paginationParameters.max;
+        var range = this.buttonRange;
+
+        this.paginationButtonsPage = [];
+
+        var navigationPage = this.paginationParameters.navigationPage;
+        var indexKey = this.paginationParameters.indexKey;
+
+        //Determine values before index that can be added to button array
+        for(var p = range; p > 0; p--){
+            if(index - p >= 1){
+                //Build routerLink params for index values
+                var params = this.copyDynamicParams();
+                params[indexKey] = index - p;
+                //Push button parameters to array
+                this.paginationButtonsPage.push({
+                    index: (index - p),
+                    page: navigationPage,
+                    params: params
+                });
+            }
+        }
+
+        //Build routerLink params for inputted index value
+        var params = this.copyDynamicParams();
+        params[indexKey] = (index);
+        //Push button parameters to array
+        this.paginationButtonsPage.push({
+            index: index,
+            page: navigationPage,
+            params: params
+        });
+
+        //Determine values after index that can be added to button array
+        for(var n = 1; n <= range; n++){
+            if(index + n <= max){
+                //Build routerLink params for index values
+                var params = this.copyDynamicParams();
+                params[indexKey] = index + n;
+                //Push button parameters to array
+                this.paginationButtonsPage.push({
+                    index: (index + n),
+                    page: navigationPage,
+                    params: params
+                });
+            }
+        }
+
+        //Determine if absolute first button should be shown
+        if(this.paginationButtonsPage[0].index !== 1){
+            //Build min button parameters
+            var params = this.copyDynamicParams();
+            params[indexKey] = 1;
+            this.minButtonParameters = params;
+            this.showMinSkip = true;
+        }else{
+            this.showMinSkip = false;
+        }
+
+        //Determine if absolute last button should be shown
+        if((this.paginationButtonsPage[this.paginationButtonsPage.length - 1].index) !== max){
+            //Build max button parameters
+            var params = this.copyDynamicParams();
+            params[indexKey] = max;
+            this.maxButtonParameters = params;
+            this.showMaxSkip = true;
+        }else{
+            this.showMaxSkip = false;
+        }
+
+        //Build parameters of previous angle button
+        var params = this.copyDynamicParams();
+        if(index - 1 >= 1){
+            params[indexKey] = index - 1;
+        }else{
+            params[indexKey] = 1;
+        }
+        this.previousButtonParameters = params;
+
+        //Build parameters of next angle button
+        var params = this.copyDynamicParams();
+        if(index + 1 <= max){
+            params[indexKey] = index + 1;
+        }else{
+            params[indexKey] = max;
+        }
+        this.nextButtonParameters = params;
+
+    }
+
+    //Copy object of input navigationParameters
+    copyDynamicParams(){
+        var params = {};
+        var navigationParameters = this.paginationParameters.navigationParams;
+        for(var key in navigationParameters){
+            params[key] = navigationParameters[key];
+        }
+        return params;
     }
 
     //Function to navigate number buttons for paginationType module
@@ -146,7 +259,7 @@ export class PaginationFooter implements OnInit{
         this.newIndex.next(newIndex);
 
         this.paginationParameters.index = newIndex;
-        this.buildButtons();
+        this.buildModuleButtons();
     }
 
     //Function to navigate angle left button for paginationType module
@@ -161,7 +274,7 @@ export class PaginationFooter implements OnInit{
         this.newIndex.next(newIndex);
 
         this.paginationParameters.index = newIndex;
-        this.buildButtons();
+        this.buildModuleButtons();
     }
 
     //Function to navigate angle right button for paginationType module
@@ -176,11 +289,17 @@ export class PaginationFooter implements OnInit{
         this.newIndex.next(newIndex);
 
         this.paginationParameters.index = newIndex;
-        this.buildButtons();
+        this.buildModuleButtons();
     }
 
     ngOnChanges(event){
         this.verifyInput();
-        this.buildButtons();
+
+        //Call button build function based on pagination Type
+        if(this.paginationParameters.paginationType === 'module') {
+            this.buildModuleButtons();
+        }else if(this.paginationParameters.paginationType === 'page'){
+            this.buildPageButtons();
+        }
     }
 }
