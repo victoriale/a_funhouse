@@ -106,8 +106,8 @@ export class ListPage {
       }
       carData['button_url'] = '#';
 
-      carouselData.push(carData);
-      listData.push(newData);
+      // carouselData.push(carData);
+      // listData.push(newData);
     })//END of forEach
 
     //set to listData
