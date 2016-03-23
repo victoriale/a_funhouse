@@ -34,7 +34,6 @@ export class LocationProfileService{
             )
             .map(
                 data => {
-                    //console.log('Lutz - featured list output', data);
                     return data.data;
                 }
             )
@@ -55,10 +54,29 @@ export class LocationProfileService{
             )
             .map(
                 data => {
-                    //console.log('Lutz - profile header output', data);
                     return data.data;
                 }
             )
+    }
+
+    getCrime(city, state){
+        //Configure HTTP Headers
+        var headers = this.setToken();
+
+        city = encodeURI(city);
+        state = encodeURI(state);
+
+        return this.http.get(this.apiUrl + '/location/crimeInLocation/' + state + '/' + city, {
+            headers: headers
+        })
+        .map(
+            res => res.json()
+        )
+        .map(
+            data => {
+                return data.data;
+            }
+        )
     }
 
     getRecentListings(city, state) {
@@ -103,5 +121,46 @@ export class LocationProfileService{
                 }
             )
     }
+
+      getSchoolData(city, state){
+          //Configure HTTP Headers
+          var headers = this.setToken();
+
+          city = encodeURI(city);
+          state = encodeURI(state);
+
+          return this.http.get(this.apiUrl + '/location/schoolsInLocation/' + state + '/' + city, {
+                  headers: headers
+              })
+              .map(
+                  res => res.json()
+              )
+              .map(
+                  data => {
+                      //console.log('Lutz - profile header output', data);
+                      return data.data;
+                  }
+              )
+      }
+      getAmenitiesData(city, state){
+          //Configure HTTP Headers
+          var headers = this.setToken();
+
+          city = encodeURI(city);
+          state = encodeURI(state);
+
+          return this.http.get(this.apiUrl + '/location/amenitiesInLocation/' + state + '/' + city, {
+                  headers: headers
+              })
+              .map(
+                  res => res.json()
+              )
+              .map(
+                  data => {
+                      //console.log('Lutz - profile header output', data);
+                      return data.data;
+                  }
+              )
+      }
 
 }

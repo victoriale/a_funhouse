@@ -4,7 +4,7 @@
             <main>
                 <section class='content-main eight-col'>
                     <!-- Modules Go Here -->
-
+                    <!--<map-module></map-module>-->
                     <!-- About Section -->
                     <headline-component [data]="headlineAbout"></headline-component>
 
@@ -21,11 +21,11 @@
 
                     <!-- Crime Section -->
                     <headline-component [data]="headlineCrime"></headline-component>
-                    <crime-module></crime-module>
+                    <crime-module *ngIf="crimeData" [crimeData]="crimeData"></crime-module>
 
                     <!-- Amenities Section -->
                     <headline-component [data]="headlineAmenities"></headline-component>
-                    <amenities-module></amenities-module>
+                    <amenities-module *ngIf="amenitiesData" [amenitiesData]="amenitiesData"></amenities-module>
                     <!-- Other Homes Section -->
                     <headline-component [data]="headlineOtherHomes"></headline-component>
 
@@ -33,7 +33,7 @@
                     <trending-homes [trending]="trendingFeature"></trending-homes>
 
                     <!--List of List Section-->
-                    <!--<list-of-lists-module></list-of-lists-module>-->
+                    <!-- <list-of-lists-module></list-of-lists-module> -->
 
                     <!-- Interact Section -->
                     <headline-component [data]="headlineInteract"></headline-component>

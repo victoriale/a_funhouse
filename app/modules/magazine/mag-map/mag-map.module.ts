@@ -1,6 +1,5 @@
 import {Component, provide, OnInit,ViewEncapsulation, ViewChild, ElementRef, Injector} from 'angular2/core';
 import {bootstrap} from 'angular2/platform/browser';
-import {MagazineMap} from "../../../global/global-mag-service";
 import {MapMarkerComponent} from "../../../components/mapMarker/mapMarker.component";
 import {MagazinePage} from "../../../app-webpage/magazine.webpage";
 import {MagazineDataService} from "../../../global/global-mag-service";
@@ -15,7 +14,6 @@ declare var jQuery:any;
     templateUrl: './app/modules/magazine/mag-map/mag-map.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [MapMarkerComponent],
-    providers: [MagazineMap],
 })
 
 
@@ -36,16 +34,21 @@ export class MagMapModule implements OnInit {
             .subscribe(
                 magData => {
                     this.data = magData.neighborhood.neighbors;
-                    var myLatlng = new google.maps.LatLng(parseFloat(this.data[0].address.lat), parseFloat(this.data[0].address.lng));
-                    var mapOptions = {
-                        zoom: 12,
-                        center: myLatlng
-                    };
-                    $('.mag_n1_img').css("background-image", 'url(' + this.data[0].photos[0] + ')');
-                    this.imgAddress = this.data[0].address.fullStreetAddress;
-                    this.imgURL = 'magazine/' + this.data[0].key + '/overview';
+                    for (var i = 0; i < magData.neighborhood.neighbors.length; i++) {
+                        if (magData.neighborhood.neighbors[i].address.lng != null && magData.neighborhood.neighbors[i].address.lat != null) {
+                            var myLatlng = new google.maps.LatLng(parseFloat(this.data[i].address.lat), parseFloat(this.data[i].address.lng));
+                            jQuery('.mag_n1_img').css("background-image", 'url(' + this.data[i].photos[0] + ')');
+                            this.imgAddress = this.data[i].address.fullStreetAddress;
+                            this.imgURL = 'magazine/' + this.data[i].key + '/overview';
+                            var mapOptions = {
+                                zoom: 12,
+                                center: myLatlng
+                            };
+                            break;
+                        }
+                    }
                     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-                    for (var i = 0; i < this.data.length; i++) {
+                    for (var i = 0; i < magData.neighborhood.neighbors.length; i++) {
                         var home = new google.maps.LatLng(parseFloat(this.data[i].address.lat), parseFloat(this.data[i].address.lng));
                         if (+this.data[i].price >= 1000000) {
                             var priceString = "$" + (Math.round(+this.data[i].price / 100000) / 10) + "M";
@@ -71,14 +74,12 @@ export class MagMapModule implements OnInit {
                             infoWindow.next().addClass('hide');
                             infoWindow.parent().addClass('zSize');
                             jQuery('.googleMap_item').click(function () {
-                                var clicked = event.target;
                                 var index = this.id;
                                 jQuery('.mag_n1_img').css("background-image", 'url(' + magData.neighborhood.neighbors[index].photos[0] + ')');
                                 jQuery('.mag_n1_img_text').html(magData.neighborhood.neighbors[index].address.fullStreetAddress);
-                                $('.mag_n1_img_view').attr("href", 'magazine/' + magData.neighborhood.neighbors[index].key + '/overview');
-                                //e.preventDefault();
-                                $('.googleMap_item').removeClass('focus');
-                                $(this).addClass('focus');
+                                jQuery('.mag_n1_img_view').attr("href", 'magazine/' + magData.neighborhood.neighbors[index].key + '/overview');
+                                jQuery('.googleMap_item').removeClass('focus');
+                                jQuery(this).addClass('focus');
                             });
                         });
                     }
