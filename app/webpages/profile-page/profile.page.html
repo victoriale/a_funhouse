@@ -4,7 +4,7 @@
             <main>
                 <section class='content-main eight-col'>
                     <!-- Modules Go Here -->
-
+                    <!--<map-module></map-module>-->
                     <!-- About Section -->
                     <headline-component [data]="headlineAbout"></headline-component>
 
@@ -21,7 +21,7 @@
 
                     <!-- Crime Section -->
                     <headline-component [data]="headlineCrime"></headline-component>
-                    <crime-module></crime-module>
+                    <crime-module *ngIf="crimeData" [crimeData]="crimeData"></crime-module>
 
                     <!-- Amenities Section -->
                     <headline-component [data]="headlineAmenities"></headline-component>

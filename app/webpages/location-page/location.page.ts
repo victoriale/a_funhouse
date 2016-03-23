@@ -14,12 +14,13 @@ import {SchoolModule} from "../../modules/school/school.module";
 import {LocationProfileService} from '../../global/location-profile.service';
 import {WidgetModule} from "../../modules/widget/widget.module";
 import {FindYourHomeModule} from "../../modules/find-your-home/find-your-home.module";
+import {MapModule} from '../../modules/map/map.module';
 
 @Component({
     selector: 'location-page',
     templateUrl: './app/webpages/location-page/location.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, FindYourHomeModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule, WidgetModule],
+    directives: [HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, FindYourHomeModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule, WidgetModule, MapModule],
     providers: [LocationProfileService],
 })
 
@@ -35,6 +36,7 @@ export class LocationPage implements OnInit {
     public headlineInteract: any;
     public profileHeaderData: Object;
     public featuredListData: Object;
+    public crimeData: Object;
     public recentListingsData: Object;
 
     constructor(private _params: RouteParams, private _locationProfileService: LocationProfileService) {
@@ -60,6 +62,17 @@ export class LocationPage implements OnInit {
                 },
                 err => console.log('Error - Location Profile: ', err)
             );
+    }
+
+    getCrime(){
+        this._locationProfileService.getCrime(this.locCity, this.locState)
+            .subscribe(
+                data => {
+                    console.log('Lutz - crime data location page', data);
+                    this.crimeData = data;
+                },
+                err => console.log('Error - Crime: ', err)
+            )
     }
 
     getRecentListings() {
@@ -101,6 +114,7 @@ export class LocationPage implements OnInit {
 
         this.getProfileHeader();
         this.getFeaturedList();
+        this.getCrime();
         this.getRecentListings();
 
         console.log(this);
