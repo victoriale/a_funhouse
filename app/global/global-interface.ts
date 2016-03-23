@@ -99,6 +99,26 @@ export interface MagAmenity {
 }
 
 /*ABOVE IS MAGAZINE INTERFACE*/
+export interface AmenitiesNearListingInterface {
+  name: string;
+  url: string;
+  categories: string[];
+  location: Object;
+  display_address: string[];
+  display_phone: string;
+}
+
+export interface SchoolDataInterface {
+  schoolName: string;
+  locationAddress: string;
+  locationCity: string;
+  locationState: string;
+  locationZipcode: string;
+  type: string;
+  firstGradeEnrollment: string;
+  sixthGradeEnrollment: string;
+  ninthGradeEnrollment: string;
+}
 
 export interface AboutUsPageInterface {
   counties: string;
@@ -106,8 +126,18 @@ export interface AboutUsPageInterface {
   brokers: string;
   cities: string;
 }
+
 export interface PropertyListingInterface {
     listingID: string;
+    listPrice: string;
+    squareFeet: string;
+    lotSize: string;
+    listingDate: string;
+    daysOnMarket: string;
+    address: string;
+    zipCode: string;
+    city: string;
+    state: string;
     imageCount: string;
     numBathrooms: string;
     numBedrooms: string;
@@ -138,10 +168,12 @@ export interface HomePageData {
 
 export interface List2 {
     bigImage: string;
+    city: string;
     list_name: string;
     list_addr: string;
     list_day: string;
     detail1: string;
+    lotSize: string;
     unit1: string;
     detail2: string;
     unit2: string;

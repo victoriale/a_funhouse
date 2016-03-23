@@ -35,13 +35,13 @@ export class AboutUsPage implements OnInit{
     subText4 = "Counties in United States";
     subText_nat = "Listings Nationwide";
 
-    mainText1 = "[#,###,###]+"; // this is for listing for sale
-    mainText2 = "[#,###,###]"; // number of cities in the U.S.
-    mainText3 = "[#,###,###]"; // Real Easte Angents
-    mainText4 = "[#,###,###]"; // United States' counties
-    mainText_nat = "[#,###,###]+"; // listings nationwide
+    mainText1 = "1,515,674"; // this is for listing for sale
+    mainText2 = "32,326"; // number of cities in the U.S.
+    mainText3 = "39,612"; // Real Easte Angents
+    mainText4 = "3,143"; // United States' counties
+    mainText_nat = "1,515,674+"; // listings nationwide
 
-    title_data: {};
+    titleData: {};
 
     constructor(private _router: Router, private _aboutUs: GlobalPage, private globalFunctions: GlobalFunctions) {
         // Scroll page to top to fix routerLink bug
@@ -54,10 +54,10 @@ export class AboutUsPage implements OnInit{
            this.mainText2 = this.globalFunctions.commaSeparateNumber(data.cities);
            this.mainText3 = this.globalFunctions.commaSeparateNumber(data.brokers);
            this.mainText4 = this.globalFunctions.commaSeparateNumber(data.counties);
-           this.mainText_nat = this.globalFunctions.commaSeparateNumber(data.listings);
+           this.mainText_nat = this.globalFunctions.commaSeparateNumber(data.listings) + " +";
       })
       //About us title
-      this.title_data = {
+      this.titleData = {
           imageURL : './app/public/joyfulhome_house.png',
           smallText1 : 'Last Updated: Monday, February 26, 2016',
           smallText2 : ' United States of America',

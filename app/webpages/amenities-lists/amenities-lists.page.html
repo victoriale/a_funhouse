@@ -4,14 +4,26 @@
       <main>
         <section class='content-main eight-col'>
           <section class="page-container">
-            <list-menu-component></list-menu-component>
-            <div class="al-map"><mapmarker-componen></mapmarker-componen></div>
-            <div class="al-sortby">
-              <dropdown-component></dropdown-component>
-              <div>Data and images for amenities are provided by </div>
-              <img src="{{provider_logo}}" />
+            <module-header [module_title]="moduleTitle"></module-header>
+
+            <div *ngFor="#item of amenitiesData; #i=index" class="al {{bgClass}}">
+              <div class='al-image'>
+                <a href=''>
+                  <img src='{{item.imageURL}}' alt='' />
+                  <div class="al-image-rank">#{{i}}</div>
+                </a>
+              </div>
+              <div>
+                  <div class='al-loc'>
+                    <span><i class='fa fa-map-marker'></i></span><span> {{item.displayAdress1}}</span>
+                    <span><i class='fa fa-angle-right'></i></span><span> {{item.displayAddress2}}</span>
+                  </div>
+
+                  <div class='al-name'>{{item.name}}</div>
+                  <div class='al-desc'><b>What people are saying: </b>{{item.snippetText}}</div>
+              </div>
             </div>
-            <!-- <info-list [info-list]="amenitiesData"></info-list> -->
+
           </section>
         </section>
         <div class="four-col">
