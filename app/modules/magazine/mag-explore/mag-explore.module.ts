@@ -3,19 +3,20 @@ import {MagazinePage} from "../../../app-webpage/magazine.webpage";
 import {MagazineDataService} from "../../../global/global-mag-service";
 import {MagRecommendations} from "../../../global/global-interface";
 import {contentList} from "../../../components/contentlist/contentlist";
+import {ROUTER_DIRECTIVES} from "angular2/router";
 
 @Component({
     selector: 'magazine-contact-module',
     templateUrl: './app/modules/magazine/mag-explore/mag-explore.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [contentList],
+    directives: [contentList, ROUTER_DIRECTIVES],
+    providers: [ROUTER_DIRECTIVES],
     inputs: ['magContact'],
 })
 
 export class MagExploreModule {
     address:string;
     magExplore:MagRecommendations;
-    isNull:boolean;
 
     constructor(private _injector:Injector, private _magazineDataService:MagazineDataService) {
         // Scroll page to top to fix routerLink bug
@@ -28,11 +29,6 @@ export class MagExploreModule {
             .subscribe(
                 magData => {
                     this.magExplore = magData.recommendations;
-                    if (this.magExplore == null) {
-                        this.isNull = true;
-                    } else {
-                        this.isNull = false;
-                    }
                 },
                 err => console.log("error in getData", err)
             )
