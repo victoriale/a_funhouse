@@ -40,6 +40,7 @@ export class ProfilePage implements OnInit{
     public profileHeaderData: Object;
     public propertyListingData: Object;
     public featuredListData: Object;
+    public amenitiesData: Object;
 
     //  Get current route name
     constructor(public _params: RouteParams, private _listingProfileService: ListingProfileService, params: RouteParams){
@@ -68,6 +69,15 @@ export class ProfilePage implements OnInit{
             )
     }
 
+    getAmenitiesData(){
+        this._listingProfileService.getAmenitiesNearListing(this.paramAddress)
+          .subscribe(
+              data => {
+                this.amenitiesData = data;
+              },
+              err => console.log('School Location Data Acquired!', err)
+            )
+    }
     getPropertyListing(){
       this.propertyListingData = this._listingProfileService.getPropertyListing(this.paramAddress);
     }
@@ -84,6 +94,8 @@ export class ProfilePage implements OnInit{
         this.getAddress();
         this.getProfileHeader();
         this.getFeaturedList();
+        this.getAmenitiesData();
+
         this.headlineAbout  = {
             title: 'About ' + this.address,
             icon: 'fa-map-marker'

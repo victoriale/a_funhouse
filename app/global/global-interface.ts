@@ -108,6 +108,18 @@ export interface AmenitiesNearListingInterface {
   display_phone: string;
 }
 
+export interface SchoolDataInterface {
+  schoolName: string;
+  locationAddress: string;
+  locationCity: string;
+  locationState: string;
+  locationZipcode: string;
+  type: string;
+  firstGradeEnrollment: string;
+  sixthGradeEnrollment: string;
+  ninthGradeEnrollment: string;
+}
+
 export interface AboutUsPageInterface {
   counties: string;
   listings: string;

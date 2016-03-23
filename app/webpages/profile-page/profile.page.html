@@ -25,7 +25,7 @@
 
                     <!-- Amenities Section -->
                     <headline-component [data]="headlineAmenities"></headline-component>
-                    <amenities-module></amenities-module>
+                    <amenities-module *ngIf="amenitiesData" [amenitiesData]="amenitiesData"></amenities-module>
                     <!-- Other Homes Section -->
                     <headline-component [data]="headlineOtherHomes"></headline-component>
 

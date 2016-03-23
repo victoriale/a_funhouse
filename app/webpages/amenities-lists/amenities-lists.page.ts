@@ -25,10 +25,11 @@ export class AmenitiesListPage implements OnInit{
   amenitiesListingsData: any;
   name: string;
   counter: number;
-  display_address1: string;
-  display_address2: string;
-  snippet_text: string;
+  displayAddress1: string;
+  displayAddress2: string;
+  snippetText: string;
   imageURL: string;
+  private amenitiesData: any;
 
   @Input() amenitiesNearListingData: AmenitiesNearListingInterface;
 
@@ -37,20 +38,21 @@ export class AmenitiesListPage implements OnInit{
   }
 
   getData(){
-    this._listingService.getAmenitiesNearListing(this._params.get('address'))
-        .subscribe(data => {
-          var dataLists = data['restaurant']['businesses'];
-          this.name = dataLists[0]['name'];
-          this.counter = dataLists.length;
-          var address = dataLists[0]['location']['display_address'];
-          this.display_address1 = address[0];
-          this.display_address2 = address[1];
-          this.snippet_text = dataLists[0].snippet_text;
-          this.imageURL = dataLists[0].image_url;
-      },
-        err => console.log(err),
-        () => console.log('Recent Listings Data Acquired!')
-      );
+      this._listingService.getAmenitiesNearListing(this._params.get('address'))
+          .subscribe(
+              amenitiesData => {this.amenitiesData = this.dataFormatter(amenitiesData)}
+          );
+  }
+  dataFormatter(data){
+    var dataLists = data['restaurant']['businesses'];
+    console.log('data', dataLists);
+    this.name = dataLists[0]['name'];
+    // this.counter = dataLists.length;
+    var address = dataLists[0]['location']['display_address'];
+    this.displayAddress1 = address[0];
+    this.displayAddress2 = address[1];
+    this.snippetText = dataLists[0].snippet_text;
+    this.imageURL = dataLists[0].image_url;
   }
 
   //Build Module Title
@@ -67,7 +69,7 @@ export class AmenitiesListPage implements OnInit{
     this.setModuleTitle();
     this.getData();
   }
-  
+
   // On Change Call
   ngOnChanges(event) {
     //Get changed input
