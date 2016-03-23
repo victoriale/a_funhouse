@@ -57,7 +57,7 @@ export class FeaturedListsModule implements OnInit{
         }
 
         var max = this.featuredListData.listData.length - 1;
-
+        console.log(this.featuredListData.listData);
         if(this.index > 0){
             this.index -= 1;
             this.transformData();
@@ -109,14 +109,11 @@ export class FeaturedListsModule implements OnInit{
 
     transformData(){
         var data = this.featuredListData;
-
         // Exit function if no list data is found
         if(data.listData.length === 0){
             return false;
         }
-
         var listData = data.listData[this.index];
-
         //Build heading 2 description
         //Disabled until component can handle empty values for descriptions
         //if((listData.numBedrooms === null || listData.numBedrooms === '0') && (listData.numBathrooms === null || listData.numBedrooms === '0')){

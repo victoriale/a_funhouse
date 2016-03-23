@@ -20,13 +20,17 @@ import {AmenitiesComponent} from '../../components/amenities/amenities.component
 export class SchoolModule implements OnInit{
     public hasFooterButton: boolean;
     public listData: Object;
+    public listView: Object;
     public tileData: Object;
     public index: number = 0;
     public moduleTitle: string;
+    public profileType: string;
 
     @Input() schoolData: any;
 
-    constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions){}
+    constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions){
+      this.profileType = this.router.hostComponent.name;
+    }
 
     left(){
         console.log('left - module', this.index);
@@ -34,7 +38,7 @@ export class SchoolModule implements OnInit{
             return false;
         }
 
-        var max = this.schoolData.listData.length - 1;
+        var max = this.schoolData.elementary.length - 1;
 
         if(this.index > 0){
             this.index -= 1;
@@ -50,7 +54,7 @@ export class SchoolModule implements OnInit{
             return false;
         }
 
-        var max = this.schoolData.listData.length - 1;
+        var max = this.schoolData.elementary.length - 1;
 
         if(this.index < max){
             this.index += 1;
@@ -64,15 +68,61 @@ export class SchoolModule implements OnInit{
     dataFormatter(){
       var data = this.schoolData;
       console.log(data);
-
-    }
+      if(data.elementary.length === 0){
+          return false;
+      }
+      var schoolData = data['meta'];
+      var elementaryData = data.elementary[this.index];
+      var schoolName =  this.globalFunctions.toTitleCase(elementaryData.school_name);
+      this.listData = {
+        header: "What's the Highest Rated School in this area?",
+        name: schoolData.city + ', ' + schoolData.state,
+        establishment:  schoolName,
+        address: elementaryData.type,
+        imageUrl: schoolData.locationImage,
+        listView: [
+          {
+            icons: 'fa-pencil',
+            category: "Elementary Schools",
+            count: schoolData.elementaryCount + " near this listing",
+            viewUrl: '',
+            viewMore: "See All"
+          },
+          {
+            icons: 'fa-child',
+            category: "Middle Schools",
+            count: schoolData.middleCount + " near this listing",
+            viewUrl: '',
+            viewMore: "See All"
+          },
+          {
+            icons: 'fa-graduation-cap',
+            category: "High Schools",
+            count: schoolData.highCount + " near this listing",
+            viewUrl: '',
+            viewMore: "See All"
+          }
+        ]
+      }//listData ends
+    }//dataFormatter ends
 
     //Build Module Title
     setModuleTitle(){
-      var paramLocation: string = this._params.get('loc');
-      var paramCity: string = this.globalFunctions.toTitleCase(paramLocation.split('_')[0]);
-      var paramState: string = paramLocation.split('_')[1];
-      this.moduleTitle = 'Schools in ' + paramCity + ', ' + paramState;
+        if(this.profileType === 'LocationPage'){
+            //Location Crime Module
+            var paramLocation: string = this._params.get('loc');
+            var paramCity: string = this.globalFunctions.toTitleCase(paramLocation.split('_')[0]);
+            var paramState: string = paramLocation.split('_')[1];
+            this.moduleTitle = 'Schools in ' + paramCity + ', ' + paramState;
+        }else if(this.profileType === 'ProfilePage'){
+            //Listing Crime Module
+            var paramAddress = this._params.get('address').split('-');
+            var paramState = paramAddress[paramAddress.length -1];
+            var paramCity = paramAddress [paramAddress.length - 2];
+            var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
+            var address = tempArr.join(' ');
+            this.moduleTitle = 'Schools in ' + address + ' ' + paramCity + ', ' + paramState;
+        }
     }
 
     ngOnInit(){
@@ -93,7 +143,7 @@ export class SchoolModule implements OnInit{
           title3: 'High Schools',
           desc3: ''
       }
-    }
+    }// end ngOnInit
 
     //On Change Call
     ngOnChanges(event){
@@ -101,19 +151,19 @@ export class SchoolModule implements OnInit{
         var currentSchoolData = event.schoolData.currentValue;
         //If the data input is valid run transform data function
         if(currentSchoolData !== null && currentSchoolData !== false){
-          //Perform try catch to make sure module doesnt break page
-          // try{
-          //     //If featured list data has no list data (length of 0) throw error to hide module
-          //     if(this.schoolData.listData.length === 0){
-          //         throw 'No Data available for school list - hiding module';
-          //     }
-          //
-          //     this.dataFormatter();
-          // }catch(e){
-          //     console.log('Error - School List Module ', e);
-          //     this.schoolData = undefined;
-          // }
+          // Perform try catch to make sure module doesnt break page
+          try{
+              //If featured list data has no list data (length of 0) throw error to hide module
+              if(this.schoolData.elementary.length === 0){
+                  throw 'No Data available for school list - hiding module';
+              }
+
+              this.dataFormatter();
+          }catch(e){
+              console.log('Error - School List Module ', e);
+              this.schoolData = undefined;
+          }
           this.dataFormatter();
        }
-    }
+    }// end On Change Call
 }

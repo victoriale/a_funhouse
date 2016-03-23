@@ -6,7 +6,7 @@
           <section class="page-container">
             <module-header [module_title]="moduleTitle"></module-header>
 
-            <div *ngFor="#item of amenitiesData; #i=index" class="al {{bgClass}}">
+            <div *ngFor="#item of amenitiesData; #i=index" class="al {{item.bgClass}}">
               <div class='al-image'>
                 <a href=''>
                   <img src='{{item.imageURL}}' alt='' />
