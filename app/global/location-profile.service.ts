@@ -62,11 +62,37 @@ export class LocationProfileService{
     }
 
     getRecentListings(city, state) {
+        //Configure HTTP Headers
+        var headers = this.setToken();
 
         city = encodeURI(city);
         state = encodeURI(state);
 
-        return this.http.get(this.apiUrl + '/list/listingsMostRecent/' + state + '/' + city)
+        return this.http.get(this.apiUrl + '/list/listingsMostRecent/' + state + '/' + city, {
+                headers: headers
+            })
+            .map(
+                res => res.json()
+            )
+            .map(
+                data => {
+                    return data.data;
+                }
+            )
+    }
+
+    getFindYourHome(city, state, priceLowerBound, priceUpperBound, type, bedrooms, squareFeet, lotSize) {
+        //Configure HTTP Headers
+        var headers = this.setToken();
+
+        city = encodeURI(city);
+        state = encodeURI(state);
+
+        // location/findYourHome/{state}/{city}/{priceLowerBound}/{priceUpperBound}/{type}/{bedrooms}/{squareFeet}/{lotSize}
+        // last 4 optional, pass string 'null' if no option selected
+        return this.http.get(this.apiUrl + '/list/listingsMostRecent/' + state + '/' + city + '/' + priceLowerBound + '/' + priceUpperBound + '/' + type + '/' + bedrooms + '/' + squareFeet + '/' + lotSize, {
+                headers: headers
+            })
             .map(
                 res => res.json()
             )
