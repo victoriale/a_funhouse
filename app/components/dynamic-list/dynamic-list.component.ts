@@ -2,15 +2,15 @@ import {Component, OnInit, Input} from 'angular2/core';
 import {ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
 
 @Component({
-    selector: 'detailed-list',
-    templateUrl: './app/components/detailed-list/detailed-list.component.html',
+    selector: 'dynamic-list',
+    templateUrl: './app/components/dynamic-list/dynamic-list.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [ROUTER_DIRECTIVES],
     providers: [],
     inputs: ['listData'],
 })
 
-export class DetailedListComponent implements OnInit{
+export class DynamicListComponent implements OnInit{
     buttonName: string;
     infoList: any;
     listData: any;
