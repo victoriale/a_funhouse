@@ -5,7 +5,7 @@
         <section class='content-main eight-col'>
           <section class="page-container lv">
             <list-menu-component></list-menu-component>
-            <list-vew-carousel></list-vew-carousel>
+            <list-view-carousel [carouselData]="carouselData"></list-view-carousel>
             <div class="lv-sort">
               <dropdown-component></dropdown-component>
               <div class="lv-sort-filter">Filter <i class="fa fa-cog"></i></div>
@@ -23,6 +23,7 @@
                 </div>
               </div>
             </div>
+            <pagination-footer></pagination-footer>
           </section>
         </section>
         <div class="four-col">

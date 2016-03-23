@@ -9,17 +9,17 @@ import {DropdownComponent} from '../../components/buttons/sort-by/sort-by.compon
 import {ListMenuComponent} from '../../components/list-menu/list-menu.component';
 import {DetailedListComponent} from '../../components/detailed-list/detailed-list.component';
 import {WidgetModule} from "../../modules/widget/widget.module";
-import {LocationProfileService} from '../../global/location-profile.service';
 import {DynamicWidgetCall} from '../../global/global-service';
 import {GlobalFunctions} from "../../global/global-functions";
 import {TitleComponent} from '../../components/title/title.component';
 import {PaginationFooter} from "../../components/pagination-footer/pagination-footer.component";
+
 @Component({
   selector: 'List-page',
   templateUrl: './app/webpages/dynamic-list-page/dynamic-list.page.html',
   styleUrls: ['./app/global/stylesheets/master.css'],
   directives: [PaginationFooter, TitleComponent, DetailedListComponent, ListViewCarousel, DropdownComponent, ListMenuComponent, WidgetModule],
-  providers: [LocationProfileService, DynamicWidgetCall],
+  providers: [DynamicWidgetCall],
 })
 
 export class DynamicListPage implements OnInit {
@@ -28,13 +28,13 @@ export class DynamicListPage implements OnInit {
   headerData: any;
   data: any;
 
-  constructor(private _params: RouteParams, private _locationProfileService: LocationProfileService, private _globalFunctions: GlobalFunctions, private dynamicWidget: DynamicWidgetCall) {
+  constructor(private _params: RouteParams, private _globalFunctions: GlobalFunctions, private dynamicWidget: DynamicWidgetCall) {
     // Scroll page to top to fix routerLink bug
     window.scrollTo(0, 0);
   }
 
   getDynamicList() {// GET DATA FROM GLOBAL SERVICE
-    this.dynamicWidget.getWidgetData('1', 103, 'TAMPA')
+    this.dynamicWidget.getWidgetData('1', 103, 'TAMPA')//EXAMPLE NEED TO MAKE IT DYNAMIC TO ACCEPT ANYTHING
       .subscribe(data => {
         this.data = this.transformData(data);
       });

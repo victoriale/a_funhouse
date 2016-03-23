@@ -52,7 +52,7 @@ import {PartnerHeader} from "../global/global-service";
         component: LocationPage,
     },
     {
-        path: '/list/:listname/:state/:city',
+        path: '/list/:listname/:state/:city/:zip/:limit/:page',
         name: 'List-page',
         component: ListPage,
     },
