@@ -7,7 +7,7 @@ import {RouteParams} from 'angular2/router';
 import {ListViewCarousel} from '../../components/carousel/list-view/list-view.component';
 import {DropdownComponent} from '../../components/buttons/sort-by/sort-by.component';
 import {ListMenuComponent} from '../../components/list-menu/list-menu.component';
-import {DetailedListComponent} from '../../components/detailed-list/detailed-list.component';
+import {DynamicListComponent} from '../../components/dynamic-list/dynamic-list.component';
 import {WidgetModule} from "../../modules/widget/widget.module";
 import {DynamicWidgetCall} from '../../global/global-service';
 import {GlobalFunctions} from "../../global/global-functions";
@@ -18,7 +18,7 @@ import {PaginationFooter} from "../../components/pagination-footer/pagination-fo
   selector: 'List-page',
   templateUrl: './app/webpages/dynamic-list-page/dynamic-list.page.html',
   styleUrls: ['./app/global/stylesheets/master.css'],
-  directives: [PaginationFooter, TitleComponent, DetailedListComponent, ListViewCarousel, DropdownComponent, ListMenuComponent, WidgetModule],
+  directives: [PaginationFooter, TitleComponent, DynamicListComponent, ListViewCarousel, DropdownComponent, ListMenuComponent, WidgetModule],
   providers: [DynamicWidgetCall],
 })
 
