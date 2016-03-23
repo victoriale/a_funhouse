@@ -1,5 +1,9 @@
 <div class="mag_container mag_container_left">
-    <magazine-amenities-img-module [magAmenities]="magAmenities"></magazine-amenities-img-module>
+    <div class="mag_container_left">
+        <div class="mag_half mag_ki_container_img"
+             style="background-image: url('app/public/mag_stock_img/food_types/{{magAmenities?.stockPhotos}}_stock_mag.jpg')">
+        </div>
+    </div>
     <div class="mag_half mag_text">
         <div class="mag_ki_banner" style="margin-top: 1vw">Great Local Amenities</div>
         <span *ngFor="#p of magAmenities?.content; #i=index">
@@ -18,5 +22,9 @@
             </span>
         </span>
     </div>
-    <magazine-amenities-img-module [magAmenities]="magAmenities"></magazine-amenities-img-module>
+    <div class="mag_container_left">
+        <div class="mag_half mag_ki_container_img"
+             style="background-image: url('app/public/mag_stock_img/food_types/{{magAmenities?.stockPhotos}}_alt_stock_mag.jpg')">
+        </div>
+    </div>
 </div>
