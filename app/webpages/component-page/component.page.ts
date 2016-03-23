@@ -74,6 +74,34 @@ export class ComponentPage implements OnInit{
         icon: 'fa-map-marker'
     };
 
+    public paginationParameters: Object = {
+        index: 5,
+        max: 20,
+        paginationType: 'module',
+
+        viewAllPage: 'Directory-page',
+        viewAllParams: {
+            listTitle: 'homesLargest',
+            pageNumber: 1
+        }
+    };
+
+    public paginationParameters2: Object = {
+        index: 10,
+        max: 20,
+        paginationType: 'page',
+
+        navigationPage: 'Directory-page',
+        navigationParams: {
+            listTitle: 'homesLargest'
+        },
+        indexKey: 'pageNumber'
+    };
+
+    testEvent(event){
+        console.log('Lutz - Pagination Footer New Index', event);
+    }
+
     ngOnInit(){
         this.module_title = '[Profile Name]\'s [Module Title]';
     }

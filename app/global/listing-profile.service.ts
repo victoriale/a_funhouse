@@ -61,6 +61,46 @@ export class ListingProfileService{
         )
     }
 
+    //API for crime data
+    getCrime(address){
+        //Configure HTTP Headers
+        var headers = this.setToken();
+
+        address = encodeURI(address);
+
+        return this.http.get(this.apiUrl + '/listing/crimeNearListing/' + address, {
+            headers: headers
+        })
+        .map(
+            res => res.json()
+        )
+        .map(
+            data => {
+                return data.data;
+            }
+        )
+    }
+
+    //API for map data
+    getMap(address){
+        //Configure HTTP Headers
+        var headers = this.setToken();
+
+        address = encodeURI(address);
+
+        return this.http.get(this.apiUrl + '/listing/mapOfNearbyListings/' + address, {
+            headers: headers
+        })
+        .map(
+            res => res.json()
+        )
+        .map(
+            data => {
+                return data.data;
+            }
+        )
+    }
+
     //API for Property Image and feature listing profile
     getPropertyListing(address){
         //Configure HTTP Headers

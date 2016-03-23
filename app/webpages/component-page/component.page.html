@@ -6,7 +6,8 @@
                     <section class="component-page">
 
                     <section class='doc-workspace'>
-                        <pagination-footer></pagination-footer>
+                        <pagination-footer [paginationParameters]="paginationParameters" (newIndex)="testEvent($event)"></pagination-footer>
+                        <pagination-footer [paginationParameters]="paginationParameters2"></pagination-footer>
                         <div class='code-wrapper'>
                      <pre><![CDATA[import {Pagination} from "../../components/pagination-footer/pagination-footer.component";
                          selector: 'pagination-footer',]]></pre>
@@ -73,7 +74,7 @@
                     </section>
 
                     <section class='doc-workspace'>
-                        <title-loc-component></title-loc-component>
+                        <title-loc-component *ngIf="titleLocComponentData"></title-loc-component>
                         <div class='code-wrapper'>
                         <pre><![CDATA[
                 import {TitleLocComponent} from '../../components/title/title_loc.component';
@@ -195,7 +196,7 @@
                     </section>
 
                     <section class='doc-workspace'>
-                        <contentlist></contentlist>
+                        <contentlist *ngIf="contentListData"></contentlist>
                         <div class='code-wrapper'>
                       <pre><![CDATA[
               import {contentList} from "../../components/contentlist/contentlist";

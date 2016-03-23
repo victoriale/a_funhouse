@@ -18,12 +18,13 @@ import {MediaImages} from "../../components/media-images/media-images.component"
 import {TrendingHomes} from "../../modules/trending-homes/trending-homes.module";
 import {ListingProfileService} from '../../global/listing-profile.service';
 import {WidgetModule} from "../../modules/widget/widget.module";
+import {MapModule} from '../../modules/map/map.module';
 
 @Component({
     selector: 'profile-page',
     templateUrl: './app/webpages/profile-page/profile.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [TrendingHomes, MediaImages, HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs, ShareModule, FeaturedListsModule, AmenitiesModule, WidgetModule],
+    directives: [TrendingHomes, MediaImages, HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs, ShareModule, FeaturedListsModule, AmenitiesModule, WidgetModule, MapModule],
     providers: [ListingProfileService]
 })
 
@@ -39,6 +40,8 @@ export class ProfilePage implements OnInit{
     public trendingFeature = true;
     public profileHeaderData: Object;
     public propertyListingData: Object;
+    public crimeData: Object;
+    public mapData: Object;
     public featuredListData: Object;
     public amenitiesData: Object;
 
@@ -56,6 +59,26 @@ export class ProfilePage implements OnInit{
                     this.profileHeaderData = data;
                 },
                 err => console.log('Error - Listing Profile Header Data: ', err)
+            )
+    }
+
+    getCrime(){
+        this._listingProfileService.getCrime(this.paramAddress)
+            .subscribe(
+                data => {
+                    this.crimeData = data.crimes;
+                },
+                err => console.log('Error - Crime Data: ', err)
+            )
+    }
+
+    getMap(){
+        this._listingProfileService.getMap(this.paramAddress)
+            .subscribe(
+                data => {
+                    this.mapData = data;
+                },
+                err => console.log('Error - Map Data', err)
             )
     }
 
@@ -93,6 +116,8 @@ export class ProfilePage implements OnInit{
     ngOnInit(){
         this.getAddress();
         this.getProfileHeader();
+        this.getCrime();
+        this.getMap();
         this.getFeaturedList();
         this.getAmenitiesData();
 
