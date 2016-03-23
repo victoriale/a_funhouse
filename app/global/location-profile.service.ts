@@ -90,7 +90,7 @@ export class LocationProfileService{
 
         // location/findYourHome/{state}/{city}/{priceLowerBound}/{priceUpperBound}/{type}/{bedrooms}/{squareFeet}/{lotSize}
         // last 4 optional, pass string 'null' if no option selected
-        return this.http.get(this.apiUrl + '/list/listingsMostRecent/' + state + '/' + city + '/' + priceLowerBound + '/' + priceUpperBound + '/' + type + '/' + bedrooms + '/' + squareFeet + '/' + lotSize, {
+        return this.http.get(this.apiUrl + '/location/findYourHome/' + state + '/' + city + '/' + priceLowerBound + '/' + priceUpperBound + '/' + type + '/' + bedrooms + '/' + squareFeet + '/' + lotSize, {
                 headers: headers
             })
             .map(
