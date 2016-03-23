@@ -1,24 +1,22 @@
-<section class="carlv">
-    <section class="carlv-heading">{{heading}}</section>
+<section *ngIf="data" class="carlv">
+    <section class="carlv-heading">{{data.heading}}</section>
     <section class="carlv-plcholder">
-      <circle-button></circle-button>
-      <img src="{{image_url}}" class="carlv-plcholder-img" />
+      <circle-button (scrollRight)="right()" (scrollLeft)="left()" ></circle-button>
+      <img src="{{data.image_url}}" class="carlv-plcholder-img" />
       <div class="carlv-plcholder-details">
           <div>
-              <span>{{listing_price}}</span> | <span>{{listing_area}}</span>
+              <span>{{data.listing_price}}</span> | <span>{{data.listing_area}}</span>
           </div>
           <div>
-              <span>{{listing_addr1}}</span>
+              <span>{{data.listing_addr1}}</span>
               <i class="fa fa-angle-right"></i>
-              <span>{{listing_addr2}}</span>
+              <span>{{data.listing_addr2}}</span>
           </div>
-
-          <a href='{{button_url}}' class='mod-page-btn carlv-button'>
+          <a href='{{data.button_url}}' class='mod-page-btn carlv-button'>
               <span></span>
               <span>View Profile</span>
               <i class='fa fa-angle-right'></i>
           </a>
       </div>
-
     </section>
 </section>
