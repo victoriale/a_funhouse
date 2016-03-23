@@ -1,6 +1,7 @@
 import {Component} from 'angular2/core';
 import {HeaderSearchComponent} from "./header-search/header-search.component";
 import {ROUTER_DIRECTIVES} from "angular2/router";
+import {Router} from "angular2/router";
 declare var jQuery: any;
 
 @Component({
@@ -19,8 +20,9 @@ export class HeaderComponent{
     isScrolling: boolean;
     pageNum: string = "1";
 
-    constructor() {
+    constructor(public router: Router) {
        this.directoryVisible = false;
+        console.log(this.router);
     }
 
     directoryList = [

@@ -32,6 +32,96 @@
     }
   }
 }
+.slider {
+  padding:12px 11px;
+  .price_slider {
+    margin-top: 16px;
+    position: relative;
+    height: 70px;
+    border-bottom: 1px solid @greyBorder;
+    &_avg {
+      width: 138px;
+      height: 23px;
+      border: 1px solid @greyBorder;
+      border-radius: 5px;
+      background-color: @white;
+      position: absolute;
+      top: 25px;
+      left: ~"calc(50% - 70px)";
+
+      p {
+        color: @black;
+        font-size: 12px;
+        margin: 0;
+        text-align: center;
+      }
+
+      &_caret {
+        content: '';
+        position: absolute;
+        top: -6px;
+        left: ~"calc(50% - 5px)";
+        border-bottom: 6px solid @greyBorder;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+      }
+    }
+
+    &_bar {
+      width: 636px;
+      height: 5px;
+      background-color: @masterBrandColor;
+      background: linear-gradient(
+              to right,
+              @greyBorder 0%,
+              @masterBrandColor 0%,
+              @masterBrandColor 100%,
+              @greyBorder 100%
+      );
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      border-radius: 3px;
+    }
+
+    &_ball {
+      width: 28px;
+      height: 28px;
+      position: absolute;
+      background-color: @white;
+      border: 1px solid @greyBorder;
+      border-radius: 50%;
+      box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.35);
+      text-align: center;
+      overflow: visible;
+      cursor: pointer;
+
+      &_label {
+        position: relative;
+        top: 30px;
+        width: 100px;
+        left: 50%;
+        transform: translatex(-50%);
+        // margin: 0 auto;
+        // width: auto;
+        font-size: 14px;
+        text-align: center;
+        cursor: text;
+        outline: none;
+        background: none;
+        border: none;
+
+        &:hover {
+          border: 1px dashed @greyBorder;
+        }
+
+        &::-ms-clear {
+          display: none;
+        }
+      }
+    }
+  }
+}
 .property-buttons {
   padding:12px 11px;
   display: flex;
