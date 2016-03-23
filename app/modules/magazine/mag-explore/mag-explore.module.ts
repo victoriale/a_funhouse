@@ -10,7 +10,6 @@ import {ROUTER_DIRECTIVES} from "angular2/router";
     templateUrl: './app/modules/magazine/mag-explore/mag-explore.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [contentList, ROUTER_DIRECTIVES],
-    providers: [ROUTER_DIRECTIVES],
     inputs: ['magContact'],
 })
 
