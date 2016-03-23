@@ -66,7 +66,7 @@ export class ProfilePage implements OnInit{
         this._listingProfileService.getCrime(this.paramAddress)
             .subscribe(
                 data => {
-                    this.crimeData = data;
+                    this.crimeData = data.crimes;
                 },
                 err => console.log('Error - Crime Data: ', err)
             )

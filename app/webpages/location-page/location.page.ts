@@ -71,7 +71,7 @@ export class LocationPage implements OnInit {
             .subscribe(
                 data => {
                     console.log('Lutz - crime data location page', data);
-                    this.crimeData = data;
+                    this.crimeData = data.crimes;
                 },
                 err => console.log('Error - Crime: ', err)
             )

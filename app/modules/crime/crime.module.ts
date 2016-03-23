@@ -15,11 +15,16 @@ import {moduleHeader} from '../../components/module-header/module-header';
 })
 
 export class CrimeModule implements OnInit{
-    @Input() crimeData: Object;
+    @Input() crimeData: any;
     public moduleTitle: string;
     public profileType: string;
     public imageUrl: string;
-    public crimeStats: Array<Object>;
+    public crimeStats: Array<{
+        title: string,
+        color: string,
+        pct: string,
+        value: number
+    }>;
     public tooltipTitle: string;
     public tooltipData: string;
     //Disabled: Design changed. commented out for now
@@ -82,7 +87,8 @@ export class CrimeModule implements OnInit{
     }
 
     transformData(){
-        var data = this.crimeData.crimes;
+        var data = this.crimeData;
+        console.log('Lutz - afadsfasfdasfads', data);
 
         var returnArray = [];
 
