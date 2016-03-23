@@ -1,16 +1,50 @@
-<footer class="pagination-container">
-    <div class="pagination-row">
-        <button class="pagination-button-angle">
+<footer *ngIf="paginationParameters" class="pagination-container">
+
+    <!-- Buttons for module pagination type -->
+    <div *ngIf="paginationParameters.paginationType === 'module'" class="pagination-row">
+        <!-- Angle Left Button -->
+        <button id="pf-angle-left" (click)="indexLeft($event)" class="pagination-button-angle">
             <i class="fa fa-angle-left"></i>
         </button>
-        <button *ngFor="#item of paginationButtons" class="pagination-button-circle" [ngClass]="{active: index === item}">
+        <!-- Minimum Button -->
+        <button *ngIf="showMinSkip" (click)="indexClick($event)" class="pagination-button-circle">
+            1
+        </button>
+        <span *ngIf="showMinSkip" class="pagination-button-ellipsis">
+            ...
+        </span>
+        <!-- Button Array -->
+        <button *ngFor="#item of paginationButtons" (click)="indexClick($event)" class="pagination-button-circle" [ngClass]="{active: paginationParameters.index === item}">
             {{item}}
         </button>
-        <button class="pagination-button-angle">
+        <!-- Maximum Button -->
+        <span *ngIf="showMaxSkip" class="pagination-button-ellipsis">
+            ...
+        </span>
+        <button *ngIf="showMaxSkip" (click)="indexClick($event)" class="pagination-button-circle">
+            {{paginationParameters.max}}
+        </button>
+        <!-- Angle Right Button -->
+        <button id="pf-angle-right" (click)="indexRight($event)" class="pagination-button-angle">
             <i class="fa fa-angle-right"></i>
         </button>
     </div>
+
+    <!-- Anchor tags for page pagination type -->
+    <div *ngIf="paginationParameters.paginationType === 'page'" class="pagination-row">
+        <a class="pagination-button-angle">
+            <i class="fa fa-angle-left"></i>
+        </a>
+        <a *ngFor="#item of paginationButtons" class="pagination-button-circle" [ngClass]="{active: paginationParameters.index === item}">
+            {{item}}
+        </a>
+        <a class="pagination-button-angle">
+            <i class="fa fa-angle-right"></i>
+        </a>
+    </div>
+
+    <!-- View All Button -->
     <div class="pagination-view-all-container">
-        <infinity-button></infinity-button>
+        <infinity-button *ngIf="paginationParameters.viewAllPage && paginationParameters.viewAllParams"></infinity-button>
     </div>
 </footer>
