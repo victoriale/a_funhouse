@@ -76,7 +76,6 @@ export class ProfilePage implements OnInit{
         this._listingProfileService.getMap(this.paramAddress)
             .subscribe(
                 data => {
-                    console.log('Lutz - map', data);
                     this.mapData = data;
                 },
                 err => console.log('Error - Map Data', err)

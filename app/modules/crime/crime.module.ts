@@ -2,7 +2,6 @@ import {Component, OnInit, OnChanges, Input} from 'angular2/core';
 import {Router, RouteParams} from 'angular2/router';
 import {GlobalFunctions} from '../../global/global-functions';
 declare var jQuery: any;
-declare var HighCharts: any;
 
 import {moduleHeader} from '../../components/module-header/module-header';
 
@@ -88,7 +87,6 @@ export class CrimeModule implements OnInit{
 
     transformData(){
         var data = this.crimeData;
-        console.log('Lutz - afadsfasfdasfads', data);
 
         var returnArray = [];
 

@@ -20,9 +20,9 @@ import {InfinityButton} from '../buttons/infinity/infinity.button';
 
     Input - paginationParameters
         {
-            index: number, //Required - Determines what index is selected
-            max: number, //Required - Determines the max index that can be selected
-            paginationType: string, //Required - Determines what kind of pagination footer this is (options are module or page. modules make the pagination navigation buttons. page makes the pagination navigation anchor tags.)
+            -index: number, //Required - Determines what index is selected
+            -max: number, //Required - Determines the max index that can be selected
+            -paginationType: string, //Required - Determines what kind of pagination footer this is (options are module or page. modules make the pagination navigation buttons. page makes the pagination navigation anchor tags.)
 
             -viewAllPage: string, //Optional - This is the page used for routerLink in the view all button. (Both this and viewAllParams must be defined for the view all button to show)
             -viewAllParams: Object, //Optional - This is the parameters used for routerLink in the view all button. (Both this and viewAllPage must be defined for the view all button to show)
@@ -180,7 +180,6 @@ export class PaginationFooter implements OnInit{
     }
 
     ngOnChanges(event){
-        console.log('Lutz - pf', event)
         this.verifyInput();
         this.buildButtons();
     }

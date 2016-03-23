@@ -70,7 +70,6 @@ export class LocationPage implements OnInit {
         this._locationProfileService.getCrime(this.locCity, this.locState)
             .subscribe(
                 data => {
-                    console.log('Lutz - crime data location page', data);
                     this.crimeData = data.crimes;
                 },
                 err => console.log('Error - Crime: ', err)

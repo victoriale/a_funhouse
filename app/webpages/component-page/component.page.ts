@@ -87,7 +87,7 @@ export class ComponentPage implements OnInit{
     };
 
     testEvent(event){
-        console.log('Lutz - test event', event);
+        console.log('Lutz - Pagination Footer New Index', event);
     }
 
     ngOnInit(){
