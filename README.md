@@ -18,6 +18,8 @@ install each one individually
       
       e.`browser-sync`
 
+      f.'highcharts'
+
 2. `npm i`
 
 3. `gulp serve`
