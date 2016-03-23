@@ -9,22 +9,22 @@
             <div class="filters_frame">
                 <img src="http://images.myhousekit.com/icons/Icon_House.png">
                 <span>House</span>
-                <input (click)="onClickPropertyType()" type="checkbox" name="group[]" value="SingleFamily">
+                <input (click)="onClickPropertyType()" type="radio" name="type" value="House">
             </div>
             <div class="filters_frame">
                 <img src="http://images.myhousekit.com/icons/Icon_Condo.png">
                 <span>Condo</span>
-                <input type="checkbox" name="group[]" value="Condo">
+                <input (click)="onClickPropertyType()" type="radio" name="type" value="Condominium">
             </div>
             <div class="filters_frame">
                 <img src="http://images.myhousekit.com/icons/Icon_Apartment.png">
                 <span>Apartment</span>
-                <input type="checkbox" name="group[]" value="Apartment">
+                <input (click)="onClickPropertyType()" type="radio" name="type" value="Apartment">
             </div>
             <div class="filters_frame">
                 <img src="http://images.myhousekit.com/icons/Icon_Townhome.png">
                 <span>Townhome</span>
-                <input type="checkbox" name="group[]" value="Townhome">
+                <input (click)="onClickPropertyType()" type="radio" name="type" value="Townhouse">
             </div>
         </div>
     </div>
@@ -36,10 +36,10 @@
             <!-- THE slider -->
             <div class="price_slider">
                 <div class="price_slider_bar"></div>
-                <div class="price_slider_ball" style="left: 0" id="minBall">
+                <div (mousedown)="onClickBall($event)" class="price_slider_ball" style="left: 0" id="minBall">
                     <input class="price_slider_ball_label" value="$50K">
                 </div>
-                <div class="price_slider_ball" style="right: 0" id="maxBall">
+                <div (mousedown)="onClickBall($event)" class="price_slider_ball" style="right: 0" id="maxBall">
                     <input class="price_slider_ball_label" value="$10M+">
                 </div>
                 <div class="price_slider_avg">
@@ -54,9 +54,9 @@
             <span>Must Haves</span>
         </div>
         <div class="property-options-select">
-            <select name="select-bedrooms" id="select-bedrooms">
-                <option value="all" style="display:none;" selected>Bedrooms</option>
-                <option value="all">All Beds</option>
+            <select (onclick)="onSelectBedrooms()" name="select-bedrooms" id="select-bedrooms">
+                <option value="empty" style="display:none;" selected>Bedrooms</option>
+                <option value="empty">All Beds</option>
                 <option value="1">+1</option>
                 <option value="2">+2</option>
                 <option value="3">+3</option>
@@ -64,8 +64,8 @@
                 <option value="5">+5</option>
             </select>
             <select name="select-bathrooms" id="select-bathrooms">
-                <option value="all" style="display:none;" selected>Bathrooms</option>
-                <option value="all">All Baths</option>
+                <option value="empty" style="display:none;" selected>Bathrooms</option>
+                <option value="empty">All Baths</option>
                 <option value="1">+1</option>
                 <option value="2">+2</option>
                 <option value="3">+3</option>
@@ -73,8 +73,8 @@
                 <option value="5">+5</option>
             </select>
             <select name="select-square-feet" id="select-square-feet">
-                <option value="all" style="display:none;" selected>Square Feet</option>
-                <option value="all">All Sizes</option>
+                <option value="empty" style="display:none;" selected>Square Feet</option>
+                <option value="empty">All Sizes</option>
                 <option value="500">+500 sq ft</option>
                 <option value="1000">+1000 sq ft</option>
                 <option value="2000">+2000 sq ft</option>
@@ -84,8 +84,8 @@
                 <option value="10000">+10000 sq ft</option>
             </select>
             <select name="select-lot-size" id="select-lot-size">
-                <option value="all" style="display:none;" selected>Lot Size</option>
-                <option value="all">All Sizes</option>
+                <option value="empty" style="display:none;" selected>Lot Size</option>
+                <option value="empty">All Sizes</option>
                 <option value="2000">+2000 sq ft</option>
                 <option value="3000">+3000 sq ft</option>
                 <option value="4000">+4000 sq ft</option>

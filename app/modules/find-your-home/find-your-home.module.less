@@ -164,3 +164,24 @@
     }
   }
 }
+.filters {
+  input {
+    float: right;
+    &[type=radio] {
+      padding-left: 5px;
+      padding-right: 5px;
+      border-radius: 5px;
+      -webkit-appearance: radio;
+      border: solid 2px @masterStrokeColor;
+      background-color: @white;
+      color: @white;
+      outline: none;
+      width: 20px;
+      height: 20px;
+    }
+    &[type=radio]:checked {
+      background-color: @white;
+      color: @white;
+    }
+  }
+}
