@@ -34,14 +34,19 @@ export class MagMapModule implements OnInit {
             .subscribe(
                 magData => {
                     this.data = magData.neighborhood.neighbors;
-                    var myLatlng = new google.maps.LatLng(parseFloat(this.data[0].address.lat), parseFloat(this.data[0].address.lng));
-                    var mapOptions = {
-                        zoom: 12,
-                        center: myLatlng
-                    };
-                    jQuery('.mag_n1_img').css("background-image", 'url(' + this.data[0].photos[0] + ')');
-                    this.imgAddress = this.data[0].address.fullStreetAddress;
-                    this.imgURL = 'magazine/' + this.data[0].key + '/overview';
+                    for (var i = 0; i < magData.neighborhood.neighbors.length; i++) {
+                        if (magData.neighborhood.neighbors[i].address.lng != null && magData.neighborhood.neighbors[i].address.lat != null) {
+                            var myLatlng = new google.maps.LatLng(parseFloat(this.data[i].address.lat), parseFloat(this.data[i].address.lng));
+                            jQuery('.mag_n1_img').css("background-image", 'url(' + this.data[i].photos[0] + ')');
+                            this.imgAddress = this.data[i].address.fullStreetAddress;
+                            this.imgURL = 'magazine/' + this.data[i].key + '/overview';
+                            var mapOptions = {
+                                zoom: 12,
+                                center: myLatlng
+                            };
+                            break;
+                        }
+                    }
                     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
                     for (var i = 0; i < magData.neighborhood.neighbors.length; i++) {
                         var home = new google.maps.LatLng(parseFloat(this.data[i].address.lat), parseFloat(this.data[i].address.lng));

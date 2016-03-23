@@ -11,6 +11,7 @@ import {Router} from "angular2/router";
 import {MagOverviewModule} from "../modules/magazine/mag-overview/mag-overview.module";
 import {MagOverview, MagData} from "../global/global-interface";
 import {Amenities} from "../modules/magazine/mag-amenities/mag-amenities.module";
+import {KeyInformation} from "../modules/magazine/key-information/key-information.module";
 
 @Component({
     selector: 'magazine-page',
@@ -38,7 +39,7 @@ import {Amenities} from "../modules/magazine/mag-amenities/mag-amenities.module"
     }),
     new AsyncRoute({
         path: '/information',
-        loader: () => Promise.resolve(Neighborhood),
+        loader: () => Promise.resolve(KeyInformation),
         name: 'KeyInformation'
     }),
     new AsyncRoute({
