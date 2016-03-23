@@ -6,12 +6,14 @@ import {Component, OnInit, Injector} from 'angular2/core';
 import {MagOverview} from "../../../../global/global-interface";
 import {MagazinePage} from "../../../../app-webpage/magazine.webpage";
 import {MagazineDataService} from "../../../../global/global-mag-service";
+import {ROUTER_DIRECTIVES} from "angular2/router";
 
 @Component({
     selector: 'learnmore-component',
     templateUrl: './app/components/magazine/mag-btns/learnmore-btn/learnmore-btn.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [],
+    directives: [ROUTER_DIRECTIVES],
+    providers: [ROUTER_DIRECTIVES],
 })
 
 
