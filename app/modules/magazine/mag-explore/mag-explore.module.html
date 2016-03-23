@@ -1,24 +1,14 @@
 <div class="mag_container">
-    <span *ngIf="isNull">
+    <a href="profile/{{magContact?.nearby?.key}}">
         <div class="mag_cont_r">
             <div class="mag_cont_r_btext">See what else there is to explore down the block</div>
             <div class="mag_cont_r_line"></div>
-            <div class="test"><list-of-lists-module style="margin-top: -30px; position: absolute; clip: rect(45px,680px,200px,0px);"></list-of-lists-module>
+            <div class="mag_cont_r_box">{{magContact?.nearby?.address?.fullStreetAddress}}</div>
+            <div class="mag_cont_r_loc">{{magContact?.nearby?.address?.city}}, {{magContact?.nearby?.address?.state}}
+                {{magContact?.nearby?.address?.zipcode}}<br>United
+                States
             </div>
+            <div class="mag_cont_r_button noclick"></div>
         </div>
-    </span>
-    <span *ngIf="!isNull">
-        <a href="profile/{{magContact?.key}}">
-            <div class="mag_cont_r">
-                <div class="mag_cont_r_btext">See what else there is to explore down the block</div>
-                <div class="mag_cont_r_line"></div>
-                <div class="mag_cont_r_box">{{magContact?.address?.fullStreetAddress}}</div>
-                <div class="mag_cont_r_loc">{{magContact?.address?.city}}, {{magContact?.address?.state}}
-                    {{magContact?.address?.zipcode}}<br>United
-                    States
-                </div>
-                <div class="mag_cont_r_button noclick"></div>
-            </div>
-        </a>
-    </span>
+    </a>
 </div>
