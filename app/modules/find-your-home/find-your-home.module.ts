@@ -133,7 +133,7 @@ export class FindYourHomeModule implements OnInit{
         }
 
         if ( position <= max && position >= min ) {
-            var newVal: any = Math.round(this.logslider(position));
+            var newVal: any = Math.round(this.logslider(position, undefined));
             jQuery('#' + id).css({left: position});
             if ( id == 'minBall' ) {
                this.filterMinPrice = newVal;
