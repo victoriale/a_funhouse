@@ -2,24 +2,24 @@
  * Created by Victoria on 3/8/2016.
  */
 import {Component} from 'angular2/core';
-import {RouteParams} from 'angular2/router';
+import {RouteParams, ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
 
 import {ListViewCarousel} from '../../components/carousel/list-view/list-view.component';
 import {DropdownComponent} from '../../components/buttons/sort-by/sort-by.component';
 import {ListMenuComponent} from '../../components/list-menu/list-menu.component';
+import {DetailedListComponent} from '../../components/detailed-list/detailed-list.component';
 import {WidgetModule} from "../../modules/widget/widget.module";
-import {LocationProfileService} from '../../global/location-profile.service';
 import {GlobalFunctions} from "../../global/global-functions";
 import {TitleComponent} from '../../components/title/title.component';
 import {PaginationFooter} from "../../components/pagination-footer/pagination-footer.component";
-import {DynamicWidgetCall} from '../../global/global-service';
+import {listViewPage} from '../../global/global-service';
 
 @Component({
     selector: 'List-page',
     templateUrl: './app/webpages/list-page/list.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [ListViewCarousel, DropdownComponent, ListMenuComponent, WidgetModule],
-    providers: [],
+    directives: [ROUTER_DIRECTIVES, DetailedListComponent, ListViewCarousel, DropdownComponent, ListMenuComponent, WidgetModule],
+    providers: [listViewPage],
 })
 
 export class ListPage {
@@ -28,13 +28,14 @@ export class ListPage {
   headerData: any;
   data: any;
 
-  constructor(private _params: RouteParams, private _locationProfileService: LocationProfileService, private _globalFunctions: GlobalFunctions, private dynamicWidget: DynamicWidgetCall) {
+  constructor(private _params: RouteParams, private globalFunctions: GlobalFunctions, private listViewData: listViewPage) {
     // Scroll page to top to fix routerLink bug
     window.scrollTo(0, 0);
   }
 
-  getDynamicList() {// GET DATA FROM GLOBAL SERVICE
-    this.dynamicWidget.getWidgetData('1', 103, 'TAMPA')
+  getListView() {// GET DATA FROM GLOBAL SERVICE
+    //list/homesAtLeast5YearsOld/KS/Wichita/empty/10/1
+    this.listViewData.getListData('homesAtLeast5YearsOld', 'KS', 'Wichita','empty', 10, 1)
       .subscribe(data => {
         this.data = this.transformData(data);
       });
@@ -56,35 +57,43 @@ export class ListPage {
 
     //grab data for the list
     var originalData = data.data;
+    console.log('Transforming data', originalData);
     var listData = [];
     var carouselData = [];
+    var globeFunc = this.globalFunctions;
     originalData.forEach(function(val, i){
+      val.listPrice = globeFunc.commaSeparateNumber(val.listPrice);
       var newData = {
-          img : val.img,
-          list_sub : val.list_sub,
-          title : val.title,
-          subtype : val.tag,
-          numBed : '',
-          numBath: '',
-          date: 'Date',
-          value: val.value,
-          tag: val.tag,
+          img : val.photos[0],
+          list_sub : val.propertyType + ": " + val.numBedrooms + " Beds & " + val.numBathrooms + " Baths",
+          title : val.addressKey.replace(/-/g, ' '),
+          numBed : val.numBedrooms,
+          numBath: val.numBathrooms,
+          date: val.modificationTimestamp,
+          value: "$"+ val.listPrice,
+          tag: val.livingArea + ' sqft',
           buttonName: 'View Profile',
-          icon: '',
-          rank: val.rank,
-          desc: val.desc,
+          icon: 'fa fa-map-marker',
+          location: val.loc + ' - ' + val.postalCode,
+          market:'Build in ' + val.yearBuilt,
+          rank: (i+1),
+          desc: val.listingDescription,
       };
-      newData['url'] = val.primary_url;
+      console.log({addr:val.addressKey});
+      newData['url1'] = "../../Magazine";
+      newData['url2'] = {addr:val.addressKey};
+      newData['url3'] = "PropertyOverview";
+      // newData['url'] = "Home-page";
 
       var carData = {
-        heading:val.title,
-        image_url:val.img,
-        listing_price:val.value,
-        listing_area:val.tag,
-        listing_addr1:val.list_sub.split(' | ')[0],
-        listing_addr2:val.list_sub.split(' | ')[1],
+        heading:val.addressKey.replace(/-/g, ' '),
+        image_url:val.photos[0],
+        listing_price: "$"+val.listPrice,
+        listing_area:val.livingArea + "sqft",
+        listing_addr1:val.modificationTimestamp.split(' ')[0],
+        listing_addr2:val.loc + ' - ' + val.postalCode,
       }
-      carData['button_url'] = val.primary_url;
+      carData['button_url'] = '#';
 
       carouselData.push(carData);
       listData.push(newData);
@@ -94,9 +103,11 @@ export class ListPage {
     this.listData = listData;
     this.carouselData = carouselData;
 
+    console.log('ListData', this.listData);
+    console.log('carouselData', this.carouselData);
   }//END OF TRANSFORM FUNCTION
 
   ngOnInit() {
-    this.getDynamicList();
+    this.getListView();
   }
 }

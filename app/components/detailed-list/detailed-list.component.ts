@@ -1,10 +1,11 @@
 import {Component, OnInit, Input} from 'angular2/core';
+import {ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
 
 @Component({
     selector: 'detailed-list',
     templateUrl: './app/components/detailed-list/detailed-list.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [],
+    directives: [ROUTER_DIRECTIVES],
     providers: [],
     inputs: ['listData'],
 })

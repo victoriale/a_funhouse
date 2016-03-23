@@ -71,6 +71,8 @@ export class DynamicListPage implements OnInit {
           tag: val.tag,
           buttonName: 'View Profile',
           icon: '',
+          location: '',
+          market:'',
           rank: val.rank,
           desc: val.desc,
       };

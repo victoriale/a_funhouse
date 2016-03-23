@@ -111,7 +111,7 @@ export class SearchPage implements OnInit {
     if (typeof data.address !== 'undefined' && data.address !== null) {
       data.address.forEach(function(item, index) {
         var dataAddr = {
-          addr: item.address_key,
+          addr: item.address_key.replace(/-/g, ' '),
           page: 'Profile-page',
           params: { address: item.address_key },
           display: item.address_key + " - " + item.city + " " + item.state_or_province,
