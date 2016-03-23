@@ -72,8 +72,16 @@ export class ProfilePage implements OnInit{
       this.propertyListingData = this._listingProfileService.getPropertyListing(this.paramAddress);
     }
 
+    getAddress() {
+      var paramAddress = this._params.get('address').split('-');
+      var paramState = paramAddress[paramAddress.length - 1];
+      var paramCity = paramAddress[paramAddress.length - 2];
+      var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
+      var address = tempArr.join(' ');
+      this.address = address + ' ' + paramCity + ', ' + paramState;
+    }
     ngOnInit(){
-        this.address = this._params.get('address');
+        this.getAddress();
         this.getProfileHeader();
         this.getFeaturedList();
         this.headlineAbout  = {
