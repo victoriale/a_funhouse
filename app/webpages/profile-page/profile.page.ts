@@ -43,6 +43,7 @@ export class ProfilePage implements OnInit{
     public crimeData: Object;
     public mapData: Object;
     public featuredListData: Object;
+    public amenitiesData: Object;
 
     //  Get current route name
     constructor(public _params: RouteParams, private _listingProfileService: ListingProfileService, params: RouteParams){
@@ -92,17 +93,35 @@ export class ProfilePage implements OnInit{
             )
     }
 
+    getAmenitiesData(){
+        this._listingProfileService.getAmenitiesNearListing(this.paramAddress)
+          .subscribe(
+              data => {
+                this.amenitiesData = data;
+              },
+              err => console.log('School Location Data Acquired!', err)
+            )
+    }
     getPropertyListing(){
       this.propertyListingData = this._listingProfileService.getPropertyListing(this.paramAddress);
     }
 
+    getAddress() {
+      var paramAddress = this._params.get('address').split('-');
+      var paramState = paramAddress[paramAddress.length - 1];
+      var paramCity = paramAddress[paramAddress.length - 2];
+      var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
+      var address = tempArr.join(' ');
+      this.address = address + ' ' + paramCity + ', ' + paramState;
+    }
     ngOnInit(){
-        this.address = this._params.get('address');
-        console.log(this.address);
+        this.getAddress();
         this.getProfileHeader();
         this.getCrime();
         this.getMap();
         this.getFeaturedList();
+        this.getAmenitiesData();
+
         this.headlineAbout  = {
             title: 'About ' + this.address,
             icon: 'fa-map-marker'

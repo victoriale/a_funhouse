@@ -149,14 +149,16 @@ export class MediaFeatureList{
         var BatchTwo: List2[] = [
             {
                 'bigImage': "http://photos.listhub.net/BCMLSIA/12787/1?lm=20160203T155029",
-                'list_name': '[Listing Name] [Zip Code]',
-                'list_addr': '[Listing Address]',
-                'list_day': 'Days on the market: [##]',
-                'detail1': '[#,###]',
+                'city': '[city]',
+                'state': '[state]',
+                'zipCode': '[zip code]',
+                'address': '[Listing Address]',
+                'daysOnMarket': 1,
+                'squareFeet': '[#,###]',
                 'unit1': 'SQ FT',
-                'detail2': '[#,###]',
+                'lotSize': '[#,###]',
                 'unit2': 'ACRES',
-                'price': '$[###,###]',
+                'listPrice': '$[###,###]',
                 'price_name': 'SALE PRICE',
                 'smallImage': [
                   "http://photos.listhub.net/BCMLSIA/12787/1?lm=20160203T155029",
@@ -197,5 +199,59 @@ export class GlobalPage {
               return data.data;
           }
       )
+  }
+}
+
+@Injectable()
+
+export class DynamicWidgetCall {
+  public apiUrl: string = "http://dw.synapsys.us/list_creator_api.php";
+
+  constructor(public http: Http){}
+  //Function to set custom headers
+
+  // Method to get data for the list for the dynamic widget
+  getWidgetData(tw, sw, input) {
+    // Inputs: tw - trigger word, sw - sort parameter, input - input value
+    // If value is not needed, pass -1
+
+    // Return error if no tw
+    if ( typeof(tw) == "undefined" ) {
+      return {
+        "success": false,
+        "message": "Error: Trigger word is required"
+      };
+    }
+
+    // Set defaults
+    if ( typeof(sw) == "undefined" ) {
+      sw = -1;
+    }
+    if ( typeof(input) == "undefined" ) {
+      input = -1;
+    }
+
+    // Build the URL
+    var url = this.apiUrl + "?tw=" + tw + "&sw=" + sw + "&input=" + input;
+
+    // Build a key for logging
+    var key = tw + ":" + sw + ":" + input;
+
+    // Options array (unzip gzip response)
+    var opts = {
+      npmRequestOptions: {
+        gzip: true
+      }
+    };
+
+    return this.http.get(url)
+    .map(
+        res => res.json()
+    )
+    .map(
+        data => {
+            return data;
+        }
+    )
   }
 }

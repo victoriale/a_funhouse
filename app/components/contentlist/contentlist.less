@@ -8,7 +8,12 @@
   padding:15px 20px;
   .flexDirection(row);
   display: flex;
-  background: @white;
+  &.odd {
+    background: @backgroundGrey
+  }
+  &.even {
+    background: @white;
+  }
 }
 
 //style for large image box
@@ -22,6 +27,7 @@
   display: flex;
   height:125px;
   width:76.5%;
+  font-family: @globalFont;
   .flexDirection(column);
   .flexJustify(space-around);
   span:first-child{
@@ -39,12 +45,18 @@
     .line-clamp;
     .line-clamp-2;
   }
+  .location {
+    text-transform: capitalize;
+  }
   .content_bottom{
     .flexDirection(column);
   }
   .contentsubbox {
     .rowOfSmallImages(45px, 10px, 45px, 1px, @masterStrokeColor);
     float:left;
+    a {
+      margin-right: 10px;
+    }
   }
   .list_button{
     .mod-page-btn;

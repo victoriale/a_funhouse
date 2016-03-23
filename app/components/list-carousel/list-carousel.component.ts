@@ -17,7 +17,7 @@ export class ListCarouselComponent implements OnInit {
     public description: string;
     public main_hasSubImg: boolean = false;
     location: string;
-    lists: any;
+    lists: Array<any>;
 
     // Carousel setup
     carCount: number;

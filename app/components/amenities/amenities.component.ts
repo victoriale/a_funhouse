@@ -11,13 +11,13 @@ import {CarouselButton} from '../../components/buttons/carousel/carousel.button'
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [Image150, CarouselButton],
     providers: [],
-    inputs: ['data', 'hasFooterButton'],
+    inputs: ['list_data', 'hasFooterButton'],
     outputs: ['scrollRight', 'scrollLeft']
 })
 
 export class AmenitiesComponent implements OnInit{
     public main_hasSubImg: boolean;
-    data: Object;
+    list_data: Object;
     listView: Object;
     public scrollRight: EventEmitter<boolean> = new EventEmitter();
     public scrollLeft: EventEmitter<boolean> = new EventEmitter();
@@ -33,8 +33,8 @@ export class AmenitiesComponent implements OnInit{
 
         this.main_hasSubImg = false;
 
-        if(typeof this.data === 'undefined'){
-            this.data = {
+        if(typeof this.list_data === 'undefined'){
+            this.list_data = {
                 header: "Heading 1",
                 name: '[Listing Name]',
                 establishment: '[Establishment]',
@@ -59,13 +59,7 @@ export class AmenitiesComponent implements OnInit{
                 count: "## near this listing",
                 viewUrl: '',
                 viewMore: "See All"
-              },
-              {
-                category: "Category4",
-                count: "## near this listing",
-                viewUrl: '',
-                viewMore: "See All"
-              },
+              }
             ]
         }
 

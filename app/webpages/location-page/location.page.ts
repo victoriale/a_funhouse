@@ -15,29 +15,31 @@ import {LocationProfileService} from '../../global/location-profile.service';
 import {WidgetModule} from "../../modules/widget/widget.module";
 import {FindYourHomeModule} from "../../modules/find-your-home/find-your-home.module";
 import {MapModule} from '../../modules/map/map.module';
+import {AmenitiesModule} from "../../modules/amenities/amenities.module";
 
 @Component({
     selector: 'location-page',
     templateUrl: './app/webpages/location-page/location.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, FindYourHomeModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule, WidgetModule, MapModule],
+    directives: [HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, FindYourHomeModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule, WidgetModule, MapModule, AmenitiesModule],
     providers: [LocationProfileService],
 })
 
 export class LocationPage implements OnInit {
-
     loc: string;
     locCity: string;
     locState: string;
     public locDisplay: string;
     public headlineAbout: any;
     public headlineCrime: any;
-    public headlineAmenities: any;
+    public headlineSchool: any;
     public headlineInteract: any;
     public profileHeaderData: Object;
     public featuredListData: Object;
     public crimeData: Object;
     public recentListingsData: Object;
+    public schoolData: Object;
+    public amenitiesData: Object;
 
     constructor(private _params: RouteParams, private _locationProfileService: LocationProfileService) {
         // Scroll page to top to fix routerLink bug
@@ -84,6 +86,26 @@ export class LocationPage implements OnInit {
             );
     }
 
+    getSchoolData(){
+        this._locationProfileService.getSchoolData(this.locCity, this.locState)
+          .subscribe(
+              data => {
+                this.schoolData = data;
+              },
+              err => console.log('School Location Data Acquired!', err)
+            )
+    }
+
+    getAmenitiesData(){
+      this._locationProfileService.getAmenitiesData(this.locCity, this.locState)
+        .subscribe(
+            data => {
+              this.amenitiesData = data;
+            },
+            err => console.log('Amenities Location Data Acquired!', err)
+          )
+    }
+
     ngOnInit() {
         this.loc = this._params.get('loc');
         this.locCity = this.loc.split('_')[0];
@@ -100,8 +122,8 @@ export class LocationPage implements OnInit {
             icon: 'fa-gavel'
         };
 
-        this.headlineAmenities = {
-            title: 'Schools in ' + this.locDisplay,
+        this.headlineSchool = {
+            title: 'Schools and Amenities in ' + this.locDisplay,
             icon: 'fa-graduation-cap'
         };
 
@@ -116,7 +138,8 @@ export class LocationPage implements OnInit {
         this.getFeaturedList();
         this.getCrime();
         this.getRecentListings();
-
+        this.getSchoolData();
+        this.getAmenitiesData();
         console.log(this);
     }
 

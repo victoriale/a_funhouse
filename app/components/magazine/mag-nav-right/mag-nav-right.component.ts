@@ -5,6 +5,9 @@
 //import {Component, Output, EventEmitter} from 'angular2/core';
 import {Component} from 'angular2/core';
 import {Router} from 'angular2/router';
+import {Input} from "angular2/core";
+
+declare var jQuery:any;
 
 @Component({
     selector: 'mag-nav-right-component',
@@ -13,20 +16,29 @@ import {Router} from 'angular2/router';
     directives: [],
     //outputs: ['navRight']
 })
-
-
 export class NavRightComponent {
-    //counter:number;
-    //_router:Router;
-    //public constructor(_router:Router){
-    //    this._router = _router;
-    //};
-    //public navRight: EventEmitter<boolean> = new EventEmitter();
-    //
-    //right(){
-    //    this.counter = 0;
-    //    this._router.navigate('Overview-page',{pagenum:(this.counter++)});
-    //    //this.navRight.next(true);
-    //    //console.log(this.navRight);
-    //}
+    @Input() toc:any;
+
+    constructor(
+        private _router: Router
+    ){ }
+
+    clickNext(){
+        console.log( jQuery("magtab-component a"))
+        let currentPageLink = jQuery("magtab-component a.router-link-active");
+        let currentIndex = currentPageLink.index();
+        let nextLink = currentPageLink.next("a");
+        jQuery(".router-link-active").removeClass("router-link-active");
+        let firstLink = jQuery("magtab-component a:first-child");
+        let args = firstLink.attr("href").split("/");
+        let address = args[2];
+        if( !nextLink.length){
+            this._router.navigate(["Magazine",  {addr: address}, 'PropertyOverview']);
+            firstLink.addClass("router-link-active");
+        }else{
+            this._router.navigate(["Magazine",  {addr: address}, this.toc[currentIndex+1].routeName ]);
+            nextLink.addClass("router-link-active");
+        }
+    }
+
 }
