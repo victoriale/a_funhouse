@@ -1,7 +1,7 @@
 /**
  * Created by Victoria on 3/2/2016.
  */
-import {Component, OnInit, Input} from 'angular2/core';
+import {Component, OnInit, Input, OnChanges} from 'angular2/core';
 import {Router, RouteParams} from 'angular2/router';
 import {moduleHeader} from "../../components/module-header/module-header";
 import {MediaImages} from "../../components/media-images/media-images.component";
@@ -25,9 +25,10 @@ export class MediaFeatureModule implements OnInit {
 
   private propertyData: any;//data to send from module into components
   private date;
+  lastUpdated = "";
   image_url = './app/public/placeholder_XL.png';
   featureHeading = "Features Of This Property";
-  lastUpdate = "Last Updated: ";
+  lastUpdate = "";
 
   @Input() propertyListingData: PropertyListingInterface;
 
@@ -61,7 +62,11 @@ export class MediaFeatureModule implements OnInit {
             case 'address':
             break;
             case 'daysOnMarket':
-            originalData['daysOnMarket'] = "Days on Market: " + originalData['daysOnMarket'];
+            if(originalData['daysOnMarket'] == '1'){
+              originalData['daysOnMarket'] = "Day on Market: " + "["+originalData['daysOnMarket']+"]";
+            } else {
+              originalData['daysOnMarket'] = "Days on Market: " + "["+originalData['daysOnMarket']+"]";
+            }
             break;
             case 'listingDate':
             originalData['listingDate'] = originalData['listingDate'].split(' ')[0];
@@ -79,7 +84,7 @@ export class MediaFeatureModule implements OnInit {
         }//end if
     }//end for loop
 
-    if (originalData.listingImages === null || originalData.listingImages == '' || typeof originalData.listingImages == 'undefined') {
+    if(originalData.listingImages === null || originalData.listingImages == '' || typeof originalData.listingImages == 'undefined') {
       originalData.listingImages = [this.image_url];
     }
 
@@ -88,9 +93,9 @@ export class MediaFeatureModule implements OnInit {
       city: originalData.city,
       state: originalData.state,
       daysOnMarket : originalData.daysOnMarket,
-      price : "$"+originalData.listPrice,
-      priceName: 'Sale',
-      detail1: originalData.squareFeet ,
+      price : "$"+(originalData.listPrice),
+      priceName: 'Sale Price',
+      detail1:  this.globalFunctions.commaSeparateNumber(originalData['squareFeet']) ,
       unit1: 'Sq Ft',
       detail2: originalData.lotSize ,
       unit2: 'Acres',
@@ -158,9 +163,7 @@ featureProperty(name){
 
   ngOnInit() {
     this.setModuleTitle();
-    console.log(this.trending);
     this.trending = false;
-    console.log(this.trending);
     this.getData();
   }
 
