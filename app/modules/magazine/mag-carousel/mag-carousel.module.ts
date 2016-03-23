@@ -59,7 +59,7 @@ export class MagCarouselModule implements OnInit {
     ngOnInit() {
         this.counter = 0;
         this.setupImages();
-        console.log("Carousel:", this.magOverview);
+        //console.log("Carousel:", this.magOverview);
     }
 
     ngOnChanges() {
