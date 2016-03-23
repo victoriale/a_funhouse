@@ -5,13 +5,12 @@ import {MagazinePage} from "../../../app-webpage/magazine.webpage";
 import {MagazineDataService} from "../../../global/global-mag-service";
 import {MagAmenities} from "../../../global/global-interface";
 import {MagAmenitiesTextModule} from "../mag-amenities-text/mag-amenities-text.module";
-import {MagAmenitiesImgModule} from "../mag-amenities-img/mag-amenities-img.module";
 
 @Component({
     selector: 'amenities-module',
     templateUrl: './app/modules/magazine/mag-amenities/mag-amenities.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [NavRightComponent, NavLeftComponent, MagAmenitiesTextModule, MagAmenitiesImgModule],
+    directives: [NavRightComponent, NavLeftComponent, MagAmenitiesTextModule],
 })
 
 export class Amenities implements OnInit {
