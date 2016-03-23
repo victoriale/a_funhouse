@@ -37,35 +37,35 @@ export class AmenitiesModule implements OnInit{
 
     left(){
         console.log('left - module', this.index);
-        // if(this.amenitiesData === null){
-        //     return false;
-        // }
-        //
-        // var max = this.amenitiesData.listData.length - 1;
-        //
-        // if(this.index > 0){
-        //     this.index -= 1;
-        //     this.dataFormatter();
-        // }else{
-        //     this.index = max;
-        //     this.dataFormatter();
-        // }
+        if(this.amenitiesData === null){
+            return false;
+        }
+
+        var max = this.amenitiesData.listData.length - 1;
+
+        if(this.index > 0){
+            this.index -= 1;
+            this.dataFormatter();
+        }else{
+            this.index = max;
+            this.dataFormatter();
+        }
     }
     right(){
         console.log('right - module', this.index);
-        // if(this.amenitiesData === null){
-        //     return false;
-        // }
-        //
-        // var max = this.amenitiesData.listData.length - 1;
-        //
-        // if(this.index < max){
-        //     this.index += 1;
-        //     this.dataFormatter();
-        // }else{
-        //     this.index = 0;
-        //     this.dataFormatter();
-        // }
+        if(this.amenitiesData === null){
+            return false;
+        }
+
+        var max = this.amenitiesData.listData.length - 1;
+
+        if(this.index < max){
+            this.index += 1;
+            this.dataFormatter();
+        }else{
+            this.index = 0;
+            this.dataFormatter();
+        }
     }
     //Build Module Title
     setModuleTitle(){
@@ -86,18 +86,11 @@ export class AmenitiesModule implements OnInit{
         }
     }
     dataFormatter(){
-      // var data = this.amenitiesData;
-      // console.log(data);
-      // // Exit function if no list data is found
-      // if(data.listData.length === 0){
-      //     return false;
-      // }
-      // var listData = data.listData[this.index];
-      //
-      // //Used for both location and listing profile
-      // this.listData = {
-      //
-      // }
+      var data = this.amenitiesData;
+      console.log(data);
+      this.listData = {
+
+      }
     }
     ngOnInit(){
         this.hasFooterButton = true;

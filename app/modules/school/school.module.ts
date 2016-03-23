@@ -64,6 +64,7 @@ export class SchoolModule implements OnInit{
     dataFormatter(){
       var data = this.schoolData;
       console.log(data);
+
     }
 
     //Build Module Title
@@ -100,7 +101,19 @@ export class SchoolModule implements OnInit{
         var currentSchoolData = event.schoolData.currentValue;
         //If the data input is valid run transform data function
         if(currentSchoolData !== null && currentSchoolData !== false){
-            this.dataFormatter();
-        }
+          //Perform try catch to make sure module doesnt break page
+          // try{
+          //     //If featured list data has no list data (length of 0) throw error to hide module
+          //     if(this.schoolData.listData.length === 0){
+          //         throw 'No Data available for school list - hiding module';
+          //     }
+          //
+          //     this.dataFormatter();
+          // }catch(e){
+          //     console.log('Error - School List Module ', e);
+          //     this.schoolData = undefined;
+          // }
+          this.dataFormatter();
+       }
     }
 }

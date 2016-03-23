@@ -1,21 +1,21 @@
 /**
  * Created by Victoria on 3/14/2016.
  */
-import {Component, Input, OnInit} from 'angular2/core';
+import {Component, Input, OnInit, OnChanges} from 'angular2/core';
 import {RouteParams, Router, ROUTER_DIRECTIVES} from 'angular2/router';
 import {WidgetModule} from "../../modules/widget/widget.module";
 import {GlobalFunctions} from "../../global/global-functions";
 
 import {moduleHeader} from "../../components/module-header/module-header";
-import {ListingProfileService} from '../../global/listing-profile.service';
-import {AmenitiesNearListingInterface} from '../../global/global-interface';
+import {LocationProfileService} from '../../global/location-profile.service';
+// import {AmenitiesNearListingInterface} from '../../global/global-interface';
 
 @Component({
     selector: 'Amenities-list-page',
     templateUrl: './app/webpages/amenities-lists/amenities-lists.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [WidgetModule, moduleHeader, ROUTER_DIRECTIVES],
-    providers: [ListingProfileService]
+    providers: [LocationProfileService]
 })
 
 export class AmenitiesListPage implements OnInit{
@@ -29,25 +29,32 @@ export class AmenitiesListPage implements OnInit{
   displayAddress2: string;
   snippetText: string;
   imageURL: string;
+  public location: string;
+  public locCity: string;
+  public locState: string;
+  public profileType: string;
   private amenitiesData: any;
 
-  @Input() amenitiesNearListingData: AmenitiesNearListingInterface;
+  @Input() amenitiesNearListingData: any;
 
-  constructor(private _params: RouteParams, private _router: Router, private _globalFunctions: GlobalFunctions,  private _listingService: ListingProfileService, params: RouteParams){
+  constructor(private _params: RouteParams, private router: Router, private globalFunctions: GlobalFunctions,  private _locationService: LocationProfileService, params: RouteParams){
       window.scrollTo(0, 0);
   }
 
   getData(){
-      this._listingService.getAmenitiesNearListing(this._params.get('address'))
+      this._locationService.getAmenitiesData(this.locState, this.locCity)
           .subscribe(
               amenitiesData => {this.amenitiesData = this.dataFormatter(amenitiesData)}
           );
   }
+
   dataFormatter(data){
+    console.log(data);
     var dataLists = data['restaurant']['businesses'];
     console.log('data', dataLists);
+    this.counter = dataLists.length;
     this.name = dataLists[0]['name'];
-    // this.counter = dataLists.length;
+    console.log(this.counter, this.name);
     var address = dataLists[0]['location']['display_address'];
     this.displayAddress1 = address[0];
     this.displayAddress2 = address[1];
@@ -55,18 +62,12 @@ export class AmenitiesListPage implements OnInit{
     this.imageURL = dataLists[0].image_url;
   }
 
-  //Build Module Title
-  setModuleTitle() {
-    var paramAddress = this._params.get('address').split('-');
-    var paramState = paramAddress[paramAddress.length - 1];
-    var paramCity = paramAddress[paramAddress.length - 2];
-    var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
-    var address = tempArr.join(' ');
-    this.moduleTitle = 'Amenities near ' + address + ' ' + paramCity + ', ' + paramState;
-  }
-
   ngOnInit(){
-    this.setModuleTitle();
+    this.locState = decodeURI(this._params.get('state'));
+    this.locCity = decodeURI(this._params.get('city'));
+    this.location = this.globalFunctions.toTitleCase(this.locCity) + ', ' + this.locState;
+    this.moduleTitle = "Top Rated Amenities In " + this.location;
+
     this.getData();
   }
 

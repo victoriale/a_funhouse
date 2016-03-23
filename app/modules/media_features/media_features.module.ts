@@ -1,7 +1,7 @@
 /**
  * Created by Victoria on 3/2/2016.
  */
-import {Component, OnInit, Input} from 'angular2/core';
+import {Component, OnInit, Input, OnChanges} from 'angular2/core';
 import {Router, RouteParams} from 'angular2/router';
 import {moduleHeader} from "../../components/module-header/module-header";
 import {MediaImages} from "../../components/media-images/media-images.component";
