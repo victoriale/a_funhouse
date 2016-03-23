@@ -1,7 +1,7 @@
 <div class="mag_container_left">
     <span *ngFor="#magListings of magRecommendations?.similar; #i=index">
         <span *ngIf="i === 0">
-            <div class="mag_n1_img" style="background-image: url('{{magListings.photos[0]}}')" id="i">
+            <div class="mag_n1_img" style="background-image: url('{{magListings.photos[0]}}')" id="{{i}}">
                 <div class="mag_n1_img_overlay">
                     <div class="mag_n1_img_text">{{magListings.address.fullStreetAddress}}</div>
                     <div class="mag_n1_img_bar"></div>
@@ -10,7 +10,7 @@
             </div>
         </span>
         <span *ngIf="i === 1">
-            <div class="mag_n1_img" style="background-image: url('{{magListings.photos[0]}}')" id="i">
+            <div class="mag_n1_img" style="background-image: url('{{magListings.photos[0]}}')" id="{{i}}">
                 <div class="mag_n1_img_overlay">
                     <div class="mag_n1_img_text">{{magListings.address.fullStreetAddress}}</div>
                     <div class="mag_n1_img_bar"></div>
@@ -18,14 +18,5 @@
                 </div>
             </div>
         </span>
-    <!--<span *ngIf="!recommendations">-->
-        <!--<span *ngFor="#magImage1 of magListings.contactListing;">-->
-            <!--<div class="mag_n1_img" style="background-image: url('{{magImage1.photo}}')" id="i">-->
-                <!--<div class="mag_n1_img_overlay">-->
-                    <!--<div class="mag_n1_img_text">{{magImage1.itemAddress}}</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</span>-->
-    <!--</span>-->
     </span>
 </div>

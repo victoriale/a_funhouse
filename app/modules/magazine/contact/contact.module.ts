@@ -5,20 +5,20 @@ import {MagRecommendations} from "../../../global/global-interface";
 import {MagazinePage} from "../../../app-webpage/magazine.webpage";
 import {MagazineDataService} from "../../../global/global-mag-service";
 import {MagContact} from "../../../global/global-interface";
-import {LearnMoreComponent} from "../../../components/magazine/mag-btns/learnmore-btn/learnmore-btn.component";
+import {ContactComponent} from "../../../components/magazine/mag-btns/contact-btn/contact-btn.component";
 
 @Component({
     selector: 'contact-module',
     templateUrl: './app/modules/magazine/contact/contact.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [MagExploreModule, NavLeftComponent, LearnMoreComponent],
+    directives: [MagExploreModule, NavLeftComponent, ContactComponent]
 })
 
 export class Contact implements OnInit {
-    address: string;
+    address:string;
     magContact:MagContact;
 
-    constructor( private _injector: Injector, private _magazineDataService: MagazineDataService ) {
+    constructor(private _injector:Injector, private _magazineDataService:MagazineDataService) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
         this.address = _injector.get(MagazinePage).address;
