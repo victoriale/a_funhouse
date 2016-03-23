@@ -1,7 +1,7 @@
 .page-title {
   @defaultPageHdrHeight: 130px;
   width: 680px;
-  height: @defaultPageHdrHeight;
+  height: auto;
   line-height: @defaultPageHdrHeight;
   padding: 5px;
   .flexDisplay;
@@ -14,6 +14,7 @@
   .titleText {
     width: 80%;
     margin: 12px;
+    height:auto;
     .smallTxt1 {
       .globalDefaultModFont(10px, 300, @greyUpdate);
       margin-bottom: 12px;
@@ -30,13 +31,11 @@
     .mainTitle {
       .globalDefaultModFont(@hdingLineHeight, 700, @black);
       @hdingLineHeight: 24px;
-      height: 28px;
       overflow: hidden;
     }
     .subTitle {
       .globalDefaultModFont(@hdingLineHeight, 300, @black);
       @hdingLineHeight: 24px;
-      height: 28px;
       overflow: hidden;
     }
   }

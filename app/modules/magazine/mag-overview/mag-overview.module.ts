@@ -29,7 +29,7 @@ export class MagOverviewModule implements OnInit {
                 magData => {
                     this.magOverview = magData.overview;
                     this.price = +magData.overview.price;
-                    console.log("magData:", magData);
+                    //console.log("magData:", magData);
                 },
                 err => console.log("error in getData", err)
             )
