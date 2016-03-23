@@ -54,7 +54,7 @@
             <span>Must Haves</span>
         </div>
         <div class="property-options-select">
-            <select (onclick)="onSelectBedrooms()" name="select-bedrooms" id="select-bedrooms">
+            <select (change)="onSelectBedrooms()" name="select-bedrooms" id="select-bedrooms">
                 <option value="empty" style="display:none;" selected>Bedrooms</option>
                 <option value="empty">All Beds</option>
                 <option value="1">+1</option>
@@ -63,7 +63,7 @@
                 <option value="4">+4</option>
                 <option value="5">+5</option>
             </select>
-            <select name="select-bathrooms" id="select-bathrooms">
+            <select (change)="onSelectBathrooms()" name="select-bathrooms" id="select-bathrooms">
                 <option value="empty" style="display:none;" selected>Bathrooms</option>
                 <option value="empty">All Baths</option>
                 <option value="1">+1</option>
@@ -72,7 +72,7 @@
                 <option value="4">+4</option>
                 <option value="5">+5</option>
             </select>
-            <select name="select-square-feet" id="select-square-feet">
+            <select (change)="onSelectSqFeet()" name="select-square-feet" id="select-square-feet">
                 <option value="empty" style="display:none;" selected>Square Feet</option>
                 <option value="empty">All Sizes</option>
                 <option value="500">+500 sq ft</option>
@@ -83,25 +83,25 @@
                 <option value="5000">+5000 sq ft</option>
                 <option value="10000">+10000 sq ft</option>
             </select>
-            <select name="select-lot-size" id="select-lot-size">
+            <select (change)="onSelectLotSize()" name="select-lot-size" id="select-lot-size">
                 <option value="empty" style="display:none;" selected>Lot Size</option>
                 <option value="empty">All Sizes</option>
-                <option value="2000">+2000 sq ft</option>
-                <option value="3000">+3000 sq ft</option>
-                <option value="4000">+4000 sq ft</option>
-                <option value="5000">+5000 sq ft</option>
-                <option value="7000">+7000 sq ft</option>
-                <option value="10890">+1/4 acre</option>
-                <option value="21780">+1/2 acre</option>
-                <option value="43560">+1 acre</option>
-                <option value="87120">+2 acre</option>
-                <option value="217800">+5 acre</option>
-                <option value="435600">+10 acre</option>
+                <option value="0.04591368">+2000 sq ft</option>
+                <option value="0.06887052">+3000 sq ft</option>
+                <option value="0.09182736">+4000 sq ft</option>
+                <option value="0.1147842">+5000 sq ft</option>
+                <option value="0.1606979">+7000 sq ft</option>
+                <option value="0.25">+1/4 acre</option>
+                <option value="0.50">+1/2 acre</option>
+                <option value="1">+1 acre</option>
+                <option value="2">+2 acre</option>
+                <option value="5">+5 acre</option>
+                <option value="10">+10 acre</option>
             </select>
         </div>
     </div>
     <div class="property-buttons">
         <div class="button-clear"><p class="clear-text"><i class="fa fa-times"></i> Clear Your Preferences <i class="fa fa-angle-right"></i></p></div>
-        <div class="button-view"><p class="view-button-text">View Homes Matching Your Preferences <i class="fa fa-angle-right"></i></p></div>
+        <div class="button-view" (click)="onViewClick()"><p class="view-button-text">View Homes Matching Your Preferences <i class="fa fa-angle-right"></i></p></div>
     </div>
 </section>

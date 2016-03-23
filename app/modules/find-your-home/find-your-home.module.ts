@@ -1,13 +1,14 @@
 import {Component, Input, OnInit} from 'angular2/core';
 import {moduleHeader} from "../../components/module-header/module-header";
 import {imageHeader} from "../../components/image-header/image-header";
+import {Router, ROUTER_DIRECTIVES} from "angular2/router";
 declare var jQuery: any;
 
 @Component({
     selector: 'find-your-home-module',
     templateUrl: './app/modules/find-your-home/find-your-home.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [moduleHeader, imageHeader],
+    directives: [moduleHeader, imageHeader, ROUTER_DIRECTIVES],
     providers: [],
 })
 
@@ -20,20 +21,13 @@ export class FindYourHomeModule implements OnInit{
 
     private filterMinPrice = 50;
     private filterMaxPrice = 10000;
-    private filterBedrooms: string = 'empty';
-    private filterBathrooms: string  = 'empty';
-    private filterSqft: string  = 'empty';
-    private filterLot: string  = 'empty';
-    private filterType: string  = 'empty';
+    private filterBedrooms: any = 'empty';
+    private filterBathrooms: any  = 'empty';
+    private filterSqFeet: any  = 'empty';
+    private filterLot: any  = 'empty';
+    private filterType: any  = 'empty';
 
-    // Params to send to list page
-    public filter_minPrice = this.filterMinPrice * 1000;
-    public filter_maxPrice = this.filterMaxPrice * 1000;
-    public filter_numBedrooms = this.filterBedrooms;
-    public filter_numBathrooms = this.filterBathrooms;
-    public filter_sqFeet = this.filterSqft;
-    public filter_lotSize = this.filterLot;
-    public filter_type = this.filterType;
+    constructor(private _router: Router) {}
 
     // location/findYourHome/{state}/{city}/{priceLowerBound}/{priceUpperBound}/{type}/{bedrooms}/{bathrooms}/{squareFeet}/{lotSize}
     // types: Townhouse, Condominium, Apartment, and Single Family Attached
@@ -47,10 +41,38 @@ export class FindYourHomeModule implements OnInit{
         console.log(this.filterType);
     }
 
-    // Get selected select value for property options
+    // Get selected select value for number bedrooms
     onSelectBedrooms() {
-        this.filterBedrooms = jQuery('option:selected').val();
+        this.filterBedrooms = jQuery('#select-bedrooms').val();
         console.log(this.filterBedrooms);
+    }
+
+    // Get selected select value for number bathrooms
+    onSelectBathrooms() {
+        this.filterBathrooms = jQuery('#select-bathrooms').val();
+        console.log(this.filterBathrooms);
+    }
+
+    // Get selected select value for Sq Feet
+    onSelectSqFeet() {
+        this.filterSqFeet = jQuery('#select-square-feet').val();
+        console.log(this.filterSqFeet);
+    }
+
+    // Get selected select value for number bathrooms
+    onSelectLotSize() {
+        this.filterLot = jQuery('#select-lot-size').val();
+        console.log(this.filterLot);
+    }
+
+    onViewClick() {
+        // Params to send to list page
+        this.filterMinPrice = this.filterMinPrice * 1000;
+        this.filterMaxPrice = this.filterMaxPrice * 1000;
+
+        console.log('FYH-Params: ', this.filterMinPrice, this.filterMaxPrice, this.filterBedrooms, this.filterBathrooms, this.filterSqFeet, this.filterLot, this.filterType);
+
+        //this._router.navigate( ['Details', { id: 'companyId', param1: 'value1'}]);
     }
 
     onClickBall($event) {
@@ -103,15 +125,15 @@ export class FindYourHomeModule implements OnInit{
         }
 
         if ( id == 'minBall' ) {
-            var min = 0, max = jQuery('#maxBall').position().left - 20;
+            var min: number = 0, max: number = jQuery('#maxBall').position().left - 20;
             var oldPerc = Math.round((jQuery('#maxBall').position().left + 5)/636 * 100);
         } else {
-            var max = 632, min = jQuery('#minBall').position().left + 20;
+            var max: number = 632, min: number = jQuery('#minBall').position().left + 20;
             var oldPerc = Math.round((jQuery('#minBall').position().left + 5)/636 * 100);
         }
 
         if ( position <= max && position >= min ) {
-            var newVal = Math.round(this.logslider(position));
+            var newVal: any = Math.round(this.logslider(position));
             jQuery('#' + id).css({left: position});
             if ( id == 'minBall' ) {
                this.filterMinPrice = newVal;
@@ -156,8 +178,8 @@ export class FindYourHomeModule implements OnInit{
                     }
                 }
             });
-            var avg = Math.round((this.filterMinPrice) + this.filterMaxPrice) / 2;
-            var avgPos = Math.round((jQuery('#minBall').position().left + jQuery('#maxBall').position().left) / 2);
+            var avg: any = Math.round((this.filterMinPrice) + this.filterMaxPrice) / 2;
+            var avgPos: any = Math.round((jQuery('#minBall').position().left + jQuery('#maxBall').position().left) / 2);
             if ( (avgPos - jQuery('#minBall').position().left) < 100 ) {
                 jQuery('.price_slider_avg').css('display','none');
             } else {

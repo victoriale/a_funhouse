@@ -130,7 +130,7 @@
   .flexJustify(space-between);
   .button-clear {
     border-radius: 5px;
-    background-color: #cccccc;
+    background-color: @strokeGrey;
     width: 286px;
     height: 40px;
     cursor: pointer;
@@ -144,6 +144,9 @@
       .fa.fa-angle-right {
         padding-left: 10px;
       }
+    }
+    &:hover {
+      background: darken(@strokeGrey, 10%);
     }
   }
   .button-view {
@@ -161,6 +164,9 @@
         color: @white;
         padding-left: 10px;
       }
+    }
+    &:hover {
+      background: darken(@masterBrandColor, 10%);
     }
   }
 }
