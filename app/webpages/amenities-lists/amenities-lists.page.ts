@@ -36,7 +36,7 @@ export class AmenitiesListPage implements OnInit{
       window.scrollTo(0, 0);
   }
 
-  getData(){ 
+  getData(){
     this._listingService.getAmenitiesNearListing(this._params.get('address'))
         .subscribe(data => {
           var dataLists = data['restaurant']['businesses'];
@@ -52,6 +52,7 @@ export class AmenitiesListPage implements OnInit{
         () => console.log('Recent Listings Data Acquired!')
       );
   }
+
   //Build Module Title
   setModuleTitle() {
     var paramAddress = this._params.get('address').split('-');
@@ -61,10 +62,12 @@ export class AmenitiesListPage implements OnInit{
     var address = tempArr.join(' ');
     this.moduleTitle = 'Amenities near ' + address + ' ' + paramCity + ', ' + paramState;
   }
+
   ngOnInit(){
     this.setModuleTitle();
     this.getData();
   }
+  
   // On Change Call
   ngOnChanges(event) {
     //Get changed input
