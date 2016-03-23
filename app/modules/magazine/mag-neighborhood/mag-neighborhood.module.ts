@@ -1,5 +1,4 @@
-import {Component, OnInit, Injector} from 'angular2/core';
-import {MagazineNeighborhood} from "../../../global/global-mag-service";
+import {Component, OnInit, Injector, Input} from 'angular2/core';
 import {AdzoneComponent} from "../../../components/magazine/mag-adzone/mag-adzone.component";
 import {LearnMoreComponent} from "../../../components/magazine/mag-btns/learnmore-btn/learnmore-btn.component";
 import {MagNeighborhood} from "../../../global/global-interface";
@@ -27,7 +26,7 @@ export class MagNeighborhoodModule implements OnInit {
             .subscribe(
                 magData => {
                     this.magNeighborhood = magData.neighborhood;
-                    console.log("magData:", magData);
+                    //console.log("magData:", magData);
                 },
                 err => console.log("error in getData", err)
             )

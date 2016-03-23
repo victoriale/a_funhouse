@@ -1,4 +1,4 @@
-<div class="contentlist">
+<div class="contentlist {{data.bgClass}}">
     <div class='imagebox'>
         <a [routerLink]="['../../Magazine', {addr: data.listData[0].addressKey}, 'PropertyOverview' ]">
             <img src='{{data.listData[0].photo}}' alt='' />
@@ -9,8 +9,8 @@
         </a>
     </div>
     <div class="contentbox">
-        <a [routerLink]="['Location-page', {loc: cityLocation + stateLocation}]">
-            <span><i class="fa fa-map-marker"></i>{{location}}</span>
+        <a [routerLink]="['Location-page', {loc: locationURL}]">
+            <span class="location"><i class="fa fa-map-marker"></i>{{location}}</span>
         </a>
         <span title="{{data.listTitle}}">{{data.listTitle}}</span>
         <div class="content_bottom">

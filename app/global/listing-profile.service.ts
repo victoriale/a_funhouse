@@ -81,5 +81,25 @@ export class ListingProfileService{
             }
         )
     }
+    //API for Amenities Info for listing profile
+    getAmenitiesNearListing(address){
+        //Configure HTTP Headers
+        var headers = this.setToken();
+
+        address = encodeURI(address);
+        console.log('Listing Amenities Nearby Input', address);
+
+        return this.http.get(this.apiUrl + '/listing/amenitiesNearListing/' + address, {
+            headers: headers
+        })
+        .map(
+            res => res.json()
+        )
+        .map(
+            data => {
+                return data.data;
+            }
+        )
+    }
 
 }

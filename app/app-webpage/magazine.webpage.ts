@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {ROUTER_DIRECTIVES, RouteConfig, AsyncRoute} from 'angular2/router';
 import {Contact} from "../modules/magazine/contact/contact.module";
 import {Neighborhood} from "../modules/magazine/neighborhood/neighborhood.module";
@@ -10,12 +10,18 @@ import {MagazineDataService} from "../global/global-mag-service";
 import {Router} from "angular2/router";
 import {MagOverviewModule} from "../modules/magazine/mag-overview/mag-overview.module";
 import {MagOverview, MagData} from "../global/global-interface";
+import {Amenities} from "../modules/magazine/mag-amenities/mag-amenities.module";
+import {KeyInformation} from "../modules/magazine/key-information/key-information.module";
+import {NavLeftComponent} from "../components/magazine/mag-nav-left/mag-nav-left.component";
+import {NavRightComponent} from "../components/magazine/mag-nav-right/mag-nav-right.component";
+
+declare var jQuery:any;
 
 @Component({
     selector: 'magazine-page',
     templateUrl: './app/app-webpage/magazine.webpage.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [Contact, Neighborhood, Recommendations, MagHeaderModule, FooterComponent, ROUTER_DIRECTIVES, MagOverviewModule],
+    directives: [Contact, Neighborhood, Recommendations, Amenities, MagHeaderModule, FooterComponent, ROUTER_DIRECTIVES, MagOverviewModule, NavLeftComponent, NavRightComponent],
     providers: [MagazineDataService],
 })
 
@@ -37,12 +43,12 @@ import {MagOverview, MagData} from "../global/global-interface";
     }),
     new AsyncRoute({
         path: '/information',
-        loader: () => Promise.resolve(Neighborhood),
+        loader: () => Promise.resolve(KeyInformation),
         name: 'KeyInformation'
     }),
     new AsyncRoute({
         path: '/amenities',
-        loader: () => Promise.resolve(Neighborhood),
+        loader: () => Promise.resolve(Amenities),
         name: 'Amenities'
     }),
     new AsyncRoute({
@@ -56,6 +62,8 @@ export class MagazinePage {
     address: string;
     toc: any;
     magazineData: MagData;
+    pageCount: number;
+    currentIndex: any ;
 
     getMagServiceData() {
         this._magazineDataService.getMagazineData(this.address)
@@ -80,7 +88,7 @@ export class MagazinePage {
         if( magazineData.recommendations != null ){
             toc.push( { label: "Recommendations", routeName: "Recommendations" } );
         }
-        if( magazineData.schools != null ){
+        if( magazineData.info != null ){
             toc.push( { label: "Key Information", routeName: "KeyInformation" } );
         }
         if( magazineData.amenities != null ){
@@ -92,9 +100,21 @@ export class MagazinePage {
         return toc;
     }
 
+    buildNavigationElements() {
+        this.currentIndex = jQuery("magtab-component>span>a.router-link-active").index();
+        if(this.currentIndex < 1){ this.currentIndex = 0; }
+        jQuery(".magheader_pagenum").html( this.currentIndex + 1 );
+        jQuery(".currentIndexFooter").html( this.currentIndex + 1 );
+
+    }
+
     constructor( private _params: RouteParams, private _magazineDataService: MagazineDataService, private _router: Router ) {
         this.address = _params.get('addr');
-        //console.log("this.address!!!", this.address);
         this.getMagServiceData();
     }
+
+    ngAfterViewChecked(){
+        this.buildNavigationElements();
+    }
+
 }

@@ -35,7 +35,7 @@ export class ListPage {
 
   getListView() {// GET DATA FROM GLOBAL SERVICE
     //list/homesAtLeast5YearsOld/KS/Wichita/empty/10/1
-    this.listViewData.getListData('homesAtLeast5YearsOld', 'KS', 'Wichita','empty', 10, 1)
+    this.listViewData.getListData('homesAtLeast5YearsOld', 'KS', 'Wichita', 10, 1)
       .subscribe(data => {
         this.data = this.transformData(data);
       });

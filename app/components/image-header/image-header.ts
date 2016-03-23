@@ -1,7 +1,7 @@
 /**
  * Created by Larry on 2/23/2016.
  */
-import {Component, OnInit} from 'angular2/core';
+import {Component, Input, OnInit} from 'angular2/core';
 import {RouteParams} from 'angular2/router';
 
 @Component({
@@ -13,16 +13,14 @@ import {RouteParams} from 'angular2/router';
 })
 
 export class imageHeader implements OnInit{
-  image_url = './app/public/HeroBG.jpg';
-  location = '';
+    @Input() imageUrl;
+    @Input() location;
+
     constructor(
         private _routeParams: RouteParams
     ){ }
 
     ngOnInit() {
-        //let id = +this._routeParams.get('id');
-        let id = "[City], [State]";
-        this.location = id;
         console.log(this);
     }
 }

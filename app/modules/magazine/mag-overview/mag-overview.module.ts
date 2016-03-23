@@ -1,5 +1,4 @@
 import {Component, OnInit, Injector} from 'angular2/core';
-import {MagazineOverview} from "../../../global/global-mag-service";
 import {MagOverview} from "../../../global/global-interface";
 import {AdzoneComponent} from "../../../components/magazine/mag-adzone/mag-adzone.component";
 import {LearnMoreComponent} from "../../../components/magazine/mag-btns/learnmore-btn/learnmore-btn.component";
@@ -14,12 +13,11 @@ import {MagCarouselModule} from "../mag-carousel/mag-carousel.module";
     directives: [AdzoneComponent, LearnMoreComponent, MagCarouselModule],
 })
 export class MagOverviewModule implements OnInit {
-    counter: number;
     address: string;
     magOverview: MagOverview;
     price: number;
 
-    constructor( private _injector: Injector, private _magazineDataService: MagazineDataService ) {
+    constructor(private _injector:Injector, private _magazineDataService:MagazineDataService) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
         this.address = _injector.get(MagazinePage).address;
@@ -31,13 +29,13 @@ export class MagOverviewModule implements OnInit {
                 magData => {
                     this.magOverview = magData.overview;
                     this.price = +magData.overview.price;
-                    console.log("magData:", magData);
+                    //console.log("magData:", magData);
                 },
                 err => console.log("error in getData", err)
             )
     }
 
     ngOnInit() {
-      this.getMagazineOverview();
+        this.getMagazineOverview();
     }
 }

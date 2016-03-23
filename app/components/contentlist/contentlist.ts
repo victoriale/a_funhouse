@@ -16,8 +16,10 @@ export class contentList implements OnInit{
     @Input() stateLocation;
     
     location: string;
+    locationURL: string;
 
     ngOnInit(){
-        this.location = this.cityLocation + ', ' + this.stateLocation;
+        this.location = this.cityLocation.toLowerCase() + ', ' + this.stateLocation;
+        this.locationURL = this.cityLocation + '_' +this.stateLocation;
     }
 }

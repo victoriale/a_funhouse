@@ -8,7 +8,12 @@
   padding:15px 20px;
   .flexDirection(row);
   display: flex;
-  background: @white;
+  &.odd {
+    background: @backgroundGrey
+  }
+  &.even {
+    background: @white;
+  }
 }
 
 //style for large image box
@@ -39,6 +44,9 @@
     font-size: 20px;
     .line-clamp;
     .line-clamp-2;
+  }
+  .location {
+    text-transform: capitalize;
   }
   .content_bottom{
     .flexDirection(column);

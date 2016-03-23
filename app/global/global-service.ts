@@ -52,12 +52,12 @@ export class listViewPage {
   }
 
   //API for listview page data
-  getListData(listname, state, city, zip, limit, page) {
+  getListData(listname, state, city, limit, page) {
     var query = {
       listname: listname,
       state: state,
       city: city,
-      zip: zip,
+      zip: 'empty',
       limit: limit,
       page: page,
     };
@@ -78,7 +78,7 @@ export class listViewPage {
       fullUrl += query[q];
     }
 
-    console.log('Grabbing List Data', listname, state, city, zip, limit, page);
+    console.log('Grabbing List Data', listname, state, city, limit, page);
 
     console.log(fullUrl);
     return this.http.get(fullUrl, {
@@ -197,39 +197,41 @@ export class HomePageService {
   }
 }
 
-export class MediaFeatureList {
-  getBatchTwo() {
-    var BatchTwo: List2[] = [
-      {
-        'bigImage': "http://photos.listhub.net/BCMLSIA/12787/1?lm=20160203T155029",
-        'list_name': '[Listing Name] [Zip Code]',
-        'list_addr': '[Listing Address]',
-        'list_day': 'Days on the market: [##]',
-        'detail1': '[#,###]',
-        'unit1': 'SQ FT',
-        'detail2': '[#,###]',
-        'unit2': 'ACRES',
-        'price': '$[###,###]',
-        'price_name': 'SALE PRICE',
-        'smallImage': [
-          "http://photos.listhub.net/BCMLSIA/12787/1?lm=20160203T155029",
-          "http://photos.listhub.net/BCMLSIA/12787/2?lm=20160203T155029",
-          "http://photos.listhub.net/BCMLSIA/12787/3?lm=20160203T155029",
-          "http://photos.listhub.net/BCMLSIA/12787/4?lm=20160203T155029",
-          "http://photos.listhub.net/BCMLSIA/12787/5?lm=20160203T155029",
-          "http://photos.listhub.net/BCMLSIA/12787/6?lm=20160203T155029",
-          "http://photos.listhub.net/BCMLSIA/12787/7?lm=20160203T155029",
-          "http://photos.listhub.net/BCMLSIA/12787/8?lm=20160203T155029",
-          "http://photos.listhub.net/BCMLSIA/12787/9?lm=20160203T155029",
-          "http://photos.listhub.net/BCMLSIA/12787/10?lm=20160203T155029",
-          "http://photos.listhub.net/BCMLSIA/12787/11?lm=20160203T155029",
-          "http://photos.listhub.net/BCMLSIA/12787/12?lm=20160203T155029",
-          "http://photos.listhub.net/BCMLSIA/12787/13?lm=20160203T155029"
-        ],
-      }
-    ];
-    return Promise.resolve(BatchTwo);
-  }
+export class MediaFeatureList{
+    getBatchTwo() {
+        var BatchTwo: List2[] = [
+            {
+                'bigImage': "http://photos.listhub.net/BCMLSIA/12787/1?lm=20160203T155029",
+                'city': '[city]',
+                'state': '[state]',
+                'zipCode': '[zip code]',
+                'address': '[Listing Address]',
+                'daysOnMarket': 1,
+                'squareFeet': '[#,###]',
+                'unit1': 'SQ FT',
+                'lotSize': '[#,###]',
+                'unit2': 'ACRES',
+                'listPrice': '$[###,###]',
+                'price_name': 'SALE PRICE',
+                'smallImage': [
+                  "http://photos.listhub.net/BCMLSIA/12787/1?lm=20160203T155029",
+                  "http://photos.listhub.net/BCMLSIA/12787/2?lm=20160203T155029",
+                  "http://photos.listhub.net/BCMLSIA/12787/3?lm=20160203T155029",
+                  "http://photos.listhub.net/BCMLSIA/12787/4?lm=20160203T155029",
+                  "http://photos.listhub.net/BCMLSIA/12787/5?lm=20160203T155029",
+                  "http://photos.listhub.net/BCMLSIA/12787/6?lm=20160203T155029",
+                  "http://photos.listhub.net/BCMLSIA/12787/7?lm=20160203T155029",
+                  "http://photos.listhub.net/BCMLSIA/12787/8?lm=20160203T155029",
+                  "http://photos.listhub.net/BCMLSIA/12787/9?lm=20160203T155029",
+                  "http://photos.listhub.net/BCMLSIA/12787/10?lm=20160203T155029",
+                  "http://photos.listhub.net/BCMLSIA/12787/11?lm=20160203T155029",
+                  "http://photos.listhub.net/BCMLSIA/12787/12?lm=20160203T155029",
+                  "http://photos.listhub.net/BCMLSIA/12787/13?lm=20160203T155029"
+                ],
+            }
+        ];
+        return Promise.resolve(BatchTwo);
+    }
 }
 
 @Injectable()
@@ -237,7 +239,7 @@ export class MediaFeatureList {
 export class GlobalPage {
   public apiUrl: string = 'http://api2.joyfulhome.com:280';
 
-  constructor(public http: Http) { }
+  constructor(public http: Http){}
   //Function to set custom headers
 
   getAboutUsData() {
