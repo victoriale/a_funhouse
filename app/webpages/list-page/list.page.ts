@@ -31,6 +31,11 @@ export class ListPage {
   view: string = 'list'; // set to default list view
 
   listName: string;
+  listState: string;
+  listCity: string;
+  listLimit: string;
+  listPage: string;
+
   //Filter params for FYH
   filterState: string;
   filterCity: string;
@@ -66,8 +71,13 @@ export class ListPage {
     this.listName = this._params.get('listname');
 
     if(this.listName !== "filter") {
+        this.listState = this._params.get('state');
+        this.listCity = this._params.get('city');
+        this.listLimit = this._params.get('limit');
+        this.listPage = this._params.get('page');
+
         //list/homesAtLeast5YearsOld/KS/Wichita/empty/10/1
-        this.listViewData.getListData('homesAtLeast5YearsOld', 'KS', 'Wichita', 10, 1)
+        this.listViewData.getListData(this.listName, this.listState, this.listCity, this.listLimit, this.listPage)
             .subscribe(
                 data => {this.data = this.transformData(data);},
                 err => console.log(err),
