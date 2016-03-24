@@ -24,11 +24,8 @@ export class AmenitiesListPage implements OnInit{
   address: string;
   amenitiesListingsData: any;
   name: string;
-  counter: number;
   displayAddress1: string;
   displayAddress2: string;
-  snippetText: string;
-  imageURL: string;
   public location: string;
   public locCity: string;
   public locState: string;

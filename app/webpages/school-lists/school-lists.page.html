@@ -1,0 +1,38 @@
+<div class="content-wrapper">
+  <div class="wrapper">
+    <div class="inner-wrapper">
+      <main>
+        <section class='content-main eight-col'>
+          <section class="page-container">
+            <module-header [module_title]="moduleTitle"></module-header>
+
+            <div *ngFor="#item of schoolData; #i=odd" class="al" [ngClass]="{'odd': i == true}">
+              <div class='al-image'>
+                <a href=''>
+                  <!-- <img src='{{item.imageUrl}}' alt='' /> -->
+                  <img src='{{imageUrl}}' alt='' />
+                  <div class="al-image-rank">#{{item.rank}}</div>
+                </a>
+              </div>
+              <div>
+                  <div class='al-loc'>
+                    <span><i class='fa fa-map-marker'></i></span><span> {{item.full_street_address}}</span>
+
+                    <span><i class='fa fa-angle-right'></i></span><a [routerLink]="['Location-page',item.locationUrl]"><span> {{item.city}}, {{item.state_or_province}} {{item.postal_code}}</span></a>
+
+                  </div>
+
+                  <div class='al-name'>{{item.school_name}}</div>
+                  <div class='al-desc'>{{item.type}}</div>
+              </div>
+            </div>
+
+          </section>
+        </section>
+        <div class="four-col">
+          <widget-module></widget-module>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
