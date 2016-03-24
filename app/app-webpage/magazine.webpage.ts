@@ -1,5 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
-import {ROUTER_DIRECTIVES, RouteConfig, AsyncRoute} from 'angular2/router';
+import {ROUTER_DIRECTIVES, RouteConfig, AsyncRoute, OnActivate, ComponentInstruction} from 'angular2/router';
 import {Contact} from "../modules/magazine/contact/contact.module";
 import {Neighborhood} from "../modules/magazine/neighborhood/neighborhood.module";
 import {Recommendations} from "../modules/magazine/recommendations/recommendations.module";
@@ -62,6 +62,7 @@ export class MagazinePage {
     address: string;
     toc: any;
     magazineData: MagData;
+    goBackPage: string;
     pageCount: number;
     currentIndex: any ;
 
@@ -112,6 +113,12 @@ export class MagazinePage {
         this.getMagServiceData();
     }
 
+
+
+    ngOnInit(){
+        this.goBackPage = document.referrer;
+        console.log( this.goBackPage);
+    }
     ngAfterViewChecked(){
         this.buildNavigationElements();
     }
