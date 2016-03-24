@@ -1,9 +1,9 @@
 /**
  * Created by Victoria on 3/4/2016.
  */
-import {Component, OnInit, Input} from 'angular2/core';
+import {Component, OnInit, Input, Output, EventEmitter} from 'angular2/core';
 import {CircleButton} from "../../components/buttons/circle/circle.button";
-// import {MediaFeatureList} from '../../global/global-service';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {List2} from '../../global/global-interface';
 
 declare var jQuery : any;
@@ -11,16 +11,17 @@ declare var jQuery : any;
   selector: 'media-images',
   templateUrl: './app/components/media-images/media-images.component.html',
   styleUrls: ['./app/global/stylesheets/master.css'],
-  directives: [CircleButton],
+  directives: [ROUTER_DIRECTIVES, CircleButton],
   providers: [],
-  inputs: ['trending', 'mediaImages', 'featureListing']
+  inputs: ['trending', 'mediaImages', 'featureListing'],
+  outputs: ['leftCircle', 'rightCircle']
 })
 
 export class MediaImages implements OnInit {
   featureListing: any;
   public trending: boolean;
-  leftCircle: boolean;
-  rightCircle: boolean;
+  leftCircle: EventEmitter<boolean> = new EventEmitter();
+  rightCircle: EventEmitter<boolean> = new EventEmitter();
 
   mediaImages: any;//need to create interface
   smallImage: any;

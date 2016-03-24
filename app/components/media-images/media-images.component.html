@@ -40,7 +40,7 @@
         <div>{{featureListing.price}}</div>
         <div>{{featureListing.priceName}}</div>
       </div>
-      <a *ngIf="trending" href='' class='mod-page-btn'>
+      <a *ngIf="trending" [routerLink]="[featureListing.url1, featureListing.url2, featureListing.url3]" class='mod-page-btn'>
         <span></span>
         <span>View Your Home</span>
         <i class='fa fa-angle-right'></i>

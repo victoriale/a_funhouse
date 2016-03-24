@@ -31,7 +31,7 @@
                     <headline-component [data]="headlineOtherHomes"></headline-component>
 
                     <!--Trending Section-->
-                    <!-- <trending-homes [trending]="trendingFeature"></trending-homes> -->
+                    <trending-homes *ngIf="trendingHomesData" [trending]="trendingFeature" [trendingHomesData]="trendingHomesData"></trending-homes>
 
                     <!--List of List Section-->
                     <!-- <list-of-lists-module></list-of-lists-module> -->
