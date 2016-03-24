@@ -1,6 +1,23 @@
 @import (reference) "./app/global/stylesheets/components.less";
 @import (reference) "./app/global/stylesheets/base.less";
 
+.router-link-active {
+  .magheader {
+    &_but {
+      &_bottom {
+        position: absolute;
+        bottom: 4px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        width: 100px;
+        height: 5px;
+        background-color: @joyfulHomeGreen;
+      }
+      // END .magheader_but_bottom
+    }
+  }
+}
 .magheader {
   //.noclick;
   position: fixed;
@@ -16,24 +33,7 @@
     cursor: pointer;
     font-family: @globalFont;
     font-weight: 400;
-
-    &_bottom {
-      display: none;
-      position: absolute;
-      bottom: 4px;
-      left: 0;
-      right: 0;
-      margin: 0 auto;
-      width: 100px;
-      height: 5px;
-      background-color: @joyfulHomeGreen;
-    }
     // END .magheader_but_bottom
-
-    input {
-      display: none;
-    }
-    // END .magheader_but input
 
     &:focus {
       color: @white;

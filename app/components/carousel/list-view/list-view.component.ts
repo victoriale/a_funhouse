@@ -19,15 +19,17 @@ export class ListViewCarousel implements OnInit{
   imageCounter: number = 0;
   data: any;
   ngOnInit(){
-    this.carouselData = [{
-      heading : "Featured Listing",
-      image_url : './app/public/placeholder_XL.png',
-      button_url : '',
-      listing_price : "$###,###",
-      listing_area : "#### sqft",
-      listing_addr1 : "123 Test Street",
-      listing_addr2 : "City, ST 54321",
-    }];
+    if(typeof this.carouselData == "undefined"){
+      this.carouselData = [{
+        heading : "Featured Listing",
+        image_url : './app/public/placeholder_XL.png',
+        button_url : '',
+        listing_price : "$###,###",
+        listing_area : "#### sqft",
+        listing_addr1 : "123 Test Street",
+        listing_addr2 : "City, ST 54321",
+      }];
+    }
   }
 
   newCarousel(index){

@@ -18,7 +18,7 @@ export class KeyInformation implements OnInit {
     address:string;
     magSchools:MagSchools;
     magDemographics:MagDemographics;
-    schoolImage: string[];
+    schoolImage: string;
     //demographicImage: string[];
 
     constructor(private _injector:Injector, private _magazineDataService:MagazineDataService) {
@@ -28,30 +28,31 @@ export class KeyInformation implements OnInit {
     }
 
     getSchoolImages() {
+        let images: string[];
         switch (this.magSchools.stockPhotos.toLowerCase()) {
             case'college':
-                this.schoolImage = ['College_1_stock_mag.jpg', 'College_2_stock_mag.jpg', 'College_3_stock_mag.jpg'];
+                images = ['College_1_stock_mag.jpg', 'College_2_stock_mag.jpg', 'College_3_stock_mag.jpg'];
                 break;
             case'elementary':
-                this.schoolImage = ['Elementary_1_stock_mag.jpg', 'Elementary_2_stock_mag.jpg'];
+                images = ['Elementary_1_stock_mag.jpg', 'Elementary_2_stock_mag.jpg'];
                 break;
             case'high':
-                this.schoolImage = ['High_School_1_stock_mag.jpg', 'High_School_2_stock_mag.jpg', 'High_School_3_stock_mag.jpg', 'High_School_4_stock_mag.jpg'];
+                images = ['High_School_1_stock_mag.jpg', 'High_School_2_stock_mag.jpg', 'High_School_3_stock_mag.jpg', 'High_School_4_stock_mag.jpg'];
                 break;
             case'kindergarten':
-                this.schoolImage = ['Kindergarten_1_stock_mag.jpg', 'Kindergarten_3_stock_mag.jpg', 'Kindergarten_4_stock_mag.jpg', 'Kindergarten_5_stock_mag.jpg'];
+                images = ['Kindergarten_1_stock_mag.jpg', 'Kindergarten_3_stock_mag.jpg', 'Kindergarten_4_stock_mag.jpg', 'Kindergarten_5_stock_mag.jpg'];
                 break;
             case'middle':
-                this.schoolImage = ['Middle_School_1_stock_mag.jpg', 'Middle_School_2_stock_mag.jpg', 'Middle_School_3_stock_mag.jpg', 'Middle_School_4_stock_mag.jpg'];
+                images = ['Middle_School_1_stock_mag.jpg', 'Middle_School_2_stock_mag.jpg', 'Middle_School_3_stock_mag.jpg', 'Middle_School_4_stock_mag.jpg'];
                 break;
             case'private_elementary':
-                this.schoolImage = ['Private_Elementary_1_stock_mag.jpg'];
+                images = ['Private_Elementary_1_stock_mag.jpg'];
                 break;
             case'private_high':
-                this.schoolImage = ['Private_High_School_1_stock_mag.jpg', 'Private_High_School_2_stock_mag.jpg', 'Private_High_School_3_stock_mag.jpg'];
+                images = ['Private_High_School_1_stock_mag.jpg', 'Private_High_School_2_stock_mag.jpg', 'Private_High_School_3_stock_mag.jpg'];
                 break;
         }
-        this.schoolImage = this.schoolImage[Math.floor(Math.random() * this.schoolImage.length)];
+        this.schoolImage = images[Math.floor(Math.random() * images.length)];
     }
 
     //getDemoGraphicImages(){

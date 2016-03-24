@@ -1,6 +1,6 @@
 <section class="module-container">
     <module-header [module_title]="module_title"></module-header>
-    <image-header></image-header>
+    <image-header [imageUrl]="imageUrl" [location]="location"></image-header>
     <div class="property-type">
         <div class="type-title">
             <span>Pick a Property Type</span>
@@ -9,7 +9,7 @@
             <div class="filters_frame">
                 <img src="http://images.myhousekit.com/icons/Icon_House.png">
                 <span>House</span>
-                <input (click)="onClick()" type="checkbox" name="group[]" value="SingleFamily">
+                <input (click)="onClickPropertyType()" type="checkbox" name="group[]" value="SingleFamily">
             </div>
             <div class="filters_frame">
                 <img src="http://images.myhousekit.com/icons/Icon_Condo.png">
@@ -25,6 +25,27 @@
                 <img src="http://images.myhousekit.com/icons/Icon_Townhome.png">
                 <span>Townhome</span>
                 <input type="checkbox" name="group[]" value="Townhome">
+            </div>
+        </div>
+    </div>
+    <div class="slider">
+        <div class="filters_frame_price">
+            <div class="type-title">
+                <span>Price Range</span>
+            </div>
+            <!-- THE slider -->
+            <div class="price_slider">
+                <div class="price_slider_bar"></div>
+                <div class="price_slider_ball" style="left: 0" id="minBall">
+                    <input class="price_slider_ball_label" value="$50K">
+                </div>
+                <div class="price_slider_ball" style="right: 0" id="maxBall">
+                    <input class="price_slider_ball_label" value="$10M+">
+                </div>
+                <div class="price_slider_avg">
+                    <div class="price_slider_avg_caret"></div>
+                    <p>$5.025M Average</p>
+                </div>
             </div>
         </div>
     </div>

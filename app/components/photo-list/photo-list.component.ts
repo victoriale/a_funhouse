@@ -2,15 +2,15 @@ import {Component, OnInit, Input} from 'angular2/core';
 import {ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
 
 @Component({
-    selector: 'detailed-list',
-    templateUrl: './app/components/detailed-list/detailed-list.component.html',
+    selector: 'photo-list',
+    templateUrl: './app/components/photo-list/photo-list.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [ROUTER_DIRECTIVES],
     providers: [],
     inputs: ['listData'],
 })
 
-export class DetailedListComponent implements OnInit{
+export class PhotoListComponent implements OnInit{
     buttonName: string;
     infoList: any;
     listData: any;
