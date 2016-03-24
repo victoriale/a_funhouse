@@ -9,7 +9,7 @@
                     <!--<map-module></map-module>-->
                     <headline-component [data]="headlineAbout"></headline-component>
                     <profile-header *ngIf="profileHeaderData" [profileHeaderData]="profileHeaderData"></profile-header>
-                    <find-your-home-module [locDisplay]="locDisplay"></find-your-home-module>
+                    <find-your-home-module [locDisplay]="locDisplay" [locState]="locState" [locCity]="locCity"></find-your-home-module>
                     <comment-module></comment-module>
                     <info-list-module *ngIf="recentListingsData" [recentListingsData]="recentListingsData" [locDisplay]="locDisplay"></info-list-module>
                     <!--Trending Section-->
@@ -20,7 +20,7 @@
 
                     <!-- Amenities and School Section -->
                     <headline-component [data]="headlineSchool"></headline-component>
-                    <school-module *ngIf="schoolData" [schoolData]="schoolData"></school-module>
+                    <!--<school-module *ngIf="schoolData" [schoolData]="schoolData"></school-module>-->
                     <amenities-module *ngIf="amenitiesData" [amenitiesData]="amenitiesData"></amenities-module>
 
                     <!-- Interact Section -->
