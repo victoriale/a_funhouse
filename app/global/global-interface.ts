@@ -63,7 +63,7 @@ export interface MagSchools {
     menuTitle?: string;
     city?: string;
     content?: string[];
-    photo?: string;
+    stockPhotos?: string;
 }
 
 export interface MagDemographics {
@@ -71,7 +71,7 @@ export interface MagDemographics {
     menuTitle?: string;
     city?: string;
     content?: string[];
-    photo?: string;
+    stockPhotos?: string;
 }
 
 export interface address {
