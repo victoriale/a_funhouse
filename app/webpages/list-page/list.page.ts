@@ -115,8 +115,8 @@ export class ListPage {
     this.listData = listData;
     this.carouselData = carouselData;
 
-    console.log('ListData', this.listData);
-    console.log('carouselData', this.carouselData);
+    // console.log('ListData', this.listData);
+    // console.log('carouselData', this.carouselData);
   }//END OF TRANSFORM FUNCTION
 
   ngOnInit() {
