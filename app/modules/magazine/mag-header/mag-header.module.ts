@@ -1,8 +1,11 @@
-import {Component, Input, OnInit} from 'angular2/core';
+import {Component, Input, OnInit, Injector} from 'angular2/core';
 import {Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, RouteParams } from 'angular2/router';
 import {MagTabComponent} from "../../../components/magazine/mag-tabs/mag-tabs.component";
 import {ShareComponent} from "../../../components/facebook-share/facebook-share.component";
 import {CloseComponent} from "../../../components/magazine/mag-close/mag-close.component";
+import {WebApp} from "../../../app-layout/app.layout";
+
+declare var jQuery:any;
 
 @Component({
     selector: 'magazine-header-module',
@@ -14,6 +17,13 @@ import {CloseComponent} from "../../../components/magazine/mag-close/mag-close.c
 export class MagHeaderModule {
     @Input() toc: any;
     pageNum: number = 1;
+    public partnerID: string;
+    isPartner: boolean;
+
+    constructor(private injector:Injector) {
+        let partnerParam = this.injector.get(WebApp);
+        this.partnerID = partnerParam.partnerID;
+    }
 
     toggleTabs() {
         if (document.getElementById('tabs').classList.contains('active')) {
@@ -24,7 +34,14 @@ export class MagHeaderModule {
         }
     }
 
+    headerDisplay(){
+        if (this.partnerID != null){
+            this.isPartner = true;
+        }
+    }
+
     ngOnInit(){
+        this.headerDisplay();
     }
 
     ngOnChanges(event){
