@@ -14,6 +14,8 @@ declare var jQuery: any;
 
 export class FindYourHomeModule implements OnInit{
     @Input() locDisplay;
+    @Input() locState;
+    @Input() locCity;
 
     public module_title: string;
     public imageUrl: string;
@@ -72,7 +74,8 @@ export class FindYourHomeModule implements OnInit{
 
         console.log('FYH-Params: ', this.filterMinPrice, this.filterMaxPrice, this.filterBedrooms, this.filterBathrooms, this.filterSqFeet, this.filterLot, this.filterType);
 
-        //this._router.navigate( ['Details', { id: 'companyId', param1: 'value1'}]);
+        // Send router to list page with query params attached
+        this._router.navigate(['List-page', {listname: 'filter', state: this.locState, city: this.locCity, limit: '10', page: '1', filterMinPrice: this.filterMinPrice, filterMaxPrice: this.filterMaxPrice, filterBedrooms: this.filterBedrooms, filterBathrooms: this.filterBathrooms, filterSqFeet: this.filterSqFeet, filterLot: this.filterLot, filterType: this.filterType}]);
     }
 
     onClickBall($event) {

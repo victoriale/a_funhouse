@@ -65,6 +65,11 @@ export class HomePage implements OnInit {
             );
     }
 
+    defaultCity() {
+        this.stateLocation = "KS";
+        this.cityLocation = "Wichita";
+    }
+
     onChange(value) {
         this.selectValue = value;
         this.cityLocation = this.selectValue.split('-')[0];
@@ -77,10 +82,10 @@ export class HomePage implements OnInit {
         // Call to get current State and City
         //this.getGeoLocation();
 
+        // For testing geo location
+
         this.stateLocation = "KS";
         this.cityLocation = "Wichita";
-
-        // For testing geo location
         this.getNearByCities();
 
         // Set button options. Passed to explore-button-component and hero-bottom-component.

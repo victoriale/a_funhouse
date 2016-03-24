@@ -120,8 +120,8 @@ export class LocationPage implements OnInit {
 
     ngOnInit() {
         this.loc = this._params.get('loc');
-        this.locCity = this.loc.split('_')[0];
-        this.locState = this.loc.split('_')[1];
+        this.locCity = decodeURI(this.loc.split('_')[0]);
+        this.locState = decodeURI(this.loc.split('_')[1]);
         this.locDisplay = decodeURI(this.locCity + ', ' + this.locState);
 
         this.headlineAbout = {
