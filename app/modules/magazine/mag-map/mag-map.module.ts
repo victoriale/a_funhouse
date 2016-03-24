@@ -1,9 +1,11 @@
 import {Component, provide, OnInit,ViewEncapsulation, ViewChild, ElementRef, Injector} from 'angular2/core';
 import {bootstrap} from 'angular2/platform/browser';
+import {Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, RouteParams} from 'angular2/router';
 import {MapMarkerComponent} from "../../../components/mapMarker/mapMarker.component";
 import {MagazinePage} from "../../../app-webpage/magazine.webpage";
 import {MagazineDataService} from "../../../global/global-mag-service";
 import {MagNeighborhood} from "../../../global/global-interface";
+import {WebApp} from "../../../app-layout/app.layout";
 
 declare var google:any;
 declare var jQuery:any;
@@ -13,7 +15,7 @@ declare var jQuery:any;
     selector: 'magazine-map-module',
     templateUrl: './app/modules/magazine/mag-map/mag-map.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [MapMarkerComponent],
+    directives: [MapMarkerComponent, ROUTER_DIRECTIVES],
 })
 
 
@@ -22,11 +24,14 @@ export class MagMapModule implements OnInit {
     imgAddress:string;
     address:string;
     data:MagNeighborhood;
+    public partnerID:string;
 
     constructor(private _injector:Injector, private _magazineDataService:MagazineDataService) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
         this.address = _injector.get(MagazinePage).address;
+        let partnerParam = this._injector.get(WebApp);
+        this.partnerID = partnerParam.partnerID;
     }
 
     getMagazineMap() {
@@ -34,12 +39,17 @@ export class MagMapModule implements OnInit {
             .subscribe(
                 magData => {
                     this.data = magData.neighborhood.neighbors;
+                    var partnerUrl = this.partnerID;
                     for (var i = 0; i < magData.neighborhood.neighbors.length; i++) {
                         if (magData.neighborhood.neighbors[i].address.lng != null && magData.neighborhood.neighbors[i].address.lat != null) {
                             var myLatlng = new google.maps.LatLng(parseFloat(this.data[i].address.lat), parseFloat(this.data[i].address.lng));
                             jQuery('.mag_n1_img').css("background-image", 'url(' + this.data[i].photos[0] + ')');
                             this.imgAddress = this.data[i].address.fullStreetAddress;
-                            this.imgURL = 'magazine/' + this.data[i].key + '/overview';
+                            if (partnerUrl == null) {
+                                this.imgURL = 'magazine/' + this.data[i].key + '/overview';
+                            } else {
+                                this.imgURL = partnerUrl + '/magazine/' + this.data[i].key + '/overview';
+                            }
                             var mapOptions = {
                                 zoom: 12,
                                 center: myLatlng
@@ -77,7 +87,11 @@ export class MagMapModule implements OnInit {
                                 var index = this.id;
                                 jQuery('.mag_n1_img').css("background-image", 'url(' + magData.neighborhood.neighbors[index].photos[0] + ')');
                                 jQuery('.mag_n1_img_text').html(magData.neighborhood.neighbors[index].address.fullStreetAddress);
-                                jQuery('.mag_n1_img_view').attr("href", 'magazine/' + magData.neighborhood.neighbors[index].key + '/overview');
+                                if (partnerUrl == null) {
+                                    jQuery('.mag_n1_img_view').attr("href", 'magazine/' + magData.neighborhood.neighbors[index].key + '/overview');
+                                } else {
+                                    jQuery('.mag_n1_img_view').attr("href", partnerUrl + '/magazine/' + magData.neighborhood.neighbors[index].key + '/overview');
+                                }
                                 jQuery('.googleMap_item').removeClass('focus');
                                 jQuery(this).addClass('focus');
                             });
@@ -87,6 +101,7 @@ export class MagMapModule implements OnInit {
                 err => console.log("error in getData", err)
             );
     }
+
     ngOnInit() {
         this.getMagazineMap();
     }
