@@ -5,7 +5,12 @@
                 <div class="mag_n1_img_overlay">
                     <div class="mag_n1_img_text">{{magListings.address.fullStreetAddress}}</div>
                     <div class="mag_n1_img_bar"></div>
-                    <a class="mag_n1_img_view" href="magazine/{{magListings.key}}/overview">View <i class="fa fa-eye"></i></a>
+                    <span *ngIf="!isPartner">
+                        <a class="mag_n1_img_view" href="magazine/{{magListings.key}}/overview">View <i class="fa fa-eye"></i></a>
+                    </span>
+                    <span *ngIf="isPartner">
+                        <a class="mag_n1_img_view" href="{{partnerID}}/magazine/{{magListings.key}}/overview">View <i class="fa fa-eye"></i></a>
+                    </span>
                 </div>
             </div>
         </span>
@@ -14,7 +19,12 @@
                 <div class="mag_n1_img_overlay">
                     <div class="mag_n1_img_text">{{magListings.address.fullStreetAddress}}</div>
                     <div class="mag_n1_img_bar"></div>
-                    <a class="mag_n1_img_view" href="magazine/{{magListings.key}}/overview">View <i class="fa fa-eye"></i></a>
+                    <span *ngIf="!isPartner">
+                        <a class="mag_n1_img_view" href="magazine/{{magListings.key}}/overview">View <i class="fa fa-eye"></i></a>
+                    </span>
+                    <span *ngIf="isPartner">
+                        <a class="mag_n1_img_view" href="{{partnerID}}/magazine/{{magListings.key}}/overview">View <i class="fa fa-eye"></i></a>
+                    </span>
                 </div>
             </div>
         </span>

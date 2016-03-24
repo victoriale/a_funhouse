@@ -5,6 +5,7 @@ import {LocationPage} from "../webpages/location-page/location.page";
 import {ListPage} from "../webpages/list-page/list.page";
 import {ListOfListsPage} from "../webpages/list-of-lists-page/list-of-lists.page";
 import {AmenitiesListPage} from "../webpages/amenities-lists/amenities-lists.page";
+import {SchoolListsPage} from "../webpages/school-lists/school-lists.page";
 import {HomePage} from "../webpages/home-page/home.page";
 import {ComponentPage} from "../webpages/component-page/component.page";
 import {AboutUsPage} from "../webpages/aboutus-page/aboutus.page";
@@ -29,7 +30,7 @@ import {PartnerHeader} from "../global/global-service";
     selector: 'my-app',
     templateUrl: './app/app-webpage/app.webpage.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [RouterOutlet, ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ListPage, ListOfListsPage, AmenitiesListPage, ROUTER_DIRECTIVES, DirectoryPage],
+    directives: [RouterOutlet, ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ListPage, ListOfListsPage, AmenitiesListPage, ROUTER_DIRECTIVES, DirectoryPage, SchoolListsPage],
     providers: [PartnerHeader, ROUTER_DIRECTIVES],
 })
 
@@ -52,7 +53,7 @@ import {PartnerHeader} from "../global/global-service";
         component: LocationPage,
     },
     {
-        path: '/list/:listname/:state/:city/:limit/:page',
+        path: '/list/:listname/:state/:city/page/:page',
         name: 'List-page',
         component: ListPage,
     },
@@ -65,6 +66,11 @@ import {PartnerHeader} from "../global/global-service";
         path: '/amenities-lists-page/:listname/:state/:city',
         name: 'Amenities-lists-page',
         component: AmenitiesListPage,
+    },
+    {
+        path: '/school-lists-page/:listname/:state/:city',
+        name: 'School-lists-page',
+        component: SchoolListsPage,
     },
     {
         path: '/component',

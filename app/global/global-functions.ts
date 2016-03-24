@@ -97,8 +97,9 @@ export class GlobalFunctions{
     //Transforms camel case to regular case (Words split up and capitalized)
     camelCaseToRegularCase = function(str){
         str = str
-            // insert a space before all caps
-            .replace(/([A-Z0-9])/g, ' $1')
+            .replace(/([A-Z][a-z]+)/g, " $1")
+            .replace(/([A-Z][A-Z]+)/g, " $1")
+            .replace(/([^A-Za-z ]+)/g, " $1")
             // uppercase the first character
             .replace(/^./, function(str){ return str.toUpperCase(); })
         return str;
