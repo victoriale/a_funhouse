@@ -154,10 +154,13 @@ export class ListPage {
         listing_addr2:val.loc + ' - ' + val.postalCode,
       };
       carData['button_url'] = '#';
+      carData['url1'] = "../../Magazine";
+      carData['url2'] = {addr:val.addressKey};
+      carData['url3'] = "PropertyOverview";
 
       carouselData.push(carData);
       listData.push(newData);
-    })//END of forEach
+    });//END of forEach
 
     //set to listData
     this.listData = listData;
