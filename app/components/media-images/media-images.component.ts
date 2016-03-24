@@ -115,6 +115,8 @@ export class MediaImages implements OnInit {
   ngOnChanges(event){
       if(typeof this.mediaImages != 'undefined' || typeof this.featureListing != 'undefined'){
         //if data coming from module to variable mediaImages changes in what way then reset to first image and rerun function
+        console.log('mediaImages',this.mediaImages);
+        console.log('featureListing',this.featureListing);
         this.mediaImages = this.modifyMedia(this.mediaImages);
         this.totalImageCount = this.mediaImages.totalImages;
         this.changeMain(0);
