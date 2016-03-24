@@ -9,7 +9,7 @@
                     <!--<map-module></map-module>-->
                     <headline-component [data]="headlineAbout"></headline-component>
                     <profile-header *ngIf="profileHeaderData" [profileHeaderData]="profileHeaderData"></profile-header>
-                    <find-your-home-module [locDisplay]="locDisplay"></find-your-home-module>
+                    <find-your-home-module [locDisplay]="locDisplay" [locState]="locState" [locCity]="locCity"></find-your-home-module>
                     <comment-module></comment-module>
                     <info-list-module *ngIf="recentListingsData" [recentListingsData]="recentListingsData" [locDisplay]="locDisplay"></info-list-module>
 

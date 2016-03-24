@@ -5,7 +5,6 @@
  _@BATCH-1
  _@BATCH
  */
-
 import {List, List2} from './global-interface';
 import {Injectable} from 'angular2/core';
 import {HomePageData} from "./global-interface";
@@ -47,9 +46,7 @@ export class listViewPage {
   public protocolToUse: string = (location.protocol == "https:") ? "https" : "http";
   public apiUrl: string = '://api2.joyfulhome.com:280';
 
-  constructor(public http: Http) {
-
-  }
+  constructor(public http: Http) {}
 
   //API for listview page data
   getListData(listname, state, city, limit, page) {
@@ -88,6 +85,29 @@ export class listViewPage {
       }
       )
   }
+
+  //API for Find Your Home filtered call
+  getFindYourHome(state, city, priceLowerBound, priceUpperBound, type, bedrooms, bathrooms, squareFeet, lotSize) {
+
+    city = encodeURI(city);
+    state = encodeURI(state);
+
+    var fullUrl = this.protocolToUse + this.apiUrl
+
+    // location/findYourHome/{state}/{city}/{priceLowerBound}/{priceUpperBound}/{type}/{bedrooms}/{bathrooms}/{squareFeet}/{lotSize}
+    // types: Townhouse, Condominium, Apartment, and Single Family Attached
+    // last 5 optional, pass string 'empty' if no option selected
+    return this.http.get(fullUrl + '/location/findYourHome/' + state + '/' + city + '/' + priceLowerBound + '/' + priceUpperBound + '/'  + type + '/' + bedrooms + '/' + bathrooms + '/' + squareFeet + '/' + lotSize)
+        .map(
+            res => res.json()
+        )
+        .map(
+            data => {
+              return data;
+            }
+        )
+  }
+
 }
 
 /*@LOCATIONPROFILE*/
