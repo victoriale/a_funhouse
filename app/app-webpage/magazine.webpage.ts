@@ -77,7 +77,6 @@ export class MagazinePage {
     }
 
     buildToc( magazineData ) {
-        //console.log("MAGAZINE DATA!!!!:", magazineData);
         var toc: any = [];
         if( magazineData.overview != null ){
             toc.push( { label: "Property Overview", routeName: "PropertyOverview" } );
@@ -85,7 +84,7 @@ export class MagazinePage {
         if( magazineData.neighborhood != null || true ){
             toc.push( { label: "The Neighborhood", routeName: "Neighborhood" } );
         }
-        if( magazineData.recommendations != null ){
+        if( magazineData.recommendations != null && magazineData.recommendations.similar.length > 1 ){
             toc.push( { label: "Recommendations", routeName: "Recommendations" } );
         }
         if( magazineData.info != null ){
