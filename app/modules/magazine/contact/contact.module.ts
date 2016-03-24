@@ -29,9 +29,7 @@ export class Contact implements OnInit {
             .subscribe(
                 magData => {
                     this.magContact = magData.contact;
-                    console.log(magData);
                 },
-
                 err => console.log("error in getData", err)
             )
     }

@@ -138,6 +138,7 @@ export class ListPage {
           market:'Built in ' + val.yearBuilt,
           rank: (i+1),
           desc: val.listingDescription,
+          photos: val.photos,
       };
       newData['url1'] = "../../Magazine";
       newData['url2'] = {addr:val.addressKey};
@@ -162,8 +163,8 @@ export class ListPage {
     this.listData = listData;
     this.carouselData = carouselData;
 
-    console.log('ListData', this.listData);
-    console.log('carouselData', this.carouselData);
+    // console.log('ListData', this.listData);
+    // console.log('carouselData', this.carouselData);
   }//END OF TRANSFORM FUNCTION
 
   ngOnInit() {

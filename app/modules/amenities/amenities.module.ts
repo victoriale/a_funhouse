@@ -15,7 +15,6 @@ import {GlobalFunctions} from '../../global/global-functions';
     templateUrl: './app/modules/amenities/amenities.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [moduleHeader, TilesComponent, AmenitiesComponent],
-    providers: []
 })
 export class AmenitiesModule implements OnInit{
     public hasFooterButton: boolean;
@@ -24,8 +23,8 @@ export class AmenitiesModule implements OnInit{
     public listData: Object;
     public tileData: Object;
     public index: number = 0;
+    // listView: Object;
 
-    listView: Object;
     provider_logo = './app/public/amenities_yelp.png';
 
     @Input() amenitiesData: any;
@@ -33,39 +32,6 @@ export class AmenitiesModule implements OnInit{
     constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions){
         //Determine what page the profile header module is on
         this.profileType = this.router.hostComponent.name;
-    }
-
-    left(){
-        console.log('left - module', this.index);
-        if(this.amenitiesData === null){
-            return false;
-        }
-
-        var max = this.amenitiesData.listData.length - 1;
-
-        if(this.index > 0){
-            this.index -= 1;
-            this.dataFormatter();
-        }else{
-            this.index = max;
-            this.dataFormatter();
-        }
-    }
-    right(){
-        console.log('right - module', this.index);
-        if(this.amenitiesData === null){
-            return false;
-        }
-
-        var max = this.amenitiesData.listData.length - 1;
-
-        if(this.index < max){
-            this.index += 1;
-            this.dataFormatter();
-        }else{
-            this.index = 0;
-            this.dataFormatter();
-        }
     }
     //Build Module Title
     setModuleTitle(){
@@ -85,13 +51,85 @@ export class AmenitiesModule implements OnInit{
             this.moduleTitle = 'Top Rated Amenities In and Around ' + address + ' ' + paramCity + ', ' + paramState;
         }
     }
+
+    left(){
+        console.log('left - module', this.index);
+        if(this.amenitiesData === null){
+            return false;
+        }
+        var data = this.amenitiesData;
+        var dataLists = data['restaurant']['businesses'];
+        var max = dataLists.length - 1;
+
+        if(this.index > 0){
+            this.index -= 1;
+            this.dataFormatter();
+        }else{
+            this.index = max;
+            this.dataFormatter();
+        }
+    }
+    right(){
+        console.log('right - module', this.index);
+        if(this.amenitiesData === null){
+            return false;
+        }
+        var data = this.amenitiesData;
+        var dataLists = data['restaurant']['businesses'];
+        var max = dataLists.length - 1;
+
+        if(this.index < max){
+            this.index += 1;
+            this.dataFormatter();
+        }else{
+            this.index = 0;
+            this.dataFormatter();
+        }
+    }
+
     dataFormatter(){
       var data = this.amenitiesData;
-      console.log(data);
+      if(data.restaurant.length === 0){
+          return false;
+      }
+      var dataLists = data['restaurant']['businesses'];
+      var listData = dataLists[this.index];
+      var loc = listData['location']['city'] + ', ' + listData['location']['state_code'] + ' ' + listData['location']['postal_code'];
+      var address = listData['location']['address'];
+      var imageURL = dataLists[this.index].image_url;
       this.listData = {
-
+        header: "What's the Highest Rated Restaurant in this area?",
+        name: loc,
+        establishment: listData.name,
+        imageUrl: listData.image_url.length === 0 ? null : listData.image_url,
+        address: address[0],
+        location: loc,
+        listView: [
+            {
+              icons: 'fa-pencil',
+              category: "Elementary Schools",
+              // count: schoolData.elementaryCount + " near this listing",
+              viewUrl: '',
+              viewMore: "See All"
+            },
+            {
+              icons: 'fa-child',
+              category: "Middle Schools",
+              // count: schoolData.middleCount + " near this listing",
+              viewUrl: '',
+              viewMore: "See All"
+            },
+            {
+              icons: 'fa-graduation-cap',
+              category: "High Schools",
+              // count: schoolData.highCount + " near this listing",
+              viewUrl: '',
+              viewMore: "See All"
+            }
+          ]
       }
     }
+
     ngOnInit(){
         this.hasFooterButton = true;
         this.setModuleTitle();
@@ -118,18 +156,18 @@ export class AmenitiesModule implements OnInit{
         //If the data input is valid run transform data function
         if(currentAmenitiesData !== null && currentAmenitiesData !== false) {
 
-            //Perform try catch to make sure module doesnt break page
-            // try{
-            //     //If featured list data has no list data (length of 0) throw error to hide module
-            //     if(this.amenitiesData.listData.length === 0){
-            //         throw 'No Data available for Amenities list - hiding module';
-            //     }
-            //
-            //     this.dataFormatter();
-            // }catch(e){
-            //     console.log('Error - Amenities List Module ', e);
-            //     this.amenitiesData = undefined;
-            // }
+            // Perform try catch to make sure module doesnt break page
+            try{
+                //If featured list data has no list data (length of 0) throw error to hide module
+                if(this.amenitiesData.restaurant.businesses.length === 0){
+                    throw 'No Data available for Amenities list - hiding module';
+                }
+
+                this.dataFormatter();
+            }catch(e){
+                console.log('Error - Amenities List Module ', e);
+                this.amenitiesData = undefined;
+            }
             this.dataFormatter();
         }
     }
