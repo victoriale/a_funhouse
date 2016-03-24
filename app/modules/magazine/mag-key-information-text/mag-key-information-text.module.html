@@ -5,15 +5,23 @@
             <span class="key_info_text" [innerHTML]="p"></span><br><br>
         </span>
     </div>
-    <magazine-key-information-img-module [magSchools]="magSchools" [magDemographics]="magDemographics"></magazine-key-information-img-module>
+    <div class="mag_container_left">
+        <div class="mag_half mag_ki_container_img"
+             style="background-image: url('app/public/mag_stock_img/schools_banks_grocery/{{schoolImage}}')">
+        </div>
+    </div>
 </div>
 <div class="mag_container">
-    <magazine-key-information-img-module [magSchools]="magSchools" [magDemographics]="magDemographics"></magazine-key-information-img-module>
+    <div class="mag_container_left">
+        <div class="mag_half mag_ki_container_img"
+             style="background-image: url('app/public/mag_stock_img/stock_neighborhood_1.png')">
+        </div>
+    </div>
     <div class="mag_half mag_text">
         <div class="mag_ki_banner" style="margin-top: 1vw">Local Demographics</div>
         <span *ngFor="#p of magDemographics?.content; #i=index">
-                <span class="key_info_text" [innerHTML]="p"></span><br><br>
-                <adzone-component *ngIf="i === 0" style="float: right;"></adzone-component>
+            <span class="key_info_text" [innerHTML]="p"></span><br><br>
+            <adzone-component *ngIf="i === 0" style="float: right;"></adzone-component>
         </span>
         <learnmore-component></learnmore-component>
     </div>

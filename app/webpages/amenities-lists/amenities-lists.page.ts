@@ -49,17 +49,21 @@ export class AmenitiesListPage implements OnInit{
   }
 
   dataFormatter(data){
-    console.log(data);
     var dataLists = data['restaurant']['businesses'];
-    console.log('data', dataLists);
-    this.counter = dataLists.length;
-    this.name = dataLists[0]['name'];
-    console.log(this.counter, this.name);
-    var address = dataLists[0]['location']['display_address'];
-    this.displayAddress1 = address[0];
-    this.displayAddress2 = address[1];
-    this.snippetText = dataLists[0].snippet_text;
-    this.imageURL = dataLists[0].image_url;
+    dataLists.forEach(function(val, i){
+      val.rank = i+1;
+      val.location['address'].forEach(function(addr, index) {
+        if(typeof val.displayAddress1 != 'undefined'){
+          val.displayAddress1 += addr + ' ';
+        }else{
+          val.displayAddress1 = addr + ' ';
+        }
+      })
+      val.displayAddress2 =  val['location']['city'] + ', ' + val['location']['state_code'];
+      console.log(val.displayAddress2);
+      val.locationUrl = {loc: val['location']['city'] + '_' + val['location']['state_code']};
+    })
+    return dataLists;
   }
 
   ngOnInit(){

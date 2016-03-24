@@ -139,5 +139,25 @@ export class LocationProfileService{
                   }
               )
       }
+      getTrendingHomesData(city, state){
+          //Configure HTTP Headers
+          var headers = this.setToken();
+
+          city = encodeURI(city);
+          state = encodeURI(state);
+
+          return this.http.get(this.apiUrl + '/list/trending/' + state + '/' + city, {
+                  headers: headers
+              })
+              .map(
+                  res => res.json()
+              )
+              .map(
+                  data => {
+                      //console.log('Lutz - profile header output', data);
+                      return data.data;
+                  }
+              )
+      }
 
 }
