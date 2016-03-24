@@ -1,9 +1,26 @@
 @import (reference) "./app/global/stylesheets/components.less";
 @import (reference) "./app/global/stylesheets/base.less";
 
+.router-link-active {
+  .magheader {
+    &_but {
+      &_bottom {
+        position: absolute;
+        bottom: 4px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        width: 100px;
+        height: 5px;
+        background-color: @joyfulHomeGreen;
+      }
+      // END .magheader_but_bottom
+    }
+  }
+}
 .magheader {
   //.noclick;
-  position: relative;
+  position: fixed;
   height: 75px;
   width: 100%;
   min-width: 350px;
@@ -16,24 +33,7 @@
     cursor: pointer;
     font-family: @globalFont;
     font-weight: 400;
-
-    &_bottom {
-      display: none;
-      position: absolute;
-      bottom: 4px;
-      left: 0;
-      right: 0;
-      margin: 0 auto;
-      width: 100px;
-      height: 5px;
-      background-color: @joyfulHomeGreen;
-    }
     // END .magheader_but_bottom
-
-    input {
-      display: none;
-    }
-    // END .magheader_but input
 
     &:focus {
       color: @white;
@@ -207,6 +207,16 @@
 }
 
 @media (min-width: 1600px) {
+  //Needed for partner sites
+  .pagenumPartner {
+    top: 20px !important;
+  }
+
+  .tabsPartner {
+    top: 5px !important;
+    left: 40px !important;
+  }
+  //end
   .magheader {
     &_but {
       display: inline-block;
@@ -287,6 +297,20 @@
 }
 
 @media (min-width: 750px) and (max-width: 1599px) {
+  //Needed for partner sites
+  .pagenumPartner {
+    top: 20px !important;
+    padding-top: 24px !important;
+  }
+
+  .tabsPartner {
+    left: 138px !important;
+  }
+  .barsPartner{
+    top: 0 !important;
+    left: 60px !important;
+  }
+  //end
   .magheader {
     &_but {
       display: block;
@@ -496,8 +520,9 @@
     }
   }
 }
+
 @media (max-width: 450px) {
-  .magheader{
+  .magheader {
     height: 40px;
     position: fixed;
     top: 0;
