@@ -90,6 +90,7 @@ export class ListPage {
           market:'Built in ' + val.yearBuilt,
           rank: (i+1),
           desc: val.listingDescription,
+          photos: val.photos,
       };
       newData['url1'] = "../../Magazine";
       newData['url2'] = {addr:val.addressKey};
