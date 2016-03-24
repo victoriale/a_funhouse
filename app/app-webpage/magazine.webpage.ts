@@ -1,5 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
-import {ROUTER_DIRECTIVES, RouteConfig, AsyncRoute} from 'angular2/router';
+import {ROUTER_DIRECTIVES, RouteConfig, AsyncRoute, OnActivate, ComponentInstruction} from 'angular2/router';
 import {Contact} from "../modules/magazine/contact/contact.module";
 import {Neighborhood} from "../modules/magazine/neighborhood/neighborhood.module";
 import {Recommendations} from "../modules/magazine/recommendations/recommendations.module";
@@ -62,6 +62,7 @@ export class MagazinePage {
     address: string;
     toc: any;
     magazineData: MagData;
+    goBackPage: string;
     pageCount: number;
     currentIndex: any ;
 
@@ -77,7 +78,6 @@ export class MagazinePage {
     }
 
     buildToc( magazineData ) {
-        //console.log("MAGAZINE DATA!!!!:", magazineData);
         var toc: any = [];
         if( magazineData.overview != null ){
             toc.push( { label: "Property Overview", routeName: "PropertyOverview" } );
@@ -85,7 +85,7 @@ export class MagazinePage {
         if( magazineData.neighborhood != null || true ){
             toc.push( { label: "The Neighborhood", routeName: "Neighborhood" } );
         }
-        if( magazineData.recommendations != null ){
+        if( magazineData.recommendations != null && magazineData.recommendations.similar.length > 1 ){
             toc.push( { label: "Recommendations", routeName: "Recommendations" } );
         }
         if( magazineData.info != null ){
@@ -113,6 +113,12 @@ export class MagazinePage {
         this.getMagServiceData();
     }
 
+
+
+    ngOnInit(){
+        this.goBackPage = document.referrer;
+        console.log( this.goBackPage);
+    }
     ngAfterViewChecked(){
         this.buildNavigationElements();
     }

@@ -46,8 +46,6 @@ export class ListingProfileService{
 
         address = encodeURI(address);
 
-        console.log('Listing Profile Service Input', address);
-
         return this.http.get(this.apiUrl + '/listing/profileHeader/' + address, {
             headers: headers
         })
