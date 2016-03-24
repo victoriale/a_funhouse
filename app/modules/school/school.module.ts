@@ -129,16 +129,21 @@ export class SchoolModule implements OnInit{
       this.setModuleTitle();
       this.hasFooterButton = false;
       this.tileData = {
+          city: 'Wichita',
+          state_code: 'KS',
           button_txt: 'Open Page',
-          url1: 'Aboutus-page', //THIS WILL NEED TO BE CHANGE
+          url1: 'Aboutus-page',
+          category1: 'restaurant',
           icon1: 'fa-pencil',
           title1: 'Elementary Schools',
           desc1: '',
-          url2: 'Aboutus-page',//THIS WILL NEED TO BE CHANGE
+          url2: 'Aboutus-page',
+          category2: 'grocery',
           icon2: 'fa-child',
           title2: 'Middle Schools',
           desc2: '',
-          url3: 'Aboutus-page',//THIS WILL NEED TO BE CHANGE
+          url3: 'Aboutus-page',
+          category3: 'bank',
           icon3: 'fa-graduation-cap',
           title3: 'High Schools',
           desc3: ''

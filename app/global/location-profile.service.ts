@@ -114,7 +114,6 @@ export class LocationProfileService{
               )
               .map(
                   data => {
-                      //console.log('Lutz - profile header output', data);
                       return data.data;
                   }
               )
@@ -134,7 +133,6 @@ export class LocationProfileService{
               )
               .map(
                   data => {
-                      //console.log('Lutz - profile header output', data);
                       return data.data;
                   }
               )
@@ -154,7 +152,6 @@ export class LocationProfileService{
               )
               .map(
                   data => {
-                      //console.log('Lutz - profile header output', data);
                       return data.data;
                   }
               )

@@ -24,11 +24,8 @@ export class AmenitiesListPage implements OnInit{
   address: string;
   amenitiesListingsData: any;
   name: string;
-  counter: number;
   displayAddress1: string;
   displayAddress2: string;
-  snippetText: string;
-  imageURL: string;
   public location: string;
   public locCity: string;
   public locState: string;
@@ -60,7 +57,6 @@ export class AmenitiesListPage implements OnInit{
         }
       })
       val.displayAddress2 =  val['location']['city'] + ', ' + val['location']['state_code'];
-      console.log(val.displayAddress2);
       val.locationUrl = {loc: val['location']['city'] + '_' + val['location']['state_code']};
     })
     return dataLists;
@@ -71,7 +67,6 @@ export class AmenitiesListPage implements OnInit{
     this.locCity = decodeURI(this._params.get('city'));
     this.location = this.globalFunctions.toTitleCase(this.locCity) + ', ' + this.locState;
     this.moduleTitle = "Top Rated Amenities In " + this.location;
-
     this.getData();
   }
 
