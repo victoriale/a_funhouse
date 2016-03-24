@@ -33,13 +33,12 @@ export class ListPage {
   listName: string;
   listState: string;
   listCity: string;
-  listLimit: string;
+  listLimit: string = "20";
   listPage: string;
 
   //Filter params for FYH
   filterState: string;
   filterCity: string;
-  filterLimit: string;
   filterPage: string;
   filterMinPrice: string;
   filterMaxPrice: string;
@@ -73,7 +72,6 @@ export class ListPage {
     if(this.listName !== "filter") {
         this.listState = this._params.get('state');
         this.listCity = this._params.get('city');
-        this.listLimit = this._params.get('limit');
         this.listPage = this._params.get('page');
 
         //list/homesAtLeast5YearsOld/KS/Wichita/empty/10/1
@@ -87,7 +85,6 @@ export class ListPage {
         //Grab params for API call
         this.filterState = this._params.get('state');
         this.filterCity = this._params.get('city');
-        this.filterLimit = this._params.get('limit');
         this.filterPage = this._params.get('page');
         this.filterMinPrice = this._params.get('filterMinPrice');
         this.filterMaxPrice = this._params.get('filterMaxPrice');
