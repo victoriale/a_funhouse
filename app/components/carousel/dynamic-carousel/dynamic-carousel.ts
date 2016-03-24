@@ -3,18 +3,18 @@
  */
 import {Component, OnInit, Input, EventEmitter} from 'angular2/core';
 import {CircleButton} from "../../buttons/circle/circle.button";
-import {ROUTER_DIRECTIVES} from 'angular2/router';
+
 
 @Component({
-    selector: 'list-view-carousel',
-    templateUrl: './app/components/carousel/list-view/list-view.component.html',
+    selector: 'dynamic-carousel',
+    templateUrl: './app/components/carousel/dynamic-carousel/dynamic-carousel.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [ROUTER_DIRECTIVES, CircleButton],
+    directives: [CircleButton],
     providers: [],
     inputs: ['carouselData'],
 })
 
-export class ListViewCarousel implements OnInit{
+export class DynamicCarousel implements OnInit{
   carouselData: any;
   imageCounter: number = 0;
   data: any;

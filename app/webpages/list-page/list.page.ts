@@ -30,6 +30,24 @@ export class ListPage {
   data: any;
   view: string = 'list'; // set to default list view
 
+  listName: string;
+  listState: string;
+  listCity: string;
+  listLimit: string = "20";
+  listPage: string;
+
+  //Filter params for FYH
+  filterState: string;
+  filterCity: string;
+  filterPage: string;
+  filterMinPrice: string;
+  filterMaxPrice: string;
+  filterBedrooms: string;
+  filterBathrooms: string;
+  filterSqFeet: string;
+  filterLot: string;
+  filterType: string;
+
   constructor(private _params: RouteParams, private globalFunctions: GlobalFunctions, private listViewData: listViewPage) {
     // Scroll page to top to fix routerLink bug
     window.scrollTo(0, 0);
@@ -47,11 +65,48 @@ export class ListPage {
   }
 
   getListView() {// GET DATA FROM GLOBAL SERVICE
-    //list/homesAtLeast5YearsOld/KS/Wichita/empty/10/1
-    this.listViewData.getListData('homesAtLeast5YearsOld', 'KS', 'Wichita', 10, 1)
-      .subscribe(data => {
-        this.data = this.transformData(data);
-      });
+
+    // Get listname param to determine which API to call
+    this.listName = this._params.get('listname');
+
+    if(this.listName !== "filter") {
+        this.listState = this._params.get('state');
+        this.listCity = this._params.get('city');
+        this.listPage = this._params.get('page');
+
+        //list/homesAtLeast5YearsOld/KS/Wichita/empty/10/1
+        this.listViewData.getListData(this.listName, this.listState, this.listCity, this.listLimit, this.listPage)
+            .subscribe(
+                data => {this.data = this.transformData(data);},
+                err => console.log(err),
+                () => console.log('List Page Data call success!')
+            );
+    }else {
+        //Grab params for API call
+        this.filterState = this._params.get('state');
+        this.filterCity = this._params.get('city');
+        this.filterPage = this._params.get('page');
+        this.filterMinPrice = this._params.get('filterMinPrice');
+        this.filterMaxPrice = this._params.get('filterMaxPrice');
+        this.filterBedrooms = this._params.get('filterBedrooms');
+        this.filterBathrooms = this._params.get('filterBathrooms');
+        this.filterSqFeet = this._params.get('filterSqFeet');
+        this.filterLot = this._params.get('filterLot');
+        this.filterType = this._params.get('filterType');
+
+        console.log('FYH-Params-ListPage: ', this.filterMinPrice, this.filterMaxPrice, this.filterBedrooms, this.filterBathrooms, this.filterSqFeet, this.filterLot, this.filterType);
+
+        // location/findYourHome/{state}/{city}/{priceLowerBound}/{priceUpperBound}/{type}/{bedrooms}/{bathrooms}/{squareFeet}/{lotSize}
+        // types: Townhouse, Condominium, Apartment, and Single Family Attached
+        // last 5 optional, pass string 'empty' if no option selected
+        this.listViewData.getFindYourHome(this.filterState, this.filterCity, this.filterMinPrice, this.filterMaxPrice, this.filterType, this.filterBedrooms, this.filterBathrooms, this.filterSqFeet, this.filterLot)
+            .subscribe(
+                data => {this.data = this.transformData(data);},
+                err => console.log(err),
+                () => console.log('FYH Data call success!')
+            );
+    }
+
   }
 
   transformData(data){// TRANSFORM DATA TO PLUG INTO COMPONENTS
@@ -90,6 +145,7 @@ export class ListPage {
           market:'Built in ' + val.yearBuilt,
           rank: (i+1),
           desc: val.listingDescription,
+          photos: val.photos,
       };
       newData['url1'] = "../../Magazine";
       newData['url2'] = {addr:val.addressKey};
@@ -103,19 +159,22 @@ export class ListPage {
         listing_area:val.livingArea + "sqft",
         listing_addr1:val.modificationTimestamp.split(' ')[0],
         listing_addr2:val.loc + ' - ' + val.postalCode,
-      }
+      };
       carData['button_url'] = '#';
+      carData['url1'] = "../../Magazine";
+      carData['url2'] = {addr:val.addressKey};
+      carData['url3'] = "PropertyOverview";
 
       carouselData.push(carData);
       listData.push(newData);
-    })//END of forEach
+    });//END of forEach
 
     //set to listData
     this.listData = listData;
     this.carouselData = carouselData;
 
-    console.log('ListData', this.listData);
-    console.log('carouselData', this.carouselData);
+    // console.log('ListData', this.listData);
+    // console.log('carouselData', this.carouselData);
   }//END OF TRANSFORM FUNCTION
 
   ngOnInit() {

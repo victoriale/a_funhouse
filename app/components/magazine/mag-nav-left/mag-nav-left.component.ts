@@ -35,10 +35,10 @@ export class NavLeftComponent {
         let address = args[2];
         console.log("prevLink.length",prevLink.length);
         if( !prevLink.length){
-            this._router.navigate(["Magazine",  {addr: address}, this.toc[ this.toc.length-1 ].routeName ]);
+            this._router.navigate([ this.toc[ this.toc.length-1 ].routeName ]);
             lastLink.addClass("router-link-active");
         }else{
-            this._router.navigate(["Magazine",  {addr: address}, this.toc[currentIndex-1].routeName ]);
+            this._router.navigate([ this.toc[currentIndex-1].routeName ]);
             prevLink.addClass("router-link-active");
         }
     }
