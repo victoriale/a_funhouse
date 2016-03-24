@@ -105,7 +105,9 @@ export class ListPage {
         listing_addr1:val.modificationTimestamp.split(' ')[0],
         listing_addr2:val.loc + ' - ' + val.postalCode,
       }
-      carData['button_url'] = '#';
+      carData['url1'] = "../../Magazine";
+      carData['url2'] = {addr:val.addressKey};
+      carData['url3'] = "PropertyOverview";
 
       carouselData.push(carData);
       listData.push(newData);
