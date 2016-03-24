@@ -86,6 +86,18 @@ export class ComponentPage implements OnInit{
         }
     };
 
+    public paginationParameters2: Object = {
+        index: 10,
+        max: 20,
+        paginationType: 'page',
+
+        navigationPage: 'Directory-page',
+        navigationParams: {
+            listTitle: 'homesLargest'
+        },
+        indexKey: 'pageNumber'
+    };
+
     testEvent(event){
         console.log('Lutz - Pagination Footer New Index', event);
     }

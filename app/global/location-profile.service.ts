@@ -99,16 +99,17 @@ export class LocationProfileService{
             )
     }
 
-    getFindYourHome(city, state, priceLowerBound, priceUpperBound, type, bedrooms, squareFeet, lotSize) {
+    getFindYourHome(city, state, priceLowerBound, priceUpperBound, type, bedrooms, bathrooms, squareFeet, lotSize) {
         //Configure HTTP Headers
         var headers = this.setToken();
 
         city = encodeURI(city);
         state = encodeURI(state);
 
-        // location/findYourHome/{state}/{city}/{priceLowerBound}/{priceUpperBound}/{type}/{bedrooms}/{squareFeet}/{lotSize}
-        // last 4 optional, pass string 'null' if no option selected
-        return this.http.get(this.apiUrl + '/location/findYourHome/' + state + '/' + city + '/' + priceLowerBound + '/' + priceUpperBound + '/' + type + '/' + bedrooms + '/' + squareFeet + '/' + lotSize, {
+        // location/findYourHome/{state}/{city}/{priceLowerBound}/{priceUpperBound}/{type}/{bedrooms}/{bathrooms}/{squareFeet}/{lotSize}
+        // types: Townhouse, Condominium, Apartment, and Single Family Attached
+        // last 5 optional, pass string 'empty' if no option selected
+        return this.http.get(this.apiUrl + '/location/findYourHome/' + state + '/' + city + '/' + priceLowerBound + '/' + priceUpperBound + '/' + type + '/' + bedrooms + '/' + bathrooms + '/' + squareFeet + '/' + lotSize, {
                 headers: headers
             })
             .map(
@@ -149,6 +150,26 @@ export class LocationProfileService{
           state = encodeURI(state);
 
           return this.http.get(this.apiUrl + '/location/amenitiesInLocation/' + state + '/' + city, {
+                  headers: headers
+              })
+              .map(
+                  res => res.json()
+              )
+              .map(
+                  data => {
+                      //console.log('Lutz - profile header output', data);
+                      return data.data;
+                  }
+              )
+      }
+      getTrendingHomesData(city, state){
+          //Configure HTTP Headers
+          var headers = this.setToken();
+
+          city = encodeURI(city);
+          state = encodeURI(state);
+
+          return this.http.get(this.apiUrl + '/list/trending/' + state + '/' + city, {
                   headers: headers
               })
               .map(
