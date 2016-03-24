@@ -33,8 +33,8 @@ export class NavRightComponent {
         let args = firstLink.attr("href").split("/");
         let address = args[2];
         if( !nextLink.length){
-            this._router.navigate('PropertyOverview']);
-            firstLink.addClass( [this.toc[0].routeName] );
+            this._router.navigate( [this.toc[0].routeName]);
+            firstLink.addClass("router-link-active");
         }else{
             this._router.navigate( [this.toc[currentIndex+1].routeName] );
             nextLink.addClass("router-link-active");
