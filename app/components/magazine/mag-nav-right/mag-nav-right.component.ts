@@ -33,10 +33,10 @@ export class NavRightComponent {
         let args = firstLink.attr("href").split("/");
         let address = args[2];
         if( !nextLink.length){
-            this._router.navigate(["Magazine",  {addr: address}, 'PropertyOverview']);
-            firstLink.addClass("router-link-active");
+            this._router.navigate('PropertyOverview']);
+            firstLink.addClass( [this.toc[0].routeName] );
         }else{
-            this._router.navigate(["Magazine",  {addr: address}, this.toc[currentIndex+1].routeName ]);
+            this._router.navigate( [this.toc[currentIndex+1].routeName] );
             nextLink.addClass("router-link-active");
         }
     }
