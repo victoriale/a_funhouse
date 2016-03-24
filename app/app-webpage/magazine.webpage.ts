@@ -81,7 +81,7 @@ export class MagazinePage {
         if( magazineData.overview != null ){
             toc.push( { label: "Property Overview", routeName: "PropertyOverview" } );
         }
-        if( magazineData.neighborhood != null || true ){
+        if( magazineData.neighborhood != null ){
             toc.push( { label: "The Neighborhood", routeName: "Neighborhood" } );
         }
         if( magazineData.recommendations != null && magazineData.recommendations.similar.length > 1 ){
