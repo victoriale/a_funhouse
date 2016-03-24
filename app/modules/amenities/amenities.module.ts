@@ -104,6 +104,29 @@ export class AmenitiesModule implements OnInit{
         imageUrl: listData.image_url.length === 0 ? null : listData.image_url,
         address: address[0],
         location: loc,
+        listView: [
+            {
+              icons: 'fa-pencil',
+              category: "Elementary Schools",
+              // count: schoolData.elementaryCount + " near this listing",
+              viewUrl: '',
+              viewMore: "See All"
+            },
+            {
+              icons: 'fa-child',
+              category: "Middle Schools",
+              // count: schoolData.middleCount + " near this listing",
+              viewUrl: '',
+              viewMore: "See All"
+            },
+            {
+              icons: 'fa-graduation-cap',
+              category: "High Schools",
+              // count: schoolData.highCount + " near this listing",
+              viewUrl: '',
+              viewMore: "See All"
+            }
+          ]
       }
     }
 

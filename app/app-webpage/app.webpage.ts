@@ -62,7 +62,7 @@ import {PartnerHeader} from "../global/global-service";
         component: ListOfListsPage,
     },
     {
-        path: '/amenities-lists-page/:state/:city',
+        path: '/amenities-lists-page/:listname/:state/:city',
         name: 'Amenities-lists-page',
         component: AmenitiesListPage,
     },
