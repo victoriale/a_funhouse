@@ -30,38 +30,6 @@ export class AmenitiesComponent implements OnInit{
     }
 
     ngOnInit(){
-
         this.main_hasSubImg = false;
-
-        if(typeof this.list_data === 'undefined'){
-            this.list_data = {
-                header: "Heading 1",
-                name: '[Listing Name]',
-                establishment: '[Establishment]',
-                address: '[Listing Name] [Zip Code]',
-                location: '[Location]'
-            }
-            this.listView = [
-              {
-                category: "Category 1",
-                count: "## near this listing",
-                viewUrl: '',
-                viewMore: "See All"
-              },
-              {
-                category: "Category 2",
-                count: "## near this listing",
-                viewUrl: '',
-                viewMore: "See All"
-              },
-              {
-                category: "Category 3",
-                count: "## near this listing",
-                viewUrl: '',
-                viewMore: "See All"
-              }
-            ]
-        }
-
-    }
+    }//end ngOnInit()
 }
