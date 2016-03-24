@@ -8,19 +8,19 @@
 
             <div *ngFor="#item of amenitiesData; #i=index" class="al {{item.bgClass}}">
               <div class='al-image'>
-                <a href=''>
-                  <img src='{{item.imageURL}}' alt='' />
-                  <div class="al-image-rank">#{{i}}</div>
+                <a href='{{item.url}}'>
+                  <img src='{{item.image_url}}' alt='' />
+                  <div class="al-image-rank">#{{item.rank}}</div>
                 </a>
               </div>
               <div>
                   <div class='al-loc'>
-                    <span><i class='fa fa-map-marker'></i></span><span> {{item.displayAdress1}}</span>
-                    <span><i class='fa fa-angle-right'></i></span><span> {{item.displayAddress2}}</span>
+                    <span><i class='fa fa-map-marker'></i></span><span> {{item.displayAddress1}}</span>
+                    <span><i class='fa fa-angle-right'></i></span><a [routerLink]="['Location-page',item.locationUrl]"><span> {{item.displayAddress2}}</span></a>
                   </div>
 
                   <div class='al-name'>{{item.name}}</div>
-                  <div class='al-desc'><b>What people are saying: </b>{{item.snippetText}}</div>
+                  <div class='al-desc'><b>What people are saying: </b>{{item.snippet_text}}</div>
               </div>
             </div>
 
