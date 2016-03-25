@@ -7,7 +7,7 @@ import {LearnMoreComponent} from "../../../components/magazine/mag-btns/learnmor
     templateUrl: './app/modules/magazine/mag-amenities-text/mag-amenities-text.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [AdzoneComponent, LearnMoreComponent],
-    inputs: ['magAmenities'],
+    inputs: ['magAmenities', 'hasImage'],
 })
 
 export class MagAmenitiesTextModule{
