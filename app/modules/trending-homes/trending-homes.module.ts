@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, OnChanges} from 'angular2/core';
-import {Router, RouteParams} from 'angular2/router';
+import {Router, RouteParams, ROUTER_DIRECTIVES} from 'angular2/router';
 import {moduleHeader} from "../../components/module-header/module-header";
 import {MediaImages} from "../../components/media-images/media-images.component";
 import {GlobalFunctions} from '../../global/global-functions';
@@ -10,19 +10,21 @@ import {ListViewCarousel} from '../../components/carousel/list-view/list-view.co
     selector: 'trending-homes',
     templateUrl: './app/modules/trending-homes/trending-homes.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [ListViewCarousel, moduleHeader, MediaImages],
+    directives: [ListViewCarousel, moduleHeader, MediaImages, ROUTER_DIRECTIVES],
+    inputs: ['trendingHomesData']
 })
 
 export class TrendingHomes implements OnInit {
     public moduleTitle: string;
     public profileType: string;
     public trending: boolean;
+    public trendingHomesData: any;
     carouselData: any = [];
+    carouselCounter: number =0;
     listData:any = [];
     headerData: any;
     data: any;
     public index: number = 0;
-    @Input() trendingHomesData: any;
 
     constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions){
       //Determine what page the profile header module is on
@@ -30,26 +32,25 @@ export class TrendingHomes implements OnInit {
       console.log(this.profileType);
     }
 
-    dataFormatter(){// TRANSFORM DATA TO PLUG INTO COMPONENTS
+    right(){
+      console.log('rightFired');
+      this.carouselCounter++;
+    }
+
+    left(){
+      console.log('leftFired');
+      this.carouselCounter--;
+    }
+    dataFormatter(mediaData){// TRANSFORM DATA TO PLUG INTO COMPONENTS
       //grab data for the header
-      var data = this.trendingHomesData;
-      this.headerData = {
-          imageURL : './app/public/joyfulhome_house.png',
-          smallText1 : data.date,
-          smallText2 : ' United States of America',
-          heading1 : data.title,
-          heading2 : '',
-          heading3 : '',
-          heading4 : '',
-          icon: 'fa fa-map-marker',
-          hasHover: true
-      };
 
       //grab data for the list
-      var originalData = data.data;
+      var originalData = mediaData.data;
       var listData = [];
       var carouselData = [];
       var globeFunc = this.globalFunctions;
+      // console.log('Original Data',originalData);
+
       originalData.forEach(function(val, i){
         val.listPrice = globeFunc.commaSeparateNumber(val.listPrice);
         var newData = {
@@ -72,28 +73,48 @@ export class TrendingHomes implements OnInit {
         newData['url1'] = "../../Magazine";
         newData['url2'] = {addr:val.addressKey};
         newData['url3'] = "PropertyOverview";
-        // newData['url'] = "Home-page";
+
+        // var daysOnMarket = val.daysOnMarket;
+        // var year=0;
+        // var month=0;
+        // var day=0;
+        //
+        // years = daysOnMarket / 365;
+        // daysOnMarket = daysOnMarket - (year * 365);
+        // console.log(years, daysOnMarket);
+        //
+        // month = daysOnMarket / 12;
+        // daysOnMarket = daysOnMarket - (month * 30.4);
+        // console.log(month, daysOnMarket);
+        //
+        // day = daysOnMarket;
+        // console.log(day, daysOnMarket);
 
         var carData = {
-          heading:val.addressKey.replace(/-/g, ' '),
-          image_url:val.photos[0],
-          listing_price: "$"+val.listPrice,
+          address:val.fullStreetAddress,
+          daysOnMarket: val.daysOnMarket + " Days on Market",
+          largeImage:val.photos[0],
+          price: "$"+val.listPrice,
           listing_area:val.livingArea + "sqft",
-          listing_addr1:val.modificationTimestamp.split(' ')[0],
-          listing_addr2:val.loc + ' - ' + val.postalCode,
+          city:val.city,
+          state:val.stateOrProvince,
+          zipCode:val.postalCode,
+          priceName:'Sale',
         }
-        carData['button_url'] = '#';
+        carData['url1'] = "../../Magazine";
+        carData['url2'] = {addr:val.addressKey};
+        carData['url3'] = "PropertyOverview";
 
         carouselData.push(carData);
         listData.push(newData);
       })//END of forEach
 
       //set to listData
-      this.listData = listData;
-      this.carouselData = carouselData;
+      this.listData = listData[this.carouselCounter];
+      this.carouselData = carouselData[this.carouselCounter];
 
-      console.log('ListData', this.listData);
-      console.log('carouselData', this.carouselData);
+      // console.log('ListData', this.listData);
+      // console.log('carouselData', this.carouselData);
     }//END OF TRANSFORM FUNCTION
 
     //Build Module Title
@@ -119,23 +140,8 @@ export class TrendingHomes implements OnInit {
     //On Change Call
     ngOnChanges(event){
         //Get changed input
-        var currentTrendingHomesData = event.trendingHomesData.currentValue;
-        //If the data input is valid run transform data function
-        if(currentTrendingHomesData !== null && currentTrendingHomesData !== false) {
-
-            //Perform try catch to make sure module doesnt break page
-            // try{
-            //     //If featured list data has no list data (length of 0) throw error to hide module
-            //     if(this.trendingHomesData.listData.length === 0){
-            //         throw 'No Data available for Trending list - hiding module';
-            //     }
-            //
-            //     this.dataFormatter();
-            // }catch(e){
-            //     console.log('Error - Trending List Module ', e);
-            //     this.trendingHomesData = undefined;
-            // }
-            this.dataFormatter();
+        if(typeof this.trendingHomesData != 'undefined'){
+          this.dataFormatter(this.trendingHomesData);
         }
     }
 }

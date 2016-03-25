@@ -1,5 +1,5 @@
 <section class="module-container">
     <module-header [module_title]="moduleTitle"></module-header>
-    <!-- <media-images *ngIf="trendingHomesData" [mediaImages]="listData" [featureListing]="listData"></media-images> -->
-    <list-view-carousel [carouselData]="carouselData"></list-view-carousel>
+    <media-images *ngIf="listData" [trending]="trending" [mediaImages]="listData.photos" [featureListing]="carouselData" (leftCircle)="left()" (rightCircle)="right()"></media-images>
+    <!-- <list-view-carousel [carouselData]="carouselData"></list-view-carousel> -->
 </section>
