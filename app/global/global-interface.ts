@@ -56,6 +56,7 @@ export interface MagAmenities {
     restaurant?: MagAmenity;
     grocery?: MagAmenity;
     bank?: MagAmenity;
+    stockPhotos?: string;
 }
 
 export interface MagSchools {
