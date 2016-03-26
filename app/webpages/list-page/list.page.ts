@@ -161,6 +161,7 @@ export class ListPage {
       originalData.forEach(function(val, i){
 
       val.listPrice = globeFunc.commaSeparateNumber(val.listPrice);
+      if( !val.addressKey.length ){ val.addressKey = "N/A" ;}// to make sure address key exists otherwise replace functino will break
       var newData = {
           img : val.photos[0],
           list_sub : val.propertyType + ": " + val.numBedrooms + " Beds & " + val.numBathrooms + " Baths",
