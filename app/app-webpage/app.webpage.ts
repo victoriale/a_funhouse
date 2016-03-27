@@ -1,4 +1,4 @@
-import {Component, OnInit, OnChanges, Injector} from 'angular2/core';
+import {Component, OnInit, Injector} from 'angular2/core';
 import {RouteParams, Router, RouteData, RouteConfig, RouterOutlet, ROUTER_DIRECTIVES, LocationStrategy, RouterLink} from 'angular2/router';
 import {ProfilePage} from "../webpages/profile-page/profile.page";
 import {LocationPage} from "../webpages/location-page/location.page";
@@ -172,7 +172,7 @@ export class AppComponent {
                     this.cityLocation = geoLocationData[0].city;
                     this.stateLocation = geoLocationData[0].state;
                 },
-                err => console.log(err),
+                err => this.defaultCity(),
                 () => this.getNearByCities()
             );
     }
@@ -200,13 +200,6 @@ export class AppComponent {
         }
         // Call to get current State and City
         this.getGeoLocation();
-        //this.getNearByCities();
         console.log(this.nearByCities);
-    }
-
-    ngOnChanges() {
-        if(typeof this.stateLocation != 'undefined') {
-            this.getNearByCities();
-        }
     }
 }
