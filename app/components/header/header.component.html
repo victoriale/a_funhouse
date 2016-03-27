@@ -5,7 +5,7 @@
                 <div *ngIf="!isMyHouseKit" class="tagline six-col">
                     <a href="/">Joyful Home | A Little Place to Call Home</a>
                 </div>
-                <div *ngIf="isMyHouseKit" class="tagline six col">
+                <div *ngIf="isMyHouseKit" class="tagline six-col">
                     <a href="/">MyHouseKit | A Little Place to Call Home</a>
                 </div>
                 <div class="directory-link six-col">
@@ -13,7 +13,7 @@
                 </div>
                 <div class="directory-dropdown-wrapper" [hidden]="!directoryVisible">
                     <ul>
-                        <a *ngFor="#directoryList of directoryList" [routerLink]="['Directory-page', { listTitle: directoryList.listUrl, pageNumber: pageNum }]"><li><i class="fa fa-angle-right"></i> {{directoryList.listName}}</li></a>
+                        <a (click)="directoryClick()" *ngFor="#directoryList of directoryList" [routerLink]="['Directory-page', { listTitle: directoryList.listUrl, pageNumber: pageNum }]"><li><i class="fa fa-angle-right"></i> {{directoryList.listName}}</li></a>
                     </ul>
                 </div>
             </div>

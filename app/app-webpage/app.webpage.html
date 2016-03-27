@@ -1,5 +1,5 @@
 <div id="partner" *ngIf="partnerScript" [innerHTML]="partnerScript"></div>
-<header-component></header-component>
+<header-component [partnerID]="partnerID"></header-component>
 <div class="wrapper">
     <div class="inner-wrapper">
         <nav class="twelve-col testLinks">
@@ -20,6 +20,6 @@
     </div>
 </div>
 <div class="container">
-    <router-outlet></router-outlet>
+    <router-outlet [nearByCities]="nearByCities" [cityLocation]="cityLocation" [stateLocation]="stateLocation"></router-outlet>
 </div>
-<footer-component></footer-component>
+<footer-component [partnerID]="partnerID" [stateLocation]="stateLocation" [cityLocation]="cityLocation"></footer-component>

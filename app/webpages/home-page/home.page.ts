@@ -1,4 +1,4 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component, Input, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 
 import {HeaderComponent} from "../../components/header/header.component";
@@ -18,6 +18,7 @@ import {NearByCitiesService} from "../../global/geo-location.service";
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [HeaderComponent, FooterComponent, HeroComponent, ExploreTilesComponent, ExploreButtonComponent, HeroBottomComponent, FeatureTilesComponent],
     providers: [GeoLocationService, NearByCitiesService],
+    inputs: ['cityLocation', 'stateLocation', 'nearByCities'],
 })
 
 export class HomePage implements OnInit {
@@ -33,6 +34,7 @@ export class HomePage implements OnInit {
     buttonTitle: string;
     buttonWidth: number;
     buttonIcon: string;
+    buttonUrl: string;
     heroButtonTitle: string;
     heroButtonWidth: number;
     heroButtonIcon: string;
@@ -42,59 +44,25 @@ export class HomePage implements OnInit {
         window.scrollTo(0, 0);
     }
 
-    // Subscribe to getGeoLocation in geo-location.service.ts. On Success call getNearByCities function.
-    //getGeoLocation() {
-    //    this._geoLocationService.getGeoLocation()
-    //        .subscribe(
-    //            geoLocationData => {
-    //                this.cityLocation = geoLocationData[0].city;
-    //                this.stateLocation = geoLocationData[0].state;
-    //            },
-    //        err => console.log(err),
-    //        () => this.getNearByCities()
-    //        );
+    //onChange(value) {
+    //    this.selectValue = value;
+    //    this.cityLocation = this.selectValue.split('-')[0];
+    //    this.stateLocation = this.selectValue.split('-')[1];
+    //    this.getNearByCities();
+    //    console.log(this.nearByCities);
     //}
 
-    // Subscribe to getNearByCities in geo-location.service.ts
-    getNearByCities() {
-        this._nearByCitiesService.getNearByCities(this.stateLocation, this.cityLocation)
-            .subscribe(
-                nearByCities => { this.nearByCities = nearByCities },
-                err => console.log(err),
-                () => console.log('Near By Cities Success!')
-            );
-    }
-
-    defaultCity() {
-        this.stateLocation = "KS";
-        this.cityLocation = "Wichita";
-    }
-
-    onChange(value) {
-        this.selectValue = value;
-        this.cityLocation = this.selectValue.split('-')[0];
-        this.stateLocation = this.selectValue.split('-')[1];
-        this.getNearByCities();
-        console.log(this.nearByCities);
-    }
-
     ngOnInit() {
-        // Call to get current State and City
-        //this.getGeoLocation();
-
-        // For testing geo location
-
-        this.stateLocation = "KS";
-        this.cityLocation = "Wichita";
-        this.getNearByCities();
 
         // Set button options. Passed to explore-button-component and hero-bottom-component.
         this.buttonTitle = "More";
         this.buttonWidth = 160;
         this.buttonIcon = "fa fa-angle-double-down";
+        this.buttonUrl = "";
         this.heroButtonTitle = "See The List";
         this.heroButtonWidth = 220;
         this.heroButtonIcon = "";
+
         console.log(this);
     }
 }
