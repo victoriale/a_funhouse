@@ -10,4 +10,12 @@ import {ROUTER_DIRECTIVES} from "angular2/router";
     inputs: ['cityLocation', 'stateLocation'],
 })
 
-export class FeatureTilesComponent{ }
+export class FeatureTilesComponent{
+    location: string;
+    cityLocation: string;
+    stateLocation: string;
+
+    ngOnInit() {
+        this.location = this.cityLocation + '_' + this.stateLocation;
+    }
+}

@@ -127,7 +127,10 @@ export class ListPage {
         // last 5 optional, pass string 'empty' if no option selected
         this.listViewData.getFindYourHome(this.filterState, this.filterCity, this.filterMinPrice, this.filterMaxPrice, this.filterType, this.filterBedrooms, this.filterBathrooms, this.filterSqFeet, this.filterLot)
             .subscribe(
-                data => {this.data = this.transformData(data);},
+                data => {
+                    this.transformData(data);
+                    this.setPaginationParams(data);
+                },
                 err => console.log(err),
                 () => console.log('FYH Data call success!')
             );
@@ -157,6 +160,7 @@ export class ListPage {
 
       //Determine the index at which the list should start (based on page parameter. ex. page = 2, indexStart = 21)
       var indexStart = ((Number(this.listPage) - 1) * Number(this.listLimit)) + 1;
+      // Counter for filter
 
       originalData.forEach(function(val, i){
 
@@ -164,8 +168,7 @@ export class ListPage {
       var newData = {
           img : val.photos[0],
           list_sub : val.propertyType + ": " + val.numBedrooms + " Beds & " + val.numBathrooms + " Baths",
-          title : val.addressKey,
-          //title : val.addressKey.replace(/-/g, ' '),
+          title : val.addressKey.replace(/-/g, ' '),
           numBed : val.numBedrooms + " Beds ",
           numBath: val.numBathrooms + " Baths ",
           date: val.modificationTimestamp,
@@ -185,8 +188,7 @@ export class ListPage {
       // newData['url'] = "Home-page";
 
       var carData = {
-        heading:val.addressKey,
-          //heading:val.addressKey.replace(/-/g, ' '),
+        heading:val.addressKey.replace(/-/g, ' '),
         image_url:val.photos[0],
         listing_price: "$"+val.listPrice,
         listing_area:val.livingArea + "sqft",
@@ -212,5 +214,6 @@ export class ListPage {
 
   ngOnInit() {
     this.getListView();
+      console.log(this);
   }
 }

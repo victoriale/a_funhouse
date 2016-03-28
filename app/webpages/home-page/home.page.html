@@ -35,6 +35,6 @@
         <section class='content-main twelve-col'>
             <h1 class="home-tagline"><img class="map-icon" src="./app/public/Icons_Features.png" /> Features <span class="thin">To Note</span></h1>
         </section>
-        <feature-tiles-component [cityLocation]="cityLocation" [stateLocation]="stateLocation"></feature-tiles-component>
+        <feature-tiles-component *ngIf="cityLocation && stateLocation" [cityLocation]="cityLocation" [stateLocation]="stateLocation"></feature-tiles-component>
     </div>
 </div>
