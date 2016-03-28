@@ -101,6 +101,8 @@ export class MediaFeatureModule implements OnInit {
       unit2: 'Acres',
       zipCode: originalData.zipCode,
       address: originalData.address,
+      locUrl1: "Location-page",
+      locUrl2: {loc: originalData.city + '_' +originalData.state}
     };
     return {
       imageArray: originalData.listingImages,

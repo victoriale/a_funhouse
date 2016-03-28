@@ -18,31 +18,32 @@ import {LocationProfileService} from '../../global/location-profile.service';
 })
 
 export class SchoolListsPage implements OnInit{
+  imageUrl: string;
   moduleTitle: string;
   public location: string;
   public locCity: string;
   public locState: string;
   public profileType: string;
+  public category: string;
   private schoolData: any;
 
   @Input() schoolDataInput: any;
 
   constructor(private _params: RouteParams, private router: Router, private globalFunctions: GlobalFunctions, private _locationService: LocationProfileService, params: RouteParams){
+      this.category = params.params['listname'];
       window.scrollTo(0, 0);
   }
 
   getData(){
       this._locationService.getSchoolData(this.locCity, this.locState)
           .subscribe(
-              schoolData => {this.schoolData = this.dataFormatter(schoolData)
-              }
-
+              schoolData => {this.schoolData = this.dataFormatter(schoolData)}
           );
-
   }
 
   dataFormatter(data){
-    var dataLists = data['high'];
+    //get data based on category
+    var dataLists = data[this.category];
     dataLists.forEach(function(val, i){
       val.rank = i+1;
       val.locationUrl = {loc: val['city'] + '_' + val['state_or_province']};
@@ -54,7 +55,7 @@ export class SchoolListsPage implements OnInit{
     this.locState = decodeURI(this._params.get('state'));
     this.locCity = decodeURI(this._params.get('city'));
     this.location = this.globalFunctions.toTitleCase(this.locCity) + ', ' + this.locState;
-    this.moduleTitle = "Top Rated School In " + this.location;
+    this.moduleTitle = "Schools In and Around " + this.location;
     this.getData();
   }
 

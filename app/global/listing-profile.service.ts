@@ -147,6 +147,7 @@ export class ListingProfileService{
         city = encodeURI(city);
         state = encodeURI(state);
 
+        console.log(this.apiUrl + '/list/trending/' + state + '/' + city);
         return this.http.get(this.apiUrl + '/list/trending/' + state + '/' + city, {
                 headers: headers
             })

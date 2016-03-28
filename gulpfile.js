@@ -35,7 +35,8 @@ gulp.task('copy:libs', ['clean'], function() {
       'node_modules/node-uuid/uuid.js',
       'node_modules/immutable/dist/immutable.js',
       'node_modules/angular2/es6/dev/src/testing/shims_for_IE.js',
-      'node_modules/highcharts/highcharts.js'
+      'node_modules/highcharts/highcharts.js',
+      'node_modules/moment/moment.js'
       //'node_modules/angular2-google-maps/bundles/angular2-google-maps.js'
     ])
     .pipe(gulp.dest('dist/lib'))
