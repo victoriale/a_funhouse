@@ -9,7 +9,7 @@
             <div *ngFor="#item of amenitiesData; #i=odd" class="al" [ngClass]="{'odd': i == true}">
               <div class='al-image'>
                 <a href='{{item.url}}'>
-                  <img src='{{item.image_url}}' alt='' />
+                  <img src='{{item.image_url}}' onerror="this.src='./app/public/placeholder-location.jpg';" />
                   <div class="al-image-rank">#{{item.rank}}</div>
                 </a>
               </div>

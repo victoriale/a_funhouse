@@ -1,8 +1,13 @@
 <div class="mag_container mag_container_left">
     <div class="mag_container_left">
-        <div class="mag_half mag_ki_container_img"
-             style="background-image: url('app/public/mag_stock_img/food_types/{{magAmenities?.stockPhotos}}_stock_mag.jpg')">
-        </div>
+        <span *ngIf="hasImage">
+            <div class="mag_half mag_ki_container_img" style="background-image: url('app/public/mag_stock_img/food_types/{{magAmenities?.stockPhotos}}_stock_mag.jpg')">
+            </div>
+        </span>
+        <span *ngIf="!hasImage">
+            <div class="mag_half mag_ki_container_img" style="background-image: url('app/public/mag_stock_img/food_types/Food-Stands_stock_mag.jpg')">
+            </div>
+        </span>
     </div>
     <div class="mag_half mag_text">
         <div class="mag_ki_banner" style="margin-top: 1vw">Great Local Amenities</div>
@@ -24,8 +29,15 @@
         </span>
     </div>
     <div class="mag_container_left">
-        <div class="mag_half mag_ki_container_img"
-             style="background-image: url('app/public/mag_stock_img/food_types/{{magAmenities?.stockPhotos}}_alt_stock_mag.jpg')">
+        <div class="mag_container_left">
+            <span *ngIf="hasImage">
+                <div class="mag_half mag_ki_container_img" style="background-image: url('app/public/mag_stock_img/food_types/{{magAmenities?.stockPhotos}}_alt_stock_mag.jpg')">
+                </div>
+            </span>
+            <span *ngIf="!hasImage">
+                <div class="mag_half mag_ki_container_img" style="background-image: url('app/public/mag_stock_img/food_types/Food-Stands_alt_stock_mag.jpg')">
+                </div>
+            </span>
         </div>
     </div>
 </div>
