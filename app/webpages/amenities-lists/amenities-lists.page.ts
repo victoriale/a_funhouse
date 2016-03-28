@@ -7,13 +7,14 @@ import {WidgetModule} from "../../modules/widget/widget.module";
 import {GlobalFunctions} from "../../global/global-functions";
 
 import {moduleHeader} from "../../components/module-header/module-header";
+import {HeroListComponent} from "../../components/hero/hero-list/hero-list.component";
 import {LocationProfileService} from '../../global/location-profile.service';
 
 @Component({
     selector: 'Amenities-list-page',
     templateUrl: './app/webpages/amenities-lists/amenities-lists.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [WidgetModule, moduleHeader, ROUTER_DIRECTIVES],
+    directives: [WidgetModule, moduleHeader, HeroListComponent, ROUTER_DIRECTIVES],
     providers: [LocationProfileService]
 })
 
