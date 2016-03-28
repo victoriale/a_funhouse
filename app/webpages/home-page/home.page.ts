@@ -39,7 +39,9 @@ export class HomePage implements OnInit {
     heroButtonWidth: number;
     heroButtonIcon: string;
 
-    constructor(private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService) {
+    _router: Router;
+
+    constructor(private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService, private _router: Router) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }
@@ -62,7 +64,10 @@ export class HomePage implements OnInit {
         this.heroButtonTitle = "See The List";
         this.heroButtonWidth = 220;
         this.heroButtonIcon = "";
-
-        console.log(this);
+        //console.log(this);
+        //console.log("this router:", this._router);
+        if(this._router.hostComponent.name === "HomePage"){
+            console.log("do something");
+        }
     }
 }
