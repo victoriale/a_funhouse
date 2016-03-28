@@ -16,7 +16,7 @@ import {MagAmenitiesTextModule} from "../mag-amenities-text/mag-amenities-text.m
 export class Amenities implements OnInit {
     address: string;
     magAmenities:MagAmenities;
-    hasImage: boolean = true;
+    hasImage: boolean = false;
 
     constructor( private _injector: Injector, private _magazineDataService: MagazineDataService ) {
         // Scroll page to top to fix routerLink bug
@@ -25,8 +25,8 @@ export class Amenities implements OnInit {
     }
 
     checkImages(){
-        if (this.magAmenities.stockPhotos == null){
-            this.hasImage = false;
+        if (this.magAmenities.stockPhotos != null){
+            this.hasImage = true;
         }
     }
 
