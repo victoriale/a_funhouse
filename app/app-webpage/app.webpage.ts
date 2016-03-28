@@ -22,6 +22,8 @@ import {FeatureTilesComponent} from "../components/feature-tiles/feature-tiles.c
 import {DirectoryPage} from "../webpages/directory-page/directory.page";
 import {SearchPage} from "../webpages/search-page/search.page";
 import {DynamicListPage} from "../webpages/dynamic-list-page/dynamic-list.page";
+import {NearByCitiesService} from "../global/geo-location.service";
+import {GeoLocationService} from "../global/geo-location.service";
 
 import {WebApp} from "../app-layout/app.layout";
 import {PartnerHeader} from "../global/global-service";
@@ -31,8 +33,7 @@ import {PartnerHeader} from "../global/global-service";
     templateUrl: './app/app-webpage/app.webpage.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [RouterOutlet, ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ListPage, ListOfListsPage, AmenitiesListPage, ROUTER_DIRECTIVES, DirectoryPage, SchoolListsPage],
-    providers: [PartnerHeader, ROUTER_DIRECTIVES],
-})
+    providers: [PartnerHeader, ROUTER_DIRECTIVES, GeoLocationService, NearByCitiesService],
 
 @RouteConfig([
     {
@@ -143,33 +144,70 @@ export class AppComponent {
     public listTitle: string = 'homes-largest';
     public pageNumber: number = 1;
     public partnerScript:string;
-    cityStateLocation: string = "Wichita_KS";
-    cityLocation: string = "WICHITA";
-    stateLocation: string = "KS";
+    public cityStateLocation: string;
+    public cityLocation: string;
+    public stateLocation: string;
     address: string = "503-C-Avenue-Vinton-IA";
+    nearByCities: Object;
 
-    constructor(private _injector: Injector,private _partnerData: PartnerHeader, private _params: RouteParams, private route: Router, private routeData: RouteData, private routerLink: RouterLink){
-      var parentParams = this._injector.get(WebApp);
-      if(typeof parentParams.partnerID != 'undefined'){
-        this.partnerID = parentParams.partnerID;
-      }
+    constructor(private _injector: Injector,private _partnerData: PartnerHeader, private _params: RouteParams, private route: Router, private routeData: RouteData, private routerLink: RouterLink, private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService){
+        var parentParams = this._injector.get(WebApp);
+        if(typeof parentParams.partnerID != 'undefined'){
+            this.partnerID = parentParams.partnerID;
+        }
     }
 
     getPartnerHeader(){
-      this.partnerID = this.partnerID.replace('-','.');
+        this.partnerID = this.partnerID.replace('-','.');
 
-      this._partnerData.getPartnerData(this.partnerID)
-      .subscribe(
-          partnerScript => {
-            this.partnerData = partnerScript;
-            this.partnerScript = this.partnerData['results'].header.script;
-          }
-      );
+        this._partnerData.getPartnerData(this.partnerID)
+            .subscribe(
+                partnerScript => {
+                    this.partnerData = partnerScript;
+                    this.partnerScript = this.partnerData['results'].header.script;
+                }
+            );
+    }
+
+    //Subscribe to getGeoLocation in geo-location.service.ts. On Success call getNearByCities function.
+    getGeoLocation() {
+        this._geoLocationService.getGeoLocation()
+            .subscribe(
+                geoLocationData => {
+                    this.cityLocation = geoLocationData[0].city;
+                    this.stateLocation = geoLocationData[0].state;
+                    this.cityStateLocation = this.cityLocation + '_' + this.stateLocation;
+                },
+                err => this.defaultCity(),
+                () => this.getNearByCities()
+            );
+    }
+
+    // Subscribe to getNearByCities in geo-location.service.ts
+    getNearByCities() {
+        this._nearByCitiesService.getNearByCities(this.stateLocation, this.cityLocation)
+            .subscribe(
+                nearByCities => { this.nearByCities = nearByCities },
+                err => console.log(err),
+                () => console.log('Near By Cities Success!')
+            );
+    }
+
+    defaultCity() {
+        // Set default city and state if geo location call fails
+        console.log('Geo Location is Borked!');
+        this.stateLocation = "KS";
+        this.cityLocation = "Wichita";
+        this.cityStateLocation = this.cityLocation + '_' + this.stateLocation;
+        this.getNearByCities();
     }
 
     ngOnInit(){
-      if (this.partnerID != null){
-        this.getPartnerHeader();
-      }
+        if (this.partnerID != null){
+            this.getPartnerHeader();
+        }
+        // Call to get current State and City
+        this.getGeoLocation();
+        console.log(this);
     }
 }
