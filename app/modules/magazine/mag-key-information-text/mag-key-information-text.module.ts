@@ -7,9 +7,10 @@ import {LearnMoreComponent} from "../../../components/magazine/mag-btns/learnmor
     templateUrl: './app/modules/magazine/mag-key-information-text/mag-key-information-text.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [AdzoneComponent, LearnMoreComponent],
-    inputs: ['magSchools', 'magDemographics', 'schoolImage'],
+    inputs: ['magSchools', 'magDemographics', 'schoolImage', 'demographicImage'],
 })
 
 export class MagKeyInformationTextModule{
     public schoolImage: string;
+    public demographicImage: string;
 }
