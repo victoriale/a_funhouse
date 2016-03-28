@@ -94,6 +94,5 @@ export class InfoListModule implements OnInit {
         this.module_title = 'Recent Listings for ' + this.locDisplay;
 
         this.dataTransform();
-        console.log(this);
     }
 }
