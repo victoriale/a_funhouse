@@ -127,7 +127,7 @@ export class ProfilePage implements OnInit{
       var address = tempArr.join(' ');
       this.city = paramCity;
       this.state = paramState;
-      this.address = address + ' ' + paramCity + ', ' + paramState;
+      this.address = address + ', ' + paramCity + ', ' + paramState;
     }
     ngOnInit(){
       //Run each call
