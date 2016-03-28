@@ -58,17 +58,13 @@ export class AmenitiesModule implements OnInit{
         }
         var data = this.amenitiesData;
         var dataLists = data['restaurant']['businesses'];
-        console.log('datalists', dataLists);
         var max = dataLists.length - 1;
-        console.log('max', max, dataLists.length);
 
         if(this.index > 0){
             this.index -= 1;
-            console.log(this.index);
             this.dataFormatter();
         }else{
             this.index = max;
-            console.log(this.index);
             this.dataFormatter();
         }
     }
@@ -78,16 +74,12 @@ export class AmenitiesModule implements OnInit{
         }
         var data = this.amenitiesData;
         var dataLists = data['restaurant']['businesses'];
-        console.log('datalists', dataLists);
         var max = dataLists.length - 1;
-        console.log('max', max, dataLists.length);
         if(this.index < max){
             this.index += 1;
-            console.log(this.index);
             this.dataFormatter();
         }else{
             this.index = 0;
-            console.log(this.index);
             this.dataFormatter();
         }
     }

@@ -31,7 +31,6 @@ export class SchoolListsPage implements OnInit{
 
   constructor(private _params: RouteParams, private router: Router, private globalFunctions: GlobalFunctions, private _locationService: LocationProfileService, params: RouteParams){
       this.category = params.params['listname'];
-      console.log(this.category);
       window.scrollTo(0, 0);
   }
 
