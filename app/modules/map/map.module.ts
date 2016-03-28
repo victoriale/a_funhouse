@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges} from 'angular2/core';
-import {RouteParams} from 'angular2/router';
+import {RouteParams, Router} from 'angular2/router';
 import {moduleHeader} from '../../components/module-header/module-header';
 import {GlobalFunctions} from '../../global/global-functions';
 
@@ -17,7 +17,7 @@ export class MapModule implements OnChanges{
     public moduleTitle: string;
     @Input() mapData: Array<any>;
 
-    constructor(private _params: RouteParams, private globalFunctions: GlobalFunctions){
+    constructor(private _params: RouteParams, private globalFunctions: GlobalFunctions, private _router: Router){
         var paramAddress = this._params.get('address').split('-');
         var paramState = paramAddress[paramAddress.length -1];
         var paramCity = paramAddress [paramAddress.length - 2];
@@ -61,19 +61,29 @@ export class MapModule implements OnChanges{
             });
 
             //Get data to push to info window template (infoTemplate)
-            var viewProfileUrl = '/listing/' + item.addressKey;
+            //var viewProfileUrl = '/magazine/' + item.addressKey;
+            var viewProfileUrl = '#';
             var listingImage = item.listingImage === null ? '/app/public/joyfulhome_house.png' : item.listingImage;
             var lineOne = item.fullStreetAddress + ', ' + item.loc + ' ' + item.postalCode;
             var lineTwo = '$' + self.globalFunctions.commaSeparateNumber(item.listPrice);
             lineTwo = item.livingArea === null ? lineTwo : lineTwo + ' | ' + self.globalFunctions.commaSeparateNumber(item.livingArea) + ' sq. ft';
 
-            var infoTemplate = '<div style="font-family: Lato; font-size: 16px; line-height: 20px"><div style="width: 60px; height: 60px; margin-right: 10px; border-radius: 50%; border: 2px solid #ccc; float: left; background-size: cover; background-image: url(\'' + listingImage +'\')"></div><span style="font-weight: 700">' + lineOne + '</span><br>' + lineTwo + '<br>' + '<a id="map-view-profile" href="'+ viewProfileUrl + '" style="text-decoration: none; color: #000; font-size: 14px; color: #44b244; font-weight: 500">View Profile</a></div>';
+            var infoTemplate = '<div style="font-family: Lato; font-size: 16px; line-height: 20px"><div style="width: 60px; height: 60px; margin-right: 10px; border-radius: 50%; border: 2px solid #ccc; float: left; background-size: cover; background-image: url(\'' + listingImage +'\')"></div><span style="font-weight: 700">' + lineOne + '</span><br>' + lineTwo + '<br>' + '<a id="map-view-profile" style="text-decoration: none; color: #000; font-size: 14px; color: #44b244; font-weight: 500; cursor: pointer">View Profile</a></div>';
 
             //Add click event to markers
             google.maps.event.addListener(marker, 'click', function(){
                 //Set info window template to info window
                 infoWindow.setContent(infoTemplate);
                 infoWindow.open(map, marker);
+
+                //Clear previous events from infoWindow
+                google.maps.event.clearListeners(infoWindow);
+                //Add click event to view profile text in infoWindow
+                google.maps.event.addListener(infoWindow, 'domready', function(){
+                    document.getElementById('map-view-profile').addEventListener('click', function(){
+                        self._router.navigate(['../../Magazine', {addr: item.addressKey}, 'PropertyOverview']);
+                    })
+                })
             });
 
         });
