@@ -16,20 +16,14 @@ import {Router,ROUTER_DIRECTIVES} from 'angular2/router';
 
 export class TilesComponent implements OnInit{
     tile_data: Object;
-    // paramOption1: Object;
-    // paramOption2: Object;
-    // paramOption3: Object;
+
+    paramOption1: Object;
+    paramOption2: Object;
+    paramOption3: Object;
     ngOnChanges(){
-    //   if(typeof this.tile_data != 'undefined'){
-    //     console.log(this.tile_data);
-    //     var tile_data = this.tile_data;
-    //     console.log('tile data', tile_data);
-    //     console.log(tile_data.category1, tile_data.state_code, tile_data.city);
-    //     this.paramOption1 = {listname: tile_data.category1, state: tile_data.state_code, city: tile_data.city};
-    //     this.paramOption2 = {listname: tile_data.category1, state: tile_data.state_code, city: tile_data.city};
-    //     this.paramOption3 = {listname: tile_data.category1, state: tile_data.state_code, city: tile_data.city};
-    //     console.log('param', this.paramOption1);
-    //   }
+      if(typeof this.tile_data != 'undefined'){
+        var tile_data = this.tile_data;
+    }
     }
     ngOnInit(){}
 }

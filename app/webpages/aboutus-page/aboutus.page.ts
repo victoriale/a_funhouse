@@ -35,11 +35,11 @@ export class AboutUsPage implements OnInit{
     subText4 = "Counties in United States";
     subText_nat = "Listings Nationwide";
 
-    mainText1 = "1,515,674"; // this is for listing for sale
+    mainText1 = ""; // this is for listing for sale
     mainText2 = "32,326"; // number of cities in the U.S.
-    mainText3 = "39,612"; // Real Easte Angents
+    mainText3 = ""; // Real Easte Angents
     mainText4 = "3,143"; // United States' counties
-    mainText_nat = "1,515,674+"; // listings nationwide
+    mainText_nat = ""; // listings nationwide
 
     titleData: {};
 

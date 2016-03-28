@@ -8,7 +8,6 @@ import {GlobalFunctions} from "../../global/global-functions";
 
 import {moduleHeader} from "../../components/module-header/module-header";
 import {LocationProfileService} from '../../global/location-profile.service';
-// import {AmenitiesNearListingInterface} from '../../global/global-interface';
 
 @Component({
     selector: 'Amenities-list-page',
@@ -26,15 +25,18 @@ export class AmenitiesListPage implements OnInit{
   name: string;
   displayAddress1: string;
   displayAddress2: string;
+  public category: string;
   public location: string;
   public locCity: string;
   public locState: string;
   public profileType: string;
   private amenitiesData: any;
+  imageUrl: string;
 
   @Input() amenitiesNearListingData: any;
 
   constructor(private _params: RouteParams, private router: Router, private globalFunctions: GlobalFunctions,  private _locationService: LocationProfileService, params: RouteParams){
+      this.category = params.params['listname'];
       window.scrollTo(0, 0);
   }
 
@@ -46,7 +48,7 @@ export class AmenitiesListPage implements OnInit{
   }
 
   dataFormatter(data){
-    var dataLists = data['restaurant']['businesses'];
+    var dataLists = data[this.category]['businesses'];
     dataLists.forEach(function(val, i){
       val.rank = i+1;
       val.location['address'].forEach(function(addr, index) {
