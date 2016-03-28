@@ -33,41 +33,24 @@ export class TrendingHomes implements OnInit {
     }
 
     left(){
-      console.log('left');
       this.counter--;
       if(this.counter < 0){
         this.counter = this.carouselData.length - 1;
       }
-      console.log(this.counter);
       this.listData = this.carouselData[this.counter];
-      console.log(this.listData);
     }
 
     right(){
-      console.log('right');
       this.counter++;
       if(this.counter == this.carouselData.length){
         this.counter = 0;
       }
-      console.log(this.counter);
       this.listData = this.carouselData[this.counter];
-      console.log(this.listData);
     }
 
     dataFormatter(){// TRANSFORM DATA TO PLUG INTO COMPONENTS
       //grab data for the header
       var data = this.trendingHomesData;
-      this.headerData = {
-          imageURL : './app/public/joyfulhome_house.png',
-          smallText1 : data.date,
-          smallText2 : ' United States of America',
-          heading1 : data.title,
-          heading2 : '',
-          heading3 : '',
-          heading4 : '',
-          icon: 'fa fa-map-marker',
-          hasHover: true
-      };
 
       //grab data for the list
       var originalData = data.data;
@@ -83,7 +66,7 @@ export class TrendingHomes implements OnInit {
           }
         }
 
-        var formattedDays = moment.unix(val.daysOnMarket);
+        var formattedDays = moment().subtract('days', val.daysOnMarket).format('dddd, MMMM Do, YYYY');
 
         var carData = {
           address:val.fullStreetAddress,
@@ -95,6 +78,8 @@ export class TrendingHomes implements OnInit {
           city: val.city,
           state: val.stateOrProvince,
           photos:val.photos,
+          locUrl1: "Location-page",
+          locUrl2: {loc: val.city + '_' +val.stateOrProvince}
         }
         carData['url1'] = "../../Magazine";
         carData['url2'] = {addr:val.addressKey};
