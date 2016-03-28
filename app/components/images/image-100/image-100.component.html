@@ -1,6 +1,6 @@
 <div *ngIf="hasHover === true" class='image-100-hover'>
     <a href='#'>
-        <img src='{{imageURL}}' alt='Big image example from snt verticals' />
+        <img src='{{imageURL}}' onerror="this.src='./app/public/placeholder-location.jpg';" />
         <div>
             <p>View</p>
             <p>Profile</p>
@@ -9,5 +9,5 @@
 </div>
 
 <div *ngIf="hasHover === false">
-    <img class='image-100' src='{{imageURL}}' alt='This is the main image' />
+    <img class='image-100' src='{{imageURL}}' onerror="this.src='./app/public/placeholder-location.jpg';" />
 </div>

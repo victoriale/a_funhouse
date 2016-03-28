@@ -1,8 +1,8 @@
 <div *ngIf="hasSubImg" class='image-{{size}}-smallImgBR'>
-    <img src='{{imageURL}}' alt='This is the main image' />
-    <img src='{{imageURL2}}' alt='Small image' />
+    <img src='{{imageURL}}' onerror="this.src='./app/public/placeholder-location.jpg';" />
+    <img src='{{imageURL2}}' onerror="this.src='./app/public/placeholder-location.jpg';" />
 </div>
 
 <div *ngIf="!hasSubImg">
-    <img class='image-{{size}}' src='{{imageURL}}' alt='This is the main image' />
+    <img class='image-{{size}}' src='{{imageURL}}' onerror="this.src='./app/public/placeholder-location.jpg';" />
 </div>
