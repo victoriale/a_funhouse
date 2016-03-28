@@ -31,7 +31,6 @@ export class AmenitiesListPage implements OnInit{
   public locState: string;
   public profileType: string;
   private amenitiesData: any;
-  imageUrl: string;
 
   @Input() amenitiesNearListingData: any;
 
@@ -68,7 +67,7 @@ export class AmenitiesListPage implements OnInit{
     this.locState = decodeURI(this._params.get('state'));
     this.locCity = decodeURI(this._params.get('city'));
     this.location = this.globalFunctions.toTitleCase(this.locCity) + ', ' + this.locState;
-    this.moduleTitle = "Top Rated Amenities In " + this.location;
+    this.moduleTitle = "Top Rated Amenities In and Around " + this.location;
     this.getData();
   }
 

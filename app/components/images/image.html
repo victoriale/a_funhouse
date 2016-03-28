@@ -1,8 +1,15 @@
 <div *ngIf="hasSubImg" class='image-{{size}}-smallImgBR'>
-    <img src='{{imageURL}}' alt='This is the main image' />
-    <img src='{{imageURL2}}' alt='Small image' />
+    <img src='{{imageURL}}' onerror="this.src='./app/public/placeholder-location.jpg';" />
+    <img src='{{imageURL2}}' onerror="this.src='./app/public/placeholder-location.jpg';" />
 </div>
 
 <div *ngIf="!hasSubImg">
-    <img class='image-{{size}}' src='{{imageURL}}' alt='This is the main image' />
+    <img *ngIf="!hasHoverNoSubImg" class='image-{{size}}' src='{{imageURL}}' onerror="this.src='./app/public/placeholder-location.jpg';" />
+    <a *ngIf="hasHoverNoSubImg" href="{{originalUrl}}" class='image-{{size}}-hover'>
+      <img src='{{imageURL}}' onerror="this.src='./app/public/placeholder-location.jpg';" />
+      <div>
+        <p>View</p>
+        <p>Profile</p>
+      </div>
+    </a>
 </div>
