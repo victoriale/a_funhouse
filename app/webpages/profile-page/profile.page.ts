@@ -99,7 +99,6 @@ export class ProfilePage implements OnInit{
         this._listingProfileService.getTrendingHomesData(this.city, this.state)
             .subscribe(
                 data => {
-                  console.log('RETURN DATA',data);
                     this.trendingHomesData = data;
                 },
                 err => console.log('Error - Location Trending Homes Data: ', err)
