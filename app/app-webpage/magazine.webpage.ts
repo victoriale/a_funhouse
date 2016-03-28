@@ -29,7 +29,8 @@ declare var jQuery:any;
     new AsyncRoute({
         path: '/overview',
         loader: () => Promise.resolve(MagOverviewModule),
-        name: 'PropertyOverview'
+        name: 'PropertyOverview',
+        useAsDefault:true,
     }),
     new AsyncRoute({
         path: '/neighborhood',
