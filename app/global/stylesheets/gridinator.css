@@ -24,6 +24,7 @@
 	text-align: left;
 	width: 1044px;
   	max-width: 1044px;
+	min-width: 1044px;
 }
 
 .inner-wrapper {
