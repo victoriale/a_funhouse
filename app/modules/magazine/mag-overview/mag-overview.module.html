@@ -6,11 +6,18 @@
             {{magOverview?.address?.fullStreetAddress}}
         </div>
         <div *ngIf="magOverview?.address" class='mag_po_loc'>
-            {{magOverview.address.fullStreetAddress}}
-            {{magOverview.address.county}},
-            {{magOverview.address.country}}
+            {{magOverview?.address?.fullStreetAddress}}
+            {{magOverview?.address?.county}},
+            {{magOverview?.address?.country}}
         </div>
-        <div class='mag_po_price'>Listed for: {{price | currency:'USD' :true}}</div>
+        <span *ngIf="price">
+            <div *ngIf="magOverview?.address" class='mag_po_price'>Listed for: {{price | currency:'USD' :true}}</div>
+        </span>
+        <span *ngIf="contactAgent">
+            <div *ngIf="magOverview?.address" class='mag_po_price'>
+                Listed for: <span [innerHTML]="contactAgent" ></span>
+            </div>
+        </span>
         <div class='mag-line'></div>
             <span *ngFor="#p of magOverview?.content; #i=index">
                 <adzone-component *ngIf="i === 2"></adzone-component>
