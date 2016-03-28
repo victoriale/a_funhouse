@@ -96,6 +96,7 @@ export class AmenitiesModule implements OnInit{
       var loc = listData['location']['city'] + ', ' + listData['location']['state_code'] + ' ' + listData['location']['postal_code'];
       var address = listData['location']['address'];
       var imageURL = dataLists[this.index].image_url;
+
       this.listData = {
         header: "What's the Highest Rated Restaurant in this area?",
         name: loc,
@@ -103,53 +104,96 @@ export class AmenitiesModule implements OnInit{
         imageUrl: listData.image_url.length === 0 ? null : listData.image_url,
         address: address[0],
         location: loc,
-        listView: [
+        originalUrl: listData.url,
+        url: 'Amenities-lists-page',//for the see the list button
+        paramOptions:
+                  {
+                    listname: 'restaurant',
+                    city: listData['location'].city,
+                    state: listData['location'].state_code
+                  },
+        listView: [//data for amenities component tiles
             {
               icons: 'fa-cutlery',
               category: "Restaurants",
               count: data['restaurant'].total + " near this listing",
-              viewUrl: '',
+              url: 'Amenities-lists-page',
+              paramOptions:
+                        {
+                          listname: 'restaurant',
+                          city: listData['location'].city,
+                          state: listData['location'].state_code
+                        },
               viewMore: "See All"
             },
             {
               icons: 'fa-shopping-cart',
               category: "Groceries Stores",
               count: data['grocers'].total + " near this listing",
-              viewUrl: '',
+              url: 'Amenities-lists-page',
+              paramOptions:
+                        {
+                          listname: 'grocers',
+                          city: listData['location'].city,
+                          state: listData['location'].state_code
+                        },
               viewMore: "See All"
             },
             {
               icons: 'fa-dollar',
               category: "Banks",
               count: data['banks'].total + " near this listing",
-              viewUrl: '',
+              url: 'Amenities-lists-page',
+              paramOptions:
+                        {
+                          listname: 'banks',
+                          city: listData['location'].city,
+                          state: listData['location'].state_code
+                        },
               viewMore: "See All"
             }
           ]
       }
+      // get data for tiles
+      this.tileData = {
+          button_txt: 'Open Page',
+          url1: 'Amenities-lists-page',
+          paramOptions1: {
+                      listname: 'restaurant',
+                      city: listData['location'].city,
+                      state: listData['location'].state_code
+                    },
+          icon1: 'fa-cutlery',
+          title1: 'Nearby Restaurants',
+          desc1: '',
+
+          url2: 'Amenities-lists-page',
+          paramOptions2: {
+                      listname: 'grocers',
+                      city: listData['location'].city,
+                      state: listData['location'].state_code
+                    },
+          icon2: 'fa-shopping-cart',
+          title2: 'Nearby Groceries',
+          desc2: '',
+
+          url3: 'Amenities-lists-page',
+          paramOptions3: {
+                      listname: 'banks',
+                      city: listData['location'].city,
+                      state: listData['location'].state_code
+                    },
+          icon3: 'fa-dollar',
+          title3: 'Nearby Banks',
+          desc3: ''
+      }
+
+      console.log('list',this.listData);
     }
 
     ngOnInit(){
         this.hasFooterButton = false;
         this.setModuleTitle();
-        this.tileData = {
-            button_txt: 'Open Page',
-            url1: 'Aboutus-page',
-            icon1: 'fa-cutlery',
-            title1: 'Nearby Restaurants',
-            // category1: 'restaurant',
-            desc1: '',
-            url2: 'Aboutus-page',
-            // category2: 'grocery',
-            icon2: 'fa-shopping-cart',
-            title2: 'Nearby Groceries',
-            desc2: '',
-            url3: 'Aboutus-page',
-            // category3: 'bank',
-            icon3: 'fa-dollar',
-            title3: 'Nearby Banks',
-            desc3: ''
-        }
     }
     //On Change Call
     ngOnChanges(event){

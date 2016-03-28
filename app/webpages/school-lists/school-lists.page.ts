@@ -24,6 +24,7 @@ export class SchoolListsPage implements OnInit{
   public locState: string;
   public profileType: string;
   private schoolData: any;
+  imageUrl: string = './app/public/mag_stock_img/stock_school_1.png';
 
   @Input() schoolDataInput: any;
 
@@ -62,6 +63,9 @@ export class SchoolListsPage implements OnInit{
   ngOnChanges(event) {
     //Get changed input
     var currentSchoolDataInput = event.schoolDataInput.currentValue;
+    if(typeof event.imageUrl !== 'undefined' && event.imageUrl.currentValue === null){
+        this.imageUrl = './app/public/mag_stock_img/stock_school_1.png';
+    }
     //If the data input is valid run transform data function
     if (currentSchoolDataInput !== null && currentSchoolDataInput!== false) {
       this.getData();
