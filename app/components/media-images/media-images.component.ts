@@ -47,6 +47,7 @@ export class MediaImages implements OnInit {
   constructor() {}
 
   left() {
+    this.leftCircle.next(true);
     //make a check to see if the obj array is below 0 change the obj array to the top level
     if(this.imageCounter == 0){
       this.smallObjCounter--;
@@ -63,6 +64,7 @@ export class MediaImages implements OnInit {
   }
 
   right() {
+    this.rightCircle.next(true);
     //check to see if the end of the obj array of images has reached the end and will go on the the next obj with new set of array
     if(this.imageCounter == (this.mediaImages[this.smallObjCounter].length - 1)){
       this.imageCounter = 0;
@@ -116,8 +118,8 @@ export class MediaImages implements OnInit {
   ngOnChanges(event){
       if(typeof this.mediaImages != 'undefined' || typeof this.featureListing != 'undefined'){
         //if data coming from module to variable mediaImages changes in what way then reset to first image and rerun function
-        console.log('mediaImages',this.mediaImages);
-        console.log('featureListing',this.featureListing);
+        this.smallObjCounter = 0;
+        this.imageCounter = 0;
         this.mediaImages = this.modifyMedia(this.mediaImages);
         this.totalImageCount = this.mediaImages.totalImages;
         this.changeMain(0);
