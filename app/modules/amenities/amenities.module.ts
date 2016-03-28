@@ -75,7 +75,6 @@ export class AmenitiesModule implements OnInit{
         var data = this.amenitiesData;
         var dataLists = data['restaurant']['businesses'];
         var max = dataLists.length - 1;
-
         if(this.index < max){
             this.index += 1;
             this.dataFormatter();
@@ -101,7 +100,7 @@ export class AmenitiesModule implements OnInit{
         header: "What's the Highest Rated Restaurant in this area?",
         name: loc,
         establishment: listData.name,
-        imageUrl: listData.image_url.length === 0 ? null : listData.image_url,
+        imageUrl: listData.image_url,
         address: address[0],
         location: loc,
         originalUrl: listData.url,

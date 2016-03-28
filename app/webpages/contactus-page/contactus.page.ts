@@ -60,7 +60,6 @@ export class ContactUsPage implements OnInit{
         alert("Please enter in your message.");
         return false;
       }
-      console.log(this);
       return true;
     }
 

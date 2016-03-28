@@ -112,7 +112,7 @@ export class ProfilePage implements OnInit{
               data => {
                 this.amenitiesData = data;
               },
-              err => console.log('School Location Data Acquired!', err)
+              err => console.log('Amenities Location Data Acquired!', err)
             )
     }
     getPropertyListing(){
@@ -148,7 +148,7 @@ export class ProfilePage implements OnInit{
             icon: 'fa-gavel'
         };
         this.headlineAmenities = {
-            title: 'Amenities in ' + this.address,
+            title: 'Amenities Around ' + this.address,
             icon: 'fa-cutlery'
         };
         this.headlineOtherHomes = {

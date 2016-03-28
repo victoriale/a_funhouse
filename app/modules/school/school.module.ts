@@ -33,7 +33,6 @@ export class SchoolModule implements OnInit{
     }
 
     left(){
-        console.log('left - module', this.index);
         if(this.schoolData === null){
             return false;
         }
@@ -49,7 +48,6 @@ export class SchoolModule implements OnInit{
         }
     }
     right(){
-        console.log('right - module', this.index);
         if(this.schoolData === null){
             return false;
         }
