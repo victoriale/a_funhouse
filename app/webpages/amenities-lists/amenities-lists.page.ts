@@ -31,7 +31,6 @@ export class AmenitiesListPage implements OnInit{
   public locState: string;
   public profileType: string;
   private amenitiesData: any;
-  imageUrl: string;
 
   @Input() amenitiesNearListingData: any;
 
