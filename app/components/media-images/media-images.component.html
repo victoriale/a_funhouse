@@ -1,11 +1,11 @@
-<section class="media-images">
+<section *ngIf="featureListing" class="media-images">
   <circle-button (scrollLeft)="left()" (scrollRight)="right()"></circle-button>
   <div class="plcholder">
-    <a class='feature-btn expand'>
+    <a class='feature-btn expand' (click)="modalExpand()">
       Expand
       <i class='fa fa-expand'></i>
     </a>
-    <a class='feature-btn virtual'>
+    <a *ngIf="featureListing.virtualTour != 'N/A'" href="featureListing.virtualTour" class='feature-btn virtual'>
       Virtual Home Tour ({{virtualTourCount}})
     </a>
     <a class='feature-btn images'>
@@ -17,7 +17,7 @@
       <i></i>
     </a>
     <img *ngIf="mediaImages" src="{{largeImage}}" class="plcholder-img" alt="placeholder images"/>
-    <div *ngIf="featureListing" class="plcholder-details">
+    <div class="plcholder-details">
       <div class="listings">
         <a [routerLink] = "[featureListing.locUrl1, featureListing.locUrl2]">
         <div class="listings-name">

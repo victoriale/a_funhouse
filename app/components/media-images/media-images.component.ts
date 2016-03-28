@@ -14,7 +14,7 @@ declare var jQuery : any;
   directives: [ROUTER_DIRECTIVES, CircleButton],
   providers: [],
   inputs: ['trending', 'mediaImages', 'featureListing'],
-  outputs: ['leftCircle', 'rightCircle']
+  outputs: ['leftCircle', 'rightCircle', 'expand']
 })
 
 export class MediaImages implements OnInit {
@@ -22,6 +22,7 @@ export class MediaImages implements OnInit {
   public trending: boolean;
   leftCircle: EventEmitter<boolean> = new EventEmitter();
   rightCircle: EventEmitter<boolean> = new EventEmitter();
+  expand: EventEmitter<boolean> = new EventEmitter();
 
   mediaImages: any;//need to create interface
   smallImage: any;
@@ -45,6 +46,10 @@ export class MediaImages implements OnInit {
   // priceName:string;
 
   constructor() {}
+
+  modalExpand(){
+    this.expand.next(true);
+  }
 
   left() {
     this.leftCircle.next(true);
