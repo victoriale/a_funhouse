@@ -9,15 +9,16 @@
         </div>
         <!--Image Placeholder and Carousel Buttons for Next and Previous-->
         <carousel-button (scrollLeft)="left()" (scrollRight)="right()"></carousel-button>
-
-        <image-150 [imageURL]="list_data.imageUrl" [hasSubImg]="main_hasSubImg"></image-150>
+        <a href="{{list_data.originalUrl}}">
+          <image-150 [imageURL]="list_data.imageUrl" [hasSubImg]="main_hasSubImg"></image-150>
+        </a>
         <!--Establishment, Address, Location-->
         <div class="ac-carousel-est">
             <div>{{list_data.establishment}}</div>
             <div><span>{{list_data.address}}</span> <span>{{list_data.location}}</span></div>
         </div>
         <!--Button to See The List-->
-        <a href='' class='mod-page-btn'>
+        <a [routerLink]="[list_data.url, list_data.paramOptions]" class='mod-page-btn'>
             <span></span>
             <span>See The List</span>
             <i class='fa fa-angle-right'></i>
@@ -35,8 +36,7 @@
                 <div>{{list_data.category}}</div>
                 <div>{{list_data.count}}</div>
             </div>
-
-            <a href='{{list_data.viewUrl}}' class="ac-lists-list-view">
+            <a [routerLink]="[list_data.url, list_data.paramOptions]" class="ac-lists-list-view">
                 <span>{{list_data.viewMore}}</span>
                 <i class="fa fa-angle-right"></i>
             </a>
@@ -45,7 +45,7 @@
     </div>
     <!--Footer Button to See All Amenities-->
     <div *ngIf="hasFooterButton" class="footer">
-        <a href='{{list_data.ListUrl}}' class='footer-btn'>
+        <a [routerLink]="[list_data.url, list_data.paramOptions]" class='footer-btn'>
             <span></span>
             <span>See All Amenities</span>
             <i class='fa fa-angle-right'></i>
