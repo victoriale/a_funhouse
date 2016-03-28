@@ -1,7 +1,8 @@
 <section class="module-container media">
     <module-header [module_title]="moduleTitle"></module-header>
-    <media-images *ngIf="propertyData" [mediaImages] = "propertyData.imageArray" [featureListing]="propertyData.featureListing"></media-images>
-
+    <div style="height:466px; width:100%">
+      <media-images *ngIf="propertyData" [mediaImages] = "propertyData.imageArray" [featureListing]="propertyData.featureListing" (expand)="expandModal()"></media-images>
+    </div>
     <section class="features">
         <div class="heading">
             <span>{{featureHeading}}</span>
@@ -14,3 +15,7 @@
         </div>
     </section>
 </section>
+
+<div class="modal" [ngClass]="{'modal-active': expand == true}">
+  <media-images *ngIf="propertyData" [mediaImages] = "propertyData.imageArray" [featureListing]="propertyData.featureListing" (expand)="expandModal()"></media-images>
+</div>
