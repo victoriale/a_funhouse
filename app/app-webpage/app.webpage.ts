@@ -21,11 +21,11 @@ import {FeatureTilesComponent} from "../components/feature-tiles/feature-tiles.c
 import {DirectoryPage} from "../webpages/directory-page/directory.page";
 import {SearchPage} from "../webpages/search-page/search.page";
 import {DynamicListPage} from "../webpages/dynamic-list-page/dynamic-list.page";
+import {NearByCitiesService} from "../global/geo-location.service";
+import {GeoLocationService} from "../global/geo-location.service";
 
 import {WebApp} from "../app-layout/app.layout";
 import {PartnerHeader} from "../global/global-service";
-import {NearByCitiesService} from "../global/geo-location.service";
-import {GeoLocationService} from "../global/geo-location.service";
 
 @Component({
     selector: 'my-app',
@@ -171,6 +171,7 @@ export class AppComponent {
                 geoLocationData => {
                     this.cityLocation = geoLocationData[0].city;
                     this.stateLocation = geoLocationData[0].state;
+                    this.cityStateLocation = this.cityLocation + '_' + this.stateLocation;
                 },
                 err => this.defaultCity(),
                 () => this.getNearByCities()
@@ -188,9 +189,11 @@ export class AppComponent {
     }
 
     defaultCity() {
-        console.log('borked');
+        // Set default city and state if geo location call fails
+        console.log('Geo Location is Borked!');
         this.stateLocation = "KS";
         this.cityLocation = "Wichita";
+        this.cityStateLocation = this.cityLocation + '_' + this.stateLocation;
         this.getNearByCities();
     }
 
@@ -200,6 +203,6 @@ export class AppComponent {
         }
         // Call to get current State and City
         this.getGeoLocation();
-        console.log(this.nearByCities);
+        console.log(this);
     }
 }

@@ -28,13 +28,13 @@ export class FooterComponent implements OnInit {
         console.log('Current URL', this.currentUrl);
 
         //check for partner and hide search
-        console.log('pid', this.partnerID);
+        console.log('Partner ID:', this.partnerID);
         if(this.partnerID != null) {
             this.isMyHouseKit = true;
-            console.log('housekit true');
+            //console.log('Housekit True');
         }else {
             this.isMyHouseKit = false;
-            console.log('housekit false');
+            //console.log('Housekit False');
         }
     }
 

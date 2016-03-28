@@ -26,9 +26,10 @@ export class HomePage implements OnInit {
     // Location data
     cityLocation: string;
     stateLocation: string;
+    cityStateLocation: string;
     nearByCities: Object;
 
-    selectValue: string;
+    //selectValue: string;
 
     // Buttons
     buttonTitle: string;
@@ -39,9 +40,7 @@ export class HomePage implements OnInit {
     heroButtonWidth: number;
     heroButtonIcon: string;
 
-    _router: Router;
-
-    constructor(private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService, private _router: Router) {
+    constructor(private _router: Router, private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }
@@ -53,6 +52,39 @@ export class HomePage implements OnInit {
     //    this.getNearByCities();
     //    console.log(this.nearByCities);
     //}
+
+    //Subscribe to getGeoLocation in geo-location.service.ts. On Success call getNearByCities function.
+    getGeoLocation() {
+        this._geoLocationService.getGeoLocation()
+            .subscribe(
+                geoLocationData => {
+                    this.cityLocation = geoLocationData[0].city;
+                    this.stateLocation = geoLocationData[0].state;
+                    this.cityStateLocation = this.cityLocation + '_' + this.stateLocation;
+                },
+                err => this.defaultCity(),
+                () => this.getNearByCities()
+            );
+    }
+
+    // Subscribe to getNearByCities in geo-location.service.ts
+    getNearByCities() {
+        this._nearByCitiesService.getNearByCities(this.stateLocation, this.cityLocation)
+            .subscribe(
+                nearByCities => { this.nearByCities = nearByCities },
+                err => console.log(err),
+                () => console.log('Near By Cities Success!')
+            );
+    }
+
+    defaultCity() {
+        // Set default city and state if geo location call fails
+        console.log('Geo Location is Borked!');
+        this.stateLocation = "KS";
+        this.cityLocation = "Wichita";
+        this.cityStateLocation = this.cityLocation + '_' + this.stateLocation;
+        this.getNearByCities();
+    }
 
     ngOnInit() {
 
@@ -69,5 +101,9 @@ export class HomePage implements OnInit {
         if(this._router.hostComponent.name === "HomePage"){
             console.log("do something");
         }
+
+        // Call to get current State and City
+        this.getGeoLocation();
+        console.log(this);
     }
 }
