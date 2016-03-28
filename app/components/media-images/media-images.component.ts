@@ -1,9 +1,9 @@
 /**
  * Created by Victoria on 3/4/2016.
  */
-import {Component, OnInit, Input} from 'angular2/core';
+import {Component, OnInit, Input, Output, EventEmitter} from 'angular2/core';
 import {CircleButton} from "../../components/buttons/circle/circle.button";
-// import {MediaFeatureList} from '../../global/global-service';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {List2} from '../../global/global-interface';
 
 declare var jQuery : any;
@@ -11,16 +11,17 @@ declare var jQuery : any;
   selector: 'media-images',
   templateUrl: './app/components/media-images/media-images.component.html',
   styleUrls: ['./app/global/stylesheets/master.css'],
-  directives: [CircleButton],
+  directives: [ROUTER_DIRECTIVES, CircleButton],
   providers: [],
-  inputs: ['trending', 'mediaImages', 'featureListing']
+  inputs: ['trending', 'mediaImages', 'featureListing'],
+  outputs: ['leftCircle', 'rightCircle']
 })
 
 export class MediaImages implements OnInit {
   featureListing: any;
   public trending: boolean;
-  leftCircle: boolean;
-  rightCircle: boolean;
+  leftCircle: EventEmitter<boolean> = new EventEmitter();
+  rightCircle: EventEmitter<boolean> = new EventEmitter();
 
   mediaImages: any;//need to create interface
   smallImage: any;
@@ -46,6 +47,7 @@ export class MediaImages implements OnInit {
   constructor() {}
 
   left() {
+    this.leftCircle.next(true);
     //make a check to see if the obj array is below 0 change the obj array to the top level
     if(this.imageCounter == 0){
       this.smallObjCounter--;
@@ -62,6 +64,7 @@ export class MediaImages implements OnInit {
   }
 
   right() {
+    this.rightCircle.next(true);
     //check to see if the end of the obj array of images has reached the end and will go on the the next obj with new set of array
     if(this.imageCounter == (this.mediaImages[this.smallObjCounter].length - 1)){
       this.imageCounter = 0;
@@ -115,8 +118,8 @@ export class MediaImages implements OnInit {
   ngOnChanges(event){
       if(typeof this.mediaImages != 'undefined' || typeof this.featureListing != 'undefined'){
         //if data coming from module to variable mediaImages changes in what way then reset to first image and rerun function
-        console.log('mediaImages',this.mediaImages);
-        console.log('featureListing',this.featureListing);
+        this.smallObjCounter = 0;
+        this.imageCounter = 0;
         this.mediaImages = this.modifyMedia(this.mediaImages);
         this.totalImageCount = this.mediaImages.totalImages;
         this.changeMain(0);

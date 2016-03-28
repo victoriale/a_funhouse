@@ -8,7 +8,6 @@ import {GlobalFunctions} from "../../global/global-functions";
 
 import {moduleHeader} from "../../components/module-header/module-header";
 import {LocationProfileService} from '../../global/location-profile.service';
-// import {AmenitiesNearListingInterface} from '../../global/global-interface';
 
 @Component({
     selector: 'Amenities-list-page',
@@ -24,11 +23,9 @@ export class AmenitiesListPage implements OnInit{
   address: string;
   amenitiesListingsData: any;
   name: string;
-  counter: number;
   displayAddress1: string;
   displayAddress2: string;
-  snippetText: string;
-  imageURL: string;
+  public category: string;
   public location: string;
   public locCity: string;
   public locState: string;
@@ -38,6 +35,7 @@ export class AmenitiesListPage implements OnInit{
   @Input() amenitiesNearListingData: any;
 
   constructor(private _params: RouteParams, private router: Router, private globalFunctions: GlobalFunctions,  private _locationService: LocationProfileService, params: RouteParams){
+      this.category = params.params['listname'];
       window.scrollTo(0, 0);
   }
 
@@ -49,7 +47,7 @@ export class AmenitiesListPage implements OnInit{
   }
 
   dataFormatter(data){
-    var dataLists = data['restaurant']['businesses'];
+    var dataLists = data[this.category]['businesses'];
     dataLists.forEach(function(val, i){
       val.rank = i+1;
       val.location['address'].forEach(function(addr, index) {
@@ -60,7 +58,6 @@ export class AmenitiesListPage implements OnInit{
         }
       })
       val.displayAddress2 =  val['location']['city'] + ', ' + val['location']['state_code'];
-      console.log(val.displayAddress2);
       val.locationUrl = {loc: val['location']['city'] + '_' + val['location']['state_code']};
     })
     return dataLists;
@@ -70,8 +67,7 @@ export class AmenitiesListPage implements OnInit{
     this.locState = decodeURI(this._params.get('state'));
     this.locCity = decodeURI(this._params.get('city'));
     this.location = this.globalFunctions.toTitleCase(this.locCity) + ', ' + this.locState;
-    this.moduleTitle = "Top Rated Amenities In " + this.location;
-
+    this.moduleTitle = "Top Rated Amenities In and Around " + this.location;
     this.getData();
   }
 

@@ -33,7 +33,6 @@ export class SchoolModule implements OnInit{
     }
 
     left(){
-        console.log('left - module', this.index);
         if(this.schoolData === null){
             return false;
         }
@@ -49,7 +48,6 @@ export class SchoolModule implements OnInit{
         }
     }
     right(){
-        console.log('right - module', this.index);
         if(this.schoolData === null){
             return false;
         }
@@ -67,7 +65,6 @@ export class SchoolModule implements OnInit{
 
     dataFormatter(){
       var data = this.schoolData;
-      console.log(data);
       if(data.elementary.length === 0){
           return false;
       }
@@ -75,35 +72,91 @@ export class SchoolModule implements OnInit{
       var elementaryData = data.elementary[this.index];
       var schoolName =  this.globalFunctions.toTitleCase(elementaryData.school_name);
       this.listData = {
+        hasHoverNoSubImg: false,
         header: "What's the Highest Rated School in this area?",
         name: schoolData.city + ', ' + schoolData.state,
         establishment:  schoolName,
         address: elementaryData.type,
         imageUrl: schoolData.locationImage,
+        url: 'School-lists-page',
+        paramOptions: {
+                    listname: 'Elementary Schools',
+                    city: schoolData.city,
+                    state: schoolData.state
+                  },
         listView: [
           {
             icons: 'fa-pencil',
             category: "Elementary Schools",
             count: schoolData.elementaryCount + " near this listing",
-            viewUrl: '',
+            url: 'School-lists-page',
+            paramOptions: {
+                        listname: 'elementary',
+                        city: schoolData.city,
+                        state: schoolData.state
+                      },
             viewMore: "See All"
           },
           {
             icons: 'fa-child',
             category: "Middle Schools",
             count: schoolData.middleCount + " near this listing",
-            viewUrl: '',
+            url: 'School-lists-page',
+            paramOptions: {
+                        listname: 'middle',
+                        city: schoolData.city,
+                        state: schoolData.state
+                      },
             viewMore: "See All"
           },
           {
             icons: 'fa-graduation-cap',
             category: "High Schools",
             count: schoolData.highCount + " near this listing",
-            viewUrl: '',
+            url: 'School-lists-page',
+            paramOptions: {
+                        listname: 'high',
+                        city: schoolData.city,
+                        state: schoolData.state
+                      },
             viewMore: "See All"
           }
         ]
       }//listData ends
+      // get data for tiles
+      this.tileData = {
+          button_txt: 'Open Page',
+          url1: 'School-lists-page',
+          paramOptions1: {
+                      listname: 'elementary',
+                      city: schoolData.city,
+                      state: schoolData.state
+                    },
+          icon1: 'fa-pencil',
+          title1: 'Elementary Schools',
+          desc1: '',
+
+          url2: 'School-lists-page',
+          paramOptions2: {
+                      listname: 'middle',
+                      city: schoolData.city,
+                      state: schoolData.state
+                    },
+          icon2: 'fa-child',
+          title2: 'Middle Schools',
+          desc2: '',
+
+          url3: 'School-lists-page',
+          paramOptions3: {
+                      listname: 'high',
+                      city: schoolData.city,
+                      state: schoolData.state
+                    },
+          icon3: 'fa-graduation-cap',
+          title3: 'High Schools',
+          desc3: ''
+      }
+
     }//dataFormatter ends
 
     //Build Module Title
@@ -128,21 +181,6 @@ export class SchoolModule implements OnInit{
     ngOnInit(){
       this.setModuleTitle();
       this.hasFooterButton = false;
-      this.tileData = {
-          button_txt: 'Open Page',
-          url1: 'Aboutus-page', //THIS WILL NEED TO BE CHANGE
-          icon1: 'fa-pencil',
-          title1: 'Elementary Schools',
-          desc1: '',
-          url2: 'Aboutus-page',//THIS WILL NEED TO BE CHANGE
-          icon2: 'fa-child',
-          title2: 'Middle Schools',
-          desc2: '',
-          url3: 'Aboutus-page',//THIS WILL NEED TO BE CHANGE
-          icon3: 'fa-graduation-cap',
-          title3: 'High Schools',
-          desc3: ''
-      }
     }// end ngOnInit
 
     //On Change Call

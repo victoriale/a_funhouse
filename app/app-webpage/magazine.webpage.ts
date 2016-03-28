@@ -29,7 +29,8 @@ declare var jQuery:any;
     new AsyncRoute({
         path: '/overview',
         loader: () => Promise.resolve(MagOverviewModule),
-        name: 'PropertyOverview'
+        name: 'PropertyOverview',
+        useAsDefault:true,
     }),
     new AsyncRoute({
         path: '/neighborhood',
@@ -82,7 +83,7 @@ export class MagazinePage {
         if( magazineData.overview != null ){
             toc.push( { label: "Property Overview", routeName: "PropertyOverview" } );
         }
-        if( magazineData.neighborhood != null || true ){
+        if( magazineData.neighborhood != null ){
             toc.push( { label: "The Neighborhood", routeName: "Neighborhood" } );
         }
         if( magazineData.recommendations != null && magazineData.recommendations.similar.length > 1 ){

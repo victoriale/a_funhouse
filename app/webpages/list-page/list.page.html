@@ -8,10 +8,11 @@
             <div *ngIf="view == 'list' || view == 'photo'">
               <list-view-carousel [carouselData]="carouselData"></list-view-carousel>
             </div>
-            <div class="lv-sort">
-              <dropdown-component></dropdown-component>
-              <div class="lv-sort-filter">Filter <i class="fa fa-cog"></i></div>
-            </div>
+            <!--<div class="lv-sort">-->
+              <!--<dropdown-component></dropdown-component>-->
+              <!--<div class="lv-sort-filter">Filter <i class="fa fa-cog"></i></div>-->
+            <!--</div>-->
+            <pagination-footer *ngIf="paginationParameters" [paginationParameters]="paginationParameters"></pagination-footer>
             <div *ngIf="(view == 'list' || view == 'map')&& listData">
               <detailed-list [listData]="listData"></detailed-list>
             </div>
@@ -20,7 +21,7 @@
               <photo-list *ngFor="#data of listData" style="display:inline-block" [listData]="data" [carouselData]="data.photos"></photo-list>
             </div>
 
-            <pagination-footer></pagination-footer>
+            <pagination-footer *ngIf="paginationParameters" [paginationParameters]="paginationParameters"></pagination-footer>
           </section>
         </section>
         <div class="four-col">

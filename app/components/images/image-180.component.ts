@@ -10,17 +10,17 @@ import {Component, Input, OnChanges} from 'angular2/core';
     inputs: ['hasSubImg', 'imageURL', 'imageURL2']
 })
 export class Image180 {
-    imageURL: string = './app/public/img_bckgnd.png';
-    imageURL2: string = './app/public/img_bckgnd.png';
+    imageURL: string = './app/public/placeholder-location.jpg';
+    imageURL2: string = './app/public/placeholder-location.jpg';
     size: string = "180";
 
     ngOnChanges(event){
         //If an image is not undefined (Input WAS sent to component) and value passed in is null, set image to placeholder
         if(typeof event.imageURL !== 'undefined' && event.imageURL.currentValue === null){
-            this.imageURL = './app/public/img_bckgnd.png';
+            this.imageURL = './app/public/placeholder-location.jpg';
         }
         if(typeof event.imageURL2 !== 'undefined' && event.imageURL2.currentValue === null){
-            this.imageURL2 = './app/public/img_bckgnd.png';
+            this.imageURL2 = './app/public/placeholder-location.jpg';
         }
 
     }

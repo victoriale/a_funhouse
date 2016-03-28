@@ -19,10 +19,12 @@
     <img *ngIf="mediaImages" src="{{largeImage}}" class="plcholder-img" alt="placeholder images"/>
     <div *ngIf="featureListing" class="plcholder-details">
       <div class="listings">
-        <div class="listings-name">{{featureListing.city}},
+        <a [routerLink] = "[featureListing.locUrl1, featureListing.locUrl2]">
+        <div class="listings-name">
+          {{featureListing.city}},
           {{featureListing.state}}
           -
-          {{featureListing.zipCode}}</div>
+          {{featureListing.zipCode}}</div></a>
         <div class="listings-addr">{{featureListing.address}}</div>
         <div class="listings-days">{{featureListing.daysOnMarket}}</div>
       </div>
@@ -40,7 +42,7 @@
         <div>{{featureListing.price}}</div>
         <div>{{featureListing.priceName}}</div>
       </div>
-      <a *ngIf="trending" href='' class='mod-page-btn'>
+      <a *ngIf="trending" [routerLink]="[featureListing.url1, featureListing.url2, featureListing.url3]" class='mod-page-btn'>
         <span></span>
         <span>View Your Home</span>
         <i class='fa fa-angle-right'></i>

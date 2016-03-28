@@ -19,50 +19,73 @@ import {listViewPage} from '../../global/global-service';
     selector: 'List-page',
     templateUrl: './app/webpages/list-page/list.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [PhotoListComponent, ROUTER_DIRECTIVES, DetailedListComponent, ListViewCarousel, DropdownComponent, ListMenuComponent, WidgetModule],
+    directives: [PhotoListComponent, ROUTER_DIRECTIVES, DetailedListComponent, ListViewCarousel, DropdownComponent, ListMenuComponent, WidgetModule, PaginationFooter],
     providers: [listViewPage],
 })
 
 export class ListPage {
-  carouselData: any = [];
-  listData:any = [];
-  headerData: any;
-  data: any;
-  view: string = 'list'; // set to default list view
+    carouselData: any = [];
+    listData: any = [];
+    headerData: any;
+    data: any;
+    public view: string = 'list'; // set to default list view
+    //Parameters for the pagination footer
+    public paginationParameters: Object;
 
-  listName: string;
-  listState: string;
-  listCity: string;
-  listLimit: string = "20";
-  listPage: string;
+    public listName: string;
+    public listState: string;
+    public listCity: string;
+    public listLimit: string = "20";
+    public listPage: string;
 
-  //Filter params for FYH
-  filterState: string;
-  filterCity: string;
-  filterPage: string;
-  filterMinPrice: string;
-  filterMaxPrice: string;
-  filterBedrooms: string;
-  filterBathrooms: string;
-  filterSqFeet: string;
-  filterLot: string;
-  filterType: string;
+    //Filter params for FYH
+    filterState: string;
+    filterCity: string;
+    filterPage: string;
+    filterMinPrice: string;
+    filterMaxPrice: string;
+    filterBedrooms: string;
+    filterBathrooms: string;
+    filterSqFeet: string;
+    filterLot: string;
+    filterType: string;
 
-  constructor(private _params: RouteParams, private globalFunctions: GlobalFunctions, private listViewData: listViewPage) {
-    // Scroll page to top to fix routerLink bug
-    window.scrollTo(0, 0);
-  }
-
-  viewType(menu){
-    this.view = menu;
-  }
-
-  // On Change Call
-  ngOnChanges(event) {
-    if(typeof this.carouselData == 'undefined' || typeof this.listData == 'undefined'){
-
+    constructor(private _params: RouteParams, private globalFunctions: GlobalFunctions, private listViewData: listViewPage) {
+        // Scroll page to top to fix routerLink bug
+        window.scrollTo(0, 0);
     }
-  }
+
+    viewType(menu){
+        this.view = menu;
+    }
+
+    // On Change Call
+    ngOnChanges(event){
+        if(typeof this.carouselData == 'undefined' || typeof this.listData == 'undefined'){
+
+        }
+    }
+
+    setPaginationParams(input){
+        var data = input.data;
+        var listLimit = Number(this.listLimit);
+        var pageNumber = Number(this.listPage);
+        //Find max amount of pages to send to pagination footer
+        var max = Math.ceil(Number(data[0].totalListings) / listLimit);
+
+        this.paginationParameters = {
+            index: pageNumber,
+            max: max,
+            paginationType: 'page',
+            navigationPage: 'List-page',
+            navigationParams: {
+                listname: this.listName,
+                state: this.listState,
+                city: this.listCity
+            },
+            indexKey: 'page'
+        };
+    }
 
   getListView() {// GET DATA FROM GLOBAL SERVICE
 
@@ -77,7 +100,10 @@ export class ListPage {
         //list/homesAtLeast5YearsOld/KS/Wichita/empty/10/1
         this.listViewData.getListData(this.listName, this.listState, this.listCity, this.listLimit, this.listPage)
             .subscribe(
-                data => {this.data = this.transformData(data);},
+                data => {
+                    this.transformData(data);
+                    this.setPaginationParams(data);
+                },
                 err => console.log(err),
                 () => console.log('List Page Data call success!')
             );
@@ -128,7 +154,12 @@ export class ListPage {
     var listData = [];
     var carouselData = [];
     var globeFunc = this.globalFunctions;
-    originalData.forEach(function(val, i){
+
+      //Determine the index at which the list should start (based on page parameter. ex. page = 2, indexStart = 21)
+      var indexStart = ((Number(this.listPage) - 1) * Number(this.listLimit)) + 1;
+
+      originalData.forEach(function(val, i){
+
       val.listPrice = globeFunc.commaSeparateNumber(val.listPrice);
       var newData = {
           img : val.photos[0],
@@ -144,7 +175,7 @@ export class ListPage {
           icon: 'fa fa-map-marker',
           location: val.loc + ' - ' + val.postalCode,
           market:'Built in ' + val.yearBuilt,
-          rank: (i+1),
+          rank: (indexStart + i),
           desc: val.listingDescription,
           photos: val.photos,
       };
