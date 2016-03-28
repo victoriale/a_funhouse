@@ -58,13 +58,17 @@ export class AmenitiesModule implements OnInit{
         }
         var data = this.amenitiesData;
         var dataLists = data['restaurant']['businesses'];
+        console.log('datalists', dataLists);
         var max = dataLists.length - 1;
+        console.log('max', max, dataLists.length);
 
         if(this.index > 0){
             this.index -= 1;
+            console.log(this.index);
             this.dataFormatter();
         }else{
             this.index = max;
+            console.log(this.index);
             this.dataFormatter();
         }
     }
@@ -74,13 +78,16 @@ export class AmenitiesModule implements OnInit{
         }
         var data = this.amenitiesData;
         var dataLists = data['restaurant']['businesses'];
+        console.log('datalists', dataLists);
         var max = dataLists.length - 1;
-
+        console.log('max', max, dataLists.length);
         if(this.index < max){
             this.index += 1;
+            console.log(this.index);
             this.dataFormatter();
         }else{
             this.index = 0;
+            console.log(this.index);
             this.dataFormatter();
         }
     }
@@ -101,7 +108,7 @@ export class AmenitiesModule implements OnInit{
         header: "What's the Highest Rated Restaurant in this area?",
         name: loc,
         establishment: listData.name,
-        imageUrl: listData.image_url.length === 0 ? null : listData.image_url,
+        imageUrl: listData.image_url,
         address: address[0],
         location: loc,
         originalUrl: listData.url,
