@@ -4,12 +4,13 @@ import {moduleHeader} from "../../components/module-header/module-header";
 import {moduleFooter} from "../../components/module-footer/module-footer";
 import {InfoListComponent} from "../../components/info-list/info-list.component";
 import {GlobalFunctions} from "../../global/global-functions";
+import {PaginationFooter} from "../../components/pagination-footer/pagination-footer.component";
 
 @Component({
     selector: 'info-list-module',
     templateUrl: './app/modules/infolist/info-list.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [moduleHeader, moduleFooter, InfoListComponent],
+    directives: [moduleHeader, moduleFooter, InfoListComponent, PaginationFooter],
     inputs: ['module_title', 'recentListingsData', 'locDisplay'],
     providers: [],
 })
@@ -69,6 +70,24 @@ export class InfoListModule implements OnInit {
             // Button text
             val.buttonName = "View Your Home";
         });
+    }
+
+    public paginationParameters: Object = {
+        index: 5,
+        max: 20,
+        paginationType: 'module',
+
+        viewAllPage: 'List-page',
+        viewAllParams: {
+            listname: 'listingsMostRecent',
+            city: 'Wichita',
+            state: 'KS',
+            page: 1
+        }
+    };
+
+    testEvent(event){
+        console.log('Lutz - Pagination Footer New Index', event);
     }
 
     ngOnInit() {
