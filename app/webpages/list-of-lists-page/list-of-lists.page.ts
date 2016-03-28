@@ -63,7 +63,7 @@ export class ListOfListsPage implements OnInit{
                 // Fix list title using global function cameCaseToRegularCase
                 this.listOfLists[i].listTitle = self._globalFunctions.camelCaseToRegularCase(this.listOfLists[i].listTitle);
                 // Check for empty list
-                if(this.listOfLists[i].listData.length <= 0) {
+                if(this.listOfLists[i].listData === null || this.listOfLists[i].listData.length <= 0 ) {
                 }else {
                     //Check for no image and no url
                     this.listOfLists[i].listData.map(function(item){
