@@ -168,7 +168,6 @@ export class ListPage {
       var newData = {
           img : val.photos[0],
           list_sub : val.propertyType + ": " + val.numBedrooms + " Beds & " + val.numBathrooms + " Baths",
-          //title : val.addressKey,
           title : val.addressKey.replace(/-/g, ' '),
           numBed : val.numBedrooms + " Beds ",
           numBath: val.numBathrooms + " Baths ",
@@ -189,7 +188,6 @@ export class ListPage {
       // newData['url'] = "Home-page";
 
       var carData = {
-        //heading:val.addressKey,
         heading:val.addressKey.replace(/-/g, ' '),
         image_url:val.photos[0],
         listing_price: "$"+val.listPrice,
