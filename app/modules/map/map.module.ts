@@ -61,8 +61,6 @@ export class MapModule implements OnChanges{
             });
 
             //Get data to push to info window template (infoTemplate)
-            //var viewProfileUrl = '/magazine/' + item.addressKey;
-            var viewProfileUrl = '#';
             var listingImage = item.listingImage === null ? '/app/public/joyfulhome_house.png' : item.listingImage;
             var lineOne = item.fullStreetAddress + ', ' + item.loc + ' ' + item.postalCode;
             var lineTwo = '$' + self.globalFunctions.commaSeparateNumber(item.listPrice);
