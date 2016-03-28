@@ -22,6 +22,7 @@ export class TrendingHomes implements OnInit {
     carouselData: any = [];
     listData:any = [];
     headerData: any;
+    expand:boolean = true;
     data: any;
     public index: number = 0;
     @Input() trendingHomesData: any;
@@ -29,7 +30,15 @@ export class TrendingHomes implements OnInit {
     constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions){
       //Determine what page the profile header module is on
       this.profileType = this.router.hostComponent.name;
-      console.log(this.profileType);
+    }
+
+    expandModal(){
+      if(this.expand == true){
+        this.expand = false;
+      }else{
+        this.expand = true;
+      }
+      return this.expand;
     }
 
     left(){
@@ -58,7 +67,6 @@ export class TrendingHomes implements OnInit {
       var carouselData = [];
       var globeFunc = this.globalFunctions;
       originalData.forEach(function(val, i){
-
         val.listPrice = globeFunc.commaSeparateNumber(val.listPrice);
         for(var obj in val){
           if(val[obj] == null){
@@ -79,7 +87,8 @@ export class TrendingHomes implements OnInit {
           state: val.stateOrProvince,
           photos:val.photos,
           locUrl1: "Location-page",
-          locUrl2: {loc: val.city + '_' +val.stateOrProvince}
+          locUrl2: {loc: val.city + '_' +val.stateOrProvince},
+          virtualTour: val.virtualTour,
         }
         carData['url1'] = "../../Magazine";
         carData['url2'] = {addr:val.addressKey};

@@ -1,5 +1,11 @@
 <section class="module-container">
     <module-header [module_title]="moduleTitle"></module-header>
-    <media-images *ngIf="listData" [trending]="trending" [mediaImages]="listData.photos" [featureListing]="listData" (leftCircle)="left()" (rightCircle)="right()"></media-images>
+    <div style="height:466px; width:100%">
+      <media-images *ngIf="listData" [trending]="trending" [mediaImages]="listData.photos" [featureListing]="listData" (leftCircle)="left()" (rightCircle)="right()" (expand)="expandModal()"></media-images>
+    </div>
     <!-- <list-view-carousel [carouselData]="carouselData"></list-view-carousel> -->
 </section>
+
+<div class="modal" [ngClass]="{'modal-active': expand == true}">
+  <media-images *ngIf="listData" [trending]="trending" [mediaImages]="listData.photos" [featureListing]="listData" (leftCircle)="left()" (rightCircle)="right()" (expand)="expandModal()"></media-images>
+</div>
