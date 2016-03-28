@@ -126,7 +126,7 @@ import {PartnerHeader} from "../global/global-service";
         component: DirectoryPage
     },
     {
-        path: '/search/:query',
+        path: '/search',
         name: 'Search-page',
         component: SearchPage
     },
