@@ -30,7 +30,6 @@ export class AmenitiesComponent implements OnInit{
     }
 
     ngOnInit(){
-      console.log('Data Received',this.list_data);
-        this.main_hasSubImg = false;
+      this.main_hasSubImg = false;
     }//end ngOnInit()
 }
