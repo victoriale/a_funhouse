@@ -34,6 +34,7 @@ import {PartnerHeader} from "../global/global-service";
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [RouterOutlet, ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ListPage, ListOfListsPage, AmenitiesListPage, ROUTER_DIRECTIVES, DirectoryPage, SchoolListsPage],
     providers: [PartnerHeader, ROUTER_DIRECTIVES, GeoLocationService, NearByCitiesService],
+})
 
 @RouteConfig([
     {
@@ -136,7 +137,7 @@ import {PartnerHeader} from "../global/global-service";
     }
 ])
 
-export class AppComponent {
+export class AppComponent implements OnInit {
 
     //declare variables to grab potential partner header
     public partnerID: string;
