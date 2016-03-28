@@ -1,4 +1,5 @@
 import {Component, Input, OnChanges} from 'angular2/core';
+import {RouteParams} from 'angular2/router';
 import {moduleHeader} from '../../components/module-header/module-header';
 import {GlobalFunctions} from '../../global/global-functions';
 
@@ -13,11 +14,17 @@ declare var google:any;
 })
 
 export class MapModule implements OnChanges{
-    public moduleTitle: string = 'Nearby Listings';
+    public moduleTitle: string;
     @Input() mapData: Array<any>;
 
-    constructor(private globalFunctions: GlobalFunctions){
+    constructor(private _params: RouteParams, private globalFunctions: GlobalFunctions){
+        var paramAddress = this._params.get('address').split('-');
+        var paramState = paramAddress[paramAddress.length -1];
+        var paramCity = paramAddress [paramAddress.length - 2];
+        var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
+        var address = tempArr.join(' ');
 
+        this.moduleTitle = 'Map of ' + address + ' and its Surrounding Area';
     }
 
     drawMap(){
@@ -28,7 +35,7 @@ export class MapModule implements OnChanges{
             if(data[i].latitude !== null && data[i].longitude){
                 var latLng = new google.maps.LatLng(parseFloat(data[i].latitude), parseFloat(data[i].longitude));
                 var mapOptions = {
-                    zoom: 14,
+                    zoom: 10,
                     center: latLng
                 };
                 break;
