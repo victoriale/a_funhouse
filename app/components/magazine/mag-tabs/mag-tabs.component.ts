@@ -30,17 +30,11 @@ export class MagTabComponent implements OnInit {
     }
 
     selectItem( selectedItem ) {
+        document.getElementById('tabs').classList.remove('active');
         this.selectedItem = selectedItem;
     }
 
     ngOnInit() {
-        //console.log("On Init toc", this.toc);
-    }
 
-    ngOnChanges(event){
-        if( event.toc.currentValue !== undefined ) {
-            //console.log("OnChange Event", event.toc.currentValue);
-            //console.log("Inner OnChange toc:!!!!", this.toc);
-        }
     }
 }

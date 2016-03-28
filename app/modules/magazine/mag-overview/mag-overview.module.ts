@@ -16,6 +16,7 @@ export class MagOverviewModule implements OnInit {
     address: string;
     magOverview: MagOverview;
     price: number;
+    contactAgent: string;
 
     constructor(private _injector:Injector, private _magazineDataService:MagazineDataService) {
         // Scroll page to top to fix routerLink bug
@@ -28,8 +29,11 @@ export class MagOverviewModule implements OnInit {
             .subscribe(
                 magData => {
                     this.magOverview = magData.overview;
-                    this.price = +magData.overview.price;
-                    //console.log("magData:", magData);
+                    if (typeof magData.overview.price === 'string') {
+                        this.contactAgent = magData.overview.price;
+                    } else{
+                        this.price = +magData.overview.price;
+                    }
                 },
                 err => console.log("error in getData", err)
             )
