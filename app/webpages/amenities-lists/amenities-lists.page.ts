@@ -31,6 +31,7 @@ export class AmenitiesListPage implements OnInit{
   public locState: string;
   public profileType: string;
   private amenitiesData: any;
+  imageUrl: string = './app/public/placeholder-location.png';
 
   @Input() amenitiesNearListingData: any;
 
@@ -74,6 +75,9 @@ export class AmenitiesListPage implements OnInit{
   ngOnChanges(event) {
     //Get changed input
     var currentAmenitiesNearListingData = event.amenitiesNearListingData.currentValue;
+    if(typeof event.imageUrl !== 'undefined' && event.imageUrl.currentValue === null){
+        this.imageUrl = './app/public/placeholder-location.png';
+    }
     //If the data input is valid run transform data function
     if (currentAmenitiesNearListingData !== null && currentAmenitiesNearListingData!== false) {
       this.getData();
