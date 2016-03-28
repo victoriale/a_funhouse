@@ -133,7 +133,7 @@ export class CrimeModule implements OnInit{
             value: data.otherPercentage
         });
 
-        this.imageUrl = data.locationImage === null ? './app/public/img_bckgnd.png' : data.locationImage;
+        this.imageUrl = data.locationImage === null ? './app/public/placeholder-location.jpg' : data.locationImage;
         this.crimeStats = returnArray;
         this.tooltipTitle = 'Crime Grade:';
         this.tooltipData = data.totalGrade;
