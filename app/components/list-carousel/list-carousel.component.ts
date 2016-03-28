@@ -1,23 +1,26 @@
 import {Component, Input, OnInit} from 'angular2/core';
 import {Image180} from "../images/image-180.component";
 import {List} from "../../global/global-interface";
+import {ROUTER_DIRECTIVES} from "angular2/router";
 
 @Component({
     selector: 'list-carousel-component',
     templateUrl: './app/components/list-carousel/list-carousel.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [Image180],
+    directives: [Image180, ROUTER_DIRECTIVES],
     providers: [],
-    inputs: ['lists'],
+    inputs: ['lists', 'stateLocation', 'cityLocation'],
 })
 
 export class ListCarouselComponent implements OnInit {
     public icon: string;
     public title: string;
     public description: string;
+    public cityLocation: string;
+    public stateLocation: string;
     public main_hasSubImg: boolean = false;
     location: string;
-    lists: Array<any>;
+    lists: any;
 
     // Carousel setup
     carCount: number;

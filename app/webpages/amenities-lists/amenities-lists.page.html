@@ -7,11 +7,15 @@
             <module-header [module_title]="moduleTitle"></module-header>
 
             <div *ngFor="#item of amenitiesData; #i=odd" class="al" [ngClass]="{'odd': i == true}">
-              <div class='al-image'>
-                <a href='{{item.url}}'>
+              <div>
+                <a href='{{item.url}}' class='al-image'>
                   <img src='{{item.image_url}}' onerror="this.src='./app/public/placeholder-location.jpg';" />
-                  <div class="al-image-rank">#{{item.rank}}</div>
+                  <div>
+                    <p>View</p>
+                    <p>Profile</p>
+                  </div>
                 </a>
+                <div class="al-image-rank">#{{item.rank}}</div>
               </div>
               <div>
                   <div class='al-loc'>
@@ -23,7 +27,8 @@
                   <div class='al-desc'><b>What people are saying: </b>{{item.snippet_text}}</div>
               </div>
             </div>
-
+            <img class="al-provider" src='./app/public/amenities_yelp.png' />
+            <hero-list-component></hero-list-component>
           </section>
         </section>
         <div class="four-col">

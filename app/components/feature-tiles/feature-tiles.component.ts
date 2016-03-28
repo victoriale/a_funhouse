@@ -7,7 +7,7 @@ import {ROUTER_DIRECTIVES} from "angular2/router";
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [ROUTER_DIRECTIVES],
     providers: [ROUTER_DIRECTIVES],
-    inputs: ['cityLocation'],
+    inputs: ['cityLocation', 'stateLocation'],
 })
 
 export class FeatureTilesComponent{ }

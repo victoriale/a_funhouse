@@ -24,7 +24,6 @@ export class AmenitiesModule implements OnInit{
     public listData: Object;
     public tileData: Object;
     public index: number = 0;
-    // listView: Object;
 
     provider_logo = './app/public/amenities_yelp.png';
 
@@ -76,7 +75,6 @@ export class AmenitiesModule implements OnInit{
         var data = this.amenitiesData;
         var dataLists = data['restaurant']['businesses'];
         var max = dataLists.length - 1;
-
         if(this.index < max){
             this.index += 1;
             this.dataFormatter();
@@ -98,10 +96,11 @@ export class AmenitiesModule implements OnInit{
       var imageURL = dataLists[this.index].image_url;
 
       this.listData = {
+        hasHoverNoSubImg: true,
         header: "What's the Highest Rated Restaurant in this area?",
         name: loc,
         establishment: listData.name,
-        imageUrl: listData.image_url.length === 0 ? null : listData.image_url,
+        imageUrl: listData.image_url,
         address: address[0],
         location: loc,
         originalUrl: listData.url,
@@ -153,7 +152,7 @@ export class AmenitiesModule implements OnInit{
               viewMore: "See All"
             }
           ]
-      }
+      }//end data for listData
       // get data for tiles
       this.tileData = {
           button_txt: 'Open Page',
@@ -187,8 +186,6 @@ export class AmenitiesModule implements OnInit{
           title3: 'Nearby Banks',
           desc3: ''
       }
-
-      console.log('list',this.listData);
     }
 
     ngOnInit(){

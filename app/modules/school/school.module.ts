@@ -33,7 +33,6 @@ export class SchoolModule implements OnInit{
     }
 
     left(){
-        console.log('left - module', this.index);
         if(this.schoolData === null){
             return false;
         }
@@ -49,7 +48,6 @@ export class SchoolModule implements OnInit{
         }
     }
     right(){
-        console.log('right - module', this.index);
         if(this.schoolData === null){
             return false;
         }
@@ -74,6 +72,7 @@ export class SchoolModule implements OnInit{
       var elementaryData = data.elementary[this.index];
       var schoolName =  this.globalFunctions.toTitleCase(elementaryData.school_name);
       this.listData = {
+        hasHoverNoSubImg: false,
         header: "What's the Highest Rated School in this area?",
         name: schoolData.city + ', ' + schoolData.state,
         establishment:  schoolName,
@@ -182,7 +181,6 @@ export class SchoolModule implements OnInit{
     ngOnInit(){
       this.setModuleTitle();
       this.hasFooterButton = false;
-
     }// end ngOnInit
 
     //On Change Call

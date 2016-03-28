@@ -9,9 +9,7 @@
         </div>
         <!--Image Placeholder and Carousel Buttons for Next and Previous-->
         <carousel-button (scrollLeft)="left()" (scrollRight)="right()"></carousel-button>
-        <a href="{{list_data.originalUrl}}">
-          <image-150 [imageURL]="list_data.imageUrl" [hasSubImg]="main_hasSubImg"></image-150>
-        </a>
+          <image-150 [imageURL]="list_data.imageUrl" [hasHoverNoSubImg]="list_data.hasHoverNoSubImg" [hasSubImg]="main_hasSubImg" [originalUrl]="list_data.originalUrl"></image-150>
         <!--Establishment, Address, Location-->
         <div class="ac-carousel-est">
             <div>{{list_data.establishment}}</div>

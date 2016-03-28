@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, Input, OnInit} from 'angular2/core';
 import {HeaderSearchComponent} from "./header-search/header-search.component";
 import {ROUTER_DIRECTIVES} from "angular2/router";
 import {Router} from "angular2/router";
@@ -10,12 +10,14 @@ declare var jQuery: any;
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [HeaderSearchComponent, ROUTER_DIRECTIVES],
     providers: [],
+    inputs: ['partnerID'],
 })
 
-export class HeaderComponent{
+export class HeaderComponent implements OnInit{
 
     public isHomePage: boolean = false;
-    public isMyHouseKit: boolean = false;
+    public isMyHouseKit: boolean;
+    partnerID: string;
     directoryVisible: boolean;
     isScrolling: boolean;
     pageNum: string = "1";
@@ -51,6 +53,10 @@ export class HeaderComponent{
         this.directoryVisible = !this.directoryVisible;
     }
 
+    directoryClick() {
+        this.directoryVisible = !this.directoryVisible;
+    }
+
     // Page is being scrolled
     onScroll(event) {
 
@@ -62,8 +68,19 @@ export class HeaderComponent{
             this.isScrolling = true;
         }
 
-
        //console.log('scroll event', event, scrollTop, this.isScrolling);
+    }
+
+    ngOnInit() {
+        //check for partner and hide search
+        console.log('Partner ID:', this.partnerID);
+        if(this.partnerID != null) {
+            this.isMyHouseKit = true;
+            //console.log('Housekit True');
+        }else {
+            this.isMyHouseKit = false;
+            //console.log('Housekit False');
+        }
     }
 
 }

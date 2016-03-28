@@ -11,9 +11,7 @@
   }
   &-image{
     width: 150px;
-    img{
-      .largeRoundImageLinkWithHover(125px, 3px, @masterStrokeColor);
-    }
+    .largeRoundImageLinkWithHover(125px, 3px, @masterStrokeColor);
     &-rank{
       text-align: center;
       padding-top: 12px;
@@ -46,5 +44,9 @@
     height: 80px;
     line-height: 16px;
     .globalDefaultModFont(14px, 400, @black);
+  }
+  &-provider{
+    bottom: 0;
+    margin: 0 225px;
   }
 }
