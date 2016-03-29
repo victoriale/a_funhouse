@@ -25,7 +25,8 @@ export class AmenitiesModule implements OnInit{
     public tileData: Object;
     public index: number = 0;
 
-    provider_logo = './app/public/amenities_yelp.png';
+    providerLogo = './app/public/amenities_yelp.png';
+    providerUrl = 'http://www.yelp.com/';
 
     @Input() amenitiesData: any;
 
