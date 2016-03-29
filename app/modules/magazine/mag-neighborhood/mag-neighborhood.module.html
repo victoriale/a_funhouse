@@ -1,4 +1,4 @@
-<div class="mag_container mag_container_left mag_text">
+<div class="mag_container mag_container_left mag_text" (window:resize)="onResize($event)">
     <div class="banner">Explore the Neighborhood</div>
     <div *ngFor="#p of magNeighborhood?.content; #i=index">
             <adzone-component *ngIf="i === 2"></adzone-component>
