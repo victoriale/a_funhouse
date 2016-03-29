@@ -145,7 +145,7 @@ export class ProfilePage implements OnInit{
       var address = tempArr.join(' ');
       this.city = paramCity;
       this.state = paramState;
-      this.address = address + ', ' + paramCity + ', ' + paramState;
+      this.address = address + ' ' + paramCity + ', ' + paramState;
     }
 
     ngOnInit(){
@@ -165,7 +165,6 @@ export class ProfilePage implements OnInit{
         this.getAmenitiesData();
         this.getTrendingListings();
         this.getListOfList();
-
         this.headlineAbout  = {
             title: 'About ' + this.address,
             icon: 'fa-map-marker'
