@@ -9,6 +9,8 @@ import {Router,ROUTER_DIRECTIVES, RouteParams} from 'angular2/router';
 import {GlobalPage} from '../../global/global-service';
 import {AboutUsPageInterface} from '../../global/global-interface';
 import {GlobalFunctions} from '../../global/global-functions';
+import {Injector} from 'angular2/core';
+import {WebApp} from '../../app-layout/app.layout';
 
 @Component({
     selector: 'Aboutus-page',
@@ -19,9 +21,8 @@ import {GlobalFunctions} from '../../global/global-functions';
 })
 
 export class AboutUsPage implements OnInit{
-    whatIs = 'Joyful Home?';
-    au_pa1 = "Founded in July, 2015, Wichita, Kan. - based Joyful Home is a trusted community marketplace for people to discover their prospective joyful home.";
-    au_pa2 = "Whether you are buying your first home, starting a family or looking to retire in the home of your dreams, Joyful Home connects you to real estate listings—from multi-million dollar mansions to budget-friendly starter homes—in over 3,000 counties in the United States. With an ever-growing database of listings from prime real estate agents across the United States, Joyful Home is the easiest way to purchase your next home.";
+    whatIs = "";
+    pageName = "";
 
     au_icon1 = './app/public/icons/Listing_Icon.png';
     au_icon2 = './app/public/icons/Building_Icon.png';
@@ -36,20 +37,28 @@ export class AboutUsPage implements OnInit{
     subText_nat = "Listings Nationwide";
 
     mainText1 = ""; // this is for listing for sale
-    mainText2 = "32,326"; // number of cities in the U.S.
+    mainText2 = "31,102"; // number of cities in the U.S.
     mainText3 = ""; // Real Easte Angents
     mainText4 = "3,143"; // United States' counties
     mainText_nat = ""; // listings nationwide
-
+    public partnerParam: string;
+    public partnerID: string;
     titleData: {};
 
-    constructor(private _router: Router, private _aboutUs: GlobalPage, private globalFunctions: GlobalFunctions) {
+    constructor(private injector:Injector, private _router: Router, private _aboutUs: GlobalPage, private globalFunctions: GlobalFunctions) {
         // Scroll page to top to fix routerLink bug
+        let partnerParam = this.injector.get(WebApp);
+        this.partnerID = partnerParam.partnerID;
         window.scrollTo(0, 0);
     }
 
     getData(){
       this._aboutUs.getAboutUsData().subscribe(data => {
+          if(this.partnerID === null ){
+            this.pageName = "Joyful Home";
+          } else {
+            this.pageName = "My HouseKit";
+          }
            this.mainText1 = this.globalFunctions.commaSeparateNumber(data.listings);
            this.mainText2 = this.globalFunctions.commaSeparateNumber(data.cities);
            this.mainText3 = this.globalFunctions.commaSeparateNumber(data.brokers);
