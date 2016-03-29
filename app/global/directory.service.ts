@@ -32,6 +32,10 @@ export class DirectoryService{
             )
             .map(
                 data => {
+                    if(data.success == false){
+                        throw new Error('Error: getStateList api success, message failed');
+                    }
+
                     return data.data;
                 }
             )
@@ -41,6 +45,8 @@ export class DirectoryService{
     getCityList(state){
         var headers = this.setToken();
 
+        state = encodeURI(state);
+
         return this.http.get(this.apiUrl + '/directory/cities/cityList/' + state + '/20/1', {
                 headers: headers
             })
@@ -49,6 +55,10 @@ export class DirectoryService{
             )
             .map(
                 data => {
+                    if(data.success == false){
+                        throw new Error('Error: getCityList api success, message failed');
+                    }
+
                     return data.data;
                 }
             )
@@ -56,9 +66,10 @@ export class DirectoryService{
 
     //API to get cities list
     getAllCities(pageNumber, state){
-        var skip = pageNumber;
-
         var headers = this.setToken();
+
+        var skip = encodeURI(pageNumber);
+        state = encodeURI(state);
 
         return this.http.get(this.apiUrl + '/directory/cities/cityList/'+ state + '/' + 20 + '/' + skip, {
                 headers: headers
@@ -68,6 +79,10 @@ export class DirectoryService{
             )
             .map(
                 data => {
+                    if(data.success == false){
+                        throw new Error('Error: getAllCities api success, message failed');
+                    }
+
                     return data.data;
                 }
             )
@@ -77,6 +92,9 @@ export class DirectoryService{
     getCityListingsNumber(state, city){
         var headers = this.setToken();
 
+        state = encodeURI(state);
+        city = encodeURI(city);
+
         return this.http.get(this.apiUrl + '/directory/cities/countListings/' + state + '/' + city, {
                 headers: headers
             })
@@ -85,6 +103,10 @@ export class DirectoryService{
             )
             .map(
                 data => {
+                    if(data.success == false){
+                        throw new Error('Error: getCityListingsNumber api success, message failed');
+                    }
+
                     return data.data;
                 }
             )
@@ -94,6 +116,8 @@ export class DirectoryService{
     getZipcodeListingNumber(zipcode){
         var headers = this.setToken();
 
+        zipcode = encodeURI(zipcode);
+
         return this.http.get(this.apiUrl + '/directory/zip/countListings/' + zipcode, {
                 headers: headers
             })
@@ -102,6 +126,10 @@ export class DirectoryService{
             )
             .map(
                 data => {
+                    if(data.success == false){
+                        throw new Error('Error: getZipcodeListingNumber api success, message failed');
+                    }
+
                     return data.data;
                 }
             )
@@ -110,11 +138,19 @@ export class DirectoryService{
     //API to get directory listing data
     getDirectoryData(pageNumber, listTitle, state, city, zipcode){
         var limit = 20;
-        //The skip parameter skips the limit amount starting at skip = 2 (skip = 1 is results 1-20, skip = 2 is results 21-40, etc.) Skip is really more like page number
-        var skip = pageNumber;
         var path = '/directory';
 
         var headers = this.setToken();
+
+        //The skip parameter skips the limit amount starting at skip = 2 (skip = 1 is results 1-20, skip = 2 is results 21-40, etc.) Skip is really more like page number
+        var skip = encodeURI(pageNumber);
+        //Null check is because encodeURI turns null into "null"
+        listTitle = listTitle === null ? null : encodeURI(listTitle);
+        state = state === null ? null : encodeURI(state);
+        city = city === null ? null : encodeURI(city);
+        zipcode = zipcode === null ? null : encodeURI(zipcode);
+
+        console.log('params', skip, listTitle, state, city, zipcode);
 
         //Transform list title
         listTitle = listTitle.replace(/-/g, ' ');
@@ -139,6 +175,8 @@ export class DirectoryService{
             console.log('Error - Incorrect url parameters for getDirectoryData function');
         }
 
+        console.log('path', path);
+
         return this.http.get(this.apiUrl + path, {
                 headers: headers
             })
@@ -147,6 +185,10 @@ export class DirectoryService{
             )
             .map(
                 data => {
+                    if(data.success == false){
+                        throw new Error('Error: getDirectoryData api success, message failed');
+                    }
+
                     return data.data;
                 }
             )
