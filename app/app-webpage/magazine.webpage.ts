@@ -31,7 +31,7 @@ declare var jQuery:any;
         path: '/overview',
         loader: () => Promise.resolve(MagOverviewModule),
         name: 'PropertyOverview',
-        useAsDefault:true,
+        useAsDefault: true,
     }),
     new AsyncRoute({
         path: '/neighborhood',
@@ -74,6 +74,7 @@ export class MagazinePage {
     toc:any;
     magazineData:MagData;
     currentIndex:any;
+    showErrorPage:boolean = false;
 
     getMagServiceData() {
         this._magazineDataService.getMagazineData(this.address)
@@ -82,7 +83,11 @@ export class MagazinePage {
                     this.magazineData = rawData;
                     this.toc = this.buildToc(rawData);
                 },
-                err => this._router.navigate(["Error"])
+                err => {
+                    this.showErrorPage = true;
+                    this._router.navigate(["Error"]);
+                },
+                () => this.showErrorPage = false
             );
     }
 

@@ -107,12 +107,7 @@ export class listViewPage {
             }
         )
   }
-
 }
-
-/*@LOCATIONPROFILE*/
-
-/*_@BATCH-1*/
 
 @Injectable()
 export class ListOfListPage {
@@ -170,12 +165,12 @@ export class DynamicWidgetCall {
     // If value is not needed, pass -1
 
     // Return error if no tw
-    if (typeof (tw) == "undefined") {
-      return {
-        "success": false,
-        "message": "Error: Trigger word is required"
-      };
-    }
+    // if (typeof (tw) == "undefined") {
+    //   return {
+    //     "success": false,
+    //     "message": "Error: Trigger word is required"
+    //   };
+    // }
 
     // Set defaults
     if (typeof (sw) == "undefined") {
