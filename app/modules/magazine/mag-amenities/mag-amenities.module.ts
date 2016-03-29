@@ -17,6 +17,7 @@ export class Amenities implements OnInit {
     address: string;
     magAmenities:MagAmenities;
     hasImage: boolean = false;
+    imageUrl: string;
 
     constructor( private _injector: Injector, private _magazineDataService: MagazineDataService ) {
         // Scroll page to top to fix routerLink bug
@@ -25,7 +26,11 @@ export class Amenities implements OnInit {
     }
 
     checkImages(){
-        if (this.magAmenities.stockPhotos != null){
+        this.imageUrl = 'http://' + window.location.host + '/app/public/mag_stock_img/food_types/' + this.magAmenities.stockPhotos + '_stock_mag.jpg';
+        let http = new XMLHttpRequest();
+        http.open('HEAD', this.imageUrl, false);
+        http.send();
+        if (this.magAmenities.stockPhotos != null && http.status != 404){
             this.hasImage = true;
         }
     }
