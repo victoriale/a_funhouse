@@ -20,10 +20,11 @@ export class AboutUsModule{
     pageName = "";
     header = '';
     logo = '';
-    tileUrl = '/disclaimer';
     heading = 'Disclaimer';
     subText = 'Market data delayed 15 minutes.';
     mainText = '';
+    providerText = '';
+    currentYear: number;
     buttonText = 'See The Full Disclaimer';
     public partnerParam: string;
     public partnerID: string;
@@ -32,7 +33,6 @@ export class AboutUsModule{
       this.partnerID = partnerParam.partnerID;
       window.scrollTo(0, 0);
     }
-
     ngOnInit(){
       if(this.partnerID === null ){
         this.pageName = "Joyful Home";
@@ -43,6 +43,8 @@ export class AboutUsModule{
       }
       this.header = this.pageName + ' Disclaimer';
       this.mainText = 'This site is powered by '+this.pageName+'. Ideas and opinions presented on this website are for informational and educational purposes only,and do not reflect the opinions of '+this.pageName+', or any of its alliates, subsidiaries or partners.';
+      this.currentYear = new Date().getFullYear();
+      this.providerText = this.currentYear+' Data provided by ListHub';
       this.module_title = 'Learn More About ' + this.pageName;
       this.aboutUsData = {
         button_txt: 'Open Page',

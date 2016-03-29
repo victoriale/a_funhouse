@@ -1,7 +1,11 @@
 <div class="content-wrapper">
     <div class="wrapper">
         <div class="inner-wrapper">
-            <div class="directory-container">
+            <loading-component *ngIf="(!totalListings || !listingItems) && !isError" ></loading-component>
+
+            <error-component *ngIf="isError"></error-component>
+
+            <div *ngIf="totalListings && listingItems && !isError" class="directory-container">
 
                 <!-- Title and Path Name -->
                 <header class="directory-header">

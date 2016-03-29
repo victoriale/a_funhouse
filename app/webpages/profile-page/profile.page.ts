@@ -19,13 +19,18 @@ import {TrendingHomes} from "../../modules/trending-homes/trending-homes.module"
 import {ListingProfileService} from '../../global/listing-profile.service';
 import {WidgetModule} from "../../modules/widget/widget.module";
 import {MapModule} from '../../modules/map/map.module';
+import {ListOfListPage} from '../../global/global-service';
+import {magazineBanner} from '../../modules/mag_banner/mag_banner.module';
+import {magazineModule} from '../../modules/mag_module/mag_module';
+import {Injector} from 'angular2/core';
+import {WebApp} from '../../app-layout/app.layout';
 
 @Component({
     selector: 'profile-page',
     templateUrl: './app/webpages/profile-page/profile.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [TrendingHomes, MediaImages, HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs, ShareModule, FeaturedListsModule, AmenitiesModule, WidgetModule, MapModule],
-    providers: [ListingProfileService]
+    directives: [magazineModule, magazineBanner, TrendingHomes, MediaImages, HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs, ShareModule, FeaturedListsModule, AmenitiesModule, WidgetModule, MapModule],
+    providers: [ListOfListPage, ListingProfileService]
 })
 
 export class ProfilePage implements OnInit{
@@ -38,8 +43,10 @@ export class ProfilePage implements OnInit{
     public headlineAmenities: any;
     public headlineOtherHomes: any;
     public headlineInteract: any;
+    public lists: any;
     public mediaFeature: boolean = false;
     public trendingFeature: boolean = true;
+    public partnerCheck: boolean;
     public trendingHomesData: Object;
     public profileHeaderData: Object;
     public propertyListingData: Object;
@@ -47,10 +54,13 @@ export class ProfilePage implements OnInit{
     public mapData: Object;
     public featuredListData: Object;
     public amenitiesData: Object;
-
+    public partnerParam: string;
+    public partnerID: string;
     //  Get current route name
-    constructor(public _params: RouteParams, private _listingProfileService: ListingProfileService, params: RouteParams){
+    constructor(private injector:Injector, public _params: RouteParams, private _listingProfileService: ListingProfileService, params: RouteParams, private _listService:ListOfListPage){
         // Scroll page to top to fix routerLink bug
+        let partnerParam = this.injector.get(WebApp);
+        this.partnerID = partnerParam.partnerID;
         window.scrollTo(0, 0);
         this.paramAddress = params.get('address');
     }
@@ -114,8 +124,16 @@ export class ProfilePage implements OnInit{
               err => console.log('Amenities Location Data Acquired!', err)
             )
     }
+
     getPropertyListing(){
       this.propertyListingData = this._listingProfileService.getPropertyListing(this.paramAddress);
+    }
+
+    getListOfList() {
+        this._listService.getListOfListPage(this.state, this.city)
+        .subscribe(lists => {
+          this.lists = lists
+        });
     }
 
     getAddress() {
@@ -128,8 +146,14 @@ export class ProfilePage implements OnInit{
       this.state = paramState;
       this.address = address + ', ' + paramCity + ', ' + paramState;
     }
+
     ngOnInit(){
       //Run each call
+        if(this.partnerID === null ){
+          this.partnerCheck = false;
+        } else {
+          this.partnerCheck = true;
+        }
         this.getAddress();
         this.getProfileHeader();
         this.getCrime();
@@ -137,6 +161,7 @@ export class ProfilePage implements OnInit{
         this.getFeaturedList();
         this.getAmenitiesData();
         this.getTrendingListings();
+        this.getListOfList();
 
         this.headlineAbout  = {
             title: 'About ' + this.address,

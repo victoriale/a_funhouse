@@ -3,18 +3,23 @@ import {NgClass} from 'angular2/common';
 import {RouteParams, ROUTER_DIRECTIVES, RouteConfig, Router} from 'angular2/router';
 import {GlobalFunctions} from '../../global/global-functions';
 import {DirectoryService} from '../../global/directory.service';
+import {LoadingComponent} from '../../components/loading/loading.component';
+import {ErrorComponent} from '../../components/error/error.component';
 
 @Component({
     selector: 'Directory-page',
     templateUrl: './app/webpages/directory-page/directory.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [ROUTER_DIRECTIVES, NgClass],
+    directives: [ROUTER_DIRECTIVES, NgClass, LoadingComponent, ErrorComponent],
     providers: [DirectoryService],
 })
 
 export class DirectoryPage {
     public navigationLinks: Array<Object>;
     public listingItems: Array<Object>;
+
+    //Boolean to determine if an error has occurred
+    public isError: boolean = false;
 
     public listingsLimit: number = 20;
     //linkTitle determines title of the link navigation section
@@ -160,7 +165,10 @@ export class DirectoryPage {
 
                             self.navigationLinks = navigationArray;
                         },
-                        err => console.log('Error - Directory National State List: ', err)
+                        err => {
+                            console.log('Error - Directory National State List: ', err);
+                            this.isError = true;
+                        }
                     );
                 //Data call to get directory list data
                 this._directoryService.getDirectoryData(this.paramPageNumber, this.paramListTitle, null, null, null)
@@ -168,7 +176,10 @@ export class DirectoryPage {
                         data => {
                             this.listingItems = this.formatList(data);
                         },
-                        err => console.log('Error - Directory National Data: ', err)
+                        err => {
+                            console.log('Error - Directory National Data: ', err);
+                            this.isError = true;
+                        }
                     );
 
                 break;
@@ -205,7 +216,10 @@ export class DirectoryPage {
 
                             self.navigationLinks = navigationArray;
                         },
-                        err => console.log('Error - Directory State City List: ', err)
+                        err => {
+                            console.log('Error - Directory State City List: ', err);
+                            this.isError = true;
+                        }
                     );
                 //Data call to get directory list data
                 this._directoryService.getDirectoryData(this.paramPageNumber, this.paramListTitle, this.paramState, null, null)
@@ -213,7 +227,10 @@ export class DirectoryPage {
                         data => {
                             this.listingItems = this.formatList(data);
                         },
-                        err => console.log('Error - Directory State Data: ', err)
+                        err => {
+                            console.log('Error - Directory State Data: ', err);
+                            this.isError = true;
+                        }
                     );
 
                 break;
@@ -237,7 +254,10 @@ export class DirectoryPage {
                             });
                             this.listingItems = returnArray;
                         },
-                        err => console.log('Error - Directory All Cities Data: ', err)
+                        err => {
+                            console.log('Error - Directory All Cities Data: ', err);
+                            this.isError = true;
+                        }
                     );
                 break;
             case 'city':
@@ -250,7 +270,10 @@ export class DirectoryPage {
 
                             this.getPaginationParameters();
                         },
-                        err => console.log('Error - Directory City Listings Count: ', err)
+                        err => {
+                            console.log('Error - Directory City Listings Count: ', err);
+                            this.isError = true;
+                        }
                     );
                 //Data call to get directory list data
                 this._directoryService.getDirectoryData(this.paramPageNumber, this.paramListTitle, this.paramState, this.paramCity, null)
@@ -258,7 +281,10 @@ export class DirectoryPage {
                         data => {
                             this.listingItems = this.formatList(data);
                         },
-                        err => console.log('Error - Directory City Data: ', err)
+                        err => {
+                            console.log('Error - Directory City Data: ', err);
+                            this.isError = true;
+                        }
                     );
                 break;
             case 'zipcode':
@@ -271,7 +297,10 @@ export class DirectoryPage {
 
                             this.getPaginationParameters();
                         },
-                        err => console.log('Error - Directory Zipcode Listings Count: ', err)
+                        err => {
+                            console.log('Error - Directory Zipcode Listings Count: ', err);
+                            this.isError = true;
+                        }
                     );
                 //Data call to get directory list data
                 this._directoryService.getDirectoryData(this.paramPageNumber, this.paramListTitle, this.paramState, this.paramCity, this.paramZipcode)
@@ -279,7 +308,10 @@ export class DirectoryPage {
                         data => {
                             this.listingItems = this.formatList(data);
                         },
-                        err => console.log('Error - Directory Zipcode Data: ', err)
+                        err => {
+                            console.log('Error - Directory Zipcode Data: ', err);
+                            this.isError = true;
+                        }
                     );
                 break;
         }
