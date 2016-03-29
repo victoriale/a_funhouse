@@ -8,9 +8,9 @@
                 <div class="aboutUs-disc-desc-heading">{{heading}}</div>
                 <div class="aboutUs-disc-desc-subText">{{subText}}</div>
                 <div class="aboutUs-disc-desc-mainText">{{mainText}}</div>
-                <div class="aboutUs-disc-desc-provider">&copy; 2016 Data provided by ListHub &reg;</div>
+                <div class="aboutUs-disc-desc-provider">&copy; {{providerText}} &reg;</div>
             </div>
-            <a href='{{tileUrl}}' class='mod-page-btn'>
+            <a [routerLink]="['Disclaimer-page']" class='mod-page-btn'>
                 <span></span>
                 <span>{{buttonText}}</span>
                 <i class='fa fa-angle-right'></i>
