@@ -188,7 +188,13 @@ a {
   text-decoration: none;
   color: @black;
 }
-
+img{
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
 /***************/
 /* @Code Styles */
 /***************/
@@ -290,6 +296,7 @@ code.less-var-name-light {
   -webkit-transform: @transformation;
   -moz-transform: @transformation;
   -ms-transform: @transformation;
+  -o-transform: @transformation;
   transform: @transformation;
 }
 
@@ -297,6 +304,7 @@ code.less-var-name-light {
   -webkit-transform-style: @transformStyleVals;
   -moz-transform-style: @transformStyleVals;
   -ms-transform-style: @transformStyleVals;
+  -o-transform-style: @transformStyleVals;
   transform-style: @transformStyleVals;
 }
 
@@ -311,6 +319,7 @@ code.less-var-name-light {
   -webkit-transition: @transitionVals;
   -moz-transition: @transitionVals;
   -ms-transition: @transitionVals;
+  -o-transition: @transitionVals;
   transition: @transitionVals;
 }
 

@@ -14,7 +14,8 @@ export class contentList implements OnInit{
     @Input() data;
     @Input() cityLocation;
     @Input() stateLocation;
-    
+
+    first: number = 0;
     location: string;
     locationURL: string;
 

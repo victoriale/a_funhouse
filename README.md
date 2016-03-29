@@ -9,16 +9,18 @@ install each one individually
 1. `npm install` (individually
 
       a.`-g gulp-cli`
-      
+
       b.`gulp-less`
-      
+
       c.`gulp-concat`
-      
+
       d.`connect-history-api-fallback`
-      
+
       e.`browser-sync`
 
       f.`highcharts`
+
+      g.`moment`
 
 2. `npm i`
 
