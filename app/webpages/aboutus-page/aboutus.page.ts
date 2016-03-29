@@ -54,11 +54,7 @@ export class AboutUsPage implements OnInit{
 
     getData(){
       this._aboutUs.getAboutUsData().subscribe(data => {
-          if(this.partnerID === null ){
-            this.pageName = "Joyful Home";
-          } else {
-            this.pageName = "My HouseKit";
-          }
+
            this.mainText1 = this.globalFunctions.commaSeparateNumber(data.listings);
            this.mainText2 = this.globalFunctions.commaSeparateNumber(data.cities);
            this.mainText3 = this.globalFunctions.commaSeparateNumber(data.brokers);
@@ -96,5 +92,10 @@ export class AboutUsPage implements OnInit{
 
     ngOnInit(){
         this.getData();
+        if(this.partnerID === null ){
+          this.pageName = "Joyful Home";
+        } else {
+          this.pageName = "My HouseKit";
+        }
     }
 }
