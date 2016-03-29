@@ -5,9 +5,7 @@
       Expand
       <i class='fa fa-expand'></i>
     </a>
-    <a *ngIf="featureListing.virtualTour != 'N/A'" href="featureListing.virtualTour" class='feature-btn virtual'>
-      Virtual Home Tour ({{virtualTourCount}})
-    </a>
+
     <a class='feature-btn images'>
       <span>
         <i class='fa fa-file-image-o'></i>
@@ -15,6 +13,10 @@
       <span>
         Images ({{totalImageCount}})</span>
       <i></i>
+    </a>
+
+    <a *ngIf="featureListing.virtualTour != 'N/A'" href="featureListing.virtualTour" class='feature-btn virtual'>
+      Virtual Home Tour ({{virtualTourCount}})
     </a>
     <img *ngIf="mediaImages" src="{{largeImage}}" class="plcholder-img" alt="placeholder images"/>
     <div class="plcholder-details">
