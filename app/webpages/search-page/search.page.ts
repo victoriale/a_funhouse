@@ -111,10 +111,10 @@ export class SearchPage implements OnInit {
     if (typeof data.address !== 'undefined' && data.address !== null) {
       data.address.forEach(function(item, index) {
         var dataAddr = {
-          addr: item.address_key.replace(/-/g, ' '),
+          addr: item.address_key,
           page: 'Profile-page',
           params: { address: item.address_key },
-          display: item.address_key + " - " + item.city + " " + item.state_or_province,
+          display: item.address_key.replace(/-/g, ' ') + " - " + item.city + " " + item.state_or_province,
         }
         address.push(dataAddr);
         addrCount++;
@@ -125,11 +125,16 @@ export class SearchPage implements OnInit {
     //group city together, routerLink goes go Listing page
     if (typeof data.city !== 'undefined' && data.city !== null) {
       data.city.forEach(function(item, index) {
+        for(var obj in item){
+          if(item[obj] == null || typeof item[obj] == 'undefined'){
+            item[obj] = 'N/A';
+          }
+        }
         var dataAddr = {
           addr: item.address_key,
           page: 'Profile-page',
           params: { address: item.address_key },
-          display: item.address_key + " - " + item.city + " " + item.state_or_province,
+          display: item.address_key.replace('-',' ') + " - " + item.city + " " + item.state_or_province,
         }
         address.push(dataAddr);
         addrCount++;
