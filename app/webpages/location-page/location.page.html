@@ -15,6 +15,10 @@
 
                     <!--Trending Section-->
                     <trending-homes *ngIf="trendingHomesData" [trendingHomesData]="trendingHomesData" [trending]="trendingFeature"></trending-homes>
+
+                    <!--List of List Section-->
+                    <list-of-lists-module *ngIf="lists" [listOfLists]="lists" [city]="locCity" [state]="locState"></list-of-lists-module>
+
                     <!-- Crime Section -->
                     <headline-component *ngIf="crimeData" [data]="headlineCrime"></headline-component>
                     <crime-module *ngIf="crimeData" [crimeData]="crimeData" ></crime-module>

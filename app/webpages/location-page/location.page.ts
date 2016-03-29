@@ -7,11 +7,13 @@ import {CrimeModule} from '../../modules/crime/crime.module';
 import {FeaturedListsModule} from '../../modules/featured_lists/featured_lists.module';
 import {InfoListModule} from "../../modules/infolist/info-list.module";
 import {CommentModule} from '../../modules/comment/comment.module';
+import {ListOfListModule} from "../../modules/listoflist/listoflist.module";
 import {LikeUs} from '../../modules/likeus/likeus.module';
 import {ShareModule} from '../../modules/share/share.module';
 import {AboutUsModule} from '../../modules/aboutus/aboutus.module';
 import {SchoolModule} from "../../modules/school/school.module";
 import {LocationProfileService} from '../../global/location-profile.service';
+import {ListOfListPage} from '../../global/global-service';
 import {WidgetModule} from "../../modules/widget/widget.module";
 import {FindYourHomeModule} from "../../modules/find-your-home/find-your-home.module";
 import {MapModule} from '../../modules/map/map.module';
@@ -22,8 +24,8 @@ import {TrendingHomes} from "../../modules/trending-homes/trending-homes.module"
     selector: 'location-page',
     templateUrl: './app/webpages/location-page/location.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, FindYourHomeModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule, WidgetModule, AmenitiesModule, TrendingHomes, MapModule],
-    providers: [LocationProfileService],
+    directives: [ListOfListModule, HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, FindYourHomeModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule, WidgetModule, AmenitiesModule, TrendingHomes, MapModule],
+    providers: [ListOfListPage, LocationProfileService],
 })
 
 export class LocationPage implements OnInit {
@@ -35,6 +37,7 @@ export class LocationPage implements OnInit {
     public headlineCrime: any;
     public headlineSchool: any;
     public headlineInteract: any;
+    public lists: any;
     public profileHeaderData: Object;
     public featuredListData: Object;
     public crimeData: Object;
@@ -44,7 +47,7 @@ export class LocationPage implements OnInit {
     public trendingHomesData: Object;
     public trendingFeature = true;
 
-    constructor(private _params: RouteParams, private _locationProfileService: LocationProfileService) {
+    constructor(private _params: RouteParams, private _locationProfileService: LocationProfileService, private _listService: ListOfListPage) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }
@@ -118,6 +121,13 @@ export class LocationPage implements OnInit {
           )
     }
 
+    getListOfList() {
+        this._listService.getListOfListPage(this.locState, this.locCity)
+        .subscribe(lists => {
+          this.lists = lists
+        });
+    }
+
     ngOnInit() {
         this.loc = this._params.get('loc');
         this.locCity = decodeURI(this.loc.split('_')[0]);
@@ -153,6 +163,7 @@ export class LocationPage implements OnInit {
         this.getRecentListings();
         this.getSchoolData();
         this.getAmenitiesData();
+        this.getListOfList();
         console.log(this);
     }
 
