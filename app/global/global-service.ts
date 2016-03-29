@@ -109,27 +109,6 @@ export class listViewPage {
   }
 }
 
-/*@LOCATIONPROFILE*/
-
-export class HomePageService {
-  getHomePageService() {
-    var HomePageData: HomePageData[] = [
-      {
-        'citylocation': 'Wichita',
-        'statelocation': 'KS',
-        'cityarea': [
-          'Wichita',
-          'Derby',
-          'Haysville',
-          'Valley Center',
-          'Mulvane',
-        ]
-      },
-    ];
-    return Promise.resolve(HomePageData);
-  }
-}
-
 @Injectable()
 export class ListOfListPage {
 
