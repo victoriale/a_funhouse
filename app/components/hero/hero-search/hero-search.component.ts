@@ -25,7 +25,7 @@ export class HeroSearchComponent{
     searchResults: Array<Object>;
     showResults: boolean;
 
-    term = new Control();
+    term:any = new Control();
 
     constructor(private _searchService: SearchService, private _router: Router){
         //Function chain to pull api data for search

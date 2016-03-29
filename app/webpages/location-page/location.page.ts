@@ -51,7 +51,8 @@ export class LocationPage implements OnInit {
     public partnerParam: string;
     public partnerID: string;
     public partnerCheck: boolean;
-
+    public pageName: string;
+    
     constructor(private injector:Injector, private _params: RouteParams, private _locationProfileService: LocationProfileService, private _listService: ListOfListPage) {
         let partnerParam = this.injector.get(WebApp);
         this.partnerID = partnerParam.partnerID;
