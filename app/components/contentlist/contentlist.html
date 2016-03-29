@@ -1,4 +1,4 @@
-<div class="contentlist {{data.bgClass}}">
+<div *ngIf="data" class="contentlist {{data.bgClass}}">
     <div class='imagebox'>
         <a [routerLink]="['../../Magazine', {addr: data.listData[0].addressKey}, 'PropertyOverview' ]">
             <img src='{{data.listData[0].photo}}' alt='' />

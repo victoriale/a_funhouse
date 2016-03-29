@@ -19,13 +19,14 @@ import {TrendingHomes} from "../../modules/trending-homes/trending-homes.module"
 import {ListingProfileService} from '../../global/listing-profile.service';
 import {WidgetModule} from "../../modules/widget/widget.module";
 import {MapModule} from '../../modules/map/map.module';
+import {ListOfListPage} from '../../global/global-service';
 
 @Component({
     selector: 'profile-page',
     templateUrl: './app/webpages/profile-page/profile.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [TrendingHomes, MediaImages, HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs, ShareModule, FeaturedListsModule, AmenitiesModule, WidgetModule, MapModule],
-    providers: [ListingProfileService]
+    providers: [ListOfListPage, ListingProfileService]
 })
 
 export class ProfilePage implements OnInit{
@@ -38,6 +39,7 @@ export class ProfilePage implements OnInit{
     public headlineAmenities: any;
     public headlineOtherHomes: any;
     public headlineInteract: any;
+    public lists: any;
     public mediaFeature: boolean = false;
     public trendingFeature: boolean = true;
     public trendingHomesData: Object;
@@ -47,9 +49,8 @@ export class ProfilePage implements OnInit{
     public mapData: Object;
     public featuredListData: Object;
     public amenitiesData: Object;
-
     //  Get current route name
-    constructor(public _params: RouteParams, private _listingProfileService: ListingProfileService, params: RouteParams){
+    constructor(public _params: RouteParams, private _listingProfileService: ListingProfileService, params: RouteParams, private _listService:ListOfListPage){
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
         this.paramAddress = params.get('address');
@@ -114,8 +115,16 @@ export class ProfilePage implements OnInit{
               err => console.log('Amenities Location Data Acquired!', err)
             )
     }
+
     getPropertyListing(){
       this.propertyListingData = this._listingProfileService.getPropertyListing(this.paramAddress);
+    }
+
+    getListOfList() {
+        this._listService.getListOfListPage(this.state, this.city)
+        .subscribe(lists => {
+          this.lists = lists
+        });
     }
 
     getAddress() {
@@ -137,6 +146,7 @@ export class ProfilePage implements OnInit{
         this.getFeaturedList();
         this.getAmenitiesData();
         this.getTrendingListings();
+        this.getListOfList();
 
         this.headlineAbout  = {
             title: 'About ' + this.address,
