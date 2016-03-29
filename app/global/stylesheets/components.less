@@ -1143,21 +1143,34 @@ goalsHeader
   .tile-container {
     width: 180px;
     height: 180px;
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -ms-perspective: 1000;
     perspective: 1000;
-    &:hover [class*='tile-flipper'],
-    &.hover [class*='tile-flipper'] {
+    &:hover [class*='tile-front'],
+    &.hover [class*='tile-front'] {
       .transformPrefixes(rotateY(180deg));
     }
+    &:hover [class*='tile-back'],
+    &.hover [class*='tile-back'] {
+      .transformPrefixes(rotateY(0deg));
+    }
     [class*='tile-flipper'] {
-      width: 180px;
-      height: 180px;
-      background-color: #333;
+      -webkit-perspective: 1000;
+      -moz-perspective: 1000;
+      -ms-perspective: 1000;
+      perspective: 1000;
       position: relative;
       .transitionPrefixes(0.3s);
       .transformStylePrefixes(preserve-3d);
     }
     [class*='tile-front'],
     [class*='tile-back'] {
+      .transformStylePrefixes(preserve-3d);
+      .transitionPrefixes(0.3s);
+      width: 180px;
+      height: 180px;
+      background-color: #333;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
       -moz-backface-visibility: hidden;
@@ -1171,8 +1184,6 @@ goalsHeader
       .flexDirection(column);
       .flexAlignItems(center);
       .transformPrefixes(rotateY(0deg));
-      width: 180px;
-      height: 180px;
       z-index: 2;
       text-align: center;
       i {
@@ -1191,10 +1202,8 @@ goalsHeader
       .flexDisplay;
       .flexDirection(column);
       .flexAlignItems(flex-start);
-      width: 180px;
-      height: 180px;
       padding: 10px;
-      .transformPrefixes(rotateY(180deg));
+      .transformPrefixes(rotateY(-180deg));
       span:first-child {
         .globalDefaultModFont(20px, 300, @white);
       }
