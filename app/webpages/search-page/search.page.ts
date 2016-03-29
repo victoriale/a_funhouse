@@ -26,7 +26,7 @@ export class SearchPage implements OnInit {
   displayData: {}; //this is what is being inputed into the DOM
   dataInput:string;
   constructor(private _searchService: SearchService, private params: RouteParams, private _router:Router) {
-    this.loadCall(params['params']['query']);
+    this.loadCall(params['params']['query'].replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, ','));
   }
 
   //Function to tell search results component to show when input is focused
@@ -112,8 +112,8 @@ export class SearchPage implements OnInit {
       data.address.forEach(function(item, index) {
         var dataAddr = {
           addr: item.address_key,
-          page: 'Profile-page',
-          params: { address: item.address_key },
+          page: '../../Magazine',
+          params: { addr: item.address_key },
           display: item.address_key.replace(/-/g, ' ') + " - " + item.city + " " + item.state_or_province,
         }
         address.push(dataAddr);
@@ -132,8 +132,8 @@ export class SearchPage implements OnInit {
         }
         var dataAddr = {
           addr: item.address_key,
-          page: 'Profile-page',
-          params: { address: item.address_key },
+          page: '../../Magazine',
+          params: { addr: item.address_key },
           display: item.address_key.replace('-',' ') + " - " + item.city + " " + item.state_or_province,
         }
         address.push(dataAddr);
@@ -148,8 +148,8 @@ export class SearchPage implements OnInit {
         var zip = {
           addr: item.address_key,
           'zipcode': item.zipcode,
-          page: 'Profile-page',
-          params: { address: item.address_key },
+          page: '../../Magazine',
+          params: { addr: item.address_key },
           display: '[' + item.zipcode + '] - ' + item.city + " " + item.state_or_province + " - " + item.address_key,
         };
         zipcode.push(zip);
@@ -170,6 +170,17 @@ export class SearchPage implements OnInit {
       });
     }
 
+    if(total == 1){
+      if(zipcode.length == 1){
+        this._router.navigate([zipcode[0].page, zipcode[0].params])
+      }
+      if(address.length == 1){
+        this._router.navigate([address[0].page, address[0].params])
+      }
+      if(location.length == 1){
+        this._router.navigate([location[0].page, location[0].params])
+      }
+    }
     // console.log('ZIP CODE', zipcode);
     // console.log('ADDRESS', address);
     // console.log('LOCATION', location);
