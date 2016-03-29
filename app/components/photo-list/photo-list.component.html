@@ -1,12 +1,18 @@
-<div *ngFor="#data of listData" class="lv-image" >
-  <img src='{{data.img}}' class="lv-image-placeHolder" />
+<div class="lv-image" >
+    <img src='{{imageData}}' class="lv-image-placeHolder"/>
+    <div class="lv-image-overlay">
+      <a [routerLink]="[listData.url1,listData.url2,listData.url3]">
+        <div class="lv-image-button">View Profile <i class="fa fa-angle-right"></i></div>
+      </a>
+      <circle-button (scrollRight)="right()" (scrollLeft)="left()"></circle-button>
+    </div>
   <div class="lv-image-details">
-    <div>{{data.value}}</div>
-    <div>{{data.title}}</div>
+    <div>{{listData.value}}</div>
+    <div>{{listData.title}}</div>
     <div>
-      <span>{{data.numBed}}</span> |
-      <span>{{data.numBath}}</span> |
-      <span>{{data.tag}}</span>
+      <span>{{listData.numBed}}</span> |
+      <span>{{listData.numBath}}</span> |
+      <span>{{listData.tag}}</span>
     </div>
   </div>
 </div>

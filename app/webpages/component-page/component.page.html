@@ -7,6 +7,7 @@
 
                     <section class='doc-workspace'>
                         <pagination-footer [paginationParameters]="paginationParameters" (newIndex)="testEvent($event)"></pagination-footer>
+                        <pagination-footer [paginationParameters]="paginationParameters2"></pagination-footer>
                         <div class='code-wrapper'>
                      <pre><![CDATA[import {Pagination} from "../../components/pagination-footer/pagination-footer.component";
                          selector: 'pagination-footer',]]></pre>
@@ -174,7 +175,7 @@
 
                     <section class='doc-workspace'>
                         <div style="position:relative; width:680px;height:570px;background-color:#fff;">
-                            <tiles-component></tiles-component>
+                            <tiles-component *ngIf="tilesCompData"></tiles-component>
                         </div>
                         <div class='code-wrapper'>
                       <pre><![CDATA[

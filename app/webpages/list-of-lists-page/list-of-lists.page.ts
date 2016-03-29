@@ -63,9 +63,9 @@ export class ListOfListsPage implements OnInit{
                 // Fix list title using global function cameCaseToRegularCase
                 this.listOfLists[i].listTitle = self._globalFunctions.camelCaseToRegularCase(this.listOfLists[i].listTitle);
                 // Check for empty list
-                if(this.listOfLists[i].listData.length <= 0) {
+                if(this.listOfLists[i].listData === null || this.listOfLists[i].listData.length <= 0 ) {
                 }else {
-                    //Check for no image and no url
+                    //Check for no image, replace with placeholder
                     this.listOfLists[i].listData.map(function(item){
                     if(item.photo === false || item.photo === null) {
                         item.photo = "app/public/no_photo_images/House_1.png";
@@ -82,7 +82,7 @@ export class ListOfListsPage implements OnInit{
             imageURL : './app/public/joyfulhome_house.png',
             smallText1 : 'Monday, February 23, 2016',
             smallText2 : ' United States of America',
-            heading1 : this.location + ' Top 10 Lists',
+            heading1 : this.location + ' Top Lists',
             heading2 : '',
             heading3 : '',
             heading4 : '',

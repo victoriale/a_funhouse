@@ -12,7 +12,7 @@
               <i class="fa fa-angle-right"></i>
               <span>{{data.listing_addr2}}</span>
           </div>
-          <a href='{{data.button_url}}' class='mod-page-btn carlv-button'>
+          <a [routerLink]="[data.url1, data.url2, data.url3]" class='mod-page-btn carlv-button'>
               <span></span>
               <span>View Profile</span>
               <i class='fa fa-angle-right'></i>

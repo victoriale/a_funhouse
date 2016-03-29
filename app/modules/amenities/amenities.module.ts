@@ -2,7 +2,7 @@
  * Created by Victoria on 3/10/2016.
  */
 import {Component, OnInit, Input, OnChanges} from 'angular2/core';
-import {Router, RouteParams} from 'angular2/router';
+import {Router, RouteParams, ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {moduleHeader} from '../../components/module-header/module-header';
 import {TilesComponent} from '../../components/tiles/tiles.component';
@@ -14,18 +14,17 @@ import {GlobalFunctions} from '../../global/global-functions';
     selector: 'amenities-module',
     templateUrl: './app/modules/amenities/amenities.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [moduleHeader, TilesComponent, AmenitiesComponent],
-    providers: []
+    directives: [moduleHeader, TilesComponent, AmenitiesComponent, ROUTER_DIRECTIVES],
 })
 export class AmenitiesModule implements OnInit{
     public hasFooterButton: boolean;
     public moduleTitle: string;
     public profileType: string;
+
     public listData: Object;
     public tileData: Object;
     public index: number = 0;
 
-    listView: Object;
     provider_logo = './app/public/amenities_yelp.png';
 
     @Input() amenitiesData: any;
@@ -33,39 +32,6 @@ export class AmenitiesModule implements OnInit{
     constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions){
         //Determine what page the profile header module is on
         this.profileType = this.router.hostComponent.name;
-    }
-
-    left(){
-        console.log('left - module', this.index);
-        if(this.amenitiesData === null){
-            return false;
-        }
-
-        var max = this.amenitiesData.listData.length - 1;
-
-        if(this.index > 0){
-            this.index -= 1;
-            this.dataFormatter();
-        }else{
-            this.index = max;
-            this.dataFormatter();
-        }
-    }
-    right(){
-        console.log('right - module', this.index);
-        if(this.amenitiesData === null){
-            return false;
-        }
-
-        var max = this.amenitiesData.listData.length - 1;
-
-        if(this.index < max){
-            this.index += 1;
-            this.dataFormatter();
-        }else{
-            this.index = 0;
-            this.dataFormatter();
-        }
     }
     //Build Module Title
     setModuleTitle(){
@@ -85,31 +51,146 @@ export class AmenitiesModule implements OnInit{
             this.moduleTitle = 'Top Rated Amenities In and Around ' + address + ' ' + paramCity + ', ' + paramState;
         }
     }
+
+    left(){
+        if(this.amenitiesData === null){
+            return false;
+        }
+        var data = this.amenitiesData;
+        var dataLists = data['restaurant']['businesses'];
+        var max = dataLists.length - 1;
+
+        if(this.index > 0){
+            this.index -= 1;
+            this.dataFormatter();
+        }else{
+            this.index = max;
+            this.dataFormatter();
+        }
+    }
+    right(){
+        if(this.amenitiesData === null){
+            return false;
+        }
+        var data = this.amenitiesData;
+        var dataLists = data['restaurant']['businesses'];
+        var max = dataLists.length - 1;
+        if(this.index < max){
+            this.index += 1;
+            this.dataFormatter();
+        }else{
+            this.index = 0;
+            this.dataFormatter();
+        }
+    }
+
     dataFormatter(){
       var data = this.amenitiesData;
-      console.log(data);
-      this.listData = {
+      if(data.restaurant.length === 0){
+          return false;
+      }
+      var dataLists = data['restaurant']['businesses'];
+      var listData = dataLists[this.index];
+      var loc = listData['location']['city'] + ', ' + listData['location']['state_code'] + ' ' + listData['location']['postal_code'];
+      var address = listData['location']['address'];
+      var imageURL = dataLists[this.index].image_url;
 
+      this.listData = {
+        hasHoverNoSubImg: true,
+        header: "What's the Highest Rated Restaurant in this area?",
+        name: loc,
+        establishment: listData.name,
+        imageUrl: listData.image_url,
+        address: address[0],
+        location: loc,
+        originalUrl: listData.url,
+        url: 'Amenities-lists-page',//for the see the list button
+        paramOptions:
+                  {
+                    listname: 'restaurant',
+                    city: listData['location'].city,
+                    state: listData['location'].state_code
+                  },
+        listView: [//data for amenities component tiles
+            {
+              icons: 'fa-cutlery',
+              category: "Restaurants",
+              count: data['restaurant'].total + " near this listing",
+              url: 'Amenities-lists-page',
+              paramOptions:
+                        {
+                          listname: 'restaurant',
+                          city: listData['location'].city,
+                          state: listData['location'].state_code
+                        },
+              viewMore: "See All"
+            },
+            {
+              icons: 'fa-shopping-cart',
+              category: "Groceries Stores",
+              count: data['grocers'].total + " near this listing",
+              url: 'Amenities-lists-page',
+              paramOptions:
+                        {
+                          listname: 'grocers',
+                          city: listData['location'].city,
+                          state: listData['location'].state_code
+                        },
+              viewMore: "See All"
+            },
+            {
+              icons: 'fa-dollar',
+              category: "Banks",
+              count: data['banks'].total + " near this listing",
+              url: 'Amenities-lists-page',
+              paramOptions:
+                        {
+                          listname: 'banks',
+                          city: listData['location'].city,
+                          state: listData['location'].state_code
+                        },
+              viewMore: "See All"
+            }
+          ]
+      }//end data for listData
+      // get data for tiles
+      this.tileData = {
+          button_txt: 'Open Page',
+          url1: 'Amenities-lists-page',
+          paramOptions1: {
+                      listname: 'restaurant',
+                      city: listData['location'].city,
+                      state: listData['location'].state_code
+                    },
+          icon1: 'fa-cutlery',
+          title1: 'Nearby Restaurants',
+          desc1: '',
+
+          url2: 'Amenities-lists-page',
+          paramOptions2: {
+                      listname: 'grocers',
+                      city: listData['location'].city,
+                      state: listData['location'].state_code
+                    },
+          icon2: 'fa-shopping-cart',
+          title2: 'Nearby Groceries',
+          desc2: '',
+
+          url3: 'Amenities-lists-page',
+          paramOptions3: {
+                      listname: 'banks',
+                      city: listData['location'].city,
+                      state: listData['location'].state_code
+                    },
+          icon3: 'fa-dollar',
+          title3: 'Nearby Banks',
+          desc3: ''
       }
     }
+
     ngOnInit(){
-        this.hasFooterButton = true;
+        this.hasFooterButton = false;
         this.setModuleTitle();
-        this.tileData = {
-            button_txt: 'Open Page',
-            url1: 'Aboutus-page',
-            icon1: 'fa-cutlery',
-            title1: 'Nearby Restaurants',
-            desc1: '',
-            url2: 'Contactus-page',
-            icon2: 'fa-shopping-cart',
-            title2: 'Nearby Groceries',
-            desc2: '',
-            url3: 'Disclaimer-page',
-            icon3: ' fa-dollar',
-            title3: 'Nearby Banks',
-            desc3: ''
-        }
     }
     //On Change Call
     ngOnChanges(event){
@@ -118,18 +199,18 @@ export class AmenitiesModule implements OnInit{
         //If the data input is valid run transform data function
         if(currentAmenitiesData !== null && currentAmenitiesData !== false) {
 
-            //Perform try catch to make sure module doesnt break page
-            // try{
-            //     //If featured list data has no list data (length of 0) throw error to hide module
-            //     if(this.amenitiesData.listData.length === 0){
-            //         throw 'No Data available for Amenities list - hiding module';
-            //     }
-            //
-            //     this.dataFormatter();
-            // }catch(e){
-            //     console.log('Error - Amenities List Module ', e);
-            //     this.amenitiesData = undefined;
-            // }
+            // Perform try catch to make sure module doesnt break page
+            try{
+                //If featured list data has no list data (length of 0) throw error to hide module
+                if(this.amenitiesData.restaurant.businesses.length === 0){
+                    throw 'No Data available for Amenities list - hiding module';
+                }
+
+                this.dataFormatter();
+            }catch(e){
+                console.log('Error - Amenities List Module ', e);
+                this.amenitiesData = undefined;
+            }
             this.dataFormatter();
         }
     }

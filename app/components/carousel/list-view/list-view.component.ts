@@ -3,13 +3,13 @@
  */
 import {Component, OnInit, Input, EventEmitter} from 'angular2/core';
 import {CircleButton} from "../../buttons/circle/circle.button";
-
+import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({
     selector: 'list-view-carousel',
     templateUrl: './app/components/carousel/list-view/list-view.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [CircleButton],
+    directives: [ROUTER_DIRECTIVES, CircleButton],
     providers: [],
     inputs: ['carouselData'],
 })

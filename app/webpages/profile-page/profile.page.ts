@@ -31,13 +31,16 @@ import {MapModule} from '../../modules/map/map.module';
 export class ProfilePage implements OnInit{
     paramAddress: string;
     address: string;
+    city: string;
+    state: string;
     public headlineAbout: any;
     public headlineCrime: any;
     public headlineAmenities: any;
     public headlineOtherHomes: any;
     public headlineInteract: any;
-    public mediaFeature = false;
-    public trendingFeature = true;
+    public mediaFeature: boolean = false;
+    public trendingFeature: boolean = true;
+    public trendingHomesData: Object;
     public profileHeaderData: Object;
     public propertyListingData: Object;
     public crimeData: Object;
@@ -92,13 +95,24 @@ export class ProfilePage implements OnInit{
             )
     }
 
+    getTrendingListings(){
+        this._listingProfileService.getTrendingHomesData(this.city, this.state)
+            .subscribe(
+                data => {
+                  console.log('RETURN DATA',data);
+                    this.trendingHomesData = data;
+                },
+                err => console.log('Error - Location Trending Homes Data: ', err)
+            )
+    }
+
     getAmenitiesData(){
         this._listingProfileService.getAmenitiesNearListing(this.paramAddress)
           .subscribe(
               data => {
                 this.amenitiesData = data;
               },
-              err => console.log('School Location Data Acquired!', err)
+              err => console.log('Amenities Location Data Acquired!', err)
             )
     }
     getPropertyListing(){
@@ -111,15 +125,19 @@ export class ProfilePage implements OnInit{
       var paramCity = paramAddress[paramAddress.length - 2];
       var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
       var address = tempArr.join(' ');
-      this.address = address + ' ' + paramCity + ', ' + paramState;
+      this.city = paramCity;
+      this.state = paramState;
+      this.address = address + ', ' + paramCity + ', ' + paramState;
     }
     ngOnInit(){
+      //Run each call
         this.getAddress();
         this.getProfileHeader();
         this.getCrime();
         this.getMap();
         this.getFeaturedList();
         this.getAmenitiesData();
+        this.getTrendingListings();
 
         this.headlineAbout  = {
             title: 'About ' + this.address,
@@ -130,7 +148,7 @@ export class ProfilePage implements OnInit{
             icon: 'fa-gavel'
         };
         this.headlineAmenities = {
-            title: 'Amenities in ' + this.address,
+            title: 'Amenities Around ' + this.address,
             icon: 'fa-cutlery'
         };
         this.headlineOtherHomes = {

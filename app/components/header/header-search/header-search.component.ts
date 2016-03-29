@@ -53,6 +53,9 @@ export class HeaderSearchComponent{
         if(typeof value === 'undefined' || value === ''){
             return false;
         }
+
+        value = encodeURIComponent(value);
+
         //Navigate to search page with query string
         this._router.navigate(['Search-page', {query: value}]);
         this.showResults = false;

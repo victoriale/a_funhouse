@@ -1,4 +1,4 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component, OnInit, OnChanges, Input} from 'angular2/core';
 import {ROUTER_DIRECTIVES} from "angular2/router";
 
 @Component({
@@ -6,20 +6,36 @@ import {ROUTER_DIRECTIVES} from "angular2/router";
     templateUrl: './app/components/footer/footer.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [ROUTER_DIRECTIVES],
+    inputs: ['cityLocation', 'stateLocation', 'partnerID'],
     providers: [],
 })
 
 export class FooterComponent implements OnInit {
-    isMyHouseKit: boolean = false;
+
+    cityLocation: string;
+    stateLocation: string;
+
+    public isMyHouseKit: boolean;
+    partnerID: string;
     title: string = "National Real Estate";
     pageNumber: string = "1";
-    listTitle: string = "most-recent-listings";
+    listTitle: string = "listings-most-recent";
     currentUrl: any;
 
     ngOnInit() {
         // Get current URL for social sharing
         this.currentUrl = window.location.href;
         console.log('Current URL', this.currentUrl);
+
+        //check for partner and hide search
+        console.log('Partner ID:', this.partnerID);
+        if(this.partnerID != null) {
+            this.isMyHouseKit = true;
+            //console.log('Housekit True');
+        }else {
+            this.isMyHouseKit = false;
+            //console.log('Housekit False');
+        }
     }
 
     states = [
@@ -98,6 +114,5 @@ export class FooterComponent implements OnInit {
         { "name": "Washington, D.C", "state": "DC" },
         { "name": "More Cities...", "state": "#" }
     ];
-
 
 }

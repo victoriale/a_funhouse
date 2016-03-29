@@ -18,7 +18,7 @@ import {RouteParams, Router, RouteData, RouteConfig, RouterOutlet, ROUTER_DIRECT
        name: 'Webpages',
        component: AppComponent,
     },
-    {//magazine merge from LynchTest
+    {
       path: '/magazine/:addr/...',
       name: 'Magazine',
       component: MagazinePage

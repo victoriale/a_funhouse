@@ -20,21 +20,24 @@ import {AmenitiesComponent} from '../../components/amenities/amenities.component
 export class SchoolModule implements OnInit{
     public hasFooterButton: boolean;
     public listData: Object;
+    public listView: Object;
     public tileData: Object;
     public index: number = 0;
     public moduleTitle: string;
+    public profileType: string;
 
     @Input() schoolData: any;
 
-    constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions){}
+    constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions){
+      this.profileType = this.router.hostComponent.name;
+    }
 
     left(){
-        console.log('left - module', this.index);
         if(this.schoolData === null){
             return false;
         }
 
-        var max = this.schoolData.listData.length - 1;
+        var max = this.schoolData.elementary.length - 1;
 
         if(this.index > 0){
             this.index -= 1;
@@ -45,12 +48,11 @@ export class SchoolModule implements OnInit{
         }
     }
     right(){
-        console.log('right - module', this.index);
         if(this.schoolData === null){
             return false;
         }
 
-        var max = this.schoolData.listData.length - 1;
+        var max = this.schoolData.elementary.length - 1;
 
         if(this.index < max){
             this.index += 1;
@@ -63,37 +65,123 @@ export class SchoolModule implements OnInit{
 
     dataFormatter(){
       var data = this.schoolData;
-      console.log(data);
+      if(data.elementary.length === 0){
+          return false;
+      }
+      var schoolData = data['meta'];
+      var elementaryData = data.elementary[this.index];
+      var schoolName =  this.globalFunctions.toTitleCase(elementaryData.school_name);
+      this.listData = {
+        hasHoverNoSubImg: false,
+        header: "What's the Highest Rated School in this area?",
+        name: schoolData.city + ', ' + schoolData.state,
+        establishment:  schoolName,
+        address: elementaryData.type,
+        imageUrl: schoolData.locationImage,
+        url: 'School-lists-page',
+        paramOptions: {
+                    listname: 'Elementary Schools',
+                    city: schoolData.city,
+                    state: schoolData.state
+                  },
+        listView: [
+          {
+            icons: 'fa-pencil',
+            category: "Elementary Schools",
+            count: schoolData.elementaryCount + " near this listing",
+            url: 'School-lists-page',
+            paramOptions: {
+                        listname: 'elementary',
+                        city: schoolData.city,
+                        state: schoolData.state
+                      },
+            viewMore: "See All"
+          },
+          {
+            icons: 'fa-child',
+            category: "Middle Schools",
+            count: schoolData.middleCount + " near this listing",
+            url: 'School-lists-page',
+            paramOptions: {
+                        listname: 'middle',
+                        city: schoolData.city,
+                        state: schoolData.state
+                      },
+            viewMore: "See All"
+          },
+          {
+            icons: 'fa-graduation-cap',
+            category: "High Schools",
+            count: schoolData.highCount + " near this listing",
+            url: 'School-lists-page',
+            paramOptions: {
+                        listname: 'high',
+                        city: schoolData.city,
+                        state: schoolData.state
+                      },
+            viewMore: "See All"
+          }
+        ]
+      }//listData ends
+      // get data for tiles
+      this.tileData = {
+          button_txt: 'Open Page',
+          url1: 'School-lists-page',
+          paramOptions1: {
+                      listname: 'elementary',
+                      city: schoolData.city,
+                      state: schoolData.state
+                    },
+          icon1: 'fa-pencil',
+          title1: 'Elementary Schools',
+          desc1: '',
 
-    }
+          url2: 'School-lists-page',
+          paramOptions2: {
+                      listname: 'middle',
+                      city: schoolData.city,
+                      state: schoolData.state
+                    },
+          icon2: 'fa-child',
+          title2: 'Middle Schools',
+          desc2: '',
+
+          url3: 'School-lists-page',
+          paramOptions3: {
+                      listname: 'high',
+                      city: schoolData.city,
+                      state: schoolData.state
+                    },
+          icon3: 'fa-graduation-cap',
+          title3: 'High Schools',
+          desc3: ''
+      }
+
+    }//dataFormatter ends
 
     //Build Module Title
     setModuleTitle(){
-      var paramLocation: string = this._params.get('loc');
-      var paramCity: string = this.globalFunctions.toTitleCase(paramLocation.split('_')[0]);
-      var paramState: string = paramLocation.split('_')[1];
-      this.moduleTitle = 'Schools in ' + paramCity + ', ' + paramState;
+        if(this.profileType === 'LocationPage'){
+            //Location Crime Module
+            var paramLocation: string = this._params.get('loc');
+            var paramCity: string = this.globalFunctions.toTitleCase(paramLocation.split('_')[0]);
+            var paramState: string = paramLocation.split('_')[1];
+            this.moduleTitle = 'Schools in ' + paramCity + ', ' + paramState;
+        }else if(this.profileType === 'ProfilePage'){
+            //Listing Crime Module
+            var paramAddress = this._params.get('address').split('-');
+            var paramState = paramAddress[paramAddress.length -1];
+            var paramCity = paramAddress [paramAddress.length - 2];
+            var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
+            var address = tempArr.join(' ');
+            this.moduleTitle = 'Schools in ' + address + ' ' + paramCity + ', ' + paramState;
+        }
     }
 
     ngOnInit(){
       this.setModuleTitle();
       this.hasFooterButton = false;
-      this.tileData = {
-          button_txt: 'Open Page',
-          url1: 'Aboutus-page', //THIS WILL NEED TO BE CHANGE
-          icon1: 'fa-pencil',
-          title1: 'Elementary Schools',
-          desc1: '',
-          url2: 'Aboutus-page',//THIS WILL NEED TO BE CHANGE
-          icon2: 'fa-child',
-          title2: 'Middle Schools',
-          desc2: '',
-          url3: 'Aboutus-page',//THIS WILL NEED TO BE CHANGE
-          icon3: 'fa-graduation-cap',
-          title3: 'High Schools',
-          desc3: ''
-      }
-    }
+    }// end ngOnInit
 
     //On Change Call
     ngOnChanges(event){
@@ -101,19 +189,19 @@ export class SchoolModule implements OnInit{
         var currentSchoolData = event.schoolData.currentValue;
         //If the data input is valid run transform data function
         if(currentSchoolData !== null && currentSchoolData !== false){
-          //Perform try catch to make sure module doesnt break page
-          // try{
-          //     //If featured list data has no list data (length of 0) throw error to hide module
-          //     if(this.schoolData.listData.length === 0){
-          //         throw 'No Data available for school list - hiding module';
-          //     }
-          //
-          //     this.dataFormatter();
-          // }catch(e){
-          //     console.log('Error - School List Module ', e);
-          //     this.schoolData = undefined;
-          // }
+          // Perform try catch to make sure module doesnt break page
+          try{
+              //If featured list data has no list data (length of 0) throw error to hide module
+              if(this.schoolData.elementary.length === 0){
+                  throw 'No Data available for school list - hiding module';
+              }
+
+              this.dataFormatter();
+          }catch(e){
+              console.log('Error - School List Module ', e);
+              this.schoolData = undefined;
+          }
           this.dataFormatter();
        }
-    }
+    }// end On Change Call
 }

@@ -30,9 +30,7 @@ export class FeatureComponent implements OnInit{
     }
 
     ngOnInit(){
-
         this.main_hasSubImg = true;
-
         if(typeof this.list_data === 'undefined'){
             this.list_data = {
                 header: 'Trending Real Estate',
@@ -43,8 +41,6 @@ export class FeatureComponent implements OnInit{
                 detail2: 'Asking Price: ',
                 detail3: '$[###,###]'
             }
-        }
-
-        console.log(this);
-    }
+        }// end of list_data undefined
+    }//end ngOnInit()
 }

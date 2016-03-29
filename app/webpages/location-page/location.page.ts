@@ -16,12 +16,13 @@ import {WidgetModule} from "../../modules/widget/widget.module";
 import {FindYourHomeModule} from "../../modules/find-your-home/find-your-home.module";
 import {MapModule} from '../../modules/map/map.module';
 import {AmenitiesModule} from "../../modules/amenities/amenities.module";
+import {TrendingHomes} from "../../modules/trending-homes/trending-homes.module";
 
 @Component({
     selector: 'location-page',
     templateUrl: './app/webpages/location-page/location.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, FindYourHomeModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule, WidgetModule, MapModule, AmenitiesModule],
+    directives: [HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, FindYourHomeModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule, WidgetModule, AmenitiesModule, TrendingHomes, MapModule],
     providers: [LocationProfileService],
 })
 
@@ -40,6 +41,8 @@ export class LocationPage implements OnInit {
     public recentListingsData: Object;
     public schoolData: Object;
     public amenitiesData: Object;
+    public trendingHomesData: Object;
+    public trendingFeature = true;
 
     constructor(private _params: RouteParams, private _locationProfileService: LocationProfileService) {
         // Scroll page to top to fix routerLink bug
@@ -53,6 +56,16 @@ export class LocationPage implements OnInit {
                     this.profileHeaderData = data;
                 },
                 err => console.log('Error - Location Profile Header Data: ', err)
+            )
+    }
+
+    getTrendingListings(){
+        this._locationProfileService.getTrendingHomesData(this.locCity, this.locState)
+            .subscribe(
+                data => {
+                    this.trendingHomesData = data;
+                },
+                err => console.log('Error - Location Trending Homes Data: ', err)
             )
     }
 
@@ -107,8 +120,8 @@ export class LocationPage implements OnInit {
 
     ngOnInit() {
         this.loc = this._params.get('loc');
-        this.locCity = this.loc.split('_')[0];
-        this.locState = this.loc.split('_')[1];
+        this.locCity = decodeURI(this.loc.split('_')[0]);
+        this.locState = decodeURI(this.loc.split('_')[1]);
         this.locDisplay = decodeURI(this.locCity + ', ' + this.locState);
 
         this.headlineAbout = {
@@ -134,6 +147,7 @@ export class LocationPage implements OnInit {
         console.log('City, State: ', this.locDisplay);
 
         this.getProfileHeader();
+        this.getTrendingListings();
         this.getFeaturedList();
         this.getCrime();
         this.getRecentListings();

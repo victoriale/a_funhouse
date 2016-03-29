@@ -46,8 +46,6 @@ export class ListingProfileService{
 
         address = encodeURI(address);
 
-        console.log('Listing Profile Service Input', address);
-
         return this.http.get(this.apiUrl + '/listing/profileHeader/' + address, {
             headers: headers
         })
@@ -142,4 +140,24 @@ export class ListingProfileService{
         )
     }
 
+    getTrendingHomesData(city, state){
+        //Configure HTTP Headers
+        var headers = this.setToken();
+
+        city = encodeURI(city);
+        state = encodeURI(state);
+
+        console.log(this.apiUrl + '/list/trending/' + state + '/' + city);
+        return this.http.get(this.apiUrl + '/list/trending/' + state + '/' + city, {
+                headers: headers
+            })
+            .map(
+                res => res.json()
+            )
+            .map(
+                data => {
+                    return data;
+                }
+            )
+    }
 }

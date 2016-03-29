@@ -1,12 +1,13 @@
 import {Component, Input} from 'angular2/core';
 import {ExploreButtonComponent} from "../../buttons/explore-button/explore-button.component";
+import {ROUTER_DIRECTIVES} from "angular2/router";
 
 @Component({
     selector: 'hero-bottom-component',
     templateUrl: './app/components/hero/hero-bottom/hero-bottom.component.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     inputs: ['buttonTitle', 'buttonWidth', 'buttonIcon', 'cityLocation', 'stateLocation'],
-    directives: [ExploreButtonComponent],
+    directives: [ExploreButtonComponent, ROUTER_DIRECTIVES],
     providers: [],
 })
 
