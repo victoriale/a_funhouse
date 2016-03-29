@@ -150,8 +150,6 @@ export class DirectoryService{
         city = city === null ? null : encodeURI(city);
         zipcode = zipcode === null ? null : encodeURI(zipcode);
 
-        console.log('params', skip, listTitle, state, city, zipcode);
-
         //Transform list title
         listTitle = listTitle.replace(/-/g, ' ');
         listTitle = this.globalFunctions.toTitleCase(listTitle);
@@ -174,8 +172,6 @@ export class DirectoryService{
         }else{
             console.log('Error - Incorrect url parameters for getDirectoryData function');
         }
-
-        console.log('path', path);
 
         return this.http.get(this.apiUrl + path, {
                 headers: headers
