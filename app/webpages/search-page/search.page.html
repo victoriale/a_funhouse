@@ -13,7 +13,7 @@
                 </div>
                 <div class="search-area">
                   <input type="text" name="keyword" class="search-area-text" (focus)="focusResults($event)" (keyup)="searchText($event)" type="text" placeholder="Where do you want to live? (City, ST)">
-                  <button class="search-area-btn fa fa-search"></button>
+                  <button class="search-area-btn fa fa-search" (click)="searchText($event)"></button>
                 </div>
               </div>
               <nav class="search_tab-menu">

@@ -14,6 +14,7 @@ import {GlobalFunctions} from "../../global/global-functions";
 import {TitleComponent} from '../../components/title/title.component';
 import {PaginationFooter} from "../../components/pagination-footer/pagination-footer.component";
 import {listViewPage} from '../../global/global-service';
+declare var moment: any;
 
 @Component({
     selector: 'List-page',
@@ -164,16 +165,19 @@ export class ListPage {
 
       originalData.forEach(function(val, i){
 
+        //below are variables that are converted using global functions to a readable state
       val.listPrice = globeFunc.commaSeparateNumber(val.listPrice);
+      var formattedDate = moment(val.modificationTimestamp.split(' ')[0], 'YYYY-MM-DD').format("dddd, MMMM Do, YYYY");
+      var livingArea = globeFunc.commaSeparateNumber(val.livingArea);
       var newData = {
           img : val.photos[0],
           list_sub : val.propertyType + ": " + val.numBedrooms + " Beds & " + val.numBathrooms + " Baths",
           title : val.addressKey.replace(/-/g, ' '),
           numBed : val.numBedrooms + " Beds ",
           numBath: val.numBathrooms + " Baths ",
-          date: val.modificationTimestamp,
+          date: formattedDate,
           value: "$"+ val.listPrice,
-          tag: val.livingArea + ' sqft',
+          tag: livingArea + ' sqft',
           buttonName: 'View Profile',
           icon: 'fa fa-map-marker',
           location: val.loc + ' - ' + val.postalCode,
@@ -185,17 +189,15 @@ export class ListPage {
       newData['url1'] = "../../Magazine";
       newData['url2'] = {addr:val.addressKey};
       newData['url3'] = "PropertyOverview";
-      // newData['url'] = "Home-page";
 
       var carData = {
         heading:val.addressKey.replace(/-/g, ' '),
         image_url:val.photos[0],
         listing_price: "$"+val.listPrice,
-        listing_area:val.livingArea + "sqft",
-        listing_addr1:val.modificationTimestamp.split(' ')[0],
+        listing_area: livingArea + " sqft",
+        listing_addr1: formattedDate,
         listing_addr2:val.loc + ' - ' + val.postalCode,
       };
-      carData['button_url'] = '#';
       carData['url1'] = "../../Magazine";
       carData['url2'] = {addr:val.addressKey};
       carData['url3'] = "PropertyOverview";
