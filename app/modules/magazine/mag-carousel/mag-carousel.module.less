@@ -1,6 +1,12 @@
 @import (reference) "./app/global/stylesheets/components.less";
 @import (reference) "./app/global/stylesheets/base.less";
 
+.highlightImage{
+  -webkit-box-shadow: 0px 0px 10px 1px rgba(68,178,68,1);
+  -moz-box-shadow: 0px 0px 10px 1px rgba(68,178,68,1);
+  box-shadow: 0px 0px 10px 1px rgba(68,178,68,1);
+}
+
 .mag_po {
   &_address {
     font-size: 3vw;
@@ -170,7 +176,7 @@
       display: inline-block;
       // float: left;
       cursor: pointer;
-      background-color: @strokeGrey;
+      //background-color: @strokeGrey;
     }
     // END .map_po_subimg_item
   }

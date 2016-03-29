@@ -12,46 +12,41 @@ export class MagCarouselModule implements OnInit {
     @Input() magOverview: MagOverview;
     length: number;
     counter: number;
+    left: number;
+    right: number;
     address: string;
     imageLength: number;
 
-    constructor(private _injector:Injector, private _magazineDataService:MagazineDataService) {
+    constructor(private _injector:Injector) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
         this.address = _injector.get(MagazinePage).address;
     }
 
     nextClick() {
-        this.counter = this.counter + 1;
-        if (this.counter >= length) {
-            this.counter = 0;
-        }
+        this.left = this.counter;
+        this.counter = (this.counter + 1) % length;
+        this.right = (this.counter + 1) % length;
     }
 
     prevClick() {
-        this.counter = this.counter - 1;
-        if (this.counter < 0) {
-            this.counter = length - 1;
-        }
+        this.right = this.counter;
+        this.counter = (((this.counter - 1) % length) + length) % length;
+        this.left = (((this.counter - 1) % length) + length) % length;
     }
 
     changeClick(i) {
-        if (i <= 0) {
-            this.counter = 0;
-        }
-        else if (i >= length) {
-            this.counter = length - 1;
-        }
-        else {
-            this.counter = i;
-        }
-
+        this.counter = i % length;
+        this.right = (this.counter + 1) % length;
+        this.left = (((this.counter - 1) % length) + length) % length;
     }
 
     setupImages() {
         if (this.magOverview) {
             length = this.magOverview.photos.length;
             this.counter = 0;
+            this.right = this.counter + 1;
+            this.left = length - 1;
             this.imageLength = length;
         }
     }
@@ -59,7 +54,6 @@ export class MagCarouselModule implements OnInit {
     ngOnInit() {
         this.counter = 0;
         this.setupImages();
-        //console.log("Carousel:", this.magOverview);
     }
 
     ngOnChanges() {

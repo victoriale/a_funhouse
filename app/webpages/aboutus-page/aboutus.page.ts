@@ -5,7 +5,7 @@ import {Component, OnInit} from 'angular2/core';
 import {BackTabComponent} from '../../components/backtab/backtab.component';
 import {TitleComponent} from '../../components/title/title.component';
 import {WidgetModule} from "../../modules/widget/widget.module";
-import {Router,ROUTER_DIRECTIVES} from 'angular2/router';
+import {Router,ROUTER_DIRECTIVES, RouteParams} from 'angular2/router';
 import {GlobalPage} from '../../global/global-service';
 import {AboutUsPageInterface} from '../../global/global-interface';
 import {GlobalFunctions} from '../../global/global-functions';

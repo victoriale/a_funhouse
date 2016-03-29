@@ -3,5 +3,5 @@
     <span *ngFor="#infoList of infoList | slice:0:4">
         <info-list [infoList]="infoList"></info-list>
     </span>
-    <module-footer></module-footer>
+    <pagination-footer [paginationParameters]="paginationParameters" (newIndex)="testEvent($event)"></pagination-footer>
 </section>

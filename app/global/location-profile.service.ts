@@ -152,7 +152,7 @@ export class LocationProfileService{
               )
               .map(
                   data => {
-                      return data.data;
+                      return data;
                   }
               )
       }
