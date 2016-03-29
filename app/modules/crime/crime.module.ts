@@ -70,8 +70,8 @@ export class CrimeModule implements OnInit{
             //Location Crime Module
             var paramLocation: string = this._params.get('loc');
             var paramCity: string = this.globalFunctions.toTitleCase(paramLocation.split('_')[0]);
+            paramCity = this.globalFunctions.toTitleCase(paramCity.replace(/%20/g, " "));
             var paramState: string = paramLocation.split('_')[1];
-
             this.moduleTitle = 'Crime Activity In ' + paramCity + ', ' + paramState;
         }else if(this.profileType === 'ProfilePage'){
             //Listing Crime Module
@@ -80,7 +80,6 @@ export class CrimeModule implements OnInit{
             var paramCity = paramAddress [paramAddress.length - 2];
             var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
             var address = tempArr.join(' ');
-
             this.moduleTitle = 'Crime Activity In and Around ' + address + ' ' + paramCity + ', ' + paramState;
         }
     }

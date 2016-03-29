@@ -6,6 +6,8 @@ import {DirectoryService} from '../../global/directory.service';
 import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
 
+declare var moment: any;
+
 @Component({
     selector: 'Directory-page',
     templateUrl: './app/webpages/directory-page/directory.page.html',
@@ -330,7 +332,7 @@ export class DirectoryPage {
         data.forEach(function(item, index){
             var listing = {};
 
-            listing['lastUpdated'] = item.listingDate === null ? null : 'Last Updated: ' + item.listingDate;
+            listing['lastUpdated'] = item.modificationTimestamp === null ? null : 'Last Updated: ' + moment(item.modificationTimestamp).format('YYYY-MM-DD');
             listing['addressKey'] = item.addressKey;
             listing['address'] = item.fullStreetAddress;
             listing['city'] = item.city;

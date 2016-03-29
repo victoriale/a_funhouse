@@ -195,6 +195,20 @@ img{
   -o-user-select: none;
   user-select: none;
 }
+
+
+/*******************/
+/* @Global Classes */
+/*******************/
+
+.no-select{
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
 /***************/
 /* @Code Styles */
 /***************/
@@ -412,3 +426,9 @@ code.less-var-name-light {
   min-width: 0 !important;
   min-height: 0 !important;
 }
+
+
+//for possibilities of making reactive site
+@mobileView:      ~"only screen and (max-width: 768px)";
+@tabletView:      ~"only screen and (min-width: 769px) and (max-width: 1024px)";
+@desktopView:     ~"only screen and (min-width: 1025px)";

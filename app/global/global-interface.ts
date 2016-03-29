@@ -15,7 +15,7 @@ export interface MagOverview {
     pageTitle?: string;
     menuTitle?: string;
     address?: address;
-    price?: number;
+    price?: any;
     key?: string;
     content?: string[];
     photos?: string[];
@@ -88,7 +88,7 @@ export interface address {
 
 export interface MagMap {
     key?: string;
-    photo?: string;
+    photos?: string[];
     address?: address;
     list_price?: number;
 }
