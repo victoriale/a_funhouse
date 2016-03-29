@@ -26,7 +26,7 @@ export class MediaFeatureModule implements OnInit {
 
   private propertyData: any;//data to send from module into components
   private date;
-  expand: boolean = true;
+  expand: boolean = false;
   lastUpdated = "";
   image_url = './app/public/placeholder_XL.png';
   featureHeading = "Features Of This Property";

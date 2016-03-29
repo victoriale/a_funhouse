@@ -22,7 +22,7 @@ export class TrendingHomes implements OnInit {
     carouselData: any = [];
     listData:any = [];
     headerData: any;
-    expand:boolean = true;
+    expand:boolean = false;
     data: any;
     public index: number = 0;
     @Input() trendingHomesData: any;
