@@ -191,11 +191,11 @@ export class ListPage {
       newData['url3'] = "PropertyOverview";
 
       var carData = {
-        heading:val.addressKey.replace(/-/g, ' '),
+        heading:'Featured Listing',
         image_url:val.photos[0],
         listing_price: "$"+val.listPrice,
         listing_area: livingArea + " sqft",
-        listing_addr1: formattedDate,
+        listing_addr1: val.addressKey.replace(/-/g, ' '),
         listing_addr2:val.loc + ' - ' + val.postalCode,
       };
       carData['url1'] = "../../Magazine";
