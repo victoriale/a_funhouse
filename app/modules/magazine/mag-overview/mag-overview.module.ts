@@ -29,10 +29,12 @@ export class MagOverviewModule implements OnInit {
             .subscribe(
                 magData => {
                     this.magOverview = magData.overview;
-                    if (typeof magData.overview.price === 'string') {
+                    if (typeof magData.overview.price === 'string' && magData.overview != 'undefined') {
                         this.contactAgent = magData.overview.price;
-                    } else{
-                        this.price = +magData.overview.price;
+                    } else {
+                        if (magData.overview != 'undefined') {
+                            this.price = +magData.overview.price;
+                        }
                     }
                 },
                 err => console.log("error in getData", err)
