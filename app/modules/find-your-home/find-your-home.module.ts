@@ -39,7 +39,7 @@ export class FindYourHomeModule implements OnInit{
 
     // Get selected radio input value for property type
     onClickPropertyType() {
-        this.filterType = jQuery('input:checked').val()
+        this.filterType = jQuery('input:checked').val();
         console.log(this.filterType);
     }
 
@@ -67,6 +67,11 @@ export class FindYourHomeModule implements OnInit{
         console.log(this.filterLot);
     }
 
+    onClearClick() {
+        this.moveBall('minBall', 0);
+        this.moveBall('maxBall', 632);
+    }
+
     onViewClick() {
         // Params to send to list page
         this.filterMinPrice = this.filterMinPrice * 1000;
@@ -76,6 +81,42 @@ export class FindYourHomeModule implements OnInit{
 
         // Send router to list page with query params attached
         this._router.navigate(['List-page', {listname: 'filter', state: this.locState, city: this.locCity, limit: '10', page: '1', filterMinPrice: this.filterMinPrice, filterMaxPrice: this.filterMaxPrice, filterBedrooms: this.filterBedrooms, filterBathrooms: this.filterBathrooms, filterSqFeet: this.filterSqFeet, filterLot: this.filterLot, filterType: this.filterType}]);
+    }
+
+    onInputFocus($event) {
+        var stringVal = jQuery(event.target)[0].value;
+        if ( stringVal.indexOf('.') != -1 ) {
+            stringVal = this.numberToCommaNumber(stringVal.replace('$','').replace('.','').replace('M','00000').replace('K','000').replace('+',''));
+        } else {
+            stringVal = this.numberToCommaNumber(stringVal.replace('$','').replace('M','000000').replace('K','000').replace('+',''));
+        }
+        jQuery(event.target).val(stringVal);
+        if ( jQuery(event.target)[0].setSelectionRange ) {
+            jQuery(event.target)[0].setSelectionRange(99,100);
+        }
+    }
+
+    onInputBlur($event) {
+        var stringVal = jQuery(event.target)[0].value;
+        stringVal = stringVal.replace(/,/g,'');
+        var xPos = Math.round(this.logslider(Number(stringVal)/1000,1));
+        if ( jQuery(jQuery(event.target)[0].parentElement).is('#minBall') ) {
+            if ( !this.moveBall('minBall',xPos) ) {
+                this.moveBall('minBall', undefined);
+                return true;
+            }
+        } else if ( jQuery(jQuery(event.target)[0].parentElement).is('#maxBall') ) {
+            if ( !this.moveBall('maxBall',xPos) ) {
+                this.moveBall('maxBall', undefined);
+                return true;
+            }
+        }
+        if ( stringVal.toString().length > 6 ) {
+            stringVal = "$" + (Math.round(Number(stringVal)/100000)/10) + "M";
+        } else {
+            stringVal = "$" + Math.round(Number(stringVal)/1000) + "K";
+        }
+        jQuery(event.target)[0].value = stringVal;
     }
 
     onClickBall($event) {
@@ -198,6 +239,10 @@ export class FindYourHomeModule implements OnInit{
         } else {
             return false;
         }
+    }
+
+    numberToCommaNumber(Number) {
+        return Number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
     ngOnInit() {
