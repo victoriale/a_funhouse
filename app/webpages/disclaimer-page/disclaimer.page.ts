@@ -21,14 +21,7 @@ export class DisclaimerPage implements OnInit{
     pageName = "";
     pageLink = "";
     heading = "Disclaimer";
-    disclaimer1 = "";
-    disclaimer2 = "";
-    disclaimer3 = "";
-    disclaimer4 = "";
-    disclaimer5 = "";
-    disclaimer6 = "";
-    disclaimer7 = "";
-    disclaimer8 = "";
+    disclaimer = "";
     public partnerParam: string;
     public partnerID: string;
     title_data: {};
@@ -52,17 +45,16 @@ export class DisclaimerPage implements OnInit{
         // Scroll page to top to fix routerLink bug
         let partnerParam = this.injector.get(WebApp);
         this.partnerID = partnerParam.partnerID;
-        console.log(partnerParam, this.partnerID);
         window.scrollTo(0, 0);
     }
 
     getData(){
       if(this.partnerID === null ){
         this.pageName = "Joyful Home";
-        this.pageLink = "www.joyfulhome.com";
+        this.pageLink = "http://www.joyfulhome.com";
       } else {
         this.pageName = "My HouseKit";
-        this.pageLink = "www.myhousekit.com/" + this.partnerID;
+        this.pageLink = "http://www.myhousekit.com/" + this.partnerID;
       }
       //disclaimer data
       this.title_data = {
@@ -76,14 +68,7 @@ export class DisclaimerPage implements OnInit{
           icon: 'fa fa-map-marker',
           hasHover: false
       };
-      this.disclaimer1 = "";
-      this.disclaimer2 = "All the information on this website is published in good faith and for general information purpose only. " + this.pageLink + " does not make any warranties about the completeness, reliability and accuracy of this information. Any action you take upon the information you find on this website (" + this.pageLink + "), is strictly at your own risk. " + this.pageLink + " will not be liable for any losses and/or damages in connection with the use of our website.";
-      this.disclaimer3 = "From our website, you can visit other websites by following hyperlinks to such external sites. While we strive to provide only quality links to useful and ethical websites, we have no control over the content and nature of these sites. These links to other websites do not imply a recommendation for all the content found on these sites. Site owners and content may change without notice and may occur before we have the opportunity to remove a link which may have gone 'bad'.";
-      this.disclaimer4 = 'Please be also aware that when you leave our website, other sites may have different privacy policies and terms which are beyond our control. Please be sure to check the Privacy Policies of these sites as well as their "Terms of Service" before engaging in any business or uploading any information.';
-      this.disclaimer5 = "By using " + this.pageLink + ", you hereby consent to our disclaimer and agree to its terms.";
-      this.disclaimer6 = "This site disclaimer was last updated on Saturday, December 19, 2015. ";
-      this.disclaimer7 = "Should we update, amend or make any changes to this document, those changes will be prominently posted here.";
-      this.disclaimer8 = "If you require any more information or have any questions about our site's disclaimer, please feel free to contact us by email at " + this.pageLink + "/contactus.";
+    this.disclaimer = "<p></p><p>All the information on this website is published in good faith and for general information purpose only. <a href='"+this.pageLink+"'>"+this.pageLink+"</a> does not make any warranties about the completeness, reliability and accuracy of this information. Any action you take upon the information you find on this website ("+this.pageLink+"), is strictly at your own risk."+this.pageLink+"will not be liable for any losses and/or damages in connection with the use of our website.</p><p>From our website, you can visit other websites by following hyperlinks to such external sites. While we strive to provide only quality links to useful and ethical websites, we have no control over the content and nature of these sites. These links to other websites do not imply a recommendation for all the content found on these sites. Site owners and content may change without notice and may occur before we have the opportunity to remove a link which may have gone 'bad'.</p><p>Please be also aware that when you leave our website, other sites may have different privacy policies and terms which are beyond our control. Please be sure to check the Privacy Policies of these sites as well as their 'Terms of Service' before engaging in any business or uploading any information.</p><br/><div class='au-desc-headline'><b>Consent</b></div><p>By using "+this.pageLink+", you hereby consent to our disclaimer and agree to its terms.</p><br/><div class='au-desc-headline'><b>Update</b></div><p>This site disclaimer was last updated on Saturday, December 19, 2015. </p><p style='font-style: italic; font-size: 12px; line-height: 0px;'>Should we update, amend or make any changes to this document, those changes will be prominently posted here.</p><br/><div class='au-desc-headline'><b>Contact Us</b></div><p>If you require any more information or have any questions about our site's disclaimer, please feel free to contact us by email at <a href='"+this.pageLink+"/contactus'>"+this.pageLink+"/contactus</a>.</p><br/>";
     }
 
     ngOnInit(){
