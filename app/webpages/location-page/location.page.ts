@@ -138,8 +138,10 @@ export class LocationPage implements OnInit {
     ngOnInit() {
         if(this.partnerID === null ){
           this.partnerCheck = false;
+          this.pageName = "Joyful Home";
         } else {
           this.partnerCheck = true;
+          this.pageName = "My HouseKit";
         }
         this.loc = this._params.get('loc');
         this.locCity = decodeURI(this.loc.split('_')[0]);
@@ -162,7 +164,7 @@ export class LocationPage implements OnInit {
         };
 
         this.headlineInteract = {
-            title: 'Interact with Joyful Home',
+            title: 'Interact with ' + this.pageName,
             icon: 'fa-comment-o'
         };
 
