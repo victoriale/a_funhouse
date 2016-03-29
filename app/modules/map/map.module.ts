@@ -35,7 +35,7 @@ export class MapModule implements OnChanges{
             if(data[i].latitude !== null && data[i].longitude){
                 var latLng = new google.maps.LatLng(parseFloat(data[i].latitude), parseFloat(data[i].longitude));
                 var mapOptions = {
-                    zoom: 10,
+                    zoom: 11,
                     center: latLng
                 };
                 break;
