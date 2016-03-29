@@ -70,7 +70,6 @@ export class PaginationFooter implements OnChanges{
     //Verifies component input. If any issues are detected console warning is thrown
     verifyInput(){
         var input = this.paginationParameters;
-        console.log(input);
         try{
             //Check if input is defined at all
             if(typeof input === 'undefined'){
@@ -147,7 +146,6 @@ export class PaginationFooter implements OnChanges{
         }else{
             this.showMaxSkip = false;
         }
-        console.log(index, max, range,this.paginationButtonsModule, this.showMinSkip, this.showMaxSkip);
     }
 
     //Build button(anchor tag) structure for pagination Type page
