@@ -40,31 +40,31 @@ export class FindYourHomeModule implements OnInit{
     // Get selected radio input value for property type
     onClickPropertyType() {
         this.filterType = jQuery('input:checked').val();
-        console.log(this.filterType);
+        //console.log(this.filterType);
     }
 
     // Get selected select value for number bedrooms
     onSelectBedrooms() {
         this.filterBedrooms = jQuery('#select-bedrooms').val();
-        console.log(this.filterBedrooms);
+        //console.log(this.filterBedrooms);
     }
 
     // Get selected select value for number bathrooms
     onSelectBathrooms() {
         this.filterBathrooms = jQuery('#select-bathrooms').val();
-        console.log(this.filterBathrooms);
+        //console.log(this.filterBathrooms);
     }
 
     // Get selected select value for Sq Feet
     onSelectSqFeet() {
         this.filterSqFeet = jQuery('#select-square-feet').val();
-        console.log(this.filterSqFeet);
+        //console.log(this.filterSqFeet);
     }
 
     // Get selected select value for number bathrooms
     onSelectLotSize() {
         this.filterLot = jQuery('#select-lot-size').val();
-        console.log(this.filterLot);
+        //console.log(this.filterLot);
     }
 
     onClearClick() {
