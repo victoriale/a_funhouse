@@ -23,6 +23,7 @@ export class TilesComponent implements OnInit{
     ngOnChanges(){
       if(typeof this.tile_data != 'undefined'){
         var tile_data = this.tile_data;
+        console.log("Tiles Data",tile_data);
     }
     }
     ngOnInit(){}
