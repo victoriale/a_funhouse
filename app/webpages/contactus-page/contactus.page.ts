@@ -33,7 +33,7 @@ export class ContactUsPage implements OnInit{
         //Contact us data
         this.title_data = {
             imageURL : './app/public/joyfulhome_house.png',
-            smallText1 : 'Last Updated: Monday, February 26, 2016',
+            smallText1 : 'Last Updated: Friday, February 26, 2016',
             smallText2 : ' United States of America',
             heading1 : 'Contact Us',
             heading2 : '',

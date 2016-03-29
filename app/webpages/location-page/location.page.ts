@@ -7,23 +7,27 @@ import {CrimeModule} from '../../modules/crime/crime.module';
 import {FeaturedListsModule} from '../../modules/featured_lists/featured_lists.module';
 import {InfoListModule} from "../../modules/infolist/info-list.module";
 import {CommentModule} from '../../modules/comment/comment.module';
+import {ListOfListModule} from "../../modules/listoflist/listoflist.module";
 import {LikeUs} from '../../modules/likeus/likeus.module';
 import {ShareModule} from '../../modules/share/share.module';
 import {AboutUsModule} from '../../modules/aboutus/aboutus.module';
 import {SchoolModule} from "../../modules/school/school.module";
 import {LocationProfileService} from '../../global/location-profile.service';
+import {ListOfListPage} from '../../global/global-service';
 import {WidgetModule} from "../../modules/widget/widget.module";
 import {FindYourHomeModule} from "../../modules/find-your-home/find-your-home.module";
 import {MapModule} from '../../modules/map/map.module';
 import {AmenitiesModule} from "../../modules/amenities/amenities.module";
 import {TrendingHomes} from "../../modules/trending-homes/trending-homes.module";
+import {Injector} from 'angular2/core';
+import {WebApp} from '../../app-layout/app.layout';
 
 @Component({
     selector: 'location-page',
     templateUrl: './app/webpages/location-page/location.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, FindYourHomeModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule, WidgetModule, AmenitiesModule, TrendingHomes, MapModule],
-    providers: [LocationProfileService],
+    directives: [ListOfListModule, HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, FindYourHomeModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule, WidgetModule, AmenitiesModule, TrendingHomes, MapModule],
+    providers: [ListOfListPage, LocationProfileService],
 })
 
 export class LocationPage implements OnInit {
@@ -35,6 +39,7 @@ export class LocationPage implements OnInit {
     public headlineCrime: any;
     public headlineSchool: any;
     public headlineInteract: any;
+    public lists: any;
     public profileHeaderData: Object;
     public featuredListData: Object;
     public crimeData: Object;
@@ -43,8 +48,13 @@ export class LocationPage implements OnInit {
     public amenitiesData: Object;
     public trendingHomesData: Object;
     public trendingFeature = true;
+    public partnerParam: string;
+    public partnerID: string;
+    public partnerCheck: boolean;
 
-    constructor(private _params: RouteParams, private _locationProfileService: LocationProfileService) {
+    constructor(private injector:Injector, private _params: RouteParams, private _locationProfileService: LocationProfileService, private _listService: ListOfListPage) {
+        let partnerParam = this.injector.get(WebApp);
+        this.partnerID = partnerParam.partnerID;
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }
@@ -118,7 +128,21 @@ export class LocationPage implements OnInit {
           )
     }
 
+    getListOfList() {
+        this._listService.getListOfListPage(this.locState, this.locCity)
+        .subscribe(lists => {
+          this.lists = lists
+        });
+    }
+
     ngOnInit() {
+        if(this.partnerID === null ){
+          this.partnerCheck = false;
+          this.pageName = "Joyful Home";
+        } else {
+          this.partnerCheck = true;
+          this.pageName = "My HouseKit";
+        }
         this.loc = this._params.get('loc');
         this.locCity = decodeURI(this.loc.split('_')[0]);
         this.locState = decodeURI(this.loc.split('_')[1]);
@@ -140,11 +164,9 @@ export class LocationPage implements OnInit {
         };
 
         this.headlineInteract = {
-            title: 'Interact with Joyful Home',
+            title: 'Interact with ' + this.pageName,
             icon: 'fa-comment-o'
         };
-
-        console.log('City, State: ', this.locDisplay);
 
         this.getProfileHeader();
         this.getTrendingListings();
@@ -153,7 +175,7 @@ export class LocationPage implements OnInit {
         this.getRecentListings();
         this.getSchoolData();
         this.getAmenitiesData();
-        console.log(this);
+        this.getListOfList();
     }
 
 }

@@ -32,7 +32,8 @@ export class AmenitiesListPage implements OnInit{
   public locState: string;
   public profileType: string;
   private amenitiesData: any;
-
+  providerUrl = 'http://www.yelp.com/';
+  providerLogo = './app/public/amenities_yelp.png';
   @Input() amenitiesNearListingData: any;
 
   constructor(private _params: RouteParams, private router: Router, private globalFunctions: GlobalFunctions,  private _locationService: LocationProfileService, params: RouteParams){

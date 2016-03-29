@@ -3,8 +3,8 @@
     <div *ngIf="!magazineData" class="page-loading">
         <img src="../../app/public/page_loading.gif" />
     </div>
+    <router-outlet></router-outlet>
     <span *ngIf="magazineData">
-        <router-outlet></router-outlet>
         <mag-nav-left-component [toc]="toc"></mag-nav-left-component>
         <mag-nav-right-component [toc]="toc"></mag-nav-right-component>
         <mag-footer-component [toc]="toc"></mag-footer-component>

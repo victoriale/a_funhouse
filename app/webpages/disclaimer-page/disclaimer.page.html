@@ -19,19 +19,9 @@
                           </div>
                         </div>
 
-                        <div class="au-desc">
-                            <p>{{disclaimer1}}</p><p>{{disclaimer2}}</p>
-                            <p>{{disclaimer3}}</p><p>{{disclaimer4}}</p><br/>
-                            <div class="au-desc-headline"><b>Consent</b></div>
-                            <p>{{disclaimer5}}</p><br/>
-                            <div class="au-desc-headline"><b>Update</b></div>
-                            <p>{{disclaimer6}}</p>
-                            <p style="font-style: italic; font-size: 12px; line-height: 0px;">{{disclaimer7}}</p><br/>
-                            <div class="au-desc-headline"><b>Contact Us</b></div>
-                            <p>{{disclaimer8}}</p><br/>
-                        </div>
+                        <div class="au-desc" *ngIf="disclaimer" [innerHTML]="disclaimer"></div>
                     </div>
-                </section> 
+                </section>
                 <div class="four-col">
                     <widget-module></widget-module>
                 </div>
