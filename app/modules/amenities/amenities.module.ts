@@ -40,6 +40,7 @@ export class AmenitiesModule implements OnInit{
             //Location Crime Module
             var paramLocation: string = this._params.get('loc');
             var paramCity: string = this.globalFunctions.toTitleCase(paramLocation.split('_')[0]);
+            paramCity = this.globalFunctions.toTitleCase(paramCity.replace(/%20/g, " "));
             var paramState: string = paramLocation.split('_')[1];
             this.moduleTitle = 'Top Rated Amenities In and Around ' + paramCity + ', ' + paramState;
         }else if(this.profileType === 'ProfilePage'){

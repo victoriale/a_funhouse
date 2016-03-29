@@ -35,8 +35,8 @@ export class FeaturedListsModule implements OnInit{
 
             var paramLocation: string = this._params.get('loc');
             var paramCity: string = this.globalFunctions.toTitleCase(paramLocation.split('_')[0]);
+            paramCity = this.globalFunctions.toTitleCase(paramCity.replace(/%20/g, " "));
             var paramState: string = paramLocation.split('_')[1];
-
             this.moduleTitle = 'Featured Lists for ' + paramCity + ', ' + paramState;
         }else if(this.profileType === 'ProfilePage'){
             //Listing Crime Module
