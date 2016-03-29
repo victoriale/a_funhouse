@@ -125,6 +125,8 @@ export class MagazinePage {
 
     ngAfterViewChecked() {
         this.buildNavigationElements();
+        //removes min-height that is used on joyfulHome page.
+        jQuery('.page-wrapper').css('min-height', 0);
     }
 
 }

@@ -1,6 +1,6 @@
 <div class="overview-page">
     <magazine-carousel-module [magOverview]="magOverview"></magazine-carousel-module>
-    <div class="mag_container mag_text">
+    <div class="mag_container mag_text" (window:resize)="onResize($event)">
         <div class='mag_po_address'>
             <i class='fa fa-map-marker'></i>
             {{magOverview?.address?.fullStreetAddress}}
