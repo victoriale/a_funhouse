@@ -70,7 +70,7 @@ export class PaginationFooter implements OnChanges{
     //Verifies component input. If any issues are detected console warning is thrown
     verifyInput(){
         var input = this.paginationParameters;
-
+        console.log(input);
         try{
             //Check if input is defined at all
             if(typeof input === 'undefined'){
@@ -147,6 +147,7 @@ export class PaginationFooter implements OnChanges{
         }else{
             this.showMaxSkip = false;
         }
+        console.log(index, max, range,this.paginationButtonsModule, this.showMinSkip, this.showMaxSkip);
     }
 
     //Build button(anchor tag) structure for pagination Type page
@@ -160,6 +161,7 @@ export class PaginationFooter implements OnChanges{
         var navigationPage = this.paginationParameters.navigationPage;
         var indexKey = this.paginationParameters.indexKey;
 
+        console.log(index, max, range, navigationPage, indexKey);
         //Determine values before index that can be added to button array
         for(var p = range; p > 0; p--){
             if(index - p >= 1){
@@ -239,7 +241,6 @@ export class PaginationFooter implements OnChanges{
             params[indexKey] = max;
         }
         this.nextButtonParameters = params;
-
     }
 
     //Copy object of input navigationParameters
