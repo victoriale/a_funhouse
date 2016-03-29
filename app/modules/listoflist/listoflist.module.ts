@@ -20,7 +20,7 @@ export class ListOfListModule {
     public state: string;
     public city: string;
     public lists: Array<any> = [];
-    public listOfLists: Array<Object>;
+    public listOfLists: Array<any>;
     public paginationParameters: Object;
     public index: number = 1;
 
@@ -30,7 +30,6 @@ export class ListOfListModule {
     transformData() {
         var self = this;
         var index = this.index;
-        //var counter = 1;
         var displayArray = [];
         //Minus 1 for 0 based indexing
         var startIndex = ((index - 1) * 3);
@@ -43,7 +42,7 @@ export class ListOfListModule {
                 continue;
             }
             //Initialize List Item Object
-            var arrayItem: Object<any> = {};
+            var arrayItem: any = {};
 
             //Determine if item is even or odd
             if(i % 2 === 0){
@@ -58,7 +57,7 @@ export class ListOfListModule {
 
             //Add data for small images to listData array if it exists
             if(listItem !== null && listItem.listData.length > 0){
-                var smallImagesData = [];
+                var tempListData = [];
 
                 listItem.listData.forEach(function(item, index){
                     //Add placeholder image if no image exists
@@ -66,11 +65,11 @@ export class ListOfListModule {
                         item.photo = 'app/public/no_photo_images/House_1.png';
                     }
                     //Push items with sanitized photo urls
-                    smallImagesData.push(item);
+                    tempListData.push(item);
                 });
 
                 //Assign list data to array item
-                arrayItem.listData = smallImagesData;
+                arrayItem.listData = tempListData;
             }
 
 
