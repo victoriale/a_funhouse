@@ -19,6 +19,8 @@ import {FindYourHomeModule} from "../../modules/find-your-home/find-your-home.mo
 import {MapModule} from '../../modules/map/map.module';
 import {AmenitiesModule} from "../../modules/amenities/amenities.module";
 import {TrendingHomes} from "../../modules/trending-homes/trending-homes.module";
+import {Injector} from 'angular2/core';
+import {WebApp} from '../../app-layout/app.layout';
 
 @Component({
     selector: 'location-page',
@@ -46,8 +48,13 @@ export class LocationPage implements OnInit {
     public amenitiesData: Object;
     public trendingHomesData: Object;
     public trendingFeature = true;
+    public partnerParam: string;
+    public partnerID: string;
+    public partnerCheck: boolean;
 
-    constructor(private _params: RouteParams, private _locationProfileService: LocationProfileService, private _listService: ListOfListPage) {
+    constructor(private injector:Injector, private _params: RouteParams, private _locationProfileService: LocationProfileService, private _listService: ListOfListPage) {
+        let partnerParam = this.injector.get(WebApp);
+        this.partnerID = partnerParam.partnerID;
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }
@@ -129,6 +136,11 @@ export class LocationPage implements OnInit {
     }
 
     ngOnInit() {
+        if(this.partnerID === null ){
+          this.partnerCheck = false;
+        } else {
+          this.partnerCheck = true;
+        }
         this.loc = this._params.get('loc');
         this.locCity = decodeURI(this.loc.split('_')[0]);
         this.locState = decodeURI(this.loc.split('_')[1]);
@@ -154,8 +166,6 @@ export class LocationPage implements OnInit {
             icon: 'fa-comment-o'
         };
 
-        console.log('City, State: ', this.locDisplay);
-
         this.getProfileHeader();
         this.getTrendingListings();
         this.getFeaturedList();
@@ -164,7 +174,6 @@ export class LocationPage implements OnInit {
         this.getSchoolData();
         this.getAmenitiesData();
         this.getListOfList();
-        console.log(this);
     }
 
 }

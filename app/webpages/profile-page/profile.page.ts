@@ -22,6 +22,8 @@ import {MapModule} from '../../modules/map/map.module';
 import {ListOfListPage} from '../../global/global-service';
 import {magazineBanner} from '../../modules/mag_banner/mag_banner.module';
 import {magazineModule} from '../../modules/mag_module/mag_module';
+import {Injector} from 'angular2/core';
+import {WebApp} from '../../app-layout/app.layout';
 
 @Component({
     selector: 'profile-page',
@@ -44,6 +46,7 @@ export class ProfilePage implements OnInit{
     public lists: any;
     public mediaFeature: boolean = false;
     public trendingFeature: boolean = true;
+    public partnerCheck: boolean;
     public trendingHomesData: Object;
     public profileHeaderData: Object;
     public propertyListingData: Object;
@@ -51,9 +54,13 @@ export class ProfilePage implements OnInit{
     public mapData: Object;
     public featuredListData: Object;
     public amenitiesData: Object;
+    public partnerParam: string;
+    public partnerID: string;
     //  Get current route name
-    constructor(public _params: RouteParams, private _listingProfileService: ListingProfileService, params: RouteParams, private _listService:ListOfListPage){
+    constructor(private injector:Injector, public _params: RouteParams, private _listingProfileService: ListingProfileService, params: RouteParams, private _listService:ListOfListPage){
         // Scroll page to top to fix routerLink bug
+        let partnerParam = this.injector.get(WebApp);
+        this.partnerID = partnerParam.partnerID;
         window.scrollTo(0, 0);
         this.paramAddress = params.get('address');
     }
@@ -139,8 +146,14 @@ export class ProfilePage implements OnInit{
       this.state = paramState;
       this.address = address + ', ' + paramCity + ', ' + paramState;
     }
+
     ngOnInit(){
       //Run each call
+        if(this.partnerID === null ){
+          this.partnerCheck = false;
+        } else {
+          this.partnerCheck = true;
+        }
         this.getAddress();
         this.getProfileHeader();
         this.getCrime();

@@ -35,7 +35,9 @@
                     <!--Share Module-->
                     <share-module></share-module>
                     <!--Like Us On FB Module-->
-                    <like-us-module></like-us-module>
+                    <section *ngIf="!partnerCheck">
+                      <like-us-module></like-us-module>
+                    </section>
                     <!--Learn More About Us-->
                     <about-us-module></about-us-module>
 
