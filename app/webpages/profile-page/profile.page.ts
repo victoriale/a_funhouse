@@ -38,6 +38,7 @@ export class ProfilePage implements OnInit{
     address: string;
     city: string;
     state: string;
+    public pageName: string;
     public headlineAbout: any;
     public headlineCrime: any;
     public headlineAmenities: any;
@@ -151,8 +152,10 @@ export class ProfilePage implements OnInit{
       //Run each call
         if(this.partnerID === null ){
           this.partnerCheck = false;
+          this.pageName = "Joyful Home";
         } else {
           this.partnerCheck = true;
+          this.pageName = "My HouseKit";
         }
         this.getAddress();
         this.getProfileHeader();
@@ -180,7 +183,7 @@ export class ProfilePage implements OnInit{
             icon: 'fa-heart-o'
         };
         this.headlineInteract = {
-            title: 'Interact with Joyful Home',
+            title: 'Interact with ' + this.pageName,
             icon: 'fa-comment-o'
         };
     }

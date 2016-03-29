@@ -1,9 +1,9 @@
 <section class="module-container">
     <module-header [module_title]="module_title"></module-header>
-    <div style="width:100%; height:auto; max-height:500px;position:relative">
+    <div class="lists-container">
       <span *ngFor="#item of lists">
         <contentlist [data]="item" [cityLocation]="city" [stateLocation]="state"></contentlist>
       </span>
     </div>
-    <module-footer [data]="data"></module-footer>
+    <pagination-footer *ngIf="paginationParameters" [paginationParameters]="paginationParameters" (newIndex)="newIndex($event)"></pagination-footer>
 </section>
