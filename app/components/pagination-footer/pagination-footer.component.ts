@@ -1,5 +1,6 @@
 import {Component, Input, Output, OnInit, OnChanges, EventEmitter} from 'angular2/core';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
+declare var jQuery: any;
 
 @Component({
     selector: 'pagination-footer',
@@ -20,12 +21,12 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 
     Input - paginationParameters
         {
-            -index: number, //Required - Determines what index is selected
-            -max: number, //Required - Determines the max index that can be selected
-            -paginationType: string, //Required - Determines what kind of pagination footer this is (options are module or page. modules make the pagination navigation buttons. page makes the pagination navigation anchor tags.)
+            index: number, //Required - Determines what index is selected
+            max: number, //Required - Determines the max index that can be selected
+            paginationType: string, //Required - Determines what kind of pagination footer this is (options are module or page. modules make the pagination navigation buttons. page makes the pagination navigation anchor tags.)
 
-            -viewAllPage: string, //Optional - This is the page used for routerLink in the view all button. (Both this and viewAllParams must be defined for the view all button to show)
-            -viewAllParams: Object, //Optional - This is the parameters used for routerLink in the view all button. (Both this and viewAllPage must be defined for the view all button to show)
+            viewAllPage: string, //Optional - This is the page used for routerLink in the view all button. (Both this and viewAllParams must be defined for the view all button to show)
+            viewAllParams: Object, //Optional - This is the parameters used for routerLink in the view all button. (Both this and viewAllPage must be defined for the view all button to show)
 
             navigationPage: string, //Required for pagination Type page - This is the page used for routerLink for the navigation anchor tags
             navigationParams: Object, //Required for pagination Type page - This is the parameters used for routerLink for the navigation anchor tags.
@@ -159,7 +160,6 @@ export class PaginationFooter implements OnChanges{
         var navigationPage = this.paginationParameters.navigationPage;
         var indexKey = this.paginationParameters.indexKey;
 
-        console.log(index, max, range, navigationPage, indexKey);
         //Determine values before index that can be added to button array
         for(var p = range; p > 0; p--){
             if(index - p >= 1){
@@ -253,7 +253,7 @@ export class PaginationFooter implements OnChanges{
 
     //Function to navigate number buttons for paginationType module
     indexClick(event){
-        var newIndex = Number(event.target.innerText);
+        var newIndex = Number(jQuery(event.target).html());
         //Send new index to output event emitter
         this.newIndex.next(newIndex);
 
