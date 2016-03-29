@@ -20,12 +20,14 @@ import {ListingProfileService} from '../../global/listing-profile.service';
 import {WidgetModule} from "../../modules/widget/widget.module";
 import {MapModule} from '../../modules/map/map.module';
 import {ListOfListPage} from '../../global/global-service';
+import {magazineBanner} from '../../modules/mag_banner/mag_banner.module';
+import {magazineModule} from '../../modules/mag_module/mag_module';
 
 @Component({
     selector: 'profile-page',
     templateUrl: './app/webpages/profile-page/profile.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [TrendingHomes, MediaImages, HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs, ShareModule, FeaturedListsModule, AmenitiesModule, WidgetModule, MapModule],
+    directives: [magazineModule, magazineBanner, TrendingHomes, MediaImages, HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs, ShareModule, FeaturedListsModule, AmenitiesModule, WidgetModule, MapModule],
     providers: [ListOfListPage, ListingProfileService]
 })
 

@@ -7,13 +7,13 @@
 
                     <!-- About Section -->
                     <headline-component [data]="headlineAbout"></headline-component>
-
+                    <mag-banner-module [listing]="paramAddress"></mag-banner-module>
                     <!--Listing Profile Header-->
                     <profile-header *ngIf="profileHeaderData" [profileHeaderData]="profileHeaderData"></profile-header>
 
                     <!--Media Feature Section-->
                     <media-features-module [trending]="mediaFeature"></media-features-module>
-
+                    <mag-module *ngIf="profileHeaderData" [listing]="paramAddress" [magImg]="profileHeaderData.listingImage"></mag-module>
                     <!--Map Section-->
                     <map-module *ngIf="mapData" [mapData]="mapData"></map-module>
 
