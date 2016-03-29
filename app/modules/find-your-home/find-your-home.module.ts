@@ -68,6 +68,10 @@ export class FindYourHomeModule implements OnInit{
     }
 
     onClearClick() {
+        // Clear radio buttons
+        jQuery('input[name=type]').attr('checked',false);
+        
+        // Reset ball positions
         this.moveBall('minBall', 0);
         this.moveBall('maxBall', 632);
     }
