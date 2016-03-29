@@ -130,7 +130,7 @@ export class ListPage {
             .subscribe(
                 data => {
                     this.transformData(data);
-                    this.setPaginationParams(data);
+                    //this.setPaginationParams(data);
                 },
                 err => console.log(err),
                 () => console.log('FYH Data call success!')
