@@ -137,7 +137,7 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
         component: DynamicListPage
     },
     {
-        path: '/cityview',
+        path: '/cityview/:state/:city',
         name: 'City-view-page',
         component: CityViewPage
     }
