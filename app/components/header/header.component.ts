@@ -30,18 +30,19 @@ export class HeaderComponent implements OnInit{
             .subscribe(
                 route => {
                     this.curRoute = route;
-
-                    //is blank and !partner=true
-                    //is !blank and partner=false
-                    //is !blank and !partner=false
-
                     //is blank and partner=true
-                    if(this.curRoute === ""){
+                    if(this.curRoute == "/home"){
                         this.isHomePage = true;
-                    }else{
+                    }else if(this.partnerID != null){
+                        if(this.curRoute == this.partnerID.replace('.','-') + "/home"){
+                            this.isHomePage = true;
+                        }else {
+                            this.isHomePage = false;
+                        }
+                    }else {
                         this.isHomePage = false;
                     }
-                    console.log('Current Route: ', route, 'isHomepage: ', this.isHomePage)
+                    console.log('Current Route: ', route, 'isHomepage:', this.isHomePage, 'PID', this.partnerID)
                 }
             )
     }
