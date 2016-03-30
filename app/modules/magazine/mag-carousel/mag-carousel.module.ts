@@ -3,19 +3,21 @@ import {MagazinePage} from "../../../app-webpage/magazine.webpage";
 import {MagOverview} from "../../../global/global-interface";
 import {MagazineDataService} from "../../../global/global-mag-service";
 
+declare var jQuery:any;
+
 @Component({
     selector: 'magazine-carousel-module',
     templateUrl: './app/modules/magazine/mag-carousel/mag-carousel.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
 })
 export class MagCarouselModule implements OnInit {
-    @Input() magOverview: MagOverview;
-    length: number;
-    counter: number;
-    left: number;
-    right: number;
-    address: string;
-    imageLength: number;
+    @Input() magOverview:MagOverview;
+    length:number;
+    counter:number;
+    left:number;
+    right:number;
+    address:string;
+    imageLength:number;
 
     constructor(private _injector:Injector) {
         // Scroll page to top to fix routerLink bug
@@ -43,11 +45,15 @@ export class MagCarouselModule implements OnInit {
 
     setupImages() {
         if (this.magOverview) {
-            length = this.magOverview.photos.length;
+            this.length = this.magOverview.photos.length;
+            length = this.length;
             this.counter = 0;
             this.right = this.counter + 1;
             this.left = length - 1;
             this.imageLength = length;
+            if (this.length > 175) {
+                jQuery('.mag_container').css('height', '55vw');
+            }
         }
     }
 
@@ -58,6 +64,6 @@ export class MagCarouselModule implements OnInit {
 
     ngOnChanges() {
         this.setupImages();
-    }
 
+    }
 }
