@@ -1,5 +1,6 @@
 import {Component, OnInit, Input} from 'angular2/core';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
+import {GlobalFunctions} from "../../global/global-functions";
 
 @Component({
     selector: 'mag-banner-module',
@@ -15,20 +16,20 @@ export class magazineBanner {
   showMagazine: boolean = false; //will only show if it is a residential listing
   data: any;
 
-    constructor(
-    ) { }
+  constructor(private globalFunctions: GlobalFunctions) { }
 
-    ngOnInit() {
-      var address:string;
-      if(this.listingData['propertyType'] == 'Residential'){
-        this.showMagazine = true;
-      }
-      address = this.listingData['address'];
-      this.data = {
-        address: address.replace(/-/g, ' '),
-        url1: '../../Magazine',
-        param: {addr: address},
-        url2: 'PropertyOverview',
-      }
+  ngOnInit() {
+    var address:string;
+    if(this.listingData['propertyType'] == 'Residential'){
+      this.showMagazine = true;
     }
+    address = this.listingData['address'];
+    var globeFunc = this.globalFunctions;
+    this.data = {
+      address: globeFunc.toTitleCase(address.replace(/-/g, ' ')),
+      url1: '../../Magazine',
+      param: {addr: address},
+      url2: 'PropertyOverview',
+    }
+  }
 }
