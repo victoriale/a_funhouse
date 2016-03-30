@@ -40,7 +40,7 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
 
 @RouteConfig([
     {
-       path: '/',
+       path: '/home',
        name: 'Home-page',
        component: HomePage,
        useAsDefault: true,

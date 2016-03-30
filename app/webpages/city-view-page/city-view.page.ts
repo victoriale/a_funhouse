@@ -4,12 +4,13 @@ import {ROUTER_DIRECTIVES} from "angular2/router";
 import {WidgetModule} from "../../modules/widget/widget.module";
 import {TitleComponent} from "../../components/title/title.component";
 import {CityViewService} from "../../global/geo-location.service";
+import {HeroListComponent} from "../../components/hero/hero-list/hero-list.component";
 
 @Component({
     selector: 'city-view-page',
     templateUrl: './app/webpages/city-view-page/city-view.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [WidgetModule, TitleComponent, ROUTER_DIRECTIVES],
+    directives: [WidgetModule, TitleComponent, HeroListComponent , ROUTER_DIRECTIVES],
     providers: [CityViewService],
 })
 
