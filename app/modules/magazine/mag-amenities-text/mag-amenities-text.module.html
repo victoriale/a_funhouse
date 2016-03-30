@@ -1,11 +1,8 @@
 <div class="mag_container">
     <div class="mag_container_left">
-        <span *ngIf="hasImage">
-            <img class="mag_half mag_ki_container_img" src="app/public/mag_stock_img/food_types/{{magAmenities?.stockPhotos}}_stock_mag.jpg"/>
-        </span>
-        <span *ngIf="!hasImage">
-            <img class="mag_half mag_ki_container_img" src="app/public/mag_stock_img/food_types/Food_Stands_stock_mag.jpg"/>
-        </span>
+        <img class="mag_half mag_ki_container_img"
+             src="app/public/mag_stock_img/food_types/{{magAmenities?.stockPhotos}}_stock_mag.jpg"
+             onerror="this.src='app/public/mag_stock_img/food_types/Food_Stands_stock_mag.jpg';"/>
     </div>
     <div class="mag_half mag_text">
         <div class="mag_ki_banner" style="margin-top: 1vw">Great Local Amenities</div>
@@ -28,12 +25,9 @@
     </div>
     <div class="mag_container_left">
         <div class="mag_container_left">
-            <span *ngIf="hasImage">
-                <img class="mag_half mag_ki_container_img" src="app/public/mag_stock_img/food_types/{{magAmenities?.stockPhotos}}_alt_stock_mag.jpg"/>
-            </span>
-            <span *ngIf="!hasImage">
-                <img class="mag_half mag_ki_container_img" src="app/public/mag_stock_img/food_types/Food_Stands_alt_stock_mag.jpg"/>
-            </span>
+            <img class="mag_half mag_ki_container_img"
+                 src="app/public/mag_stock_img/food_types/{{magAmenities?.stockPhotos}}_alt_stock_mag.jpg"
+                 onerror="this.src='app/public/mag_stock_img/food_types/Food_Stands_alt_stock_mag.jpg';"/>
         </div>
     </div>
 </div>
