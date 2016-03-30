@@ -42,7 +42,7 @@ export class AmenitiesListPage implements OnInit{
   }
 
   getData(){
-      this._locationService.getAmenitiesData(this.locState, this.locCity)
+      this._locationService.getAmenitiesData(this.locCity, this.locState)
           .subscribe(
               amenitiesData => {this.amenitiesData = this.dataFormatter(amenitiesData)}
           );

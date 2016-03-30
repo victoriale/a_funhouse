@@ -32,11 +32,10 @@ export class FeaturedListsModule implements OnInit{
     setModuleTitle(){
         if(this.profileType === 'LocationPage'){
             //Location Featured List Module
-
             var paramLocation: string = this._params.get('loc');
             var paramCity: string = this.globalFunctions.toTitleCase(paramLocation.split('_')[0]);
+            paramCity = this.globalFunctions.toTitleCase(paramCity.replace(/%20/g, " "));
             var paramState: string = paramLocation.split('_')[1];
-
             this.moduleTitle = 'Featured Lists for ' + paramCity + ', ' + paramState;
         }else if(this.profileType === 'ProfilePage'){
             //Listing Crime Module
@@ -51,13 +50,11 @@ export class FeaturedListsModule implements OnInit{
     }
 
     left(){
-        console.log('left - module', this.index);
         if(this.featuredListData === null){
             return false;
         }
 
         var max = this.featuredListData.listData.length - 1;
-        console.log(this.featuredListData.listData);
         if(this.index > 0){
             this.index -= 1;
             this.transformData();
@@ -69,7 +66,6 @@ export class FeaturedListsModule implements OnInit{
 
     }
     right(){
-        console.log('right - module', this.index);
         if(this.featuredListData === null){
             return false;
         }
@@ -89,22 +85,6 @@ export class FeaturedListsModule implements OnInit{
     ngOnInit(){
         this.setModuleTitle();
         //Set static data - Will remove when routes further defined
-        this.tileData = {
-            button_txt: 'Open Page',
-            url1: 'Aboutus-page', // this will need to be change
-            icon1: 'fa-list-ul',
-            title1: 'Real Estate Trending Lists',
-            desc1: '',
-            url2: 'Aboutus-page',// this will need to be change
-            icon2: 'fa-trophy',
-            title2: 'Top 10 Lists',
-            desc2: '',
-            url3: 'Aboutus-page',// this will need to be change
-            icon3: 'fa-th-large',
-            title3: 'Similar Top 10 Lists',
-            desc3: ''
-        }
-
     }
 
     transformData(){
@@ -130,17 +110,58 @@ export class FeaturedListsModule implements OnInit{
         //    var heading2 = 'Bedrooms: ' + listData.numBedrooms + ' | Bathrooms: ' + listData.numBathrooms;
         //}
         var heading2 = 'Bedrooms: ' + listData.numBedrooms + ' | Bathrooms: ' + listData.numBathrooms;
-
         //Used for both location and listing profile
         this.listData = {
+            rank: this.index + 1,
             header: 'Trending Real Estate',
             title: this.globalFunctions.camelCaseToRegularCase(data.listName),
-            hding1: listData.fullStreetAddress,
-            hding2: listData.city + ', ' + listData.stateOrProvince + ' ' + listData.postalCode,
+            hding1: this.globalFunctions.toTitleCase(listData.fullStreetAddress),
+            hding2: this.globalFunctions.toTitleCase(listData.city) + ', ' + listData.stateOrProvince + ' ' + listData.postalCode,
             detail1: heading2,
             detail2: listData.listPrice === null ? '' : 'Asking Price: ',
             detail3: listData.listPrice === null ? '' : '$' + this.globalFunctions.commaSeparateNumber(listData.listPrice),
-            imageUrl: listData.photos.length === 0 ? null : listData.photos[0]
+            imageUrl: listData.photos.length === 0 ? null : listData.photos[0],
+            ListUrl: 'List-page',
+            listParam: {
+              listname: data.listName,
+              state: listData.stateOrProvince,
+              city: listData.city,
+              page: '1',
+            },
+            listingUrl1: '../../Magazine',
+            listingParam: {addr: listData.addressKey},
+            listingUrl2: 'PropertyOverview',
+        }
+
+        //get tiles data
+        this.tileData = {
+            button_txt: 'Open Page',
+            title1: 'Real Estate Trending List',
+            icon1: 'fa-list-ul',
+            desc1: '',
+            url1: 'List-page',
+            paramOptions1: {
+              listname: data.listName,
+              state: listData.stateOrProvince,
+              city: listData.city,
+              page: '1',
+            },
+            title2: 'Top 10 Lists',
+            icon2: 'fa-trophy',
+            desc2: '',
+            url2: 'List-of-lists-page',
+            paramOptions2: {
+              state: listData.stateOrProvince,
+              city: listData.city
+            },
+            title3: 'Similar Top 10 Lists',
+            icon3: 'fa-th-large',
+            desc3: '',
+            url3: 'List-of-lists-page',
+            paramOptions3: {
+              state: listData.stateOrProvince,
+              city: listData.city
+            },
         }
     }
 

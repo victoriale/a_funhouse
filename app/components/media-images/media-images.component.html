@@ -6,14 +6,14 @@
       <i class='fa fa-expand'></i>
     </a>
 
-    <a class='feature-btn images'>
+    <div class='feature-btn images'>
       <span>
         <i class='fa fa-file-image-o'></i>
       </span>
       <span>
         Images ({{totalImageCount}})</span>
       <i></i>
-    </a>
+    </div>
 
     <a *ngIf="featureListing.virtualTour != 'N/A'" href="featureListing.virtualTour" class='feature-btn virtual'>
       Virtual Home Tour ({{virtualTourCount}})
@@ -44,7 +44,7 @@
         <div>{{featureListing.price}}</div>
         <div>{{featureListing.priceName}}</div>
       </div>
-      <a *ngIf="trending" [routerLink]="[featureListing.url1, featureListing.url2, featureListing.url3]" class='mod-page-btn'>
+      <a *ngIf="trending" [routerLink]="[featureListing.url1, featureListing.url2]" class='mod-page-btn'>
         <span></span>
         <span>View Your Home</span>
         <i class='fa fa-angle-right'></i>

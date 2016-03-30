@@ -20,11 +20,13 @@ export class InfoListModule implements OnInit {
     infoList: any;
     recentListingsData: any;
     locDisplay: string;
+    data: any;
+    public paginationParameters: Object;
+    public index: number = 1;
     
     constructor(private _globalFunctions: GlobalFunctions){}
 
     dataTransform() {
-        this.infoList = this.recentListingsData;
         var self = this;
         var counter = 1;
         this.recentListingsData.forEach(function(val) {
@@ -72,27 +74,52 @@ export class InfoListModule implements OnInit {
         });
     }
 
-    public paginationParameters: Object = {
-        index: 5,
-        max: 20,
-        paginationType: 'module',
+    dataPaginate() {
+        this.data = this.recentListingsData;
+        var index = this.index;
+        var displayArray = [];
+        var startIndex = ((index - 1) * 4);
 
-        viewAllPage: 'List-page',
-        viewAllParams: {
-            listname: 'listingsMostRecent',
-            city: 'Wichita',
-            state: 'KS',
-            page: 1
+        for(var i = startIndex; i < startIndex + 4; i++) {
+            var listItem = this.data[i];
+            displayArray.push(listItem);
+            console.log(listItem);
         }
-    };
+        console.log('DA', displayArray);
+        this.infoList = displayArray;
+    }
 
-    testEvent(event){
-        console.log('Lutz - Pagination Footer New Index', event);
+
+    //Function to set up parameters for pagination footer
+    setPaginationParameters(){
+        var data = this.recentListingsData;
+        var max = Math.ceil(data.length / 4);
+
+        //Define parameters to send to pagination footer
+        this.paginationParameters = {
+            index: this.index,
+            max: max,
+            paginationType: 'module',
+            viewAllPage: 'List-page',
+            viewAllParams: {
+                listname: 'listingsMostRecent',
+                city: 'Wichita',
+                state: 'KS',
+                page: 1
+            }
+        }
+    }
+
+    //Function that fires when a new index is clicked on pagination footer
+    newIndex(index){
+        this.index = index;
+        this.dataPaginate();
     }
 
     ngOnInit() {
         this.module_title = 'Recent Listings for ' + this.locDisplay;
-
+        this.setPaginationParameters();
         this.dataTransform();
+        this.dataPaginate();
     }
 }

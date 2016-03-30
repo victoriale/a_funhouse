@@ -80,7 +80,7 @@ export class SchoolModule implements OnInit{
         imageUrl: schoolData.locationImage,
         url: 'School-lists-page',
         paramOptions: {
-                    listname: 'Elementary Schools',
+                    listname: 'elementary',
                     city: schoolData.city,
                     state: schoolData.state
                   },
@@ -165,6 +165,7 @@ export class SchoolModule implements OnInit{
             //Location Crime Module
             var paramLocation: string = this._params.get('loc');
             var paramCity: string = this.globalFunctions.toTitleCase(paramLocation.split('_')[0]);
+            paramCity = this.globalFunctions.toTitleCase(paramCity.replace(/%20/g, " "));
             var paramState: string = paramLocation.split('_')[1];
             this.moduleTitle = 'Schools in ' + paramCity + ', ' + paramState;
         }else if(this.profileType === 'ProfilePage'){

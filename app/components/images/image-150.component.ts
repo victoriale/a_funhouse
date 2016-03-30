@@ -7,9 +7,11 @@ import {Component, Input} from 'angular2/core';
     selector: 'image-150',
     templateUrl: './app/components/images/image.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    inputs: ['hasSubImg', 'imageURL', 'hasHoverNoSubImg', 'originalUrl']
+    inputs: ['hasSubImg', 'imageURL', 'hasHoverNoSubImg', 'originalUrl', 'counterIf', 'counter']
 })
 export class Image150 {
     imageURL = './app/public/placeholder-location.png';
     size = "150";
+    counterIf: boolean = false;
+    counter: number = 1;
 }

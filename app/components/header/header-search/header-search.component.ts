@@ -27,7 +27,7 @@ export class HeaderSearchComponent{
     searchResults: Array<Object>;
     showResults: boolean;
 
-    term = new Control();
+    term:any = new Control();
 
     constructor(private _searchService: SearchService, private _router: Router){
         //Function chain to pull api data for search
@@ -55,7 +55,8 @@ export class HeaderSearchComponent{
         }
 
         value = encodeURIComponent(value);
-
+        //Cancel previous call by passing empty string to the observable
+        this.term.updateValue('');
         //Navigate to search page with query string
         this._router.navigate(['Search-page', {query: value}]);
         this.showResults = false;

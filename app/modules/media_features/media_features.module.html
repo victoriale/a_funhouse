@@ -16,7 +16,7 @@
     </section>
 </section>
 
-<div class="modal" [ngClass]="{'modal-active': expand == false}">
+<div class="modal" (keyup)="close($event)" [ngClass]="{'modal-open': expand == true}">
   <div class="modal-exit" (click)="expandModal()">X</div>
   <media-images *ngIf="propertyData" [mediaImages] = "propertyData.imageArray" [featureListing]="propertyData.featureListing" (expand)="expandModal()"></media-images>
 </div>

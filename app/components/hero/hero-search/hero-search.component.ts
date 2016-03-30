@@ -25,7 +25,7 @@ export class HeroSearchComponent{
     searchResults: Array<Object>;
     showResults: boolean;
 
-    term = new Control();
+    term:any = new Control();
 
     constructor(private _searchService: SearchService, private _router: Router){
         //Function chain to pull api data for search
@@ -48,13 +48,13 @@ export class HeroSearchComponent{
     //Function to submit form to navigate to results page
     onSubmit(event){
         var value = this.term._value;
-        console.log('Lutz - value', value, this._router);
         if(typeof value === 'undefined' || value === ''){
             return false;
         }
 
         value = encodeURIComponent(value);
-
+        //Cancel previous call by passing empty string to the observable
+        this.term.updateValue('');
         //Navigate to search page with query string
         this._router.navigate(['Search-page', {query: value}]);
     }

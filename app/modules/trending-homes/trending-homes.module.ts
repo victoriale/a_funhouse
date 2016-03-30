@@ -75,7 +75,10 @@ export class TrendingHomes implements OnInit {
         }
 
         var formattedDays = moment().subtract('days', val.daysOnMarket).format('dddd, MMMM Do, YYYY');
-
+        //grab featured data about listing
+        if(typeof val.virtualTour == 'undefined'){
+          val.virtualTour = 'N/A';
+        }
         var carData = {
           address:val.fullStreetAddress,
           daysOnMarket:formattedDays,
@@ -108,6 +111,7 @@ export class TrendingHomes implements OnInit {
         if(this.profileType === 'LocationPage'){
             var paramLocation: string = this._params.get('loc');
             var paramCity: string = this.globalFunctions.toTitleCase(paramLocation.split('_')[0]);
+            paramCity = this.globalFunctions.toTitleCase(paramCity.replace(/%20/g, " "));
             var paramState: string = paramLocation.split('_')[1];
             this.moduleTitle = 'Most Trending Homes In ' + paramCity + ', ' + paramState;
         }else if(this.profileType === 'ProfilePage'){
