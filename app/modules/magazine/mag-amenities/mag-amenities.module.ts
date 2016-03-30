@@ -25,22 +25,11 @@ export class Amenities implements OnInit {
         this.address = _injector.get(MagazinePage).address;
     }
 
-    checkImages(){
-        this.imageUrl = 'http://' + window.location.host + '/app/public/mag_stock_img/food_types/' + this.magAmenities.stockPhotos + '_stock_mag.jpg';
-        let http = new XMLHttpRequest();
-        http.open('HEAD', this.imageUrl, false);
-        http.send();
-        if (this.magAmenities.stockPhotos != null && http.status != 404){
-            this.hasImage = true;
-        }
-    }
-
     getMagazineSimilarListings() {
         this._magazineDataService.getMagazineData(this.address)
             .subscribe(
                 magData => {
                     this.magAmenities = magData.amenities;
-                    this.checkImages();
                 },
                 err => console.log("error in getData", err)
             )
