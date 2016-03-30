@@ -204,29 +204,37 @@ export class SearchPage implements OnInit {
     //group zipcodes && location together, routerLink links to city, state
     if (typeof data.zipcode !== 'undefined' && data.zipcode !== null) {
       data.zipcode.forEach(function(item, index) {
-        var zip = {
-          addr: item.address_key,
-          'zipcode': item.zipcode,
-          page: '../../Magazine',
-          params: { addr: item.address_key },
-          display: '[' + item.zipcode + '] - ' + self.globalFunctions.toTitleCase(item.city) + " " + item.state_or_province + " - " + item.address_key,
-        };
-        zipcode.push(zip);
-        zipCount++;
-        total++;
+          if(typeof item.city === 'undefined' || item.city === null){
+              return false;
+          }
+
+          var zip = {
+            addr: item.address_key,
+            'zipcode': item.zipcode,
+            page: '../../Magazine',
+            params: { addr: item.address_key },
+            display: '[' + item.zipcode + '] - ' + self.globalFunctions.toTitleCase(item.city) + " " + item.state_or_province + " - " + item.address_key,
+          };
+          zipcode.push(zip);
+          zipCount++;
+          total++;
       });
     }
 
     if (typeof data.location_city !== 'undefined' && data.location_city !== null) {
       data.location_city.forEach(function(item, index) {
-        var locationData = {
-          page: 'Location-page',
-          params: { loc: item.city + "_" + item.state_or_province },
-          display: self.globalFunctions.toTitleCase(item.city) + " - " + item.state_or_province,
-        };
-        location.push(locationData);
-        locCount++;
-        total++;
+          if(typeof item.city === 'undefined' || item.city === null){
+              return false;
+          }
+
+          var locationData = {
+            page: 'Location-page',
+            params: { loc: item.city + "_" + item.state_or_province },
+            display: self.globalFunctions.toTitleCase(item.city) + " - " + item.state_or_province,
+          };
+          location.push(locationData);
+          locCount++;
+          total++;
       });
     }
 
