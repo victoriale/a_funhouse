@@ -45,7 +45,7 @@ export class FeaturedListsModule implements OnInit{
             var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
             var address = tempArr.join(' ');
 
-            this.moduleTitle = 'Featured List for ' + address + ' ' + paramCity + ', ' + paramState;
+            this.moduleTitle = 'Featured List for ' + this.globalFunctions.toTitleCase(address) + ' ' + this.globalFunctions.toTitleCase(paramCity) + ', ' + paramState;
         }
     }
 

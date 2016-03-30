@@ -15,13 +15,11 @@ export class magazineBanner {
   showMagazine: boolean = false; //will only show if it is a residential listing
   data: any;
 
-    constructor(
-    ) { }
+  constructor() { }
 
     ngOnInit() {
       var address:string;
       if(this.listingData['propertyType'] == 'Residential'){
-        this.showMagazine = true;
       }
       address = this.listingData['paramAddress'];
       this.data = {

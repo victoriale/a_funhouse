@@ -27,30 +27,29 @@ export class MagCarouselModule implements OnInit {
 
     nextClick() {
         this.left = this.counter;
-        this.counter = (this.counter + 1) % length;
-        this.right = (this.counter + 1) % length;
+        this.counter = (this.counter + 1) % this.length;
+        this.right = (this.counter + 1) % this.length;
     }
 
     prevClick() {
         this.right = this.counter;
-        this.counter = (((this.counter - 1) % length) + length) % length;
-        this.left = (((this.counter - 1) % length) + length) % length;
+        this.counter = (((this.counter - 1) % this.length) + this.length) % this.length;
+        this.left = (((this.counter - 1) % this.length) + this.length) % this.length;
     }
 
     changeClick(i) {
-        this.counter = i % length;
-        this.right = (this.counter + 1) % length;
-        this.left = (((this.counter - 1) % length) + length) % length;
+        this.counter = i % this.length;
+        this.right = (this.counter + 1) % this.length;
+        this.left = (((this.counter - 1) % this.length) + this.length) % this.length;
     }
 
     setupImages() {
         if (this.magOverview) {
             this.length = this.magOverview.photos.length;
-            length = this.length;
             this.counter = 0;
             this.right = this.counter + 1;
-            this.left = length - 1;
-            this.imageLength = length;
+            this.left = this.length - 1;
+            this.imageLength = this.length;
             if (this.length > 175) {
                 jQuery('.mag_container').css('height', '55vw');
             }
@@ -64,6 +63,5 @@ export class MagCarouselModule implements OnInit {
 
     ngOnChanges() {
         this.setupImages();
-
     }
 }

@@ -24,7 +24,7 @@ export class MapModule implements OnChanges{
         var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
         var address = tempArr.join(' ');
 
-        this.moduleTitle = 'Map of ' + address + ' and its Surrounding Area';
+        this.moduleTitle = 'Map of ' + this.globalFunctions.toTitleCase(address) + ' and its Surrounding Area';
     }
 
     drawMap(){

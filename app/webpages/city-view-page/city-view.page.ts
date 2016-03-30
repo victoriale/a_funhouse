@@ -1,16 +1,16 @@
 import {Component, OnInit} from 'angular2/core';
+import {RouteParams} from "angular2/router";
+import {ROUTER_DIRECTIVES} from "angular2/router";
 import {WidgetModule} from "../../modules/widget/widget.module";
 import {TitleComponent} from "../../components/title/title.component";
-import {RouteParams} from "angular2/router";
-import {NearByCitiesService} from "../../global/geo-location.service";
-import {ROUTER_DIRECTIVES} from "angular2/router";
+import {CityViewService} from "../../global/geo-location.service";
 
 @Component({
     selector: 'city-view-page',
     templateUrl: './app/webpages/city-view-page/city-view.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [WidgetModule, TitleComponent, ROUTER_DIRECTIVES],
-    providers: [NearByCitiesService],
+    providers: [CityViewService],
 })
 
 export class CityViewPage implements OnInit{
@@ -18,10 +18,10 @@ export class CityViewPage implements OnInit{
     stateLocation: string;
     cityLocation: string;
     cityStateLocation: string;
-    nearByCities: any;
+    cityView: any;
     cities: Array<any> = [];
 
-    constructor(private _params: RouteParams, private _nearByCitiesService: NearByCitiesService) {}
+    constructor(private _params: RouteParams, private _cityViewService: CityViewService) {}
 
     getData() {
         this.titleData =
@@ -38,29 +38,29 @@ export class CityViewPage implements OnInit{
             };
 
         // Subscribe to getNearByCities in geo-location.service.ts
-        this._nearByCitiesService.getNearByCities(this.stateLocation, this.cityLocation)
+        this._cityViewService.getCityView(this.stateLocation, this.cityLocation)
             .subscribe(
-                nearByCities => { this.nearByCities = nearByCities },
+                cityView => { this.cityView = cityView },
                 err => console.log(err),
                 () => this.dataToArray()
         );
     }
 
     dataToArray() {
-        for( var i in this.nearByCities ) {
-            if (this.nearByCities.hasOwnProperty(i) && i != 'citiesCount') {
-                this.nearByCities[i].counter = Number(i) + 1;
-                this.nearByCities[i].distance = parseFloat(this.nearByCities[i].distance).toFixed(2);
-                this.nearByCities[i].locationUrl = this.nearByCities[i].city + '_' + this.nearByCities[i].state;
-                this.cities.push(this.nearByCities[i]);
+        for( var i in this.cityView ) {
+            if (this.cityView.hasOwnProperty(i) && i != 'citiesCount') {
+                this.cityView[i].counter = Number(i) + 1;
+                this.cityView[i].distance = parseFloat(this.cityView[i].distance).toFixed(2);
+                this.cityView[i].locationUrl = this.cityView[i].city + '_' + this.cityView[i].state;
+                this.cities.push(this.cityView[i]);
             }
         }
     }
 
     ngOnInit() {
         // Get City & State from route params
-        this.stateLocation = this._params.get('state');
-        this.cityLocation = this._params.get('city');
+        this.stateLocation = decodeURI(this._params.get('state'));
+        this.cityLocation = decodeURI(this._params.get('city'));
         this.cityStateLocation = this.stateLocation + '_' + this.cityLocation;
 
         this.getData();
