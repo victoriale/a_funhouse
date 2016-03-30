@@ -11,7 +11,7 @@
             {{magOverview?.address?.country}}
         </div>
         <span *ngIf="price">
-            <div *ngIf="magOverview?.address" class='mag_po_price'>Listed for: {{price | currency:'USD' :true}}</div>
+            <div *ngIf="magOverview?.address" class='mag_po_price'>Listed for: {{price}}</div>
         </span>
         <span *ngIf="contactAgent">
             <div *ngIf="magOverview?.address" class='mag_po_price'>
