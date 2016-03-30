@@ -27,7 +27,7 @@ export class magazineModule {
         this.showMagazine = true;
       }
       this.magImg = this.listingData['listingImage'];
-      address = this.listingData['address'];
+      address = this.listingData['paramAddress'];
       this.data = {
         address: address.replace(/-/g, ' '),
         url1: '../../Magazine',
