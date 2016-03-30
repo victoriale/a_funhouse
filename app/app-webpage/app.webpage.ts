@@ -27,6 +27,7 @@ import {GeoLocationService} from "../global/geo-location.service";
 
 import {WebApp} from "../app-layout/app.layout";
 import {PartnerHeader} from "../global/global-service";
+import {CityViewPage} from "../webpages/city-view-page/city-view.page";
 
 @Component({
     selector: 'my-app',
@@ -134,6 +135,11 @@ import {PartnerHeader} from "../global/global-service";
         path: '/wlist',
         name: 'Widget-page',
         component: DynamicListPage
+    },
+    {
+        path: '/cityview',
+        name: 'City-view-page',
+        component: CityViewPage
     }
 ])
 
