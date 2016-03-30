@@ -28,7 +28,7 @@ export class magazineModule {
       }
       var globeFunc = this.globalFunctions;
       this.magImg = this.listingData['listingImage'];
-      address = this.listingData['address'];
+      address = this.listingData['paramAddress'];
       this.data = {
         address: globeFunc.toTitleCase(address.replace(/-/g, ' ')),
         url1: '../../Magazine',

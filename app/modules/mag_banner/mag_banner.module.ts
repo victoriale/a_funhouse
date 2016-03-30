@@ -1,6 +1,5 @@
 import {Component, OnInit, Input} from 'angular2/core';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
-import {GlobalFunctions} from "../../global/global-functions";
 
 @Component({
     selector: 'mag-banner-module',
@@ -8,28 +7,26 @@ import {GlobalFunctions} from "../../global/global-functions";
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [ROUTER_DIRECTIVES],
     providers: [],
-    inputs:['listingData']
+    inputs:['listingData', 'listing']
 })
 
 export class magazineBanner {
-  listingData:string;
+  listingData:any;
   showMagazine: boolean = false; //will only show if it is a residential listing
   data: any;
 
-  constructor(private globalFunctions: GlobalFunctions) { }
+  constructor() { }
 
-  ngOnInit() {
-    var address:string;
-    if(this.listingData['propertyType'] == 'Residential'){
-      this.showMagazine = true;
+    ngOnInit() {
+      var address:string;
+      if(this.listingData['propertyType'] == 'Residential'){
+      }
+      address = this.listingData['paramAddress'];
+      this.data = {
+        address: address.replace(/-/g, ' '),
+        url1: '../../Magazine',
+        param: {addr: address},
+        url2: 'PropertyOverview',
+      }
     }
-    address = this.listingData['address'];
-    var globeFunc = this.globalFunctions;
-    this.data = {
-      address: globeFunc.toTitleCase(address.replace(/-/g, ' ')),
-      url1: '../../Magazine',
-      param: {addr: address},
-      url2: 'PropertyOverview',
-    }
-  }
 }

@@ -52,6 +52,8 @@ export class ProfileHeader implements OnInit{
 
     transformData(){
         var data = this.profileHeaderData;
+
+        var location = data.city + ", " + data.state;
         //Sanitize city value
         data.city = this.globalFunctions.toTitleCase(data.city);
 
@@ -72,13 +74,21 @@ export class ProfileHeader implements OnInit{
             };
 
             this.descriptionTitle = data.city + ', ' + data.state;
-            this.descriptionLocation = 'Did you know that';
+            this.descriptionLocation = "";
+            var defaultText ="Did you know that";
+            var fallback = "Do you know what "+ location +" has to offer? Explore what's trending, properties for sale and neigborhood amenities for "+ location + '.';
 
             this.descriptionLocation += data.averageAge === null ? '' : ' the average age for a ' + data.city + ' resident is ' + data.averageAge + ',';
             this.descriptionLocation += data.averageRentalPrice === null ? '' : ' the average rental price is $' + this.globalFunctions.commaSeparateNumber(data.averageRentalPrice) + '/month,';
-            this.descriptionLocation += data.averageListingPrice === null ? '?' : ' and the average home sells for $' + this.globalFunctions.commaSeparateNumber(data.averageListingPrice) + '?';
-            this.mainImageURL = data.locationImage;
+            this.descriptionLocation += data.averageListingPrice === null ? '' : ' and the average home sells for $' + this.globalFunctions.commaSeparateNumber(data.averageListingPrice) + '?';
 
+            if(this.descriptionLocation == '' || this.descriptionLocation == ' '){
+              this.descriptionLocation = fallback + this.descriptionLocation;
+            }else{
+              this.descriptionLocation = defaultText + this.descriptionLocation;
+            }
+
+            this.mainImageURL = data.locationImage;
         }else if(this.profileType === 'ProfilePage') {
             //Listing Profile Header
 

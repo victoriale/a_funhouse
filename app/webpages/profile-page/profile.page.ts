@@ -72,6 +72,7 @@ export class ProfilePage implements OnInit{
             .subscribe(
                 data => {
                     this.profileHeaderData = data;
+                    this.profileHeaderData['paramAddress'] = this.paramAddress;
                 },
                 err => console.log('Error - Listing Profile Header Data: ', err)
             )
