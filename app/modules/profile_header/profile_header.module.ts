@@ -87,7 +87,7 @@ export class ProfileHeader implements OnInit{
                 //Unused field of component for this module
                 smallText: '',
                 smallText2: data.city + ', ' + data.state + ' > ' + moment(data.lastUpdated).format('dddd, MMMM Do, YYYY'),
-                heading1: data.address,
+                heading1: this.globalFunctions.toTitleCase(data.address),
                 heading2: data.listingStatus === null ? '' : '- ' + data.listingStatus,
                 heading3: 'Listing Price: $' + this.globalFunctions.commaSeparateNumber(data.listingPrice),
                 heading4: data.squareFeet === null ? '' : '- Area: ' + this.globalFunctions.commaSeparateNumber(data.squareFeet) + ' Sq ft.',
@@ -96,7 +96,7 @@ export class ProfileHeader implements OnInit{
                 originalLink: data.originalLink
             };
             //Build profile header description
-            this.descriptionAddress = 'The listing is located at ' + data.address + ', ' + data.city + ', ' + data.state + '.';
+            this.descriptionAddress = 'The listing is located at ' + this.globalFunctions.toTitleCase(data.address) + ', ' + data.city + ', ' + data.state + '.';
             this.descriptionSquareFeet = data.squareFeet === null ? '' : 'The living area is around ' + this.globalFunctions.commaSeparateNumber(data.squareFeet) + ' sq ft.';
             this.descriptionContact = '';
             if (data.phoneNumber !== null && data.officeNumber !== null && data.phoneNumber !== data.officeNumber) {
@@ -117,7 +117,7 @@ export class ProfileHeader implements OnInit{
         }
     }
 
-    //Initialization Call 
+    //Initialization Call
     ngOnInit(){
         this.setStaticData();
     }
