@@ -18,7 +18,9 @@
                     <map-module *ngIf="mapData" [mapData]="mapData"></map-module>
 
                     <!--Comment Section-->
-                    <comment-module></comment-module>
+                    <section *ngIf="!partnerCheck">
+                      <comment-module></comment-module>
+                    </section>
 
                     <!-- Crime Section -->
                     <headline-component *ngIf="crimeData" [data]="headlineCrime"></headline-component>

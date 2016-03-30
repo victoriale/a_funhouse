@@ -32,7 +32,6 @@ export class FeaturedListsModule implements OnInit{
     setModuleTitle(){
         if(this.profileType === 'LocationPage'){
             //Location Featured List Module
-
             var paramLocation: string = this._params.get('loc');
             var paramCity: string = this.globalFunctions.toTitleCase(paramLocation.split('_')[0]);
             paramCity = this.globalFunctions.toTitleCase(paramCity.replace(/%20/g, " "));
@@ -51,13 +50,11 @@ export class FeaturedListsModule implements OnInit{
     }
 
     left(){
-        console.log('left - module', this.index);
         if(this.featuredListData === null){
             return false;
         }
 
         var max = this.featuredListData.listData.length - 1;
-        console.log(this.featuredListData.listData);
         if(this.index > 0){
             this.index -= 1;
             this.transformData();
@@ -69,7 +66,6 @@ export class FeaturedListsModule implements OnInit{
 
     }
     right(){
-        console.log('right - module', this.index);
         if(this.featuredListData === null){
             return false;
         }
@@ -98,7 +94,6 @@ export class FeaturedListsModule implements OnInit{
             return false;
         }
         var listData = data.listData[this.index];
-        console.log("OriginalData", data);
         //Build heading 2 description
         //Disabled until component can handle empty values for descriptions
         //if((listData.numBedrooms === null || listData.numBedrooms === '0') && (listData.numBathrooms === null || listData.numBedrooms === '0')){
@@ -120,8 +115,8 @@ export class FeaturedListsModule implements OnInit{
             rank: this.index + 1,
             header: 'Trending Real Estate',
             title: this.globalFunctions.camelCaseToRegularCase(data.listName),
-            hding1: listData.fullStreetAddress,
-            hding2: listData.city + ', ' + listData.stateOrProvince + ' ' + listData.postalCode,
+            hding1: this.globalFunctions.toTitleCase(listData.fullStreetAddress),
+            hding2: this.globalFunctions.toTitleCase(listData.city) + ', ' + listData.stateOrProvince + ' ' + listData.postalCode,
             detail1: heading2,
             detail2: listData.listPrice === null ? '' : 'Asking Price: ',
             detail3: listData.listPrice === null ? '' : '$' + this.globalFunctions.commaSeparateNumber(listData.listPrice),
@@ -168,7 +163,6 @@ export class FeaturedListsModule implements OnInit{
               city: listData.city
             },
         }
-        console.log('listData', this.listData, 'tileData', this.tileData);
     }
 
     //On Change Call

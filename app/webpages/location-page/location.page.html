@@ -10,7 +10,9 @@
                     <headline-component [data]="headlineAbout"></headline-component>
                     <profile-header *ngIf="profileHeaderData" [profileHeaderData]="profileHeaderData"></profile-header>
                     <find-your-home-module [locDisplay]="locDisplay" [locState]="locState" [locCity]="locCity"></find-your-home-module>
-                    <comment-module></comment-module>
+                    <section *ngIf="!partnerCheck">
+                      <comment-module></comment-module>
+                    </section>
                     <info-list-module *ngIf="recentListingsData" [recentListingsData]="recentListingsData" [locDisplay]="locDisplay"></info-list-module>
 
                     <!--Trending Section-->
