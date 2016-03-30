@@ -72,6 +72,7 @@ export class ProfilePage implements OnInit{
             .subscribe(
                 data => {
                     this.profileHeaderData = data;
+                    this.profileHeaderData['paramAddress'] = this.paramAddress;
                 },
                 err => console.log('Error - Listing Profile Header Data: ', err)
             )
@@ -132,7 +133,7 @@ export class ProfilePage implements OnInit{
     }
 
     getListOfList() {
-        this._listService.getListOfListPage(this.state, this.city)
+        this._listService.getAddressListOfListPage(this.paramAddress)
         .subscribe(lists => {
           this.lists = lists
         });

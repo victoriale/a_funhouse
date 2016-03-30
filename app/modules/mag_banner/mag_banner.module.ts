@@ -7,23 +7,21 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [ROUTER_DIRECTIVES],
     providers: [],
-    inputs:['listingData']
+    inputs:['listingData', 'listing']
 })
 
 export class magazineBanner {
-  listingData:string;
+  listingData:any;
   showMagazine: boolean = false; //will only show if it is a residential listing
   data: any;
 
-    constructor(
-    ) { }
+  constructor() { }
 
     ngOnInit() {
       var address:string;
       if(this.listingData['propertyType'] == 'Residential'){
-        this.showMagazine = true;
       }
-      address = this.listingData['address'];
+      address = this.listingData['paramAddress'];
       this.data = {
         address: address.replace(/-/g, ' '),
         url1: '../../Magazine',
