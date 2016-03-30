@@ -456,6 +456,13 @@ goalsHeader
   bottom: 0;
   right: 0;
 }
+.counterBR(@smallImgWidthHeightBR, @smallImgShadowSizeBR, @smallImgShadowColorBR) {
+  display: inline-block;
+  .roundImage(@smallImgWidthHeightBR, @smallImgShadowSizeBR, @smallImgShadowColorBR);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 .smallImgBL(@smallImgWidthHeightBL, @smallImgShadowSizeBL, @smallImgShadowColorBL) {
   display: inline-block;
   .roundImage(@smallImgWidthHeightBL, @smallImgShadowSizeBL, @smallImgShadowColorBL);
@@ -539,8 +546,22 @@ goalsHeader
   width: @liwh;
   height: @liwh;
   line-height: 0;
+  img:first-child {
+    .roundImage(@liwh, @liss, @lisc);
+  }
   a:first-child {
+    cursor:pointer;
     .largeRoundImageLinkWithHover(@liwh, @liss, @lisc);
+  }
+  div:nth-child(2){
+    .counterBR(@liwh*.25, @liss*.25, @lisc);
+    font-size: 1em;
+    font-family: @globalFont;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.8em;
+    background-color: @white;
+    color:@black;
   }
   a:last-child {
     .smallLinkImgBR(@siwh, @siss, @sisc);
@@ -556,6 +577,16 @@ goalsHeader
   line-height: 0;
   img:first-child {
     .roundImage(@liwh, @liss, @lisc);
+  }
+  div:nth-child(2){
+    .counterBR(@liwh*.25, @liss*.25, @lisc);
+    font-size: 1em;
+    font-family: @globalFont;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.8em;
+    background-color: @white;
+    color:@black;
   }
   img:last-child {
     .smallImgBR(@siwh, @siss, @sisc);

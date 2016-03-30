@@ -47,7 +47,9 @@
   }
 }
 
-
+.modal-open{
+  display:block !important;
+}
 .modal{
   width: 1000px;
   height: 645px;
@@ -57,9 +59,7 @@
   margin:auto;
   z-index: 9999;
   box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0.8);
-  &-active{
-    display:none;
-  }
+  display: none;
   &-exit{
     cursor:pointer;
     font-family: Arial;

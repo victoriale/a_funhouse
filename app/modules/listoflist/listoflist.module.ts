@@ -122,16 +122,16 @@ export class ListOfListModule {
         }else {
             //Else insert array items that have list data
             this.listOfLists = sanitizedArray;
+            //Set up parameters for pagination footer
+            this.setPaginationParameters();
+            //Do initial data transformation for first 3 lists to be displayed
+            this.transformData();
         }
     }
 
     ngOnInit() {
         //Sanitize list data
         this.sanitizeListofListData();
-        //Set up parameters for pagination footer
-        this.setPaginationParameters();
-        //Do initial data transformation for first 3 lists to be displayed
-        this.transformData();
         //Build module title
         this.module_title = 'Tops Lists For ' + this.city + ", " + this.state;
     }
