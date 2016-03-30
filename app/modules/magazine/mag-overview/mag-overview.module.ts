@@ -17,7 +17,7 @@ declare var jQuery:any;
 export class MagOverviewModule implements OnInit {
     address:string;
     magOverview:MagOverview;
-    price:number;
+    price:string;
     contactAgent:string;
 
     constructor(private _injector:Injector, private _magazineDataService:MagazineDataService) {
@@ -57,7 +57,7 @@ export class MagOverviewModule implements OnInit {
                         this.contactAgent = magData.overview.price;
                     } else {
                         if (magData.overview != 'undefined') {
-                            this.price = +magData.overview.price;
+                            this.price =  '$' + magData.overview.price.toLocaleString();
                         }
                     }
                 },
