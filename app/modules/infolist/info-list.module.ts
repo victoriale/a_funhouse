@@ -82,6 +82,9 @@ export class InfoListModule implements OnInit {
 
         for(var i = startIndex; i < startIndex + 4; i++) {
             var listItem = this.data[i];
+            if(typeof listItem === 'undefined') {
+                continue;
+            }
             displayArray.push(listItem);
             console.log(listItem);
         }
