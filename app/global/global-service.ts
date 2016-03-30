@@ -107,12 +107,7 @@ export class listViewPage {
             }
         )
   }
-
 }
-
-/*@LOCATIONPROFILE*/
-
-/*_@BATCH-1*/
 
 @Injectable()
 export class ListOfListPage {
@@ -133,121 +128,6 @@ export class ListOfListPage {
       }
       )
   }
-}
-
-export class ListOfListService {
-  getListOfList() {
-    var Lol: List[] = [
-      {
-        'title': '[List Name Here1] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet',
-        'bigImage': './app/public/img_bckgnd.png',
-        'location': 'somewhere',
-        'smallImage': [
-          './app/public/img_bckgnd.png',
-          './app/public/img_bckgnd.png',
-          './app/public/img_bckgnd.png',
-        ]
-      },
-      {
-        'title': '[List Name Here2] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet',
-        'bigImage': './app/public/img_bckgnd.png',
-        'location': 'someplace',
-        'smallImage': [
-          './app/public/img_bckgnd.png',
-          './app/public/img_bckgnd.png',
-          './app/public/img_bckgnd.png',
-          './app/public/img_bckgnd.png',
-        ]
-      },
-      {
-        'title': '[List Name Here3] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet',
-        'bigImage': './app/public/img_bckgnd.png',
-        'location': 'something',
-        'smallImage': [
-          './app/public/img_bckgnd.png',
-          './app/public/img_bckgnd.png',
-          './app/public/img_bckgnd.png',
-          './app/public/img_bckgnd.png',
-          './app/public/img_bckgnd.png',
-        ]
-      },
-    ];
-    return Promise.resolve(Lol);
-  }
-}
-
-export class BatchOne {
-  getBatchOne() {
-    var BatchOne: List[] = [
-      {
-        'title': '[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet[List Name Here] Lorem ipsum dolor sit amet',
-        'bigImage': './app/public/img_bckgnd.png',
-        'location': 'somewhere',
-        'smallImage': [
-          './app/public/img_bckgnd.png',
-          './app/public/img_bckgnd.png',
-          './app/public/img_bckgnd.png',
-        ]
-      },
-    ];
-    return Promise.resolve(BatchOne);
-  }
-}
-
-export class HomePageService {
-  getHomePageService() {
-    var HomePageData: HomePageData[] = [
-      {
-        'citylocation': 'Wichita',
-        'statelocation': 'KS',
-        'cityarea': [
-          'Wichita',
-          'Derby',
-          'Haysville',
-          'Valley Center',
-          'Mulvane',
-        ]
-      },
-    ];
-    return Promise.resolve(HomePageData);
-  }
-}
-
-export class MediaFeatureList{
-    getBatchTwo() {
-        var BatchTwo: List2[] = [
-            {
-                'bigImage': "http://photos.listhub.net/BCMLSIA/12787/1?lm=20160203T155029",
-                'city': '[city]',
-                'state': '[state]',
-                'zipCode': '[zip code]',
-                'address': '[Listing Address]',
-                'daysOnMarket': 1,
-                'squareFeet': '[#,###]',
-                'unit1': 'SQ FT',
-                'lotSize': '[#,###]',
-                'unit2': 'ACRES',
-                'listPrice': '$[###,###]',
-                'price_name': 'SALE PRICE',
-                'smallImage': [
-                  "http://photos.listhub.net/BCMLSIA/12787/1?lm=20160203T155029",
-                  "http://photos.listhub.net/BCMLSIA/12787/2?lm=20160203T155029",
-                  "http://photos.listhub.net/BCMLSIA/12787/3?lm=20160203T155029",
-                  "http://photos.listhub.net/BCMLSIA/12787/4?lm=20160203T155029",
-                  "http://photos.listhub.net/BCMLSIA/12787/5?lm=20160203T155029",
-                  "http://photos.listhub.net/BCMLSIA/12787/6?lm=20160203T155029",
-                  "http://photos.listhub.net/BCMLSIA/12787/7?lm=20160203T155029",
-                  "http://photos.listhub.net/BCMLSIA/12787/8?lm=20160203T155029",
-                  "http://photos.listhub.net/BCMLSIA/12787/9?lm=20160203T155029",
-                  "http://photos.listhub.net/BCMLSIA/12787/10?lm=20160203T155029",
-                  "http://photos.listhub.net/BCMLSIA/12787/11?lm=20160203T155029",
-                  "http://photos.listhub.net/BCMLSIA/12787/12?lm=20160203T155029",
-                  "http://photos.listhub.net/BCMLSIA/12787/13?lm=20160203T155029"
-                ],
-            }
-        ];
-        return Promise.resolve(BatchTwo);
-    }
 }
 
 @Injectable()
@@ -285,12 +165,12 @@ export class DynamicWidgetCall {
     // If value is not needed, pass -1
 
     // Return error if no tw
-    if (typeof (tw) == "undefined") {
-      return {
-        "success": false,
-        "message": "Error: Trigger word is required"
-      };
-    }
+    // if (typeof (tw) == "undefined") {
+    //   return {
+    //     "success": false,
+    //     "message": "Error: Trigger word is required"
+    //   };
+    // }
 
     // Set defaults
     if (typeof (sw) == "undefined") {
