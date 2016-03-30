@@ -9,6 +9,7 @@ import {SchoolListsPage} from "../webpages/school-lists/school-lists.page";
 import {HomePage} from "../webpages/home-page/home.page";
 import {ComponentPage} from "../webpages/component-page/component.page";
 import {AboutUsPage} from "../webpages/aboutus-page/aboutus.page";
+import {ErrorPage} from "../webpages/error-page/error-page.page";
 import {ContactUsPage} from "../webpages/contactus-page/contactus.page";
 import {DisclaimerPage} from "../webpages/disclaimer-page/disclaimer.page";
 import {HeaderComponent} from "../components/header/header.component";
@@ -33,7 +34,7 @@ import {PartnerHeader} from "../global/global-service";
     templateUrl: './app/app-webpage/app.webpage.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [RouterOutlet, ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ListPage, ListOfListsPage, AmenitiesListPage, ROUTER_DIRECTIVES, DirectoryPage, SchoolListsPage],
-    providers: [PartnerHeader, ROUTER_DIRECTIVES, GeoLocationService, NearByCitiesService],
+    providers: [PartnerHeader, ROUTER_DIRECTIVES, GeoLocationService, NearByCitiesService, ErrorPage],
 })
 
 @RouteConfig([
@@ -134,6 +135,11 @@ import {PartnerHeader} from "../global/global-service";
         path: '/wlist',
         name: 'Widget-page',
         component: DynamicListPage
+    },
+    {
+        path: '/error',
+        name: 'Error-page',
+        component: ErrorPage
     }
 ])
 
