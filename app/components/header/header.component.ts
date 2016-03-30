@@ -42,7 +42,7 @@ export class HeaderComponent implements OnInit{
                     }else {
                         this.isHomePage = false;
                     }
-                    console.log('Current Route: ', route, 'isHomepage:', this.isHomePage, 'PID', this.partnerID)
+                    //console.log('Current Route: ', route, 'isHomepage:', this.isHomePage, 'PID', this.partnerID)
                 }
             )
     }
