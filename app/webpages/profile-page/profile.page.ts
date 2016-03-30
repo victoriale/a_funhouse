@@ -133,7 +133,7 @@ export class ProfilePage implements OnInit{
     }
 
     getListOfList() {
-        this._listService.getListOfListPage(this.state, this.city)
+        this._listService.getAddressListOfListPage(this.paramAddress)
         .subscribe(lists => {
           this.lists = lists
         });
