@@ -107,7 +107,7 @@ export class ProfilePage implements OnInit{
     }
 
     getTrendingListings(){
-        this._listingProfileService.getTrendingHomesData(this.city, this.state)
+        this._listingProfileService.getTrendingHomesData(this.paramAddress)
             .subscribe(
                 data => {
                     this.trendingHomesData = data;
