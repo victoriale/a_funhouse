@@ -43,7 +43,12 @@ export class MagMapModule implements OnInit {
                     for (var i = 0; i < magData.neighborhood.neighbors.length; i++) {
                         if (magData.neighborhood.neighbors[i].address.lng != null && magData.neighborhood.neighbors[i].address.lat != null) {
                             var myLatlng = new google.maps.LatLng(parseFloat(this.data[i].address.lat), parseFloat(this.data[i].address.lng));
-                            jQuery('.mag_n1_img').css("background-image", 'url(' + this.data[i].photos[0] + ')');
+                            if (this.data[i].photos[0] != null) {
+                                jQuery('.mag_n1_img').css("background-image", 'url(' + this.data[i].photos[0] + ')');
+                            }
+                            else {
+                                jQuery('.mag_n1_img').css("background-image", 'url(app/public/no_photo_images/Joyfulhome-Magazine_Image-Placeholder_No-Image.jpg)');
+                            }
                             this.imgAddress = this.data[i].address.fullStreetAddress;
                             if (partnerUrl == null) {
                                 this.imgURL = 'magazine/' + this.data[i].key + '/overview';
@@ -85,7 +90,11 @@ export class MagMapModule implements OnInit {
                             infoWindow.parent().addClass('zSize');
                             jQuery('.googleMap_item').click(function () {
                                 var index = this.id;
-                                jQuery('.mag_n1_img').css("background-image", 'url(' + magData.neighborhood.neighbors[index].photos[0] + ')');
+                                if (magData.neighborhood.neighbors[index].photos[0] != null) {
+                                    jQuery('.mag_n1_img').css("background-image", 'url(' + magData.neighborhood.neighbors[index].photos[0] + ')');
+                                } else {
+                                    jQuery('.mag_n1_img').css("background-image", 'url(url(app/public/no_photo_images/Joyfulhome-Magazine_Image-Placeholder_No-Image.jpg))');
+                                }
                                 jQuery('.mag_n1_img_text').html(magData.neighborhood.neighbors[index].address.fullStreetAddress);
                                 if (partnerUrl == null) {
                                     jQuery('.mag_n1_img_view').attr("href", 'magazine/' + magData.neighborhood.neighbors[index].key + '/overview');
