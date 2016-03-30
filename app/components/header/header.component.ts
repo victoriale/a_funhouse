@@ -21,10 +21,29 @@ export class HeaderComponent implements OnInit{
     directoryVisible: boolean;
     isScrolling: boolean;
     pageNum: string = "1";
+    curRoute: any;
 
     constructor(public router: Router) {
        this.directoryVisible = false;
-        this.router.subscribe(route => {console.log(route)})
+
+        this.router.root
+            .subscribe(
+                route => {
+                    this.curRoute = route;
+
+                    //is blank and !partner=true
+                    //is !blank and partner=false
+                    //is !blank and !partner=false
+
+                    //is blank and partner=true
+                    if(this.curRoute === ""){
+                        this.isHomePage = true;
+                    }else{
+                        this.isHomePage = false;
+                    }
+                    console.log('Current Route: ', route, 'isHomepage: ', this.isHomePage)
+                }
+            )
     }
 
     directoryList = [
