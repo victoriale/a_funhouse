@@ -3,17 +3,23 @@
     <div class="inner-wrapper">
       <main>
         <section class='content-main eight-col'>
-          <div class="search_tab">
+            <loading-component *ngIf="!resultsFound && !isError"></loading-component>
+
+            <error-component *ngIf="isError"></error-component>
+
+            <div *ngIf="resultsFound && !isError" class="search_tab">
             <backtab-component></backtab-component>
             <div style="height:auto;">
               <div class="search-box" style="background-image:url('{{searchImage}}')">
                 <div class="search-headline">
                   <h3>Discover More Homes In Real Estate</h3>
-                  <h4>Find Homes in Your Area or an Address</h4>
+                  <h4>Find Homes in Your Area</h4>
                 </div>
                 <div class="search-area">
-                  <input type="text" name="keyword" class="search-area-text" (focus)="focusResults($event)" (keyup)="searchText($event)" type="text" placeholder="Where do you want to live? (City, ST)">
-                  <button class="search-area-btn fa fa-search" (click)="searchText($event)"></button>
+                  <form (ngSubmit)="onSubmit($event)">
+                    <input id="search-page-input" type="text" autocomplete="off" name="keyword" class="search-area-text" (focus)="focusResults($event)" [ngFormControl]="term" type="text" placeholder="Where do you want to live? (City, ST)">
+                    <button class="search-area-btn fa fa-search" type="submit"></button>
+                  </form>
                 </div>
               </div>
               <nav class="search_tab-menu">

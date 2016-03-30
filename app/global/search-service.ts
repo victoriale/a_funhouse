@@ -16,7 +16,7 @@ export class SearchService{
         var headers = new Headers();
         //headers.append('X-SNT-TOKEN', 'BApA7KEfj');
 
-        input = encodeURI(input);
+        input = encodeURIComponent(input);
         if(input === ''){
             //return new Observable.return([]);
         }
