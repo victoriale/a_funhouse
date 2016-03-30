@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit{
 
     constructor(public router: Router) {
        this.directoryVisible = false;
-        console.log(this.router);
+        this.router.subscribe(route => {console.log(route)})
     }
 
     directoryList = [
