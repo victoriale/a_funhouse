@@ -50,7 +50,7 @@ export class AmenitiesModule implements OnInit{
             var paramCity = paramAddress [paramAddress.length - 2];
             var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
             var address = tempArr.join(' ');
-            this.moduleTitle = 'Top Rated Amenities In and Around ' + address + ' ' + paramCity + ', ' + paramState;
+            this.moduleTitle = 'Top Rated Amenities In and Around ' + this.globalFunctions.toTitleCase(address) + ' ' + this.globalFunctions.toTitleCase(paramCity) + ', ' + paramState;
         }
     }
 
