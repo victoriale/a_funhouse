@@ -53,3 +53,31 @@ export class NearByCitiesService {
         }
     }
 }
+
+@Injectable()
+
+export class CityViewService {
+    cachedCityView: any;
+
+    constructor(public http:Http) {}
+
+    getCityView(state, city) {
+        //Nearby Cities call (Returns city, state, distance)
+        if (this.cachedCityView) {
+            return Observable.of(this.cachedCityView);
+        } else {
+            return this.http.get('http://api2.joyfulhome.com:280/cityView/' + state + '/' + city)
+                .map(
+                    res => res.json()
+                )
+                .do((data) => {
+                    this.cachedCityView = data;
+                })
+                .map(
+                    data => {
+                        return data.data;
+                    }
+                )
+        }
+    }
+}

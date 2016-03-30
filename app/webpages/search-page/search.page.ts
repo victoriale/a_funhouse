@@ -55,8 +55,10 @@ export class SearchPage implements OnInit {
             .switchMap((term: string) => term.length > 0 ? this._searchService.getSearchResults(term, 'raw') : Observable.of(undefined))
             .subscribe(
                 data => {
-                    this.searchResults = this.dataModify(data);
-                    this.showCurrentData();
+                    if(typeof data !== 'undefined'){
+                        this.searchResults = this.dataModify(data);
+                        this.showCurrentData();
+                    }
                 },
                 err => {
                     console.log('Error - Search Page API: ', err);
@@ -140,6 +142,10 @@ export class SearchPage implements OnInit {
                     this.searchResults = this.dataModify(data);
                     this.showCurrentData();
                     this.resultsFound = true;
+                },
+                err => {
+                    console.log('Error: On Load Search Page API', err);
+                    this.isError = true;
                 }
             )
     }
@@ -165,12 +171,22 @@ export class SearchPage implements OnInit {
           var tempArr = fullAddress.splice(-fullAddress.length, fullAddress.length - 2);
           var parsedAddress = tempArr.join(' ');
 
-        var dataAddr = {
-          addr: item.address_key,
-          page: '../../Magazine',
-          params: { addr: item.address_key },
-          display: self.globalFunctions.toTitleCase(parsedAddress) + " - " + item.city + ", " + item.state_or_province,
-        };
+          var params: any = {};
+
+          if(item.property_type === 'Residential'){
+              var page = '../../Magazine';
+              params.addr = item.address_key;
+          }else{
+              var page = 'Profile-page';
+              params.address = item.address_key;
+          }
+
+          var dataAddr = {
+              addr: item.address_key,
+              page: page,
+              params: params,
+              display: self.globalFunctions.toTitleCase(parsedAddress) + " - " + item.city + ", " + item.state_or_province,
+          };
         address.push(dataAddr);
         addrCount++;
         total++;
@@ -189,15 +205,25 @@ export class SearchPage implements OnInit {
           var tempArr = fullAddress.splice(-fullAddress.length, fullAddress.length - 2);
           var parsedAddress = tempArr.join(' ');
 
-        var dataAddr = {
-          addr: item.address_key,
-          page: '../../Magazine',
-          params: { addr: item.address_key },
-          display: self.globalFunctions.toTitleCase(parsedAddress) + " - " + self.globalFunctions.toTitleCase(item.city) + ", " + item.state_or_province,
-        };
-        address.push(dataAddr);
-        addrCount++;
-        total++;
+          var params: any = {};
+
+          if(item.property_type === 'Residential'){
+              var page = '../../Magazine';
+              params.addr = item.address_key;
+          }else{
+              var page = 'Profile-page';
+              params.address = item.address_key;
+          }
+
+          var dataAddr = {
+            addr: item.address_key,
+            page: page,
+            params: params,
+            display: self.globalFunctions.toTitleCase(parsedAddress) + " - " + self.globalFunctions.toTitleCase(item.city) + ", " + item.state_or_province,
+          };
+          address.push(dataAddr);
+          addrCount++;
+          total++;
       });
     }
 

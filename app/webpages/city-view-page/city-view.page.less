@@ -1,9 +1,6 @@
-.info-list{
-  width:100%;
+.city-list{
+  width: 680px;
   height:155px;
-  border-bottom: 1px solid @listgreyborder;
-  //border-right: 1px solid @listgreyborder;
-  //border-left: 1px solid @listgreyborder;
   padding:15px 20px;
   .flexDirection(row);
   display: flex;
@@ -13,13 +10,17 @@
   &.even {
     background: @white;
   }
+  &:last-child {
+    margin-bottom: 20px;
+  }
 }
 
 //style for large image box
-.info-imagebox {
+.city-imagebox {
   margin-right:25px;
   .largeRoundImageNoHover(125px, 3px, @masterStrokeColor);
-  .info-rank {
+  .city-rank {
+    .globalDefaultModFont(14px, 400, @black) !important;
     text-align: center;
     padding-top: 12px;
     color: #000;
@@ -34,7 +35,7 @@
 }
 
 //styles all the content inside the list start from text to small images
-.info-content-box{
+.city-content-box{
   display: flex;
   height:125px;
   width:76.5%;
@@ -51,17 +52,17 @@
     }
   }
 
-  .info-content-row-wrapper {
+  .city-content-row-wrapper {
     display: flex;
     .flexDirection(row);
     .flexJustify(space-between);
   }
 
-  .info-location {
+  .city-location {
     .globalDefaultModFont(10px, 600, @black) !important;
   }
 
-  .info-address {
+  .city-address {
     .globalDefaultModFont(20px, 900, @black) !important;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -69,31 +70,31 @@
     text-overflow: ellipsis;
   }
 
-  .info-type {
+  .city-type {
     .globalDefaultModFont(14px, 400, @black) !important;
     margin-top: 5px;
   }
 
-  .info-content-row2 {
+  .city-content-row2 {
     text-align: right;
   }
 
-    .info-market {
-      .globalDefaultModFont(12px, 400, @black) !important;
-      margin: 0;
-    }
+  .city-market {
+    .globalDefaultModFont(12px, 400, @black) !important;
+    margin: 0;
+  }
 
-    .info-date {
-      .globalDefaultModFont(20px, 900, @black) !important;
-      margin: 0;
-    }
+  .city-date {
+    .globalDefaultModFont(20px, 900, @black) !important;
+    margin: 0;
+  }
 
-  .info-price {
+  .city-price {
     .globalDefaultModFont(14px, 600, @black) !important;
     margin: 0;
   }
 
-  .info-content-bottom{
+  .city-content-bottom{
     .globalDefaultModFont(12px, 400, @white) !important;
     .flexDirection(column);
     border: 1px solid @strokeGrey;
@@ -111,16 +112,19 @@
     &.even {
       background: @backgroundGrey;
     }
+    &:hover {
+      border: 1px solid @masterBrandColor;
+    }
   }
-  .info-content-subbox {
+  .city-content-subbox {
     float:left;
   }
-  .info-list-button{
+  .city-list-button{
     .mod-page-btn;
     position: relative;
     float:right;
     padding-right: 5px;
-    .info-icon {
+    .city-icon {
       margin-top: 2px;
       margin-left: 3px;
     }

@@ -36,7 +36,7 @@
                     <section class="footer-section-one">
                         <ul>
                             <li>Cities: </li>
-                            <li *ngFor="#city of cities"><a [routerLink]='["Directory-page-city", { state: city.state, city: city.name,  listTitle: listTitle, pageNumber: pageNumber }]'>{{city.name}}</a></li>
+                            <li *ngFor="#city of cities"><a [routerLink]='["Directory-page-city", { state: city.state, city: city.nameUrl,  listTitle: listTitle, pageNumber: pageNumber }]'>{{city.name}}</a></li>
                             <li><a [routerLink]='["Directory-page-state", { state: "CA", listTitle: listTitle, pageNumber: pageNumber, allCities: true }]'>More Cities...</a></li>
                         </ul>
                     </section>

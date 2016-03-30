@@ -41,10 +41,38 @@ export class HeaderSearchComponent{
             .switchMap((term: string) => term.length > 0 ? this._searchService.getSearchResults(term, 'list') : Observable.of(undefined))
             .subscribe(
                 (data: Array<Object>) => {
+                    //If data is not undefined map through results and modify data
+                    if(typeof data !== 'undefined') {
+                        data = this.addRoutingParams(data);
+                    }
                     this.searchResults = data;
                 }
             )
 
+    }
+
+    //Function to modify routing parameters (pick between magazine and listing profile)
+    addRoutingParams(data){
+        data.map(function(item, index){
+            //Only modify parameters if the item is an address search result
+            if(typeof item.address_key !== 'undefined'){
+                if(item.property_type === 'Residential'){
+                    item.page = 'Magazine';
+                    item.params = {
+                        addr: item.address_key
+                    };
+                }else{
+                    item.page = 'Profile-page';
+                    item.params = {
+                        address: item.address_key
+                    };
+                }
+            }
+
+            return item;
+        });
+
+        return data;
     }
 
     //Function to submit form to navigate to results page

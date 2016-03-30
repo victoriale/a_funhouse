@@ -120,6 +120,7 @@ export class ListPage {
         this.filterSqFeet = this._params.get('filterSqFeet');
         this.filterLot = this._params.get('filterLot');
         this.filterType = this._params.get('filterType');
+        this.listPage = this._params.get('page');
 
         console.log('FYH-Params-ListPage: ', this.filterMinPrice, this.filterMaxPrice, this.filterBedrooms, this.filterBathrooms, this.filterSqFeet, this.filterLot, this.filterType);
 
@@ -168,6 +169,9 @@ export class ListPage {
         //below are variables that are converted using global functions to a readable state
       val.listPrice = globeFunc.commaSeparateNumber(val.listPrice);
       var formattedDate = moment(val.modificationTimestamp.split(' ')[0], 'YYYY-MM-DD').format("dddd, MMMM Do, YYYY");
+          if(val.livingArea === null) {
+              val.livingArea = "N/A";
+          }
       var livingArea = globeFunc.commaSeparateNumber(val.livingArea);
       var newData = {
           img : val.photos[0],
