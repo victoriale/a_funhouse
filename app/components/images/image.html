@@ -8,7 +8,7 @@
     </div>
   </a>
   <div *ngIf="counterIf">#{{counter}}</div>
-  <a>
+  <a *ngIf="hasBottomImg">
     <img src='{{imageURL2}}' onerror="this.src='./app/public/placeholder-location.jpg';" />
   </a>
 </div>

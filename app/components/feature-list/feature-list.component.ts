@@ -33,6 +33,7 @@ export class FeatureComponent implements OnInit{
           main_hasSubImg : true,
           hasHover : true,
           counterIf: true,
+          hasBottomImg: false
         };
         if(typeof this.list_data != 'undefined'){
           this.counter = this.list_data['rank'];

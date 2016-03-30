@@ -7,7 +7,7 @@ import {Component, Input, OnChanges} from 'angular2/core';
     selector: 'image-180',
     templateUrl: './app/components/images/image.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    inputs: ['hasSubImg', 'imageURL', 'imageURL2', 'counterIf', 'counter', 'hasHover']
+    inputs: ['hasSubImg', 'imageURL', 'imageURL2', 'counterIf', 'counter', 'hasHover', ' hasBottomImg']
 })
 export class Image180 {
     imageURL: string = './app/public/placeholder-location.jpg';
@@ -16,7 +16,7 @@ export class Image180 {
     counterIf: boolean = false;
     counter: number = 1;
     hasHover:boolean = false;
-
+    hasBottomImg: boolean = false;
     ngOnChanges(event){
         //If an image is not undefined (Input WAS sent to component) and value passed in is null, set image to placeholder
         if(typeof event.imageURL !== 'undefined' && event.imageURL.currentValue === null){
