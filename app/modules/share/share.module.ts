@@ -43,9 +43,11 @@ export class ShareModule implements OnInit{
     }
     getData() {
           if(this.profileType == 'LocationPage') {
-            var locCity = this._params.get('loc').split('_')[0];
-            var locState = this._params.get('loc').split('_')[1];
-            this._locationService.getLocationProfile(locCity, locState).subscribe(data => {
+            var paramLocation: string = this._params.get('loc');
+            var paramCity: string = this.globalFunctions.toTitleCase(paramLocation.split('_')[0]);
+            paramCity = this.globalFunctions.toTitleCase(paramCity.replace(/%20/g, " "));
+            var paramState: string = paramLocation.split('_')[1];
+            this._locationService.getLocationProfile(paramCity, paramState).subscribe(data => {
               this.share = 'Share This Location Below:';
               this.mainImageURL = data.locationImage;
             })
