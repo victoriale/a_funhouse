@@ -57,7 +57,7 @@ export class DisclaimerPage implements OnInit{
       } else {
         this.pageName = "My HouseKit";
         this.pageLink = "http://www.myhousekit.com/" + this.partnerID;
-        this.pageLinkName = "www.myhousekit.com";
+        this.pageLinkName = "www.myhousekit.com/" + this.partnerID;
       }
       //disclaimer data
       this.title_data = {
