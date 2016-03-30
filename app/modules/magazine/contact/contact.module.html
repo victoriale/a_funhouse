@@ -10,7 +10,8 @@
     </div>
     <span *ngFor="#contactImg of magContact?.photos; #i=index">
         <span *ngIf="i === 0">
-        <div class="mag_n1_img" style="background-image: url('{{contactImg}}')">
+        <div class="mag_n1_img">
+            <img src="{{contactImg}}" class="mag_n1_img"/>
             <div class="mag_n1_img_overlay">
                 <div class="mag_n1_img_text">{{magContact?.address?.fullStreetAddress}}</div>
             </div>
