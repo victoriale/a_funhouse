@@ -29,6 +29,12 @@ export class DynamicListPage implements OnInit {
   data: any;
 
   constructor(private _params: RouteParams, private _globalFunctions: GlobalFunctions, private dynamicWidget: DynamicWidgetCall) {
+    /*?tw=214
+    &sw=null
+    &input=-1
+    USE THESE PARAMS FOR DYNAMIC WIDGET PAGE
+    */
+
     // Scroll page to top to fix routerLink bug
     window.scrollTo(0, 0);
   }

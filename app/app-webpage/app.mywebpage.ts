@@ -26,12 +26,12 @@ import {DynamicListPage} from "../webpages/dynamic-list-page/dynamic-list.page";
 import {NearByCitiesService} from "../global/geo-location.service";
 import {GeoLocationService} from "../global/geo-location.service";
 
-import {WebApp} from "../app-layout/app.layout";
+import {MyWebApp} from "../app-layout/app.mylayout";
 import {PartnerHeader} from "../global/global-service";
 import {CityViewPage} from "../webpages/city-view-page/city-view.page";
 
 @Component({
-    selector: 'my-app',
+    selector: 'my-house',
     templateUrl: './app/app-webpage/app.webpage.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [RouterOutlet, ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ListPage, ListOfListsPage, AmenitiesListPage, ROUTER_DIRECTIVES, DirectoryPage, SchoolListsPage],
@@ -40,102 +40,107 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
 
 @RouteConfig([
     {
-       path: '/',
+       path: '/home',
        name: 'Home-page',
        component: HomePage,
        useAsDefault: true,
     },
     {
-        path: '/listing/:address',
+        path: '/index/:address',
         name: 'Profile-page',
         component: ProfilePage,
     },
-    {
-        path: '/location/:loc',
-        name: 'Location-page',
-        component: LocationPage,
-    },
-    {
-        path: '/list/:listname/:state/:city/page/:page',
-        name: 'List-page',
-        component: ListPage,
-    },
-    {
-        path: '/list-of-lists/:state/:city',
-        name: 'List-of-lists-page',
-        component: ListOfListsPage,
-    },
-    {
-        path: '/amenities-lists-page/:listname/:state/:city',
-        name: 'Amenities-lists-page',
-        component: AmenitiesListPage,
-    },
-    {
-        path: '/school-lists-page/:listname/:state/:city',
-        name: 'School-lists-page',
-        component: SchoolListsPage,
-    },
-    {
-        path: '/component',
-        name: 'Component-page',
-        component: ComponentPage,
-    },
-    {
-        path: '/aboutus',
-        name: 'Aboutus-page',
-        component: AboutUsPage,
-    },
-    {
-        path: '/contactus',
-        name: 'Contactus-page',
-        component: ContactUsPage,
-    },
-    {
-        path: '/disclaimer',
-        name: 'Disclaimer-page',
-        component: DisclaimerPage,
-    },
-    //National directory page
-    {
-        path: '/directory/:listTitle/page/:pageNumber',
-        name: 'Directory-page',
-        component: DirectoryPage
-    },
-    //State directory page
-    {
-        path: '/directory/:state/:listTitle/page/:pageNumber',
-        name: 'Directory-page-state',
-        component: DirectoryPage
-    },
-    //City directory page
-    {
-        path: '/directory/:state/:city/:listTitle/page/:pageNumber',
-        name: 'Directory-page-city',
-        component: DirectoryPage
-    },
-    //All Cities directory page
-    //Currently Disabled: Currently No known way to pull router name to use this route. (This route conflicts with the Directory-page-state route. We can't differentiate in the code between this route and the state route) Query parameter is used instead for now
-    //{
-    //    path: '/directory/:state/all-cities/:listTitle/page/:pageNumber',
-    //    name: 'Directory-page-all-cities',
-    //    component: DirectoryPage
-    //},
-    //Zipcode directory page
-    {
-        path: '/directory/:state/:city/:zipcode/:listTitle/page/:pageNumber',
-        name: 'Directory-page-zipcode',
-        component: DirectoryPage
-    },
-    {
-        path: '/search/:query',
-        name: 'Search-page',
-        component: SearchPage
-    },
-    {
-        path: '/wlist',
-        name: 'Widget-page',
-        component: DynamicListPage
-    },
+    // {
+    //     path: '/loc',
+    //     name: 'Location-page',
+    //     component: LocationPage,
+    // },
+    // {
+    //     path: '/loc/:loc',
+    //     name: 'Location-page',
+    //     component: LocationPage,
+    // },
+    // {
+    //     path: '/view_list/:listname/:state/:city/page/:page',
+    //     name: 'List-page',
+    //     component: ListPage,
+    // },
+    // {
+    //     path: '/lists/:state/:city',
+    //     name: 'List-of-lists-page',
+    //     component: ListOfListsPage,
+    // },
+    // {
+    //     path: '/view-amenities/:listname/:state/:city',
+    //     name: 'Amenities-lists-page',
+    //     component: AmenitiesListPage,
+    // },
+    // {
+    //     path: '/view-school/:listname/:state/:city',
+    //     name: 'School-lists-page',
+    //     component: SchoolListsPage,
+    // },
+    // {
+    //     path: '/component',
+    //     name: 'Component-page',
+    //     component: ComponentPage,
+    // },
+    // {
+    //     path: '/About',
+    //     name: 'Aboutus-page',
+    //     component: AboutUsPage,
+    // },
+    // {
+    //     path: '/Contact',
+    //     name: 'Contactus-page',
+    //     component: ContactUsPage,
+    // },
+    // {
+    //     path: '/Disclaimer',
+    //     name: 'Disclaimer-page',
+    //     component: DisclaimerPage,
+    // },
+    // //National directory page
+    // {
+    //     path: '/listing_index/:listTitle/page/:pageNumber',
+    //     name: 'Directory-page',
+    //     component: DirectoryPage
+    // },
+    // //State directory page
+    // {
+    //     path: '/listing_index/:state/:listTitle/page/:pageNumber',
+    //     name: 'Directory-page-state',
+    //     component: DirectoryPage
+    // },
+    // //City directory page
+    // {
+    //     path: '/listing_index/:state/:city/:listTitle/page/:pageNumber',
+    //     name: 'Directory-page-city',
+    //     component: DirectoryPage
+    // },
+    // //All Cities directory page
+    // //Currently Disabled: Currently No known way to pull router name to use this route. (This route conflicts with the Directory-page-state route. We can't differentiate in the code between this route and the state route) Query parameter is used instead for now
+    // //{
+    // //    path: '/directory/:state/all-cities/:listTitle/page/:pageNumber',
+    // //    name: 'Directory-page-all-cities',
+    // //    component: DirectoryPage
+    // //},
+    // //Zipcode directory page
+    // {
+    //     path: '/listing_index/:state/:city/:zipcode/:listTitle/page/:pageNumber',
+    //     name: 'Directory-page-zipcode',
+    //     component: DirectoryPage
+    // },
+    // {
+    //     path: '/s/:query',
+    //     name: 'Search-page',
+    //     component: SearchPage
+    // },
+    // {
+    //     path: '/wlist',
+    //     name: 'Widget-page',
+    //     component: DynamicListPage
+    // },
     {
         path: '/cityview/:state/:city',
         name: 'City-view-page',
@@ -148,7 +153,7 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
     }
 ])
 
-export class AppComponent implements OnInit {
+export class MyAppComponent implements OnInit {
 
     //declare variables to grab potential partner header
     public partnerID: string;
@@ -163,8 +168,8 @@ export class AppComponent implements OnInit {
     nearByCities: Object;
 
     constructor(private _injector: Injector,private _partnerData: PartnerHeader, private _params: RouteParams, private route: Router, private routeData: RouteData, private routerLink: RouterLink, private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService){
-        var parentParams = this._injector.get(WebApp);
-        console.log("SNT-MEDIA PAGE!!!!!!!!!!!!!!!!!!");
+        var parentParams = this._injector.get(MyWebApp);
+        console.log("PARTNER PAGE!!!!!!!!!!!!!!!!!!");
         if(typeof parentParams.partnerID != 'undefined'){
             this.partnerID = parentParams.partnerID;
         }

@@ -21,6 +21,7 @@ import {AmenitiesModule} from "../../modules/amenities/amenities.module";
 import {TrendingHomes} from "../../modules/trending-homes/trending-homes.module";
 import {Injector} from 'angular2/core';
 import {WebApp} from '../../app-layout/app.layout';
+import {MyWebApp} from '../../app-layout/app.mylayout';
 
 @Component({
     selector: 'location-page',
@@ -54,7 +55,8 @@ export class LocationPage implements OnInit {
     public pageName: string;
 
     constructor(private injector:Injector, private _params: RouteParams, private _locationProfileService: LocationProfileService, private _listService: ListOfListPage) {
-        let partnerParam = this.injector.get(WebApp);
+      let partnerParam = this.injector.get(MyWebApp);
+      let blab = this.injector.get(WebApp);
         this.partnerID = partnerParam.partnerID;
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
