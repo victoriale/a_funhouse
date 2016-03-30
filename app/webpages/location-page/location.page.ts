@@ -34,7 +34,6 @@ export class LocationPage implements OnInit {
     loc: string;
     locCity: string;
     locState: string;
-    pageName: string;
     public locDisplay: string;
     public headlineAbout: any;
     public headlineCrime: any;
