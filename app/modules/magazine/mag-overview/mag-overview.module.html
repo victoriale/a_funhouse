@@ -6,8 +6,7 @@
             {{magOverview?.address?.fullStreetAddress}}
         </div>
         <div *ngIf="magOverview?.address" class='mag_po_loc'>
-            {{magOverview?.address?.fullStreetAddress}}
-            {{magOverview?.address?.county}},
+            {{magOverview?.address?.city}}, {{magOverview?.address?.state}} {{magOverview?.address?.postalCode}} {{magOverview?.address?.county}}
             {{magOverview?.address?.country}}
         </div>
         <span *ngIf="price">
