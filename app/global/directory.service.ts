@@ -88,53 +88,6 @@ export class DirectoryService{
             )
     }
 
-    //API to get number of city listings
-    getCityListingsNumber(state, city){
-        var headers = this.setToken();
-
-        state = encodeURI(state);
-        city = encodeURI(city);
-
-        return this.http.get(this.apiUrl + '/directory/cities/countListings/' + state + '/' + city, {
-                headers: headers
-            })
-            .map(
-                res => res.json()
-            )
-            .map(
-                data => {
-                    if(data.success == false){
-                        throw new Error('Error: getCityListingsNumber api success, message failed');
-                    }
-
-                    return data.data;
-                }
-            )
-    }
-
-    //API to get number of zipcode listings
-    getZipcodeListingNumber(zipcode){
-        var headers = this.setToken();
-
-        zipcode = encodeURI(zipcode);
-
-        return this.http.get(this.apiUrl + '/directory/zip/countListings/' + zipcode, {
-                headers: headers
-            })
-            .map(
-                res => res.json()
-            )
-            .map(
-                data => {
-                    if(data.success == false){
-                        throw new Error('Error: getZipcodeListingNumber api success, message failed');
-                    }
-
-                    return data.data;
-                }
-            )
-    }
-
     //API to get directory listing data
     getDirectoryData(pageNumber, listTitle, state, city, zipcode){
         var limit = 20;
