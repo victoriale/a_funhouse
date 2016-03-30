@@ -120,7 +120,7 @@ export class TrendingHomes implements OnInit {
             var paramCity = paramAddress [paramAddress.length - 2];
             var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
             var address = tempArr.join(' ');
-            this.moduleTitle = 'Most Trending Homes Around ' + address + ' ' + paramCity + ', ' + paramState;
+            this.moduleTitle = 'Most Trending Homes Around ' + this.globalFunctions.toTitleCase(address) + ' ' + this.globalFunctions.toTitleCase(paramCity) + ', ' + paramState;
         }
     }
     ngOnInit(){

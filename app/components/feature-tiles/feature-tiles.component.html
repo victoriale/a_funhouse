@@ -15,7 +15,7 @@
         </a>
     </section>
     <section class="feature-tiles">
-        <a href="#">
+        <a [routerLink]="['City-view-page', {state: stateLocation, city: cityLocation}]">
             <div class="feature-tile-3 two-col">
                 <p class="feature-tile-title">Cities Nearby</p>
                 <div class="view-box">

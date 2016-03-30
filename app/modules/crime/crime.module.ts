@@ -80,7 +80,7 @@ export class CrimeModule implements OnInit{
             var paramCity = paramAddress [paramAddress.length - 2];
             var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
             var address = tempArr.join(' ');
-            this.moduleTitle = 'Crime Activity In and Around ' + address + ' ' + paramCity + ', ' + paramState;
+            this.moduleTitle = 'Crime Activity In and Around ' + this.globalFunctions.toTitleCase(address) + ' ' + this.globalFunctions.toTitleCase(paramCity) + ', ' + paramState;
         }
     }
 

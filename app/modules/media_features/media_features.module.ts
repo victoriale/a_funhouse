@@ -73,14 +73,16 @@ export class MediaFeatureModule implements OnInit {
           case 'state':
           case 'zipCode':
           case 'address':
+            originalData['address'] = this.globalFunctions.toTitleCase(originalData['address']);
             break;
           case 'daysOnMarket':
             var formattedDays = moment().subtract('days', originalData.daysOnMarket).format('dddd, MMMM Do, YYYY');
             break;
           case 'listingDate':
             originalData['listingDate'] = originalData['listingDate'].split(' ')[0];
-            break;
           //below just modify and then go to default as well
+          case 'squareFeet':
+            originalData['squareFeet'] = this.globalFunctions.commaSeparateNumber(originalData['squareFeet']);
           case 'listPrice':
             originalData['listPrice'] = this.globalFunctions.commaSeparateNumber(originalData['listPrice']);
           default:
@@ -162,7 +164,6 @@ export class MediaFeatureModule implements OnInit {
       var paramLocation: string = this._params.get('loc');
       var paramCity: string = this.globalFunctions.toTitleCase(paramLocation.split('_')[0]);
       var paramState: string = paramLocation.split('_')[1];
-
       this.moduleTitle = 'Property Images, Media & Features for ' + paramCity + ', ' + paramState;
     } else if (this.profileType === 'ProfilePage') {
       //Listing Crime Module
@@ -172,7 +173,7 @@ export class MediaFeatureModule implements OnInit {
       var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
       var address = tempArr.join(' ');
 
-      this.moduleTitle = 'Property Images, Media & Features for ' + address + ' ' + paramCity + ', ' + paramState;
+      this.moduleTitle = 'Property Images, Media & Features for ' + this.globalFunctions.toTitleCase(address) + ' ' + this.globalFunctions.toTitleCase(paramCity) + ', ' + paramState;
     }
   }
 

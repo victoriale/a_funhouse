@@ -76,6 +76,12 @@ export class ListOfListModule {
             displayArray.push(arrayItem);
         }
 
+        //If first item in array has city and state use it (This fixes problems where city is multiple words)
+        if(displayArray.length !== 0){
+            this.city = displayArray[0].listData[0].city;
+            this.state = displayArray[0].listData[0].stateOrProvince;
+        }
+
         //Assign data to display in module
         this.lists = displayArray;
     }

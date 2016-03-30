@@ -24,6 +24,7 @@ import {magazineBanner} from '../../modules/mag_banner/mag_banner.module';
 import {magazineModule} from '../../modules/mag_module/mag_module';
 import {Injector} from 'angular2/core';
 import {WebApp} from '../../app-layout/app.layout';
+import {GlobalFunctions} from '../../global/global-functions';
 
 @Component({
     selector: 'profile-page',
@@ -58,7 +59,7 @@ export class ProfilePage implements OnInit{
     public partnerParam: string;
     public partnerID: string;
     //  Get current route name
-    constructor(private injector:Injector, public _params: RouteParams, private _listingProfileService: ListingProfileService, params: RouteParams, private _listService:ListOfListPage){
+    constructor(private injector:Injector, public _params: RouteParams, private _listingProfileService: ListingProfileService, params: RouteParams, private _listService:ListOfListPage, private globalFunctions: GlobalFunctions){
         // Scroll page to top to fix routerLink bug
         let partnerParam = this.injector.get(WebApp);
         this.partnerID = partnerParam.partnerID;
@@ -71,6 +72,7 @@ export class ProfilePage implements OnInit{
             .subscribe(
                 data => {
                     this.profileHeaderData = data;
+                    this.profileHeaderData['paramAddress'] = this.paramAddress;
                 },
                 err => console.log('Error - Listing Profile Header Data: ', err)
             )
@@ -107,7 +109,7 @@ export class ProfilePage implements OnInit{
     }
 
     getTrendingListings(){
-        this._listingProfileService.getTrendingHomesData(this.city, this.state)
+        this._listingProfileService.getTrendingHomesData(this.paramAddress)
             .subscribe(
                 data => {
                     this.trendingHomesData = data;
@@ -131,7 +133,7 @@ export class ProfilePage implements OnInit{
     }
 
     getListOfList() {
-        this._listService.getListOfListPage(this.state, this.city)
+        this._listService.getAddressListOfListPage(this.paramAddress)
         .subscribe(lists => {
           this.lists = lists
         });
@@ -145,7 +147,7 @@ export class ProfilePage implements OnInit{
       var address = tempArr.join(' ');
       this.city = paramCity;
       this.state = paramState;
-      this.address = address + ' ' + paramCity + ', ' + paramState;
+      this.address = this.globalFunctions.toTitleCase(address) + ' ' + paramCity + ', ' + paramState;
     }
 
     ngOnInit(){

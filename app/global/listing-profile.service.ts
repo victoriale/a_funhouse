@@ -140,14 +140,13 @@ export class ListingProfileService{
         )
     }
 
-    getTrendingHomesData(city, state){
+    getTrendingHomesData(address){
         //Configure HTTP Headers
         var headers = this.setToken();
 
-        city = encodeURI(city);
-        state = encodeURI(state);
+        address = encodeURI(address);
 
-        return this.http.get(this.apiUrl + '/list/trending/' + state + '/' + city, {
+        return this.http.get(this.apiUrl + '/list/trendingByAddress/' + address, {
                 headers: headers
             })
             .map(

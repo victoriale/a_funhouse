@@ -52,6 +52,8 @@ export class ProfileHeader implements OnInit{
 
     transformData(){
         var data = this.profileHeaderData;
+
+        var location = data.city + ", " + data.state;
         //Sanitize city value
         data.city = this.globalFunctions.toTitleCase(data.city);
 
@@ -72,13 +74,21 @@ export class ProfileHeader implements OnInit{
             };
 
             this.descriptionTitle = data.city + ', ' + data.state;
-            this.descriptionLocation = 'Did you know that';
+            this.descriptionLocation = "";
+            var defaultText ="Did you know that";
+            var fallback = "Do you know what "+ location +" has to offer? Explore what's trending, properties for sale and neigborhood amenities for "+ location + '.';
 
             this.descriptionLocation += data.averageAge === null ? '' : ' the average age for a ' + data.city + ' resident is ' + data.averageAge + ',';
             this.descriptionLocation += data.averageRentalPrice === null ? '' : ' the average rental price is $' + this.globalFunctions.commaSeparateNumber(data.averageRentalPrice) + '/month,';
-            this.descriptionLocation += data.averageListingPrice === null ? '?' : ' and the average home sells for $' + this.globalFunctions.commaSeparateNumber(data.averageListingPrice) + '?';
-            this.mainImageURL = data.locationImage;
+            this.descriptionLocation += data.averageListingPrice === null ? '' : ' and the average home sells for $' + this.globalFunctions.commaSeparateNumber(data.averageListingPrice) + '?';
 
+            if(this.descriptionLocation == '' || this.descriptionLocation == ' '){
+              this.descriptionLocation = fallback + this.descriptionLocation;
+            }else{
+              this.descriptionLocation = defaultText + this.descriptionLocation;
+            }
+
+            this.mainImageURL = data.locationImage;
         }else if(this.profileType === 'ProfilePage') {
             //Listing Profile Header
 
@@ -87,7 +97,7 @@ export class ProfileHeader implements OnInit{
                 //Unused field of component for this module
                 smallText: '',
                 smallText2: data.city + ', ' + data.state + ' > ' + moment(data.lastUpdated).format('dddd, MMMM Do, YYYY'),
-                heading1: data.address,
+                heading1: this.globalFunctions.toTitleCase(data.address),
                 heading2: data.listingStatus === null ? '' : '- ' + data.listingStatus,
                 heading3: 'Listing Price: $' + this.globalFunctions.commaSeparateNumber(data.listingPrice),
                 heading4: data.squareFeet === null ? '' : '- Area: ' + this.globalFunctions.commaSeparateNumber(data.squareFeet) + ' Sq ft.',
@@ -96,7 +106,7 @@ export class ProfileHeader implements OnInit{
                 originalLink: data.originalLink
             };
             //Build profile header description
-            this.descriptionAddress = 'The listing is located at ' + data.address + ', ' + data.city + ', ' + data.state + '.';
+            this.descriptionAddress = 'The listing is located at ' + this.globalFunctions.toTitleCase(data.address) + ', ' + data.city + ', ' + data.state + '.';
             this.descriptionSquareFeet = data.squareFeet === null ? '' : 'The living area is around ' + this.globalFunctions.commaSeparateNumber(data.squareFeet) + ' sq ft.';
             this.descriptionContact = '';
             if (data.phoneNumber !== null && data.officeNumber !== null && data.phoneNumber !== data.officeNumber) {
@@ -117,7 +127,7 @@ export class ProfileHeader implements OnInit{
         }
     }
 
-    //Initialization Call 
+    //Initialization Call
     ngOnInit(){
         this.setStaticData();
     }

@@ -1,4 +1,4 @@
-<div class="mag_module">
+<div *ngIf="showMagazine" class="mag_module">
   <module-header [module_title]="module_title"></module-header>
   <a [routerLink]="[data.url1, data.param, data.url2]">
     <div class="module-wrapper" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.75)), url('{{magImg}}')">
