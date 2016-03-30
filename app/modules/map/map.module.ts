@@ -79,6 +79,7 @@ export class MapModule implements OnChanges{
                 //Add click event to view profile text in infoWindow
                 google.maps.event.addListener(infoWindow, 'domready', function(){
                     document.getElementById('map-view-profile').addEventListener('click', function(){
+                        console.log('afdafdfadfdafdaf', item);
                         self._router.navigate(['../../Magazine', {addr: item.addressKey}, 'PropertyOverview']);
                     })
                 })
