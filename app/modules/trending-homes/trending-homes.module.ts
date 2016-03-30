@@ -75,7 +75,10 @@ export class TrendingHomes implements OnInit {
         }
 
         var formattedDays = moment().subtract('days', val.daysOnMarket).format('dddd, MMMM Do, YYYY');
-
+        //grab featured data about listing
+        if(typeof val.virtualTour == 'undefined'){
+          val.virtualTour = 'N/A';
+        }
         var carData = {
           address:val.fullStreetAddress,
           daysOnMarket:formattedDays,
