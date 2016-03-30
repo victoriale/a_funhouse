@@ -7,7 +7,7 @@ import {Component, Input, OnChanges} from 'angular2/core';
     selector: 'image-180',
     templateUrl: './app/components/images/image.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    inputs: ['hasSubImg', 'imageURL', 'imageURL2', 'counterIf', 'counter', 'hasHover', ' hasBottomImg']
+    inputs: ['hasSubImg', 'imageURL', 'imageURL2', 'counterIf', 'counter', 'hasHover', 'hasBottomImg']
 })
 export class Image180 {
     imageURL: string = './app/public/placeholder-location.jpg';
