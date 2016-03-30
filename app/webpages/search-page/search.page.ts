@@ -1,9 +1,14 @@
 import {Component, OnInit, Input, OnChanges} from 'angular2/core';
 import {BackTabComponent} from '../../components/backtab/backtab.component';
 import {SearchService} from '../../global/search-service';
-import {Observable} from "rxjs/Observable";
 import {ROUTER_DIRECTIVES, RouteConfig, RouteParams, Router} from 'angular2/router';
 import {WidgetModule} from "../../modules/widget/widget.module";
+import {LoadingComponent} from '../../components/loading/loading.component';
+import {ErrorComponent} from '../../components/error/error.component';
+import {GlobalFunctions} from '../../global/global-functions';
+
+import {Observable} from 'rxjs/Rx';
+import {Control} from 'angular2/common';
 
 declare var jQuery: any;
 
@@ -11,111 +16,161 @@ declare var jQuery: any;
   selector: 'Search-page',
   templateUrl: './app/webpages/search-page/search.page.html',
   styleUrls: ['./app/global/stylesheets/master.css'],
-  directives: [ROUTER_DIRECTIVES, BackTabComponent, WidgetModule],
+  directives: [ROUTER_DIRECTIVES, BackTabComponent, WidgetModule, LoadingComponent, ErrorComponent],
   providers: [SearchService],
   inputs: ['searchResults', 'showResults']
 })
 
 export class SearchPage implements OnInit {
-  searchImage: string = "./app/public/Image_Search.png";
-  searchResults: any;
-  showResults: boolean;
-  tab: string = 'address';
-  showTotal: number = 0;
-  currentTotal: number = 0;
-  displayData: {}; //this is what is being inputed into the DOM
-  dataInput:string;
-  constructor(private _searchService: SearchService, private params: RouteParams, private _router:Router) {
-    this.loadCall(params['params']['query'].replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, ','));
-  }
+    searchImage: string = "./app/public/Image_Search.png";
+    searchResults: any = {};
+    showResults: boolean;
+    tab: string = 'address';
+    showTotal: number = 0;
+    currentTotal: number = 0;
+    displayData: {}; //this is what is being inputed into the DOM
+    dataInput:string;
 
-  //Function to tell search results component to show when input is focused
-  focusResults(event) {
-    this.showResults = true;
-  }
+    //resultsFound determines if results page should be shown (through ngIfs)
+    public resultsFound: boolean = false;
+    //isError determines if error message should be displayed
+    public isError: boolean = false;
+    public term: any = new Control();
+    httpSubscription: any;
 
-  searchRedirect(){
-    this._router.navigate(['Search-page', {query: this.dataInput}]);
-  }
-  //USES JQUERY not angular2
-  //used as a click event on tabs to grab selected tab
-  tabTarget(event) {
-    this.tab = event.target.id;
-    var icon = "<i class='fa fa-circle'></i>";
-    jQuery('.search-tab').removeClass('active').find('i').removeClass('fa fa-circle');
-    jQuery(event.target).addClass('active').find('i').addClass('fa fa-circle');
-    this.showCurrentData();
-  }
-
-  //will run for every event that triggers, keystroke, click, tab changes and it will updated the page
-  showCurrentData() {
-    //check to make sure to only run correctly if data is being shown
-    if (typeof this.searchResults[this.tab] !== 'undefined') {
-      this.displayData = this.searchResults[this.tab];
-      this.currentTotal = this.displayData['length'];
-      // console.log(this.tab," => ",this.displayData);
-      // console.log("Results => ",this.searchResults);
-      return this.displayData;
-    }
-  }
-
-  //with the keyup inside the html this function will make a search call on every keystroke
-  searchText(event) {
-    // console.log(event);
-    if(event.code == 'Enter'){
-      this._router.navigate(['Search-page', {query: this.dataInput}]);
-    }
-    var input = event.target.value;
-    this.dataInput = input;
-    //makes sure the input is not empty and do an unneccesary call
-    if (input != '') {
-      // console.log('Search page event', input);
-      this.searchResults = this._searchService.getSearchResults(input, 'raw')
-        .subscribe(
-        data => {
-          this.searchResults = this.dataModify(data);
-          this.showCurrentData();
+    constructor(private _searchService: SearchService, private params: RouteParams, private _router:Router, private globalFunctions: GlobalFunctions) {
+        var query = this.params.get('query');
+        if(query !== null) {
+            this.loadCall(query);
         }
-        )
-    }//end if
-  }
 
-  //on page load
-  loadCall(param) {
-    var input = param;
-    // console.log('Search page event', input);
-    this.searchResults = this._searchService.getSearchResults(input, 'raw')
-      .subscribe(
-      data => {
-        this.searchResults = this.dataModify(data);
+        //Function chain to pull api data for search
+        //.debounceTime - only fire following function calls after 400 milliseconds after user input is done
+        //.distinctUntilChanged - Ensures that api is not hit twice with the same parameters. This could happen if a person types 'car' in the input -> gets a result -> types 'cart' -> backspaces to 'car' (before the debounce time), the previous parameter was zoo and the new parameter hasnt changed therefore no new api call is needed
+        //.switchMap - Ensures that api calls are in order. If a new api call is fired before the previous call finishes, the previous call is cancelled. Also in this case if the input is of length 0 then the api call is ignored and undefined is passed to search results
+        //.subscribe - Assign result data to variable
+        this.httpSubscription = this.term.valueChanges
+            .debounceTime(400)
+            .distinctUntilChanged()
+            .switchMap((term: string) => term.length > 0 ? this._searchService.getSearchResults(term, 'raw') : Observable.of(undefined))
+            .subscribe(
+                data => {
+                    this.searchResults = this.dataModify(data);
+                    this.showCurrentData();
+                },
+                err => {
+                    console.log('Error - Search Page API: ', err);
+                    this.isError = true;
+                }
+            )
+    }
+
+    //Function to tell search results component to show when input is focused
+    focusResults(event) {
+        this.showResults = true;
+    }
+
+    //Unused
+    searchRedirect(){
+        //this._router.navigate(['Search-page', {query: this.dataInput}]);
+    }
+
+    //USES JQUERY not angular2
+    //used as a click event on tabs to grab selected tab
+    tabTarget(event) {
+        this.tab = event.target.id;
+        jQuery('.search-tab').removeClass('active').find('i').removeClass('fa fa-circle');
+        jQuery(event.target).addClass('active').find('i').addClass('fa fa-circle');
         this.showCurrentData();
-      }
-      )
-  }
+    }
 
-  //below is for sorting out data
+    //will run for every event that triggers, keystroke, click, tab changes and it will updated the page
+    showCurrentData() {
+        //check to make sure to only run correctly if data is being shown
+        if (typeof this.searchResults !== 'undefined' && typeof this.searchResults[this.tab] !== 'undefined') {
+            this.displayData = this.searchResults[this.tab];
+            this.currentTotal = this.displayData['length'];
+            return this.displayData;
+        }
+    }
+
+    onSubmit(event){
+        var value = this.term._value;
+        if(typeof value === 'undefined' || value === ''){
+            return false;
+        }
+
+        value = encodeURIComponent(value);
+
+        //Cancel current http request
+        this.httpSubscription.unsubscribe();
+        //Navigate to search page with query string
+        this._router.navigate(['Search-page', {query: value}]);
+    }
+
+    //with the keyup inside the html this function will make a search call on every keystroke
+    //Unused - replaced with ngFormControl
+    searchText(event) {
+        //// console.log(event);
+        //if(event.code == 'Enter'){
+        //  this._router.navigate(['Search-page', {query: this.dataInput}]);
+        //}
+        //var input = event.target.value;
+        //this.dataInput = input;
+        ////makes sure the input is not empty and do an unneccesary call
+        //if (input != '') {
+        //  // console.log('Search page event', input);
+        //  this.searchResults = this._searchService.getSearchResults(input, 'raw')
+        //    .subscribe(
+        //    data => {
+        //      this.searchResults = this.dataModify(data);
+        //      this.showCurrentData();
+        //    }
+        //    )
+        // }//end if
+    }
+
+    //on page load
+    loadCall(param) {
+        var input = decodeURIComponent(param);
+        this.term.updateValue(input);
+        this.searchResults = this._searchService.getSearchResults(input, 'raw')
+            .subscribe(
+                data => {
+                    this.searchResults = this.dataModify(data);
+                    this.showCurrentData();
+                    this.resultsFound = true;
+                }
+            )
+    }
+
+    //below is for sorting out data
 
   dataModify(data) {
     var address = [];
     var location = [];
     var zipcode = [];
     var total: number = 0;
-    var showLimit: number = 10;
-    var tab: string;
 
     var addrCount = 0;
     var zipCount = 0;
     var locCount = 0;
 
+      var self = this;
+
     //group address's together, routerLink goes to Magazine
     if (typeof data.address !== 'undefined' && data.address !== null) {
       data.address.forEach(function(item, index) {
+          var fullAddress = item.address_key.split('-');
+          var tempArr = fullAddress.splice(-fullAddress.length, fullAddress.length - 2);
+          var parsedAddress = tempArr.join(' ');
+
         var dataAddr = {
           addr: item.address_key,
           page: '../../Magazine',
           params: { addr: item.address_key },
-          display: item.address_key.replace(/-/g, ' ') + " - " + item.city + " " + item.state_or_province,
-        }
+          display: self.globalFunctions.toTitleCase(parsedAddress) + " - " + item.city + ", " + item.state_or_province,
+        };
         address.push(dataAddr);
         addrCount++;
         total++;
@@ -130,12 +185,16 @@ export class SearchPage implements OnInit {
             item[obj] = 'N/A';
           }
         }
+          var fullAddress = item.address_key.split('-');
+          var tempArr = fullAddress.splice(-fullAddress.length, fullAddress.length - 2);
+          var parsedAddress = tempArr.join(' ');
+
         var dataAddr = {
           addr: item.address_key,
           page: '../../Magazine',
           params: { addr: item.address_key },
-          display: item.address_key.replace('-',' ') + " - " + item.city + " " + item.state_or_province,
-        }
+          display: self.globalFunctions.toTitleCase(parsedAddress) + " - " + self.globalFunctions.toTitleCase(item.city) + ", " + item.state_or_province,
+        };
         address.push(dataAddr);
         addrCount++;
         total++;
@@ -150,20 +209,21 @@ export class SearchPage implements OnInit {
           'zipcode': item.zipcode,
           page: '../../Magazine',
           params: { addr: item.address_key },
-          display: '[' + item.zipcode + '] - ' + item.city + " " + item.state_or_province + " - " + item.address_key,
+          display: '[' + item.zipcode + '] - ' + self.globalFunctions.toTitleCase(item.city) + " " + item.state_or_province + " - " + item.address_key,
         };
         zipcode.push(zip);
         zipCount++;
         total++;
       });
     }
+
     if (typeof data.location_city !== 'undefined' && data.location_city !== null) {
       data.location_city.forEach(function(item, index) {
         var locationData = {
           page: 'Location-page',
           params: { loc: item.city + "_" + item.state_or_province },
-          display: item.city + " - " + item.state_or_province,
-        }
+          display: self.globalFunctions.toTitleCase(item.city) + " - " + item.state_or_province,
+        };
         location.push(locationData);
         locCount++;
         total++;
@@ -181,10 +241,6 @@ export class SearchPage implements OnInit {
         this._router.navigate([location[0].page, location[0].params])
       }
     }
-    // console.log('ZIP CODE', zipcode);
-    // console.log('ADDRESS', address);
-    // console.log('LOCATION', location);
-    // console.log('TOTAL: ', total);
 
     this.showTotal = total;
 
@@ -199,7 +255,7 @@ export class SearchPage implements OnInit {
     };
   }
 
-  ngOnInit() {
-    this.showCurrentData();
-  }
+    ngOnInit() {
+        this.showCurrentData();
+    }
 }
