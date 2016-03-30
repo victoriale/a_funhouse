@@ -3,7 +3,7 @@
     <div *ngIf="!magazineData" class="page-loading">
         <img src="../../app/public/page_loading.gif" />
     </div>
-    <router-outlet *ngIf="showErrorPage"></router-outlet>
+    <magazine-error-module *ngIf="showErrorPage"></magazine-error-module>
     <span *ngIf="magazineData">
         <router-outlet></router-outlet>
         <mag-nav-left-component [toc]="toc"></mag-nav-left-component>
