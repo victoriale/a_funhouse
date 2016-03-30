@@ -8,23 +8,30 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [moduleHeader, ROUTER_DIRECTIVES],
     providers: [],
-    inputs:['listing', 'magImg']
+    inputs:['listingData', 'magImg']
 })
 
 export class magazineModule {
   module_title:string = "Property Listing Digital Story";
   magImg:string = "./app/public/mag_module_bg.png";
-  listing:string;
+  listingData:string;
+  showMagazine: boolean = false; //will only show if it is a residential listing
   data: any;
 
     constructor(
     ) { }
 
     ngOnInit() {
+      var address:string;
+      if(this.listingData['propertyType'] === "Residential"){
+        this.showMagazine = true;
+      }
+      this.magImg = this.listingData['listingImage'];
+      address = this.listingData['address'];
       this.data = {
-        address: this.listing.replace(/-/g, ' '),
+        address: address.replace(/-/g, ' '),
         url1: '../../Magazine',
-        param: {addr: this.listing},
+        param: {addr: address},
         url2: 'PropertyOverview',
       }
     }

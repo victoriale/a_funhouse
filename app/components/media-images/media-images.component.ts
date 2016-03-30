@@ -52,7 +52,9 @@ export class MediaImages implements OnInit {
   }
 
   left() {
-    this.leftCircle.next(true);
+    if(this.trending){
+      this.leftCircle.next(true);
+    }
     //make a check to see if the obj array is below 0 change the obj array to the top level
     if(this.imageCounter == 0){
       this.smallObjCounter--;
@@ -69,18 +71,21 @@ export class MediaImages implements OnInit {
   }
 
   right() {
-    this.rightCircle.next(true);
-    //check to see if the end of the obj array of images has reached the end and will go on the the next obj with new set of array
-    if(this.imageCounter == (this.mediaImages[this.smallObjCounter].length - 1)){
-      this.imageCounter = 0;
-      this.smallObjCounter++;
-      //if the obj array is at the end then restart by setting the object counter back to 0
-      if(this.smallObjCounter == (this.mediaImages.totalObj)){
-        this.smallObjCounter = 0;
-      }
+    if(this.trending){
+      this.rightCircle.next(true);
     }else{
-      this.imageCounter++;
-    }
+      //check to see if the end of the obj array of images has reached the end and will go on the the next obj with new set of array
+      if(this.imageCounter == (this.mediaImages[this.smallObjCounter].length - 1)){
+        this.imageCounter = 0;
+        this.smallObjCounter++;
+        //if the obj array is at the end then restart by setting the object counter back to 0
+        if(this.smallObjCounter == (this.mediaImages.totalObj)){
+          this.smallObjCounter = 0;
+        }
+      }else{
+        this.imageCounter++;
+      }
+    }//endif this.trending
     //run the changeMain function to change the main image once a new array has been established
     this.changeMain(this.imageCounter);
   }

@@ -34,7 +34,6 @@ export class LocationPage implements OnInit {
     loc: string;
     locCity: string;
     locState: string;
-    pageName: string;
     public locDisplay: string;
     public headlineAbout: any;
     public headlineCrime: any;
@@ -53,7 +52,7 @@ export class LocationPage implements OnInit {
     public partnerID: string;
     public partnerCheck: boolean;
     public pageName: string;
-    
+
     constructor(private injector:Injector, private _params: RouteParams, private _locationProfileService: LocationProfileService, private _listService: ListOfListPage) {
         let partnerParam = this.injector.get(WebApp);
         this.partnerID = partnerParam.partnerID;

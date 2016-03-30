@@ -2,7 +2,6 @@ import {Component, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 
 import {HomePageData} from "../../global/global-interface";
-import {HomePageService} from '../../global/global-service'
 
 import {HeaderComponent} from "../../components/header/header.component";
 import {FooterComponent} from "../../components/footer/footer.component";
@@ -17,7 +16,7 @@ import {FeatureTilesComponent} from "../../components/feature-tiles/feature-tile
     templateUrl: './app/webpages/home-page/home.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [HeaderComponent, FooterComponent, HeroComponent, ExploreTilesComponent, ExploreButtonComponent, HeroBottomComponent, FeatureTilesComponent],
-    providers: [HomePageService],
+    providers: [],
 })
 
 export class PartnerHomePage {
@@ -35,14 +34,9 @@ export class PartnerHomePage {
 
     // Explore Tiles
 
-    constructor(private _homePageService: HomePageService) { }
-
-    getHomepageService() {
-        this._homePageService.getHomePageService().then(homepagedata => this.homepagedata = homepagedata);
-    }
+    constructor() { }
 
     ngOnInit() {
-        this.getHomepageService();
 
         // Buttons
         this.buttontitle = "More";
