@@ -168,6 +168,9 @@ export class ListPage {
         //below are variables that are converted using global functions to a readable state
       val.listPrice = globeFunc.commaSeparateNumber(val.listPrice);
       var formattedDate = moment(val.modificationTimestamp.split(' ')[0], 'YYYY-MM-DD').format("dddd, MMMM Do, YYYY");
+          if(val.livingArea === null) {
+              val.livingArea = "N/A";
+          }
       var livingArea = globeFunc.commaSeparateNumber(val.livingArea);
       var newData = {
           img : val.photos[0],

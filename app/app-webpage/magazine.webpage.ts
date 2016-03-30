@@ -59,11 +59,6 @@ declare var jQuery:any;
         name: 'Contact',
     }),
     {
-        path: '/error',
-        name: 'Error',
-        component: MagErrorModule
-    },
-    {
         path: '/**',
         redirectTo: ['PropertyOverview']
     }
@@ -85,7 +80,6 @@ export class MagazinePage {
                 },
                 err => {
                     this.showErrorPage = true;
-                    this._router.navigate(["Error"]);
                 },
                 () => this.showErrorPage = false
             );

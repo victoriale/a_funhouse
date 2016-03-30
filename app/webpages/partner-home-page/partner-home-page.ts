@@ -20,7 +20,6 @@ import {FeatureTilesComponent} from "../../components/feature-tiles/feature-tile
 })
 
 export class PartnerHomePage {
-    homepagedata: HomePageData[];
 
     citylocation: string = "Wichita";
 
@@ -37,7 +36,6 @@ export class PartnerHomePage {
     constructor() { }
 
     ngOnInit() {
-
         // Buttons
         this.buttontitle = "More";
         this.buttonwidth = 160;
@@ -45,7 +43,5 @@ export class PartnerHomePage {
         this.herobuttontitle = "See The List";
         this.herobuttonwidth = 220;
         this.herobuttonicon = "";
-
-        console.log(this);
     }
 }
