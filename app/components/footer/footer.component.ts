@@ -92,26 +92,26 @@ export class FooterComponent implements OnInit {
     ];
 
     cities = [
-        { "name": "Atlanta", "state": "GA" },
-        { "name": "Austin", "state": "TX" },
-        { "name": "Boston", "state": "MA" },
-        { "name": "Chicago", "state": "IL" },
-        { "name": "Dallas", "state": "TX" },
-        { "name": "Detroit", "state": "MI" },
-        { "name": "Honolulu", "state": "HI" },
-        { "name": "Houston", "state": "TX" },
-        { "name": "Los Angeles", "state": "CA" },
-        { "name": "Miami", "state": "FL" },
-        { "name": "Minneapolis", "state": "MN" },
-        { "name": "New York City", "state": "NY" },
-        { "name": "Philadelphia", "state": "PA" },
-        { "name": "Portland", "state": "OR" },
-        { "name": "Sacramento", "state": "CA" },
-        { "name": "San Diego", "state": "CA" },
-        { "name": "San Francisco", "state": "CA" },
-        { "name": "San Jose", "state": "CA" },
-        { "name": "Seattle", "state": "WA" },
-        { "name": "Washington, D.C", "state": "DC" }
+        { "name": "Atlanta", nameUrl: "Atlanta", "state": "GA" },
+        { "name": "Austin", nameUrl: "Austin", "state": "TX" },
+        { "name": "Boston", nameUrl: "Boston", "state": "MA" },
+        { "name": "Chicago", nameUrl: "Chicago", "state": "IL" },
+        { "name": "Dallas", nameUrl: "Dallas", "state": "TX" },
+        { "name": "Detroit", nameUrl: "Detroit", "state": "MI" },
+        { "name": "Honolulu", nameUrl: "Honolulu", "state": "HI" },
+        { "name": "Houston", nameUrl: "Houston", "state": "TX" },
+        { "name": "Los Angeles", nameUrl: "Los-Angeles", "state": "CA" },
+        { "name": "Miami", nameUrl: "Miami", "state": "FL" },
+        { "name": "Minneapolis", nameUrl: "Minneapolis", "state": "MN" },
+        { "name": "New York City", nameUrl: "New-York-City", "state": "NY" },
+        { "name": "Philadelphia", nameUrl: "Philadelphia", "state": "PA" },
+        { "name": "Portland", nameUrl: "Portland", "state": "OR" },
+        { "name": "Sacramento", nameUrl: "Sacramento", "state": "CA" },
+        { "name": "San Diego", nameUrl: "San-Diego", "state": "CA" },
+        { "name": "San Francisco", nameUrl: "San-Francisco", "state": "CA" },
+        { "name": "San Jose", nameUrl: "San-Jose", "state": "CA" },
+        { "name": "Seattle", nameUrl: "Seattle", "state": "WA" },
+        { "name": "Washington, D.C.", nameUrl: "Washington-DC", "state": "DC" }
     ];
 
 }
