@@ -116,6 +116,20 @@ export class ListOfListPage {
 
   public apiUrl: string = 'http://api2.joyfulhome.com:280';
 
+  getAddressListOfListPage(address){
+    address = encodeURIComponent(address);
+
+    return this.http.get(this.apiUrl + '/list/listOfListsAddressKey/' + address)
+      .map(
+          res => res.json()
+      )
+    .map(
+        data => {
+          return data.data;
+        }
+    )
+  }
+
   getListOfListPage(state, city) {
     //Nearby Cities call (Returns city, state, distance)
     return this.http.get(this.apiUrl + '/list/listOfLists/' + state + '/' + city)
