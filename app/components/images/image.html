@@ -1,6 +1,16 @@
 <div *ngIf="hasSubImg" class='image-{{size}}-smallImgBR'>
+  <img *ngIf="!hasHover" src='{{imageURL}}' onerror="this.src='./app/public/placeholder-location.jpg';" />
+  <a *ngIf="hasHover">
     <img src='{{imageURL}}' onerror="this.src='./app/public/placeholder-location.jpg';" />
+    <div>
+      <p>View</p>
+      <p>Profile</p>
+    </div>
+  </a>
+  <div *ngIf="counterIf">#{{counter}}</div>
+  <a>
     <img src='{{imageURL2}}' onerror="this.src='./app/public/placeholder-location.jpg';" />
+  </a>
 </div>
 
 <div *ngIf="!hasSubImg">
