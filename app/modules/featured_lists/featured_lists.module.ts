@@ -145,8 +145,8 @@ export class FeaturedListsModule implements OnInit{
             icon1: 'fa-list-ul',
             desc1: '',
             url1: 'List-page',
-            paramOption1: {
-              listname: data.listName.toString(),
+            paramOptions1: {
+              listname: data.listName,
               state: listData.stateOrProvince,
               city: listData.city,
               page: '1',
@@ -155,7 +155,7 @@ export class FeaturedListsModule implements OnInit{
             icon2: 'fa-trophy',
             desc2: '',
             url2: 'List-of-lists-page',
-            paramOption2: {
+            paramOptions2: {
               state: listData.stateOrProvince,
               city: listData.city
             },
@@ -163,7 +163,7 @@ export class FeaturedListsModule implements OnInit{
             icon3: 'fa-th-large',
             desc3: '',
             url3: 'List-of-lists-page',
-            paramOption3: {
+            paramOptions3: {
               state: listData.stateOrProvince,
               city: listData.city
             },

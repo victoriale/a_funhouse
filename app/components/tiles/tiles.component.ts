@@ -16,10 +16,7 @@ import {Router,ROUTER_DIRECTIVES} from 'angular2/router';
 
 export class TilesComponent implements OnInit{
     tile_data: Object;
-
-    paramOption1: Object;
-    paramOption2: Object;
-    paramOption3: Object;
+    
     ngOnChanges(){
       if(typeof this.tile_data != 'undefined'){
         var tile_data = this.tile_data;
