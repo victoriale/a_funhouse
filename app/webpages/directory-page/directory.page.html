@@ -1,11 +1,11 @@
 <div class="content-wrapper">
     <div class="wrapper">
         <div class="inner-wrapper">
-            <loading-component *ngIf="(!totalListings || !listingItems) && !isError" ></loading-component>
+            <loading-component *ngIf="(!totalListingsLoaded  || !listingItems) && !isError" ></loading-component>
 
             <error-component *ngIf="isError"></error-component>
 
-            <div *ngIf="totalListings && listingItems && !isError" class="directory-container">
+            <div *ngIf="totalListingsLoaded && listingItems && !isError" class="directory-container">
 
                 <!-- Title and Path Name -->
                 <header class="directory-header">
@@ -15,7 +15,7 @@
                         <i *ngIf="pageType === 'state' || pageType === 'city' || pageType === 'allCities' || pageType === 'zipcode'" class="fa fa-angle-right"></i>
                         <a [routerLink]="['Directory-page-state', {listTitle: paramListTitle, pageNumber: 1, state: paramState}]" *ngIf="pageType === 'state' || pageType === 'city' || pageType === 'allCities' || pageType === 'zipcode'">{{fullState}}</a>
                         <i *ngIf="pageType === 'city' || pageType === 'zipcode'" class="fa fa-angle-right"></i>
-                        <a [routerLink]="['Directory-page-city', {listTitle: paramListTitle, pageNumber: 1, state: paramState, city: paramCity}]"*ngIf="pageType === 'city' || pageType === 'zipcode'">{{paramCity}}</a>
+                        <a [routerLink]="['Directory-page-city', {listTitle: paramListTitle, pageNumber: 1, state: paramState, city: paramCityHyphen}]"*ngIf="pageType === 'city' || pageType === 'zipcode'">{{paramCity}}</a>
                         <i *ngIf="pageType === 'zipcode'" class="fa fa-angle-right"></i>
                         <span *ngIf="pageType === 'zipcode'">{{paramZipcode}}</span>
                     </div>
@@ -43,7 +43,7 @@
                     </div>
                 </div>
 
-                <!-- Pagination Buttons -->
+                <!-- Pagination Buttons (Hidden if totalListingsDisplayed is 0)-->
                 <div *ngIf="totalListingsDisplayed" class="directory-pagination">
                     Showing: {{rangeDisplay}} of {{totalListingsDisplayed}}
                     <a [routerLink]="[pageName, nextParams]" class="directory-pagination-button" [ngClass]="{active: nextHighlighted}">
@@ -67,13 +67,13 @@
                             <span *ngIf="item.address">
                                 |
                             </span>
-                            <a *ngIf="item.city" [routerLink]="['Directory-page-city', {state: item.state, city: item.city, listTitle: paramListTitle, pageNumber: 1}]">
+                            <a *ngIf="item.city" [routerLink]="['Directory-page-city', {state: item.state, city: item.cityLink, listTitle: paramListTitle, pageNumber: 1}]">
                                 {{item.city}},
                             </a>
                             <a *ngIf="item.state" [routerLink]="['Directory-page-state', {state: item.state, listTitle: paramListTitle, pageNumber: 1}]">
                                 {{item.state}}
                             </a>
-                            <a *ngIf="item.zipcode" [routerLink]="['Directory-page-zipcode', {state: item.state, city: item.city, zipcode: item.zipcode, listTitle: paramListTitle, pageNumber: 1}]">
+                            <a *ngIf="item.zipcode" [routerLink]="['Directory-page-zipcode', {state: item.state, city: item.cityLink, zipcode: item.zipcode, listTitle: paramListTitle, pageNumber: 1}]">
                                 , {{item.zipcode}}
                             </a>
                         </span>
@@ -93,7 +93,7 @@
                     </li>
                 </ul>
 
-                <!-- Pagination Buttons -->
+                <!-- Pagination Buttons (Hidden if totalListingsDisplayed is 0)-->
                 <div *ngIf="totalListingsDisplayed" class="directory-pagination">
                     Showing: {{rangeDisplay}} of {{totalListingsDisplayed}}
                     <a [routerLink]="[pageName, nextParams]" class="directory-pagination-button" [ngClass]="{active: nextHighlighted}">

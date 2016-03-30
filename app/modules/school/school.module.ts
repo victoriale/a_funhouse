@@ -80,7 +80,7 @@ export class SchoolModule implements OnInit{
         imageUrl: schoolData.locationImage,
         url: 'School-lists-page',
         paramOptions: {
-                    listname: 'Elementary Schools',
+                    listname: 'elementary',
                     city: schoolData.city,
                     state: schoolData.state
                   },
