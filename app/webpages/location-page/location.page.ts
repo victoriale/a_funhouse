@@ -66,9 +66,7 @@ export class LocationPage implements OnInit {
             .subscribe(
                 route => {
                   var curRoute = route;
-                  console.log(curRoute);
                   var partnerID = curRoute.split('/');
-                  console.log(partnerID);
                   if(partnerID[0] != ''){
                     this.partnerID = partnerID[0];
                     var partnerParam = this.partnerID.replace('-','.');
@@ -77,7 +75,6 @@ export class LocationPage implements OnInit {
                       partnerScript => {
                         this.partnerData = partnerScript['results']['location']['realestate'];
                         this.dataCalls();
-                        console.log(this.partnerData);
                       }
                     );
                   }else{
@@ -176,9 +173,6 @@ export class LocationPage implements OnInit {
       }
     }
     dataCalls() {
-      console.log("EVENT", event);
-      console.log('partnerID', typeof this.partnerData);
-      console.log(this._params.get('loc'));
         if(typeof this._params.get('loc') == 'undefined' || this._params.get('loc') == null){
           this.locCity = decodeURI(this.partnerData['location']['city'][0].city);
           this.locState = decodeURI(this.partnerData['location']['city'][0].state);
@@ -190,7 +184,6 @@ export class LocationPage implements OnInit {
           this.locDisplay = decodeURI(this.locCity + ', ' + this.locState);
         }
         this.locData = {city:this.locCity, state:this.locState}
-        console.log(this.locCity,this.locState,this.locDisplay);
         this.headlineAbout = {
             title: 'About ' + this.locDisplay,
             icon: 'fa-map-marker'
