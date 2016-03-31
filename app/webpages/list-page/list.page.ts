@@ -15,6 +15,7 @@ import {TitleComponent} from '../../components/title/title.component';
 import {PaginationFooter} from "../../components/pagination-footer/pagination-footer.component";
 import {listViewPage} from '../../global/global-service';
 declare var moment: any;
+declare var jQuery: any;
 
 @Component({
     selector: 'List-page',
@@ -38,6 +39,8 @@ export class ListPage {
     public listCity: string;
     public listLimit: string = "20";
     public listPage: string;
+
+    showFilters: boolean = false;
 
     //Filter params for FYH
     filterState: string;
@@ -105,10 +108,10 @@ export class ListPage {
                         city: this._params.get('city'),
                         priceLowerBound: this._params.get('priceLowerBound'),
                         priceUpperBound: this._params.get('priceUpperBound'),
-                        bedrooms: this._params.get('bedrooms'),
-                        bathrooms: this._params.get('bathrooms'),
-                        squareFeet: this._params.get('squareFeet'),
-                        lotSize: this._params.get('lotSize'),
+                        bedrooms: this.filterBedrooms,
+                        bathrooms: this.filterBathrooms,
+                        squareFeet: this.filterSqFeet,
+                        lotSize: this.filterLot,
                         type: this._params.get('type'),
                         limit: this.listLimit,
                         page: this._params.get('page'),
@@ -248,8 +251,40 @@ export class ListPage {
     // console.log('carouselData', this.carouselData);
   }//END OF TRANSFORM FUNCTION
 
+    // Get selected select value for number bedrooms
+    onSelectBedrooms() {
+        this.filterBedrooms = jQuery('#select-bedrooms').val();
+        this.getListView();
+        //console.log(this.filterBedrooms);
+    }
+
+    // Get selected select value for number bathrooms
+    onSelectBathrooms() {
+        this.filterBathrooms = jQuery('#select-bathrooms').val();
+        this.getListView();
+        //console.log(this.filterBathrooms);
+    }
+
+    // Get selected select value for Sq Feet
+    onSelectSqFeet() {
+        this.filterSqFeet = jQuery('#select-square-feet').val();
+        this.getListView();
+        //console.log(this.filterSqFeet);
+    }
+
+    // Get selected select value for number bathrooms
+    onSelectLotSize() {
+        this.filterLot = jQuery('#select-lot-size').val();
+        this.getListView();
+        //console.log(this.filterLot);
+    }
+
   ngOnInit() {
     this.getListView();
+      if(this.listName == "filter") {
+          this.showFilters = true;
+      }
+
       console.log(this);
   }
 }

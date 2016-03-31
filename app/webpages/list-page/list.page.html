@@ -12,6 +12,57 @@
               <!--<dropdown-component></dropdown-component>-->
               <!--<div class="lv-sort-filter">Filter <i class="fa fa-cog"></i></div>-->
             <!--</div>-->
+            <div *ngIf="showFilters" class="property-options">
+              <div class="type-title">
+                <span>Must Haves</span>
+              </div>
+              <div class="property-options-select">
+                <select (change)="onSelectBedrooms()" name="select-bedrooms" id="select-bedrooms">
+                  <option value="empty" style="display:none;" selected>Bedrooms</option>
+                  <option value="empty">All Beds</option>
+                  <option value="1">+1</option>
+                  <option value="2">+2</option>
+                  <option value="3">+3</option>
+                  <option value="4">+4</option>
+                  <option value="5">+5</option>
+                </select>
+                <select (change)="onSelectBathrooms()" name="select-bathrooms" id="select-bathrooms">
+                  <option value="empty" style="display:none;" selected>Bathrooms</option>
+                  <option value="empty">All Baths</option>
+                  <option value="1">+1</option>
+                  <option value="2">+2</option>
+                  <option value="3">+3</option>
+                  <option value="4">+4</option>
+                  <option value="5">+5</option>
+                </select>
+                <select (change)="onSelectSqFeet()" name="select-square-feet" id="select-square-feet">
+                  <option value="empty" style="display:none;" selected>Square Feet</option>
+                  <option value="empty">All Sizes</option>
+                  <option value="500">+500 sq ft</option>
+                  <option value="1000">+1000 sq ft</option>
+                  <option value="2000">+2000 sq ft</option>
+                  <option value="3000">+3000 sq ft</option>
+                  <option value="4000">+4000 sq ft</option>
+                  <option value="5000">+5000 sq ft</option>
+                  <option value="10000">+10000 sq ft</option>
+                </select>
+                <select (change)="onSelectLotSize()" name="select-lot-size" id="select-lot-size">
+                  <option value="empty" style="display:none;" selected>Lot Size</option>
+                  <option value="empty">All Sizes</option>
+                  <option value="0.04591368">+2000 sq ft</option>
+                  <option value="0.06887052">+3000 sq ft</option>
+                  <option value="0.09182736">+4000 sq ft</option>
+                  <option value="0.1147842">+5000 sq ft</option>
+                  <option value="0.1606979">+7000 sq ft</option>
+                  <option value="0.25">+1/4 acre</option>
+                  <option value="0.50">+1/2 acre</option>
+                  <option value="1">+1 acre</option>
+                  <option value="2">+2 acre</option>
+                  <option value="5">+5 acre</option>
+                  <option value="10">+10 acre</option>
+                </select>
+              </div>
+            </div>
             <pagination-footer *ngIf="paginationParameters" [paginationParameters]="paginationParameters"></pagination-footer>
             <div *ngIf="(view == 'list' || view == 'map')&& listData">
               <detailed-list [listData]="listData"></detailed-list>
