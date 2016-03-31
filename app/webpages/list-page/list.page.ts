@@ -225,6 +225,9 @@ export class ListPage implements OnInit {
           if(val.livingArea === null) {
               val.livingArea = "N/A";
           }
+          if(val.photos.length <= 0) {
+              val.photos[0] = "app/public/no_photo_images/House_1.png";
+          }
       var livingArea = globeFunc.commaSeparateNumber(val.livingArea);
       var newData = {
           img : val.photos[0],
