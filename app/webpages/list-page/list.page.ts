@@ -56,6 +56,8 @@ export class ListPage {
     public menuMapParams: any;
     public listPageName: any;
 
+    public geoExists: boolean = false;
+
     //Filter params for FYH
     filterState: string;
     filterCity: string;
@@ -347,12 +349,16 @@ export class ListPage {
     var globeFunc = this.globalFunctions;
         //Assign data to send to map component
       this.mapData = data.data;
+      var self = this;
 
       //Determine the index at which the list should start (based on page parameter. ex. page = 2, indexStart = 21)
       var indexStart = ((Number(this.listPage) - 1) * Number(this.listLimit)) + 1;
       // Counter for filter
 
       originalData.forEach(function(val, i){
+          if(val.latitude !== null && val.longitude !== null){
+              self.geoExists = true;
+          }
 
         //below are variables that are converted using global functions to a readable state
       val.listPrice = globeFunc.commaSeparateNumber(val.listPrice);

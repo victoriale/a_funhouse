@@ -36,11 +36,15 @@
                 </div>
 
                 <!-- Map Module -->
-                <div *ngIf="viewType === 'map' && mapData">
+                <div *ngIf="viewType === 'map' && mapData && geoExists">
                     <div class="lv-map-header">
                         Featured Listings
                     </div>
                     <map-component [mapData]="mapData"></map-component>
+                </div>
+                <div class="lv-map-unavailable" *ngIf="viewType === 'map' && !geoExists">
+                    <i class="fa fa-compass"></i><br>
+                    We're sorry. The map for these listings is unavailable.
                 </div>
 
                 <!-- Sort Options -->
