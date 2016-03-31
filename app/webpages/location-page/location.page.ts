@@ -164,7 +164,7 @@ export class LocationPage implements OnInit {
     }
 
     ngOnInit(){
-      if(this.partnerID === null ){
+      if(this.partnerID === null || this.partnerID == '' || typeof this.partnerID == 'undefined'){
         this.partnerCheck = false;
         this.pageName = "Joyful Home";
       } else {

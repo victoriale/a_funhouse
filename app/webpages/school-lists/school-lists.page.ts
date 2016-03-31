@@ -82,18 +82,18 @@ export class SchoolListsPage implements OnInit{
      var num = Math.floor(Math.random() * schoolImage.length); //randomize array of images
      val.imageUrl = './app/public/mag_stock_img/schools_banks_grocery/' + schoolImage[num];//with path and random image, will generate random imageUrl
      val.rank = i+1;
-     if(val.location_city == '' || val.location_state == '' || val.location_zipcode == "NA" || val.location_zipcode == '' || val.location_address == ''){
+     if(val.city == '' || val.state_or_province == '' || val.postal_code == "NA" || val.postal_code == '' || val.full_street_address == ''){
        val.location_address  = 'N/A';
        val.location_city = globeFunc.toTitleCase(metaData.city);
        val.location_state = metaData.state;
        val.zipCode ==  "";
        val.locationUrl = {loc: metaData.city + '_' + metaData.state};
      } else {
-       val.location_city = globeFunc.toTitleCase(val['location_city']);
-       val.locationUrl = {loc: val['location_city'] + '_' + val['location_state']};
-       val.location_address = globeFunc.toTitleCase(val['location_address']);
-       val.location_state = val['location_state'];
-       val.zipCode = val['location_zipcode'];
+       val.location_city = globeFunc.toTitleCase(val['city']);
+       val.locationUrl = {loc: globeFunc.toTitleCase(val['city']) + '_' + val['state_or_province']};
+       val.location_address = globeFunc.toTitleCase(val['full_street_address']);
+       val.location_state = val['state_or_province'];
+       val.zipCode = val['postal_code'];
      }
      val.school_name = globeFunc.toTitleCase(val['school_name']);
 
