@@ -43,7 +43,7 @@ export class ListPage {
     noListings: boolean = false;
     showFilters: boolean = false;
 
-    // Select Values
+    //For select filters
     selectBedrooms: string;
     selectBathrooms: string;
     selectSqFeet: string;
@@ -122,10 +122,10 @@ export class ListPage {
                         city: this._params.get('city'),
                         priceLowerBound: this._params.get('priceLowerBound'),
                         priceUpperBound: this._params.get('priceUpperBound'),
-                        bedrooms: this.selectBedrooms,
-                        bathrooms: this.selectBathrooms,
-                        squareFeet: this.selectSqFeet,
-                        lotSize: this.selectLot,
+                        bedrooms: this._params.get('bedrooms'),
+                        bathrooms: this._params.get('bathrooms'),
+                        squareFeet: this._params.get('squareFeet'),
+                        lotSize: this._params.get('lotSize'),
                         type: this._params.get('type'),
                         limit: this.listLimit,
                         page: this._params.get('page'),
@@ -168,10 +168,10 @@ export class ListPage {
         this.filterCity = this._params.get('city');
         this.filterMinPrice = this._params.get('priceLowerBound');
         this.filterMaxPrice = this._params.get('priceUpperBound');
-        this.filterBedrooms = this.selectBedrooms;
-        this.filterBathrooms = this.selectBathrooms;
-        this.filterSqFeet = this.selectSqFeet;
-        this.filterLot = this.selectLot;
+        this.filterBedrooms = this._params.get('bedrooms');
+        this.filterBathrooms = this._params.get('bathrooms');
+        this.filterSqFeet = this._params.get('squareFeet');
+        this.filterLot = this._params.get('lotSize');
         this.filterType = this._params.get('type');
         this.listPage = this._params.get('page');
 
@@ -271,32 +271,10 @@ export class ListPage {
     // console.log('carouselData', this.carouselData);
   }//END OF TRANSFORM FUNCTION
 
-    // Get selected select value for number bedrooms
-    onSelectBedrooms() {
-        this.selectBedrooms = jQuery('#select-bedrooms').val();
-        this.getListView();
-        //console.log(this.filterBedrooms);
-    }
-
-    // Get selected select value for number bathrooms
-    onSelectBathrooms() {
-        this.selectBathrooms = jQuery('#select-bathrooms').val();
-        this.getListView();
-        //console.log(this.filterBathrooms);
-    }
-
-    // Get selected select value for Sq Feet
-    onSelectSqFeet() {
-        this.selectSqFeet = jQuery('#select-square-feet').val();
-        this.getListView();
-        //console.log(this.filterSqFeet);
-    }
-
-    // Get selected select value for number bathrooms
-    onSelectLotSize() {
-        this.selectLot = jQuery('#select-lot-size').val();
-        this.getListView();
-        //console.log(this.filterLot);
+    onSelectBedrooms(event) {
+        this.selectBedrooms = event.target.value;
+        //this.getListView();
+        console.log(this.selectBedrooms);
     }
 
   ngOnInit() {
