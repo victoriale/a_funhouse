@@ -192,7 +192,6 @@ export class MyAppComponent implements OnInit {
             .subscribe(
                 partnerScript => {
                     this.partnerData = partnerScript;
-                    console.log(this.partnerData);
                     this.partnerScript = this.partnerData['results'].header.script;
                 }
             );
@@ -237,6 +236,5 @@ export class MyAppComponent implements OnInit {
         }
         // Call to get current State and City
         this.getGeoLocation();
-        console.log(this);
     }
 }
