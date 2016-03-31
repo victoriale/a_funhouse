@@ -42,6 +42,12 @@ export class ListPage {
 
     showFilters: boolean = false;
 
+    // Select Values
+    selectBedrooms: string;
+    selectBathrooms: string;
+    selectSqFeet: string;
+    selectLot: string;
+
     //Filter params for FYH
     filterState: string;
     filterCity: string;
@@ -273,7 +279,7 @@ export class ListPage {
 
     // Get selected select value for Sq Feet
     onSelectSqFeet() {
-        this.slelectSqFeet = jQuery('#select-square-feet').val();
+        this.selectSqFeet = jQuery('#select-square-feet').val();
         this.getListView();
         //console.log(this.filterSqFeet);
     }
