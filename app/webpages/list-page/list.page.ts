@@ -348,20 +348,29 @@ export class ListPage implements OnInit {
         this._router.navigate(['List-page-filter', params]);
     }
 
+    goBack() {
+        window.history.back();
+    }
+
   ngOnInit() {
     this.getListView();
       if(this.listName == "filter") {
           this.showFilters = true;
       }
 
+      console.log(this);
+  }
+
+  ngAfterViewInit() {
       //For select filters
       this.selectBedrooms = this._params.get('bedrooms');
       this.selectBathrooms = this._params.get('bathrooms');
       this.selectSqFeet = this._params.get('squareFeet');
       this.selectLot = this._params.get('lotSize');
-      console.log(this.selectBedrooms);
-      jQuery('#select-bedrooms').val(this.selectBedrooms);
 
-      console.log(this);
+      jQuery('#select-bedrooms').val(this.selectBedrooms);
+      jQuery('#select-bathrooms').val(this.selectBathrooms);
+      jQuery('#select-square-feet').val(this.selectSqFeet);
+      jQuery('#select-lot-size').val(this.selectLot);
   }
 }
