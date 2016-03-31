@@ -1222,6 +1222,10 @@ goalsHeader
         margin-top: 40px;
         font-size: 48px;
         color: @white;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -ms-backface-visibility: hidden;
       }
       p {
         margin-top: 20px;
@@ -1235,6 +1239,12 @@ goalsHeader
       .flexDirection(column);
       .flexAlignItems(flex-start);
       padding: 10px;
+      // i {
+      //   backface-visibility: hidden;
+      //   -webkit-backface-visibility: hidden;
+      //   -moz-backface-visibility: hidden;
+      //   -ms-backface-visibility: hidden;
+      // }
       .transformPrefixes(rotateY(-180deg));
       span:first-child {
         .globalDefaultModFont(20px, 300, @white);
