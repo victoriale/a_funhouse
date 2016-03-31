@@ -1,7 +1,9 @@
-import {Component, OnInit, AfterViewInit, OnChanges} from 'angular2/core';
+import {Component, OnInit, OnChanges} from 'angular2/core';
 import {Router, RouteParams, ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
 
 import {ListViewCarousel} from '../../components/carousel/list-view/list-view.component';
+import {DropdownComponent} from '../../components/buttons/sort-by/sort-by.component';
+import {ListMenuComponent} from '../../components/list-menu/list-menu.component';
 import {DetailedListComponent} from '../../components/detailed-list/detailed-list.component';
 import {PhotoListComponent} from '../../components/photo-list/photo-list.component';
 import {WidgetModule} from "../../modules/widget/widget.module";
@@ -24,7 +26,7 @@ declare var jQuery: any;
     providers: [listViewPage],
 })
 
-export class ListPage implements OnInit {
+export class ListPage {
     carouselData: any = [];
     listData: any;
     data: any;
@@ -77,7 +79,7 @@ export class ListPage implements OnInit {
     filterLot: string;
     filterType: string;
 
-    constructor(private _router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions, private listViewData: listViewPage) {
+    constructor(private _params: RouteParams, private globalFunctions: GlobalFunctions, private listViewData: listViewPage, private _router: Router) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }
@@ -521,16 +523,16 @@ export class ListPage implements OnInit {
       console.log(this);
   }
 
-  ngAfterViewInit() {
-      //For select filters
-      this.selectBedrooms = this._params.get('bedrooms');
-      this.selectBathrooms = this._params.get('bathrooms');
-      this.selectSqFeet = this._params.get('squareFeet');
-      this.selectLot = this._params.get('lotSize');
+    ngAfterViewInit() {
+        this.selectBedrooms = this._params.get('bedrooms');
+        this.selectBathrooms = this._params.get('bathrooms');
+        this.selectSqFeet = this._params.get('squareFeet');
+        this.selectLot = this._params.get('lotSize');
 
-      jQuery('#select-bedrooms').val(this.selectBedrooms);
-      jQuery('#select-bathrooms').val(this.selectBathrooms);
-      jQuery('#select-square-feet').val(this.selectSqFeet);
-      jQuery('#select-lot-size').val(this.selectLot);
-  }
+        jQuery('#select-bedrooms').val(this.selectBedrooms);
+        jQuery('#select-bathrooms').val(this.selectBathrooms);
+        jQuery('#select-square-feet').val(this.selectSqFeet);
+        jQuery('#select-lot-size').val(this.selectLot);
+    }
+
 }
