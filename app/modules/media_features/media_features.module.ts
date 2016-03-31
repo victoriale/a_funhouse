@@ -16,9 +16,11 @@ declare var moment: any;
   styleUrls: ['./app/global/stylesheets/master.css'],
   directives: [moduleHeader, MediaImages],
   providers: [],
+  inputs:['locData']
 })
 
 export class MediaFeatureModule implements OnInit {
+  public locData:any;
   public moduleTitle: string;
   public trending: boolean;
   public prop_features: any;
@@ -162,8 +164,9 @@ export class MediaFeatureModule implements OnInit {
     if (this.profileType === 'LocationPage') {
       //Location Crime Module
       var paramLocation: string = this._params.get('loc');
-      var paramCity: string = this.globalFunctions.toTitleCase(paramLocation.split('_')[0]);
-      var paramState: string = paramLocation.split('_')[1];
+      var paramCity: string = this.globalFunctions.toTitleCase(this.locData.city);
+      paramCity = this.globalFunctions.toTitleCase(paramCity.replace(/%20/g, " "));
+      var paramState: string = this.locData.state;
       this.moduleTitle = 'Property Images, Media & Features for ' + paramCity + ', ' + paramState;
     } else if (this.profileType === 'ProfilePage') {
       //Listing Crime Module

@@ -1,23 +1,17 @@
-<hero-component></hero-component>
-<div class="wrapper">
-    <div class="inner-wrapper">
-        <section class='content-main twelve-col'>
-            <h1 class="home-tagline"><img class="map-icon" src="./app/public/Icons_Explore.png" /> Explore <span class="thin">The {{cityLocation}} Area</span></h1>
-        </section>
-        <div class="twelve-col">
-            <explore-tiles-component *ngIf="nearByCities" [nearByCities]="nearByCities"></explore-tiles-component>
-        </div>
-        <div class="twelve-col">
-            <explore-button-component [buttonTitle]="buttonTitle" [buttonWidth]="buttonWidth" [buttonIcon]="buttonIcon"></explore-button-component>
-        </div>
+<div class="mhk">
+  <div class="mhk_banner">
+    <div class="mhk_banner_top">TAKE A LOOK AT OUR PARTNER WEBSITES</div>
+    <div class="mhk_banner_bottom">We provide accurate and up to date information on the real estate market</div>
+  </div>
+  <div class="mhk_container">
+    <div class="mhk_title">ACTIVE PARTNER WEBSITES</div>
+    <div *ngFor="#partnerData of partners" class="mhk_partners">
+        <h2>{{partnerData.name}}</h2>
+          <a *ngFor="#Data of partnerData.websites; #i=odd" href="{{Data.url}}"><div class="mhk_partner"  [ngClass]="{'odd': i == true}">
+            <div class="mhk_partner_text">{{Data.name}}</div>
+            <i class="fa fa-chevron-right"></i>
+          </div>
+        </a>
     </div>
-</div>
-<hero-bottom-component [buttonTitle]="heroButtonTitle" [buttonWidth]="heroButtonWidth" [buttonIcon]="heroButtonIcon" [cityLocation]="cityLocation"></hero-bottom-component>
-<div class="wrapper">
-    <div class="inner-wrapper">
-        <section class='content-main twelve-col'>
-            <h1 class="home-tagline"><img class="map-icon" src="./app/public/Icons_Features.png" /> Features <span class="thin">To Note</span></h1>
-        </section>
-        <feature-tiles-component></feature-tiles-component>
-    </div>
+  </div>
 </div>

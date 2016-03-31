@@ -17,9 +17,19 @@ import {WebApp} from "../app-layout/app.layout";
 export class MagazineDataService {
     cachedData : MagData;
     public partnerID: string;
-    constructor( private _injector: Injector, public http: Http) {
-        let partnerParam = this._injector.get(WebApp);
-        this.partnerID = partnerParam.partnerID;
+    constructor( private _router:Router, private _injector: Injector, public http: Http) {
+      this._router.root
+          .subscribe(
+              route => {
+                var curRoute = route;
+                var partnerID = curRoute.split('/');
+                if(partnerID[0] == ''){
+                  this.partnerID = null;
+                }else{
+                  this.partnerID = partnerID[0];
+                }
+              }
+          )//end of route subscribe
     };
 
     getMagazineData(address) {

@@ -9,12 +9,14 @@ import {GlobalFunctions} from "../../global/global-functions";
 import {HeroListComponent} from "../../components/hero/hero-list/hero-list.component";
 import {moduleHeader} from "../../components/module-header/module-header";
 import {LocationProfileService} from '../../global/location-profile.service';
+import {LoadingComponent} from '../../components/loading/loading.component';
+import {ErrorComponent} from '../../components/error/error.component';
 
 @Component({
     selector: 'School-list-page',
     templateUrl: './app/webpages/school-lists/school-lists.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [WidgetModule, moduleHeader, HeroListComponent, ROUTER_DIRECTIVES],
+    directives: [WidgetModule, moduleHeader, HeroListComponent, ROUTER_DIRECTIVES, LoadingComponent, ErrorComponent],
     providers: [LocationProfileService]
 })
 
@@ -28,6 +30,8 @@ export class SchoolListsPage implements OnInit{
   public category: string;
   private schoolData: any;
 
+    public isError: boolean = false;
+
   @Input() schoolDataInput: any;
 
   constructor(private _params: RouteParams, private router: Router, private globalFunctions: GlobalFunctions, private _locationService: LocationProfileService, params: RouteParams){
@@ -40,6 +44,10 @@ export class SchoolListsPage implements OnInit{
           .subscribe(
               schoolData => {
                 this.schoolData = this.dataFormatter(schoolData);
+              },
+              err => {
+                  console.log('Error: School Page API', err);
+                  this.isError = true;
               }
           );
   }
@@ -67,16 +75,28 @@ export class SchoolListsPage implements OnInit{
   dataFormatter(data){
    //get data based on category
    var dataLists = data[this.category];
+   var metaData = data['meta'];
    var globeFunc = this.globalFunctions;
    var schoolImage = this.getSchoolImages();
    dataLists.forEach(function(val, i){
      var num = Math.floor(Math.random() * schoolImage.length); //randomize array of images
      val.imageUrl = './app/public/mag_stock_img/schools_banks_grocery/' + schoolImage[num];//with path and random image, will generate random imageUrl
      val.rank = i+1;
-     val.city = globeFunc.toTitleCase(val['city']);
-     val.locationUrl = {loc: val['city'] + '_' + val['state_or_province']};
-     val.full_street_address = globeFunc.toTitleCase(val['full_street_address']);
+     if(val.location_city == '' || val.location_state == '' || val.location_zipcode == "NA" || val.location_zipcode == '' || val.location_address == ''){
+       val.location_address  = 'N/A';
+       val.location_city = globeFunc.toTitleCase(metaData.city);
+       val.location_state = metaData.state;
+       val.zipCode ==  "";
+       val.locationUrl = {loc: metaData.city + '_' + metaData.state};
+     } else {
+       val.location_city = globeFunc.toTitleCase(val['location_city']);
+       val.locationUrl = {loc: val['location_city'] + '_' + val['location_state']};
+       val.location_address = globeFunc.toTitleCase(val['location_address']);
+       val.location_state = val['location_state'];
+       val.zipCode = val['location_zipcode'];
+     }
      val.school_name = globeFunc.toTitleCase(val['school_name']);
+
    })
    return dataLists;
   }

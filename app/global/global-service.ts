@@ -49,7 +49,7 @@ export class listViewPage {
   constructor(public http: Http) {}
 
   //API for listview page data
-  getListData(listname, state, city, limit, page) {
+  getListData(listname, state, city, limit, page, sort) {
     var query = {
       listname: listname,
       state: state,
@@ -58,6 +58,10 @@ export class listViewPage {
       limit: limit,
       page: page,
     };
+
+    if(sort !== null){
+      query.sort = sort;
+    }
 
     var fullUrl = this.protocolToUse + this.apiUrl +"/list";
 
@@ -87,17 +91,16 @@ export class listViewPage {
   }
 
   //API for Find Your Home filtered call
-  getFindYourHome(state, city, priceLowerBound, priceUpperBound, type, bedrooms, bathrooms, squareFeet, lotSize) {
+  getFindYourHome(state, city, priceLowerBound, priceUpperBound, type, bedrooms, bathrooms, squareFeet, lotSize, limit, page) {
 
     city = encodeURI(city);
     state = encodeURI(state);
 
     var fullUrl = this.protocolToUse + this.apiUrl
 
-    // location/findYourHome/{state}/{city}/{priceLowerBound}/{priceUpperBound}/{type}/{bedrooms}/{bathrooms}/{squareFeet}/{lotSize}
+    // location/findYourHome/{state}/{city}/{priceLowerBound}/{priceUpperBound}/{type}/{bedrooms}/{bathrooms}/{squareFeet}/{lotSize}/{limit}/{page}
     // types: Townhouse, Condominium, Apartment, and Single Family Attached
-    // last 5 optional, pass string 'empty' if no option selected
-    return this.http.get(fullUrl + '/location/findYourHome/' + state + '/' + city + '/' + priceLowerBound + '/' + priceUpperBound + '/'  + type + '/' + bedrooms + '/' + bathrooms + '/' + squareFeet + '/' + lotSize)
+    return this.http.get(fullUrl + '/location/findYourHome/' + state + '/' + city + '/' + priceLowerBound + '/' + priceUpperBound + '/'  + type + '/' + bedrooms + '/' + bathrooms + '/' + squareFeet + '/' + lotSize + '/' + limit + '/' + page)
         .map(
             res => res.json()
         )

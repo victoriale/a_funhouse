@@ -104,4 +104,31 @@ export class GlobalFunctions{
             .replace(/^./, function(str){ return str.toUpperCase(); })
         return str;
     }
+
+    convertListName = function(val){
+        var names = {
+            'homesAtLeast5YearsOld': 'Homes at least 5 years old',
+            'homesLessThan5YearsOld': 'Homes less than 5 years old',
+            'homesWithSprinklerAndDeck': 'Homes with sprinkler and deck',
+            'homesWithVaultedCeilingAndSecuritySystem': 'Homes with vaulted ceiling and security system',
+            'homesLargest': 'Largest Homes',
+            'homesBrickLeastExpensive': 'Least expensive brick houses',
+            'homesLeastExpensive': 'Least expensive homes',
+            'homesWithPoolLeastExpensive': 'Least expensive homes with a swimming pool',
+            'homesWithWaterfrontLeastExpensive': 'Least expensive homes with waterfront',
+            'homesWith2BedroomsMostExpensive': 'Most expensive 2 bedroom homes',
+            'homesWith3BedroomsMostExpensive': 'Most expensive 3 bedroom homes',
+            'homesMostExpensive': 'Most expensive homes',
+            'homesNewTraditional': 'New traditional homes',
+            'listingsInWealthiestZipCode': 'Listings in wealthiest ZIP code in area',
+            'listingsWithLongDescriptions': 'Listings with long descriptions',
+            'listingsWithMoreThan10Photos': 'Listings with more than 10 photos',
+            'listingsWithMoreThan5Photos': 'Listings with more than 5 photos',
+            'listingsWithVirtualTours': 'Listings with virtual tours',
+            'listingsMostRecent': 'Most recent listings',
+            'condosMostExpensive': 'Most expensive condos'
+        };
+
+        return typeof names[val] === 'undefined' ? val : names[val];
+    }
 }

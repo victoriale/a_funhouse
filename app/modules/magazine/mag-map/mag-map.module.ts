@@ -27,12 +27,22 @@ export class MagMapModule implements OnInit {
     profileData:MagNeighborhood;
     public partnerID:string;
 
-    constructor(private _injector:Injector, private _magazineDataService:MagazineDataService) {
+    constructor(private _router:Router, private _injector:Injector, private _magazineDataService:MagazineDataService) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
-        this.address = _injector.get(MagazinePage).address;
-        let partnerParam = this._injector.get(WebApp);
-        this.partnerID = partnerParam.partnerID;
+        this._router.root
+            .subscribe(
+                route => {
+                  var curRoute = route;
+                  var partnerID = curRoute.split('/');
+                  if(partnerID[0] == ''){
+                    this.partnerID = null;
+                  }else{
+                    this.partnerID = partnerID[0];
+                  }
+                  this.getMagazineMap();
+                }
+            )//end of route subscribe
     }
 
     getMagazineMap() {
@@ -118,6 +128,6 @@ export class MagMapModule implements OnInit {
     }
 
     ngOnInit() {
-        this.getMagazineMap();
+
     }
 }

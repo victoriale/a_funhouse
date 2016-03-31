@@ -27,12 +27,12 @@ import {DynamicListPage} from "../webpages/dynamic-list-page/dynamic-list.page";
 import {NearByCitiesService} from "../global/geo-location.service";
 import {GeoLocationService} from "../global/geo-location.service";
 
-import {WebApp} from "../app-layout/app.layout";
+import {MyWebApp} from "../app-layout/app.mylayout";
 import {PartnerHeader} from "../global/global-service";
 import {CityViewPage} from "../webpages/city-view-page/city-view.page";
 
 @Component({
-    selector: 'my-app',
+    selector: 'my-house',
     templateUrl: './app/app-webpage/app.webpage.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [PartnerHomePage, RouterOutlet, ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ListPage, ListOfListsPage, AmenitiesListPage, ROUTER_DIRECTIVES, DirectoryPage, SchoolListsPage],
@@ -43,7 +43,7 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
     {
        path: '/home',
        name: 'Home-page',
-       component: HomePage,
+       component: PartnerHomePage,
        useAsDefault: true,
     },
     {
@@ -52,12 +52,17 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
        component: PartnerHomePage,
     },
     {
-        path: '/listing/:address',
+        path: '/index/:address',
         name: 'Profile-page',
         component: ProfilePage,
     },
     {
-        path: '/location/:loc',
+        path: '/loc',
+        name: 'Location-page',
+        component: LocationPage,
+    },
+    {
+        path: '/loc/:loc',
         name: 'Location-page',
         component: LocationPage,
     },
@@ -72,17 +77,17 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
         component: ListPage,
     },
     {
-        path: '/list-of-lists/:state/:city',
+        path: '/lists/:state/:city',
         name: 'List-of-lists-page',
         component: ListOfListsPage,
     },
     {
-        path: '/amenities-lists-page/:listname/:state/:city',
+        path: '/view-amenities/:listname/:state/:city',
         name: 'Amenities-lists-page',
         component: AmenitiesListPage,
     },
     {
-        path: '/school-lists-page/:listname/:state/:city',
+        path: '/view-school/:listname/:state/:city',
         name: 'School-lists-page',
         component: SchoolListsPage,
     },
@@ -92,35 +97,35 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
         component: ComponentPage,
     },
     {
-        path: '/aboutus',
+        path: '/About',
         name: 'Aboutus-page',
         component: AboutUsPage,
     },
     {
-        path: '/contactus',
+        path: '/Contact',
         name: 'Contactus-page',
         component: ContactUsPage,
     },
     {
-        path: '/disclaimer',
+        path: '/Disclaimer',
         name: 'Disclaimer-page',
         component: DisclaimerPage,
     },
     //National directory page
     {
-        path: '/directory/:listTitle/page/:pageNumber',
+        path: '/listing_index/:listTitle/page/:pageNumber',
         name: 'Directory-page',
         component: DirectoryPage
     },
     //State directory page
     {
-        path: '/directory/:state/:listTitle/page/:pageNumber',
+        path: '/listing_index/:state/:listTitle/page/:pageNumber',
         name: 'Directory-page-state',
         component: DirectoryPage
     },
     //City directory page
     {
-        path: '/directory/:state/:city/:listTitle/page/:pageNumber',
+        path: '/listing_index/:state/:city/:listTitle/page/:pageNumber',
         name: 'Directory-page-city',
         component: DirectoryPage
     },
@@ -133,12 +138,12 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
     //},
     //Zipcode directory page
     {
-        path: '/directory/:state/:city/:zipcode/:listTitle/page/:pageNumber',
+        path: '/listing_index/:state/:city/:zipcode/:listTitle/page/:pageNumber',
         name: 'Directory-page-zipcode',
         component: DirectoryPage
     },
     {
-        path: '/search/:query',
+        path: '/s/:query',
         name: 'Search-page',
         component: SearchPage
     },
@@ -159,7 +164,7 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
     }
 ])
 
-export class AppComponent implements OnInit {
+export class MyAppComponent implements OnInit {
 
     //declare variables to grab potential partner header
     public partnerID: string;
@@ -174,7 +179,7 @@ export class AppComponent implements OnInit {
     nearByCities: Object;
 
     constructor(private _injector: Injector,private _partnerData: PartnerHeader, private _params: RouteParams, private route: Router, private routeData: RouteData, private routerLink: RouterLink, private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService){
-        var parentParams = this._injector.get(WebApp);
+        var parentParams = this._injector.get(MyWebApp);
         if(typeof parentParams.partnerID != 'undefined'){
             this.partnerID = parentParams.partnerID;
         }
@@ -187,7 +192,6 @@ export class AppComponent implements OnInit {
             .subscribe(
                 partnerScript => {
                     this.partnerData = partnerScript;
-                    console.log(this.partnerData);
                     this.partnerScript = this.partnerData['results'].header.script;
                 }
             );
