@@ -32,6 +32,7 @@ export class MyWebApp {
   address:string = '1324-N-Manchester-CT-Wichita-KS';
 
   constructor(private _params: RouteParams){
+    console.log("PARTNER PAGE!!!!!!!!!!!!!!!!!!");
     this.partnerID = this._params.get('partner_id');
   }
 }

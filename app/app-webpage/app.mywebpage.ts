@@ -50,97 +50,97 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
         name: 'Profile-page',
         component: ProfilePage,
     },
-    // {
-    //     path: '/loc',
-    //     name: 'Location-page',
-    //     component: LocationPage,
-    // },
-    // {
-    //     path: '/loc/:loc',
-    //     name: 'Location-page',
-    //     component: LocationPage,
-    // },
-    // {
-    //     path: '/view_list/:listname/:state/:city/page/:page',
-    //     name: 'List-page',
-    //     component: ListPage,
-    // },
-    // {
-    //     path: '/lists/:state/:city',
-    //     name: 'List-of-lists-page',
-    //     component: ListOfListsPage,
-    // },
-    // {
-    //     path: '/view-amenities/:listname/:state/:city',
-    //     name: 'Amenities-lists-page',
-    //     component: AmenitiesListPage,
-    // },
-    // {
-    //     path: '/view-school/:listname/:state/:city',
-    //     name: 'School-lists-page',
-    //     component: SchoolListsPage,
-    // },
-    // {
-    //     path: '/component',
-    //     name: 'Component-page',
-    //     component: ComponentPage,
-    // },
-    // {
-    //     path: '/About',
-    //     name: 'Aboutus-page',
-    //     component: AboutUsPage,
-    // },
-    // {
-    //     path: '/Contact',
-    //     name: 'Contactus-page',
-    //     component: ContactUsPage,
-    // },
-    // {
-    //     path: '/Disclaimer',
-    //     name: 'Disclaimer-page',
-    //     component: DisclaimerPage,
-    // },
-    // //National directory page
-    // {
-    //     path: '/listing_index/:listTitle/page/:pageNumber',
-    //     name: 'Directory-page',
-    //     component: DirectoryPage
-    // },
-    // //State directory page
-    // {
-    //     path: '/listing_index/:state/:listTitle/page/:pageNumber',
-    //     name: 'Directory-page-state',
-    //     component: DirectoryPage
-    // },
-    // //City directory page
-    // {
-    //     path: '/listing_index/:state/:city/:listTitle/page/:pageNumber',
-    //     name: 'Directory-page-city',
-    //     component: DirectoryPage
-    // },
-    // //All Cities directory page
-    // //Currently Disabled: Currently No known way to pull router name to use this route. (This route conflicts with the Directory-page-state route. We can't differentiate in the code between this route and the state route) Query parameter is used instead for now
-    // //{
-    // //    path: '/directory/:state/all-cities/:listTitle/page/:pageNumber',
-    // //    name: 'Directory-page-all-cities',
-    // //    component: DirectoryPage
-    // //},
-    // //Zipcode directory page
-    // {
-    //     path: '/listing_index/:state/:city/:zipcode/:listTitle/page/:pageNumber',
-    //     name: 'Directory-page-zipcode',
-    //     component: DirectoryPage
-    // },
-    // {
-    //     path: '/s/:query',
-    //     name: 'Search-page',
-    //     component: SearchPage
-    // },
-    // {
-    //     path: '/wlist',
-    //     name: 'Widget-page',
-    //     component: DynamicListPage
-    // },
+    {
+        path: '/loc',
+        name: 'Location-page',
+        component: LocationPage,
+    },
+    {
+        path: '/loc/:loc',
+        name: 'Location-page',
+        component: LocationPage,
+    },
+    {
+        path: '/view_list/:listname/:state/:city/page/:page',
+        name: 'List-page',
+        component: ListPage,
+    },
+    {
+        path: '/lists/:state/:city',
+        name: 'List-of-lists-page',
+        component: ListOfListsPage,
+    },
+    {
+        path: '/view-amenities/:listname/:state/:city',
+        name: 'Amenities-lists-page',
+        component: AmenitiesListPage,
+    },
+    {
+        path: '/view-school/:listname/:state/:city',
+        name: 'School-lists-page',
+        component: SchoolListsPage,
+    },
+    {
+        path: '/component',
+        name: 'Component-page',
+        component: ComponentPage,
+    },
+    {
+        path: '/About',
+        name: 'Aboutus-page',
+        component: AboutUsPage,
+    },
+    {
+        path: '/Contact',
+        name: 'Contactus-page',
+        component: ContactUsPage,
+    },
+    {
+        path: '/Disclaimer',
+        name: 'Disclaimer-page',
+        component: DisclaimerPage,
+    },
+    //National directory page
+    {
+        path: '/listing_index/:listTitle/page/:pageNumber',
+        name: 'Directory-page',
+        component: DirectoryPage
+    },
+    //State directory page
+    {
+        path: '/listing_index/:state/:listTitle/page/:pageNumber',
+        name: 'Directory-page-state',
+        component: DirectoryPage
+    },
+    //City directory page
+    {
+        path: '/listing_index/:state/:city/:listTitle/page/:pageNumber',
+        name: 'Directory-page-city',
+        component: DirectoryPage
+    },
+    //All Cities directory page
+    //Currently Disabled: Currently No known way to pull router name to use this route. (This route conflicts with the Directory-page-state route. We can't differentiate in the code between this route and the state route) Query parameter is used instead for now
+    //{
+    //    path: '/directory/:state/all-cities/:listTitle/page/:pageNumber',
+    //    name: 'Directory-page-all-cities',
+    //    component: DirectoryPage
+    //},
+    //Zipcode directory page
+    {
+        path: '/listing_index/:state/:city/:zipcode/:listTitle/page/:pageNumber',
+        name: 'Directory-page-zipcode',
+        component: DirectoryPage
+    },
+    {
+        path: '/s/:query',
+        name: 'Search-page',
+        component: SearchPage
+    },
+    {
+        path: '/wlist',
+        name: 'Widget-page',
+        component: DynamicListPage
+    },
     {
         path: '/cityview/:state/:city',
         name: 'City-view-page',

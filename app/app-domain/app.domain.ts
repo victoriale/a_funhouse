@@ -22,7 +22,7 @@ import {MyWebApp} from "../app-layout/app.mylayout";
     {
         path: '/:partner_id/...',
         name: 'Partner-home',
-        component: MyWebApp,
+        component: WebApp,
     },
 ])
 
