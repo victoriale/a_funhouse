@@ -38,9 +38,15 @@ export class MagCarouselModule implements OnInit {
     }
 
     changeClick(i) {
-        this.counter = i % this.length;
-        this.right = (this.counter + 1) % this.length;
-        this.left = (((this.counter - 1) % this.length) + this.length) % this.length;
+        if (i >= 0) {
+            this.counter = i % this.length;
+            this.right = (this.counter + 1) % this.length;
+            this.left = (((this.counter - 1) % this.length) + this.length) % this.length;
+        } else {
+            this.counter = this.length - 1;
+            this.right = 0;
+            this.left = this.length - 2;
+        }
     }
 
     setupImages() {
