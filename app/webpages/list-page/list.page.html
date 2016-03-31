@@ -26,7 +26,7 @@
                   <option value="4">+4</option>
                   <option value="5">+5</option>
                 </select>
-                <select (change)="onSelectBathrooms()" name="select-bathrooms" id="select-bathrooms">
+                <select (change)="onSelectBathrooms($event)" name="select-bathrooms" id="select-bathrooms">
                   <option value="empty" style="display:none;" selected>Bathrooms</option>
                   <option value="empty">All Baths</option>
                   <option value="1">+1</option>
@@ -35,7 +35,7 @@
                   <option value="4">+4</option>
                   <option value="5">+5</option>
                 </select>
-                <select (change)="onSelectSqFeet()" name="select-square-feet" id="select-square-feet">
+                <select (change)="onSelectSqFeet($event)" name="select-square-feet" id="select-square-feet">
                   <option value="empty" style="display:none;" selected>Square Feet</option>
                   <option value="empty">All Sizes</option>
                   <option value="500">+500 sq ft</option>
@@ -46,7 +46,7 @@
                   <option value="5000">+5000 sq ft</option>
                   <option value="10000">+10000 sq ft</option>
                 </select>
-                <select (change)="onSelectLotSize()" name="select-lot-size" id="select-lot-size">
+                <select (change)="onSelectLotSize($event)" name="select-lot-size" id="select-lot-size">
                   <option value="empty" style="display:none;" selected>Lot Size</option>
                   <option value="empty">All Sizes</option>
                   <option value="0.04591368">+2000 sq ft</option>

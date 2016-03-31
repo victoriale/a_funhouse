@@ -1,8 +1,8 @@
 /**
  * Created by Victoria on 3/8/2016.
  */
-import {Component, OnChanges} from 'angular2/core';
-import {RouteParams, ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
+import {Component, OnInit, OnChanges} from 'angular2/core';
+import {Router, RouteParams, ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
 
 import {ListViewCarousel} from '../../components/carousel/list-view/list-view.component';
 import {DropdownComponent} from '../../components/buttons/sort-by/sort-by.component';
@@ -25,7 +25,7 @@ declare var jQuery: any;
     providers: [listViewPage],
 })
 
-export class ListPage {
+export class ListPage implements OnInit {
     carouselData: any = [];
     listData: any = [];
     headerData: any;
@@ -61,7 +61,7 @@ export class ListPage {
     filterLot: string;
     filterType: string;
 
-    constructor(private _params: RouteParams, private globalFunctions: GlobalFunctions, private listViewData: listViewPage) {
+    constructor(private _params: RouteParams, private globalFunctions: GlobalFunctions, private listViewData: listViewPage, private _router: Router) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }
@@ -271,10 +271,81 @@ export class ListPage {
     // console.log('carouselData', this.carouselData);
   }//END OF TRANSFORM FUNCTION
 
+    //Events for select box filters
     onSelectBedrooms(event) {
         this.selectBedrooms = event.target.value;
-        //this.getListView();
-        console.log(this.selectBedrooms);
+        var params: any = {
+            listname: this.listName,
+            state: this._params.get('state'),
+            city: this._params.get('city'),
+            priceLowerBound: this._params.get('priceLowerBound'),
+            priceUpperBound: this._params.get('priceUpperBound'),
+            bedrooms: this.selectBedrooms,
+            bathrooms: this.selectBathrooms,
+            squareFeet: this.selectSqFeet,
+            lotSize: this.selectLot,
+            type: this._params.get('type'),
+            limit: this.listLimit,
+            page: this._params.get('page'),
+        };
+        this._router.navigate(['List-page-filter', params]);
+    }
+
+    onSelectBathrooms(event) {
+        this.selectBathrooms = event.target.value;
+        var params: any = {
+            listname: this.listName,
+            state: this._params.get('state'),
+            city: this._params.get('city'),
+            priceLowerBound: this._params.get('priceLowerBound'),
+            priceUpperBound: this._params.get('priceUpperBound'),
+            bedrooms: this.selectBedrooms,
+            bathrooms: this.selectBathrooms,
+            squareFeet: this.selectSqFeet,
+            lotSize: this.selectLot,
+            type: this._params.get('type'),
+            limit: this.listLimit,
+            page: this._params.get('page'),
+        };
+        this._router.navigate(['List-page-filter', params]);
+    }
+
+    onSelectSqFeet(event) {
+        this.selectSqFeet = event.target.value;
+        var params: any = {
+            listname: this.listName,
+            state: this._params.get('state'),
+            city: this._params.get('city'),
+            priceLowerBound: this._params.get('priceLowerBound'),
+            priceUpperBound: this._params.get('priceUpperBound'),
+            bedrooms: this.selectBedrooms,
+            bathrooms: this.selectBathrooms,
+            squareFeet: this.selectSqFeet,
+            lotSize: this.selectLot,
+            type: this._params.get('type'),
+            limit: this.listLimit,
+            page: this._params.get('page'),
+        };
+        this._router.navigate(['List-page-filter', params]);
+    }
+
+    onSelectLotSize(event) {
+        this.selectLot = event.target.value;
+        var params: any = {
+            listname: this.listName,
+            state: this._params.get('state'),
+            city: this._params.get('city'),
+            priceLowerBound: this._params.get('priceLowerBound'),
+            priceUpperBound: this._params.get('priceUpperBound'),
+            bedrooms: this.selectBedrooms,
+            bathrooms: this.selectBathrooms,
+            squareFeet: this.selectSqFeet,
+            lotSize: this.selectLot,
+            type: this._params.get('type'),
+            limit: this.listLimit,
+            page: this._params.get('page'),
+        };
+        this._router.navigate(['List-page-filter', params]);
     }
 
   ngOnInit() {
@@ -282,6 +353,14 @@ export class ListPage {
       if(this.listName == "filter") {
           this.showFilters = true;
       }
+
+      //For select filters
+      this.selectBedrooms = this._params.get('bedrooms');
+      this.selectBathrooms = this._params.get('bathrooms');
+      this.selectSqFeet = this._params.get('squareFeet');
+      this.selectLot = this._params.get('lotSize');
+      console.log(this.selectBedrooms);
+      jQuery('#select-bedrooms').val(this.selectBedrooms);
 
       console.log(this);
   }
