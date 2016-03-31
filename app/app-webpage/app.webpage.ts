@@ -57,7 +57,7 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
         component: LocationPage,
     },
     {
-        path: '/list/:listname/:state/:city/page/:page',
+        path: '/:viewType/:listname/:state/:city/page/:page',
         name: 'List-page',
         component: ListPage,
     },
