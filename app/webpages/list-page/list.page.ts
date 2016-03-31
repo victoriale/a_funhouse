@@ -141,6 +141,7 @@ export class ListPage implements OnInit {
                 paginationType: 'page',
                 navigationPage: 'List-page-filter',
                 navigationParams: {
+                    viewType: this.viewType,
                     listname: this.listName,
                     state: this._params.get('state'),
                     city: this._params.get('city'),
@@ -431,6 +432,7 @@ export class ListPage implements OnInit {
     onSelectBedrooms(event) {
         this.selectBedrooms = event.target.value;
         var params: any = {
+            viewType: this.viewType,
             listname: this.listName,
             state: this._params.get('state'),
             city: this._params.get('city'),
@@ -450,6 +452,7 @@ export class ListPage implements OnInit {
     onSelectBathrooms(event) {
         this.selectBathrooms = event.target.value;
         var params: any = {
+            viewType: this.viewType,
             listname: this.listName,
             state: this._params.get('state'),
             city: this._params.get('city'),
@@ -469,6 +472,7 @@ export class ListPage implements OnInit {
     onSelectSqFeet(event) {
         this.selectSqFeet = event.target.value;
         var params: any = {
+            viewType: this.viewType,
             listname: this.listName,
             state: this._params.get('state'),
             city: this._params.get('city'),
@@ -488,6 +492,7 @@ export class ListPage implements OnInit {
     onSelectLotSize(event) {
         this.selectLot = event.target.value;
         var params: any = {
+            viewType: this.viewType,
             listname: this.listName,
             state: this._params.get('state'),
             city: this._params.get('city'),
