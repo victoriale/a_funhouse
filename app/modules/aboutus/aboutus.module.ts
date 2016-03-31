@@ -6,7 +6,7 @@ import {moduleHeader} from "../../components/module-header/module-header";
 import {TilesComponent} from "../../components/tiles/tiles.component";
 import {Router,ROUTER_DIRECTIVES} from 'angular2/router';
 import {Injector} from 'angular2/core';
-import {WebApp} from '../../app-layout/app.layout';
+// import {WebApp} from '../../app-layout/app.layout';
 @Component({
     selector: 'about-us-module',
     templateUrl: './app/modules/aboutus/aboutus.module.html',
@@ -29,8 +29,8 @@ export class AboutUsModule{
     public partnerParam: string;
     public partnerID: string;
     constructor(private injector:Injector, private _router: Router){
-      let partnerParam = this.injector.get(WebApp);
-      this.partnerID = partnerParam.partnerID;
+      // let partnerParam = this.injector.get(WebApp);
+      // this.partnerID = partnerParam.partnerID;
       window.scrollTo(0, 0);
     }
     ngOnInit(){

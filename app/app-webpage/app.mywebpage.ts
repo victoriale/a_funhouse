@@ -170,6 +170,7 @@ export class MyAppComponent implements OnInit {
     constructor(private _injector: Injector,private _partnerData: PartnerHeader, private _params: RouteParams, private route: Router, private routeData: RouteData, private routerLink: RouterLink, private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService){
         var parentParams = this._injector.get(MyWebApp);
         console.log("PARTNER PAGE!!!!!!!!!!!!!!!!!!");
+        console.log(routeData.get('partner_id'));
         if(typeof parentParams.partnerID != 'undefined'){
             this.partnerID = parentParams.partnerID;
         }
