@@ -219,7 +219,6 @@ export class PaginationFooter implements OnChanges{
         }else{
             this.showMinSkip = false;
         }
-        debugger;
 
         //Determine if absolute last button should be shown (show ellipsis if the last item in the array is not max - 1)
         if(this.paginationButtonsPage.length !== 0 && this.paginationButtonsPage[this.paginationButtonsPage.length - 1].index !== (max - 1)){
