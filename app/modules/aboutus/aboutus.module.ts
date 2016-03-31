@@ -1,7 +1,7 @@
 /**
  * Created by Victoria on 2/25/2016.
  */
-import {Component} from 'angular2/core';
+import {Component, Input} from 'angular2/core';
 import {moduleHeader} from "../../components/module-header/module-header";
 import {TilesComponent} from "../../components/tiles/tiles.component";
 import {Router,ROUTER_DIRECTIVES} from 'angular2/router';
@@ -12,7 +12,8 @@ import {Injector} from 'angular2/core';
     templateUrl: './app/modules/aboutus/aboutus.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [moduleHeader, TilesComponent, ROUTER_DIRECTIVES],
-    providers: []
+    providers: [],
+    inputs:['partnerID']
 })
 export class AboutUsModule{
     module_title: string;

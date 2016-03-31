@@ -16,6 +16,7 @@ import {PropertyListingInterface} from '../../global/global-interface';
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [moduleHeader, Image180],
     providers: [ListingProfileService, LocationProfileService],
+    inputs:['locData']
 })
 
 export class ShareModule implements OnInit{
@@ -23,6 +24,7 @@ export class ShareModule implements OnInit{
     public profileType: string;
     public mainImageURL: string;
 
+    locData: any;
     moduleTitle: string;
     currentUrl: any;
     image_url = './app/public/img_bckgnd.png';
@@ -44,9 +46,9 @@ export class ShareModule implements OnInit{
     getData() {
           if(this.profileType == 'LocationPage') {
             var paramLocation: string = this._params.get('loc');
-            var paramCity: string = this.globalFunctions.toTitleCase(paramLocation.split('_')[0]);
+            var paramCity: string = this.globalFunctions.toTitleCase(this.locData.city);
             paramCity = this.globalFunctions.toTitleCase(paramCity.replace(/%20/g, " "));
-            var paramState: string = paramLocation.split('_')[1];
+            var paramState: string = this.locData.state;
             this._locationService.getLocationProfile(paramCity, paramState).subscribe(data => {
               this.share = 'Share This Location Below:';
               this.mainImageURL = data.locationImage;

@@ -1,4 +1,4 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component, OnInit, OnChanges, Input} from 'angular2/core';
 import {Router, RouteParams} from 'angular2/router';
 
 import {HeadlineComponent} from '../../components/headline/headline.component';
@@ -22,19 +22,22 @@ import {TrendingHomes} from "../../modules/trending-homes/trending-homes.module"
 import {Injector} from 'angular2/core';
 import {WebApp} from '../../app-layout/app.layout';
 import {MyWebApp} from '../../app-layout/app.mylayout';
+import {PartnerHeader} from "../../global/global-service";
 
 @Component({
     selector: 'location-page',
     templateUrl: './app/webpages/location-page/location.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [ListOfListModule, HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, FindYourHomeModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule, WidgetModule, AmenitiesModule, TrendingHomes, MapModule],
-    providers: [ListOfListPage, LocationProfileService],
+    providers: [PartnerHeader, ListOfListPage, LocationProfileService],
+    inputs:['partnerData']
 })
 
 export class LocationPage implements OnInit {
     loc: string;
     locCity: string;
     locState: string;
+    locData: any;
     public locDisplay: string;
     public headlineAbout: any;
     public headlineCrime: any;
@@ -50,15 +53,40 @@ export class LocationPage implements OnInit {
     public trendingHomesData: Object;
     public trendingFeature = true;
     public partnerParam: string;
+    public partnerData:any;
     public partnerID: string;
     public partnerCheck: boolean;
     public pageName: string;
 
-    constructor(private _router:Router, private _params: RouteParams, private _locationProfileService: LocationProfileService, private _listService: ListOfListPage) {
+    constructor(private _partnerData:PartnerHeader, private _router:Router, private _params: RouteParams, private _locationProfileService: LocationProfileService, private _listService: ListOfListPage) {
       // let partnerParam = this.injector.get(WebApp);
         // this.partnerID = partnerParam.partnerID;
         // Scroll page to top to fix routerLink bug
-        console.log(this);
+        this._router.root
+            .subscribe(
+                route => {
+                  var curRoute = route;
+                  console.log(curRoute);
+                  var partnerID = curRoute.split('/');
+                  console.log(partnerID);
+                  if(partnerID[0] != ''){
+                    this.partnerID = partnerID[0];
+                    var partnerParam = this.partnerID.replace('-','.');
+                    this._partnerData.getPartnerData(partnerParam)
+                    .subscribe(
+                      partnerScript => {
+                        this.partnerData = partnerScript['results']['location']['realestate'];
+                        this.dataCalls();
+                        console.log(this.partnerData);
+                      }
+                    );
+                  }else{
+                    this.partnerData = null;
+                    this.partnerID = null;
+                    this.dataCalls();
+                  }
+                }
+            )//end of route subscribe
         window.scrollTo(0, 0);
     }
 
@@ -138,19 +166,31 @@ export class LocationPage implements OnInit {
         });
     }
 
-    ngOnInit() {
-        if(this.partnerID === null ){
-          this.partnerCheck = false;
-          this.pageName = "Joyful Home";
-        } else {
-          this.partnerCheck = true;
-          this.pageName = "My HouseKit";
+    ngOnInit(){
+      if(this.partnerID === null ){
+        this.partnerCheck = false;
+        this.pageName = "Joyful Home";
+      } else {
+        this.partnerCheck = true;
+        this.pageName = "My HouseKit";
+      }
+    }
+    dataCalls() {
+      console.log("EVENT", event);
+      console.log('partnerID', typeof this.partnerData);
+      console.log(this._params.get('loc'));
+        if(typeof this._params.get('loc') == 'undefined' || this._params.get('loc') == null){
+          this.locCity = decodeURI(this.partnerData['location']['city'][0].city);
+          this.locState = decodeURI(this.partnerData['location']['city'][0].state);
+          this.locDisplay = this.partnerData['location_name'];
+        }else{
+          this.loc = this._params.get('loc');
+          this.locCity = decodeURI(this.loc.split('_')[0]);
+          this.locState = decodeURI(this.loc.split('_')[1]);
+          this.locDisplay = decodeURI(this.locCity + ', ' + this.locState);
         }
-        this.loc = this._params.get('loc');
-        this.locCity = decodeURI(this.loc.split('_')[0]);
-        this.locState = decodeURI(this.loc.split('_')[1]);
-        this.locDisplay = decodeURI(this.locCity + ', ' + this.locState);
-
+        this.locData = {city:this.locCity, state:this.locState}
+        console.log(this.locCity,this.locState,this.locDisplay);
         this.headlineAbout = {
             title: 'About ' + this.locDisplay,
             icon: 'fa-map-marker'
@@ -180,5 +220,4 @@ export class LocationPage implements OnInit {
         this.getAmenitiesData();
         this.getListOfList();
     }
-
 }

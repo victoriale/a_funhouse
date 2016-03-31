@@ -23,7 +23,7 @@ export class InfoListModule implements OnInit {
     data: any;
     public paginationParameters: Object;
     public index: number = 1;
-    
+
     constructor(private _globalFunctions: GlobalFunctions){}
 
     dataTransform() {
@@ -86,9 +86,7 @@ export class InfoListModule implements OnInit {
                 continue;
             }
             displayArray.push(listItem);
-            console.log(listItem);
         }
-        console.log('DA', displayArray);
         this.infoList = displayArray;
     }
 
