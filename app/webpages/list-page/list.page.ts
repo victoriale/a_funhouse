@@ -67,26 +67,57 @@ export class ListPage {
         }
     }
 
-    setPaginationParams(input){
-        var data = input.data;
-        var listLimit = Number(this.listLimit);
-        var pageNumber = Number(this.listPage);
-        //Find max amount of pages to send to pagination footer
-        var max = Math.ceil(Number(data[0].totalListings) / listLimit);
+        setPaginationParams(input) {
+            var data = input.data;
 
-        this.paginationParameters = {
-            index: pageNumber,
-            max: max,
-            paginationType: 'page',
-            navigationPage: 'List-page',
-            navigationParams: {
-                listname: this.listName,
-                state: this.listState,
-                city: this.listCity
-            },
-            indexKey: 'page'
-        };
-    }
+            if(this.listName !== 'filter') {
+                var listLimit = Number(this.listLimit);
+                var pageNumber = Number(this.listPage);
+                //Find max amount of pages to send to pagination footer
+                var max = Math.ceil(Number(data[0].totalListings) / listLimit);
+
+                this.paginationParameters = {
+                    index: pageNumber,
+                    max: max,
+                    paginationType: 'page',
+                    navigationPage: 'List-page',
+                    navigationParams: {
+                        listname: this.listName,
+                        state: this.listState,
+                        city: this.listCity
+                    },
+                    indexKey: 'page'
+                };
+            }else {
+                var listLimit = Number(this.listLimit);
+                var pageNumber = Number(this.listPage);
+                //Find max amount of pages to send to pagination footer
+                var max = Math.ceil(Number(data[0].totalListings) / listLimit);
+
+                this.paginationParameters = {
+                    index: pageNumber,
+                    max: max,
+                    paginationType: 'page',
+                    navigationPage: 'List-page-filter',
+                    navigationParams: {
+                        listname: this.listName,
+                        state: this._params.get('state'),
+                        city: this._params.get('city'),
+                        priceLowerBound: this._params.get('priceLowerBound'),
+                        priceUpperBound: this._params.get('priceUpperBound'),
+                        bedrooms: this._params.get('bedrooms'),
+                        bathrooms: this._params.get('bathrooms'),
+                        squareFeet: this._params.get('squareFeet'),
+                        lotSize: this._params.get('lotSize'),
+                        type: this._params.get('type'),
+                        limit: this.listLimit,
+                        page: this._params.get('page'),
+                    },
+                    indexKey: 'page'
+                };
+            }
+            console.log(this.paginationParameters);
+        }
 
   getListView() {// GET DATA FROM GLOBAL SERVICE
 
@@ -112,26 +143,25 @@ export class ListPage {
         //Grab params for API call
         this.filterState = this._params.get('state');
         this.filterCity = this._params.get('city');
-        this.filterPage = this._params.get('page');
-        this.filterMinPrice = this._params.get('filterMinPrice');
-        this.filterMaxPrice = this._params.get('filterMaxPrice');
-        this.filterBedrooms = this._params.get('filterBedrooms');
-        this.filterBathrooms = this._params.get('filterBathrooms');
-        this.filterSqFeet = this._params.get('filterSqFeet');
-        this.filterLot = this._params.get('filterLot');
-        this.filterType = this._params.get('filterType');
+        this.filterMinPrice = this._params.get('priceLowerBound');
+        this.filterMaxPrice = this._params.get('priceUpperBound');
+        this.filterBedrooms = this._params.get('bedrooms');
+        this.filterBathrooms = this._params.get('bathrooms');
+        this.filterSqFeet = this._params.get('squareFeet');
+        this.filterLot = this._params.get('lotSize');
+        this.filterType = this._params.get('type');
         this.listPage = this._params.get('page');
 
         console.log('FYH-Params-ListPage: ', this.filterMinPrice, this.filterMaxPrice, this.filterBedrooms, this.filterBathrooms, this.filterSqFeet, this.filterLot, this.filterType);
 
-        // location/findYourHome/{state}/{city}/{priceLowerBound}/{priceUpperBound}/{type}/{bedrooms}/{bathrooms}/{squareFeet}/{lotSize}
+        // location/findYourHome/{state}/{city}/{priceLowerBound}/{priceUpperBound}/{type}/{bedrooms}/{bathrooms}/{squareFeet}/{lotSize}/{limit}/{page}
         // types: Townhouse, Condominium, Apartment, and Single Family Attached
         // last 5 optional, pass string 'empty' if no option selected
-        this.listViewData.getFindYourHome(this.filterState, this.filterCity, this.filterMinPrice, this.filterMaxPrice, this.filterType, this.filterBedrooms, this.filterBathrooms, this.filterSqFeet, this.filterLot)
+        this.listViewData.getFindYourHome(this.filterState, this.filterCity, this.filterMinPrice, this.filterMaxPrice, this.filterType, this.filterBedrooms, this.filterBathrooms, this.filterSqFeet, this.filterLot, this.listLimit, this.listPage)
             .subscribe(
                 data => {
                     this.transformData(data);
-                    //this.setPaginationParams(data);
+                    this.setPaginationParams(data);
                 },
                 err => console.log(err),
                 () => console.log('FYH Data call success!')
@@ -188,7 +218,7 @@ export class ListPage {
           market:'Built in ' + val.yearBuilt,
           rank: (indexStart + i),
           desc: val.listingDescription,
-          photos: val.photos,
+          photos: val.photos
       };
       newData['url1'] = "../../Magazine";
       newData['url2'] = {addr:val.addressKey};
