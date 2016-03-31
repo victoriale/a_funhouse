@@ -1,0 +1,71 @@
+<div class="content-wrapper">
+    <div class="wrapper">
+        <div class="inner-wrapper">
+            <main class='row'>
+                <section class='content-main eight-col'>
+                    <div class="page-container au">
+                        <backtab-component></backtab-component>
+                        <title-component [titleData]="titleData"></title-component>
+
+                        <div class="au-heading">
+                          <div><b>What is </b>{{pageName}}?</div>
+                          <div class = "au-heading-dropdown">
+                            Now Reading:
+                            <select (change) ='nav($event)' id="sortBy" style = "margin-top: 1px;">
+                              <option value="About">About Us</option>
+                              <option value="Disclaimer">Disclaimer</option>
+                              <option value="Contact">Contact Us</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="au-desc">
+                            <p>Founded in July, 2015, Wichita, Kan. - based {{pageName}} is a trusted community marketplace for people to discover their prospective  {{pageName}}.</p>
+                            <p>Whether you are buying your first home, starting a family or looking to retire in the home of your dreams, {{pageName}} connects you to real estate listings—from multi-million dollar mansions to budget-friendly starter homes—in over 3,000 counties in the United States. With an ever-growing database of listings from prime real estate agents across the United States, {{pageName}} is the easiest way to purchase your next home.</p>
+                        </div>
+                        <div class="au-blocks">
+                            <div class="au-blocks-block">
+                                <span><img src="{{au_icon1}}" /></span>
+                                <span>
+                                    <div>{{subText1}}</div>
+                                    <div>{{mainText1}}</div>
+                                </span>
+                            </div>
+                            <div class="au-blocks-block">
+                                <span><img src="{{au_icon2}}" /></span>
+                                <span>
+                                    <div>{{subText2}}</div>
+                                    <div>{{mainText2}}</div>
+                                </span>
+                            </div>
+                            <div class="au-blocks-block">
+                                <span><img src="{{au_icon3}}" /></span>
+                                <span>
+                                    <div>{{subText3}}</div>
+                                    <div>{{mainText3}}</div>
+                                </span>
+                            </div>
+                            <div class="au-blocks-block">
+                                <span><img src="{{au_icon4}}" /></span>
+                                <span>
+                                    <div>{{subText4}}</div>
+                                    <div>{{mainText4}}</div>
+                                </span>
+                            </div>
+                        </div>
+                        <!--Blocks End-->
+                        <div class="au-nat">
+                            <div>{{subText_nat}}</div>
+                            <div>{{mainText_nat}}</div>
+                            <img src="{{nat_map}}" alt="nationwide image" />
+                        </div>
+                    </div>
+
+                </section>
+                <div class="four-col">
+                    <widget-module></widget-module>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>

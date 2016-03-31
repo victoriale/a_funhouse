@@ -1,0 +1,46 @@
+<div class="content-wrapper">
+  <div class="wrapper">
+    <div class="inner-wrapper">
+      <main>
+        <section class='content-main eight-col'>
+          <loading-component *ngIf="!amenitiesData && !isError"></loading-component>
+
+          <error-component *ngIf="isError"></error-component>
+
+          <section *ngIf="amenitiesData && !isError" class="page-container">
+            <div class="page-content">
+              <module-header [module_title]="moduleTitle"></module-header>
+
+              <div *ngFor="#item of amenitiesData; #i=odd" class="al" [ngClass]="{'odd': i == true}">
+                <div>
+                  <a href='{{item.url}}' class='al-image'>
+                    <img src='{{item.image_url}}' onerror="this.src='./app/public/placeholder-location.jpg';" />
+                    <div>
+                      <p>View</p>
+                      <p>Profile</p>
+                    </div>
+                  </a>
+                  <div class="al-image-rank">#{{item.rank}}</div>
+                </div>
+                <div>
+                    <div class='al-loc'>
+                      <span><i class='fa fa-map-marker'></i></span><span> {{item.displayAddress1}}</span>
+                      <span><i class='fa fa-angle-right'></i></span><a [routerLink]="['Location-page',item.locationUrl]"><span> {{item.displayAddress2}}</span></a>
+                    </div>
+
+                    <div class='al-name'>{{item.name}}</div>
+                    <div class='al-desc'><b>What people are saying: </b>{{item.snippet_text}}</div>
+                </div>
+              </div>
+            </div>
+            <a href="{{providerUrl}}"><img class="al-provider" src='{{providerLogo}}' /></a>
+            <hero-list-component></hero-list-component>
+          </section>
+        </section>
+        <div class="four-col">
+          <widget-module></widget-module>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>

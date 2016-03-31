@@ -1,0 +1,42 @@
+<hero-component></hero-component>
+<div class="wrapper">
+    <div class="inner-wrapper">
+        <section class='content-main twelve-col'>
+            <h1 class="home-tagline">
+                <img class="map-icon" src="./app/public/Icons_Explore.png" /> Explore <span class="thin">The {{cityLocation}} Area</span>
+            </h1>
+            <!--<div class="geo-location">-->
+                <!--<select (change)="onChange($event.target.value)" class="geo-location-test">-->
+                    <!--<option value="Wichita-KS">Wichita, KS</option>-->
+                    <!--<option value="New York-NY">New York, NY</option>-->
+                    <!--<option value="Kansas City-KS">Kansas City, KS</option>-->
+                    <!--<option value="San Diego-CA">San Diego, CA</option>-->
+                    <!--<option value="San Francisco-CA">San Francisco, CA</option>-->
+                    <!--<option value="Portland-OR">Portland, OR</option>-->
+                    <!--<option value="San Antonio-TX">San Antonio, TX</option>-->
+                    <!--<option value="Chicago-IL">Chicago, IL</option>-->
+                    <!--<option value="Miami-FL">Miami, FL</option>-->
+                    <!--<option value="Atlanta-GA">Atlanta, GA</option>-->
+                    <!--<option value="Phoenix-AZ">Phoenix, AZ</option>-->
+                <!--</select>-->
+            <!--</div>-->
+        </section>
+        <div class="twelve-col">
+            <explore-tiles-component *ngIf="nearByCities" [nearByCities]="nearByCities"></explore-tiles-component>
+        </div>
+        <div class="twelve-col">
+            <a [routerLink]="['City-view-page', {state: stateLocation, city: cityLocation}]">
+                <explore-button-component [buttonTitle]="buttonTitle" [buttonWidth]="buttonWidth" [buttonIcon]="buttonIcon"></explore-button-component>
+            </a>
+        </div>
+    </div>
+</div>
+<hero-bottom-component [buttonTitle]="heroButtonTitle" [buttonWidth]="heroButtonWidth" [buttonIcon]="heroButtonIcon" [cityLocation]="cityLocation" [stateLocation]="stateLocation"></hero-bottom-component>
+<div class="wrapper">
+    <div class="inner-wrapper">
+        <section class='content-main twelve-col'>
+            <h1 class="home-tagline"><img class="map-icon" src="./app/public/Icons_Features.png" /> Features <span class="thin">To Note</span></h1>
+        </section>
+        <feature-tiles-component *ngIf="cityLocation && stateLocation" [cityLocation]="cityLocation" [stateLocation]="stateLocation"></feature-tiles-component>
+    </div>
+</div>

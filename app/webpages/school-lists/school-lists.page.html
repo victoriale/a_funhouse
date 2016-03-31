@@ -1,0 +1,41 @@
+<div class="content-wrapper">
+  <div class="wrapper">
+    <div class="inner-wrapper">
+      <main>
+        <section class='content-main eight-col'>
+          <loading-component *ngIf="!schoolData && !isError"></loading-component>
+
+          <error-component *ngIf="isError"></error-component>
+
+          <section *ngIf="schoolData && !isError" class="page-container">
+            <div class="page-content">
+            <module-header [module_title]="moduleTitle"></module-header>
+              <div *ngFor="#item of schoolData; #i=odd" class="al" [ngClass]="{'odd': i == true}">
+                <div class='al-schoolImage'>
+                  <img src='{{item.imageUrl}}' onerror="this.src='./app/public/mag_stock_img/stock_school_1.png';" />
+                  <div class="al-schoolImage-rank">#{{item.rank}}</div>
+                </div>
+                <div>
+                    <div class='al-loc'>
+                      <span><i class='fa fa-map-marker'></i></span>
+                      <span> {{item.location_address}}</span>
+                      <span><i class='fa fa-angle-right'></i></span>
+                      <a [routerLink]="['Location-page',item.locationUrl]">
+                        <span> {{item.location_city}}, {{item.location_state}} {{item.zipCode}}</span>
+                      </a>
+                    </div>
+                    <div class='al-name'>{{item.school_name}}</div>
+                    <div class='al-desc'>{{item.type}}</div>
+                </div>
+              </div>
+            </div>
+            <hero-list-component></hero-list-component>
+          </section>
+        </section>
+        <div class="four-col">
+          <widget-module></widget-module>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>

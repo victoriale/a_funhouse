@@ -1,0 +1,79 @@
+.header-top-bar-wrapper {
+  width: 100%;
+  background-color: #fff;
+  height: 20px;
+  .globalDefaultModFont(10, 400, @black);
+}
+  .header-top-bar {
+    .tagline {
+      margin-top: 5px;
+    }
+    a {
+      color: @black !important;
+    }
+    a:hover {
+      color: @joyfulHomeGreenHover !important;
+    }
+    .directory-link {
+      margin-top: 4px;
+      text-align: right;
+      margin-right: 0 !important;
+      a {
+        cursor: pointer;
+      }
+    }
+    a:hover {
+      color: @joyfulHomeGreenHover;
+    }
+  }
+
+.stick-header {
+  position: fixed;
+  top: 0px !important;
+}
+
+.header-bottom-bar-wrapper {
+  width: 100%;
+  background-color: @backgroundGrey;
+  height: 55px;
+  z-index: 1000 !important;
+}
+  .header-logo {
+    margin-top: 15px;
+  }
+
+.directory-dropdown-wrapper {
+  min-height: 30px;
+  max-height: 240px;
+  width: 240px;
+  overflow-x: auto;
+  position: absolute;
+  z-index: 100;
+  top: 25px;
+  right: 0;
+  border: 1px solid @greyBorder;
+  ul {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  li {
+    height: 30px;
+    width: auto;
+    line-height: 30px;
+    padding: 0 10px 0 15px;
+    color: #000000;
+    background-color: #ffffff;
+    cursor: pointer;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    .fa {
+      margin-right: 10px;
+    }
+    &:hover {
+      color: #ffffff;
+      background-color: @joyfulHomeGreen;
+    }
+  }
+}
+
+

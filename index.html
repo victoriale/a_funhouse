@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <base href="/">
+    <title>Joyful Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="./app/global/stylesheets/gridinator.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="./app/public/favicon.png" />
+
+    <style>
+      body {
+        margin: 0 !important;
+        background-color: #e1e1e1;
+      }
+      ul{
+        margin: 0px;
+        padding: 0px;
+      }
+      .page-loading {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+      }
+    </style>
+
+    <!-- 1. Load libraries -->
+    <!-- IE required polyfills, in this exact order -->
+    <script src="lib/es6-shim.min.js"></script>
+    <script src="lib/system-polyfills.js"></script>
+
+    <script src="lib/angular2-polyfills.js"></script>
+    <script src="lib/system.src.js"></script>
+    <script src="lib/Rx.js"></script>
+    <script src="lib/angular2.dev.js"></script>
+    <script src="lib/router.dev.js"></script>
+    <script src="lib/http.js"></script>
+    <script src="lib/shims_for_IE.js"></script>
+    <script src="lib/moment.js"></script>
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!-- 2. Configure SystemJS -->
+    <script>
+      System.config({
+        packages: {
+          app: {
+            format: 'register',
+            defaultExtension: 'js'
+          }
+        }
+      });
+      System.import('app/main')
+            .then(null, console.error.bind(console));
+    </script>
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <!--<script src="lib/angular2-google-maps.js"></script>-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBe2FcYUyBxUUe5725Ir-4rMhuhEuKr5ho"></script>
+    <script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobubble/src/infobubble.js"></script>
+    <script src="lib/highcharts.js"></script>
+
+  </head>
+
+  <!-- 3. Display the application -->
+  <body>
+    <app-domain>
+      <div class="page-loading">
+        <img src="./app/public/page_loading.gif" />
+      </div>
+    </app-domain>
+  </body>
+
+</html>

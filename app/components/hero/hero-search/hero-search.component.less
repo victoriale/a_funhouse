@@ -1,0 +1,60 @@
+@import (reference) "./app/global/stylesheets/components.less";
+@import (reference) "./app/global/stylesheets/base.less";
+
+.hero-search {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.hero-search input {
+  width: 500px;
+  height: 50px;
+  color: #999 !important;
+  text-align: left;
+  border: 1px solid #DDDDDD;
+  border-radius: 5px;
+  padding-left: 10px;
+  .globalDefaultModFont(18, 400, @black);
+
+  // Glow animation
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  &:focus {
+    box-shadow: 0 1px 10px 0 rgba(68, 178, 36, 35);
+    border: 1px solid rgba(68, 178, 36, 35);
+    outline: none;
+  }
+}
+
+
+  .hero-search-button {
+    width: 70px;
+    background-color: #44b224;
+    color: #ffffff;
+    font-size: 24px;
+    text-align: center;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    border: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+
+    .fa-search{
+      font-size: 18px;
+      position: relative;
+      top: -27px;
+      right: 9px;
+    }
+  }
+
+  //Needed id styling to group search input and results dropdown. results dropdown is absolutely bound to this container
+  #hero-search-full-container{
+    position: relative;
+    margin: 0 auto;
+    width: 500px;
+  }

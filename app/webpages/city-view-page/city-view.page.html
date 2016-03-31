@@ -1,0 +1,51 @@
+<div class="content-wrapper">
+    <div class="wrapper">
+        <div class="inner-wrapper">
+            <main>
+                <section class='content-main eight-col'>
+                    <title-component *ngIf="titleData" [titleData]="titleData"></title-component>
+
+                    <div *ngFor="#city of cities" class="city-list even">
+                        <div class='city-imagebox'>
+                            <a [routerLink]="['Location-page', {loc: city.locationUrl}]">
+                                <img src='./app/public/placeholder-location.jpg' alt='' />
+                                <div class="city-rank">#{{city.counter}}</div>
+                            </a>
+                        </div>
+                        <div class="city-content-box even">
+                            <div class="city-content-row-wrapper">
+                                <div class="city-content-row1">
+                                    <a [routerLink]="['Location-page', {loc: city.locationUrl}]">
+                                        <span class="city-location"><i class="fa fa-map-marker"></i>{{city.city}}, {{city.state}}</span>
+                                    </a>
+                                    <p class="city-address">{{city.city}}, {{city.state}}</p>
+                                    <p class="city-type">Distance: {{city.distance}} Miles</p>
+                                </div>
+                                <div class="city-content-row2">
+                                    <p class="city-market">Total Listings</p>
+                                    <p class="city-date">{{city.totalListings}} Homes</p>
+                                </div>
+                            </div>
+                            <div class="city-content-bottom">
+                                <div class='city-content-subbox'>
+                                    <p>Discover What's In This Unique Area</p>
+                                </div>
+                                <a [routerLink]="['Location-page', {loc: city.locationUrl}]" class='city-list-button'>
+                                    <span><img class="city-icon" src="./app/public/realestate_icon.png" /></span>
+                                    <span>View City Profile</span>
+                                    <i class='fa fa-angle-right'></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hero-list-component></hero-list-component>
+
+                </section>
+                <div class="four-col">
+                    <widget-module></widget-module>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
