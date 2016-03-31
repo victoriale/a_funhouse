@@ -175,7 +175,7 @@ export class MyAppComponent implements OnInit {
     public cityStateLocation: string;
     public cityLocation: string;
     public stateLocation: string;
-    address: string = "503-C-Avenue-Vinton-IA";
+    // address: string = "503-C-Avenue-Vinton-IA";
     nearByCities: Object;
 
     constructor(private _injector: Injector,private _partnerData: PartnerHeader, private _params: RouteParams, private route: Router, private routeData: RouteData, private routerLink: RouterLink, private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService){

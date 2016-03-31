@@ -682,6 +682,7 @@ export class PartnerHomePage implements OnInit{
       for ( var i = 0; i < partners.length; i++ ) {
         for ( var j = 0; j < partners[i].websites.length; j++ ) {
           partners[i].websites[j].partner_id = partners[i].websites[j].partner_id.replace('.','-');
+          partners[i].websites[j].url = "/"+partners[i].websites[j].partner_id +"/loc";
         }
       }
       return partners;
