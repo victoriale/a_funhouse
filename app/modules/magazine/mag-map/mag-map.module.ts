@@ -24,7 +24,7 @@ export class MagMapModule implements OnInit {
     imgAddress:string;
     address:string;
     data:MagNeighborhood;
-    profileData:MagNeighborhood;
+    marker:string;
     public partnerID:string;
 
     constructor(private _router:Router, private _injector:Injector, private _magazineDataService:MagazineDataService) {
@@ -33,14 +33,14 @@ export class MagMapModule implements OnInit {
         this._router.root
             .subscribe(
                 route => {
-                  var curRoute = route;
-                  var partnerID = curRoute.split('/');
-                  if(partnerID[0] == ''){
-                    this.partnerID = null;
-                  }else{
-                    this.partnerID = partnerID[0];
-                  }
-                  this.getMagazineMap();
+                    var curRoute = route;
+                    var partnerID = curRoute.split('/');
+                    if (partnerID[0] == '') {
+                        this.partnerID = null;
+                    } else {
+                        this.partnerID = partnerID[0];
+                    }
+                    this.getMagazineMap();
                 }
             )//end of route subscribe
     }
@@ -50,12 +50,12 @@ export class MagMapModule implements OnInit {
             .subscribe(
                 magData => {
                     this.data = magData.neighborhood.neighbors;
-                    this.profileData = magData.neighborhood.address;
                     var partnerUrl = this.partnerID;
                     for (var i = 0; i < magData.neighborhood.neighbors.length; i++) {
                         if (magData.neighborhood.neighbors[i].address.lng != null && magData.neighborhood.neighbors[i].address.lat != null) {
-                            if (magData.neighborhood.address.lat != null && magData.neighborhood.address.lat != null && i < 1){
-                                var myLatlng = new google.maps.LatLng(parseFloat(this.profileData[0].lat), parseFloat(this.profileData[0].lat));
+                            if (magData.neighborhood.address.lat != null && magData.neighborhood.address.lat != null && i < 1) {
+                                var myLatlng = new google.maps.LatLng(magData.neighborhood.address.lat, magData.neighborhood.address.lng);
+                                var icon = 'http://images.joyfulhome.com/icons/Icon_Home_Selected.png';
                             } else {
                                 var myLatlng = new google.maps.LatLng(parseFloat(this.data[i].address.lat), parseFloat(this.data[i].address.lng));
                             }
@@ -73,12 +73,23 @@ export class MagMapModule implements OnInit {
                             }
                             var mapOptions = {
                                 zoom: 12,
-                                center: myLatlng
+                                center: myLatlng,
+                                fullscreenControl: true,
+                                fullscreenControlOptions: {
+                                    position: google.maps.ControlPosition.TOP_LEFT
+                                }
                             };
                             break;
                         }
                     }
                     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+                    if (icon) {
+                        this.marker = new google.maps.Marker({
+                            position: myLatlng,
+                            map: map,
+                            icon: icon
+                        });
+                    }
                     for (var i = 0; i < magData.neighborhood.neighbors.length; i++) {
                         var home = new google.maps.LatLng(parseFloat(this.data[i].address.lat), parseFloat(this.data[i].address.lng));
                         if (+this.data[i].price >= 1000000) {
@@ -128,6 +139,6 @@ export class MagMapModule implements OnInit {
     }
 
     ngOnInit() {
-
+        this.getMagazineMap();
     }
 }
