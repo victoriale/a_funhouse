@@ -17,6 +17,7 @@ import {RouteParams, Router, RouteData, RouteConfig, RouterOutlet, ROUTER_DIRECT
        path: '/...',
        name: 'Webpages',
        component: AppComponent,
+       useAsDefault:true
     },
     {
       path: '/magazine/:addr/...',
