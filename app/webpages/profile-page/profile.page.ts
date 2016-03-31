@@ -24,12 +24,14 @@ import {magazineBanner} from '../../modules/mag_banner/mag_banner.module';
 import {magazineModule} from '../../modules/mag_module/mag_module';
 import {Injector} from 'angular2/core';
 import {GlobalFunctions} from '../../global/global-functions';
+import {LoadingComponent} from '../../components/loading/loading.component';
+import {ErrorComponent} from '../../components/error/error.component';
 
 @Component({
     selector: 'profile-page',
     templateUrl: './app/webpages/profile-page/profile.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [magazineModule, magazineBanner, TrendingHomes, MediaImages, HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs, ShareModule, FeaturedListsModule, AmenitiesModule, WidgetModule, MapModule],
+    directives: [magazineModule, magazineBanner, TrendingHomes, MediaImages, HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs, ShareModule, FeaturedListsModule, AmenitiesModule, WidgetModule, MapModule, LoadingComponent, ErrorComponent],
     providers: [ListOfListPage, ListingProfileService]
 })
 
@@ -57,6 +59,7 @@ export class ProfilePage implements OnInit{
     public amenitiesData: Object;
     public partnerParam: string;
     public partnerID: string;
+    public isError: boolean = false;
     //  Get current route name
     constructor(private _router:Router, private _listingProfileService: ListingProfileService, private _params: RouteParams, private _listService:ListOfListPage, private globalFunctions: GlobalFunctions){
         // Scroll page to top to fix routerLink bug
@@ -74,7 +77,10 @@ export class ProfilePage implements OnInit{
                     this.profileHeaderData = data;
                     this.profileHeaderData['paramAddress'] = this.paramAddress;
                 },
-                err => console.log('Error - Listing Profile Header Data: ', err)
+                err => {
+                    console.log('Error - Listing Profile Header Data: ', err);
+                    this.isError = true;
+                }
             )
     }
 

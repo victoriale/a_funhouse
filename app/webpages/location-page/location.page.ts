@@ -16,19 +16,20 @@ import {LocationProfileService} from '../../global/location-profile.service';
 import {ListOfListPage} from '../../global/global-service';
 import {WidgetModule} from "../../modules/widget/widget.module";
 import {FindYourHomeModule} from "../../modules/find-your-home/find-your-home.module";
-import {MapModule} from '../../modules/map/map.module';
 import {AmenitiesModule} from "../../modules/amenities/amenities.module";
 import {TrendingHomes} from "../../modules/trending-homes/trending-homes.module";
 import {Injector} from 'angular2/core';
 import {WebApp} from '../../app-layout/app.layout';
 import {MyWebApp} from '../../app-layout/app.mylayout';
 import {PartnerHeader} from "../../global/global-service";
+import {LoadingComponent} from '../../components/loading/loading.component';
+import {ErrorComponent} from '../../components/error/error.component';
 
 @Component({
     selector: 'location-page',
     templateUrl: './app/webpages/location-page/location.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [ListOfListModule, HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, FindYourHomeModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule, WidgetModule, AmenitiesModule, TrendingHomes, MapModule],
+    directives: [ListOfListModule, HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, FindYourHomeModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule, WidgetModule, AmenitiesModule, TrendingHomes, ErrorComponent, LoadingComponent],
     providers: [PartnerHeader, ListOfListPage, LocationProfileService],
     inputs:['partnerData']
 })
@@ -57,6 +58,7 @@ export class LocationPage implements OnInit {
     public partnerID: string;
     public partnerCheck: boolean;
     public pageName: string;
+    public isError: boolean = false;
 
     constructor(private _partnerData:PartnerHeader, private _router:Router, private _params: RouteParams, private _locationProfileService: LocationProfileService, private _listService: ListOfListPage) {
       // let partnerParam = this.injector.get(WebApp);
@@ -93,7 +95,10 @@ export class LocationPage implements OnInit {
                 data => {
                     this.profileHeaderData = data;
                 },
-                err => console.log('Error - Location Profile Header Data: ', err)
+                err => {
+                    console.log('Error - Location Profile Header Data: ', err);
+                    this.isError = true;
+                }
             )
     }
 
