@@ -123,6 +123,7 @@ export class FeaturedListsModule implements OnInit{
             imageUrl: listData.photos.length === 0 ? null : listData.photos[0],
             ListUrl: 'List-page',
             listParam: {
+                viewType: 'list',
               listname: data.listName,
               state: listData.stateOrProvince,
               city: listData.city,
@@ -141,6 +142,7 @@ export class FeaturedListsModule implements OnInit{
             desc1: '',
             url1: 'List-page',
             paramOptions1: {
+                viewType: 'list',
               listname: data.listName,
               state: listData.stateOrProvince,
               city: listData.city,

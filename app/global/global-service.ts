@@ -49,7 +49,7 @@ export class listViewPage {
   constructor(public http: Http) {}
 
   //API for listview page data
-  getListData(listname, state, city, limit, page) {
+  getListData(listname, state, city, limit, page, sort) {
     var query = {
       listname: listname,
       state: state,
@@ -58,6 +58,10 @@ export class listViewPage {
       limit: limit,
       page: page,
     };
+
+    if(sort !== null){
+      query.sort = sort;
+    }
 
     var fullUrl = this.protocolToUse + this.apiUrl +"/list";
 

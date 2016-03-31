@@ -3,11 +3,15 @@
         <div class="inner-wrapper">
             <main *ngIf="lists">
                 <section class='content-main eight-col'>
-                    <div class='page-container'>
+                    <loading-component *ngIf="!listOfLists && !isError"></loading-component>
+
+                    <error-component *ngIf="isError"></error-component>
+
+                    <div *ngIf="listOfLists && !isError" class='page-container'>
                         <backtab-component></backtab-component>
                         <title-component *ngIf="titleData" [titleData]="titleData"></title-component>
                         <list-carousel-component *ngIf="listOfLists" [lists]="lists" [cityLocation]="cityLocation" [stateLocation]="stateLocation"></list-carousel-component>
-                        <span *ngIf="data" *ngFor="#item of lists">
+                        <span *ngFor="#item of lists">
                             <contentlist [data]="item" [cityLocation]="cityLocation" [stateLocation]="stateLocation"></contentlist>
                         </span>
                         <hero-list-component></hero-list-component>

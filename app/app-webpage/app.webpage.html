@@ -6,7 +6,7 @@
             <a [routerLink]="['Home-page']">Home Page</a>
             <a [routerLink]="['Profile-page', {address: address}]">Profile Page</a>
             <a [routerLink]="['Location-page', {loc: cityStateLocation}]">Location Page</a>
-            <a [routerLink]="['List-page', {state: stateLocation, listname: 'homesLargest', city: cityLocation, page: 1}]">List Page</a>
+            <a [routerLink]="['List-page', {viewType: 'list', state: stateLocation, listname: 'homesLargest', city: cityLocation, page: 1}]">List Page</a>
             <a [routerLink]="['Amenities-lists-page', {listname:'restaurant', state: stateLocation, city: cityLocation}]">Amenities Page</a>
             <a [routerLink]="['School-lists-page', {listname:'high', state: stateLocation, city: cityLocation}]">School Page</a>
             <a [routerLink]="['List-of-lists-page', {state: stateLocation, city: cityLocation}]">LOL Page</a>
