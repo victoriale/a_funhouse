@@ -20,9 +20,20 @@ export class MagHeaderModule {
     public partnerID: string;
     isPartner: boolean;
 
-    constructor(private injector:Injector) {
-        let partnerParam = this.injector.get(WebApp);
-        this.partnerID = partnerParam.partnerID;
+    constructor( private _router:Router, private injector:Injector) {
+      this._router.root
+          .subscribe(
+              route => {
+                var curRoute = route;
+                var partnerID = curRoute.split('/');
+                if(partnerID[0] == ''){
+                  this.partnerID = null;
+                }else{
+                  this.partnerID = partnerID[0];
+                }
+                this.headerDisplay();
+              }
+          )//end of route subscribe
     }
 
     toggleTabs() {
@@ -41,7 +52,7 @@ export class MagHeaderModule {
     }
 
     ngOnInit(){
-        this.headerDisplay();
+
     }
 
     ngOnChanges(event){

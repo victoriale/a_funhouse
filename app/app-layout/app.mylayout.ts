@@ -31,9 +31,19 @@ export class MyWebApp {
   public partnerID: string;
 
   address:string = '1324-N-Manchester-CT-Wichita-KS';
-
+  camelCaseToRegularCase(str){// GRABBED FROM GLOBAL FUNCTION app/global/global-functions.ts
+      str = str
+          .replace(/([A-Z][a-z]+)/g, " $1")
+          .replace(/([A-Z][A-Z]+)/g, " $1")
+          .replace(/([^A-Za-z ]+)/g, " $1")
+          // uppercase the first character
+          .replace(/^./, function(str){ return str.toUpperCase(); })
+      return str;
+  }
   constructor(private _params: RouteParams){
-    console.log("PARTNER PAGE!!!!!!!!!!!!!!!!!!");
     this.partnerID = this._params.get('partner_id');
+    var partnerID = this.camelCaseToRegularCase(this.partnerID.replace('-',' '));
+    document.title = "MyHousekit "+ partnerID;
+
   }
 }

@@ -175,7 +175,6 @@ export class AppComponent implements OnInit {
 
     constructor(private _injector: Injector,private _partnerData: PartnerHeader, private _params: RouteParams, private route: Router, private routeData: RouteData, private routerLink: RouterLink, private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService){
         var parentParams = this._injector.get(WebApp);
-        console.log("SNT-MEDIA PAGE!!!!!!!!!!!!!!!!!!");
         if(typeof parentParams.partnerID != 'undefined'){
             this.partnerID = parentParams.partnerID;
         }
