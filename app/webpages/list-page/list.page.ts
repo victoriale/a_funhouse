@@ -370,7 +370,8 @@ export class ListPage {
       var newData = {
           img : val.photos[0],
           list_sub : val.propertyType + ": " + val.numBedrooms + " Beds & " + val.numBathrooms + " Baths",
-          title : val.addressKey.replace(/-/g, ' '),
+          //title : val.addressKey.replace(/-/g, ' '),
+          title: val.fullStreetAddress === null ? '' : self.globalFunctions.toTitleCase(val.fullStreetAddress),
           numBed : val.numBedrooms + " Beds ",
           numBath: val.numBathrooms + " Baths ",
           date: formattedDate,
