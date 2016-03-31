@@ -9,12 +9,14 @@ import {List} from "../../global/global-interface";
 import {HeroListComponent} from "../../components/hero/hero-list/hero-list.component";
 import {WidgetModule} from "../../modules/widget/widget.module";
 import {GlobalFunctions} from "../../global/global-functions";
+import {LoadingComponent} from '../../components/loading/loading.component';
+import {ErrorComponent} from '../../components/error/error.component';
 
 @Component({
     selector: 'list-of-lists-page',
     templateUrl: './app/webpages/list-of-lists-page/list-of-lists.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [BackTabComponent, TitleComponent, ListCarouselComponent, contentList, HeroListComponent, WidgetModule],
+    directives: [BackTabComponent, TitleComponent, ListCarouselComponent, contentList, HeroListComponent, WidgetModule, LoadingComponent, ErrorComponent],
     providers: [ListOfListPage],
 })
 
@@ -26,6 +28,7 @@ export class ListOfListsPage implements OnInit{
     public cityLocation: string;
     public stateLocation: string;
     public location: string;
+    public isError: boolean = false;
     listOfLists: any;
     lists: Array<any> = [];
     titleData: Object;
@@ -39,8 +42,12 @@ export class ListOfListsPage implements OnInit{
         this._listOfListPageService.getListOfListPage(this.stateLocation, this.cityLocation)
             .subscribe(
                 listOfLists => this.listOfLists = listOfLists,
-                err => console.log(err),
+                err => {
+                    console.log('Error: List of List Page API: ', err);
+                    this.isError = true;
+                },
                 () => this.transformData()
+
             );
     }
 
