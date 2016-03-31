@@ -40,6 +40,7 @@ export class ListPage {
     public listLimit: string = "20";
     public listPage: string;
 
+    noListings: boolean = false;
     showFilters: boolean = false;
 
     // Select Values
@@ -78,6 +79,13 @@ export class ListPage {
 
         setPaginationParams(input) {
             var data = input.data;
+
+            if(data.length <= 0) {
+                this.noListings = true;
+                return;
+            }else{
+                this.noListings = false;
+            }
 
             if(this.listName !== 'filter') {
                 var listLimit = Number(this.listLimit);

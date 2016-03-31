@@ -12,7 +12,7 @@
               <!--<dropdown-component></dropdown-component>-->
               <!--<div class="lv-sort-filter">Filter <i class="fa fa-cog"></i></div>-->
             <!--</div>-->
-            <div *ngIf="showFilters" class="property-options">
+            <div *ngIf="showFilters && !noListings" class="property-options">
               <div class="type-title">
                 <span>Must Haves</span>
               </div>
@@ -62,6 +62,10 @@
                   <option value="10">+10 acre</option>
                 </select>
               </div>
+            </div>
+            <div *ngIf="noListings" class="list-error">
+              <p><i class="fa fa-exclamation-circle"></i> There are currently no listings available matching your selected preferences.</p>
+              <p><a href="#">Click here to go back.</a></p>
             </div>
             <pagination-footer *ngIf="paginationParameters" [paginationParameters]="paginationParameters"></pagination-footer>
             <div *ngIf="(view == 'list' || view == 'map')&& listData">
