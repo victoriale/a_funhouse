@@ -1,6 +1,6 @@
 <div class="feature twelve-col">
     <section class="feature-tiles">
-        <a href="#">
+        <a [routerLink]="['List-page', {viewType: 'map', listname: 'most-recent-listings', state: stateLocation, city: cityLocation, page: 1}]">
             <div class="feature-tile-1 eight-col">
                 <p class="feature-tile-title">Interactive Local Map</p>
                 <div class="view-box">

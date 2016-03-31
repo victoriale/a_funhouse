@@ -2,7 +2,7 @@
     <div class="wrapper">
         <div class="inner-wrapper">
             <main>
-                <section class='content-main eight-col'>
+                <section *ngIf="locDisplay" class='content-main eight-col'>
                     <!-- Modules Go Here -->
 
                     <!-- About Section -->
@@ -13,35 +13,36 @@
                     <section *ngIf="!partnerCheck">
                       <comment-module></comment-module>
                     </section>
-                    <info-list-module *ngIf="recentListingsData" [recentListingsData]="recentListingsData" [locDisplay]="locDisplay"></info-list-module>
-
-                    <!--Trending Section-->
-                    <trending-homes *ngIf="trendingHomesData" [trendingHomesData]="trendingHomesData" [trending]="trendingFeature"></trending-homes>
 
                     <!--List of List Section-->
                     <list-of-lists-module *ngIf="lists" [listOfLists]="lists" [city]="locCity" [state]="locState"></list-of-lists-module>
 
+                    <!--Trending Section-->
+                    <trending-homes *ngIf="trendingHomesData" [trendingHomesData]="trendingHomesData" [trending]="trendingFeature" [locData]="locData"></trending-homes>
+
+                    <info-list-module *ngIf="recentListingsData" [recentListingsData]="recentListingsData" [locDisplay]="locDisplay"></info-list-module>
+
                     <!-- Crime Section -->
                     <headline-component *ngIf="crimeData" [data]="headlineCrime"></headline-component>
-                    <crime-module *ngIf="crimeData" [crimeData]="crimeData" ></crime-module>
+                    <crime-module *ngIf="crimeData" [crimeData]="crimeData" [locData]="locData"></crime-module>
 
                     <!-- Amenities and School Section -->
-                    <headline-component [data]="headlineSchool"></headline-component>
-                    <school-module *ngIf="schoolData" [schoolData]="schoolData"></school-module>
-                    <amenities-module *ngIf="amenitiesData" [amenitiesData]="amenitiesData"></amenities-module>
+                    <headline-component *ngIf="schoolData || amenitiesData" [data]="headlineSchool"></headline-component>
+                    <school-module *ngIf="schoolData" [schoolData]="schoolData" [locData]="locData"></school-module>
+                    <amenities-module *ngIf="amenitiesData" [amenitiesData]="amenitiesData" [locData]="locData"></amenities-module>
 
                     <!-- Interact Section -->
                     <headline-component [data]="headlineInteract"></headline-component>
-                    <featured-lists-module *ngIf="featuredListData" [featuredListData]="featuredListData"></featured-lists-module>
+                    <featured-lists-module *ngIf="featuredListData" [featuredListData]="featuredListData" [locData]="locData"></featured-lists-module>
 
                     <!--Share Module-->
-                    <share-module></share-module>
+                    <share-module [locData]="locData"></share-module>
                     <!--Like Us On FB Module-->
                     <section *ngIf="!partnerCheck">
                       <like-us-module></like-us-module>
                     </section>
                     <!--Learn More About Us-->
-                    <about-us-module></about-us-module>
+                    <about-us-module [partnerID]="partnerID"></about-us-module>
 
                 </section>
                 <div class="four-col">

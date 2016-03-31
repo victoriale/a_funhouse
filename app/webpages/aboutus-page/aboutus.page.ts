@@ -47,8 +47,25 @@ export class AboutUsPage implements OnInit{
 
     constructor(private injector:Injector, private _router: Router, private _aboutUs: GlobalPage, private globalFunctions: GlobalFunctions) {
         // Scroll page to top to fix routerLink bug
-        let partnerParam = this.injector.get(WebApp);
-        this.partnerID = partnerParam.partnerID;
+        this._router.root
+            .subscribe(
+                route => {
+                  var curRoute = route;
+                  var partnerID = curRoute.split('/');
+                  if(partnerID[0] == ''){
+                    this.partnerID = null;
+                  }else{
+                    this.partnerID = partnerID[0];
+                  }
+
+                  this.getData();
+                  if(this.partnerID === null ){
+                    this.pageName = "Joyful Home";
+                  } else {
+                    this.pageName = "My HouseKit";
+                  }
+                }
+            )//end of route subscribe
         window.scrollTo(0, 0);
     }
 
@@ -91,11 +108,6 @@ export class AboutUsPage implements OnInit{
     }
 
     ngOnInit(){
-        this.getData();
-        if(this.partnerID === null ){
-          this.pageName = "Joyful Home";
-        } else {
-          this.pageName = "My HouseKit";
-        }
+
     }
 }

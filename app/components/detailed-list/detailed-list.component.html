@@ -1,7 +1,7 @@
 <div *ngFor="#list of listData; #i = even" class="detailed-list" [ngClass]="{'odd': i == true}">
     <div class='detailed-imagebox'>
         <a [routerLink]="[list.url1, list.url2, list.url3]">
-            <img src='{{list.img}}' alt='' />
+            <img src='{{list.img}}' onerror="this.src='./app/public/placeholder-location.jpg';" alt='' />
             <div class="detailed-rank">#{{list.rank}}</div>
         </a>
     </div>

@@ -153,12 +153,6 @@ export class DirectoryPage {
                         data => {
                             var navigationArray = [];
 
-                            this.totalListings = Number(data.totalListings);
-                            this.totalListingsDisplayed = this.globalFunctions.commaSeparateNumber(this.totalListings);
-                            this.totalListingsLoaded = true;
-
-                            this.getPaginationParameters();
-
                             //Build states array for navigation links
                             data.states.forEach(function(item, index){
                                 navigationArray.push({
@@ -183,7 +177,14 @@ export class DirectoryPage {
                 this._directoryService.getDirectoryData(this.paramPageNumber, this.paramListTitle, null, null, null)
                     .subscribe(
                         data => {
-                            this.listingItems = this.formatList(data);
+                            if(typeof data !== 'undefined' && data !== null && data.length !== 0){
+                                this.totalListings = Number(data[0].totalListings);
+                                this.totalListingsDisplayed = this.globalFunctions.commaSeparateNumber(this.totalListings);
+                                this.totalListingsLoaded = true;
+
+                                this.getPaginationParameters();
+                                this.listingItems = this.formatList(data);
+                            }
                         },
                         err => {
                             console.log('Error - Directory National Data: ', err);
@@ -198,12 +199,6 @@ export class DirectoryPage {
                     .subscribe(
                         data => {
                             var navigationArray = [];
-
-                            this.totalListings = Number(data.totalListings);
-                            this.totalListingsDisplayed = this.globalFunctions.commaSeparateNumber(this.totalListings);
-                            this.totalListingsLoaded = true;
-
-                            this.getPaginationParameters();
 
                             //If there are 20 cities returned display more cities link
                             if(data.cities.length === 20){
@@ -235,7 +230,16 @@ export class DirectoryPage {
                 this._directoryService.getDirectoryData(this.paramPageNumber, this.paramListTitle, this.paramState, null, null)
                     .subscribe(
                         data => {
-                            this.listingItems = this.formatList(data);
+                            if(typeof data !== 'undefined' && data !== null && data.length !== 0){
+                                this.totalListings = Number(data[0].totalListings);
+                                this.totalListingsDisplayed = this.globalFunctions.commaSeparateNumber(this.totalListings);
+                                this.totalListingsLoaded = true;
+
+                                this.getPaginationParameters();
+
+                                this.listingItems = this.formatList(data);
+                            }
+
                         },
                         err => {
                             console.log('Error - Directory State Data: ', err);
@@ -273,26 +277,19 @@ export class DirectoryPage {
                     );
                 break;
             case 'city':
-                //Data call to get city listings count
-                this._directoryService.getCityListingsNumber(this.paramState, this.paramCity)
-                    .subscribe(
-                        data => {
-                            this.totalListings = Number(data.totalListings);
-                            this.totalListingsDisplayed = this.globalFunctions.commaSeparateNumber(this.totalListings);
-                            this.totalListingsLoaded = true;
-
-                            this.getPaginationParameters();
-                        },
-                        err => {
-                            console.log('Error - Directory City Listings Count: ', err);
-                            this.isError = true;
-                        }
-                    );
                 //Data call to get directory list data
                 this._directoryService.getDirectoryData(this.paramPageNumber, this.paramListTitle, this.paramState, this.paramCity, null)
                     .subscribe(
                         data => {
-                            this.listingItems = this.formatList(data);
+                            if(typeof data !== 'undefined' && data !== null && data.length !== 0){
+                                this.totalListings = Number(data[0].totalListings);
+                                this.totalListingsDisplayed = this.globalFunctions.commaSeparateNumber(this.totalListings);
+                                this.totalListingsLoaded = true;
+
+                                this.getPaginationParameters();
+
+                                this.listingItems = this.formatList(data);
+                            }
                         },
                         err => {
                             console.log('Error - Directory City Data: ', err);
@@ -301,26 +298,19 @@ export class DirectoryPage {
                     );
                 break;
             case 'zipcode':
-                //Data call to get zipcode listings count
-                this._directoryService.getZipcodeListingNumber(this.paramZipcode)
-                    .subscribe(
-                        data => {
-                            this.totalListings = Number(data.totalListings);
-                            this.totalListingsDisplayed = this.globalFunctions.commaSeparateNumber(this.totalListings);
-                            this.totalListingsLoaded = true;
-
-                            this.getPaginationParameters();
-                        },
-                        err => {
-                            console.log('Error - Directory Zipcode Listings Count: ', err);
-                            this.isError = true;
-                        }
-                    );
                 //Data call to get directory list data
                 this._directoryService.getDirectoryData(this.paramPageNumber, this.paramListTitle, this.paramState, this.paramCity, this.paramZipcode)
                     .subscribe(
                         data => {
-                            this.listingItems = this.formatList(data);
+                            if(typeof data !== 'undefined' && data !== null && data.length !== 0){
+                                this.totalListings = Number(data[0].totalListings);
+                                this.totalListingsDisplayed = this.globalFunctions.commaSeparateNumber(this.totalListings);
+                                this.totalListingsLoaded = true;
+
+                                this.getPaginationParameters();
+
+                                this.listingItems = this.formatList(data);
+                            }
                         },
                         err => {
                             console.log('Error - Directory Zipcode Data: ', err);
