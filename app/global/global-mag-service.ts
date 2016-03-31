@@ -21,7 +21,7 @@ export class MagazineDataService {
         let partnerParam = this._injector.get(WebApp);
         this.partnerID = partnerParam.partnerID;
     };
-
+    
     getMagazineData(address) {
         if ( this.cachedData ) {
             return Observable.of(this.cachedData);
