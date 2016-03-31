@@ -24,6 +24,7 @@ export class MagMapModule implements OnInit {
     imgAddress:string;
     address:string;
     data:MagNeighborhood;
+    profileData:MagNeighborhood;
     public partnerID:string;
 
     constructor(private _injector:Injector, private _magazineDataService:MagazineDataService) {
@@ -39,10 +40,15 @@ export class MagMapModule implements OnInit {
             .subscribe(
                 magData => {
                     this.data = magData.neighborhood.neighbors;
+                    this.profileData = magData.neighborhood.address;
                     var partnerUrl = this.partnerID;
                     for (var i = 0; i < magData.neighborhood.neighbors.length; i++) {
                         if (magData.neighborhood.neighbors[i].address.lng != null && magData.neighborhood.neighbors[i].address.lat != null) {
-                            var myLatlng = new google.maps.LatLng(parseFloat(this.data[i].address.lat), parseFloat(this.data[i].address.lng));
+                            if (magData.neighborhood.address.lat != null && magData.neighborhood.address.lat != null && i < 1){
+                                var myLatlng = new google.maps.LatLng(parseFloat(this.profileData[0].lat), parseFloat(this.profileData[0].lat));
+                            } else {
+                                var myLatlng = new google.maps.LatLng(parseFloat(this.data[i].address.lat), parseFloat(this.data[i].address.lng));
+                            }
                             if (this.data[i].photos[0] != null) {
                                 jQuery('.mag_n1_img').css("background-image", 'url(' + this.data[i].photos[0] + ')');
                             }
