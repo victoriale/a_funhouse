@@ -7,10 +7,11 @@
     <div class="mhk_title">ACTIVE PARTNER WEBSITES</div>
     <div *ngFor="#partnerData of partners" class="mhk_partners">
         <h2>{{partnerData.name}}</h2>
-          <a href="/"><div class="mhk_partner" *ngFor="#Data of partnerData.websites">
+          <a [routerLink]="['Home-page']"><div class="mhk_partner" *ngFor="#Data of partnerData.websites; #i=odd" [ngClass]="{'odd': i == true}">
             <div class="mhk_partner_text">{{Data.name}}</div>
             <i class="fa fa-chevron-right"></i>
-          </div></a>
+          </div>
+        </a>
     </div>
   </div>
 </div>
