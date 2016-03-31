@@ -12,10 +12,12 @@ import {GlobalFunctions} from '../../global/global-functions';
     templateUrl: './app/modules/featured_lists/featured_lists.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [moduleHeader, TilesComponent, FeatureComponent],
-    providers: []
+    providers: [],
+    inputs:['locData']
 })
 
 export class FeaturedListsModule implements OnInit{
+    public locData: any;
     public profileType: string;
     public moduleTitle: string;
     public tileData: Object;
@@ -33,9 +35,9 @@ export class FeaturedListsModule implements OnInit{
         if(this.profileType === 'LocationPage'){
             //Location Featured List Module
             var paramLocation: string = this._params.get('loc');
-            var paramCity: string = this.globalFunctions.toTitleCase(paramLocation.split('_')[0]);
+            var paramCity: string = this.globalFunctions.toTitleCase(this.locData.city);
             paramCity = this.globalFunctions.toTitleCase(paramCity.replace(/%20/g, " "));
-            var paramState: string = paramLocation.split('_')[1];
+            var paramState: string = this.locData.state;
             this.moduleTitle = 'Featured Lists for ' + paramCity + ', ' + paramState;
         }else if(this.profileType === 'ProfilePage'){
             //Listing Crime Module
@@ -123,6 +125,7 @@ export class FeaturedListsModule implements OnInit{
             imageUrl: listData.photos.length === 0 ? null : listData.photos[0],
             ListUrl: 'List-page',
             listParam: {
+                viewType: 'list',
               listname: data.listName,
               state: listData.stateOrProvince,
               city: listData.city,
@@ -141,6 +144,7 @@ export class FeaturedListsModule implements OnInit{
             desc1: '',
             url1: 'List-page',
             paramOptions1: {
+                viewType: 'list',
               listname: data.listName,
               state: listData.stateOrProvince,
               city: listData.city,

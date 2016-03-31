@@ -12,9 +12,11 @@ declare var moment: any;
     templateUrl: './app/modules/trending-homes/trending-homes.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [ListViewCarousel, moduleHeader, MediaImages],
+    inputs:['locData']
 })
 
 export class TrendingHomes implements OnInit {
+    public locData:any;
     public moduleTitle: string;
     public profileType: string;
     public trending: boolean;
@@ -110,9 +112,9 @@ export class TrendingHomes implements OnInit {
     setModuleTitle(){
         if(this.profileType === 'LocationPage'){
             var paramLocation: string = this._params.get('loc');
-            var paramCity: string = this.globalFunctions.toTitleCase(paramLocation.split('_')[0]);
+            var paramCity: string = this.globalFunctions.toTitleCase(this.locData.city);
             paramCity = this.globalFunctions.toTitleCase(paramCity.replace(/%20/g, " "));
-            var paramState: string = paramLocation.split('_')[1];
+            var paramState: string = this.locData.state;
             this.moduleTitle = 'Most Trending Homes In ' + paramCity + ', ' + paramState;
         }else if(this.profileType === 'ProfilePage'){
             var paramAddress = this._params.get('address').split('-');

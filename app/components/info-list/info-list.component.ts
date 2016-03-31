@@ -17,6 +17,5 @@ export class InfoListComponent implements OnInit{
 
     ngOnInit(){
         this.locationURL = this.infoList.city + '_' + this.infoList.stateOrProvince;
-        console.log(this);
     }
 }

@@ -3,26 +3,91 @@
     <div class="inner-wrapper">
       <main>
         <section class='content-main eight-col'>
-          <section class="page-container lv">
-            <list-menu-component (menu)="viewType($event)"></list-menu-component>
-            <div *ngIf="view == 'list' || view == 'photo'">
-              <list-view-carousel [carouselData]="carouselData"></list-view-carousel>
-            </div>
-            <!--<div class="lv-sort">-->
-              <!--<dropdown-component></dropdown-component>-->
-              <!--<div class="lv-sort-filter">Filter <i class="fa fa-cog"></i></div>-->
-            <!--</div>-->
-            <pagination-footer *ngIf="paginationParameters" [paginationParameters]="paginationParameters"></pagination-footer>
-            <div *ngIf="(view == 'list' || view == 'map')&& listData">
-              <detailed-list [listData]="listData"></detailed-list>
-            </div>
+            <loading-component *ngIf="!listData && !isError"></loading-component>
 
-            <div *ngIf="view == 'photo' && listData">
-              <photo-list *ngFor="#data of listData" style="display:inline-block" [listData]="data" [carouselData]="data.photos"></photo-list>
-            </div>
+            <error-component *ngIf="isError"></error-component>
 
-            <pagination-footer *ngIf="paginationParameters" [paginationParameters]="paginationParameters"></pagination-footer>
-          </section>
+            <section *ngIf="listData && !isError" class="page-container lv">
+                <!-- Nav menu for normal list pages -->
+                <ul *ngIf="menuListParams && menuPhotoParams && menuMapParams" class="lv-menu">
+                    <a [routerLink]="[listPageName, menuListParams]">
+                        <li>
+                            <i id="list" class="fa fa-th-list"></i>
+                            LIST
+                        </li>
+                    </a>
+                    <a [routerLink]="[listPageName, menuPhotoParams]">
+                        <li>
+                            <i id="photo" class="fa fa-file-photo-o"></i>
+                            PHOTO
+                        </li>
+                    </a>
+                    <a [routerLink]="[listPageName, menuMapParams]">
+                        <li>
+                            <i id="map" class="fa fa-compass"></i>
+                            MAP
+                        </li>
+                    </a>
+                </ul>
+
+                <!-- List and Photo carousel -->
+                <div *ngIf="viewType == 'list' || viewType == 'photo'">
+                    <list-view-carousel [carouselData]="carouselData"></list-view-carousel>
+                </div>
+
+                <!-- Map Module -->
+                <div *ngIf="viewType === 'map' && mapData && geoExists">
+                    <div class="lv-map-header">
+                        Featured Listings
+                    </div>
+                    <map-component [mapData]="mapData"></map-component>
+                </div>
+                <div class="lv-map-unavailable" *ngIf="viewType === 'map' && !geoExists">
+                    <i class="fa fa-compass"></i><br>
+                    We're sorry. The map for these listings is unavailable.
+                </div>
+
+                <!-- Sort Options -->
+                <div *ngIf="listName !== 'filter'" class="lv-sort">
+                    Sort by:
+                    <select (change)="sortChange($event)" id="sort_by" style = "margin-top: 1px;">
+                        <option value="" disabled selected="selected">Choose One</option>
+                        <option value="none">No Sorting</option>
+                        <option value="priceHighToLow">Price: High to Low</option>
+                        <option value="priceLowToHigh">Price: Low to High</option>
+                        <option value="areaHighToLow">Living Area: High to Low</option>
+                        <option value="areaLowToHigh">Living Area Low to High</option>
+                        <!--<option value="DoMH2L">Days on Market: High to Low</option>-->
+                        <!--<option value="DoML2H">Days on Market: Low to High</option>-->
+                    </select>
+
+                    <!--<div class="lv-sort-filter">Filter <i class="fa fa-cog"></i></div>-->
+                </div>
+
+                <!-- Tooltip -->
+                <div *ngIf="listName !== 'filter'" class="lv-tooltip">
+                    <div class="lv-tooltip-header">
+                        What is this list?
+                    </div>
+                    <div *ngIf="totalListings && listNameDisplay" class="lv-tooltip-description">
+                        This is a list of the <span class="bold">{{totalListings}} {{listNameDisplay}}</span> in <span class="bold">{{listCity}}, {{listState}}</span>.
+                        <span *ngIf="sort">This list is sorted by <span class="bold">{{sortType}}</span> from <span class="bold">{{sortDirection}}</span>.</span>
+                    </div>
+                </div>
+
+                <!-- List and Map Listings view -->
+                <div *ngIf="(viewType == 'list' || viewType == 'map')&& listData">
+                    <detailed-list [listData]="listData"></detailed-list>
+                </div>
+
+                <!-- Photo view -->
+                <div *ngIf="viewType == 'photo' && listData">
+                  <photo-list *ngFor="#data of listData" style="display:inline-block" [listData]="data" [carouselData]="data.photos"></photo-list>
+                </div>
+
+                <!-- Pagination Footer -->
+                <pagination-footer *ngIf="paginationParameters" [paginationParameters]="paginationParameters"></pagination-footer>
+            </section>
         </section>
         <div class="four-col">
           <widget-module></widget-module>

@@ -10,11 +10,13 @@ import {moduleHeader} from '../../components/module-header/module-header';
     templateUrl: './app/modules/crime/crime.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [moduleHeader],
-    providers: []
+    providers: [],
+    inputs:['locData']
 })
 
 export class CrimeModule implements OnInit{
     @Input() crimeData: any;
+    public locData: any;
     public moduleTitle: string;
     public profileType: string;
     public imageUrl: string;
@@ -69,9 +71,9 @@ export class CrimeModule implements OnInit{
         if(this.profileType === 'LocationPage'){
             //Location Crime Module
             var paramLocation: string = this._params.get('loc');
-            var paramCity: string = this.globalFunctions.toTitleCase(paramLocation.split('_')[0]);
+            var paramCity: string = this.globalFunctions.toTitleCase(this.locData.city);
             paramCity = this.globalFunctions.toTitleCase(paramCity.replace(/%20/g, " "));
-            var paramState: string = paramLocation.split('_')[1];
+            var paramState: string = this.locData.state;
             this.moduleTitle = 'Crime Activity In ' + paramCity + ', ' + paramState;
         }else if(this.profileType === 'ProfilePage'){
             //Listing Crime Module

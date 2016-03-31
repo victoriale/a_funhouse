@@ -1,5 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
-import {RouteParams} from 'angular2/router';
+import {Router, RouteParams} from 'angular2/router';
 
 import {ProfileHeader} from '../../modules/profile_header/profile_header.module';
 import {HeadlineComponent} from '../../components/headline/headline.component';
@@ -23,7 +23,6 @@ import {ListOfListPage} from '../../global/global-service';
 import {magazineBanner} from '../../modules/mag_banner/mag_banner.module';
 import {magazineModule} from '../../modules/mag_module/mag_module';
 import {Injector} from 'angular2/core';
-import {WebApp} from '../../app-layout/app.layout';
 import {GlobalFunctions} from '../../global/global-functions';
 
 @Component({
@@ -59,12 +58,13 @@ export class ProfilePage implements OnInit{
     public partnerParam: string;
     public partnerID: string;
     //  Get current route name
-    constructor(private injector:Injector, public _params: RouteParams, private _listingProfileService: ListingProfileService, params: RouteParams, private _listService:ListOfListPage, private globalFunctions: GlobalFunctions){
+    constructor(private _router:Router, private _listingProfileService: ListingProfileService, private _params: RouteParams, private _listService:ListOfListPage, private globalFunctions: GlobalFunctions){
         // Scroll page to top to fix routerLink bug
-        let partnerParam = this.injector.get(WebApp);
-        this.partnerID = partnerParam.partnerID;
+        // let partnerParam = this.injector.get(MyWebApp);
+        // this.partnerID = partnerParam.partnerID;
+        console.log(this);
+        this.paramAddress = _params.get('address');
         window.scrollTo(0, 0);
-        this.paramAddress = params.get('address');
     }
 
     getProfileHeader(){
@@ -152,7 +152,7 @@ export class ProfilePage implements OnInit{
 
     ngOnInit(){
       //Run each call
-        if(this.partnerID === null ){
+      if(this.partnerID === null || this.partnerID == '' || typeof this.partnerID == 'undefined'){
           this.partnerCheck = false;
           this.pageName = "Joyful Home";
         } else {
