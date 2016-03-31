@@ -152,7 +152,7 @@ export class ProfilePage implements OnInit{
 
     ngOnInit(){
       //Run each call
-        if(this.partnerID === null ){
+      if(this.partnerID === null || this.partnerID == '' || typeof this.partnerID == 'undefined'){
           this.partnerCheck = false;
           this.pageName = "Joyful Home";
         } else {

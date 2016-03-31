@@ -90,7 +90,7 @@ export class SchoolListsPage implements OnInit{
        val.locationUrl = {loc: metaData.city + '_' + metaData.state};
      } else {
        val.location_city = globeFunc.toTitleCase(val['city']);
-       val.locationUrl = {loc: val['city'] + '_' + val['state_or_province']};
+       val.locationUrl = {loc: globeFunc.toTitleCase(val['city']) + '_' + val['state_or_province']};
        val.location_address = globeFunc.toTitleCase(val['full_street_address']);
        val.location_state = val['state_or_province'];
        val.zipCode = val['postal_code'];
