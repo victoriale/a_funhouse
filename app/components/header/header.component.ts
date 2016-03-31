@@ -21,29 +21,47 @@ export class HeaderComponent implements OnInit{
     directoryVisible: boolean;
     isScrolling: boolean;
     pageNum: string = "1";
+    curRoute: any;
 
     constructor(public router: Router) {
        this.directoryVisible = false;
-        console.log(this.router);
+
+        this.router.root
+            .subscribe(
+                route => {
+                    this.curRoute = route;
+                    //is blank and partner=true
+                    if(this.curRoute == "/home"){
+                        this.isHomePage = true;
+                    }else if(this.partnerID != null){
+                        if(this.curRoute == this.partnerID.replace('.','-') + "/home"){
+                            this.isHomePage = true;
+                        }else {
+                            this.isHomePage = false;
+                        }
+                    }else {
+                        this.isHomePage = false;
+                    }
+                    //console.log('Current Route: ', route, 'isHomepage:', this.isHomePage, 'PID', this.partnerID)
+                }
+            )
     }
 
     directoryList = [
-        { "listName": "Most expensive 2 bedroom homes", "listUrl": "Most-expensive-2-bedroom-homes" },
-        { "listName": "Most expensive 3 bedroom homes", "listUrl": "Most-expensive-3-bedroom-homes" },
-        { "listName": "Most expensive condos", "listUrl": "Most-expensive-condos" },
-        { "listName": "Least expensive homes with waterfront", "listUrl": "Least-expensive-homes-with-waterfront" },
-        { "listName": "Largest homes", "listUrl": "Largest-homes" },
-        { "listName": "Most expensive homes", "listUrl": "Most-expensive-homes" },
-        { "listName": "Cheapest Homes", "listUrl": "Cheapest-Homes" },
-        { "listName": "Least expensive homes with a swimming pool", "listUrl": "Least-expensive-homes-with-a-swimming-pool" },
-        { "listName": "Least expensive brick houses", "listUrl": "Least-expensive-brick-houses" },
+        { "listName": "Most expensive 2 bedroom homes", "listUrl": "Homes-with-2-bedrooms-most-expensive" },
+        { "listName": "Most expensive 3 bedroom homes", "listUrl": "Homes-with-3-bedrooms-most-expensive" },
+        { "listName": "Most expensive condos", "listUrl": "Condos-most-expensive" },
+        { "listName": "Least expensive homes with waterfront", "listUrl": "Homes-with-waterfront-least-expensive" },
+        { "listName": "Largest homes", "listUrl": "Homes-largest" },
+        { "listName": "Most expensive homes", "listUrl": "Homes-most-expensive" },
+        { "listName": "Least Expensive Homes", "listUrl": "Homes-least-expensive" },
+        { "listName": "Least expensive homes with a swimming pool", "listUrl": "Homes-with-pool-least-expensive" },
+        { "listName": "Least expensive brick houses", "listUrl": "Homes-brick-least-expensive" },
         { "listName": "Homes less than 5 years old", "listUrl": "Homes-less-than-5-years-old" },
         { "listName": "Listings with more than 5 photos", "listUrl": "Listings-with-more-than-5-photos" },
-        { "listName": "Listings with virtual tours", "listUrl": "Listings-with-virtual-tours" },
-        { "listName": "Homes with sprinkler system and deck", "listUrl": "Homes-with-sprinkler-system-and-deck" },
-        { "listName": "New traditional homes", "listUrl": "New-traditional-homes" },
-        { "listName": "Homes with vaulted ceiling and security", "listUrl": "Homes-with-vaulted-ceiling-and-security" },
-        { "listName": "Listings in wealthiest ZIP code in area", "listUrl": "Listings-in-wealthiest-ZIP-code-in-area" },
+        { "listName": "Homes with sprinkler system and deck", "listUrl": "Homes-with-sprinkler-and-deck" },
+        { "listName": "New traditional homes", "listUrl": "Homes-new-traditional" },
+        { "listName": "Homes with vaulted ceiling and security", "listUrl": "Homes-with-vaulted-ceilings-and-security-system" },
         { "listName": "Homes at least 5 years old", "listUrl": "Homes-at-least-5-years-old" },
         { "listName": "Listings with more than 10 photos", "listUrl": "Listings-with-more-than-10-photos" },
         { "listName": "Listings with long descriptions", "listUrl": "Listings-with-long-descriptions" }

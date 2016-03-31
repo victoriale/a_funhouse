@@ -105,6 +105,7 @@ export class InfoListModule implements OnInit {
             paginationType: 'module',
             viewAllPage: 'List-page',
             viewAllParams: {
+                viewType: 'list',
                 listname: 'listingsMostRecent',
                 city: 'Wichita',
                 state: 'KS',

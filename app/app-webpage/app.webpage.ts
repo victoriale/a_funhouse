@@ -7,6 +7,7 @@ import {ListOfListsPage} from "../webpages/list-of-lists-page/list-of-lists.page
 import {AmenitiesListPage} from "../webpages/amenities-lists/amenities-lists.page";
 import {SchoolListsPage} from "../webpages/school-lists/school-lists.page";
 import {HomePage} from "../webpages/home-page/home.page";
+import {PartnerHomePage} from "../webpages/partner-home-page/partner-home-page";
 import {ComponentPage} from "../webpages/component-page/component.page";
 import {AboutUsPage} from "../webpages/aboutus-page/aboutus.page";
 import {ErrorPage} from "../webpages/error-page/error-page.page";
@@ -34,7 +35,7 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
     selector: 'my-app',
     templateUrl: './app/app-webpage/app.webpage.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [RouterOutlet, ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ListPage, ListOfListsPage, AmenitiesListPage, ROUTER_DIRECTIVES, DirectoryPage, SchoolListsPage],
+    directives: [PartnerHomePage, RouterOutlet, ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ListPage, ListOfListsPage, AmenitiesListPage, ROUTER_DIRECTIVES, DirectoryPage, SchoolListsPage],
     providers: [PartnerHeader, ROUTER_DIRECTIVES, GeoLocationService, NearByCitiesService, ErrorPage],
 })
 
@@ -44,6 +45,11 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
        name: 'Home-page',
        component: HomePage,
        useAsDefault: true,
+    },
+    {
+       path: '/housekit-home',
+       name: 'Housekit-home-page',
+       component: PartnerHomePage,
     },
     {
         path: '/listing/:address',
@@ -56,8 +62,13 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
         component: LocationPage,
     },
     {
-        path: '/list/:listname/:state/:city/page/:page',
+        path: '/:viewType/:listname/:state/:city/page/:page',
         name: 'List-page',
+        component: ListPage,
+    },
+    {
+        path: '/:viewType/:listname/:state/:city/:priceLowerBound/:priceUpperBound/:type/:bedrooms/:bathrooms/:squareFeet/:lotSize/:limit/:page',
+        name: 'List-page-filter',
         component: ListPage,
     },
     {
