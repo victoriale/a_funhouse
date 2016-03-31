@@ -9,12 +9,14 @@ import {GlobalFunctions} from "../../global/global-functions";
 import {moduleHeader} from "../../components/module-header/module-header";
 import {HeroListComponent} from "../../components/hero/hero-list/hero-list.component";
 import {LocationProfileService} from '../../global/location-profile.service';
+import {LoadingComponent} from '../../components/loading/loading.component';
+import {ErrorComponent} from '../../components/error/error.component';
 
 @Component({
     selector: 'Amenities-list-page',
     templateUrl: './app/webpages/amenities-lists/amenities-lists.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [WidgetModule, moduleHeader, HeroListComponent, ROUTER_DIRECTIVES],
+    directives: [WidgetModule, moduleHeader, HeroListComponent, ROUTER_DIRECTIVES, LoadingComponent, ErrorComponent],
     providers: [LocationProfileService]
 })
 
@@ -36,6 +38,8 @@ export class AmenitiesListPage implements OnInit{
   providerLogo = './app/public/amenities_yelp.png';
   @Input() amenitiesNearListingData: any;
 
+  public isError: boolean = false;
+
   constructor(private _params: RouteParams, private router: Router, private globalFunctions: GlobalFunctions,  private _locationService: LocationProfileService, params: RouteParams){
       this.category = params.params['listname'];
       window.scrollTo(0, 0);
@@ -44,7 +48,11 @@ export class AmenitiesListPage implements OnInit{
   getData(){
       this._locationService.getAmenitiesData(this.locCity, this.locState)
           .subscribe(
-              amenitiesData => {this.amenitiesData = this.dataFormatter(amenitiesData)}
+              amenitiesData => {this.amenitiesData = this.dataFormatter(amenitiesData)},
+              err => {
+                console.log('Error: Amenities Page API', err);
+                this.isError = true;
+              }
           );
   }
 

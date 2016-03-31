@@ -63,12 +63,12 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
         component: LocationPage,
     },
     {
-        path: '/list/:listname/:state/:city/page/:page',
+        path: '/:viewType/:listname/:state/:city/page/:page',
         name: 'List-page',
         component: ListPage,
     },
     {
-        path: '/list/:listname/:state/:city/:priceLowerBound/:priceUpperBound/:type/:bedrooms/:bathrooms/:squareFeet/:lotSize/:limit/:page',
+        path: '/:viewType/:listname/:state/:city/:priceLowerBound/:priceUpperBound/:type/:bedrooms/:bathrooms/:squareFeet/:lotSize/:limit/:page',
         name: 'List-page-filter',
         component: ListPage,
     },

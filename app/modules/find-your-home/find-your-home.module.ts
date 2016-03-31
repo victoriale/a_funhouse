@@ -84,7 +84,7 @@ export class FindYourHomeModule implements OnInit{
         console.log('FYH-Params: ', this.filterMinPrice, this.filterMaxPrice, this.filterBedrooms, this.filterBathrooms, this.filterSqFeet, this.filterLot, this.filterType);
 
         // Send router to list page with query params attached
-        this._router.navigate(['List-page-filter', {listname: 'filter', state: this.locState, city: this.locCity, priceLowerBound: this.filterMinPrice, priceUpperBound: this.filterMaxPrice, type: this.filterType, bedrooms: this.filterBedrooms, bathrooms: this.filterBathrooms, squareFeet: this.filterSqFeet, lotSize: this.filterLot, limit: this.filterLimit, page: this.filterPage}]);
+        this._router.navigate(['List-page-filter', {viewType: 'list', listname: 'filter', state: this.locState, city: this.locCity, priceLowerBound: this.filterMinPrice, priceUpperBound: this.filterMaxPrice, type: this.filterType, bedrooms: this.filterBedrooms, bathrooms: this.filterBathrooms, squareFeet: this.filterSqFeet, lotSize: this.filterLot, limit: this.filterLimit, page: this.filterPage}]);
     }
 
     onInputFocus($event) {
