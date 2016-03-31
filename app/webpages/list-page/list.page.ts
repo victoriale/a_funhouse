@@ -104,36 +104,32 @@ export class ListPage implements OnInit {
     setPaginationParams(input) {
         var data = input.data;
 
-        if(this.listName !== 'filter') {
-            //Normal Listing
+        if (data.length <= 0) {
+            this.noListings = true;
+            return;
+        } else {
+            this.noListings = false;
+        }
+
+        if (this.listName !== 'filter') {
             var listLimit = Number(this.listLimit);
             var pageNumber = Number(this.listPage);
             //Find max amount of pages to send to pagination footer
             var max = Math.ceil(Number(data[0].totalListings) / listLimit);
-
-            //Define base navigation parameters
-            var navigationParams: any = {
-                listname: this.listName,
-                state: this.listState,
-                city: this.listCity,
-                viewType: this.viewType
-            };
-
-            //If sort parameter exists use in navigation parameters
-            if(this.sort !== null){
-                navigationParams.sort = this.sort;
-            }
 
             this.paginationParameters = {
                 index: pageNumber,
                 max: max,
                 paginationType: 'page',
                 navigationPage: 'List-page',
-                navigationParams: navigationParams,
+                navigationParams: {
+                    listname: this.listName,
+                    state: this.listState,
+                    city: this.listCity
+                },
                 indexKey: 'page'
             };
-        }else {
-            //Filter Listing
+        } else {
             var listLimit = Number(this.listLimit);
             var pageNumber = Number(this.listPage);
             //Find max amount of pages to send to pagination footer
@@ -157,70 +153,11 @@ export class ListPage implements OnInit {
                     type: this._params.get('type'),
                     limit: this.listLimit,
                     page: this._params.get('page'),
-                    viewType: this.viewType
                 },
                 indexKey: 'page'
             };
         }
     }
-
-        setPaginationParams(input) {
-            var data = input.data;
-
-            if (data.length <= 0) {
-                this.noListings = true;
-                return;
-            } else {
-                this.noListings = false;
-            }
-
-            if (this.listName !== 'filter') {
-                var listLimit = Number(this.listLimit);
-                var pageNumber = Number(this.listPage);
-                //Find max amount of pages to send to pagination footer
-                var max = Math.ceil(Number(data[0].totalListings) / listLimit);
-
-                this.paginationParameters = {
-                    index: pageNumber,
-                    max: max,
-                    paginationType: 'page',
-                    navigationPage: 'List-page',
-                    navigationParams: {
-                        listname: this.listName,
-                        state: this.listState,
-                        city: this.listCity
-                    },
-                    indexKey: 'page'
-                };
-            } else {
-                var listLimit = Number(this.listLimit);
-                var pageNumber = Number(this.listPage);
-                //Find max amount of pages to send to pagination footer
-                var max = Math.ceil(Number(data[0].totalListings) / listLimit);
-
-                this.paginationParameters = {
-                    index: pageNumber,
-                    max: max,
-                    paginationType: 'page',
-                    navigationPage: 'List-page-filter',
-                    navigationParams: {
-                        listname: this.listName,
-                        state: this._params.get('state'),
-                        city: this._params.get('city'),
-                        priceLowerBound: this._params.get('priceLowerBound'),
-                        priceUpperBound: this._params.get('priceUpperBound'),
-                        bedrooms: this._params.get('bedrooms'),
-                        bathrooms: this._params.get('bathrooms'),
-                        squareFeet: this._params.get('squareFeet'),
-                        lotSize: this._params.get('lotSize'),
-                        type: this._params.get('type'),
-                        limit: this.listLimit,
-                        page: this._params.get('page'),
-                    },
-                    indexKey: 'page'
-                };
-            }
-        }
 
     //Defines link parameters for view type buttons
     setMenuParams() {
