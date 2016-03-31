@@ -9,12 +9,14 @@ import {GlobalFunctions} from "../../global/global-functions";
 import {HeroListComponent} from "../../components/hero/hero-list/hero-list.component";
 import {moduleHeader} from "../../components/module-header/module-header";
 import {LocationProfileService} from '../../global/location-profile.service';
+import {LoadingComponent} from '../../components/loading/loading.component';
+import {ErrorComponent} from '../../components/error/error.component';
 
 @Component({
     selector: 'School-list-page',
     templateUrl: './app/webpages/school-lists/school-lists.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [WidgetModule, moduleHeader, HeroListComponent, ROUTER_DIRECTIVES],
+    directives: [WidgetModule, moduleHeader, HeroListComponent, ROUTER_DIRECTIVES, LoadingComponent, ErrorComponent],
     providers: [LocationProfileService]
 })
 
@@ -28,6 +30,8 @@ export class SchoolListsPage implements OnInit{
   public category: string;
   private schoolData: any;
 
+    public isError: boolean = false;
+
   @Input() schoolDataInput: any;
 
   constructor(private _params: RouteParams, private router: Router, private globalFunctions: GlobalFunctions, private _locationService: LocationProfileService, params: RouteParams){
@@ -40,6 +44,10 @@ export class SchoolListsPage implements OnInit{
           .subscribe(
               schoolData => {
                 this.schoolData = this.dataFormatter(schoolData);
+              },
+              err => {
+                  console.log('Error: School Page API', err);
+                  this.isError = true;
               }
           );
   }

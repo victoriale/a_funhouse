@@ -3,7 +3,11 @@
     <div class="inner-wrapper">
       <main>
         <section class='content-main eight-col'>
-          <section class="page-container">
+          <loading-component *ngIf="!schoolData && !isError"></loading-component>
+
+          <error-component *ngIf="isError"></error-component>
+
+          <section *ngIf="schoolData && !isError" class="page-container">
             <div class="page-content">
             <module-header [module_title]="moduleTitle"></module-header>
               <div *ngFor="#item of schoolData; #i=odd" class="al" [ngClass]="{'odd': i == true}">
