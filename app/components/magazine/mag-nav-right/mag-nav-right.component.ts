@@ -24,7 +24,6 @@ export class NavRightComponent {
     ){ }
 
     clickNext(){
-        console.log( jQuery("magtab-component a"))
         let currentPageLink = jQuery("magtab-component a.router-link-active");
         let currentIndex = currentPageLink.index();
         let nextLink = currentPageLink.next("a");
