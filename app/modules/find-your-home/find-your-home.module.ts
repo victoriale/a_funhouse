@@ -28,15 +28,15 @@ export class FindYourHomeModule implements OnInit{
     private filterSqFeet: any  = 'empty';
     private filterLot: any  = 'empty';
     private filterType: any  = 'empty';
+    private filterLimit: any = 20;
+    private filterPage: any = 1;
 
     constructor(private _router: Router) {}
 
-    // location/findYourHome/{state}/{city}/{priceLowerBound}/{priceUpperBound}/{type}/{bedrooms}/{bathrooms}/{squareFeet}/{lotSize}
+    // location/findYourHome/{state}/{city}/{priceLowerBound}/{priceUpperBound}/{type}/{bedrooms}/{bathrooms}/{squareFeet}/{lotSize}/{limit}/{page}
     // types: Townhouse, Condominium, Apartment, and Single Family Attached
-    // last 5 optional, pass string 'empty' if no option selected
 
     // EVENTS
-
     // Get selected radio input value for property type
     onClickPropertyType() {
         this.filterType = jQuery('input:checked').val();
@@ -84,7 +84,7 @@ export class FindYourHomeModule implements OnInit{
         console.log('FYH-Params: ', this.filterMinPrice, this.filterMaxPrice, this.filterBedrooms, this.filterBathrooms, this.filterSqFeet, this.filterLot, this.filterType);
 
         // Send router to list page with query params attached
-        this._router.navigate(['List-page', {listname: 'filter', state: this.locState, city: this.locCity, limit: '10', page: '1', filterMinPrice: this.filterMinPrice, filterMaxPrice: this.filterMaxPrice, filterBedrooms: this.filterBedrooms, filterBathrooms: this.filterBathrooms, filterSqFeet: this.filterSqFeet, filterLot: this.filterLot, filterType: this.filterType}]);
+        this._router.navigate(['List-page-filter', {viewType: 'list', listname: 'filter', state: this.locState, city: this.locCity, priceLowerBound: this.filterMinPrice, priceUpperBound: this.filterMaxPrice, type: this.filterType, bedrooms: this.filterBedrooms, bathrooms: this.filterBathrooms, squareFeet: this.filterSqFeet, lotSize: this.filterLot, limit: this.filterLimit, page: this.filterPage}]);
     }
 
     onInputFocus($event) {

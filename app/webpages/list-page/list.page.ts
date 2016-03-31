@@ -1,7 +1,7 @@
 /**
  * Created by Victoria on 3/8/2016.
  */
-import {Component, OnChanges} from 'angular2/core';
+import {Component} from 'angular2/core';
 import {RouteParams, ROUTER_DIRECTIVES, RouteConfig, Router} from 'angular2/router';
 
 import {ListViewCarousel} from '../../components/carousel/list-view/list-view.component';
@@ -17,8 +17,6 @@ import {ErrorComponent} from '../../components/error/error.component';
 import {MapComponent} from '../../components/map/map.component';
 
 declare var moment: any;
-declare var google:any;
-declare var jQuery: any;
 
 @Component({
     selector: 'List-page',
@@ -31,7 +29,6 @@ declare var jQuery: any;
 export class ListPage {
     carouselData: any = [];
     listData: any;
-    headerData: any;
     data: any;
     public view: string = 'list'; // set to default list view
     //Parameters for the pagination footer
@@ -57,6 +54,7 @@ export class ListPage {
     public menuListParams: any;
     public menuPhotoParams: any;
     public menuMapParams: any;
+    public listPageName: any;
 
     //Filter params for FYH
     filterState: string;
@@ -74,13 +72,6 @@ export class ListPage {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }
-
-    // On Change Call
-    //ngOnChanges(event){
-    //    if(typeof this.carouselData == 'undefined' || typeof this.listData == 'undefined'){
-    //
-    //    }
-    //}
 
     sortChange(event){
         var sortOption = event.target.value;
@@ -101,168 +92,260 @@ export class ListPage {
         this._router.navigate(['List-page', params]);
     }
 
-    setPaginationParams(input){
+    setPaginationParams(input) {
         var data = input.data;
-        var listLimit = Number(this.listLimit);
-        var pageNumber = Number(this.listPage);
-        //Find max amount of pages to send to pagination footer
-        var max = Math.ceil(Number(data[0].totalListings) / listLimit);
 
-        //Define base navigation parameters
-        var navigationParams: any = {
-            listname: this.listName,
-            state: this.listState,
-            city: this.listCity,
-            viewType: this.viewType
-        };
+        if(this.listName !== 'filter') {
+            //Normal Listing
+            var listLimit = Number(this.listLimit);
+            var pageNumber = Number(this.listPage);
+            //Find max amount of pages to send to pagination footer
+            var max = Math.ceil(Number(data[0].totalListings) / listLimit);
 
-        //If sort parameter exists use in navigation parameters
-        if(this.sort !== null){
-            navigationParams.sort = this.sort;
+            //Define base navigation parameters
+            var navigationParams: any = {
+                listname: this.listName,
+                state: this.listState,
+                city: this.listCity,
+                viewType: this.viewType
+            };
+
+            //If sort parameter exists use in navigation parameters
+            if(this.sort !== null){
+                navigationParams.sort = this.sort;
+            }
+
+            this.paginationParameters = {
+                index: pageNumber,
+                max: max,
+                paginationType: 'page',
+                navigationPage: 'List-page',
+                navigationParams: navigationParams,
+                indexKey: 'page'
+            };
+        }else {
+            //Filter Listing
+            var listLimit = Number(this.listLimit);
+            var pageNumber = Number(this.listPage);
+            //Find max amount of pages to send to pagination footer
+            var max = Math.ceil(Number(data[0].totalListings) / listLimit);
+
+            this.paginationParameters = {
+                index: pageNumber,
+                max: max,
+                paginationType: 'page',
+                navigationPage: 'List-page-filter',
+                navigationParams: {
+                    listname: this.listName,
+                    state: this._params.get('state'),
+                    city: this._params.get('city'),
+                    priceLowerBound: this._params.get('priceLowerBound'),
+                    priceUpperBound: this._params.get('priceUpperBound'),
+                    bedrooms: this._params.get('bedrooms'),
+                    bathrooms: this._params.get('bathrooms'),
+                    squareFeet: this._params.get('squareFeet'),
+                    lotSize: this._params.get('lotSize'),
+                    type: this._params.get('type'),
+                    limit: this.listLimit,
+                    page: this._params.get('page'),
+                    viewType: this.viewType
+                },
+                indexKey: 'page'
+            };
         }
-
-        this.paginationParameters = {
-            index: pageNumber,
-            max: max,
-            paginationType: 'page',
-            navigationPage: 'List-page',
-            navigationParams: navigationParams,
-            indexKey: 'page'
-        };
     }
 
-    setMenuParams(){
-        var menuListParams: any = {
-            viewType: 'list',
-            listname: this.listName,
-            state: this.listState,
-            city: this.listCity,
-            page: this.listPage
-        };
-        var menuPhotoParams: any = {
-            viewType: 'photo',
-            listname: this.listName,
-            state: this.listState,
-            city: this.listCity,
-            page: this.listPage
-        };
-        var menuMapParams: any = {
-            viewType: 'map',
-            listname: this.listName,
-            state: this.listState,
-            city: this.listCity,
-            page: this.listPage
-        };
-        if(this.sort !== null){
-            menuListParams.sort = this.sort;
-            menuPhotoParams.sort = this.sort;
-            menuMapParams.sort = this.sort;
+    //Defines link parameters for view type buttons
+    setMenuParams() {
+        if(this.listName !== 'filter') {
+            //Normal Listing
+            //Define parameters for the 3 view type buttons (list/photo/map)
+            var menuListParams:any = {
+                viewType: 'list',
+                listname: this.listName,
+                state: this.listState,
+                city: this.listCity,
+                page: this.listPage
+            };
+            var menuPhotoParams:any = {
+                viewType: 'photo',
+                listname: this.listName,
+                state: this.listState,
+                city: this.listCity,
+                page: this.listPage
+            };
+            var menuMapParams:any = {
+                viewType: 'map',
+                listname: this.listName,
+                state: this.listState,
+                city: this.listCity,
+                page: this.listPage
+            };
+            //If sort query parameter is defined add to menu button paramters
+            if (this.sort !== null) {
+                menuListParams.sort = this.sort;
+                menuPhotoParams.sort = this.sort;
+                menuMapParams.sort = this.sort;
+            }
+            //Assign parameters to use in routerLink
+            this.menuListParams = menuListParams;
+            this.menuPhotoParams = menuPhotoParams;
+            this.menuMapParams = menuMapParams;
+            this.listPageName = 'List-page';
+        }else{
+            //Filter Listing
+            var menuListParams:any = {
+                viewType: 'list',
+                listname: this.listName,
+                state: this._params.get('state'),
+                city: this._params.get('city'),
+                priceLowerBound: this._params.get('priceLowerBound'),
+                priceUpperBound: this._params.get('priceUpperBound'),
+                bedrooms: this._params.get('bedrooms'),
+                bathrooms: this._params.get('bathrooms'),
+                squareFeet: this._params.get('squareFeet'),
+                lotSize: this._params.get('lotSize'),
+                type: this._params.get('type'),
+                limit: this.listLimit,
+                page: this.listPage
+            };
+            var menuPhotoParams:any = {
+                viewType: 'photo',
+                listname: this.listName,
+                state: this._params.get('state'),
+                city: this._params.get('city'),
+                priceLowerBound: this._params.get('priceLowerBound'),
+                priceUpperBound: this._params.get('priceUpperBound'),
+                bedrooms: this._params.get('bedrooms'),
+                bathrooms: this._params.get('bathrooms'),
+                squareFeet: this._params.get('squareFeet'),
+                lotSize: this._params.get('lotSize'),
+                type: this._params.get('type'),
+                limit: this.listLimit,
+                page: this.listPage
+            };
+            var menuMapParams:any = {
+                viewType: 'map',
+                listname: this.listName,
+                state: this._params.get('state'),
+                city: this._params.get('city'),
+                priceLowerBound: this._params.get('priceLowerBound'),
+                priceUpperBound: this._params.get('priceUpperBound'),
+                bedrooms: this._params.get('bedrooms'),
+                bathrooms: this._params.get('bathrooms'),
+                squareFeet: this._params.get('squareFeet'),
+                lotSize: this._params.get('lotSize'),
+                type: this._params.get('type'),
+                limit: this.listLimit,
+                page: this.listPage
+            };
+
+            this.menuListParams = menuListParams;
+            this.menuPhotoParams = menuPhotoParams;
+            this.menuMapParams = menuMapParams;
+            this.listPageName = 'List-page-filter';
         }
 
-        this.menuListParams = menuListParams;
-        this.menuPhotoParams = menuPhotoParams;
-        this.menuMapParams = menuMapParams;
     }
 
-  getListView() {// GET DATA FROM GLOBAL SERVICE
+    getListView() {// GET DATA FROM GLOBAL SERVICE
 
-      // Get listname param to determine which API to call
-      this.listName = this._params.get('listname');
-      this.viewType = this._params.get('viewType');
-      this.sort = this._params.get('sort');
-      //Determine sort display for tooltip
-      if(this.sort !== null){
-          switch(this.sort){
-              case 'priceHighToLow':
-                  this.sortType = 'price';
-                  this.sortDirection = 'high to low';
-                  break;
-              case 'priceLowToHigh':
-                  this.sortType = 'price';
-                  this.sortDirection = 'low to high';
-                  break;
-              case 'areaHighToLow':
-                  this.sortType = 'living area';
-                  this.sortDirection = 'high to low';
-                  break;
-              case 'areaLowToHigh':
-                  this.sortType = 'living area';
-                  this.sortDirection = 'low to high';
-                  break;
-          }
-      }
+        // Get listname param to determine which API to call
+        this.listName = this._params.get('listname');
+        this.viewType = this._params.get('viewType');
 
-      if(this.listName !== "filter"){
-          this.listState = this._params.get('state');
-          this.listCity = this._params.get('city');
-          this.listCity = this.globalFunctions.toTitleCase(this.listCity);
-          this.listPage = this._params.get('page');
+        if(this.listName !== "filter"){
+            //Normal Listing
+            this.sort = this._params.get('sort');
 
-          //list/homesAtLeast5YearsOld/KS/Wichita/empty/10/1
-          this.listViewData.getListData(this.listName, this.listState, this.listCity, this.listLimit, this.listPage, this.sort)
-              .subscribe(
-                  data => {
-                      this.transformData(data);
-                      this.setPaginationParams(data);
-                      this.setMenuParams();
-                  },
-                  err => {
-                      console.log('Error: Non Filter List API: ', err);
-                      this.isError = true;
-                  }
-              );
-      }else{
-          //Grab params for API call
-          this.filterState = this._params.get('state');
-          this.filterCity = this._params.get('city');
-          this.filterPage = this._params.get('page');
-          this.filterMinPrice = this._params.get('filterMinPrice');
-          this.filterMaxPrice = this._params.get('filterMaxPrice');
-          this.filterBedrooms = this._params.get('filterBedrooms');
-          this.filterBathrooms = this._params.get('filterBathrooms');
-          this.filterSqFeet = this._params.get('filterSqFeet');
-          this.filterLot = this._params.get('filterLot');
-          this.filterType = this._params.get('filterType');
-          this.listPage = this._params.get('page');
+            //Determine sort display for tooltip
+            if(this.sort !== null){
+                switch(this.sort){
+                    case 'priceHighToLow':
+                        this.sortType = 'price';
+                        this.sortDirection = 'high to low';
+                        break;
+                    case 'priceLowToHigh':
+                        this.sortType = 'price';
+                        this.sortDirection = 'low to high';
+                        break;
+                    case 'areaHighToLow':
+                        this.sortType = 'living area';
+                        this.sortDirection = 'high to low';
+                        break;
+                    case 'areaLowToHigh':
+                        this.sortType = 'living area';
+                        this.sortDirection = 'low to high';
+                        break;
+                }
+            }
 
-          console.log('FYH-Params-ListPage: ', this.filterMinPrice, this.filterMaxPrice, this.filterBedrooms, this.filterBathrooms, this.filterSqFeet, this.filterLot, this.filterType);
+            this.listState = this._params.get('state');
+            this.listCity = this._params.get('city');
+            this.listCity = this.globalFunctions.toTitleCase(this.listCity);
+            this.listPage = this._params.get('page');
 
-          // location/findYourHome/{state}/{city}/{priceLowerBound}/{priceUpperBound}/{type}/{bedrooms}/{bathrooms}/{squareFeet}/{lotSize}
-          // types: Townhouse, Condominium, Apartment, and Single Family Attached
-          // last 5 optional, pass string 'empty' if no option selected
-          this.listViewData.getFindYourHome(this.filterState, this.filterCity, this.filterMinPrice, this.filterMaxPrice, this.filterType, this.filterBedrooms, this.filterBathrooms, this.filterSqFeet, this.filterLot)
-              .subscribe(
-                  data => {
-                      this.transformData(data);
-                      //this.setPaginationParams(data);
-                  },
-                  err => console.log(err),
+            //list/homesAtLeast5YearsOld/KS/Wichita/empty/10/1
+            this.listViewData.getListData(this.listName, this.listState, this.listCity, this.listLimit, this.listPage, this.sort)
+                .subscribe(
+                    data => {
+                        //Transform returned data
+                        this.transformData(data);
+                        //Define parameters for pagination footer
+                        this.setPaginationParams(data);
+                        //Define parameters for view type buttons
+                        this.setMenuParams();
+                    },
+                    err => {
+                        console.log('Error: Non Filter List API: ', err);
+                        this.isError = true;
+                    }
+                );
+        }else{
+            //Filter Listing
+
+            //Grab params for API call
+            this.filterState = this._params.get('state');
+            this.filterCity = this._params.get('city');
+            this.filterMinPrice = this._params.get('priceLowerBound');
+            this.filterMaxPrice = this._params.get('priceUpperBound');
+            this.filterBedrooms = this._params.get('bedrooms');
+            this.filterBathrooms = this._params.get('bathrooms');
+            this.filterSqFeet = this._params.get('squareFeet');
+            this.filterLot = this._params.get('lotSize');
+            this.filterType = this._params.get('type');
+            this.listPage = this._params.get('page');
+
+            console.log('FYH-Params-ListPage: ', this.filterMinPrice, this.filterMaxPrice, this.filterBedrooms, this.filterBathrooms, this.filterSqFeet, this.filterLot, this.filterType);
+
+            // location/findYourHome/{state}/{city}/{priceLowerBound}/{priceUpperBound}/{type}/{bedrooms}/{bathrooms}/{squareFeet}/{lotSize}/{limit}/{page}
+            // types: Townhouse, Condominium, Apartment, and Single Family Attached
+            // last 5 optional, pass string 'empty' if no option selected
+            this.listViewData.getFindYourHome(this.filterState, this.filterCity, this.filterMinPrice, this.filterMaxPrice, this.filterType, this.filterBedrooms, this.filterBathrooms, this.filterSqFeet, this.filterLot, this.listLimit, this.listPage)
+                .subscribe(
+                    data => {
+                        this.transformData(data);
+                        this.setPaginationParams(data);
+                        this.setMenuParams();
+                    },
+                    err => {
+                        console.log('Error: Filter List API: ', err);
+                        this.isError = true;
+                    },
                     () => console.log('FYH Data call success!')
-              );
+
+                );
         }
 
-  }
+    }
 
   transformData(data){
-    //grab data for the header
-    this.headerData = {
-        imageURL : './app/public/joyfulhome_house.png',
-        smallText1 : data.date,
-        smallText2 : ' United States of America',
-        heading1 : data.title,
-        heading2 : '',
-        heading3 : '',
-        heading4 : '',
-        icon: 'fa fa-map-marker',
-        hasHover: true
-    };
-
     //grab data for the list
     var originalData = data.data;
     var listData = [];
     var carouselData = [];
     var globeFunc = this.globalFunctions;
-
+        //Assign data to send to map component
       this.mapData = data.data;
 
       //Determine the index at which the list should start (based on page parameter. ex. page = 2, indexStart = 21)
@@ -328,7 +411,7 @@ export class ListPage {
     this.listData = listData;
     this.carouselData = carouselData;
 
-    // console.log('ListData', this.listData);
+    //console.log('ListData', this.listData);
     // console.log('carouselData', this.carouselData);
   }//END OF TRANSFORM FUNCTION
 

@@ -9,20 +9,20 @@
 
             <section *ngIf="listData && !isError" class="page-container lv">
                 <!-- Nav menu for normal list pages -->
-                <ul *ngIf="listName !== 'filter' && menuListParams && menuPhotoParams && menuMapParams" class="lv-menu">
-                    <a [routerLink]="['List-page', menuListParams]">
+                <ul *ngIf="menuListParams && menuPhotoParams && menuMapParams" class="lv-menu">
+                    <a [routerLink]="[listPageName, menuListParams]">
                         <li>
                             <i id="list" class="fa fa-th-list"></i>
                             LIST
                         </li>
                     </a>
-                    <a [routerLink]="['List-page', menuPhotoParams]">
+                    <a [routerLink]="[listPageName, menuPhotoParams]">
                         <li>
                             <i id="photo" class="fa fa-file-photo-o"></i>
                             PHOTO
                         </li>
                     </a>
-                    <a [routerLink]="['List-page', menuMapParams]">
+                    <a [routerLink]="[listPageName, menuMapParams]">
                         <li>
                             <i id="map" class="fa fa-compass"></i>
                             MAP
@@ -36,15 +36,15 @@
                 </div>
 
                 <!-- Map Module -->
-                <div>
+                <div *ngIf="viewType === 'map' && mapData">
                     <div class="lv-map-header">
                         Featured Listings
                     </div>
-                    <map-component *ngIf="viewType === 'map' && mapData" [mapData]="mapData"></map-component>
+                    <map-component [mapData]="mapData"></map-component>
                 </div>
 
                 <!-- Sort Options -->
-                <div class="lv-sort">
+                <div *ngIf="listName !== 'filter'" class="lv-sort">
                     Sort by:
                     <select (change)="sortChange($event)" id="sort_by" style = "margin-top: 1px;">
                         <option value="" disabled selected="selected">Choose One</option>
@@ -61,7 +61,7 @@
                 </div>
 
                 <!-- Tooltip -->
-                <div class="lv-tooltip">
+                <div *ngIf="listName !== 'filter'" class="lv-tooltip">
                     <div class="lv-tooltip-header">
                         What is this list?
                     </div>
