@@ -62,6 +62,7 @@ export class LocationPage implements OnInit {
     public isChecked: boolean;
 
     constructor(private _partnerData:PartnerHeader, private _router:Router, private _params: RouteParams, private _locationProfileService: LocationProfileService, private _listService: ListOfListPage) {
+
         this._router.root
             .subscribe(
                 route => {
@@ -69,8 +70,7 @@ export class LocationPage implements OnInit {
                   var partnerID = curRoute.split('/');
                   if(partnerID[0] != ''){
                     this.partnerID = partnerID[0];
-                    var partnerParam = this.partnerID.replace('-','.');
-                    this._partnerData.getPartnerData(partnerParam)
+                    this._partnerData.getPartnerData(this.partnerID)
                     .subscribe(
                       partnerScript => {
                         this.partnerData = partnerScript['results']['location']['realestate'];
