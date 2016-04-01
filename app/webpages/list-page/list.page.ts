@@ -534,6 +534,11 @@ export class ListPage {
         jQuery('#select-bathrooms').val(this.selectBathrooms);
         jQuery('#select-square-feet').val(this.selectSqFeet);
         jQuery('#select-lot-size').val(this.selectLot);
+
+        console.log(this.selectBedrooms);
+        console.log(this.selectBathrooms);
+        console.log(this.selectSqFeet);
+        console.log(this.selectLot);
     }
 
 }
