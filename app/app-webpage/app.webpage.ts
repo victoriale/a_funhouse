@@ -181,8 +181,6 @@ export class AppComponent implements OnInit {
     }
 
     getPartnerHeader(){
-        this.partnerID = this.partnerID.replace('-','.');
-
         this._partnerData.getPartnerData(this.partnerID)
             .subscribe(
                 partnerScript => {

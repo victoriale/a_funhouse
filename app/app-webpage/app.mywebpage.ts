@@ -179,15 +179,9 @@ export class MyAppComponent implements OnInit {
     nearByCities: Object;
 
     constructor(private _injector: Injector,private _partnerData: PartnerHeader, private _params: RouteParams, private route: Router, private routeData: RouteData, private routerLink: RouterLink, private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService){
-        var parentParams = this._injector.get(MyWebApp);
-        if(typeof parentParams.partnerID != 'undefined'){
-            this.partnerID = parentParams.partnerID;
-        }
     }
 
     getPartnerHeader(){
-        this.partnerID = this.partnerID.replace('-','.');
-
         this._partnerData.getPartnerData(this.partnerID)
             .subscribe(
                 partnerScript => {
@@ -223,7 +217,6 @@ export class MyAppComponent implements OnInit {
 
     defaultCity() {
         // Set default city and state if geo location call fails
-        console.log('Geo Location is Borked!');
         this.stateLocation = "KS";
         this.cityLocation = "Wichita";
         this.cityStateLocation = this.cityLocation + '_' + this.stateLocation;
