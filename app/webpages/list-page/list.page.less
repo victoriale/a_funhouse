@@ -159,3 +159,31 @@
     }
   }
 }
+
+.list-error{
+  width: 580px;
+  margin: 0 auto;
+  border-radius: 5px;
+  padding: 10px;
+  background: @backgroundGrey;
+  text-align: center;
+  p {
+    font-size: 18px;
+    text-align: center;
+  }
+  button {
+    .inlineFlexDisplay;
+    .flexDirection(row);
+    .flexAlignItems(center);
+    height: 35px;
+    padding: 10px;
+    background-color: @masterBrandColor;
+    .borderRadiusPrefix(5px);
+    color: @white;
+    cursor: pointer;
+    border: none;
+    &:hover {
+      background: darken(@masterBrandColor, 10%);
+    }
+  }
+}

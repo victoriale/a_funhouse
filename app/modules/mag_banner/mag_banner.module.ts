@@ -20,6 +20,7 @@ export class magazineBanner {
     ngOnInit() {
       var address:string;
       if(this.listingData['propertyType'] == 'Residential'){
+        this.showMagazine = true;
       }
       address = this.listingData['paramAddress'];
       this.data = {
