@@ -59,11 +59,9 @@ export class LocationPage implements OnInit {
     public partnerCheck: boolean;
     public pageName: string;
     public isError: boolean = false;
+    public isChecked: boolean;
 
     constructor(private _partnerData:PartnerHeader, private _router:Router, private _params: RouteParams, private _locationProfileService: LocationProfileService, private _listService: ListOfListPage) {
-      // let partnerParam = this.injector.get(WebApp);
-        // this.partnerID = partnerParam.partnerID;
-        // Scroll page to top to fix routerLink bug
         this._router.root
             .subscribe(
                 route => {
@@ -79,10 +77,12 @@ export class LocationPage implements OnInit {
                         this.dataCalls();
                       }
                     );
+                    this.isChecked = true;
                   }else{
                     this.partnerData = null;
                     this.partnerID = null;
                     this.dataCalls();
+                    this.isChecked = true;
                   }
                   if(this.partnerID === null || this.partnerID == '' || typeof this.partnerID == 'undefined'){
                     this.partnerCheck = false;
@@ -97,6 +97,7 @@ export class LocationPage implements OnInit {
                   };
                 }
             )//end of route subscribe
+        // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }
 
@@ -208,7 +209,7 @@ export class LocationPage implements OnInit {
             title: 'Schools and Amenities in ' + this.locDisplay,
             icon: 'fa-graduation-cap'
         };
-        
+
         this.getProfileHeader();
         this.getTrendingListings();
         this.getFeaturedList();
