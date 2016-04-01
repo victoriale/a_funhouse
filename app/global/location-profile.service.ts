@@ -4,7 +4,7 @@ import {Http, Headers} from 'angular2/http';
 @Injectable()
 
 export class LocationProfileService{
-    public apiUrl: string = 'http://api2.joyfulhome.com:280';
+    public apiUrl: string = 'http://api2.joyfulhome.com';
     public apiToken: string = 'BApA7KEfj';
     public headerName: string = 'X-SNT-TOKEN';
 
