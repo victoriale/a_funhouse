@@ -127,7 +127,8 @@ export class ListPage {
                 navigationParams: {
                     listname: this.listName,
                     state: this.listState,
-                    city: this.listCity
+                    city: this.listCity,
+                    viewType: this.viewType
                 },
                 indexKey: 'page'
             };
