@@ -119,17 +119,24 @@ export class ListPage {
             //Find max amount of pages to send to pagination footer
             var max = Math.ceil(Number(data[0].totalListings) / listLimit);
 
+            //Define base navigation parameters
+            var navigationParams: any = {
+                listname: this.listName,
+                state: this.listState,
+                city: this.listCity,
+                viewType: this.viewType
+            };
+            //If sort parameter exists use in navigation parameters
+            if(this.sort !== null){
+                navigationParams.sort = this.sort;
+            }
+
             this.paginationParameters = {
                 index: pageNumber,
                 max: max,
                 paginationType: 'page',
                 navigationPage: 'List-page',
-                navigationParams: {
-                    listname: this.listName,
-                    state: this.listState,
-                    city: this.listCity,
-                    viewType: this.viewType
-                },
+                navigationParams: navigationParams,
                 indexKey: 'page'
             };
         } else {
