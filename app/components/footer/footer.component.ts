@@ -111,7 +111,7 @@ export class FooterComponent implements OnInit {
         { "name": "San Francisco", nameUrl: "San-Francisco", "state": "CA" },
         { "name": "San Jose", nameUrl: "San-Jose", "state": "CA" },
         { "name": "Seattle", nameUrl: "Seattle", "state": "WA" },
-        { "name": "Washington, D.C.", nameUrl: "Washington-DC", "state": "DC" }
+        { "name": "Washington, D.C.", nameUrl: "Washington", "state": "DC" }
     ];
 
 }
