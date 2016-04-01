@@ -6,8 +6,8 @@
                     <!-- Modules Go Here -->
 
                     <!-- About Section -->
-                    <headline-component [data]="headlineAbout"></headline-component>
                     <mag-banner-module *ngIf="profileHeaderData" [listingData]="profileHeaderData"></mag-banner-module>
+                    <headline-component [data]="headlineAbout"></headline-component>
                     <!--Listing Profile Header-->
                     <profile-header *ngIf="profileHeaderData" [profileHeaderData]="profileHeaderData"></profile-header>
 
