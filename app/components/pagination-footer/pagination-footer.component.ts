@@ -105,7 +105,7 @@ export class PaginationFooter implements OnChanges{
             }
 
         }catch(e){
-            console.warn('Error - Pagination Footer: ', e);
+            console.error('Error - Pagination Footer: ', e);
         }
     }
 
@@ -119,30 +119,32 @@ export class PaginationFooter implements OnChanges{
 
         //Determine values before index that can be added to button array
         for(var p = range; p > 0; p--){
-            if(index - p >= 1){
+            if(index - p > 1){
                 this.paginationButtonsModule.push(index - p);
             }
         }
 
-        //Push index value to array
-        this.paginationButtonsModule.push(index);
+        //Push index value to array if it is not the minimum or maximum value
+        if(index !== 1 && index !== max){
+            this.paginationButtonsModule.push(index);
+        }
 
         //Determine values after index that can be added to button array
         for(var n = 1; n <= range; n++){
-            if(index + n <= max){
+            if(index + n < max){
                 this.paginationButtonsModule.push(index + n);
             }
         }
 
-        //Determine if absolute first button should be shown
-        if(this.paginationButtonsModule[0] !== 1){
+        //Determine if absolute first button should be shown (show ellipsis if first item in array is not 2)
+        if(this.paginationButtonsModule.length !== 0 && this.paginationButtonsModule[0] !== (1 + 1)){
             this.showMinSkip = true;
         }else{
             this.showMinSkip = false;
         }
 
-        //Determine if absolute last button should be shown
-        if((this.paginationButtonsModule[this.paginationButtonsModule.length - 1]) !== max){
+        //Determine if absolute last button should be shown (show ellipsis if the last item in the array is not max - 1)
+        if(this.paginationButtonsModule.length !== 0 && this.paginationButtonsModule[this.paginationButtonsModule.length - 1] !== (max - 1)){
             this.showMaxSkip = true;
         }else{
             this.showMaxSkip = false;
@@ -159,10 +161,9 @@ export class PaginationFooter implements OnChanges{
 
         var navigationPage = this.paginationParameters.navigationPage;
         var indexKey = this.paginationParameters.indexKey;
-
         //Determine values before index that can be added to button array
         for(var p = range; p > 0; p--){
-            if(index - p >= 1){
+            if(index - p > 1){
                 //Build routerLink params for index values
                 var params = this.copyDynamicParams();
                 params[indexKey] = index - p;
@@ -175,19 +176,21 @@ export class PaginationFooter implements OnChanges{
             }
         }
 
-        //Build routerLink params for inputted index value
-        var params = this.copyDynamicParams();
-        params[indexKey] = (index);
-        //Push button parameters to array
-        this.paginationButtonsPage.push({
-            index: index,
-            page: navigationPage,
-            params: params
-        });
+        if(index !== 1 && index !== max) {
+            //Build routerLink params for inputted index value
+            var params = this.copyDynamicParams();
+            params[indexKey] = (index);
+            //Push button parameters to array
+            this.paginationButtonsPage.push({
+                index: index,
+                page: navigationPage,
+                params: params
+            });
+        }
 
         //Determine values after index that can be added to button array
         for(var n = 1; n <= range; n++){
-            if(index + n <= max){
+            if(index + n < max){
                 //Build routerLink params for index values
                 var params = this.copyDynamicParams();
                 params[indexKey] = index + n;
@@ -200,23 +203,25 @@ export class PaginationFooter implements OnChanges{
             }
         }
 
-        //Determine if absolute first button should be shown
-        if(this.paginationButtonsPage[0].index !== 1){
-            //Build min button parameters
-            var params = this.copyDynamicParams();
-            params[indexKey] = 1;
-            this.minButtonParameters = params;
+        //Build min button parameters
+        var params = this.copyDynamicParams();
+        params[indexKey] = 1;
+        this.minButtonParameters = params;
+
+        //Build max button parameters
+        var params = this.copyDynamicParams();
+        params[indexKey] = max;
+        this.maxButtonParameters = params;
+
+        //Determine if absolute first button should be shown (show ellipsis if first item in array is not 2)
+        if(this.paginationButtonsPage.length !== 0 && this.paginationButtonsPage[0].index !== (1 + 1)){
             this.showMinSkip = true;
         }else{
             this.showMinSkip = false;
         }
 
-        //Determine if absolute last button should be shown
-        if((this.paginationButtonsPage[this.paginationButtonsPage.length - 1].index) !== max){
-            //Build max button parameters
-            var params = this.copyDynamicParams();
-            params[indexKey] = max;
-            this.maxButtonParameters = params;
+        //Determine if absolute last button should be shown (show ellipsis if the last item in the array is not max - 1)
+        if(this.paginationButtonsPage.length !== 0 && this.paginationButtonsPage[this.paginationButtonsPage.length - 1].index !== (max - 1)){
             this.showMaxSkip = true;
         }else{
             this.showMaxSkip = false;

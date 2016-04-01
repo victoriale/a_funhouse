@@ -3,46 +3,51 @@
         <div class="inner-wrapper">
             <main>
                 <section *ngIf="locDisplay" class='content-main eight-col'>
-                    <!-- Modules Go Here -->
+                    <loading-component *ngIf="!profileHeaderData && !isError"></loading-component>
 
-                    <!-- About Section -->
-                    <!--<map-module></map-module>-->
-                    <headline-component [data]="headlineAbout"></headline-component>
-                    <profile-header *ngIf="profileHeaderData" [profileHeaderData]="profileHeaderData"></profile-header>
-                    <find-your-home-module [locDisplay]="locDisplay" [locState]="locState" [locCity]="locCity"></find-your-home-module>
-                    <section *ngIf="!partnerCheck">
-                      <comment-module></comment-module>
-                    </section>
-                    <info-list-module *ngIf="recentListingsData" [recentListingsData]="recentListingsData" [locDisplay]="locDisplay"></info-list-module>
+                    <error-component *ngIf="isError"></error-component>
 
-                    <!--Trending Section-->
-                    <trending-homes *ngIf="trendingHomesData" [trendingHomesData]="trendingHomesData" [trending]="trendingFeature" [locData]="locData"></trending-homes>
+                    <div *ngIf="profileHeaderData && !isError">
+                        <!-- Modules Go Here -->
 
-                    <!--List of List Section-->
-                    <list-of-lists-module *ngIf="lists" [listOfLists]="lists" [city]="locCity" [state]="locState"></list-of-lists-module>
+                        <!-- About Section -->
+                        <headline-component [data]="headlineAbout"></headline-component>
+                        <profile-header *ngIf="profileHeaderData" [profileHeaderData]="profileHeaderData"></profile-header>
+                        <find-your-home-module [locDisplay]="locDisplay" [locState]="locState" [locCity]="locCity"></find-your-home-module>
+                        <section *ngIf="!partnerCheck">
+                          <comment-module></comment-module>
+                        </section>
 
-                    <!-- Crime Section -->
-                    <headline-component *ngIf="crimeData" [data]="headlineCrime"></headline-component>
-                    <crime-module *ngIf="crimeData" [crimeData]="crimeData" [locData]="locData"></crime-module>
+                        <!--List of List Section-->
+                        <list-of-lists-module *ngIf="lists" [listOfLists]="lists" [city]="locCity" [state]="locState"></list-of-lists-module>
 
-                    <!-- Amenities and School Section -->
-                    <headline-component [data]="headlineSchool"></headline-component>
-                    <school-module *ngIf="schoolData" [schoolData]="schoolData" [locData]="locData"></school-module>
-                    <amenities-module *ngIf="amenitiesData" [amenitiesData]="amenitiesData" [locData]="locData"></amenities-module>
+                        <!--Trending Section-->
+                        <trending-homes *ngIf="trendingHomesData" [trendingHomesData]="trendingHomesData" [trending]="trendingFeature" [locData]="locData"></trending-homes>
 
-                    <!-- Interact Section -->
-                    <headline-component [data]="headlineInteract"></headline-component>
-                    <featured-lists-module *ngIf="featuredListData" [featuredListData]="featuredListData" [locData]="locData"></featured-lists-module>
+                        <info-list-module *ngIf="recentListingsData" [recentListingsData]="recentListingsData" [locDisplay]="locDisplay"></info-list-module>
 
-                    <!--Share Module-->
-                    <share-module [locData]="locData"></share-module>
-                    <!--Like Us On FB Module-->
-                    <section *ngIf="!partnerCheck">
-                      <like-us-module></like-us-module>
-                    </section>
-                    <!--Learn More About Us-->
-                    <about-us-module [partnerID]="partnerID"></about-us-module>
+                        <!-- Crime Section -->
+                        <headline-component *ngIf="crimeData" [data]="headlineCrime"></headline-component>
+                        <crime-module *ngIf="crimeData" [crimeData]="crimeData" [locData]="locData"></crime-module>
 
+                        <!-- Amenities and School Section -->
+                        <headline-component *ngIf="schoolData || amenitiesData" [data]="headlineSchool"></headline-component>
+                        <school-module *ngIf="schoolData" [schoolData]="schoolData" [locData]="locData"></school-module>
+                        <amenities-module *ngIf="amenitiesData" [amenitiesData]="amenitiesData" [locData]="locData"></amenities-module>
+
+                        <!-- Interact Section -->
+                        <headline-component [data]="headlineInteract"></headline-component>
+                        <featured-lists-module *ngIf="featuredListData" [featuredListData]="featuredListData" [locData]="locData"></featured-lists-module>
+
+                        <!--Share Module-->
+                        <share-module [locData]="locData"></share-module>
+                        <!--Like Us On FB Module-->
+                        <section *ngIf="!partnerCheck">
+                          <like-us-module></like-us-module>
+                        </section>
+                        <!--Learn More About Us-->
+                        <about-us-module [partnerID]="partnerID"></about-us-module>
+                    </div>
                 </section>
                 <div class="four-col">
                     <widget-module></widget-module>
