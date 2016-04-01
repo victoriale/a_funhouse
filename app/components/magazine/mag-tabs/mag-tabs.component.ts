@@ -26,7 +26,6 @@ export class MagTabComponent implements OnInit {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
         this.address = _params.get('addr');
-        //console.log( "address", this.addr);
     }
 
     selectItem( selectedItem ) {
