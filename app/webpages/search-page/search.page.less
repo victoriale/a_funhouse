@@ -11,6 +11,17 @@
       padding: 0;
       a{
         cursor: pointer;
+
+        .fa-circle{
+          display: none;
+        }
+
+        &.active{
+
+          .fa-circle{
+            display: inline-block;
+          }
+        }
       }
     }
   }
@@ -71,6 +82,11 @@
       float: right;
       border: none;
       border-radius: 0 5px 5px 0;
+      cursor: pointer;
+
+      &:focus{
+        outline: none;
+      }
     }
   }
 }
