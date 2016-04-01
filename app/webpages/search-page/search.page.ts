@@ -81,8 +81,10 @@ export class SearchPage implements OnInit {
     //used as a click event on tabs to grab selected tab
     tabTarget(event) {
         this.tab = event.target.id;
-        jQuery('.search-tab').removeClass('active').find('i').removeClass('fa fa-circle');
-        jQuery(event.target).addClass('active').find('i').addClass('fa fa-circle');
+        //Unused - replaced with ngClass functionality
+        //jQuery('.search-tab').removeClass('active').find('i').removeClass('fa fa-circle');
+        //jQuery(event.target).addClass('active').find('i').addClass('fa fa-circle');
+        //jQuery('#' + this.tab).addClass('active').find('i').addClass('fa fa-circle');
         this.showCurrentData();
     }
 
@@ -91,7 +93,7 @@ export class SearchPage implements OnInit {
         //check to make sure to only run correctly if data is being shown
         if (typeof this.searchResults !== 'undefined' && typeof this.searchResults[this.tab] !== 'undefined') {
             this.displayData = this.searchResults[this.tab];
-            this.currentTotal = this.displayData['length'];
+            this.currentTotal = this.globalFunctions.commaSeparateNumber(this.displayData['length']);
             return this.displayData;
         }
     }
@@ -140,7 +142,16 @@ export class SearchPage implements OnInit {
             .subscribe(
                 data => {
                     this.searchResults = this.dataModify(data);
+
+                    //Build dummy event target for tabTarget function to use (this will cause the tab with the most results to be selected)
+                    var event = {
+                      target: {
+                          id: this.searchResults.maxType
+                      }
+                    };
                     this.showCurrentData();
+                    this.tabTarget(event);
+
                     this.resultsFound = true;
                 },
                 err => {
@@ -185,7 +196,7 @@ export class SearchPage implements OnInit {
               addr: item.address_key,
               page: page,
               params: params,
-              display: self.globalFunctions.toTitleCase(parsedAddress) + " - " + item.city + ", " + item.state_or_province,
+              display: self.globalFunctions.toTitleCase(parsedAddress) + " - " + self.globalFunctions.toTitleCase(item.city) + ", " + item.state_or_province,
           };
         address.push(dataAddr);
         addrCount++;
@@ -239,7 +250,7 @@ export class SearchPage implements OnInit {
             'zipcode': item.zipcode,
             page: '../../Magazine',
             params: { addr: item.address_key },
-            display: '[' + item.zipcode + '] - ' + self.globalFunctions.toTitleCase(item.city) + " " + item.state_or_province + " - " + item.address_key,
+            display: item.zipcode + ' - ' + item.full_street_address + ', ' + self.globalFunctions.toTitleCase(item.city) + ', ' + item.state_or_province,
           };
           zipcode.push(zip);
           zipCount++;
@@ -276,7 +287,30 @@ export class SearchPage implements OnInit {
       }
     }
 
-    this.showTotal = total;
+    this.showTotal = this.globalFunctions.commaSeparateNumber(total);
+
+      //This determines what tab to display (Only used on initial load)
+      var max = 0;
+      var maxType;
+      if(addrCount > max) {
+          max = addrCount;
+          maxType = 'address';
+      }
+      if(locCount > max) {
+          max = locCount;
+          maxType = 'location';
+      }
+      if(zipCount > max) {
+          max = zipCount;
+          maxType = 'zipcode';
+      }else{
+          maxType = 'address';
+      }
+
+      //Add commas to results counts
+      addrCount = this.globalFunctions.commaSeparateNumber(addrCount);
+      locCount = this.globalFunctions.commaSeparateNumber(locCount);
+      zipCount = this.globalFunctions.commaSeparateNumber(zipCount);
 
     return {
       'address': address,
@@ -285,7 +319,8 @@ export class SearchPage implements OnInit {
       'addrCount': addrCount,
       'zipCount': zipCount,
       'locCount': locCount,
-      'total': total
+      'total': total,
+        'maxType': maxType
     };
   }
 
