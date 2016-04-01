@@ -91,6 +91,10 @@ export class LocationPage implements OnInit {
                     this.partnerCheck = true;
                     this.pageName = "My HouseKit";
                   }
+                  this.headlineInteract = {
+                      title: 'Interact with ' + this.pageName,
+                      icon: 'fa-comment-o'
+                  };
                 }
             )//end of route subscribe
         window.scrollTo(0, 0);
@@ -204,12 +208,7 @@ export class LocationPage implements OnInit {
             title: 'Schools and Amenities in ' + this.locDisplay,
             icon: 'fa-graduation-cap'
         };
-
-        this.headlineInteract = {
-            title: 'Interact with ' + this.pageName,
-            icon: 'fa-comment-o'
-        };
-
+        
         this.getProfileHeader();
         this.getTrendingListings();
         this.getFeaturedList();

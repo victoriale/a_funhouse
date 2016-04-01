@@ -80,6 +80,10 @@ export class ProfilePage implements OnInit{
                     this.partnerCheck = true;
                     this.pageName = "My HouseKit";
                 }
+                this.headlineInteract = {
+                    title: 'Interact with ' + this.pageName,
+                    icon: 'fa-comment-o'
+                };
           })
         this.paramAddress = _params.get('address');
         window.scrollTo(0, 0);
@@ -214,10 +218,6 @@ export class ProfilePage implements OnInit{
         this.headlineOtherHomes = {
             title: 'Other Homes You May Be Interested In',
             icon: 'fa-heart-o'
-        };
-        this.headlineInteract = {
-            title: 'Interact with ' + this.pageName,
-            icon: 'fa-comment-o'
         };
     }
 }
