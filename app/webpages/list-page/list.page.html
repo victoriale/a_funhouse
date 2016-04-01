@@ -4,9 +4,7 @@
       <main>
         <section class='content-main eight-col'>
             <loading-component *ngIf="!listData && !isError"></loading-component>
-
             <error-component *ngIf="isError"></error-component>
-
             <section *ngIf="listData && !isError" class="page-container lv">
                 <!-- Nav menu for normal list pages -->
                 <ul *ngIf="menuListParams && menuPhotoParams && menuMapParams" class="lv-menu">
@@ -73,6 +71,62 @@
                         This is a list of the <span class="bold">{{totalListings}} {{listNameDisplay}}</span> in <span class="bold">{{listCity}}, {{listState}}</span>.
                         <span *ngIf="sort">This list is sorted by <span class="bold">{{sortType}}</span> from <span class="bold">{{sortDirection}}</span>.</span>
                     </div>
+                </div>
+
+                <div *ngIf="showFilters && !noListings" class="property-options">
+                    <div class="type-title">
+                        <span>Must Haves</span>
+                    </div>
+                    <div class="property-options-select">
+                        <select (change)="onSelectBedrooms($event)" name="select-bedrooms" id="select-bedrooms">
+                            <option value="empty" style="display:none;" selected>Bedrooms</option>
+                            <option value="empty">All Beds</option>
+                            <option value="1">+1 Bedrooms</option>
+                            <option value="2">+2 Bedrooms</option>
+                            <option value="3">+3 Bedrooms</option>
+                            <option value="4">+4 Bedrooms</option>
+                            <option value="5">+5 Bedrooms</option>
+                        </select>
+                        <select (change)="onSelectBathrooms($event)" name="select-bathrooms" id="select-bathrooms">
+                            <option value="empty" style="display:none;" selected>Bathrooms</option>
+                            <option value="empty">All Baths</option>
+                            <option value="1">+1 Bathrooms</option>
+                            <option value="2">+2 Bathrooms</option>
+                            <option value="3">+3 Bathrooms</option>
+                            <option value="4">+4 Bathrooms</option>
+                            <option value="5">+5 Bathrooms</option>
+                        </select>
+                        <select (change)="onSelectSqFeet($event)" name="select-square-feet" id="select-square-feet">
+                            <option value="empty" style="display:none;" selected>Square Feet</option>
+                            <option value="empty">All Sizes</option>
+                            <option value="500">+500 sq ft</option>
+                            <option value="1000">+1000 sq ft</option>
+                            <option value="2000">+2000 sq ft</option>
+                            <option value="3000">+3000 sq ft</option>
+                            <option value="4000">+4000 sq ft</option>
+                            <option value="5000">+5000 sq ft</option>
+                            <option value="10000">+10000 sq ft</option>
+                        </select>
+                        <select (change)="onSelectLotSize($event)" name="select-lot-size" id="select-lot-size">
+                            <option value="empty" style="display:none;" selected>Lot Size</option>
+                            <option value="empty">All Sizes</option>
+                            <option value="0.04591368">+2000 sq ft</option>
+                            <option value="0.06887052">+3000 sq ft</option>
+                            <option value="0.09182736">+4000 sq ft</option>
+                            <option value="0.1147842">+5000 sq ft</option>
+                            <option value="0.1606979">+7000 sq ft</option>
+                            <option value="0.25">+1/4 acre</option>
+                            <option value="0.50">+1/2 acre</option>
+                            <option value="1">+1 acre</option>
+                            <option value="2">+2 acre</option>
+                            <option value="5">+5 acre</option>
+                            <option value="10">+10 acre</option>
+                        </select>
+                    </div>
+                </div>
+                <div *ngIf="noListings" class="list-error">
+                    <p><i class="fa fa-exclamation-circle"></i> There are currently no listings available matching your selected preferences.</p>
+                    <button (click)="goBack()">Click here to go back.</button>
                 </div>
 
                 <!-- List and Map Listings view -->
