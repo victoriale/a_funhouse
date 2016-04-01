@@ -62,10 +62,25 @@ export class ProfilePage implements OnInit{
     public isError: boolean = false;
     //  Get current route name
     constructor(private _router:Router, private _listingProfileService: ListingProfileService, private _params: RouteParams, private _listService:ListOfListPage, private globalFunctions: GlobalFunctions){
-        // Scroll page to top to fix routerLink bug
-        // let partnerParam = this.injector.get(MyWebApp);
-        // this.partnerID = partnerParam.partnerID;
-        console.log(this);
+      this._router.root
+          .subscribe(
+              route => {
+                var curRoute = route;
+                var partnerID = curRoute.split('/');
+                if(partnerID[0] != ''){
+                  this.partnerID = partnerID[0];
+                  var partnerParam = this.partnerID.replace('-','.');
+                }else{
+                  this.partnerID = null;
+                }
+                if(this.partnerID === null || this.partnerID == '' || typeof this.partnerID == 'undefined'){
+                    this.partnerCheck = false;
+                    this.pageName = "Joyful Home";
+                } else {
+                    this.partnerCheck = true;
+                    this.pageName = "My HouseKit";
+                }
+          })
         this.paramAddress = _params.get('address');
         window.scrollTo(0, 0);
     }
@@ -158,13 +173,7 @@ export class ProfilePage implements OnInit{
 
     ngOnInit(){
       //Run each call
-      if(this.partnerID === null || this.partnerID == '' || typeof this.partnerID == 'undefined'){
-          this.partnerCheck = false;
-          this.pageName = "Joyful Home";
-        } else {
-          this.partnerCheck = true;
-          this.pageName = "My HouseKit";
-        }
+
         this.getAddress();
         this.getProfileHeader();
         this.getCrime();
