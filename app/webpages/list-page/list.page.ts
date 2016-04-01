@@ -1,4 +1,4 @@
-import {Component, OnInit, OnChanges} from 'angular2/core';
+import {Component, AfterViewInit, OnInit, OnChanges} from 'angular2/core';
 import {Router, RouteParams, ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
 
 import {ListViewCarousel} from '../../components/carousel/list-view/list-view.component';
@@ -15,8 +15,8 @@ import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
 import {MapComponent} from '../../components/map/map.component';
 
-declare var moment: any;
 declare var jQuery: any;
+declare var moment: any;
 
 @Component({
     selector: 'List-page',
@@ -26,7 +26,7 @@ declare var jQuery: any;
     providers: [listViewPage],
 })
 
-export class ListPage {
+export class ListPage implements AfterViewInit, OnInit{
     carouselData: any = [];
     listData: any;
     data: any;
