@@ -213,7 +213,7 @@ export class MyAppComponent implements OnInit {
                 err => console.log(err),
                 () => console.log('Near By Cities Success!')
             );
-    }
+    } 
 
     defaultCity() {
         // Set default city and state if geo location call fails
