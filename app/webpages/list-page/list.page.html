@@ -72,7 +72,6 @@
                         <span *ngIf="sort">This list is sorted by <span class="bold">{{sortType}}</span> from <span class="bold">{{sortDirection}}</span>.</span>
                     </div>
                 </div>
-
                 <div *ngIf="showFilters && !noListings" class="property-options">
                     <div class="type-title">
                         <span>Must Haves</span>
@@ -145,6 +144,7 @@
         </section>
         <div class="four-col">
           <widget-module></widget-module>
+            <select-component></select-component>
         </div>
       </main>
     </div>

@@ -1,0 +1,3 @@
+<select (change)="onSelectChange($event.target.value)" class="select-component" id="{{selectConfig.id}}">
+    <option *ngFor="#option of selectData" [value]="option.value">{{option.text}}</option>
+</select>

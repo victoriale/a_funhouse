@@ -14,6 +14,7 @@ import {listViewPage} from '../../global/global-service';
 import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
 import {MapComponent} from '../../components/map/map.component';
+import {SelectComponent} from "../../components/select/select.component";
 
 declare var jQuery: any;
 declare var moment: any;
@@ -22,7 +23,7 @@ declare var moment: any;
     selector: 'List-page',
     templateUrl: './app/webpages/list-page/list.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [PhotoListComponent, ROUTER_DIRECTIVES, DetailedListComponent, ListViewCarousel, WidgetModule, PaginationFooter, LoadingComponent, ErrorComponent, MapComponent],
+    directives: [PhotoListComponent, ROUTER_DIRECTIVES, DetailedListComponent, ListViewCarousel, WidgetModule, PaginationFooter, LoadingComponent, ErrorComponent, MapComponent, SelectComponent],
     providers: [listViewPage],
 })
 
