@@ -13,12 +13,13 @@ import {DynamicWidgetCall} from '../../global/global-service';
 import {GlobalFunctions} from "../../global/global-functions";
 import {TitleComponent} from '../../components/title/title.component';
 import {PaginationFooter} from "../../components/pagination-footer/pagination-footer.component";
+import {ErrorComponent} from "../../components/error/error.component";
 
 @Component({
   selector: 'List-page',
   templateUrl: './app/webpages/dynamic-list-page/dynamic-list.page.html',
   styleUrls: ['./app/global/stylesheets/master.css'],
-  directives: [PaginationFooter, TitleComponent, DynamicListComponent, DynamicCarousel, DropdownComponent, ListMenuComponent, WidgetModule],
+  directives: [PaginationFooter, TitleComponent, DynamicListComponent, DynamicCarousel, DropdownComponent, ListMenuComponent, WidgetModule, ErrorComponent],
   providers: [DynamicWidgetCall],
 })
 
@@ -27,26 +28,55 @@ export class DynamicListPage implements OnInit {
   listData:any = [];
   headerData: any;
   data: any;
+  tw: any;
+  sw: any;
+  input: any;
+  isError: boolean = false;
+
 
   constructor(private _params: RouteParams, private _globalFunctions: GlobalFunctions, private dynamicWidget: DynamicWidgetCall) {
-    /*?tw=214
-    &sw=null
-    &input=-1
-    USE THESE PARAMS FOR DYNAMIC WIDGET PAGE
-    */
+    //parse out needed values from single param
+      //this.dynamicWidget.getWidgetData('1', 103, 'TAMPA')//EXAMPLE NEED TO MAKE IT DYNAMIC TO ACCEPT ANYTHING
+      //query USED TO look something like this "tw=1&sw=103&input=TAMPA";
+      //query should look something like this "tw-1+sw-103+input-TAMPA";
+      let query = this._params.get("query");
+      //this.tw ="1";
+      //this.sw ="103";
+      //this.input ="TAMPA";
+
+      // Setup this way in case we want to switch out null with some default values
+      let twArr = query.match(/tw-(.*?)\+/);
+          this.tw = twArr != null && twArr.length > 1 ? twArr[1] : null;
+      let swArr = query.match(/sw-(.*?)\+/);
+          this.sw = swArr != null && swArr.length > 1 ? swArr[1] : null;
+      let inputArr = query.match(/input-(.*)/);
+          this.input = inputArr != null &&  inputArr.length > 1 ? inputArr[1] : null;
 
     // Scroll page to top to fix routerLink bug
     window.scrollTo(0, 0);
   }
 
   getDynamicList() {// GET DATA FROM GLOBAL SERVICE
-    this.dynamicWidget.getWidgetData('1', 103, 'TAMPA')//EXAMPLE NEED TO MAKE IT DYNAMIC TO ACCEPT ANYTHING
+    //EXAMPLE
+    //this.dynamicWidget.getWidgetData('1', 103, 'TAMPA')
+    if( !this.tw || !this.sw || !this.input ){
+      // Not enough parameter : display error message
+      this.isError = true;
+      return;
+    }
+    this.dynamicWidget.getWidgetData(this.tw, this.sw, this.input)
       .subscribe(data => {
         this.data = this.transformData(data);
-      });
+      },
+          err => {
+              this.isError = true;
+              console.log(err);
+          }
+      );
   }
 
   transformData(data){// TRANSFORM DATA TO PLUG INTO COMPONENTS
+    if(!data) return false;
     //grab data for the header
     this.headerData = {
         imageURL : './app/public/joyfulhome_house.png',
