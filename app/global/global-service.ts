@@ -44,7 +44,7 @@ export class PartnerHeader {
 
 export class listViewPage {
   public protocolToUse: string = (location.protocol == "https:") ? "https" : "http";
-  public apiUrl: string = '://api2.joyfulhome.com:280';
+  public apiUrl: string = '://api2.joyfulhome.com';
 
   constructor(public http: Http) {}
 
@@ -117,7 +117,7 @@ export class ListOfListPage {
 
   constructor(public http: Http) { }
 
-  public apiUrl: string = 'http://api2.joyfulhome.com:280';
+  public apiUrl: string = 'http://api2.joyfulhome.com';
 
   getAddressListOfListPage(address){
     address = encodeURIComponent(address);
@@ -150,7 +150,7 @@ export class ListOfListPage {
 @Injectable()
 
 export class GlobalPage {
-  public apiUrl: string = 'http://api2.joyfulhome.com:280';
+  public apiUrl: string = 'http://api2.joyfulhome.com';
 
   constructor(public http: Http){}
   //Function to set custom headers

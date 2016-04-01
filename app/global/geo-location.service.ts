@@ -38,7 +38,7 @@ export class NearByCitiesService {
         if (this.cachedNearByCities) {
             return Observable.of(this.cachedNearByCities);
         } else {
-            return this.http.get('http://api2.joyfulhome.com:280/nearbyCities/' + state + '/' + city)
+            return this.http.get('http://api2.joyfulhome.com/nearbyCities/' + state + '/' + city)
                 .map(
                     res => res.json()
                 )
@@ -66,7 +66,7 @@ export class CityViewService {
         if (this.cachedCityView) {
             return Observable.of(this.cachedCityView);
         } else {
-            return this.http.get('http://api2.joyfulhome.com:280/cityView/' + state + '/' + city)
+            return this.http.get('http://api2.joyfulhome.com/cityView/' + state + '/' + city)
                 .map(
                     res => res.json()
                 )
