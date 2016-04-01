@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit{
 
     public isHomePage: boolean = false;
     public isMyHouseKit: boolean;
+    public isMyHouseKitHomePage: boolean = false;
     partnerID: string;
     directoryVisible: boolean;
     isScrolling: boolean;
@@ -30,7 +31,13 @@ export class HeaderComponent implements OnInit{
             .subscribe(
                 route => {
                     this.curRoute = route;
-                    //is blank and partner=true
+                    var partnerID = this.curRoute.split('/');
+                    if(partnerID[0] == ''){
+                      this.partnerID = null;
+                    }else{
+                      this.partnerID = partnerID[0];
+                    }
+
                     if(this.curRoute == "/home"){
                         this.isHomePage = true;
                     }else if(this.partnerID != null){
@@ -42,7 +49,17 @@ export class HeaderComponent implements OnInit{
                     }else {
                         this.isHomePage = false;
                     }
-                    //console.log('Current Route: ', route, 'isHomepage:', this.isHomePage, 'PID', this.partnerID)
+
+                    //check for partner and hide search
+                    if(this.partnerID != null) {
+                        this.isMyHouseKit = true;
+                    }else {
+                        this.isMyHouseKit = false;
+                    }
+
+                    if(this.isMyHouseKit == true && this.isHomePage == true) {
+                        this.isMyHouseKitHomePage = true;
+                    }
                 }
             )
     }
@@ -90,15 +107,7 @@ export class HeaderComponent implements OnInit{
     }
 
     ngOnInit() {
-        //check for partner and hide search
-        console.log('Partner ID:', this.partnerID);
-        if(this.partnerID != null) {
-            this.isMyHouseKit = true;
-            //console.log('Housekit True');
-        }else {
-            this.isMyHouseKit = false;
-            //console.log('Housekit False');
-        }
+
     }
 
 }

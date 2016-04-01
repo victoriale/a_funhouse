@@ -5,7 +5,7 @@ import {GlobalFunctions} from './global-functions';
 @Injectable()
 
 export class DirectoryService{
-    public apiUrl: string = 'http://api2.joyfulhome.com:280';
+    public apiUrl: string = 'http://api2.joyfulhome.com';
     public apiToken: string = 'BApA7KEfj';
     public headerName: string = 'X-SNT-TOKEN';
 

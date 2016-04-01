@@ -44,7 +44,7 @@
                         <list-of-lists-module *ngIf="lists" [listOfLists]="lists" [city]="city" [state]="state"></list-of-lists-module>
 
                         <!-- Interact Section -->
-                        <headline-component [data]="headlineInteract"></headline-component>
+                        <headline-component *ngIf="headlineInteract" [data]="headlineInteract"></headline-component>
 
                         <!--Feature List Module-->
                         <featured-lists-module *ngIf="featuredListData" [featuredListData]="featuredListData"></featured-lists-module>
@@ -56,7 +56,7 @@
                           <like-us-module></like-us-module>
                         </section>
                         <!--Learn More About Us-->
-                        <about-us-module></about-us-module>
+                        <about-us-module *ngIf="isChecked" [partnerID]="partnerID"></about-us-module>
                     </div>
                 </section>
                 <div class="four-col">

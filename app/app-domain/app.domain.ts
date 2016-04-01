@@ -28,4 +28,6 @@ import {MyWebApp} from "../app-layout/app.mylayout";
 
 export class AppDomain {
     cityStateLocation: string = "WICHITA_KS";
+    constructor(private window: Window){
+    }
 }

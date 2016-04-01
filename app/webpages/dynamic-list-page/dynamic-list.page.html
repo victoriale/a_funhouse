@@ -3,7 +3,8 @@
     <div class="inner-wrapper">
       <main>
         <section class='content-main eight-col'>
-          <section class="page-container lv">
+          <error-component *ngIf="isError"></error-component>
+          <section *ngIf="!isError" class="page-container lv">
             <title-component [titleData]="headerData"></title-component>
             <dynamic-carousel [carouselData]="carouselData"></dynamic-carousel>
             <!-- <div class="lv-sort">

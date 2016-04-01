@@ -23,10 +23,22 @@ export class PartnerHeader {
   //API for listing profile
   getPartnerData(partner_id) {
 
-    console.log('Grabbing Partner Data', partner_id);
+    var partnerID = partner_id.split('-');
+
+    //handles some cases where domain registries are different
+    var combinedID = [];
+    var domainRegisters = [];
+    for(var i = 0; i < partnerID.length; i++){
+        if(partnerID[i] == "com" || partnerID[i] == "gov" || partnerID[i] == "net" || partnerID[i] == "org" || partnerID[i] == "co"){
+          combinedID.push(partnerID[i]);
+        }else{
+          domainRegisters.push(partnerID[i]);
+        }
+    }
+
+    partner_id = domainRegisters.join('-')+ "." + combinedID.join('.');
 
     var fullUrl = this.protocolToUse + this.apiUrl + partner_id;
-    console.log(fullUrl);
     return this.http.get(fullUrl, {
     })
     .map(
@@ -44,7 +56,7 @@ export class PartnerHeader {
 
 export class listViewPage {
   public protocolToUse: string = (location.protocol == "https:") ? "https" : "http";
-  public apiUrl: string = '://api2.joyfulhome.com:280';
+  public apiUrl: string = '://api2.joyfulhome.com';
 
   constructor(public http: Http) {}
 
@@ -117,7 +129,7 @@ export class ListOfListPage {
 
   constructor(public http: Http) { }
 
-  public apiUrl: string = 'http://api2.joyfulhome.com:280';
+  public apiUrl: string = 'http://api2.joyfulhome.com';
 
   getAddressListOfListPage(address){
     address = encodeURIComponent(address);
@@ -150,7 +162,7 @@ export class ListOfListPage {
 @Injectable()
 
 export class GlobalPage {
-  public apiUrl: string = 'http://api2.joyfulhome.com:280';
+  public apiUrl: string = 'http://api2.joyfulhome.com';
 
   constructor(public http: Http){}
   //Function to set custom headers
@@ -218,7 +230,10 @@ export class DynamicWidgetCall {
       .map(
       data => {
         return data;
+      },
+      err =>{
+        return err;
       }
-      )
+  )
   }
 }

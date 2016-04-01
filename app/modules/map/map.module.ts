@@ -21,11 +21,11 @@ export class MapModule implements OnChanges{
     constructor(private _params: RouteParams, private globalFunctions: GlobalFunctions, private _router: Router){
         var paramAddress = this._params.get('address').split('-');
         var paramState = paramAddress[paramAddress.length -1];
-        var paramCity = paramAddress [paramAddress.length - 2];
-        var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
+        //var paramCity = paramAddress [paramAddress.length - 2];
+        var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 1);
         var address = tempArr.join(' ');
 
-        this.moduleTitle = 'Map of ' + this.globalFunctions.toTitleCase(address) + ' and its Surrounding Area';
+        this.moduleTitle = 'Map of ' + this.globalFunctions.toTitleCase(address) + ', ' + paramState + ' and its Surrounding Area';
     }
 
     //drawMap(){

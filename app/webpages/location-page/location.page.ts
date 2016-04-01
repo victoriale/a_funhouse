@@ -59,11 +59,10 @@ export class LocationPage implements OnInit {
     public partnerCheck: boolean;
     public pageName: string;
     public isError: boolean = false;
+    public isChecked: boolean;
 
     constructor(private _partnerData:PartnerHeader, private _router:Router, private _params: RouteParams, private _locationProfileService: LocationProfileService, private _listService: ListOfListPage) {
-      // let partnerParam = this.injector.get(WebApp);
-        // this.partnerID = partnerParam.partnerID;
-        // Scroll page to top to fix routerLink bug
+
         this._router.root
             .subscribe(
                 route => {
@@ -71,21 +70,34 @@ export class LocationPage implements OnInit {
                   var partnerID = curRoute.split('/');
                   if(partnerID[0] != ''){
                     this.partnerID = partnerID[0];
-                    var partnerParam = this.partnerID.replace('-','.');
-                    this._partnerData.getPartnerData(partnerParam)
+                    this._partnerData.getPartnerData(this.partnerID)
                     .subscribe(
                       partnerScript => {
                         this.partnerData = partnerScript['results']['location']['realestate'];
                         this.dataCalls();
                       }
                     );
+                    this.isChecked = true;
                   }else{
                     this.partnerData = null;
                     this.partnerID = null;
                     this.dataCalls();
+                    this.isChecked = true;
                   }
+                  if(this.partnerID === null || this.partnerID == '' || typeof this.partnerID == 'undefined'){
+                    this.partnerCheck = false;
+                    this.pageName = "Joyful Home";
+                  } else {
+                    this.partnerCheck = true;
+                    this.pageName = "My HouseKit";
+                  }
+                  this.headlineInteract = {
+                      title: 'Interact with ' + this.pageName,
+                      icon: 'fa-comment-o'
+                  };
                 }
             )//end of route subscribe
+        // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }
 
@@ -169,13 +181,7 @@ export class LocationPage implements OnInit {
     }
 
     ngOnInit(){
-      if(this.partnerID === null || this.partnerID == '' || typeof this.partnerID == 'undefined'){
-        this.partnerCheck = false;
-        this.pageName = "Joyful Home";
-      } else {
-        this.partnerCheck = true;
-        this.pageName = "My HouseKit";
-      }
+
     }
     dataCalls() {
         if(typeof this._params.get('loc') == 'undefined' || this._params.get('loc') == null){
@@ -202,11 +208,6 @@ export class LocationPage implements OnInit {
         this.headlineSchool = {
             title: 'Schools and Amenities in ' + this.locDisplay,
             icon: 'fa-graduation-cap'
-        };
-
-        this.headlineInteract = {
-            title: 'Interact with ' + this.pageName,
-            icon: 'fa-comment-o'
         };
 
         this.getProfileHeader();
