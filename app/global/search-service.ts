@@ -21,7 +21,7 @@ export class SearchService{
             //return new Observable.return([]);
         }
 
-        return this.http.get('http://api2.joyfulhome.com:280/search/' + input, {
+        return this.http.get('http://api2.joyfulhome.com/search/' + input, {
                 headers: headers
             })
             .map(
