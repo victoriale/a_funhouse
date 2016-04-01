@@ -218,7 +218,10 @@ export class DynamicWidgetCall {
       .map(
       data => {
         return data;
+      },
+      err =>{
+        return err;
       }
-      )
+  )
   }
 }

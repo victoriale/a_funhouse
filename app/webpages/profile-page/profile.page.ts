@@ -117,7 +117,24 @@ export class ProfilePage implements OnInit{
         this._listingProfileService.getMap(this.paramAddress)
             .subscribe(
                 data => {
-                    this.mapData = data;
+                    //Check to see if map data exists
+                    if(typeof data !== 'undefined' && data.length !== 0){
+                        var hasGeoData = false;
+
+                        for(var i = 0, length = data.length; i < length; i++){
+                            if(data[i].latitude !== null && data[i].longitude !== null){
+                                hasGeoData = true;
+                                break;
+                            }
+                        };
+                        if(hasGeoData === true){
+                            this.mapData = data;
+                        }else{
+                            this.mapData = undefined;
+                        }
+                    }else{
+                        this.mapData = undefined;
+                    }
                 },
                 err => console.log('Error - Map Data', err)
             )
