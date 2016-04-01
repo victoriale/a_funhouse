@@ -555,11 +555,16 @@ goalsHeader
   }
   div:nth-child(2){
     .counterBR(@liwh*.25, @liss*.25, @lisc);
+    width: auto;
+    min-width: @liwh*.25;
+    border-radius: @liwh*.25;
+    line-height: @liwh*.25;
+    padding: 0px @liss;
     font-size: 1em;
     font-family: @globalFont;
     font-weight: bold;
     text-align: center;
-    line-height: 1.8em;
+    //line-height: 1.8em;
     background-color: @white;
     color:@black;
   }
