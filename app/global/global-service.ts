@@ -39,7 +39,6 @@ export class PartnerHeader {
     partner_id = domainRegisters.join('-')+ "." + combinedID.join('.');
 
     var fullUrl = this.protocolToUse + this.apiUrl + partner_id;
-    console.log(fullUrl);
     return this.http.get(fullUrl, {
     })
     .map(

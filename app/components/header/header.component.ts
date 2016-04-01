@@ -60,8 +60,6 @@ export class HeaderComponent implements OnInit{
                     if(this.isMyHouseKit == true && this.isHomePage == true) {
                         this.isMyHouseKitHomePage = true;
                     }
-                    console.log(this.partnerID);
-                    console.log(this.isHomePage);
                 }
             )
     }
