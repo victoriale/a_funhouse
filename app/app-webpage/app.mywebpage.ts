@@ -148,7 +148,7 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
         component: SearchPage
     },
     {
-        path: '/wlist',
+        path: '/wlist/:query',
         name: 'Widget-page',
         component: DynamicListPage
     },

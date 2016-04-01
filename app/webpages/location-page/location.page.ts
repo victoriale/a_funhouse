@@ -81,6 +81,17 @@ export class LocationPage implements OnInit {
                     this.partnerID = null;
                     this.dataCalls();
                   }
+                  if(this.partnerID === null || this.partnerID == '' || typeof this.partnerID == 'undefined'){
+                    this.partnerCheck = false;
+                    this.pageName = "Joyful Home";
+                  } else {
+                    this.partnerCheck = true;
+                    this.pageName = "My HouseKit";
+                  }
+                  this.headlineInteract = {
+                      title: 'Interact with ' + this.pageName,
+                      icon: 'fa-comment-o'
+                  };
                 }
             )//end of route subscribe
         window.scrollTo(0, 0);
@@ -166,13 +177,7 @@ export class LocationPage implements OnInit {
     }
 
     ngOnInit(){
-      if(this.partnerID === null || this.partnerID == '' || typeof this.partnerID == 'undefined'){
-        this.partnerCheck = false;
-        this.pageName = "Joyful Home";
-      } else {
-        this.partnerCheck = true;
-        this.pageName = "My HouseKit";
-      }
+
     }
     dataCalls() {
         if(typeof this._params.get('loc') == 'undefined' || this._params.get('loc') == null){
@@ -200,12 +205,7 @@ export class LocationPage implements OnInit {
             title: 'Schools and Amenities in ' + this.locDisplay,
             icon: 'fa-graduation-cap'
         };
-
-        this.headlineInteract = {
-            title: 'Interact with ' + this.pageName,
-            icon: 'fa-comment-o'
-        };
-
+        
         this.getProfileHeader();
         this.getTrendingListings();
         this.getFeaturedList();
