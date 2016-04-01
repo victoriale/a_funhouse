@@ -37,6 +37,7 @@ export interface MagNeighborhood {
     menuTitle?: string;
     key?: string;
     neighbors?: MagMap[];
+    address?: any;
 }
 
 export interface MagContact {

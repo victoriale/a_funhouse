@@ -137,14 +137,14 @@ export class PaginationFooter implements OnChanges{
         }
 
         //Determine if absolute first button should be shown (show ellipsis if first item in array is not 2)
-        if(this.paginationButtonsModule[0] !== (1 + 1)){
+        if(this.paginationButtonsModule.length !== 0 && this.paginationButtonsModule[0] !== (1 + 1)){
             this.showMinSkip = true;
         }else{
             this.showMinSkip = false;
         }
 
         //Determine if absolute last button should be shown (show ellipsis if the last item in the array is not max - 1)
-        if((this.paginationButtonsModule[this.paginationButtonsModule.length - 1]) !== (max - 1)){
+        if(this.paginationButtonsModule.length !== 0 && this.paginationButtonsModule[this.paginationButtonsModule.length - 1] !== (max - 1)){
             this.showMaxSkip = true;
         }else{
             this.showMaxSkip = false;
@@ -214,14 +214,14 @@ export class PaginationFooter implements OnChanges{
         this.maxButtonParameters = params;
 
         //Determine if absolute first button should be shown (show ellipsis if first item in array is not 2)
-        if(this.paginationButtonsPage[0].index !== (1 + 1)){
+        if(this.paginationButtonsPage.length !== 0 && this.paginationButtonsPage[0].index !== (1 + 1)){
             this.showMinSkip = true;
         }else{
             this.showMinSkip = false;
         }
 
         //Determine if absolute last button should be shown (show ellipsis if the last item in the array is not max - 1)
-        if((this.paginationButtonsPage[this.paginationButtonsPage.length - 1].index) !== (max - 1)){
+        if(this.paginationButtonsPage.length !== 0 && this.paginationButtonsPage[this.paginationButtonsPage.length - 1].index !== (max - 1)){
             this.showMaxSkip = true;
         }else{
             this.showMaxSkip = false;
