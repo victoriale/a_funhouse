@@ -60,6 +60,7 @@ export class ProfilePage implements OnInit{
     public partnerParam: string;
     public partnerID: string;
     public isError: boolean = false;
+    public isChecked: boolean;
     //  Get current route name
     constructor(private _router:Router, private _listingProfileService: ListingProfileService, private _params: RouteParams, private _listService:ListOfListPage, private globalFunctions: GlobalFunctions){
       this._router.root
@@ -69,9 +70,11 @@ export class ProfilePage implements OnInit{
                 var partnerID = curRoute.split('/');
                 if(partnerID[0] != ''){
                   this.partnerID = partnerID[0];
+                  this.isChecked = true;
                   var partnerParam = this.partnerID.replace('-','.');
                 }else{
                   this.partnerID = null;
+                  this.isChecked = true;
                 }
                 if(this.partnerID === null || this.partnerID == '' || typeof this.partnerID == 'undefined'){
                     this.partnerCheck = false;
@@ -194,7 +197,6 @@ export class ProfilePage implements OnInit{
 
     ngOnInit(){
       //Run each call
-
         this.getAddress();
         this.getProfileHeader();
         this.getCrime();

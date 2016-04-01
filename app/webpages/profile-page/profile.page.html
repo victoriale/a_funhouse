@@ -56,7 +56,7 @@
                           <like-us-module></like-us-module>
                         </section>
                         <!--Learn More About Us-->
-                        <about-us-module></about-us-module>
+                        <about-us-module *ngIf="isChecked" [partnerID]="partnerID"></about-us-module>
                     </div>
                 </section>
                 <div class="four-col">

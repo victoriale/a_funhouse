@@ -36,7 +36,7 @@
                         <amenities-module *ngIf="amenitiesData" [amenitiesData]="amenitiesData" [locData]="locData"></amenities-module>
 
                         <!-- Interact Section -->
-                        <headline-component [data]="headlineInteract"></headline-component>
+                        <headline-component *ngIf="headlineInteract" [data]="headlineInteract"></headline-component>
                         <featured-lists-module *ngIf="featuredListData" [featuredListData]="featuredListData" [locData]="locData"></featured-lists-module>
 
                         <!--Share Module-->
@@ -46,7 +46,7 @@
                           <like-us-module></like-us-module>
                         </section>
                         <!--Learn More About Us-->
-                        <about-us-module [partnerID]="partnerID"></about-us-module>
+                        <about-us-module *ngIf="isChecked" [partnerID]="partnerID"></about-us-module>
                     </div>
                 </section>
                 <div class="four-col">
