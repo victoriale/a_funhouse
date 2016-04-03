@@ -31,6 +31,13 @@ export class HeaderComponent implements OnInit{
             .subscribe(
                 route => {
                     this.curRoute = route;
+                    var partnerID = this.curRoute.split('/');
+                    if(partnerID[0] == ''){
+                      this.partnerID = null;
+                    }else{
+                      this.partnerID = partnerID[0];
+                    }
+
                     if(this.curRoute == "/home"){
                         this.isHomePage = true;
                     }else if(this.partnerID != null){

@@ -30,12 +30,22 @@ export class AboutUsModule{
     public partnerParam: string;
     public partnerID: string;
     constructor(private injector:Injector, private _router: Router){
-      // let partnerParam = this.injector.get(WebApp);
-      // this.partnerID = partnerParam.partnerID;
+      this._router.root
+      .subscribe(
+          route => {
+            var curRoute = route;
+            var partnerID = curRoute.split('/');
+            if(partnerID[0] != ''){
+              this.partnerID = partnerID[0];
+              var partnerParam = this.partnerID.replace('-','.');
+            }else{
+              this.partnerID = null;
+            }
+      })
       window.scrollTo(0, 0);
     }
     ngOnInit(){
-      if(this.partnerID === null ){
+      if(this.partnerID === null || this.partnerID == '' || typeof this.partnerID == 'undefined'){
         this.pageName = "Joyful Home";
         this.logo = './app/public/joyfulhome_logo_large.png';
       } else {
