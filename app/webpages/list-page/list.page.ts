@@ -79,14 +79,14 @@ export class ListPage implements AfterViewInit, OnInit{
     filterLot: string;
     filterType: string;
 
-    constructor(private _params: RouteParams, private globalFunctions: GlobalFunctions, private listViewData: listViewPage, private _router: Router, private _changeDetectionRef : ChangeDetectorRef) {
+    constructor(private _params: RouteParams, private globalFunctions: GlobalFunctions, private listViewData: listViewPage, private _router: Router) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }
 
     sortChange(event){
         var sortOption = event.target.value;
-        console.log(sortOption);
+        //console.log(sortOption);
         var self = this;
         var params: any = {
             viewType: self.viewType,
@@ -528,7 +528,7 @@ export class ListPage implements AfterViewInit, OnInit{
       if(this.listName == "filter") {
           this.showFilters = true;
       }
-      console.log(this);
+      //console.log(this);
   }
 
     ngAfterViewInit() {
@@ -542,14 +542,8 @@ export class ListPage implements AfterViewInit, OnInit{
             jQuery('#select-bathrooms').val(this.selectBathrooms);
             jQuery('#select-square-feet').val(this.selectSqFeet);
             jQuery('#select-lot-size').val(this.selectLot);
-        }, 250);
+        }, 400);
 
-        this._changeDetectionRef.detectChanges();
-
-        console.log(this.selectBedrooms);
-        console.log(this.selectBathrooms);
-        console.log(this.selectSqFeet);
-        console.log(this.selectLot);
     }
 
 }
