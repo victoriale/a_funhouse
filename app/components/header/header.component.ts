@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from 'angular2/core';
+import {Router, ROUTER_DIRECTIVES} from "angular2/router";
+
 import {HeaderSearchComponent} from "./header-search/header-search.component";
-import {ROUTER_DIRECTIVES} from "angular2/router";
-import {Router} from "angular2/router";
 declare var jQuery: any;
 
 @Component({
