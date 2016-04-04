@@ -46,17 +46,6 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
        component: HomePage,
        useAsDefault: true,
     },
-    // {
-    //    path: '/home',
-    //    name: 'Home-page',
-    //    component: PartnerHomePage,
-    //    useAsDefault: true,
-    // },
-    // {
-    //    path: '/housekit-home',
-    //    name: 'Housekit-home-page',
-    //    component: PartnerHomePage,
-    // },
     {
         path: '/index/:address',
         name: 'Profile-page',

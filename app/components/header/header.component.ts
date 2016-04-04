@@ -16,7 +16,7 @@ declare var jQuery: any;
 export class HeaderComponent implements OnInit{
 
     public isHomePage: boolean = false;
-    public isMyHouseKit: boolean;
+    public isMyHouseKit: boolean = true;
     public isMyHouseKitHomePage: boolean = false;
     partnerID: string;
     directoryVisible: boolean;
