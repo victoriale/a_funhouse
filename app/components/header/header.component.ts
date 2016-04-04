@@ -33,17 +33,19 @@ export class HeaderComponent implements OnInit{
                     var partnerID = this.curRoute.split('/');
                     var hostname = this.window.location.hostname;
                     var partnerIdExists = partnerID[0] != '' ? true : false;
-
                     if(!partnerIdExists){
                       this.partnerID = null;
-                      this.isHomePage = true;
                     }else{
                       this.partnerID = partnerID[0];
                     }
 
-                    if(partnerIdExists && (hostname == 'myhousekit' || hostname == 'localhost')){
+                    if(partnerIdExists && (hostname == 'myhousekit') && partnerID.length == 1){
                       this.isHomePage = true;
                       this.isMyHouseKit = true;
+                    }else if(!partnerIdExists && partnerID.length == 1){
+                      this.isHomePage = true;
+                    }else{
+                      this.isHomePage = false;
                     }
                 }
             )
@@ -79,20 +81,15 @@ export class HeaderComponent implements OnInit{
 
     // Page is being scrolled
     onScroll(event) {
-
         var scrollTop = jQuery(window).scrollTop();
-
         if ((55) > scrollTop) {
             this.isScrolling = false;
         }else{
             this.isScrolling = true;
         }
-
        //console.log('scroll event', event, scrollTop, this.isScrolling);
     }
 
     ngOnInit() {
-
     }
-
 }

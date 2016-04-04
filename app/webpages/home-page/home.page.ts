@@ -56,12 +56,11 @@ export class HomePage implements OnInit {
                   var hostname = this.window.location.hostname;
 
                   var partnerIdExists = partnerID[0] != '' ? true : false;
-
-                  if( !partnerIdExists &&  (hostname == 'myhousekit')){
+                  if( !partnerIdExists &&  hostname == 'myhousekit'){
                     jQuery('.webpage-home').css('display','none');
                     this.isMyHouseKitHome = true;
                     document.title = "MyHousekit";
-                  }else if( partnerIdExists && (hostname == 'myhousekit')){
+                  }else if( partnerIdExists && hostname == 'myhousekit'){
                     jQuery('.webpage-home').css('display','block');
                     document.title = "MyHousekit " + partnerID[0].replace('-', ' ');
                   }else{
