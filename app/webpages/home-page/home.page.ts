@@ -10,13 +10,16 @@ import {HeroBottomComponent} from "../../components/hero/hero-bottom/hero-bottom
 import {FeatureTilesComponent} from "../../components/feature-tiles/feature-tiles.component";
 import {GeoLocationService} from "../../global/geo-location.service";
 import {NearByCitiesService} from "../../global/geo-location.service";
+import {PartnerHomePage} from "../partner-home-page/partner-home-page";
 //import map = webdriver.promise.map;
+
+declare var jQuery:any;
 
 @Component({
     selector: 'PartnerHomePage',
     templateUrl: './app/webpages/home-page/home.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [HeaderComponent, FooterComponent, HeroComponent, ExploreTilesComponent, ExploreButtonComponent, HeroBottomComponent, FeatureTilesComponent, ROUTER_DIRECTIVES],
+    directives: [PartnerHomePage, HeaderComponent, FooterComponent, HeroComponent, ExploreTilesComponent, ExploreButtonComponent, HeroBottomComponent, FeatureTilesComponent, ROUTER_DIRECTIVES],
     providers: [GeoLocationService, NearByCitiesService],
     inputs: ['cityLocation', 'stateLocation', 'nearByCities'],
 })
@@ -39,19 +42,31 @@ export class HomePage implements OnInit {
     heroButtonTitle: string;
     heroButtonWidth: number;
     heroButtonIcon: string;
+    isMyHouseKit: boolean;//determine which homepage to show myhousekit or joyfulhome.
 
-    constructor(private _router: Router, private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService) {
+    constructor(private window: Window, private _router: Router, private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
-    }
 
-    //onChange(value) {
-    //    this.selectValue = value;
-    //    this.cityLocation = this.selectValue.split('-')[0];
-    //    this.stateLocation = this.selectValue.split('-')[1];
-    //    this.getNearByCities();
-    //    console.log(this.nearByCities);
-    //}
+        this._router.root
+            .subscribe(
+                route => {
+                  var curRoute = route;
+                  var partnerID = curRoute.split('/');
+                  var hostname = this.window.location.hostname;
+
+                  if(partnerID[0] == '' && (hostname == 'myhousekit' || hostname == 'localhost')){
+                    jQuery('.webpage-home').css('display','none');
+                    this.isMyHouseKit = true;
+                    document.title = "MyHousekit";
+                  }else{
+                    jQuery('.webpage-home').css('display','block');
+                    this.isMyHouseKit = false;
+                    document.title = "Joyful Home";
+                  }
+                }//end route
+            )//end of route subscribe
+    }
 
     //Subscribe to getGeoLocation in geo-location.service.ts. On Success call getNearByCities function.
     getGeoLocation() {
@@ -96,14 +111,8 @@ export class HomePage implements OnInit {
         this.heroButtonTitle = "See The List";
         this.heroButtonWidth = 220;
         this.heroButtonIcon = "";
-        //console.log(this);
-        //console.log("this router:", this._router);
-        if(this._router.hostComponent.name === "HomePage"){
-            console.log("do something");
-        }
 
         // Call to get current State and City
         this.getGeoLocation();
-        console.log(this);
     }
 }

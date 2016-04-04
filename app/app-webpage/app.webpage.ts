@@ -41,11 +41,17 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
 
 @RouteConfig([
     {
-       path: '/home',
+       path: '/',
        name: 'Home-page',
        component: HomePage,
        useAsDefault: true,
     },
+    // {
+    //    path: '/home',
+    //    name: 'Home-page',
+    //    component: HomePage,
+    //    useAsDefault: true,
+    // },
     {
        path: '/housekit-home',
        name: 'Housekit-home-page',

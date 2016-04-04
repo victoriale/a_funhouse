@@ -41,16 +41,22 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
 
 @RouteConfig([
     {
-       path: '/home',
+       path: '/',
        name: 'Home-page',
-       component: PartnerHomePage,
+       component: HomePage,
        useAsDefault: true,
     },
-    {
-       path: '/housekit-home',
-       name: 'Housekit-home-page',
-       component: PartnerHomePage,
-    },
+    // {
+    //    path: '/home',
+    //    name: 'Home-page',
+    //    component: PartnerHomePage,
+    //    useAsDefault: true,
+    // },
+    // {
+    //    path: '/housekit-home',
+    //    name: 'Housekit-home-page',
+    //    component: PartnerHomePage,
+    // },
     {
         path: '/index/:address',
         name: 'Profile-page',
@@ -213,7 +219,7 @@ export class MyAppComponent implements OnInit {
                 err => console.log(err),
                 () => console.log('Near By Cities Success!')
             );
-    } 
+    }
 
     defaultCity() {
         // Set default city and state if geo location call fails
