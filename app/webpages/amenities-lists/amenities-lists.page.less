@@ -9,6 +9,9 @@
   &.even {
     background: @white;
   }
+  &-imagebox{
+    width: 150px;
+  }
   &-image{
     width: 150px;
     .largeRoundImageLinkWithHover(125px, 3px, @masterStrokeColor);
@@ -24,29 +27,12 @@
       top: -130px;
       background-color: @white;
     }
-  }
-  &-loc{
-    margin-left: 20px;
-    .globalDefaultModFont(12px, 400, @black);
-    span:first-child{
-      color: @masterBrandColor;
-    }
-  }
-  &-name{
-    margin: 10px 0 0 20px;
-    .globalDefaultModFont(24px, 900, @black);
-  }
-  &-desc{
-    margin: 12px 0 0 20px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 500px;
-    height: 80px;
-    line-height: 16px;
-    .globalDefaultModFont(14px, 400, @black);
-  }
+  }//image ends
   &-provider{
     bottom: 0;
     margin: 0 225px;
   }
+}
+.colorReset{
+  color: @masterBrandColor;
 }
