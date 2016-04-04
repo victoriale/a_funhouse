@@ -33,15 +33,19 @@ export class HeaderComponent implements OnInit{
                     var partnerID = this.curRoute.split('/');
                     var hostname = this.window.location.hostname;
                     var partnerIdExists = partnerID[0] != '' ? true : false;
+
+                    //checks if partner ID exists and declare that it is myhousekit
                     if(!partnerIdExists){
                       this.partnerID = null;
+                      this.isMyHouseKit = false;
                     }else{
                       this.partnerID = partnerID[0];
+                      this.isMyHouseKit = true;
                     }
 
+                    //check to make sure if home page is being displayed
                     if(partnerIdExists && (hostname == 'myhousekit') && partnerID.length == 1){
                       this.isHomePage = true;
-                      this.isMyHouseKit = true;
                     }else if(!partnerIdExists && partnerID.length == 1){
                       this.isHomePage = true;
                     }else{
