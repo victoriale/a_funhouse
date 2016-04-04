@@ -538,6 +538,8 @@ export class ListPage implements OnInit{
           jQuery('#select-bathrooms').val(this.selectBathrooms);
           jQuery('#select-square-feet').val(this.selectSqFeet);
           jQuery('#select-lot-size').val(this.selectLot);
+
+          jQuery('#sort_by').val(this.sort);
       }, 400);
       //console.log(this);
   }
