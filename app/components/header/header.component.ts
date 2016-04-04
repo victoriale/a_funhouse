@@ -34,6 +34,7 @@ export class HeaderComponent implements OnInit{
                     var hostname = this.window.location.hostname;
                     var partnerIdExists = partnerID[0] != '' ? true : false;
 
+                    var result = /myhousekit/.test(hostname);
                     //checks if partner ID exists and declare that it is myhousekit
                     if(!partnerIdExists){
                       this.partnerID = null;
@@ -44,7 +45,7 @@ export class HeaderComponent implements OnInit{
                     }
 
                     //check to make sure if home page is being displayed
-                    if(partnerIdExists && (hostname == 'myhousekit') && partnerID.length == 1){
+                    if(partnerIdExists && result && partnerID.length == 1){
                       this.isHomePage = true;
                     }else if(!partnerIdExists && partnerID.length == 1){
                       this.isHomePage = true;
