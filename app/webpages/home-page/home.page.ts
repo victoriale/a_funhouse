@@ -19,7 +19,7 @@ import {GlobalFunctions} from "../../global/global-functions";
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [HeaderComponent, FooterComponent, HeroComponent, ExploreTilesComponent, ExploreButtonComponent, HeroBottomComponent, FeatureTilesComponent, ROUTER_DIRECTIVES],
     providers: [GeoLocationService, NearByCitiesService, GlobalFunctions],
-    inputs: ['cityLocation', 'stateLocation', 'nearByCities'],
+    inputs: [],
 })
 
 export class HomePage implements OnInit {
@@ -66,7 +66,14 @@ export class HomePage implements OnInit {
     getNearByCities() {
         this._nearByCitiesService.getNearByCities(this.stateLocation, this.cityLocation)
             .subscribe(
-                nearByCities => { this.nearByCities = nearByCities },
+                nearByCities => {
+                    this.nearByCities = nearByCities;
+                    for( var i in this.nearByCities ) {
+                        if (this.nearByCities.hasOwnProperty(i) && i != 'citiesCount') {
+                            this.nearByCities[i].stateAPLocation = this._globalFunctions.stateToAP(this.nearByCities[i].state);
+                        }
+                    }
+                },
                 err => console.log(err),
                 () => console.log('Near By Cities Success!')
             );
