@@ -75,7 +75,7 @@ export class SchoolModule implements OnInit{
       var schoolName =  this.globalFunctions.toTitleCase(elementaryData.school_name);
       this.listData = {
         hasHoverNoSubImg: false,
-        header: "What's the Highest Rated School in this area?",
+        header: "What Schools are in the Area?",
         name: schoolData.city + ', ' + schoolData.state,
         establishment:  schoolName,
         address: elementaryData.type,
