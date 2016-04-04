@@ -1,4 +1,4 @@
-import {Component, AfterViewInit, OnInit, OnChanges} from 'angular2/core';
+import {Component, AfterViewInit, OnInit, OnChanges, ChangeDetectorRef} from 'angular2/core';
 import {Router, RouteParams, ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
 
 import {ListViewCarousel} from '../../components/carousel/list-view/list-view.component';
@@ -14,7 +14,6 @@ import {listViewPage} from '../../global/global-service';
 import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
 import {MapComponent} from '../../components/map/map.component';
-import {SelectComponent} from "../../components/select/select.component";
 
 declare var jQuery: any;
 declare var moment: any;
@@ -23,7 +22,7 @@ declare var moment: any;
     selector: 'List-page',
     templateUrl: './app/webpages/list-page/list.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [PhotoListComponent, ROUTER_DIRECTIVES, DetailedListComponent, ListViewCarousel, WidgetModule, PaginationFooter, LoadingComponent, ErrorComponent, MapComponent, SelectComponent],
+    directives: [PhotoListComponent, ROUTER_DIRECTIVES, DetailedListComponent, ListViewCarousel, WidgetModule, PaginationFooter, LoadingComponent, ErrorComponent, MapComponent],
     providers: [listViewPage],
 })
 
@@ -80,7 +79,7 @@ export class ListPage implements AfterViewInit, OnInit{
     filterLot: string;
     filterType: string;
 
-    constructor(private _params: RouteParams, private globalFunctions: GlobalFunctions, private listViewData: listViewPage, private _router: Router) {
+    constructor(private _params: RouteParams, private globalFunctions: GlobalFunctions, private listViewData: listViewPage, private _router: Router, private _changeDetectionRef : ChangeDetectorRef) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }
@@ -538,10 +537,14 @@ export class ListPage implements AfterViewInit, OnInit{
         this.selectSqFeet = this._params.get('squareFeet');
         this.selectLot = this._params.get('lotSize');
 
-        jQuery('#select-bedrooms').val(this.selectBedrooms);
-        jQuery('#select-bathrooms').val(this.selectBathrooms);
-        jQuery('#select-square-feet').val(this.selectSqFeet);
-        jQuery('#select-lot-size').val(this.selectLot);
+        setTimeout(() => {
+            jQuery('#select-bedrooms').val(this.selectBedrooms);
+            jQuery('#select-bathrooms').val(this.selectBathrooms);
+            jQuery('#select-square-feet').val(this.selectSqFeet);
+            jQuery('#select-lot-size').val(this.selectLot);
+        }, 250);
+
+        this._changeDetectionRef.detectChanges();
 
         console.log(this.selectBedrooms);
         console.log(this.selectBathrooms);
