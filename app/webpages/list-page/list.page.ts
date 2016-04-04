@@ -1,4 +1,4 @@
-import {Component, AfterViewInit, OnInit, OnChanges, ChangeDetectorRef} from 'angular2/core';
+import {Component, OnInit, OnChanges} from 'angular2/core';
 import {Router, RouteParams, ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
 
 import {ListViewCarousel} from '../../components/carousel/list-view/list-view.component';
@@ -26,7 +26,7 @@ declare var moment: any;
     providers: [listViewPage],
 })
 
-export class ListPage implements AfterViewInit, OnInit{
+export class ListPage implements OnInit{
     carouselData: any = [];
     listData: any;
     data: any;
@@ -528,22 +528,18 @@ export class ListPage implements AfterViewInit, OnInit{
       if(this.listName == "filter") {
           this.showFilters = true;
       }
+      this.selectBedrooms = this._params.get('bedrooms');
+      this.selectBathrooms = this._params.get('bathrooms');
+      this.selectSqFeet = this._params.get('squareFeet');
+      this.selectLot = this._params.get('lotSize');
+
+      setTimeout(() => {
+          jQuery('#select-bedrooms').val(this.selectBedrooms);
+          jQuery('#select-bathrooms').val(this.selectBathrooms);
+          jQuery('#select-square-feet').val(this.selectSqFeet);
+          jQuery('#select-lot-size').val(this.selectLot);
+      }, 400);
       //console.log(this);
   }
-
-    ngAfterViewInit() {
-        this.selectBedrooms = this._params.get('bedrooms');
-        this.selectBathrooms = this._params.get('bathrooms');
-        this.selectSqFeet = this._params.get('squareFeet');
-        this.selectLot = this._params.get('lotSize');
-
-        setTimeout(() => {
-            jQuery('#select-bedrooms').val(this.selectBedrooms);
-            jQuery('#select-bathrooms').val(this.selectBathrooms);
-            jQuery('#select-square-feet').val(this.selectSqFeet);
-            jQuery('#select-lot-size').val(this.selectLot);
-        }, 400);
-
-    }
 
 }
