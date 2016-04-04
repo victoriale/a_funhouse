@@ -59,7 +59,6 @@ export class HomePage implements OnInit {
 
                   var result = /myhousekit/.test(hostname);
 
-                  console.log('HERRO MY RED RIGHT AND RUE FRIEND', result); // true
                   if( !partnerIdExists &&  result){
                     jQuery('.webpage-home').css('display','none');
                     this.isMyHouseKitHome = true;
