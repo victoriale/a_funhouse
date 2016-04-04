@@ -57,7 +57,8 @@ export class MagOverviewModule implements OnInit {
                         this.contactAgent = magData.overview.price;
                     } else {
                         if (magData.overview != 'undefined') {
-                            this.price =  '$' + magData.overview.price.toLocaleString();
+                            let formattedPrice = new Intl.NumberFormat("en-US").format(magData.overview.price);
+                            this.price = '$' + formattedPrice;
                         }
                     }
                 },
