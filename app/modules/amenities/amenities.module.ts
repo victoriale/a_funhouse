@@ -44,7 +44,7 @@ export class AmenitiesModule implements OnInit{
             var paramCity: string = this.globalFunctions.toTitleCase(this.locData.city);
             paramCity = this.globalFunctions.toTitleCase(paramCity.replace(/%20/g, " "));
             var paramState: string = this.locData.state;
-            this.moduleTitle = 'Top Rated Amenities In and Around ' + paramCity + ', ' + paramState;
+            this.moduleTitle = 'Amenities in and Around ' + paramCity + ', ' + paramState;
         }else if(this.profileType === 'ProfilePage'){
             //Listing Crime Module
             var paramAddress = this._params.get('address').split('-');
@@ -52,7 +52,7 @@ export class AmenitiesModule implements OnInit{
             var paramCity = paramAddress [paramAddress.length - 2];
             var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
             var address = tempArr.join(' ');
-            this.moduleTitle = 'Top Rated Amenities In and Around ' + this.globalFunctions.toTitleCase(address) + ' ' + this.globalFunctions.toTitleCase(paramCity) + ', ' + paramState;
+            this.moduleTitle = 'Amenities in and Around ' + this.globalFunctions.toTitleCase(address) + ' ' + this.globalFunctions.toTitleCase(paramCity) + ', ' + paramState;
         }
     }
 
@@ -101,7 +101,7 @@ export class AmenitiesModule implements OnInit{
 
       this.listData = {
         hasHoverNoSubImg: true,
-        header: "What's the Highest Rated Restaurant in this area?",
+        header: "What Restaurants Are in the Area?",
         name: loc,
         establishment: listData.name,
         imageUrl: listData.image_url,

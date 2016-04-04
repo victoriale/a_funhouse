@@ -16,6 +16,7 @@ export interface MagOverview {
     menuTitle?: string;
     address?: address;
     price?: any;
+    formattedPrice?: string;
     key?: string;
     content?: string[];
     photos?: string[];
@@ -102,31 +103,31 @@ export interface MagAmenity {
 
 /*ABOVE IS MAGAZINE INTERFACE*/
 export interface AmenitiesNearListingInterface {
-  name: string;
-  url: string;
-  categories: string[];
-  location: Object;
-  display_address: string[];
-  display_phone: string;
+    name: string;
+    url: string;
+    categories: string[];
+    location: Object;
+    display_address: string[];
+    display_phone: string;
 }
 
 export interface SchoolDataInterface {
-  schoolName: string;
-  locationAddress: string;
-  locationCity: string;
-  locationState: string;
-  locationZipcode: string;
-  type: string;
-  firstGradeEnrollment: string;
-  sixthGradeEnrollment: string;
-  ninthGradeEnrollment: string;
+    schoolName: string;
+    locationAddress: string;
+    locationCity: string;
+    locationState: string;
+    locationZipcode: string;
+    type: string;
+    firstGradeEnrollment: string;
+    sixthGradeEnrollment: string;
+    ninthGradeEnrollment: string;
 }
 
 export interface AboutUsPageInterface {
-  counties: string;
-  listings: string;
-  brokers: string;
-  cities: string;
+    counties: string;
+    listings: string;
+    brokers: string;
+    cities: string;
 }
 
 export interface PropertyListingInterface {
