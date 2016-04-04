@@ -45,14 +45,6 @@ export class HomePage implements OnInit {
         window.scrollTo(0, 0);
     }
 
-    //onChange(value) {
-    //    this.selectValue = value;
-    //    this.cityLocation = this.selectValue.split('-')[0];
-    //    this.stateLocation = this.selectValue.split('-')[1];
-    //    this.getNearByCities();
-    //    console.log(this.nearByCities);
-    //}
-
     //Subscribe to getGeoLocation in geo-location.service.ts. On Success call getNearByCities function.
     getGeoLocation() {
         this._geoLocationService.getGeoLocation()
