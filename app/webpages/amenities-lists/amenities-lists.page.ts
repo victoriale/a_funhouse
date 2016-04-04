@@ -76,8 +76,8 @@ export class AmenitiesListPage implements OnInit{
   ngOnInit(){
     this.locState = decodeURI(this._params.get('state'));
     this.locCity = decodeURI(this._params.get('city'));
-    this.location = this.globalFunctions.toTitleCase(this.locCity) + ', ' + this.locState;
-    this.moduleTitle = "Top Rated Amenities In and Around " + this.location;
+    this.location = this.globalFunctions.toTitleCase(this.locCity) + ', ' + this.globalFunctions.stateToAP(this.locState);
+    this.moduleTitle = "Top Rated Amenities in and Around " + this.location;
     this.getData();
   }
 
