@@ -543,7 +543,7 @@ export class ListPage implements OnInit{
 
           jQuery('#sort_by').val(this.sort);
       }, 400);
-      console.log(this);
+      //console.log(this);
   }
 
 }
