@@ -16,7 +16,7 @@ declare var moment: any;
     templateUrl: './app/modules/profile_header/profile_header.module.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [TitleComponent, Image180],
-    providers: []
+    providers: [GlobalFunctions]
 })
 export class ProfileHeader implements OnInit{
     public profileType: string;
@@ -53,7 +53,7 @@ export class ProfileHeader implements OnInit{
     transformData(){
         var data = this.profileHeaderData;
 
-        var location = data.city + ", " + data.state;
+        var location = data.city + ", " + this.globalFunctions.stateToAP(data.state);
         //Sanitize city value
         data.city = this.globalFunctions.toTitleCase(data.city);
 
@@ -65,7 +65,7 @@ export class ProfileHeader implements OnInit{
                 //Unused field of component for this module
                 smallText: '',
                 smallText2: 'Last Updated: ' + moment(data.lastUpdated).format('dddd, MMMM Do, YYYY'),
-                heading1: data.city + ', ' + data.state,
+                heading1: data.city + ', ' + this.globalFunctions.stateToAP(data.state),
                 heading2: '',
                 heading3: this.globalFunctions.commaSeparateNumber(data.numberOfListings) + ' Listings Available for Sale',
                 heading4: '',
@@ -73,10 +73,10 @@ export class ProfileHeader implements OnInit{
                 hasHover: false
             };
 
-            this.descriptionTitle = data.city + ', ' + data.state;
+            this.descriptionTitle = data.city + ', ' + this.globalFunctions.stateToAP(data.state);
             this.descriptionLocation = "";
             var defaultText ="Did you know that";
-            var fallback = "Do you know what "+ location +" has to offer? Explore what's trending, properties for sale and neigborhood amenities for "+ location + '.';
+            var fallback = "Do you know what "+ location +" has to offer? Explore what's trending, properties for sale and neighborhood amenities for "+ location + '.';
 
             this.descriptionLocation += data.averageAge === null ? '' : ' the average age for a ' + data.city + ' resident is ' + data.averageAge + ',';
             this.descriptionLocation += data.averageRentalPrice === null ? '' : ' the average rental price is $' + this.globalFunctions.commaSeparateNumber(data.averageRentalPrice) + '/month,';
@@ -106,7 +106,7 @@ export class ProfileHeader implements OnInit{
                 originalLink: data.originalLink
             };
             //Build profile header description
-            this.descriptionAddress = 'The listing is located at ' + this.globalFunctions.toTitleCase(data.address) + ', ' + data.city + ', ' + data.state + '.';
+            this.descriptionAddress = 'The listing is located at ' + this.globalFunctions.toTitleCase(data.address) + ', ' + data.city + ', ' + this.globalFunctions.stateToAP(data.state) + '.';
             this.descriptionSquareFeet = data.squareFeet === null ? '' : 'The living area is around ' + this.globalFunctions.commaSeparateNumber(data.squareFeet) + ' sq ft.';
             this.descriptionContact = '';
             if (data.phoneNumber !== null && data.officeNumber !== null && data.phoneNumber !== data.officeNumber) {

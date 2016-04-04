@@ -76,7 +76,7 @@ export class SchoolModule implements OnInit{
       this.listData = {
         hasHoverNoSubImg: false,
         header: "What's the Highest Rated School in this area?",
-        name: schoolData.city + ', ' + schoolData.state,
+        name: schoolData.city + ', ' + this.globalFunctions.stateToAP(schoolData.state),
         establishment:  schoolName,
         address: elementaryData.type,
         imageUrl: schoolData.locationImage,

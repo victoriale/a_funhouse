@@ -36,6 +36,8 @@ export class InfoListModule implements OnInit {
             }else {
                 val.fullStreetAddress = self._globalFunctions.toTitleCase(val.fullStreetAddress);
             }
+            // Format state to AP
+            val.stateOrProvince = self._globalFunctions.stateToAP(val.stateOrProvince);
             // Format price
             val.listPrice = self._globalFunctions.commaSeparateNumber(val.listPrice);
             // Check for no data, if data Grab date from date/timestamp
