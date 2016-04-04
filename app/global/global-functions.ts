@@ -13,7 +13,9 @@ export class GlobalFunctions{
     // 10 character length (000) 000-0000
     // 7 character legnth 000-0000
     formatPhoneNumber(val){
+      if(isNaN(val) == false){
         var val = val.toString();
+      }
         var numberLength = val.length;
 
         if(numberLength === 10){
