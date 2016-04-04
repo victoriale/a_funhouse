@@ -3,8 +3,8 @@
     <div class="inner-wrapper">
       <main>
         <section class='content-main eight-col'>
-            <!--<loading-component *ngIf="!listData && !isError"></loading-component>-->
-            <!--<error-component *ngIf="isError"></error-component>-->
+            <loading-component *ngIf="!listData && !isError"></loading-component>
+            <error-component *ngIf="isError"></error-component>
             <section *ngIf="listData && !isError" class="page-container lv">
                 <!-- Nav menu for normal list pages -->
                 <ul *ngIf="menuListParams && menuPhotoParams && menuMapParams" class="lv-menu">
