@@ -57,13 +57,13 @@ export class HomePage implements OnInit {
 
                   var partnerIdExists = partnerID[0] != '' ? true : false;
 
-                  var result = /myhousekit/.test(hostname);
+                  var myhousekit = /myhousekit/.test(hostname);
 
-                  if( !partnerIdExists &&  result){
+                  if( !partnerIdExists &&  myhousekit){
                     jQuery('.webpage-home').css('display','none');
                     this.isMyHouseKitHome = true;
                     document.title = "MyHousekit";
-                  }else if( partnerIdExists && result){
+                  }else if( partnerIdExists && myhousekit){
                     jQuery('.webpage-home').css('display','block');
                     document.title = "MyHousekit " + partnerID[0].replace('-', ' ');
                   }else{
