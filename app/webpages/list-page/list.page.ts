@@ -36,6 +36,7 @@ export class ListPage implements OnInit{
 
     public listName: string;
     public listState: string;
+    public listStateAP: string;
     public listCity: string;
     public listLimit: string = "20";
     public listPage: string;
@@ -296,6 +297,7 @@ export class ListPage implements OnInit{
             }
 
             this.listState = this._params.get('state');
+            this.listStateAP = this.globalFunctions.stateToAP(this.listState);
             this.listCity = this._params.get('city');
             this.listCity = this.globalFunctions.toTitleCase(this.listCity);
             this.listPage = this._params.get('page');
