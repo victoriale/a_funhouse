@@ -24,13 +24,14 @@ import {MyWebApp} from '../../app-layout/app.mylayout';
 import {PartnerHeader} from "../../global/global-service";
 import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
+import {GlobalFunctions} from "../../global/global-functions";
 
 @Component({
     selector: 'location-page',
     templateUrl: './app/webpages/location-page/location.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [ListOfListModule, HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, FindYourHomeModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule, WidgetModule, AmenitiesModule, TrendingHomes, ErrorComponent, LoadingComponent],
-    providers: [PartnerHeader, ListOfListPage, LocationProfileService],
+    providers: [PartnerHeader, ListOfListPage, LocationProfileService, GlobalFunctions],
     inputs:['partnerData']
 })
 
@@ -61,7 +62,7 @@ export class LocationPage implements OnInit {
     public isError: boolean = false;
     public isChecked: boolean;
 
-    constructor(private _partnerData:PartnerHeader, private _router:Router, private _params: RouteParams, private _locationProfileService: LocationProfileService, private _listService: ListOfListPage) {
+    constructor(private _partnerData:PartnerHeader, private _router:Router, private _params: RouteParams, private _locationProfileService: LocationProfileService, private _listService: ListOfListPage, private _globalFunctions: GlobalFunctions) {
 
         this._router.root
             .subscribe(
@@ -192,9 +193,9 @@ export class LocationPage implements OnInit {
           this.loc = this._params.get('loc');
           this.locCity = decodeURI(this.loc.split('_')[0]);
           this.locState = decodeURI(this.loc.split('_')[1]);
-          this.locDisplay = decodeURI(this.locCity + ', ' + this.locState);
+          this.locDisplay = decodeURI(this.locCity + ', ' + this._globalFunctions.stateToAP(this.locState));
         }
-        this.locData = {city:this.locCity, state:this.locState}
+        this.locData = {city:this.locCity, state:this._globalFunctions.stateToAP(this.locState)};
         this.headlineAbout = {
             title: 'About ' + this.locDisplay,
             icon: 'fa-map-marker'
