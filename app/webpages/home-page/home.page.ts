@@ -42,7 +42,7 @@ export class HomePage implements OnInit {
     heroButtonTitle: string;
     heroButtonWidth: number;
     heroButtonIcon: string;
-    isMyHouseKit: boolean;//determine which homepage to show myhousekit or joyfulhome.
+    isMyHouseKitHome: boolean;//determine which homepage to show myhousekit or joyfulhome.
 
     constructor(private window: Window, private _router: Router, private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService) {
         // Scroll page to top to fix routerLink bug
@@ -55,13 +55,18 @@ export class HomePage implements OnInit {
                   var partnerID = curRoute.split('/');
                   var hostname = this.window.location.hostname;
 
-                  if(partnerID[0] == '' && (hostname == 'myhousekit' || hostname == 'localhost')){
+                  var partnerIdExists = partnerID[0] != '' ? true : false;
+
+                  if( !partnerIdExists &&  (hostname == 'myhousekit')){
                     jQuery('.webpage-home').css('display','none');
-                    this.isMyHouseKit = true;
+                    this.isMyHouseKitHome = true;
                     document.title = "MyHousekit";
+                  }else if( partnerIdExists && (hostname == 'myhousekit')){
+                    jQuery('.webpage-home').css('display','block');
+                    document.title = "MyHousekit " + partnerID[0].replace('-', ' ');
                   }else{
                     jQuery('.webpage-home').css('display','block');
-                    this.isMyHouseKit = false;
+                    this.isMyHouseKitHome = false;
                     document.title = "Joyful Home";
                   }
                 }//end route

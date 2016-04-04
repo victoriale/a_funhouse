@@ -1,4 +1,4 @@
-  <div class="wrapper" *ngIf="!isMyHouseKit">
+  <div class="wrapper" *ngIf="!isMyHouseKitHome">
       <div class="inner-wrapper">
           <section class='content-main twelve-col'>
             <hero-component></hero-component>
@@ -31,8 +31,8 @@
           </div>
       </div>
   </div>
-  <hero-bottom-component *ngIf="!isMyHouseKit" [buttonTitle]="heroButtonTitle" [buttonWidth]="heroButtonWidth" [buttonIcon]="heroButtonIcon" [cityLocation]="cityLocation" [stateLocation]="stateLocation"></hero-bottom-component>
-  <div class="wrapper" *ngIf="!isMyHouseKit">
+  <hero-bottom-component *ngIf="!isMyHouseKitHome" [buttonTitle]="heroButtonTitle" [buttonWidth]="heroButtonWidth" [buttonIcon]="heroButtonIcon" [cityLocation]="cityLocation" [stateLocation]="stateLocation"></hero-bottom-component>
+  <div class="wrapper" *ngIf="!isMyHouseKitHome">
       <div class="inner-wrapper">
           <section class='content-main twelve-col'>
               <h1 class="home-tagline"><img class="map-icon" src="./app/public/Icons_Features.png" /> Features <span class="thin">To Note</span></h1>
@@ -41,4 +41,4 @@
       </div>
   </div>
 
-<Housekit-home-page *ngIf="isMyHouseKit"></Housekit-home-page>
+<Housekit-home-page *ngIf="isMyHouseKitHome"></Housekit-home-page>

@@ -17,14 +17,13 @@ export class HeaderComponent implements OnInit{
 
     public isHomePage: boolean = false;
     public isMyHouseKit: boolean = true;
-    public isMyHouseKitHomePage: boolean = false;
     partnerID: string;
     directoryVisible: boolean;
     isScrolling: boolean;
     pageNum: string = "1";
     curRoute: any;
 
-    constructor(public router: Router) {
+    constructor(public router: Router, private window:Window) {
        this.directoryVisible = false;
 
         this.router.root
@@ -32,33 +31,19 @@ export class HeaderComponent implements OnInit{
                 route => {
                     this.curRoute = route;
                     var partnerID = this.curRoute.split('/');
-                    if(partnerID[0] == ''){
+                    var hostname = this.window.location.hostname;
+                    var partnerIdExists = partnerID[0] != '' ? true : false;
+
+                    if(!partnerIdExists){
                       this.partnerID = null;
+                      this.isHomePage = true;
                     }else{
                       this.partnerID = partnerID[0];
                     }
 
-                    if(this.curRoute == "/home"){
-                        this.isHomePage = true;
-                    }else if(this.partnerID != null){
-                        if(this.curRoute == this.partnerID.replace('.','-') + "/home"){
-                            this.isHomePage = true;
-                        }else {
-                            this.isHomePage = false;
-                        }
-                    }else {
-                        this.isHomePage = false;
-                    }
-
-                    //check for partner and hide search
-                    if(this.partnerID != null) {
-                        this.isMyHouseKit = true;
-                    }else {
-                        this.isMyHouseKit = false;
-                    }
-
-                    if(this.isMyHouseKit == true && this.isHomePage == true) {
-                        this.isMyHouseKitHomePage = true;
+                    if(partnerIdExists && (hostname == 'myhousekit' || hostname == 'localhost')){
+                      this.isHomePage = true;
+                      this.isMyHouseKit = true;
                     }
                 }
             )
