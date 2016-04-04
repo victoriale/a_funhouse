@@ -1,27 +1,29 @@
-<hero-component></hero-component>
-<div class="wrapper">
-    <div class="inner-wrapper">
-        <section class='content-main twelve-col'>
-            <h1 class="home-tagline">
-                <img class="map-icon" src="./app/public/Icons_Explore.png" /> Explore <span class="thin">The {{cityLocation}} Area</span>
-            </h1>
-        </section>
-        <div class="twelve-col">
-            <explore-tiles-component *ngIf="nearByCities" [nearByCities]="nearByCities"></explore-tiles-component>
-        </div>
-        <div class="twelve-col">
-            <a [routerLink]="['City-view-page', {state: stateLocation, city: cityLocation}]">
-                <explore-button-component [buttonTitle]="buttonTitle" [buttonWidth]="buttonWidth" [buttonIcon]="buttonIcon"></explore-button-component>
-            </a>
-        </div>
-    </div>
-</div>
-<hero-bottom-component [buttonTitle]="heroButtonTitle" [buttonWidth]="heroButtonWidth" [buttonIcon]="heroButtonIcon" [cityLocation]="cityLocation" [stateLocation]="stateLocation"></hero-bottom-component>
-<div class="wrapper">
-    <div class="inner-wrapper">
-        <section class='content-main twelve-col'>
-            <h1 class="home-tagline"><img class="map-icon" src="./app/public/Icons_Features.png" /> Features <span class="thin">To Note</span></h1>
-        </section>
-        <feature-tiles-component *ngIf="cityLocation && stateLocation" [cityLocation]="cityLocation" [stateLocation]="stateLocation"></feature-tiles-component>
-    </div>
-</div>
+<hero-component *ngIf="!isMyHouseKitHome"></hero-component>
+  <div class="wrapper" *ngIf="!isMyHouseKitHome">
+      <div class="inner-wrapper">
+          <section class='content-main twelve-col'>
+              <h1 class="home-tagline">
+                  <img class="map-icon" src="./app/public/Icons_Explore.png" /> Explore <span class="thin">The {{cityLocation}} Area</span>
+              </h1>
+          </section>
+          <div class="twelve-col">
+              <explore-tiles-component *ngIf="nearByCities" [nearByCities]="nearByCities"></explore-tiles-component>
+          </div>
+          <div class="twelve-col">
+              <a [routerLink]="['City-view-page', {state: stateLocation, city: cityLocation}]">
+                  <explore-button-component [buttonTitle]="buttonTitle" [buttonWidth]="buttonWidth" [buttonIcon]="buttonIcon"></explore-button-component>
+              </a>
+          </div>
+      </div>
+  </div>
+  <hero-bottom-component *ngIf="!isMyHouseKitHome" [buttonTitle]="heroButtonTitle" [buttonWidth]="heroButtonWidth" [buttonIcon]="heroButtonIcon" [cityLocation]="cityLocation" [stateLocation]="stateLocation"></hero-bottom-component>
+  <div class="wrapper" *ngIf="!isMyHouseKitHome">
+      <div class="inner-wrapper">
+          <section class='content-main twelve-col'>
+              <h1 class="home-tagline"><img class="map-icon" src="./app/public/Icons_Features.png" /> Features <span class="thin">To Note</span></h1>
+          </section>
+          <feature-tiles-component *ngIf="cityLocation && stateLocation" [cityLocation]="cityLocation" [stateLocation]="stateLocation"></feature-tiles-component>
+      </div>
+  </div>
+
+<Housekit-home-page *ngIf="isMyHouseKitHome"></Housekit-home-page>

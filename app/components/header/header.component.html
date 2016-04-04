@@ -20,7 +20,7 @@
         </div>
     </div>
 </div>
-<div *ngIf="!isMyHouseKitHomePage" class="header-bottom-bar-wrapper" (window:scroll)="onScroll($event)" [class.stick-header]="isScrolling">
+<div *ngIf="!isHomePage" class="header-bottom-bar-wrapper" (window:scroll)="onScroll($event)" [class.stick-header]="isScrolling">
     <div class="wrapper">
         <div class="inner-wrapper">
             <div class="header-bottom-bar">

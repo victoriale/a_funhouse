@@ -15,7 +15,7 @@ export class FooterComponent implements OnInit {
     cityLocation: string;
     stateLocation: string;
 
-    public isMyHouseKit: boolean;
+    public isMyHouseKit: boolean = true;
     partnerID: string;
     title: string = "National Real Estate";
     pageNumber: string = "1";
