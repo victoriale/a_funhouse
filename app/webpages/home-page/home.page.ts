@@ -10,6 +10,7 @@ import {HeroBottomComponent} from "../../components/hero/hero-bottom/hero-bottom
 import {FeatureTilesComponent} from "../../components/feature-tiles/feature-tiles.component";
 import {GeoLocationService} from "../../global/geo-location.service";
 import {NearByCitiesService} from "../../global/geo-location.service";
+import {GlobalFunctions} from "../../global/global-functions";
 //import map = webdriver.promise.map;
 
 @Component({
@@ -17,7 +18,7 @@ import {NearByCitiesService} from "../../global/geo-location.service";
     templateUrl: './app/webpages/home-page/home.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [HeaderComponent, FooterComponent, HeroComponent, ExploreTilesComponent, ExploreButtonComponent, HeroBottomComponent, FeatureTilesComponent, ROUTER_DIRECTIVES],
-    providers: [GeoLocationService, NearByCitiesService],
+    providers: [GeoLocationService, NearByCitiesService, GlobalFunctions],
     inputs: ['cityLocation', 'stateLocation', 'nearByCities'],
 })
 
@@ -26,6 +27,7 @@ export class HomePage implements OnInit {
     // Location data
     cityLocation: string;
     stateLocation: string;
+    stateAPLocation: string;
     cityStateLocation: string;
     nearByCities: Object;
 
@@ -40,7 +42,7 @@ export class HomePage implements OnInit {
     heroButtonWidth: number;
     heroButtonIcon: string;
 
-    constructor(private _router: Router, private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService) {
+    constructor(private _router: Router, private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService, private _globalFunctions: GlobalFunctions) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }
@@ -52,6 +54,7 @@ export class HomePage implements OnInit {
                 geoLocationData => {
                     this.cityLocation = geoLocationData[0].city;
                     this.stateLocation = geoLocationData[0].state;
+                    this.stateAPLocation = this._globalFunctions.stateToAP(this.stateLocation);
                     this.cityStateLocation = this.cityLocation + '_' + this.stateLocation;
                 },
                 err => this.defaultCity(),
@@ -73,6 +76,7 @@ export class HomePage implements OnInit {
         // Set default city and state if geo location call fails
         console.log('Geo Location is Borked!');
         this.stateLocation = "KS";
+        this.stateAPLocation = this._globalFunctions.stateToAP(this.stateLocation);
         this.cityLocation = "Wichita";
         this.cityStateLocation = this.cityLocation + '_' + this.stateLocation;
         this.getNearByCities();
@@ -88,11 +92,6 @@ export class HomePage implements OnInit {
         this.heroButtonTitle = "See The List";
         this.heroButtonWidth = 220;
         this.heroButtonIcon = "";
-        //console.log(this);
-        //console.log("this router:", this._router);
-        if(this._router.hostComponent.name === "HomePage"){
-            console.log("do something");
-        }
 
         // Call to get current State and City
         this.getGeoLocation();
