@@ -15,8 +15,8 @@ import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
 import {MapComponent} from '../../components/map/map.component';
 
-declare var moment: any;
 declare var jQuery: any;
+declare var moment: any;
 
 @Component({
     selector: 'List-page',
@@ -26,7 +26,7 @@ declare var jQuery: any;
     providers: [listViewPage],
 })
 
-export class ListPage {
+export class ListPage implements OnInit{
     carouselData: any = [];
     listData: any;
     data: any;
@@ -86,7 +86,7 @@ export class ListPage {
 
     sortChange(event){
         var sortOption = event.target.value;
-        console.log(sortOption);
+        //console.log(sortOption);
         var self = this;
         var params: any = {
             viewType: self.viewType,
@@ -528,19 +528,18 @@ export class ListPage {
       if(this.listName == "filter") {
           this.showFilters = true;
       }
-      console.log(this);
+      this.selectBedrooms = this._params.get('bedrooms');
+      this.selectBathrooms = this._params.get('bathrooms');
+      this.selectSqFeet = this._params.get('squareFeet');
+      this.selectLot = this._params.get('lotSize');
+
+      setTimeout(() => {
+          jQuery('#select-bedrooms').val(this.selectBedrooms);
+          jQuery('#select-bathrooms').val(this.selectBathrooms);
+          jQuery('#select-square-feet').val(this.selectSqFeet);
+          jQuery('#select-lot-size').val(this.selectLot);
+      }, 400);
+      //console.log(this);
   }
-
-    ngAfterViewInit() {
-        this.selectBedrooms = this._params.get('bedrooms');
-        this.selectBathrooms = this._params.get('bathrooms');
-        this.selectSqFeet = this._params.get('squareFeet');
-        this.selectLot = this._params.get('lotSize');
-
-        jQuery('#select-bedrooms').val(this.selectBedrooms);
-        jQuery('#select-bathrooms').val(this.selectBathrooms);
-        jQuery('#select-square-feet').val(this.selectSqFeet);
-        jQuery('#select-lot-size').val(this.selectLot);
-    }
 
 }
