@@ -26,6 +26,7 @@ export class TrendingHomes implements OnInit {
     headerData: any;
     expand:boolean = false;
     data: any;
+    modal:boolean = true;
     public index: number = 0;
     @Input() trendingHomesData: any;
 
