@@ -82,6 +82,12 @@ export class MediaFeatureModule implements OnInit {
             break;
           case 'listingDate':
             originalData['listingDate'] = originalData['listingDate'].split(' ')[0];
+          case 'hasBasement':
+            if(originalData.hasBasement === 'null'){
+              originalData['hasBasement'] = 'No';
+            } else {
+              originalData['hasBasement'] = 'Yes';
+            }
           //below just modify and then go to default as well
           case 'squareFeet':
             originalData['squareFeet'] = this.globalFunctions.commaSeparateNumber(originalData['squareFeet']);
@@ -150,7 +156,7 @@ export class MediaFeatureModule implements OnInit {
       heating: 'Heating',
       cooling: 'Cooling',
       numFloors: 'Num. of Floors',
-      exterior: 'Extorior',
+      exterior: 'Exterior',
       parking: 'Parking',
       view: 'View',
       floor: 'Floor',
