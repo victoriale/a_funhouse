@@ -2,8 +2,8 @@
   <circle-button (scrollLeft)="left()" (scrollRight)="right()"></circle-button>
   <div class="plcholder">
     <a class='feature-btn expand' (click)="modalExpand()">
-      Expand
-      <i class='fa fa-expand'></i>
+      {{expandText}}
+      <i class='fa {{expandIcon}}'></i>
     </a>
 
     <div class='feature-btn images'>

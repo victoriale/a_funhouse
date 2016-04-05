@@ -13,7 +13,7 @@ declare var jQuery : any;
   styleUrls: ['./app/global/stylesheets/master.css'],
   directives: [ROUTER_DIRECTIVES, CircleButton],
   providers: [],
-  inputs: ['trending', 'mediaImages', 'featureListing'],
+  inputs: ['trending', 'mediaImages', 'featureListing', 'modalButton'],
   outputs: ['leftCircle', 'rightCircle', 'expand']
 })
 
@@ -23,7 +23,9 @@ export class MediaImages implements OnInit {
   leftCircle: EventEmitter<boolean> = new EventEmitter();
   rightCircle: EventEmitter<boolean> = new EventEmitter();
   expand: EventEmitter<boolean> = new EventEmitter();
-
+  modalButton: boolean = false;
+  expandText: string = 'Expand';
+  expandIcon: string = 'fa-expand';
   mediaImages: any;//need to create interface
   smallImage: any;
   smallObjCounter: number = 0;
@@ -31,19 +33,6 @@ export class MediaImages implements OnInit {
   virtualTourCount: number = 0;
   totalImageCount: number = 0;
   imageCounter: number = 0;
-
-  //create objects for the dom
-  // city:string;
-  // state:string;
-  // zipCode:string;
-  // address:string;
-  // daysOnMarket:any;
-  // detail1:any;
-  // unit1:string;
-  // detail2:any;
-  // unit2:string;
-  // price:any;
-  // priceName:string;
 
   constructor() {}
 
@@ -92,6 +81,7 @@ export class MediaImages implements OnInit {
 
   //this is where the angular2 decides what is the main image
   changeMain(num){
+
     this.imageCounter = num;
     if(typeof this.smallImage == 'undefined'){
       this.smallImage = this.mediaImages[0];
@@ -106,6 +96,11 @@ export class MediaImages implements OnInit {
     var totalImgs = images.length;
     var newImageArray = [];
     var objCount = 0;
+
+    if(this.modalButton){//just so the carousel knows that the expand button is
+      this.expandText='Collapse';
+      this.expandIcon='fa-compress';
+    }
 
     //loops through and put each image into groups of 5 for the square container
     for(var i = 0; i < totalImgs; i++){
@@ -137,5 +132,6 @@ export class MediaImages implements OnInit {
   }
 
   ngOnInit() {
+
   }
 }
