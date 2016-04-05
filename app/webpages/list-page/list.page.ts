@@ -15,8 +15,8 @@ import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
 import {MapComponent} from '../../components/map/map.component';
 
-declare var moment: any;
 declare var jQuery: any;
+declare var moment: any;
 
 @Component({
     selector: 'List-page',
@@ -26,7 +26,7 @@ declare var jQuery: any;
     providers: [listViewPage],
 })
 
-export class ListPage {
+export class ListPage implements OnInit{
     carouselData: any = [];
     listData: any;
     data: any;
@@ -36,6 +36,7 @@ export class ListPage {
 
     public listName: string;
     public listState: string;
+    public listStateAP: string;
     public listCity: string;
     public listLimit: string = "20";
     public listPage: string;
@@ -86,7 +87,7 @@ export class ListPage {
 
     sortChange(event){
         var sortOption = event.target.value;
-        console.log(sortOption);
+        //console.log(sortOption);
         var self = this;
         var params: any = {
             viewType: self.viewType,
@@ -296,6 +297,7 @@ export class ListPage {
             }
 
             this.listState = this._params.get('state');
+            this.listStateAP = this.globalFunctions.stateToAP(this.listState);
             this.listCity = this._params.get('city');
             this.listCity = this.globalFunctions.toTitleCase(this.listCity);
             this.listPage = this._params.get('page');
@@ -528,19 +530,20 @@ export class ListPage {
       if(this.listName == "filter") {
           this.showFilters = true;
       }
-      console.log(this);
+      this.selectBedrooms = this._params.get('bedrooms');
+      this.selectBathrooms = this._params.get('bathrooms');
+      this.selectSqFeet = this._params.get('squareFeet');
+      this.selectLot = this._params.get('lotSize');
+
+      setTimeout(() => {
+          jQuery('#select-bedrooms').val(this.selectBedrooms);
+          jQuery('#select-bathrooms').val(this.selectBathrooms);
+          jQuery('#select-square-feet').val(this.selectSqFeet);
+          jQuery('#select-lot-size').val(this.selectLot);
+
+          jQuery('#sort_by').val(this.sort);
+      }, 400);
+      //console.log(this);
   }
-
-    ngAfterViewInit() {
-        this.selectBedrooms = this._params.get('bedrooms');
-        this.selectBathrooms = this._params.get('bathrooms');
-        this.selectSqFeet = this._params.get('squareFeet');
-        this.selectLot = this._params.get('lotSize');
-
-        jQuery('#select-bedrooms').val(this.selectBedrooms);
-        jQuery('#select-bathrooms').val(this.selectBathrooms);
-        jQuery('#select-square-feet').val(this.selectSqFeet);
-        jQuery('#select-lot-size').val(this.selectLot);
-    }
 
 }

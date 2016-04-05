@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from 'angular2/core';
+import {Router, ROUTER_DIRECTIVES} from "angular2/router";
+
 import {HeaderSearchComponent} from "./header-search/header-search.component";
-import {ROUTER_DIRECTIVES} from "angular2/router";
-import {Router} from "angular2/router";
 declare var jQuery: any;
 
 @Component({
@@ -16,15 +16,14 @@ declare var jQuery: any;
 export class HeaderComponent implements OnInit{
 
     public isHomePage: boolean = false;
-    public isMyHouseKit: boolean;
-    public isMyHouseKitHomePage: boolean = false;
+    public isMyHouseKit: boolean = true;
     partnerID: string;
     directoryVisible: boolean;
     isScrolling: boolean;
     pageNum: string = "1";
     curRoute: any;
 
-    constructor(public router: Router) {
+    constructor(public router: Router, private window:Window) {
        this.directoryVisible = false;
 
         this.router.root
@@ -32,33 +31,26 @@ export class HeaderComponent implements OnInit{
                 route => {
                     this.curRoute = route;
                     var partnerID = this.curRoute.split('/');
-                    if(partnerID[0] == ''){
+                    var hostname = this.window.location.hostname;
+                    var partnerIdExists = partnerID[0] != '' ? true : false;
+
+                    var myhousekit = /myhousekit/.test(hostname);
+                    //checks if partner ID exists
+                    if(!partnerIdExists){
                       this.partnerID = null;
+                      this.isMyHouseKit = false;
                     }else{
                       this.partnerID = partnerID[0];
+                      this.isMyHouseKit = true;
                     }
 
-                    if(this.curRoute == "/home"){
-                        this.isHomePage = true;
-                    }else if(this.partnerID != null){
-                        if(this.curRoute == this.partnerID.replace('.','-') + "/home"){
-                            this.isHomePage = true;
-                        }else {
-                            this.isHomePage = false;
-                        }
-                    }else {
-                        this.isHomePage = false;
-                    }
-
-                    //check for partner and hide search
-                    if(this.partnerID != null) {
-                        this.isMyHouseKit = true;
-                    }else {
-                        this.isMyHouseKit = false;
-                    }
-
-                    if(this.isMyHouseKit == true && this.isHomePage == true) {
-                        this.isMyHouseKitHomePage = true;
+                    //check to make sure if home page is being displayed
+                    if(partnerIdExists && myhousekit && partnerID.length == 1){
+                      this.isHomePage = true;
+                    }else if(!partnerIdExists && partnerID.length == 1){
+                      this.isHomePage = true;
+                    }else{
+                      this.isHomePage = false;
                     }
                 }
             )
@@ -94,20 +86,15 @@ export class HeaderComponent implements OnInit{
 
     // Page is being scrolled
     onScroll(event) {
-
         var scrollTop = jQuery(window).scrollTop();
-
         if ((55) > scrollTop) {
             this.isScrolling = false;
         }else{
             this.isScrolling = true;
         }
-
        //console.log('scroll event', event, scrollTop, this.isScrolling);
     }
 
     ngOnInit() {
-
     }
-
 }

@@ -78,8 +78,8 @@ export class SchoolModule implements OnInit{
       this.listData = {
         hasHoverNoSubImg: false,
         header: "What Schools are in the Area?",
-        name: schoolData.city + ', ' + schoolData.state,
-        establishment: schoolName,
+        name: schoolData.city + ', ' + this.globalFunctions.stateToAP(schoolData.state),
+        establishment:  schoolName,
         address: elementaryData.type,
         imageUrl: schoolData.locationImage,
         url: 'School-lists-page',

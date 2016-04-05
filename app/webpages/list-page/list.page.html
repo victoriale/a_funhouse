@@ -68,17 +68,16 @@
                         What is this list?
                     </div>
                     <div *ngIf="totalListings && listNameDisplay" class="lv-tooltip-description">
-                        This is a list of the <span class="bold">{{totalListings}} {{listNameDisplay}}</span> in <span class="bold">{{listCity}}, {{listState}}</span>.
+                        This is a list of the <span class="bold">{{totalListings}} {{listNameDisplay}}</span> in <span class="bold">{{listCity}}, {{listStateAP}}</span>
                         <span *ngIf="sort">This list is sorted by <span class="bold">{{sortType}}</span> from <span class="bold">{{sortDirection}}</span>.</span>
                     </div>
                 </div>
-
                 <div *ngIf="showFilters && !noListings" class="property-options">
                     <div class="type-title">
                         <span>Must Haves</span>
                     </div>
                     <div class="property-options-select">
-                        <select (change)="onSelectBedrooms($event)" name="select-bedrooms" id="select-bedrooms">
+                        <select (change)="onSelectBedrooms($event)" name="select-bedrooms" class="select-bedrooms" id="select-bedrooms">
                             <option value="empty" style="display:none;" selected>Bedrooms</option>
                             <option value="empty">All Beds</option>
                             <option value="1">+1 Bedrooms</option>

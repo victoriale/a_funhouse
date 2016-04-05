@@ -139,6 +139,6 @@ export class ListOfListModule {
         //Sanitize list data
         this.sanitizeListofListData();
         //Build module title
-        this.module_title = 'Tops Lists For ' + this.city + ", " + this.state;
+        this.module_title = 'Top Lists for ' + this.city + ", " + this._globalFunctions.stateToAP(this.state);
     }
 }
