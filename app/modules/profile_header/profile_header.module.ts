@@ -31,6 +31,7 @@ export class ProfileHeader implements OnInit{
     public subImageURL: string;
     public main_hasSubImg: boolean;
     public titleComponentData: {};
+    public imageClass="image180Shadow10";
     @Input() profileHeaderData: ProfileHeaderInterface;
 
     constructor(private router: Router, private globalFunctions: GlobalFunctions){
