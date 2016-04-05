@@ -54,13 +54,15 @@
               </div>
 
               <!--RESULTS FROM API BELOW-->
-
+              <pagination-footer *ngIf="paginationParameters" [paginationParameters]="paginationParameters" (newIndex)="newIndex($event)"></pagination-footer>
               <a *ngFor="#item of displayData" [routerLink]="[item.page, item.params]">
                 <div class="search_results-info">
                   <div class="search_results-info-h1">{{item.display}}</div>
                 </div>
               </a>
               <!--below tabs where results are to be displayed END-->
+              <!-- Pagination Footer -->
+              <pagination-footer *ngIf="paginationParameters" [paginationParameters]="paginationParameters" (newIndex)="newIndex($event)"></pagination-footer>
             </div>
           </div>
         </section>

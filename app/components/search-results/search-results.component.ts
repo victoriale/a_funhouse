@@ -28,7 +28,6 @@ export class SearchResults{
 
             //If returned result is an empty array, display no results found
             if(typeof currentValue !== 'undefined' && currentValue !== null && currentValue.length === 0){
-                //console.log('Lutz - No results found');
                 this.noResultsFound = true;
             }else{
                 this.noResultsFound = false;
