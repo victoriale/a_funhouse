@@ -46,17 +46,16 @@ export class HomePage implements OnInit {
     heroButtonIcon: string;
     isMyHouseKitHome: boolean;//determine which homepage to show myhousekit or joyfulhome.
 
-    constructor(private window: Window, private _router: Router, private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService, private _globalFunctions: GlobalFunctions) {
+    constructor(private _router: Router, private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService, private _globalFunctions: GlobalFunctions) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
-
         this._router.root
             .subscribe(
                 route => {
                   var curRoute = route;
                   var partnerID = curRoute.split('/');
-                  var hostname = this.window.location.hostname;
-
+                  var hostname = window.location.hostname;
+                  console.log(hostname);
                   var partnerIdExists = partnerID[0] != '' ? true : false;
 
                   var myhousekit = /myhousekit/.test(hostname);

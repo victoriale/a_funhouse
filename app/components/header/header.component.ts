@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit{
     pageNum: string = "1";
     curRoute: any;
 
-    constructor(public router: Router, public window:Window) {
+    constructor(public router: Router) {
        this.directoryVisible = false;
 
         this.router.root
@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit{
                 route => {
                     this.curRoute = route;
                     var partnerID = this.curRoute.split('/');
-                    var hostname = this.window.location.hostname;
+                    var hostname = window.location.hostname;
                     var partnerIdExists = partnerID[0] != '' ? true : false;
 
                     var myhousekit = /myhousekit/.test(hostname);

@@ -1,4 +1,4 @@
-<div *ngIf="hasSubImg" class='image-{{size}}-smallImgBR'>
+<div *ngIf="hasSubImg" class='image-{{size}}-smallImgBR {{imageClass}}'>
   <img *ngIf="!hasHover" src='{{imageURL}}' onerror="this.src='./app/public/placeholder-location.jpg';" />
   <a *ngIf="hasHover">
     <img src='{{imageURL}}' onerror="this.src='./app/public/placeholder-location.jpg';" />
