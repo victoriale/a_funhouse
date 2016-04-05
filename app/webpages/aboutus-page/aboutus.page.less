@@ -6,17 +6,18 @@
   &-heading{
     .globalDefaultFont(18px, 400, @black);
     position: relative;
-    border-bottom: 1px solid @strokeGrey;
     border-top: 1px solid @strokeGrey;
     line-height: 28px;
-    padding: 7px;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 3px;
     width: 680px;
     &-dropdown{
       .globalDefaultModFont(12px, 900, @black);
       margin: 0 0 0 20px;
       position: absolute;
-      right: 5px;
-      top: 5px;
+      right: 20px;
+      top: 10px;
     }
     #sort_by{
       .globalDefaultModFont(12px, 400, @black);
@@ -64,6 +65,7 @@
   }//Blocks End
   &-nat{
     margin-top: 10px;
+    padding-bottom: 20px;
     text-align: center;
     & > div:first-child{
       line-height: 24px;
@@ -74,4 +76,12 @@
       .globalDefaultModFont(24px, 900, @black);
     }
   }
+}
+
+.au-hr {
+  border: none;
+  height: 1px;
+  width: 650px;
+  color: @strokeGrey;
+  background-color: @strokeGrey;
 }
