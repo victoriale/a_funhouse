@@ -8,5 +8,5 @@
 
 <div class="modal" [ngClass]="{'modal-open': expand == true}">
   <div class="modal-exit" (click)="expandModal()">X</div>
-  <media-images *ngIf="listData" [trending]="trending" [mediaImages]="listData.photos" [featureListing]="listData" (leftCircle)="left()" (rightCircle)="right()" [modal]="expand" (expand)="expandModal()"></media-images>
+  <media-images *ngIf="listData" [trending]="trending" [mediaImages]="listData.photos" [featureListing]="listData" (leftCircle)="left()" (rightCircle)="right()" [modalButton]="modal" (expand)="expandModal()"></media-images>
 </div>
