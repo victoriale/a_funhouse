@@ -66,6 +66,7 @@ export class AmenitiesListPage implements OnInit{
     if(this.category == 'restaurant'){
       this.category = 'restaurants';
     }
+
     this.titleComponentData = {
         imageURL: dataLists.image_url,
         smallText1: 'Last Updated: ',
