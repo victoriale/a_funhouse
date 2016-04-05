@@ -108,8 +108,8 @@ export class LocationPage implements OnInit {
                 data => {
                     this.profileHeaderData = data;
                     this.locData = {//USED IN MULTIPLE MODULES
-                      city:this.profileHeaderData['locationImage'],
-                      state:this._globalFunctions.stateToAP(this.profileHeaderData['locationImage']),
+                      city:this.profileHeaderData['city'],
+                      state:this._globalFunctions.stateToAP(this.profileHeaderData['state']),
                       locationImage:this.profileHeaderData['locationImage']
                     };
                 },
