@@ -31,6 +31,26 @@
       background-color: @white;
     }
   }//image ends
+  &-loc{		
+    margin-left: 20px;
+    .globalDefaultModFont(12px, 400, @black);
+    span:first-child{
+      color: @masterBrandColor;
+    }
+  }
+  &-name{
+    margin: 10px 0 0 20px;
+    .globalDefaultModFont(24px, 900, @black);
+  }
+  &-desc{
+    margin: 12px 0 0 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 500px;
+    height: 80px;
+    line-height: 16px;
+    .globalDefaultModFont(14px, 400, @black);
+  }
   &-provider{
     bottom: 0;
     margin: 0 225px;
