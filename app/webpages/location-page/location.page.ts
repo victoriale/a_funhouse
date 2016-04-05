@@ -107,6 +107,11 @@ export class LocationPage implements OnInit {
             .subscribe(
                 data => {
                     this.profileHeaderData = data;
+                    this.locData = {//USED IN MULTIPLE MODULES
+                      city:this.profileHeaderData['locationImage'],
+                      state:this._globalFunctions.stateToAP(this.profileHeaderData['locationImage']),
+                      locationImage:this.profileHeaderData['locationImage']
+                    };
                 },
                 err => {
                     console.log('Error - Location Profile Header Data: ', err);
@@ -195,7 +200,7 @@ export class LocationPage implements OnInit {
           this.locState = decodeURI(this.loc.split('_')[1]);
           this.locDisplay = decodeURI(this.locCity + ', ' + this._globalFunctions.stateToAP(this.locState));
         }
-        this.locData = {city:this.locCity, state:this._globalFunctions.stateToAP(this.locState)};
+
         this.headlineAbout = {
             title: 'About ' + this.locDisplay,
             icon: 'fa-map-marker'

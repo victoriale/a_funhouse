@@ -6,6 +6,7 @@ import {WidgetModule} from "../../modules/widget/widget.module";
 import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
 import {GlobalFunctions} from '../../global/global-functions';
+import {PaginationFooter} from '../../components/pagination-footer/pagination-footer.component';
 
 import {Observable} from 'rxjs/Rx';
 import {Control} from 'angular2/common';
@@ -16,7 +17,7 @@ declare var jQuery: any;
   selector: 'Search-page',
   templateUrl: './app/webpages/search-page/search.page.html',
   styleUrls: ['./app/global/stylesheets/master.css'],
-  directives: [ROUTER_DIRECTIVES, BackTabComponent, WidgetModule, LoadingComponent, ErrorComponent],
+  directives: [PaginationFooter, ROUTER_DIRECTIVES, BackTabComponent, WidgetModule, LoadingComponent, ErrorComponent],
   providers: [SearchService],
   inputs: ['searchResults', 'showResults']
 })
@@ -30,13 +31,14 @@ export class SearchPage implements OnInit {
     currentTotal: number = 0;
     displayData: {}; //this is what is being inputed into the DOM
     dataInput:string;
-
+    paginationParameters:Object;
+    httpSubscription: any;
+    index:number = 0;
     //resultsFound determines if results page should be shown (through ngIfs)
     public resultsFound: boolean = false;
     //isError determines if error message should be displayed
     public isError: boolean = false;
     public term: any = new Control();
-    httpSubscription: any;
 
     constructor(private _searchService: SearchService, private params: RouteParams, private _router:Router, private globalFunctions: GlobalFunctions) {
         var query = this.params.get('query');
@@ -92,10 +94,58 @@ export class SearchPage implements OnInit {
     showCurrentData() {
         //check to make sure to only run correctly if data is being shown
         if (typeof this.searchResults !== 'undefined' && typeof this.searchResults[this.tab] !== 'undefined') {
-            this.displayData = this.searchResults[this.tab];
-            this.currentTotal = this.globalFunctions.commaSeparateNumber(this.displayData['length']);
+            var totalLength = this.searchResults[this.tab];//variable to get total results number given back by api
+            this.currentTotal = this.globalFunctions.commaSeparateNumber(totalLength['length']);
+
+            this.sanitizeListofListData();// this is where the data will be sanitized for pagination
             return this.displayData;
         }
+    }
+
+    sanitizeListofListData(){
+        var data = this.searchResults[this.tab];//grab current tab the user has clicked on and start use this array to create a paginated array
+        var size = 15;
+        var sanitizedArray = [];
+        var max = Math.ceil(data.length / size);
+        var objCount = 0;
+
+        //Run through a loop the check data and generated and obj array fill with a max of size variable
+        data.forEach(function(item, index){
+          if(typeof sanitizedArray[objCount] == 'undefined'){
+            sanitizedArray[objCount] = [];
+          }
+          sanitizedArray[objCount].push(item);
+            if(item !== null  && sanitizedArray[objCount].length == size){
+              objCount++;
+            }
+        });
+
+        //display current data that user has click on and possibly the page user has declared
+        this.displayData = sanitizedArray[this.index];
+
+        //Set up parameters for pagination display
+        this.setPaginationParameters(max);
+    }
+
+    //Function to set up parameters for pagination footer
+    setPaginationParameters(max){
+        var data = this.searchResults[this.tab];
+        //Define parameters to send to pagination footer
+        this.paginationParameters = {
+            index: this.index+1,
+            max: max,
+            paginationType: 'module',
+            viewAllPage: 'Search-page',
+            // viewAllParams: {
+            //     query:
+            // }
+        }
+    }
+
+    //Function that fires when a new index is clicked on pagination footer
+    newIndex(index){
+        this.index = index-1;
+        this.showCurrentData();
     }
 
     onSubmit(event){
@@ -110,28 +160,6 @@ export class SearchPage implements OnInit {
         this.httpSubscription.unsubscribe();
         //Navigate to search page with query string
         this._router.navigate(['Search-page', {query: value}]);
-    }
-
-    //with the keyup inside the html this function will make a search call on every keystroke
-    //Unused - replaced with ngFormControl
-    searchText(event) {
-        //// console.log(event);
-        //if(event.code == 'Enter'){
-        //  this._router.navigate(['Search-page', {query: this.dataInput}]);
-        //}
-        //var input = event.target.value;
-        //this.dataInput = input;
-        ////makes sure the input is not empty and do an unneccesary call
-        //if (input != '') {
-        //  // console.log('Search page event', input);
-        //  this.searchResults = this._searchService.getSearchResults(input, 'raw')
-        //    .subscribe(
-        //    data => {
-        //      this.searchResults = this.dataModify(data);
-        //      this.showCurrentData();
-        //    }
-        //    )
-        // }//end if
     }
 
     //on page load
@@ -320,7 +348,7 @@ export class SearchPage implements OnInit {
       'zipCount': zipCount,
       'locCount': locCount,
       'total': total,
-        'maxType': maxType
+      'maxType': maxType
     };
   }
 
