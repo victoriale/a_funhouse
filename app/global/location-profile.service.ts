@@ -54,7 +54,6 @@ export class LocationProfileService{
             )
             .map(
                 data => {
-                  console.log(data.data);
                     return data.data;
                 }
             )
