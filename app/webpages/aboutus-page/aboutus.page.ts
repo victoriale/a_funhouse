@@ -34,7 +34,7 @@ export class AboutUsPage implements OnInit{
     subText2 = "Cities in United States";
     subText3 = "Real Estate Agents";
     subText4 = "Counties in United States";
-    subText_nat = "Listings Nationwide";
+    subText_nat = "Where We Are Located";
 
     mainText1 = ""; // this is for listing for sale
     mainText2 = "31,102"; // number of cities in the U.S.
