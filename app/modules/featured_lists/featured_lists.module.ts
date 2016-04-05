@@ -118,7 +118,7 @@ export class FeaturedListsModule implements OnInit{
             header: 'Trending Real Estate',
             title: this.globalFunctions.camelCaseToRegularCase(data.listName),
             hding1: this.globalFunctions.toTitleCase(listData.fullStreetAddress),
-            hding2: this.globalFunctions.toTitleCase(listData.city) + ', ' + listData.stateOrProvince + ' ' + listData.postalCode,
+            hding2: this.globalFunctions.toTitleCase(listData.city) + ', ' + this.globalFunctions.stateToAP(listData.stateOrProvince) + ' ' + listData.postalCode,
             detail1: heading2,
             detail2: listData.listPrice === null ? '' : 'Asking Price: ',
             detail3: listData.listPrice === null ? '' : '$' + this.globalFunctions.commaSeparateNumber(listData.listPrice),

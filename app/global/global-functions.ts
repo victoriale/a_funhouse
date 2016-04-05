@@ -6,14 +6,16 @@ export class GlobalFunctions{
     //Transforms a string to titlecase
     toTitleCase = function(str){
         return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-    }
+    };
 
     //Transforms a phone number to a human readable format
     //Formats
     // 10 character length (000) 000-0000
     // 7 character legnth 000-0000
     formatPhoneNumber(val){
+      if(isNaN(val) == false){
         var val = val.toString();
+      }
         var numberLength = val.length;
 
         if(numberLength === 10){
@@ -92,7 +94,65 @@ export class GlobalFunctions{
             WY: 'Wyoming'
         };
         return stateName[state];
-    }
+    };
+
+    // Converts State Postal to AP Abbreviation
+    stateToAP = function(state) {
+        var stateAP = {
+            AL: 'Ala.',
+            AK: 'Alaska',
+            AZ: 'Ariz.',
+            AR: 'Ark.',
+            CA: 'Calif.',
+            CO: 'Colo.',
+            CT: 'Conn.',
+            DE: 'Del.',
+            DC: 'District of Columbia',
+            FL: 'Fla.',
+            GA: 'Ga.',
+            HI: 'Hawaii',
+            ID: 'Idaho',
+            IL: 'Ill.',
+            IN: 'Ind.',
+            IA: 'Iowa',
+            KS: 'Kan.',
+            KY: 'Ky.',
+            LA: 'La.',
+            ME: 'Maine',
+            MD: 'Md.',
+            MA: 'Mass.',
+            MI: 'Mich.',
+            MN: 'Minn.',
+            MS: 'Miss.',
+            MO: 'Mo.',
+            MT: 'Mont.',
+            NE: 'Neb.',
+            NV: 'Nev.',
+            NH: 'N.H.',
+            NJ: 'N.J.',
+            NM: 'N.M.',
+            NY: 'N.Y.',
+            NC: 'N.C.',
+            ND: 'N.D.',
+            OH: 'Ohio',
+            OK: 'Okla.',
+            OR: 'Ore.',
+            PA: 'Pa.',
+            RI: 'R.I.',
+            SC: 'S.C.',
+            SD: 'S.D.',
+            TN: 'Tenn.',
+            TX: 'Texas',
+            UT: 'Utah',
+            VT: 'Vt.',
+            VA: 'Va.',
+            WA: 'Wash.',
+            WV: 'W.Va.',
+            WI: 'Wis.',
+            WY: 'Wyo.'
+        };
+        return stateAP[state];
+    };
 
     //Transforms camel case to regular case (Words split up and capitalized)
     camelCaseToRegularCase = function(str){
@@ -103,7 +163,7 @@ export class GlobalFunctions{
             // uppercase the first character
             .replace(/^./, function(str){ return str.toUpperCase(); })
         return str;
-    }
+    };
 
     convertListName = function(val){
         var names = {

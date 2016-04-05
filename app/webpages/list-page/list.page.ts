@@ -36,6 +36,7 @@ export class ListPage implements OnInit{
 
     public listName: string;
     public listState: string;
+    public listStateAP: string;
     public listCity: string;
     public listLimit: string = "20";
     public listPage: string;
@@ -66,6 +67,8 @@ export class ListPage implements OnInit{
     public listPageName: any;
 
     public geoExists: boolean = false;
+
+    viewCheck: string;
 
     //Filter params for FYH
     filterState: string;
@@ -296,6 +299,7 @@ export class ListPage implements OnInit{
             }
 
             this.listState = this._params.get('state');
+            this.listStateAP = this.globalFunctions.stateToAP(this.listState);
             this.listCity = this._params.get('city');
             this.listCity = this.globalFunctions.toTitleCase(this.listCity);
             this.listPage = this._params.get('page');
@@ -533,11 +537,20 @@ export class ListPage implements OnInit{
       this.selectSqFeet = this._params.get('squareFeet');
       this.selectLot = this._params.get('lotSize');
 
+      this.viewCheck = this._params.get('viewType');
+
       setTimeout(() => {
+          // Set filter dropdown values based on url params
           jQuery('#select-bedrooms').val(this.selectBedrooms);
           jQuery('#select-bathrooms').val(this.selectBathrooms);
           jQuery('#select-square-feet').val(this.selectSqFeet);
           jQuery('#select-lot-size').val(this.selectLot);
+
+          // Set sort dropdown values based on url param
+          jQuery('#sort_by').val(this.sort);
+
+          // Add selected class to menu item based on viewType param
+          jQuery('#' + this.viewCheck).addClass('selected');
       }, 400);
       //console.log(this);
   }

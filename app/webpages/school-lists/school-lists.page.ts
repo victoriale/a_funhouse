@@ -86,7 +86,7 @@ export class SchoolListsPage implements OnInit{
        val.location_address  = 'N/A';
        val.location_city = globeFunc.toTitleCase(metaData.city);
        val.location_state = metaData.state;
-       val.zipCode ==  "";
+       val.zipCode =  "";
        val.locationUrl = {loc: metaData.city + '_' + metaData.state};
      } else {
        val.location_city = globeFunc.toTitleCase(val['city']);
@@ -104,8 +104,8 @@ export class SchoolListsPage implements OnInit{
   ngOnInit(){
     this.locState = decodeURI(this._params.get('state'));
     this.locCity = decodeURI(this._params.get('city'));
-    this.location = this.globalFunctions.toTitleCase(this.locCity) + ', ' + this.locState;
-    this.moduleTitle = "Schools In and Around " + this.location;
+    this.location = this.globalFunctions.toTitleCase(this.locCity) + ', ' + this.globalFunctions.stateToAP(this.locState);
+    this.moduleTitle = "Schools in and Around " + this.location;
     this.getData();
   }
 

@@ -1,6 +1,6 @@
 import {Injectable} from 'angular2/core';
 import {Http, Headers} from 'angular2/http';
-
+import {GlobalFunctions} from '../global/global-functions';
 @Injectable()
 
 export class LocationProfileService{
@@ -8,7 +8,7 @@ export class LocationProfileService{
     public apiToken: string = 'BApA7KEfj';
     public headerName: string = 'X-SNT-TOKEN';
 
-    constructor(public http: Http){
+    constructor(public http: Http, public globFunc: GlobalFunctions){
 
     }
 
@@ -42,7 +42,7 @@ export class LocationProfileService{
     getLocationProfile(city, state){
         //Configure HTTP Headers
         var headers = this.setToken();
-
+        city = this.globFunc.toTitleCase(city);
         city = encodeURI(city);
         state = encodeURI(state);
 

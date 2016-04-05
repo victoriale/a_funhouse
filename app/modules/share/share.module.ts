@@ -47,18 +47,14 @@ export class ShareModule implements OnInit{
           if(this.profileType == 'LocationPage') {
             var paramLocation: string = this._params.get('loc');
             var paramCity: string = this.globalFunctions.toTitleCase(this.locData.city);
-            paramCity = this.globalFunctions.toTitleCase(paramCity.replace(/%20/g, " "));
+            paramCity = paramCity.replace(/%20/g, " ");
             var paramState: string = this.locData.state;
-            this._locationService.getLocationProfile(paramCity, paramState).subscribe(data => {
-              this.share = 'Share This Location Below:';
-              this.mainImageURL = data.locationImage;
-            })
+            this.share = 'Share This Location Below:';
+            this.mainImageURL = this.locData.locationImage;
           }else if(this.profileType === 'ProfilePage') {
-            this._listingService.getListingProfile(this._params.get('address')).subscribe(data => {
-              this.share = 'Share This Listing Below:';
-              this.mainImageURL = data.listingImage;
-          })
-        }
+            this.share = 'Share This Listing Below:';
+            this.mainImageURL = this.locData.listingImage;
+          }
     }
     ngOnInit(){
         this.getData();
