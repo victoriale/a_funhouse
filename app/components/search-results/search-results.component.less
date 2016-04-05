@@ -7,13 +7,13 @@
     top: 125%;
     left: 0px;
     list-style-type: none;
-    padding: 0px 16px;
+    padding-top: 9px;
     height: auto;
     background-color: @white;
     border: 1px solid @joyfulHomeGreen;
     border-radius: 5px;
     z-index: 5;
-    font-size: 16px;
+    font-size: 18px;
     text-align: left;
     font-family: @globalFont;
 
@@ -46,17 +46,26 @@
 
     a{
       width: 100%;
-      padding: 5px 0px;
+      padding: 12px 5px 15px 15px;
       border-bottom: 1px solid @strokeGrey;
       display: block;
+      .flexDisplay;
+      .flexJustify(space-between);
+      .flexAlignItems(center);
       color: @black;
+      i{
+        font-size: 30px;
+        color: @white;
+        padding-right: 14px;
 
+      }
       &:last-child{
         border-bottom: none;
       }
 
       &:hover{
-        color: @joyfulHomeGreen;
+        color: @white;
+        background-color: @masterBrandColor;
       }
     }
 
