@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit{
     pageNum: string = "1";
     curRoute: any;
 
-    constructor(public router: Router, private window:Window) {
+    constructor(public router: Router, public window:Window) {
        this.directoryVisible = false;
 
         this.router.root

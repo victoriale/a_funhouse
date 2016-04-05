@@ -50,7 +50,7 @@
                         <featured-lists-module *ngIf="featuredListData" [featuredListData]="featuredListData"></featured-lists-module>
 
                         <!--Share Module-->
-                        <share-module></share-module>
+                        <share-module *ngIf="profileHeaderData" [locData]="profileHeaderData"></share-module>
                         <!--Like Us On FB Module-->
                         <section *ngIf="!partnerCheck">
                           <like-us-module></like-us-module>
