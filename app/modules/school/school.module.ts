@@ -73,11 +73,13 @@ export class SchoolModule implements OnInit{
       var schoolData = data['meta'];
       var elementaryData = data.elementary[this.index];
       var schoolName =  this.globalFunctions.toTitleCase(elementaryData.school_name);
+      schoolName = schoolName.replace("Elementary", "Elem");
+      schoolName = schoolName.replace("Elem", "Elementary");
       this.listData = {
         hasHoverNoSubImg: false,
         header: "What Schools are in the Area?",
         name: schoolData.city + ', ' + schoolData.state,
-        establishment:  schoolName,
+        establishment: schoolName,
         address: elementaryData.type,
         imageUrl: schoolData.locationImage,
         url: 'School-lists-page',
