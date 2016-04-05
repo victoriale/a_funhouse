@@ -115,7 +115,7 @@ export class MediaImages implements OnInit {
 
       newImageArray[objCount].push({id:(i%5), image:images[i]});
 
-      if(newImageArray[objCount].length == 5){
+      if(newImageArray[objCount].length == 5 && (i != totalImgs -1)){
         objCount++;
       }
     }
