@@ -19,7 +19,7 @@ declare var jQuery: any;
 export class ContactUsPage implements OnInit{
     //PLACEHOLDERS
     full_name = "John Smith";
-    email = "johnSmith@sntmedia.com";
+    email = "email@domain.com";
     text_area = "Detailed description of your question here...";
     title_data: {};
     submissionform: any;
