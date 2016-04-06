@@ -63,7 +63,7 @@ export class HeaderComponent implements OnInit{
         { "listName": "Least expensive homes with waterfront", "listUrl": "Homes-with-waterfront-least-expensive" },
         { "listName": "Largest homes", "listUrl": "Homes-largest" },
         { "listName": "Most expensive homes", "listUrl": "Homes-most-expensive" },
-        { "listName": "Least Expensive Homes", "listUrl": "Homes-least-expensive" },
+        { "listName": "Least expensive homes", "listUrl": "Homes-least-expensive" },
         { "listName": "Least expensive homes with a swimming pool", "listUrl": "Homes-with-pool-least-expensive" },
         { "listName": "Least expensive brick houses", "listUrl": "Homes-brick-least-expensive" },
         { "listName": "Homes less than 5 years old", "listUrl": "Homes-less-than-5-years-old" },

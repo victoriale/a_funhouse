@@ -1,8 +1,12 @@
 <div class="info-list {{infoList.bgClass}}">
     <div class='info-imagebox'>
+      <div class="info-rank">#{{infoList.counter}}</div>
         <a [routerLink]="['../../Magazine', {addr: infoList.addressKey}, 'PropertyOverview' ]">
-            <img src='{{infoList.photos[0]}}' alt='' />
-            <div class="info-rank">#{{infoList.counter}}</div>
+            <img src='{{infoList.photos[0]}}' onerror="this.src='./app/public/placeholder-location.jpg';" />
+            <div>
+              <p>View</p>
+              <p>Profile</p>
+            </div>
         </a>
     </div>
     <div class="info-content-box">
