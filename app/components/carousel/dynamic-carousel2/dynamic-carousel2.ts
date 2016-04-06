@@ -27,7 +27,6 @@ export class DynamicCarousel2 implements OnInit{
 
   newCarousel(index){
     let item = this.carouselData[index]
-    console.log(item);
     this.data = this.carouselData[index];
   }
 

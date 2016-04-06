@@ -4,7 +4,7 @@
             <main>
                 <section class='content-main eight-col'>
                     <title-component *ngIf="titleData" [titleData]="titleData"></title-component>
-
+                    <dynamic-carousel2 [carouselData]="carouselData"></dynamic-carousel2>
                     <div *ngFor="#city of cities" class="city-list even">
                         <div class='city-imagebox'>
                             <a [routerLink]="['Location-page', {loc: city.locationUrl}]">
@@ -38,7 +38,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <hero-list-component></hero-list-component>
 
                 </section>

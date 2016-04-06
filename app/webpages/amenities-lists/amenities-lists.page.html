@@ -12,6 +12,7 @@
               <!-- <module-header [module_title]="moduleTitle"></module-header> -->
               <backtab-component></backtab-component>
               <title-component [titleData]="titleComponentData"></title-component>
+              <dynamic-carousel2 [carouselData]="carouselData"></dynamic-carousel2>
 
               <div *ngFor="#item of amenitiesData; #i=odd" class="al" [ngClass]="{'odd': i == true}">
                 <div class="al-imagebox">

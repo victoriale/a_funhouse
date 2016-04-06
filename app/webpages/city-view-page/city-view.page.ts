@@ -6,12 +6,15 @@ import {TitleComponent} from "../../components/title/title.component";
 import {CityViewService} from "../../global/geo-location.service";
 import {HeroListComponent} from "../../components/hero/hero-list/hero-list.component";
 import {GlobalFunctions} from "../../global/global-functions";
+import {DynamicCarousel2} from "../../components/carousel/dynamic-carousel2/dynamic-carousel2";
+
+declare var moment: any;
 
 @Component({
     selector: 'city-view-page',
     templateUrl: './app/webpages/city-view-page/city-view.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [WidgetModule, TitleComponent, HeroListComponent , ROUTER_DIRECTIVES],
+    directives: [WidgetModule, TitleComponent, HeroListComponent, DynamicCarousel2, ROUTER_DIRECTIVES],
     providers: [CityViewService, GlobalFunctions],
 })
 
@@ -22,6 +25,7 @@ export class CityViewPage implements OnInit{
     cityStateLocation: string;
     cityView: any;
     cities: Array<any> = [];
+    carouselData: any = [];
 
     constructor(private _params: RouteParams, private _cityViewService: CityViewService, private _globalFunctions: GlobalFunctions) {}
 
@@ -29,7 +33,7 @@ export class CityViewPage implements OnInit{
         this.titleData =
             {
                 imageURL : './app/public/placeholder-location.jpg',
-                smallText1 : 'Monday, February 23, 2016',
+                smallText1 : 'Last Updated: ' + moment(new Date()).format('dddd, MMMM Do, YYYY'),
                 smallText2 : ''+ this.cityLocation + ', ' + this._globalFunctions.stateToAP(this.stateLocation) + '',
                 heading1 : 'Nearby Cities',
                 heading2 : '',
@@ -47,7 +51,7 @@ export class CityViewPage implements OnInit{
                 () => this.dataToArray()
         );
     }
-
+    
     dataToArray() {
         for( var i in this.cityView ) {
             if (this.cityView.hasOwnProperty(i) && i != 'citiesCount') {
