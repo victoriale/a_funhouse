@@ -2,13 +2,17 @@
     <div class='detailed-imagebox'>
         <a [routerLink]="[list.url1, list.url2, list.url3]">
             <img src='{{list.img}}' onerror="this.src='./app/public/placeholder-location.jpg';" alt='' />
-            <div class="detailed-rank">#{{list.rank}}</div>
+            <div>
+              <p>View</p>
+              <p>Profile</p>
+            </div>
         </a>
+        <div class="detailed-rank">#{{list.rank}}</div>
     </div>
     <div class="detailed-content-box">
         <div class="detailed-content-row-wrapper">
             <div class="detailed-content-row1">
-                <a>
+                <a [routerLink]="[list.locUrl1, list.locUrl2]">
                     <span class="detailed-location"><i class="{{list.icon}}"></i>{{list.location}}</span>
                 </a>
                 <p class="detailed-title">{{list.title}}</p>
