@@ -6,18 +6,7 @@
                     <div class="page-container au">
                         <backtab-component></backtab-component>
                         <title-component [titleData]="titleData"></title-component>
-
-                        <div class="au-heading">
-                          <div><b>What is </b>{{pageName}}?</div>
-                          <div class = "au-heading-dropdown">
-                            Now Reading:
-                            <select (change) ='nav($event)' id="sortBy" style = "margin-top: 1px;">
-                              <option value="About">About Us</option>
-                              <option value="Disclaimer">Disclaimer</option>
-                              <option value="Contact">Contact Us</option>
-                            </select>
-                          </div>
-                        </div>
+                        <au-header-component [title]="auHeaderTitle"></au-header-component>
                         <hr class="au-hr" />
                         <div class="au-desc">
                             <p>We created Wichita, Kan. -based {{pageName}} in July, 2015 to connect prospective home buyers with genuine, personable and informative real estate listings.</p>
