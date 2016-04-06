@@ -72,6 +72,11 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
         component: ListOfListsPage,
     },
     {
+        path: '/list-of-lists/:state',
+        name: 'List-of-lists-page-state',
+        component: ListOfListsPage,
+    },
+    {
         path: '/amenities-lists-page/:listname/:state/:city',
         name: 'Amenities-lists-page',
         component: AmenitiesListPage,

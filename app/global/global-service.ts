@@ -74,12 +74,11 @@ export class listViewPage {
     if(sort !== null){
       query.sort = sort;
     }
-
     var fullUrl = this.protocolToUse + this.apiUrl +"/list";
 
     //list/homesAtLeast5YearsOld/KS/Wichita/empty/10/1
     for (var q in query) {
-      if (query[q] == null || query[q] == 'empty') {
+      if (query[q] == 'Null' || query[q] == null || query[q] == 'empty') {
         query[q] = '/empty';
       } else {
         query[q] = '/' + query[q];
@@ -156,6 +155,19 @@ export class ListOfListPage {
         return data.data;
       }
       )
+  }
+
+  getListOfListPageState(state) {
+    //Nearby Cities call (Returns city, state, distance)
+    return this.http.get(this.apiUrl + '/list/listOfLists/' + state)
+        .map(
+            res => res.json()
+        )
+        .map(
+            data => {
+              return data.data;
+            }
+        )
   }
 }
 
