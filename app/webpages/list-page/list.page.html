@@ -62,8 +62,8 @@
                     <!--<div class="lv-sort-filter">Filter <i class="fa fa-cog"></i></div>-->
                 </div>
 
-                <!-- Tooltip -->
-                <div *ngIf="listName !== 'filter'" class="lv-tooltip">
+                <!-- Tooltip currently commented out due to UI review-->
+                <!-- <div *ngIf="listName !== 'filter'" class="lv-tooltip">
                     <div class="lv-tooltip-header">
                         What is this list?
                     </div>
@@ -71,7 +71,7 @@
                         This is a list of the <span class="bold">{{totalListings}} {{listNameDisplay}}</span> in <span class="bold">{{listCity}}, {{listStateAP}}</span>
                         <span *ngIf="sort">This list is sorted by <span class="bold">{{sortType}}</span> from <span class="bold">{{sortDirection}}</span>.</span>
                     </div>
-                </div>
+                </div> -->
                 <div *ngIf="showFilters && !noListings" class="property-options">
                     <div class="type-title">
                         <span>Must Haves</span>
