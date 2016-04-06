@@ -183,7 +183,8 @@ export class GlobalPage {
 @Injectable()
 
 export class DynamicWidgetCall {
-  public apiUrl: string = "http://dw.synapsys.us/list_creator_api.php";
+  //public apiUrl: string = "http://dw.synapsys.us/list_creator_api.php";
+  public apiUrl: string = "http://108.170.11.234:190/list_creator_api.php";
 
   constructor(public http: Http) { }
   //Function to set custom headers
