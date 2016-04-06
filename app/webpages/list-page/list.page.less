@@ -103,9 +103,24 @@
     width: 337px;
     margin: 0 1px 2px 1px;
     position: relative;
+    &-placeHolder{
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
     &:hover &-overlay{
       display:block;
       border:2px solid @masterBrandColor;
+      box-shadow: inset 0 0 0 1000px rgba(68, 178, 36, 0.75);
+      color:@white;
+      .flexDisplay;
+      .flexDirection(column);
+      .flexJustify(space-between);
+    }
+    &:hover &-details{
+      display:none;
+    }
+    &:hover &-shade{
       box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0);
     }
     &-overlay{
@@ -113,38 +128,32 @@
       width:100%;
       height:100%;
       display:none;
-
-    }
-    &-shade{
-      position:absolute;
-      width:100%;
-      height:100%;
-      box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.4);
-    }
-    &:hover &-shade{
-      box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0);
-
-    }
-    &-placeHolder{
-      width: 100%;
-      height: 100%;
-      position: absolute;
+      font-size:22px;
+      padding: 4.5em 2.9em 5.1em 2.9em;
+      text-align: center;
+      div:first-child{
+        font-size:30px;
+        font-weight: bold;
+        margin:auto;
+      }
+      div:nth-child(2){
+        margin:auto;
+        width:100%;
+      }
+      div:nth-child(3){
+        margin:auto;
+      }
     }
     &-button{
-      position: absolute;
-      right: 7px;
-      top: 7px;
       width: 140px;
       height: 35px;
-      background-color: @strokeGrey;
+      border:1px solid @white;
       border-radius: 5px;
       text-align: center;
       color: @white;
       padding-top: 0.5em;
-      &:hover{
-        cursor: pointer;
-        background-color: @masterBrandColor;
-      }
+      font-size:16px;
+      margin:auto;
     }
     &-details{
       .globalDefaultModFont(24px, 400, @white);
