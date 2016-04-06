@@ -158,13 +158,12 @@ export class FeaturedListsModule implements OnInit{
               state: listData.stateOrProvince,
               city: listData.city
             },
-            title3: 'Similar Top 10 Lists',
+            title3: 'Similar Statewide Lists',
             icon3: 'fa-th-large',
             desc3: '',
-            url3: 'List-of-lists-page',
+            url3: 'List-of-lists-page-state',
             paramOptions3: {
-              state: listData.stateOrProvince,
-              city: listData.city
+              state: listData.stateOrProvince
             },
         }
     }
