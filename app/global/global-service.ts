@@ -14,7 +14,7 @@ import {Http, Headers} from 'angular2/http';
 
 export class PartnerHeader {
   public protocolToUse: string = (location.protocol == "https:") ? "https" : "http";
-  public apiUrl: string = '://apireal.synapsys.us/listhuv/?action=get_partner_data&domain=';
+  public apiUrl: string = '://dev-real-api.synapsys.us/listhuv/?action=get_partner_data&domain=';
 
   constructor(public http: Http) {
 
@@ -183,8 +183,7 @@ export class GlobalPage {
 @Injectable()
 
 export class DynamicWidgetCall {
-  //public apiUrl: string = "http://dw.synapsys.us/list_creator_api.php";
-  public apiUrl: string = "http://108.170.11.234:190/list_creator_api.php";
+  public apiUrl: string = "http://dw.synapsys.us/list_creator_api.php";
 
   constructor(public http: Http) { }
   //Function to set custom headers
