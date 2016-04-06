@@ -411,6 +411,8 @@ export class ListPage implements OnInit{
       newData['url1'] = "../../Magazine";
       newData['url2'] = {addr:val.addressKey};
       newData['url3'] = "PropertyOverview";
+      newData['locUrl1'] = "Location-page";
+      newData['locUrl2'] = {loc: val.city + "_" + val.stateOrProvince};
 
       var carData = {
         heading:'Featured Listing',
@@ -418,11 +420,13 @@ export class ListPage implements OnInit{
         listing_price: "$"+val.listPrice,
         listing_area: livingArea + " sqft",
         listing_addr1: val.fullStreetAddress + ' ',
-        listing_addr2:val.loc + ' ' + val.postalCode,
+        listing_addr2: val.loc + ' ' + val.postalCode,
       };
       carData['url1'] = "../../Magazine";
       carData['url2'] = {addr:val.addressKey};
       carData['url3'] = "PropertyOverview";
+      carData['locUrl1'] = "Location-page";
+      carData['locUrl2'] = {loc: val.city + "_" + val.stateOrProvince};
 
       carouselData.push(carData);
       listData.push(newData);
@@ -438,7 +442,7 @@ export class ListPage implements OnInit{
     this.listData = listData;
     this.carouselData = carouselData;
 
-    //console.log('ListData', this.listData);
+    // console.log('ListData', this.listData);
     // console.log('carouselData', this.carouselData);
   }//END OF TRANSFORM FUNCTION
 
