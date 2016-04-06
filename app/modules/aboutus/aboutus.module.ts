@@ -53,7 +53,7 @@ export class AboutUsModule{
         this.logo = './app/public/myhousekit_logo.png';
       }
       this.header = this.pageName + ' Disclaimer';
-      this.mainText = 'This site is powered by '+this.pageName+'. Ideas and opinions presented on this website are for informational and educational purposes only,and do not reflect the opinions of '+this.pageName+', or any of its alliates, subsidiaries or partners.';
+      this.mainText = 'This site is powered by '+this.pageName+'. Ideas and opinions presented on this website are for informational and educational purposes only, and do not reflect the opinions of '+this.pageName+', or any of its alliates, subsidiaries or partners.';
       this.currentYear = new Date().getFullYear();
       this.providerText = this.currentYear+' Data provided by ListHub';
       this.module_title = 'Learn More About ' + this.pageName;
