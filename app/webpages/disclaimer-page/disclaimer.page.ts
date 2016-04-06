@@ -8,39 +8,25 @@ import {WidgetModule} from "../../modules/widget/widget.module";
 import {Router,ROUTER_DIRECTIVES} from 'angular2/router';
 import {Injector} from 'angular2/core';
 import {WebApp} from '../../app-layout/app.layout';
+import {AuHeaderComponent} from '../../components/au-header/au-header.component';
 
 @Component({
     selector: 'Disclaimer-page',
     templateUrl: './app/webpages/disclaimer-page/disclaimer.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [BackTabComponent, TitleComponent, WidgetModule, ROUTER_DIRECTIVES],
+    directives: [BackTabComponent, TitleComponent, AuHeaderComponent, WidgetModule, ROUTER_DIRECTIVES],
     providers: [],
 })
 
-export class DisclaimerPage implements OnInit{
+export class DisclaimerPage implements OnInit {
     pageName = "";
     pageLink = "";
     pageLinkName = "";
-    heading = "Disclaimer";
     disclaimer = "";
     public partnerParam: string;
     public partnerID: string;
     title_data: {};
-
-    nav(event){
-      var value = event.target.value;
-      switch(value){
-        case "About":
-          this._router.navigate(['Aboutus-page']);
-          break;
-        case "Contact":
-          this._router.navigate(['Contactus-page']);
-          break;
-        case "Disclaimer":
-          this._router.navigate(['Disclaimer-page']);
-          break;
-      }
-    }
+    auHeaderTitle = "<b>Disclaimer</b>";
 
     constructor(private injector:Injector, private _router: Router) {
         // Scroll page to top to fix routerLink bug
