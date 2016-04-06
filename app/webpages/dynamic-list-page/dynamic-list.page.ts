@@ -4,7 +4,6 @@
 import {Component, OnInit, OnChanges} from 'angular2/core';
 import {RouteParams} from 'angular2/router';
 
-import {DynamicCarousel} from '../../components/carousel/dynamic-carousel/dynamic-carousel';
 import {DropdownComponent} from '../../components/buttons/sort-by/sort-by.component';
 import {ListMenuComponent} from '../../components/list-menu/list-menu.component';
 import {DynamicListComponent} from '../../components/dynamic-list/dynamic-list.component';
@@ -14,12 +13,14 @@ import {GlobalFunctions} from "../../global/global-functions";
 import {TitleComponent} from '../../components/title/title.component';
 import {PaginationFooter} from "../../components/pagination-footer/pagination-footer.component";
 import {ErrorComponent} from "../../components/error/error.component";
+import {BackTabComponent} from "../../components/backtab/backtab.component";
+import {DynamicCarousel2} from "../../components/carousel/dynamic-carousel2/dynamic-carousel2";
 
 @Component({
   selector: 'List-page',
   templateUrl: './app/webpages/dynamic-list-page/dynamic-list.page.html',
   styleUrls: ['./app/global/stylesheets/master.css'],
-  directives: [PaginationFooter, TitleComponent, DynamicListComponent, DynamicCarousel, DropdownComponent, ListMenuComponent, WidgetModule, ErrorComponent],
+  directives: [PaginationFooter, TitleComponent, DynamicListComponent, DynamicCarousel2, DropdownComponent, ListMenuComponent, WidgetModule, ErrorComponent, BackTabComponent],
   providers: [DynamicWidgetCall],
 })
 
@@ -95,6 +96,7 @@ export class DynamicListPage implements OnInit {
     var listData = [];
     var carouselData = [];
     originalData.forEach(function(val, i){
+      //console.log("val"+i+":", val);
       var newData = {
           img : val.img,
           list_sub : val.list_sub,
@@ -115,12 +117,15 @@ export class DynamicListPage implements OnInit {
       newData['url'] = val.primary_url;
 
       var carData = {
-        heading:val.title,
-        image_url:val.img,
-        listing_price:val.value,
-        listing_area:val.tag,
-        listing_addr1:val.list_sub.split(' | ')[0],
-        listing_addr2:val.list_sub.split(' | ')[1],
+        textDetails:    [
+                        "<i class='fa fa-map-marker'></i> " + val.title,
+                        "<small>"+val.list_sub+"</small>",
+                        "&nbsp;",
+                        val.value,
+                        "<small>"+val.tag+"</small>"
+                        ],
+        index:          val.rank,
+        image_url1:     val.img
       }
       carData['button_url'] = val.primary_url;
 
