@@ -30,7 +30,12 @@ export class magazineModule {
             this.showMagazine = true;
         }
         var globeFunc = this.globalFunctions;
-        this.magImg = this.listingData['listingImage'];//
+        this.magImg = this.listingData['listingImage'];
+        //This is needed for IE.
+        setTimeout(() => {
+            jQuery('.module-wrapper').css("background", 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.75)), url(' + this.magImg + ')');
+        }, 100);
+        //end
         address = this.listingData['paramAddress'];
         this.data = {
             address: address.replace(/-/g, ' '),
