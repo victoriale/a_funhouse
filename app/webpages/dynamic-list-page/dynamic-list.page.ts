@@ -15,6 +15,7 @@ import {PaginationFooter} from "../../components/pagination-footer/pagination-fo
 import {ErrorComponent} from "../../components/error/error.component";
 import {BackTabComponent} from "../../components/backtab/backtab.component";
 import {DynamicCarousel2} from "../../components/carousel/dynamic-carousel2/dynamic-carousel2";
+import {Router} from "angular2/router";
 
 @Component({
   selector: 'List-page',
@@ -33,9 +34,12 @@ export class DynamicListPage implements OnInit {
   sw: any;
   input: any;
   isError: boolean = false;
+  curRoute: any;
+  partnerID: string;
+  isMyHouseKit: any;
 
 
-  constructor(private _params: RouteParams, private _globalFunctions: GlobalFunctions, private dynamicWidget: DynamicWidgetCall) {
+  constructor(private _params: RouteParams, private _globalFunctions: GlobalFunctions, private dynamicWidget: DynamicWidgetCall, public router: Router) {
     //parse out needed values from single param
       //this.dynamicWidget.getWidgetData('1', 103, 'TAMPA')//EXAMPLE NEED TO MAKE IT DYNAMIC TO ACCEPT ANYTHING
       //query USED TO look something like this "tw=1&sw=103&input=TAMPA";
@@ -55,7 +59,29 @@ export class DynamicListPage implements OnInit {
 
     // Scroll page to top to fix routerLink bug
     window.scrollTo(0, 0);
+
+    this.router.root
+        .subscribe(
+            route => {
+                this.curRoute = route;
+                var partnerID = this.curRoute.split('/');
+                var hostname = window.location.hostname;
+                var partnerIdExists = partnerID[0] != '' ? true : false;
+
+                var myhousekit = /myhousekit/.test(hostname);
+                //checks if partner ID exists
+                if(!partnerIdExists){
+                    this.partnerID = null;
+                    this.isMyHouseKit = false;
+                }else{
+                    this.partnerID = partnerID[0];
+                    this.isMyHouseKit = true;
+                }
+                this.getDynamicList();
+            }
+        )
   }
+
 
   getDynamicList() {// GET DATA FROM GLOBAL SERVICE
     //EXAMPLE
@@ -95,6 +121,7 @@ export class DynamicListPage implements OnInit {
     var originalData = data.data;
     var listData = [];
     var carouselData = [];
+    var partnerID = this.partnerID;
     originalData.forEach(function(val, i){
       //console.log("val"+i+":", val);
       var newData = {
@@ -116,6 +143,8 @@ export class DynamicListPage implements OnInit {
       };
       newData['url'] = val.primary_url;
 
+      // format the url depending on if partner page or not
+      let generatedUrl = partnerID.length ? val.partner_url.replace(/\{partner\}/, partnerID) : val.primary_url
       var carData = {
         textDetails:    [
                         "<i class='fa fa-map-marker'></i> " + val.title,
@@ -124,8 +153,11 @@ export class DynamicListPage implements OnInit {
                         val.value,
                         "<small>"+val.tag+"</small>"
                         ],
+        callToAction:   "Want more detailed information?",
+        buttonLabel:    "<span></span> <span>View Profile</span> <i class='fa fa-angle-right'></i>",
         index:          val.rank,
-        image_url1:     val.img
+        imageUrl1:      val.img,
+        linkUrl1:       generatedUrl
       }
       carData['button_url'] = val.primary_url;
 
@@ -140,7 +172,6 @@ export class DynamicListPage implements OnInit {
   }//END OF TRANSFORM FUNCTION
 
   ngOnInit() {
-    this.getDynamicList();
   }
 
 }
