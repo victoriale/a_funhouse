@@ -62,16 +62,6 @@
                     <!--<div class="lv-sort-filter">Filter <i class="fa fa-cog"></i></div>-->
                 </div>
 
-                <!-- Tooltip currently commented out due to UI review-->
-                <!-- <div *ngIf="listName !== 'filter'" class="lv-tooltip">
-                    <div class="lv-tooltip-header">
-                        What is this list?
-                    </div>
-                    <div *ngIf="totalListings && listNameDisplay" class="lv-tooltip-description">
-                        This is a list of the <span class="bold">{{totalListings}} {{listNameDisplay}}</span> in <span class="bold">{{listCity}}, {{listStateAP}}</span>
-                        <span *ngIf="sort">This list is sorted by <span class="bold">{{sortType}}</span> from <span class="bold">{{sortDirection}}</span>.</span>
-                    </div>
-                </div> -->
                 <div *ngIf="showFilters && !noListings" class="property-options">
                     <div class="type-title">
                         <span>Must Haves</span>
@@ -143,6 +133,20 @@
             </section>
         </section>
         <div class="four-col">
+          <!-- Tooltip currently commented out due to UI review-->
+          <div class="lv-result-summary">
+            Property Listings for {{listCity}}, {{listStateAP}} | <span class="bold">{{totalListings}} Results</span>
+          </div>
+          <div *ngIf="showTooltip" class="lv-tooltip">
+            <div class="lv-tooltip-header">
+                What is this page?
+                <span class="lv-tooltip-header-cancel" (click)="closeTooltip()" title="Close"><i class="fa fa-remove"></i></span>
+            </div>
+            <div *ngIf="totalListings && listNameDisplay" class="lv-tooltip-description">
+                This is a list of the <span class="bold">{{totalListings}} {{listNameDisplay | lowercase}}</span> in <span class="bold">{{listCity}}, {{listStateAP}}</span>
+                <span *ngIf="sort">This list is sorted by <span class="bold">{{sortType}}</span> from <span class="bold">{{sortDirection}}</span>.</span>
+            </div>
+          </div> 
           <widget-module></widget-module>
         </div>
       </main>
