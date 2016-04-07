@@ -13,6 +13,7 @@ import {LocationProfileService} from '../../global/location-profile.service';
 import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
 import {TitleComponent} from '../../components/title/title.component';
+import {DynamicCarousel2} from "../../components/carousel/dynamic-carousel2/dynamic-carousel2";
 
 declare var moment: any;
 
@@ -20,12 +21,13 @@ declare var moment: any;
     selector: 'Amenities-list-page',
     templateUrl: './app/webpages/amenities-lists/amenities-lists.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [WidgetModule, moduleHeader, HeroListComponent, ROUTER_DIRECTIVES, LoadingComponent, BackTabComponent, ErrorComponent, TitleComponent],
+    directives: [WidgetModule, moduleHeader, HeroListComponent, ROUTER_DIRECTIVES, LoadingComponent, BackTabComponent, ErrorComponent, TitleComponent, DynamicCarousel2],
     providers: [LocationProfileService]
 })
 
 export class AmenitiesListPage implements OnInit{
   paramAddress: string;
+  data: any;
   address: string;
   amenitiesListingsData: any;
   name: string;
@@ -37,6 +39,7 @@ export class AmenitiesListPage implements OnInit{
   public locState: string;
   public profileType: string;
   public titleComponentData: {};
+  carouselData: any = [];
   private amenitiesData: any;
   providerUrl = 'http://www.yelp.com/';
   providerLogo = './app/public/amenities_yelp.png';
@@ -61,20 +64,23 @@ export class AmenitiesListPage implements OnInit{
   }
 
   dataFormatter(data){
+    var counter = 1;
+    if(!data) return false;
+    this.titleComponentData = {
+        imageURL: './app/public/joyfulhome_house.png',
+        smallText1: 'Last Updated: ' + moment(new Date()).format('dddd, MMMM Do, YYYY'),
+        smallText2: decodeURI(this._params.get('city')) + ', ' + decodeURI(this._params.get('state')),
+        heading1: this.globalFunctions.toTitleCase(this.category) + ' in and around ' + decodeURI(this._params.get('city')) + ', ' + decodeURI(this._params.get('state')),
+        icon: 'fa fa-map-marker',
+        hasHover: false
+   }//end data input for title component
+
     var dataLists = data[this.category]['businesses'];
     var globalFunc = this.globalFunctions;
     if(this.category == 'restaurant'){
       this.category = 'restaurants';
     }
-
-    this.titleComponentData = {
-        imageURL: dataLists.image_url,
-        smallText1: 'Last Updated: ',
-        smallText2: decodeURI(this._params.get('city')) + ', ' + decodeURI(this._params.get('state')),
-        heading1: this.globalFunctions.toTitleCase(this.category) + ' in and around ' + decodeURI(this._params.get('city')) + ', ' + decodeURI(this._params.get('state')),
-        icon: 'fa fa-map-marker',
-        hasHover: false
-  }
+    var carouselData = [];
     dataLists.forEach(function(val, i){
       val.rank = i+1;
       val.location['address'].forEach(function(addr, index) {
@@ -84,6 +90,15 @@ export class AmenitiesListPage implements OnInit{
           val.displayAddress1 = addr + ' ';
         }
       })//end forEach to get full address
+      // Counter for rank #
+      val.displayAddress2 =  val['location']['city'] + ', ' + val['location']['state_code'];
+      val.rank = counter++;
+      // Check if even or odd for BG color class
+      if(counter % 2 == 0) {
+          val.bgClass = "even";
+      }else{
+          val.bgClass = "odd";
+      }
       val.displayAddress2 =  val['location']['city'] + ', ' + val['location']['state_code'];
       val.locationUrl = {loc: val['location']['city'] + '_' + val['location']['state_code']};
       if(typeof val.phone == 'undefined' || val.phone === 'null'){
@@ -91,7 +106,24 @@ export class AmenitiesListPage implements OnInit{
       }
       val.phone = globalFunc.formatPhoneNumber(val['phone']);
       val.categories = val.categories[0][0];
+
+      var carData = {
+        textDetails:    [
+                        val.name,
+                        "<small><i class='fa fa-map-marker'></i> "+ val.displayAddress2+"</small>",
+                        "&nbsp;",
+                        val.categories,
+                        "<small><i class='fa fa-phone-square'></i> "+val.phone+"</small>"
+                        ],
+        index:          val.rank,
+        image_url1:     val.image_url
+        //Interested in discovering more about this amenity?
+        //button: View on Yelp
+      }
+      carData['button_url'] = val.url;
+      carouselData.push(carData);
     })//end of forEach
+    this.carouselData = carouselData;
     return dataLists;
   }//end dataFormatter
 
