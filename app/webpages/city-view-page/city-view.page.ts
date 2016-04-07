@@ -65,22 +65,22 @@ export class CityViewPage implements OnInit{
                     this.cityView[i].bgClass = "odd";
                 }
                 this.cities.push(this.cityView[i]);
+
+                var carData = {
+                  textDetails:    [
+                                  this.cityView[i].city+", "+this.cityView[i].stateAP,
+                                  "<small><i class='fa fa-map-marker'></i> "+this.cityView[i].city+", "+this.cityView[i].stateAP+" | <i class='fa fa-car'></i> " + this.cityView[i].distance + "</small>",
+                                  "&nbsp;",
+                                  this.cityView[i].totalListings,
+                                  "<small>Total Listed Homes</small>"
+                                  ],
+                  callToAction:   "Interested in discovering more about this profile?",
+                  buttonLabel:    "<span></span> <span>View Profile</span> <i class='fa fa-angle-right'></i>",
+                  index:          this.cityView[i].rank,
+                  imageUrl1:      this.cityView[i].locationImage
+                }// carousel data ends
             }
-
-            var carData = {
-              textDetails:    [
-                              this.cityView[i].city+", "+this.cityView[i].stateAP,
-                              "<small><i class='fa fa-map-marker'></i> "+this.cityView[i].city+", "+this.cityView[i].stateAP+" | <i class='fa fa-car'></i> " + this.cityView[i].distance + "</small>",
-                              "&nbsp;",
-                              this.cityView[i].totalListings,
-                              "<small>Total Listed Homes</small>"
-                              ],
-              index:          this.cityView[i].rank,
-              image_url1:     './app/public/placeholder-location.jpg'
-            }// carousel data ends
-            //need to double check about the route set up in dynamic carousel component
-            carData['button_url'] = "/location/"+this.cityView[i].locationUrl;
-
+            carData['linkUrl1'] = "/location/"+this.cityView[i].locationUrl;
             carouselData.push(carData);
         }
         this.carouselData = carouselData;

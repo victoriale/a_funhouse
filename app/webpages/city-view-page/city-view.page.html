@@ -9,7 +9,7 @@
                         <div class='city-imagebox'>
                           <div class="city-rank">#{{city.rank}}</div>
                             <a [routerLink]="['Location-page', {loc: city.locationUrl}]">
-                                <img src='{{city.mainImageURL}}' onerror="this.src='./app/public/placeholder-location.jpg';" />
+                                <img src='{{city.locationImage}}' onerror="this.src='./app/public/placeholder-location.jpg';" />
                                 <div>
                                   <p>View</p>
                                   <p>Profile</p>

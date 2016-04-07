@@ -115,12 +115,12 @@ export class AmenitiesListPage implements OnInit{
                         val.categories,
                         "<small><i class='fa fa-phone-square'></i> "+val.phone+"</small>"
                         ],
+        callToAction:   "Interested in discovering more about this amenity?",
+        buttonLabel:    "<span></span> <span>View on Yelp</span> <i class='fa fa-angle-right'></i>",
         index:          val.rank,
-        image_url1:     val.image_url
-        //Interested in discovering more about this amenity?
-        //button: View on Yelp
+        imageUrl1:     val.image_url
       }
-      carData['button_url'] = val.url;
+      carData['linkUrl1'] = val.url;
       carouselData.push(carData);
     })//end of forEach
     this.carouselData = carouselData;
