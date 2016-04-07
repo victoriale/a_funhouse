@@ -150,7 +150,7 @@ export class FeaturedListsModule implements OnInit{
               city: listData.city,
               page: '1',
             },
-            title2: 'Top 10 Lists',
+            title2: 'Top City Lists',
             icon2: 'fa-trophy',
             desc2: '',
             url2: 'List-of-lists-page',
