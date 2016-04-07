@@ -13,24 +13,31 @@
   &:last-child {
     margin-bottom: 20px;
   }
+  i{
+    color:@masterBrandColor;
+  }
 }
 
 //style for large image box
 .city-imagebox {
   margin-right:25px;
-  .largeRoundImageNoHover(125px, 3px, @masterStrokeColor);
+  .largeRoundImageLinkWithHover(125px, 3px, @masterStrokeColor);
+  img{
+    position: absolute;
+  }
   .city-rank {
     .globalDefaultModFont(14px, 400, @black) !important;
     text-align: center;
-    padding-top: 12px;
-    color: #000;
+    color: @white;
     width: 42px;
     height: 42px;
     border: 1px solid @backgroundGrey;
     border-radius: 50%;
-    position: relative;
-    top: -130px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
     background-color: @white;
+    z-index: 1;
   }
 }
 
@@ -47,19 +54,12 @@
       color:@masterBrandColor;
       padding-right:5px;
     }
-    &:hover{
-      color:@masterBrandColor;
-    }
   }
 
   .city-content-row-wrapper {
     display: flex;
     .flexDirection(row);
     .flexJustify(space-between);
-  }
-
-  .city-location {
-    .globalDefaultModFont(10px, 600, @black) !important;
   }
 
   .city-address {
@@ -107,10 +107,10 @@
       margin-bottom: 0px;
     }
     &.odd {
-      background: @white;
+      background-color: @white;
     }
     &.even {
-      background: @backgroundGrey;
+      background-color: @backgroundGrey;
     }
     &:hover {
       border: 1px solid @masterBrandColor;

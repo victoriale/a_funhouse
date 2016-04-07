@@ -22,7 +22,7 @@ export class DynamicCarousel implements OnInit{
     if(typeof this.carouselData == "undefined"){
       this.carouselData = [{
         heading : "Featured Listing",
-        image_url : './app/public/placeholder_XL.png',
+        image_url : './app/public/no_photo_images/680x360_House#1.png',
         button_url : '',
         listing_price : "$###,###",
         listing_area : "#### sqft",

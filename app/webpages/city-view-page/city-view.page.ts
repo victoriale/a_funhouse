@@ -30,19 +30,6 @@ export class CityViewPage implements OnInit{
     constructor(private _params: RouteParams, private _cityViewService: CityViewService, private _globalFunctions: GlobalFunctions) {}
 
     getData() {
-        this.titleData =
-            {
-                imageURL : './app/public/placeholder-location.jpg',
-                smallText1 : 'Last Updated: ' + moment(new Date()).format('dddd, MMMM Do, YYYY'),
-                smallText2 : ''+ this.cityLocation + ', ' + this._globalFunctions.stateToAP(this.stateLocation) + '',
-                heading1 : 'Nearby Cities',
-                heading2 : '',
-                heading3 : 'For the ' + this.cityLocation + ', ' + this._globalFunctions.stateToAP(this.stateLocation) + ' Area',
-                heading4 : '',
-                icon: 'fa fa-map-marker',
-                hasHover: false
-            };
-
         // Subscribe to getNearByCities in geo-location.service.ts
         this._cityViewService.getCityView(this.stateLocation, this.cityLocation)
             .subscribe(
@@ -51,17 +38,46 @@ export class CityViewPage implements OnInit{
                 () => this.dataToArray()
         );
     }
-    
+
     dataToArray() {
+        this.titleData =
+          {
+              imageURL : './app/public/joyfulhome_house.png',
+              smallText1 : 'Last Updated: ' + moment(new Date()).format('dddd, MMMM Do, YYYY'),
+              smallText2 : ''+ this.cityLocation + ', ' + this._globalFunctions.stateToAP(this.stateLocation) + '',
+              heading1 : 'Nearby Cities',
+              heading2 : '',
+              heading3 : 'For the ' + this.cityLocation + ', ' + this._globalFunctions.stateToAP(this.stateLocation) + ' Area',
+              heading4 : '',
+              icon: 'fa fa-map-marker',
+              hasHover: false
+          };
+        var carouselData = [];
         for( var i in this.cityView ) {
             if (this.cityView.hasOwnProperty(i) && i != 'citiesCount') {
                 this.cityView[i].stateAP = this._globalFunctions.stateToAP(this.cityView[i].state);
-                this.cityView[i].counter = Number(i) + 1;
+                this.cityView[i].rank = Number(i) + 1;
                 this.cityView[i].distance = parseFloat(this.cityView[i].distance).toFixed(2);
                 this.cityView[i].locationUrl = this.cityView[i].city + '_' + this.cityView[i].state;
                 this.cities.push(this.cityView[i]);
             }
+            var carData = {
+              textDetails:    [
+                              this.cityView[i].city+", "+this.cityView[i].stateAP,
+                              "<small><i class='fa fa-map-marker'></i> "+this.cityView[i].city+", "+this.cityView[i].stateAP+" | <i class='fa fa-car'></i> " + this.cityView[i].distance + "</small>",
+                              "&nbsp;",
+                              this.cityView[i].totalListings,
+                              "<small>Total Listed Homes</small>"
+                              ],
+              index:          this.cityView[i].rank,
+              image_url1:     './app/public/placeholder-location.jpg'
+            }// carousel data ends
+            //need to double check about the route set up in dynamic carousel component
+            carData['button_url'] = "/location/"+this.cityView[i].locationUrl;
+
+            carouselData.push(carData);
         }
+        this.carouselData = carouselData;
     }
 
     ngOnInit() {
@@ -69,9 +85,7 @@ export class CityViewPage implements OnInit{
         this.stateLocation = decodeURI(this._params.get('state'));
         this.cityLocation = decodeURI(this._params.get('city'));
         this.cityStateLocation = this.stateLocation + '_' + this.cityLocation;
-
         this.getData();
-        console.log(this);
     }
 
 }
