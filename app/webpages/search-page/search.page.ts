@@ -34,6 +34,7 @@ export class SearchPage implements OnInit {
     paginationParameters:Object;
     httpSubscription: any;
     index:number = 0;
+
     //resultsFound determines if results page should be shown (through ngIfs)
     public resultsFound: boolean = false;
     //isError determines if error message should be displayed
@@ -122,9 +123,10 @@ export class SearchPage implements OnInit {
 
         //display current data that user has click on and possibly the page user has declared
         this.displayData = sanitizedArray[this.index];
-
-        //Set up parameters for pagination display
-        this.setPaginationParameters(max);
+        if(data != '' || data.length > 0){ //only show if there are results
+          //Set up parameters for pagination display
+          this.setPaginationParameters(max);
+        }
     }
 
     //Function to set up parameters for pagination footer
