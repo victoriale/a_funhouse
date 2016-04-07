@@ -107,7 +107,7 @@ export class GlobalFunctions{
             CO: 'Colo.',
             CT: 'Conn.',
             DE: 'Del.',
-            DC: 'District of Columbia',
+            DC: 'D.C.',
             FL: 'Fla.',
             GA: 'Ga.',
             HI: 'Hawaii',
