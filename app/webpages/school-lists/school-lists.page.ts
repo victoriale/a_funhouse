@@ -82,7 +82,7 @@ export class SchoolListsPage implements OnInit{
    var globeFunc = this.globalFunctions;
    if(!data) return false;
    var dataLists = data[this.category];
-   var categoryName = globeFunc.toTitleCase(this.category);
+   var categoryName = globeFunc.toTitleCase(this.category) + " School";
    console.log(categoryName);
    var metaData = data['meta'];
    var schoolImage = this.getSchoolImages();
