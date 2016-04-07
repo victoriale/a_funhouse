@@ -46,9 +46,9 @@ export class CityViewPage implements OnInit{
               imageURL : './app/public/joyfulhome_house.png',
               smallText1 : 'Last Updated: ' + moment(new Date()).format('dddd, MMMM Do, YYYY'),
               smallText2 : ''+ this.cityLocation + ', ' + this._globalFunctions.stateToAP(this.stateLocation) + '',
-              heading1 : 'Nearby Cities',
+              heading1 : 'Nearby Cities for the ' + this.cityLocation + ', ' + this._globalFunctions.stateToAP(this.stateLocation) + ' Area',
               heading2 : '',
-              heading3 : 'For the ' + this.cityLocation + ', ' + this._globalFunctions.stateToAP(this.stateLocation) + ' Area',
+              heading3 : '',
               heading4 : '',
               icon: 'fa fa-map-marker',
               hasHover: false
@@ -70,7 +70,7 @@ export class CityViewPage implements OnInit{
                 var carData = {
                   textDetails:    [
                                   this.cityView[i].city+", "+this.cityView[i].stateAP,
-                                  "<small><i class='fa fa-map-marker'></i> "+this.cityView[i].city+", "+this.cityView[i].stateAP+" | <i class='fa fa-car'></i> " + this.cityView[i].distance + "</small>",
+                                  "<small><i class='fa fa-map-marker'></i> "+this.cityView[i].city+", "+this.cityView[i].stateAP+" | <i class='fa fa-car'></i> Distance: " + this.cityView[i].distance + " mi.</small>",
                                   "&nbsp;",
                                   this.cityView[i].totalListings,
                                   "<small>Total Listed Homes</small>"
