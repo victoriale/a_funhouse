@@ -7,6 +7,7 @@ import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
 
 declare var moment: any;
+declare var lh: any;
 
 @Component({
     selector: 'Directory-page',
@@ -61,15 +62,15 @@ export class DirectoryPage {
     //totalListingsLoaded is used to determine what is displayed on the page (loading or data) through ngIfs
     public totalListings: number;
     public totalListingsDisplayed: string;
-    public totalListingsDescription: string;    
+    public totalListingsDescription: string;
     public totalListingsLoaded: boolean = false;
     //Determines if more cities link should be displayed
     public moreCitiesAvailable: boolean = false;
     public metroArea: string;
     public showMetroAreaSection: boolean = false;
     public showAlphabeticalCityFilter: boolean = false;
-    public isPartnerSite: boolean = false; 
-    
+    public isPartnerSite: boolean = false;
+
     //Used to format 'XX of XXX Homes' string
     public listingNameSingular = "Home";
     public listingNamePlural = "Homes";
@@ -258,7 +259,7 @@ export class DirectoryPage {
 
                             this.getPaginationParameters();
                             this.setupAlphabeticalCityNavigation();
-                            
+
                             var returnArray = [];
                             var self = this;
                             data.cities.forEach(function(item, index){
@@ -304,7 +305,7 @@ export class DirectoryPage {
     //Function to format list data sent from the api for display
     formatList(data){
         var self = this;
-
+        var listhubKeys = [];//USED TO PUSH ALL KEYS FOR LISTHUB TRACKING
         var returnArray = [];
         //If input is empty exit function
         if(data.length === 0){
@@ -339,10 +340,12 @@ export class DirectoryPage {
             }else{
                 listing['bathrooms'] = item.numBedrooms + ' Bathrooms';
             }
-
+            listhubKeys.push({lkey: item.listingKey}); //send key to listhub
             returnArray.push(listing);
         });
-
+        //send array of keys for listhub to track
+        lh('submit', 'SEARCH_DISPLAY', listhubKeys);
+        
         return returnArray;
     }
 
@@ -443,7 +446,7 @@ export class DirectoryPage {
         this.setStaticData();
         this.getDirectoryData();
     }
-    
+
     setupData(data) {
       if(typeof data !== 'undefined' && data !== null && data.length !== 0){
           this.totalListings = Number(data[0].totalListings);
@@ -455,7 +458,7 @@ export class DirectoryPage {
           this.listingItems = this.formatList(data);
       }
     }
-    
+
     setupStateNavigation(data) {
       var self = this;
       var navigationArray = [];
@@ -476,11 +479,11 @@ export class DirectoryPage {
 
       self.navigationLinks = navigationArray;
     }
-      
-    setupAlphabeticalCityNavigation() {        
+
+    setupAlphabeticalCityNavigation() {
         var navigationArray = [];
         var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-        var self = this;        
+        var self = this;
 
         //Build alphabet array for navigation links
         for ( var i in alphabet ) {
