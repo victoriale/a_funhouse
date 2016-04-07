@@ -323,9 +323,11 @@ export class DirectoryPage {
 
     //Function to format list data sent from the api for display
     formatList(data){
+      console.log(data);
         var self = this;
-
+        var listhubKeys = [];//USED TO PUSH ALL KEYS FOR LISTHUB TRACKING
         var returnArray = [];
+
         //If input is empty exit function
         if(data.length === 0){
             return data;
@@ -359,10 +361,11 @@ export class DirectoryPage {
             }else{
                 listing['bathrooms'] = item.numBedrooms + ' Bathrooms';
             }
-
+            listhubKeys.push({lkey: item.listingKey}); //send key to listhub
             returnArray.push(listing);
         });
-
+        // console.log('listhubKeys',listhubKeys);
+        // console.log('returnArray',returnArray);
         return returnArray;
     }
 

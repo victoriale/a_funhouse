@@ -27,6 +27,8 @@ import {GlobalFunctions} from '../../global/global-functions';
 import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
 
+declare var lh: any;
+
 @Component({
     selector: 'profile-page',
     templateUrl: './app/webpages/profile-page/profile.page.html',
@@ -97,6 +99,8 @@ export class ProfilePage implements OnInit{
             .subscribe(
                 data => {
                     this.profileHeaderData = data;
+                    var listingKey = data['listingKey']; //send key to listhub
+                    lh('submit', 'DETAIL_PAGE_VIEWED', {lkey:listingKey});
                     this.profileHeaderData['paramAddress'] = this.paramAddress;
                 },
                 err => {
