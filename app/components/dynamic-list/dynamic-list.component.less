@@ -1,4 +1,5 @@
 .detailed-list{
+  background: @backgroundGrey;
   width:100%;
   height:155px;
   border-bottom: 1px solid @listgreyborder;
@@ -8,17 +9,17 @@
   .flexDirection(row);
   display: flex;
   &.odd {
-    background: @backgroundGrey
+    background: @white;
   }
   &.even {
-    background: @white;
+    background: @backgroundGrey;
   }
 }
 
 //style for large image box
 .detailed-imagebox {
   margin-right:25px;
-  .largeRoundImageNoHover(125px, 3px, @masterStrokeColor);
+  .largeRoundImageNoHover(125px, 2px, @masterStrokeColor);
   .detailed-rank {
     text-align: center;
     padding: 0px 5px;

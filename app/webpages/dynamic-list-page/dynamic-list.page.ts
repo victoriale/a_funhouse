@@ -105,7 +105,9 @@ export class DynamicListPage implements OnInit {
   transformData(data){// TRANSFORM DATA TO PLUG INTO COMPONENTS
     if(!data) return false;
     //grab data for the header
+      console.log("DATA!!!!",data);
     this.headerData = {
+        // Old placeholder image:  http://www.myinvestkit.com/StateImages/Location_National.jpg
         imageURL : './app/public/joyfulhome_house.png',
         smallText1 : data.date,
         smallText2 : ' United States of America',
@@ -123,7 +125,10 @@ export class DynamicListPage implements OnInit {
     var carouselData = [];
     var partnerID = this.partnerID;
     originalData.forEach(function(val, i){
-      //console.log("val"+i+":", val);
+
+      // format the url depending on if partner page or not
+      let generatedUrl = partnerID.length ? val.partner_url.replace(/\{partner\}/, partnerID) : val.primary_url
+
       var newData = {
           img : val.img,
           list_sub : val.list_sub,
@@ -140,11 +145,9 @@ export class DynamicListPage implements OnInit {
           market:'',
           rank: val.rank,
           desc: val.desc,
+          url: generatedUrl
       };
-      newData['url'] = val.primary_url;
 
-      // format the url depending on if partner page or not
-      let generatedUrl = partnerID.length ? val.partner_url.replace(/\{partner\}/, partnerID) : val.primary_url
       var carData = {
         textDetails:    [
                         "<i class='fa fa-map-marker'></i> " + val.title,
@@ -159,7 +162,6 @@ export class DynamicListPage implements OnInit {
         imageUrl1:      val.img,
         linkUrl1:       generatedUrl
       }
-      carData['button_url'] = val.primary_url;
 
       carouselData.push(carData);
       listData.push(newData);
