@@ -29,11 +29,12 @@ export class ListOfListsPage implements OnInit{
     public stateLocation: string;
     public location: string;
     public isError: boolean = false;
+    public isStateOnly: boolean = false;
     listOfLists: any;
     lists: Array<any> = [];
     titleData: Object;
 
-    constructor(private _params: RouteParams, private _listOfListPageService: ListOfListPage, private _globalFunctions: GlobalFunctions) {
+    constructor(private _params: RouteParams, private _listOfListPageService: ListOfListPage, private _listOfListPageServiceState: ListOfListPage, private _globalFunctions: GlobalFunctions) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }
@@ -47,7 +48,18 @@ export class ListOfListsPage implements OnInit{
                     this.isError = true;
                 },
                 () => this.transformData()
+            );
+    }
 
+    getListOfListPageState(){
+        this._listOfListPageServiceState.getListOfListPageState(this.stateLocation)
+            .subscribe(
+                listOfLists => this.listOfLists = listOfLists,
+                err => {
+                    console.log('Error: List of List Page API: ', err);
+                    this.isError = true;
+                },
+                () => this.transformData()
             );
     }
 
@@ -84,26 +96,45 @@ export class ListOfListsPage implements OnInit{
         }
 
         // Data for Title component
-        this.titleData =
-        {
-            imageURL : './app/public/joyfulhome_house.png',
-            smallText1 : 'Monday, February 23, 2016',
-            smallText2 : ' United States of America',
-            heading1 : this.cityLocation + ', '+ this._globalFunctions.stateToAP(this.stateLocation) + ' Top Lists',
-            heading2 : '',
-            heading3 : '',
-            heading4 : '',
-            icon: 'fa fa-map-marker',
-            hasHover: false
-        };
+        if (!this.isStateOnly) {
+            this.titleData =
+            {
+                imageURL: './app/public/joyfulhome_house.png',
+                smallText1: 'Monday, February 23, 2016',
+                smallText2: ' United States of America',
+                heading1: this.cityLocation + ', ' + this._globalFunctions.stateToAP(this.stateLocation) + ' Top Lists',
+                heading2: '',
+                heading3: '',
+                heading4: '',
+                icon: 'fa fa-map-marker',
+                hasHover: false
+            };
+        } else {
+            this.titleData =
+            {
+                imageURL: './app/public/joyfulhome_house.png',
+                smallText1: 'Monday, February 23, 2016',
+                smallText2: ' United States of America',
+                heading1: this._globalFunctions.fullstate(this.stateLocation) + ' Top Lists',
+                heading2: '',
+                heading3: '',
+                heading4: '',
+                icon: 'fa fa-map-marker',
+                hasHover: false
+            };
+        }
     }
 
     ngOnInit(){
         this.stateLocation = decodeURI(this._params.get('state'));
         this.cityLocation = decodeURI(this._params.get('city'));
-        this.location = this._globalFunctions.toTitleCase(this.cityLocation) + ', ' + this.stateLocation;
-
-        this.getListOfListPage();
-        console.log(this);
+        if (this.cityLocation != 'null') {
+            this.location = this._globalFunctions.toTitleCase(this.cityLocation) + ', ' + this.stateLocation;
+            this.getListOfListPage();
+        } else {
+            this.location = this.stateLocation;
+            this.isStateOnly = true;
+            this.getListOfListPageState();
+        }
     }
 }
