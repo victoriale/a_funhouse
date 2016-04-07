@@ -17,6 +17,7 @@ import {MapComponent} from '../../components/map/map.component';
 
 declare var jQuery: any;
 declare var moment: any;
+declare var lh: any;
 
 @Component({
     selector: 'List-page',
@@ -364,6 +365,7 @@ export class ListPage implements OnInit{
     var listData = [];
     var carouselData = [];
     var globeFunc = this.globalFunctions;
+    var listhubKeys = [];//USED TO PUSH ALL KEYS FOR LISTHUB TRACKING
         //Assign data to send to map component
       this.mapData = data.data;
       var self = this;
@@ -428,6 +430,7 @@ export class ListPage implements OnInit{
       carData['locUrl1'] = "Location-page";
       carData['locUrl2'] = {loc: val.city + "_" + val.stateOrProvince};
 
+      listhubKeys.push({lkey: val.listingKey});//send key to listhub
       carouselData.push(carData);
       listData.push(newData);
     });//END of forEach
@@ -442,6 +445,10 @@ export class ListPage implements OnInit{
     this.listData = listData;
     this.carouselData = carouselData;
 
+    //send array of keys for listhub to track
+    lh('submit', 'SEARCH_DISPLAY', listhubKeys);
+
+    // console.log('listhubKeys', listhubKeys);
     // console.log('ListData', this.listData);
     // console.log('carouselData', this.carouselData);
   }//END OF TRANSFORM FUNCTION

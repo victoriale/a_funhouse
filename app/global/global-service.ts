@@ -62,7 +62,7 @@ export class listViewPage {
 
   //API for listview page data
   getListData(listname, state, city, limit, page, sort) {
-    var query = {
+    var query:any  = {
       listname: listname,
       state: state,
       city: city,
