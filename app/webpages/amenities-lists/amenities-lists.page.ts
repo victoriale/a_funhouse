@@ -64,6 +64,7 @@ export class AmenitiesListPage implements OnInit{
   }
 
   dataFormatter(data){
+    var counter = 1;
     if(!data) return false;
     this.titleComponentData = {
         imageURL: './app/public/joyfulhome_house.png',
@@ -89,6 +90,15 @@ export class AmenitiesListPage implements OnInit{
           val.displayAddress1 = addr + ' ';
         }
       })//end forEach to get full address
+      // Counter for rank #
+      val.displayAddress2 =  val['location']['city'] + ', ' + val['location']['state_code'];
+      val.rank = counter++;
+      // Check if even or odd for BG color class
+      if(counter % 2 == 0) {
+          val.bgClass = "even";
+      }else{
+          val.bgClass = "odd";
+      }
       val.displayAddress2 =  val['location']['city'] + ', ' + val['location']['state_code'];
       val.locationUrl = {loc: val['location']['city'] + '_' + val['location']['state_code']};
       if(typeof val.phone == 'undefined' || val.phone === 'null'){
@@ -111,7 +121,6 @@ export class AmenitiesListPage implements OnInit{
         //button: View on Yelp
       }
       carData['button_url'] = val.url;
-
       carouselData.push(carData);
     })//end of forEach
     this.carouselData = carouselData;

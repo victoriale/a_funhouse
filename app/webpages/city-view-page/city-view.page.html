@@ -5,7 +5,7 @@
                 <section class='content-main eight-col'>
                     <title-component *ngIf="titleData" [titleData]="titleData"></title-component>
                     <dynamic-carousel2 [carouselData]="carouselData"></dynamic-carousel2>
-                    <div *ngFor="#city of cities; #i=odd" class="city-list" [ngClass]="{'odd': i == true}">
+                    <div *ngFor="#city of cities" class="city-list {{city.bgClass}}" >
                         <div class='city-imagebox'>
                           <div class="city-rank">#{{city.rank}}</div>
                             <a [routerLink]="['Location-page', {loc: city.locationUrl}]">
@@ -29,7 +29,7 @@
                                     <p class="city-market">Total Listed Homes</p>
                                 </div>
                             </div>
-                            <div class="city-content-bottom; #i=odd" [ngClass]="{'odd': i == true}">
+                            <div class="city-content-bottom {{city.bgClass}}">
                                 <div class='city-content-subbox'>
                                     <p>Want more information?</p>
                                 </div>

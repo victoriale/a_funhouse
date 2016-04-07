@@ -59,8 +59,14 @@ export class CityViewPage implements OnInit{
                 this.cityView[i].rank = Number(i) + 1;
                 this.cityView[i].distance = parseFloat(this.cityView[i].distance).toFixed(2);
                 this.cityView[i].locationUrl = this.cityView[i].city + '_' + this.cityView[i].state;
+                if(this.cityView[i].rank % 2 == 0) {
+                    this.cityView[i].bgClass = "even";
+                }else{
+                    this.cityView[i].bgClass = "odd";
+                }
                 this.cities.push(this.cityView[i]);
             }
+
             var carData = {
               textDetails:    [
                               this.cityView[i].city+", "+this.cityView[i].stateAP,
