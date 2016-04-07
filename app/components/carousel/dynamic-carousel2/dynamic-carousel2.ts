@@ -3,14 +3,13 @@ import {CircleButton} from "../../buttons/circle/circle.button";
 import {Image180} from "../../images/image-180.component";
 import {ViewEncapsulation} from "angular2/core";
 
-
 @Component({
     selector: 'dynamic-carousel2',
     templateUrl: './app/components/carousel/dynamic-carousel2/dynamic-carousel2.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [CircleButton, Image180],
     providers: [],
-    inputs: ['carouselData'],
+    inputs: ['carouselData','partnerID'],
     encapsulation: ViewEncapsulation.None
 })
 
@@ -21,12 +20,15 @@ export class DynamicCarousel2 implements OnInit{
   callToAction: string = "Want more detailed information?";
   cssStyle: string = "";
   hasIndex: boolean = true;
+  curRoute: any;
+  partnerIdExists: boolean = false;
+  partnerID: any;
+  isMyHouseKit: any;
 
   ngOnInit(){
   }
 
   newCarousel(index){
-    let item = this.carouselData[index]
     this.data = this.carouselData[index];
   }
 
