@@ -105,7 +105,6 @@ export class DynamicListPage implements OnInit {
   transformData(data){// TRANSFORM DATA TO PLUG INTO COMPONENTS
     if(!data) return false;
     //grab data for the header
-      console.log("DATA!!!!",data);
     this.headerData = {
         // Old placeholder image:  http://www.myinvestkit.com/StateImages/Location_National.jpg
         imageURL : './app/public/joyfulhome_house.png',
