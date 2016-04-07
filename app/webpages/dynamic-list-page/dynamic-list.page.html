@@ -6,7 +6,7 @@
           <error-component *ngIf="isError"></error-component>
           <section *ngIf="!isError" class="page-container lv">
             <backtab-component></backtab-component>
-            <title-component [titleData]="headerData"></title-component>
+            <title-component *ngIf="headerData" [titleData]="headerData"></title-component>
             <dynamic-carousel2 [carouselData]="carouselData" [partnerID]="partnerID"></dynamic-carousel2>
             <!-- <div class="lv-sort">
               <dropdown-component></dropdown-component>
