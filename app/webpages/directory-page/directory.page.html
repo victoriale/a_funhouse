@@ -20,7 +20,7 @@
                         <span *ngIf="pageType === 'zipcode'">{{paramZipcode}}</span>
                     </div>
                     <div class="directory-header-title">
-                        {{displayListTitle}}
+                        {{displayListTitle}} For Sale
                     </div>
                 </header>
 
@@ -30,22 +30,30 @@
                         {{linkTitle}}
                     </div>
                     <div class="directory-nav-links">
-                        <a [routerLink]="[item.page, item.params]" *ngFor="#item of navigationLinks; #isLast = last">
-                            {{item.title}}
-                            <span *ngIf="!isLast">|</span>
-                        </a>
-                        <span *ngIf="moreCitiesAvailable">
-                            |
+                        <span *ngFor="#item of navigationLinks; #isLast = last">
+                          <a [routerLink]="[item.page, item.params]" >
+                              {{item.title}}
+                          </a>
+                          <span class="directory-nav-separator" *ngIf="!isLast">|</span>
                         </span>
-                        <a [routerLink]="['Directory-page-state', {listTitle: paramListTitle, pageNumber: 1, state: paramState , 'allCities': true}]" *ngIf="moreCitiesAvailable" class="directory-nav-links-more">
-                            More Cities
-                        </a>
+                        <span *ngIf="moreCitiesAvailable">                            
+                          <span class="directory-nav-separator">|</span>
+                          <a [routerLink]="['Directory-page-state', {listTitle: paramListTitle, pageNumber: 1, state: paramState , 'allCities': true}]" class="directory-nav-links-more">
+                              More Cities
+                          </a>
+                        </span>
+                    </div>
+                </div>
+                
+                <div *ngIf="showMetroAreaSection" class="directory-nav">
+                    <div class="directory-nav-title">
+                      Browse <b>{{paramCity}}, {{fullState}}</b> Listings
                     </div>
                 </div>
 
                 <!-- Pagination Buttons (Hidden if totalListingsDisplayed is 0)-->
                 <div *ngIf="totalListingsDisplayed" class="directory-pagination">
-                    Showing: {{rangeDisplay}} of {{totalListingsDisplayed}}
+                    Showing: <b>{{rangeDisplay}}</b> of <b>{{totalListingsDisplayed}}</b> {{totalListingsDescription}}
                     <a [routerLink]="[pageName, nextParams]" class="directory-pagination-button" [ngClass]="{active: nextHighlighted}">
                         Next <i class="fa fa-angle-right"></i>
                     </a>
@@ -55,7 +63,7 @@
                 </div>
 
                 <!-- Directory List Data -->
-                <ul *ngIf="listingItems" class="directory-list">
+                <ul *ngIf="totalListings > 0" class="directory-list">
                     <li *ngFor="#item of listingItems" class="directory-list-item">
                         <span *ngIf="item.lastUpdated" class="line-one">
                             {{item.lastUpdated}}
@@ -92,6 +100,10 @@
                         </span>
                     </li>
                 </ul>
+                
+                <div *ngIf="totalListings == 0" class="directory-pagination">
+                  There are no {{listingNamePlural | lowercase}} in this category.
+                </div>
 
                 <!-- Pagination Buttons (Hidden if totalListingsDisplayed is 0)-->
                 <div *ngIf="totalListingsDisplayed" class="directory-pagination">
