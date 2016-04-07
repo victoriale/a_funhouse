@@ -3,6 +3,8 @@
         <div class="inner-wrapper">
             <main>
                 <section class='content-main eight-col'>
+                  <section class="page-container">
+                    <backtab-component></backtab-component>
                     <title-component *ngIf="titleData" [titleData]="titleData"></title-component>
                     <dynamic-carousel2 [carouselData]="carouselData"></dynamic-carousel2>
                     <div *ngFor="#city of cities" class="city-list {{city.bgClass}}" >
@@ -41,9 +43,8 @@
                             </div>
                         </div>
                     </div>
-
                     <hero-list-component></hero-list-component>
-
+                  </section>
                 </section>
                 <div class="four-col">
                     <widget-module></widget-module>

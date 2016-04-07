@@ -7,6 +7,7 @@ import {CityViewService} from "../../global/geo-location.service";
 import {HeroListComponent} from "../../components/hero/hero-list/hero-list.component";
 import {GlobalFunctions} from "../../global/global-functions";
 import {DynamicCarousel2} from "../../components/carousel/dynamic-carousel2/dynamic-carousel2";
+import {BackTabComponent} from "../../components/backtab/backtab.component";
 
 declare var moment: any;
 
@@ -14,7 +15,7 @@ declare var moment: any;
     selector: 'city-view-page',
     templateUrl: './app/webpages/city-view-page/city-view.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [WidgetModule, TitleComponent, HeroListComponent, DynamicCarousel2, ROUTER_DIRECTIVES],
+    directives: [WidgetModule, TitleComponent, HeroListComponent, DynamicCarousel2, BackTabComponent, ROUTER_DIRECTIVES],
     providers: [CityViewService, GlobalFunctions],
 })
 
