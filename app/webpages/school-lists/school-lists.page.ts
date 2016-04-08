@@ -13,13 +13,15 @@ import {ErrorComponent} from '../../components/error/error.component';
 import {BackTabComponent} from "../../components/backtab/backtab.component";
 import {DynamicCarousel2} from "../../components/carousel/dynamic-carousel2/dynamic-carousel2";
 import {TitleComponent} from '../../components/title/title.component';
+import {PaginationFooter} from '../../components/pagination-footer/pagination-footer.component';
+
 declare var moment: any;
 
 @Component({
     selector: 'School-list-page',
     templateUrl: './app/webpages/school-lists/school-lists.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [WidgetModule, HeroListComponent, ROUTER_DIRECTIVES, LoadingComponent, ErrorComponent, BackTabComponent, DynamicCarousel2, TitleComponent],
+    directives: [PaginationFooter, WidgetModule, HeroListComponent, ROUTER_DIRECTIVES, LoadingComponent, ErrorComponent, BackTabComponent, DynamicCarousel2, TitleComponent],
     providers: [LocationProfileService]
 })
 
@@ -34,6 +36,10 @@ export class SchoolListsPage implements OnInit{
   private schoolData: any;
   public titleComponentData: {};
   carouselData: any = [];
+  paginationParameters:Object;
+  displayData: Array<any> = [];
+  index:number = 0;
+  arraySize: number = 10;
   public isError: boolean = false;
 
   @Input() schoolDataInput: any;
@@ -48,6 +54,7 @@ export class SchoolListsPage implements OnInit{
           .subscribe(
               schoolData => {
                 this.schoolData = this.dataFormatter(schoolData);
+                this.sanitizeListofListData();
               },
               err => {
                   console.log('Error: School Page API', err);
@@ -82,8 +89,7 @@ export class SchoolListsPage implements OnInit{
    var globeFunc = this.globalFunctions;
    if(!data) return false;
    var dataLists = data[this.category];
-   var categoryName = globeFunc.toTitleCase(this.category);
-   console.log(categoryName);
+   var categoryName = globeFunc.toTitleCase(this.category) + " School";
    var metaData = data['meta'];
    var schoolImage = this.getSchoolImages();
    this.titleComponentData = {
@@ -141,7 +147,49 @@ export class SchoolListsPage implements OnInit{
    this.carouselData = carouselData;
    return dataLists;
   }//end dataFormatter
+  sanitizeListofListData(){
+      var data = this.schoolData;
+      var dataToArray = [];
+      var size = this.arraySize;
+      var sanitizedArray = [];
+      var objCount = 0;
+      for( var obj in data ){
+        dataToArray.push(data[obj]);
+      }
+      var max = Math.ceil(dataToArray.length / size);
+      //Run through a loop the check data and generated and obj array fill with a max of size variable
+      dataToArray.forEach(function(item, index){
+        if(typeof sanitizedArray[objCount] == 'undefined'){
+          sanitizedArray[objCount] = [];
+        }
+        sanitizedArray[objCount].push(item);
+          if(item !== null  && sanitizedArray[objCount].length == size){
+            objCount++;
+          }
+      });
 
+      //display current data that user has click on and possibly the page user has declared
+      this.displayData = sanitizedArray[this.index];
+      if(data != '' || data.length > 0){ //only show if there are results
+        //Set up parameters for pagination display
+        this.setPaginationParameters(max);
+      }
+  }
+  //Function to set up parameters for pagination footer
+  setPaginationParameters(max){
+      //Define parameters to send to pagination footer
+      this.paginationParameters = {
+          index: this.index+1,
+          max: max,
+          paginationType: 'module',
+          viewAllPage: 'Search-page',
+      }
+  }
+  //Function that fires when a new index is clicked on pagination footer
+  newIndex(index){
+      this.index = index-1;
+      this.sanitizeListofListData();
+  }
   ngOnInit(){
     this.locState = decodeURI(this._params.get('state'));
     this.locCity = decodeURI(this._params.get('city'));
