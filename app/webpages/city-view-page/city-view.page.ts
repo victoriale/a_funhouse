@@ -64,12 +64,12 @@ export class CityViewPage implements OnInit{
                 this.cityView[i].rank = Number(i) + 1;
                 this.cityView[i].distance = parseFloat(this.cityView[i].distance).toFixed(2);
                 this.cityView[i].locationUrl = this.cityView[i].city + '_' + this.cityView[i].state;
-                if(this.cityView[i].rank % 2 == 0) {
-                    this.cityView[i].bgClass = "even";
-                }else{
-                    this.cityView[i].bgClass = "odd";
-                }
                 this.cities.push(this.cityView[i]);
+                if(this.cityView[i].rank % 2 == 0) {
+                  this.cityView[i].bgClass = "even";
+                }else{
+                  this.cityView[i].bgClass = "odd";
+                }
 
                 var carData = {
                   textDetails:    [
@@ -100,7 +100,9 @@ export class CityViewPage implements OnInit{
         for( var obj in data ){
           dataToArray.push(data[obj]);
         }
+        dataToArray.pop();
         var max = Math.ceil(dataToArray.length / size);
+        var dataCheck = dataToArray.length - 1;
         //Run through a loop the check data and generated and obj array fill with a max of size variable
         dataToArray.forEach(function(item, index){
           if(typeof sanitizedArray[objCount] == 'undefined'){
@@ -108,6 +110,7 @@ export class CityViewPage implements OnInit{
           }
           sanitizedArray[objCount].push(item);
             if(item !== null  && sanitizedArray[objCount].length == size){
+              console.log('data here', size);
               objCount++;
             }
         });
