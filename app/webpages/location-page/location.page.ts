@@ -191,12 +191,12 @@ export class LocationPage implements OnInit {
     }
     dataCalls() {
         if(typeof this._params.get('loc') == 'undefined' || this._params.get('loc') == null){
-          this.locCity = decodeURI(this._globalFunctions.toTitleCase(this.partnerData['location']['city'][0].city));
+          this.locCity = this._globalFunctions.toTitleCase(decodeURI(this.partnerData['location']['city'][0].city));
           this.locState = decodeURI(this.partnerData['location']['city'][0].state);
           this.locDisplay = this.partnerData['location_name'];
         }else{
           this.loc = this._params.get('loc');
-          this.locCity = decodeURI(this._globalFunctions.toTitleCase(this.loc.split('_')[0]));
+          this.locCity = this._globalFunctions.toTitleCase(decodeURI(this.loc.split('_')[0])));
           this.locState = decodeURI(this.loc.split('_')[1]);
           this.locDisplay = decodeURI(this.locCity + ', ' + this._globalFunctions.stateToAP(this.locState));
         }
