@@ -29,8 +29,8 @@ export class TrendingHomes implements OnInit {
     modal:boolean = true;
     public index: number = 0;
     @Input() trendingHomesData: any;
-    image_url = './app/public/no_photo_images/onError.png';
-    
+    image_url:string ='./app/public/no_photo_images/onError.png';
+
     constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions){
       //Determine what page the profile header module is on
       this.profileType = this.router.hostComponent.name;
@@ -70,6 +70,7 @@ export class TrendingHomes implements OnInit {
       var carouselData = [];
       var globeFunc = this.globalFunctions;
       var totalLength = originalData.length;
+      var defaultImage = this.image_url;
 
       originalData.forEach(function(val, i){
         val.listPrice = globeFunc.commaSeparateNumber(val.listPrice);
@@ -86,7 +87,7 @@ export class TrendingHomes implements OnInit {
         }
         //if there is no photo put in default photo
         if(val.photos.length == 0){
-          val.photos.push(this.image_url);
+          val.photos.push(defaultImage);
         }
         var carData = {
           address:val.fullStreetAddress,
