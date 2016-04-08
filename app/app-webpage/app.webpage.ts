@@ -211,7 +211,6 @@ export class AppComponent implements OnInit {
             .subscribe(
                 nearByCities => { this.nearByCities = nearByCities },
                 err => console.log(err),
-                () => console.log('Near By Cities Success!')
             );
     }
 
