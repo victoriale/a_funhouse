@@ -29,7 +29,8 @@ export class TrendingHomes implements OnInit {
     modal:boolean = true;
     public index: number = 0;
     @Input() trendingHomesData: any;
-
+    image_url = './app/public/no_photo_images/onError.png';
+    
     constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions){
       //Determine what page the profile header module is on
       this.profileType = this.router.hostComponent.name;
