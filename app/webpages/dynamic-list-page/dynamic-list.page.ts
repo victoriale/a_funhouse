@@ -115,7 +115,7 @@ export class DynamicListPage implements OnInit {
         heading3 : '',
         heading4 : '',
         icon: 'fa fa-map-marker',
-        hasHover: true
+        hasHover: false
     };
 
     //grab data for the list
@@ -126,7 +126,7 @@ export class DynamicListPage implements OnInit {
     originalData.forEach(function(val, i){
 
       // format the url depending on if partner page or not
-      let generatedUrl = partnerID.length ? val.partner_url.replace(/\{partner\}/, partnerID) : val.primary_url
+      let generatedUrl = partnerID && partnerID.length ? val.partner_url.replace(/\{partner\}/, partnerID) : val.primary_url
 
       var newData = {
           img : val.img,

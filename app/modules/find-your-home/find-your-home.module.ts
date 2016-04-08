@@ -16,6 +16,7 @@ export class FindYourHomeModule implements OnInit{
     @Input() locDisplay;
     @Input() locState;
     @Input() locCity;
+    @Input() filterType: any  = 'empty';
 
     public module_title: string;
     public imageUrl: string;
@@ -27,7 +28,6 @@ export class FindYourHomeModule implements OnInit{
     private filterBathrooms: any  = 'empty';
     private filterSqFeet: any  = 'empty';
     private filterLot: any  = 'empty';
-    private filterType: any  = 'empty';
     private filterLimit: any = 20;
     private filterPage: any = 1;
 
@@ -38,9 +38,21 @@ export class FindYourHomeModule implements OnInit{
 
     // EVENTS
     // Get selected radio input value for property type
-    onClickPropertyType() {
-        this.filterType = jQuery('input:checked').val();
-        //console.log(this.filterType);
+    onClickPropertyType($event) {      
+      if ( $event.target.tagName === "INPUT" ) {
+        let selectedFilterRadioBtn = jQuery($event.target);
+        let newFilterType = selectedFilterRadioBtn.val();
+        if ( newFilterType === '' ) newFilterType = undefined;
+
+        if ( this.filterType !== newFilterType ) {
+          this.filterType = newFilterType;
+        }
+        else {
+          //uncheck radio button and set undefined
+          this.filterType = undefined;
+          selectedFilterRadioBtn.removeProp('checked');
+        }
+      }
     }
 
     // Get selected select value for number bedrooms
