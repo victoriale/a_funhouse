@@ -44,6 +44,7 @@ export class ListPage implements OnInit{
 
     noListings: boolean = false;
     showFilters: boolean = false;
+    showTooltip: boolean = true;
 
     //For select filters
     selectBedrooms: string;
@@ -272,6 +273,7 @@ export class ListPage implements OnInit{
         // Get listname param to determine which API to call
         this.listName = this._params.get('listname');
         this.viewType = this._params.get('viewType');
+        this.showTooltip = this.listName !== 'filter';
 
         if(this.listName !== "filter"){
             //Normal Listing
@@ -537,6 +539,10 @@ export class ListPage implements OnInit{
     goBack() {
         window.history.back();
     }
+    
+  closeTooltip() {
+    this.showTooltip = false;
+  }
 
   ngOnInit() {
     this.getListView();

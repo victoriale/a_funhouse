@@ -7,7 +7,7 @@
                     <backtab-component></backtab-component>
                     <title-component *ngIf="titleData" [titleData]="titleData"></title-component>
                     <dynamic-carousel2 [carouselData]="carouselData"></dynamic-carousel2>
-                    <div *ngFor="#city of cities" class="city-list {{city.bgClass}}" >
+                    <div *ngFor="#city of displayData" class="city-list {{city.bgClass}}" >
                         <div class='city-imagebox'>
                           <div class="city-rank">#{{city.rank}}</div>
                             <a [routerLink]="['Location-page', {loc: city.locationUrl}]">
@@ -24,7 +24,7 @@
                                     <p class="city-address">{{city.city}}, {{city.stateAP}}</p>
                                     <a [routerLink]="['Location-page', {loc: city.locationUrl}]">
                                         <span class="city-type"><i class="fa fa-map-marker"></i>{{city.city}}, {{city.stateAP}}</span>
-                                    </a> | <span class="city-type"><i class="fa fa-car"></i> Distance: {{city.distance}} Miles</span>
+                                    </a> | <span class="city-type"><i class="fa fa-car"></i> Distance: {{city.distance}} mi.</span>
                                 </div>
                                 <div class="city-content-row2">
                                     <p class="city-date">{{city.totalListings}}</p>
@@ -43,6 +43,7 @@
                             </div>
                         </div>
                     </div>
+                    <pagination-footer *ngIf="paginationParameters" [paginationParameters]="paginationParameters" (newIndex)="newIndex($event)"></pagination-footer>
                     <hero-list-component></hero-list-component>
                   </section>
                 </section>
