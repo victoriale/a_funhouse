@@ -13,6 +13,8 @@ import {LocationProfileService} from '../../global/location-profile.service';
 import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
 import {TitleComponent} from '../../components/title/title.component';
+import {DynamicCarousel2} from "../../components/carousel/dynamic-carousel2/dynamic-carousel2";
+import {PaginationFooter} from '../../components/pagination-footer/pagination-footer.component';
 
 declare var moment: any;
 
@@ -20,12 +22,13 @@ declare var moment: any;
     selector: 'Amenities-list-page',
     templateUrl: './app/webpages/amenities-lists/amenities-lists.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [WidgetModule, moduleHeader, HeroListComponent, ROUTER_DIRECTIVES, LoadingComponent, BackTabComponent, ErrorComponent, TitleComponent],
+    directives: [PaginationFooter, WidgetModule, moduleHeader, HeroListComponent, ROUTER_DIRECTIVES, LoadingComponent, BackTabComponent, ErrorComponent, TitleComponent, DynamicCarousel2],
     providers: [LocationProfileService]
 })
 
 export class AmenitiesListPage implements OnInit{
   paramAddress: string;
+  data: any;
   address: string;
   amenitiesListingsData: any;
   name: string;
@@ -37,7 +40,12 @@ export class AmenitiesListPage implements OnInit{
   public locState: string;
   public profileType: string;
   public titleComponentData: {};
+  carouselData: any = [];
   private amenitiesData: any;
+  paginationParameters:Object;
+  displayData: Array<any> = [];
+  index:number = 0;
+  arraySize: number = 10;
   providerUrl = 'http://www.yelp.com/';
   providerLogo = './app/public/amenities_yelp.png';
   @Input() amenitiesNearListingData: any;
@@ -52,7 +60,10 @@ export class AmenitiesListPage implements OnInit{
   getData(){
       this._locationService.getAmenitiesData(this.locCity, this.locState)
           .subscribe(
-              amenitiesData => {this.amenitiesData = this.dataFormatter(amenitiesData)},
+              amenitiesData => {
+                this.amenitiesData = this.dataFormatter(amenitiesData);
+                this.sanitizeListofListData();
+              },
               err => {
                 console.log('Error: Amenities Page API', err);
                 this.isError = true;
@@ -61,20 +72,23 @@ export class AmenitiesListPage implements OnInit{
   }
 
   dataFormatter(data){
+    var counter = 1;
+    if(!data) return false;
+    this.titleComponentData = {
+        imageURL: './app/public/joyfulhome_house.png',
+        smallText1: 'Last Updated: ' + moment(new Date()).format('dddd, MMMM Do, YYYY'),
+        smallText2: decodeURI(this._params.get('city')) + ', ' + decodeURI(this._params.get('state')),
+        heading1: this.globalFunctions.toTitleCase(this.category) + ' in and around ' + decodeURI(this._params.get('city')) + ', ' + decodeURI(this._params.get('state')),
+        icon: 'fa fa-map-marker',
+        hasHover: false
+   }//end data input for title component
+
     var dataLists = data[this.category]['businesses'];
     var globalFunc = this.globalFunctions;
     if(this.category == 'restaurant'){
       this.category = 'restaurants';
     }
-
-    this.titleComponentData = {
-        imageURL: dataLists.image_url,
-        smallText1: 'Last Updated: ',
-        smallText2: decodeURI(this._params.get('city')) + ', ' + decodeURI(this._params.get('state')),
-        heading1: this.globalFunctions.toTitleCase(this.category) + ' in and around ' + decodeURI(this._params.get('city')) + ', ' + decodeURI(this._params.get('state')),
-        icon: 'fa fa-map-marker',
-        hasHover: false
-  }
+    var carouselData = [];
     dataLists.forEach(function(val, i){
       val.rank = i+1;
       val.location['address'].forEach(function(addr, index) {
@@ -84,6 +98,15 @@ export class AmenitiesListPage implements OnInit{
           val.displayAddress1 = addr + ' ';
         }
       })//end forEach to get full address
+      // Counter for rank #
+      val.displayAddress2 =  val['location']['city'] + ', ' + val['location']['state_code'];
+      val.rank = counter++;
+      // Check if even or odd for BG color class
+      if(counter % 2 == 0) {
+          val.bgClass = "even";
+      }else{
+          val.bgClass = "odd";
+      }
       val.displayAddress2 =  val['location']['city'] + ', ' + val['location']['state_code'];
       val.locationUrl = {loc: val['location']['city'] + '_' + val['location']['state_code']};
       if(typeof val.phone == 'undefined' || val.phone === 'null'){
@@ -91,10 +114,69 @@ export class AmenitiesListPage implements OnInit{
       }
       val.phone = globalFunc.formatPhoneNumber(val['phone']);
       val.categories = val.categories[0][0];
+
+      var carData = {
+        textDetails:    [
+                        val.name,
+                        "<small><i class='fa fa-map-marker'></i> "+ val.displayAddress2+"</small>",
+                        "&nbsp;",
+                        val.categories,
+                        "<small><i class='fa fa-phone-square'></i> "+val.phone+"</small>"
+                        ],
+        callToAction:   "Interested in discovering more about this amenity?",
+        buttonLabel:    "<span></span> <span>View on Yelp</span> <i class='fa fa-angle-right'></i>",
+        index:          val.rank,
+        imageUrl1:      val.image_url
+      }
+      carData['linkUrl1'] = val.url;
+      carouselData.push(carData);
     })//end of forEach
+    this.carouselData = carouselData;
     return dataLists;
   }//end dataFormatter
+  sanitizeListofListData(){
+      var data = this.amenitiesData;
+      var dataToArray = [];
+      var size = this.arraySize;
+      var sanitizedArray = [];
+      var objCount = 0;
+      for( var obj in data ){
+        dataToArray.push(data[obj]);
+      }
+      var max = Math.ceil(dataToArray.length / size);
+      //Run through a loop the check data and generated and obj array fill with a max of size variable
+      dataToArray.forEach(function(item, index){
+        if(typeof sanitizedArray[objCount] == 'undefined'){
+          sanitizedArray[objCount] = [];
+        }
+        sanitizedArray[objCount].push(item);
+          if(item !== null  && sanitizedArray[objCount].length == size){
+            objCount++;
+          }
+      });
 
+      //display current data that user has click on and possibly the page user has declared
+      this.displayData = sanitizedArray[this.index];
+      if(data != '' || data.length > 0){ //only show if there are results
+        //Set up parameters for pagination display
+        this.setPaginationParameters(max);
+      }
+  }
+  //Function to set up parameters for pagination footer
+  setPaginationParameters(max){
+      //Define parameters to send to pagination footer
+      this.paginationParameters = {
+          index: this.index+1,
+          max: max,
+          paginationType: 'module',
+          viewAllPage: 'Search-page',
+      }
+  }
+  //Function that fires when a new index is clicked on pagination footer
+  newIndex(index){
+      this.index = index-1;
+      this.sanitizeListofListData();
+  }
   ngOnInit(){
     this.locState = decodeURI(this._params.get('state'));
     this.locCity = decodeURI(this._params.get('city'));

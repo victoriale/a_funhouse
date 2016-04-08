@@ -143,8 +143,7 @@ export class LocationProfileService{
 
           city = encodeURI(city);
           state = encodeURI(state);
-
-          return this.http.get(this.apiUrl + '/list/trending/' + state + '/' + city, {
+          return this.http.get(this.apiUrl + '/list/random/' + state + '/' + city, {
                   headers: headers
               })
               .map(
@@ -152,7 +151,7 @@ export class LocationProfileService{
               )
               .map(
                   data => {
-                      return data;
+                      return data.data;
                   }
               )
       }

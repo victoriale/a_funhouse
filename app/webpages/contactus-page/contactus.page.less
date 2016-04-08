@@ -8,6 +8,7 @@
   min-height:757px;
   padding:0 25px 0 30px;
   border-top: 1px solid @strokeGrey;
+  margin-top: 8px;
   form{
     width: 100%;
     display: inline-block;
@@ -97,10 +98,13 @@
 }
 .btn_submit{
   .globalDefaultModFont(14px, 400, @white);
+  .flexDirection(row);
+  .flexAlignItems(center);
   float: right;
   margin: 20px 25px 0 50px;
   width: 121px;
-  padding-left: 33px;
+  padding-left: 30px;
   cursor:pointer;
   border:none;
+  display: inline-block !important;
 }

@@ -14,7 +14,7 @@ import {Http, Headers} from 'angular2/http';
 
 export class PartnerHeader {
   public protocolToUse: string = (location.protocol == "https:") ? "https" : "http";
-  public apiUrl: string = '://apireal.synapsys.us/listhuv/?action=get_partner_data&domain=';
+  public apiUrl: string = '://dev-real-api.synapsys.us/listhuv/?action=get_partner_data&domain=';
 
   constructor(public http: Http) {
 
@@ -62,7 +62,7 @@ export class listViewPage {
 
   //API for listview page data
   getListData(listname, state, city, limit, page, sort) {
-    var query = {
+    var query:any  = {
       listname: listname,
       state: state,
       city: city,
@@ -74,12 +74,11 @@ export class listViewPage {
     if(sort !== null){
       query.sort = sort;
     }
-
     var fullUrl = this.protocolToUse + this.apiUrl +"/list";
 
     //list/homesAtLeast5YearsOld/KS/Wichita/empty/10/1
     for (var q in query) {
-      if (query[q] == null || query[q] == 'empty') {
+      if (query[q] == 'Null' || query[q] == null || query[q] == 'empty') {
         query[q] = '/empty';
       } else {
         query[q] = '/' + query[q];
@@ -157,6 +156,19 @@ export class ListOfListPage {
       }
       )
   }
+
+  getListOfListPageState(state) {
+    //Nearby Cities call (Returns city, state, distance)
+    return this.http.get(this.apiUrl + '/list/listOfLists/' + state)
+        .map(
+            res => res.json()
+        )
+        .map(
+            data => {
+              return data.data;
+            }
+        )
+  }
 }
 
 @Injectable()
@@ -183,7 +195,7 @@ export class GlobalPage {
 @Injectable()
 
 export class DynamicWidgetCall {
-  public apiUrl: string = "http://dw.synapsys.us/list_creator_api.php";
+  public apiUrl: string = "http://108.170.11.234:190/list_creator_api.php";
 
   constructor(public http: Http) { }
   //Function to set custom headers

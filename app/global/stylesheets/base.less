@@ -74,6 +74,7 @@ ToC
 @amenitiesGrey: #cecece;
 @partnerGrey: #e6e6e6;
 @partnerLocGrey: #333333;
+@listSeparatorGrey: #818181;
 // Box Shadow for Image Borders
 @masterLargeImageShadow: rgba(0,0,0,0.2);
 @masterSmallImageShadow: rgba(204, 204, 204, 1);
@@ -434,3 +435,19 @@ code.less-var-name-light {
 @mobileView:      ~"only screen and (max-width: 768px)";
 @tabletView:      ~"only screen and (min-width: 769px) and (max-width: 1024px)";
 @desktopView:     ~"only screen and (min-width: 1025px)";
+
+
+// clear fix
+.clearfix {
+  display: block;
+  zoom: 1;
+
+  &:after {
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}

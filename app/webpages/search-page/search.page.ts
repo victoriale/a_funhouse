@@ -27,13 +27,16 @@ export class SearchPage implements OnInit {
     searchResults: any = {};
     showResults: boolean;
     tab: string = 'address';
-    showTotal: number = 0;
-    currentTotal: number = 0;
+    showTotal: number = 0;//currently unused in html
+    tabTotal: number = 0;
+    currentTotal: string = '0';
     displayData: {}; //this is what is being inputed into the DOM
     dataInput:string;
     paginationParameters:Object;
+    paginationSize: number = 10; //set pagination size
     httpSubscription: any;
     index:number = 0;
+
     //resultsFound determines if results page should be shown (through ngIfs)
     public resultsFound: boolean = false;
     //isError determines if error message should be displayed
@@ -83,10 +86,7 @@ export class SearchPage implements OnInit {
     //used as a click event on tabs to grab selected tab
     tabTarget(event) {
         this.tab = event.target.id;
-        //Unused - replaced with ngClass functionality
-        //jQuery('.search-tab').removeClass('active').find('i').removeClass('fa fa-circle');
-        //jQuery(event.target).addClass('active').find('i').addClass('fa fa-circle');
-        //jQuery('#' + this.tab).addClass('active').find('i').addClass('fa fa-circle');
+        this.index = 0;// reset objects to 0
         this.showCurrentData();
     }
 
@@ -95,16 +95,20 @@ export class SearchPage implements OnInit {
         //check to make sure to only run correctly if data is being shown
         if (typeof this.searchResults !== 'undefined' && typeof this.searchResults[this.tab] !== 'undefined') {
             var totalLength = this.searchResults[this.tab];//variable to get total results number given back by api
-            this.currentTotal = this.globalFunctions.commaSeparateNumber(totalLength['length']);
 
             this.sanitizeListofListData();// this is where the data will be sanitized for pagination
+            if(typeof this.displayData != 'undefined' && this.displayData != null){
+              this.currentTotal = this.globalFunctions.commaSeparateNumber(this.index*this.paginationSize) + 1 + " - " + this.globalFunctions.commaSeparateNumber((this.index)*this.paginationSize + this.displayData['length']);
+            }else{
+              this.currentTotal = '0';
+            }
             return this.displayData;
         }
     }
 
     sanitizeListofListData(){
         var data = this.searchResults[this.tab];//grab current tab the user has clicked on and start use this array to create a paginated array
-        var size = 15;
+        var size = this.paginationSize;
         var sanitizedArray = [];
         var max = Math.ceil(data.length / size);
         var objCount = 0;
@@ -122,14 +126,23 @@ export class SearchPage implements OnInit {
 
         //display current data that user has click on and possibly the page user has declared
         this.displayData = sanitizedArray[this.index];
+        this.tabTotal = data.length;
 
-        //Set up parameters for pagination display
-        this.setPaginationParameters(max);
+        if(typeof this.displayData == 'undefined'){
+          this.displayData = null;
+        }
+
+
+        if(data != '' || data.length > 0){ //only show if there are results
+          //Set up parameters for pagination display
+          this.setPaginationParameters(max);
+        }else{
+          this.paginationParameters = false;
+        }
     }
 
     //Function to set up parameters for pagination footer
     setPaginationParameters(max){
-        var data = this.searchResults[this.tab];
         //Define parameters to send to pagination footer
         this.paginationParameters = {
             index: this.index+1,
@@ -314,7 +327,6 @@ export class SearchPage implements OnInit {
         this._router.navigate([location[0].page, location[0].params])
       }
     }
-
     this.showTotal = this.globalFunctions.commaSeparateNumber(total);
 
       //This determines what tab to display (Only used on initial load)

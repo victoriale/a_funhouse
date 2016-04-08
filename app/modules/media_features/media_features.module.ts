@@ -31,7 +31,7 @@ export class MediaFeatureModule implements OnInit {
   expand: boolean = false; // for modal
   modal: boolean = true;
   lastUpdated = "";
-  image_url = './app/public/placeholder_XL.png';
+  image_url = './app/public/no_photo_images/onError.png';
   featureHeading = "Features Of This Property";
   lastUpdate = "";
 
@@ -64,11 +64,19 @@ export class MediaFeatureModule implements OnInit {
     for (var feature in originalData) {
       if (originalData[feature] == null || typeof originalData[feature] == 'undefined') {
         originalData[feature] = 'N/A';
+
       }
       if (feature != 'listingImages' && feature != 'imageCount' && feature != 'listingID' && originalData[feature] != "" && originalData[feature] != null) {
         //get the date
         if (feature == 'listingDate') {
           originalData[feature] = originalData[feature].split(' ')[0];
+        }
+        if(feature == 'hasBasement'){
+          if(originalData[feature] != 'N/A'){
+            originalData[feature] = 'Yes';
+          } else {
+            originalData[feature] = 'No';
+          }
         }
         switch (feature) {
           //if feautre is any below do not push into featureHaves array
@@ -83,12 +91,6 @@ export class MediaFeatureModule implements OnInit {
             break;
           case 'listingDate':
             originalData['listingDate'] = originalData['listingDate'].split(' ')[0];
-          case 'hasBasement':
-            if(originalData.hasBasement === 'null'){
-              originalData['hasBasement'] = 'No';
-            } else {
-              originalData['hasBasement'] = 'Yes';
-            }
           //below just modify and then go to default as well
           case 'squareFeet':
             originalData['squareFeet'] = this.globalFunctions.commaSeparateNumber(originalData['squareFeet']);

@@ -10,9 +10,9 @@
                     <div *ngIf="listOfLists && !isError" class='page-container'>
                         <backtab-component></backtab-component>
                         <title-component *ngIf="titleData" [titleData]="titleData"></title-component>
-                        <list-carousel-component *ngIf="listOfLists" [lists]="lists" [cityLocation]="cityLocation" [stateLocation]="stateLocation"></list-carousel-component>
+                        <list-carousel-component *ngIf="listOfLists" [lists]="lists" [cityLocation]="cityLocation" [stateLocation]="stateLocation" [isStateOnly]="isStateOnly"></list-carousel-component>
                         <span *ngFor="#item of lists">
-                            <contentlist [data]="item" [cityLocation]="cityLocation" [stateLocation]="stateLocation"></contentlist>
+                            <contentlist [data]="item" [cityLocation]="cityLocation" [stateLocation]="stateLocation" [isStateOnly]="isStateOnly"></contentlist>
                         </span>
                         <hero-list-component></hero-list-component>
                     </div>

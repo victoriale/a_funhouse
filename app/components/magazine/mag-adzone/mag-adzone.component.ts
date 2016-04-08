@@ -26,7 +26,7 @@ export class AdzoneComponent implements OnInit {
         } else if (jQuery('#adzone').width() == 320) {
             var adUnitName = "joyfulhome_com_realestate_magazine_320x50";
         } else {
-            console.log('There be no size!');
+            // console.log('There be no size!');
             return false;
         }
 
@@ -60,7 +60,7 @@ export class AdzoneComponent implements OnInit {
         } else if (jQuery('#adzone').width() == 320) {
             var adUnitName = "joyfulhome_com_realestate_magazine_320x50";
         } else {
-            console.log('There be no size!');
+            // console.log('There be no size!');
             return false;
         }
 

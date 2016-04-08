@@ -72,6 +72,11 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
         component: ListOfListsPage,
     },
     {
+        path: '/list-of-lists/:state',
+        name: 'List-of-lists-page-state',
+        component: ListOfListsPage,
+    },
+    {
         path: '/amenities-lists-page/:listname/:state/:city',
         name: 'Amenities-lists-page',
         component: AmenitiesListPage,
@@ -180,7 +185,7 @@ export class AppComponent implements OnInit {
             .subscribe(
                 partnerScript => {
                     this.partnerData = partnerScript;
-                    console.log(this.partnerData);
+                    // console.log(this.partnerData);
                     this.partnerScript = this.partnerData['results'].header.script;
                 }
             );
@@ -206,13 +211,12 @@ export class AppComponent implements OnInit {
             .subscribe(
                 nearByCities => { this.nearByCities = nearByCities },
                 err => console.log(err),
-                () => console.log('Near By Cities Success!')
             );
     }
 
     defaultCity() {
         // Set default city and state if geo location call fails
-        console.log('Geo Location is Borked!');
+        // console.log('Geo Location is Borked!');
         this.stateLocation = "KS";
         this.cityLocation = "Wichita";
         this.cityStateLocation = this.cityLocation + '_' + this.stateLocation;

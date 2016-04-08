@@ -55,7 +55,6 @@ export class HomePage implements OnInit {
                   var curRoute = route;
                   var partnerID = curRoute.split('/');
                   var hostname = window.location.hostname;
-                  console.log(hostname);
                   var partnerIdExists = partnerID[0] != '' ? true : false;
 
                   var myhousekit = /myhousekit/.test(hostname);
@@ -110,7 +109,6 @@ export class HomePage implements OnInit {
 
     defaultCity() {
         // Set default city and state if geo location call fails
-        console.log('Geo Location is Borked!');
         this.stateLocation = "KS";
         this.stateAPLocation = this._globalFunctions.stateToAP(this.stateLocation);
         this.cityLocation = "Wichita";
