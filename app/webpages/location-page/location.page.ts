@@ -166,8 +166,7 @@ export class LocationPage implements OnInit {
         this._locationProfileService.getRecentListings(this.locCity, this.locState)
             .subscribe(
                 recentListingsData => { this.recentListingsData = recentListingsData },
-                err => console.log(err),
-                () => console.log('Recent Listings Data Acquired!')
+                err => console.log(err)
             );
     }
 
