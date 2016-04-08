@@ -5,7 +5,7 @@
       <img src="{{data.image_url}}" class="carlv-plcholder-img" />
       <div class="carlv-plcholder-details">
           <div>
-              <span>{{data.listing_price}}</span> | <span>{{data.listing_area}}</span>
+              <span>{{data.listing_price | priceFormat}}</span> | <span>{{data.listing_area}}</span>
           </div>
           <div>
               <span>{{data.listing_addr1}}</span>
