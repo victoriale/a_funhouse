@@ -93,7 +93,7 @@ export class TrendingHomes implements OnInit {
           address:val.fullStreetAddress,
           daysOnMarket:formattedDays,
           largeImage:val.photos[0],
-          price: "$"+val.listPrice,
+          price: val.listPrice,
           priceName: "SALE",
           zipCode:val.postalCode,
           city: val.city,

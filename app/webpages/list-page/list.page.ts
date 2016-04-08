@@ -24,7 +24,7 @@ declare var lh: any;
     templateUrl: './app/webpages/list-page/list.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [PhotoListComponent, ROUTER_DIRECTIVES, DetailedListComponent, ListViewCarousel, WidgetModule, PaginationFooter, LoadingComponent, ErrorComponent, MapComponent],
-    providers: [listViewPage],
+    providers: [listViewPage]
 })
 
 export class ListPage implements OnInit{
@@ -398,7 +398,7 @@ export class ListPage implements OnInit{
           numBed : val.numBedrooms + " Beds ",
           numBath: val.numBathrooms + " Baths ",
           date: formattedDate,
-          value: "$"+ val.listPrice,
+          value: val.listPrice,
           listPrice: val.listPrice,
           livingArea: val.livingArea,
           tag: livingArea + ' sqft',
@@ -420,7 +420,7 @@ export class ListPage implements OnInit{
       var carData = {
         heading:'Featured Listing',
         image_url:val.photos[0],
-        listing_price: "$"+val.listPrice,
+        listing_price: val.listPrice,
         listing_area: livingArea + " sqft",
         listing_addr1: val.fullStreetAddress + ' ',
         listing_addr2: val.loc + ' ' + val.postalCode,

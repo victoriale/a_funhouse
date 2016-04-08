@@ -102,8 +102,7 @@ export class HomePage implements OnInit {
                         }
                     }
                 },
-                err => console.log(err),
-                () => console.log('Near By Cities Success!')
+                err => console.log(err)
             );
     }
 
