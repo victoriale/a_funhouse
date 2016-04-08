@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit{
     isScrolling: boolean;
     pageNum: string = "1";
     curRoute: any;
+    partnerUrl: string;
 
     constructor(public router: Router) {
        this.directoryVisible = false;
@@ -43,6 +44,7 @@ export class HeaderComponent implements OnInit{
                     }else{
                       this.partnerID = partnerID[0];
                       this.isMyHouseKit = true;
+                      this.partnerUrl = '/'+this.partnerID+'/loc';
                     }
 
                     //check to make sure if home page is being displayed
