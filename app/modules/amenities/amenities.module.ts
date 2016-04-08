@@ -198,24 +198,24 @@ export class AmenitiesModule implements OnInit{
     }
     //On Change Call
     ngOnChanges(event){
+      if(typeof event.amenitiesData != 'undefined'){
         //Get changed input
         var currentAmenitiesData = event.amenitiesData.currentValue;
         //If the data input is valid run transform data function
         if(currentAmenitiesData !== null && currentAmenitiesData !== false) {
-
-            // Perform try catch to make sure module doesnt break page
-            try{
-                //If featured list data has no list data (length of 0) throw error to hide module
-                if(this.amenitiesData.restaurant.businesses.length === 0){
-                    throw 'No Data available for Amenities list - hiding module';
-                }
-
-                this.dataFormatter();
-            }catch(e){
-                console.log('Error - Amenities List Module ', e);
-                this.amenitiesData = undefined;
+          // Perform try catch to make sure module doesnt break page
+          try{
+            //If featured list data has no list data (length of 0) throw error to hide module
+            if(this.amenitiesData.restaurant.businesses.length === 0){
+              throw 'No Data available for Amenities list - hiding module';
             }
             this.dataFormatter();
-        }
+          }catch(e){
+            console.log('Error - Amenities List Module ', e);
+            this.amenitiesData = undefined;
+          }
+          this.dataFormatter();
+        }//end off null check
+      }//end of event check
     }
 }

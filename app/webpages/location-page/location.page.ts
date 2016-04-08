@@ -25,6 +25,7 @@ import {PartnerHeader} from "../../global/global-service";
 import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
 import {GlobalFunctions} from "../../global/global-functions";
+import {GeoLocationService} from "../../global/geo-location.service";
 
 @Component({
     selector: 'location-page',
@@ -62,7 +63,7 @@ export class LocationPage implements OnInit {
     public isError: boolean = false;
     public isChecked: boolean;
 
-    constructor(private _partnerData:PartnerHeader, private _router:Router, private _params: RouteParams, private _locationProfileService: LocationProfileService, private _listService: ListOfListPage, private _globalFunctions: GlobalFunctions) {
+    constructor(private _partnerData:PartnerHeader, private _router:Router, private _params: RouteParams, private _locationProfileService: LocationProfileService, private _listService: ListOfListPage, private _globalFunctions: GlobalFunctions, private _geoLocationService: GeoLocationService) {
 
         this._router.root
             .subscribe(
@@ -100,6 +101,17 @@ export class LocationPage implements OnInit {
             )//end of route subscribe
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
+    }
+    //Subscribe to getGeoLocation in geo-location.service.ts. On Success call getNearByCities function.
+    getGeoLocation() {
+        this._geoLocationService.getGeoLocation()
+            .subscribe(
+                geoLocationData => {
+                  this.locCity = this._globalFunctions.toTitleCase(decodeURI(geoLocationData[0].city));
+                  this.locState = decodeURI(geoLocationData[0].state);
+                },
+                err => this._router.navigate(['Error-page'])
+            );
     }
 
     getProfileHeader(){
@@ -190,11 +202,17 @@ export class LocationPage implements OnInit {
 
     }
     dataCalls() {
+      //checks if it is a partner page with no location then grab partner location infomation
         if(typeof this._params.get('loc') == 'undefined' || this._params.get('loc') == null){
-          this.locCity = this._globalFunctions.toTitleCase(decodeURI(this.partnerData['location']['city'][0].city));
-          this.locState = decodeURI(this.partnerData['location']['city'][0].state);
-          this.locDisplay = this.partnerData['location_name'];
-        }else{
+          if(this.partnerData['location']['city'].length != 0){//checks partner data being returned if there is even information for their location entered into partner database otherwise run geo location
+            this.locCity = this._globalFunctions.toTitleCase(decodeURI(this.partnerData['location']['city'][0].city));
+            this.locState = decodeURI(this.partnerData['location']['city'][0].state);
+            this.locDisplay = this.partnerData['location_name'];
+          }else{//else if no parther location data is present then grab clients geolocation
+            this.getGeoLocation();
+            this.locDisplay = decodeURI(this.locCity + ', ' + this._globalFunctions.stateToAP(this.locState));
+          }
+        }else{//end of if for partner page :loc check, start of else
           this.loc = this._params.get('loc');
           this.locCity = this._globalFunctions.toTitleCase(decodeURI(this.loc.split('_')[0]));
           this.locState = decodeURI(this.loc.split('_')[1]);
