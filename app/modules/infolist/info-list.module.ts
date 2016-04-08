@@ -6,6 +6,8 @@ import {InfoListComponent} from "../../components/info-list/info-list.component"
 import {GlobalFunctions} from "../../global/global-functions";
 import {PaginationFooter} from "../../components/pagination-footer/pagination-footer.component";
 
+declare var moment: any;
+
 @Component({
     selector: 'info-list-module',
     templateUrl: './app/modules/infolist/info-list.module.html',
@@ -24,12 +26,14 @@ export class InfoListModule implements OnInit {
     public paginationParameters: Object;
     public index: number = 1;
 
-    constructor(private _globalFunctions: GlobalFunctions){}
+    constructor(private _globalFunctions: GlobalFunctions){
+    }
 
     dataTransform() {
         var self = this;
         var counter = 1;
-        this.recentListingsData.forEach(function(val) {
+
+        this.recentListingsData.forEach(function(val,i) {
             // Format address to Title Case
             if(val.fullStreetAddress === null || val.fullStreetAddress == 'undefined') {
                 val.fullStreetAddress = "N/A";
@@ -41,16 +45,17 @@ export class InfoListModule implements OnInit {
             // Format price
             val.listPrice = self._globalFunctions.commaSeparateNumber(val.listPrice);
             // Check for no data, if data Grab date from date/timestamp
-            if(val.listingDate === null || val.listingDate == 'undefined') {
-                val.listingDate = "N/A";
+            if(val.listingDate === null || typeof val.listingDate == 'undefined') {
+              val.valTitle = "Last Updated Since";
+              var timeFallback = val.modificationTimestamp;
+              val.listingDate = moment(timeFallback.split(' ')[0], 'YYYY-MM-DD').format("M/D/YYYY");
+                if(timeFallback === null || typeof timeFallback == 'undefined'){
+                  val.valTitle = "On The Market Since";
+                  val.listingDate = 'N/A';
+                }
             }else {
-                val.listingDate = val.listingDate.split(' ')[0];
-                // Pull out year
-                val.listingDateY = val.listingDate.split('-')[0];
-                // Pull out month and day and remove leading zeros
-                val.listingDateM = val.listingDate.split('-')[1].replace(/\b0+/g, '');
-                val.listingDateD = val.listingDate.split('-')[2].replace(/\b0+/g, '');
-                val.listingDate = val.listingDateM + '/' + val.listingDateD + '/' + val.listingDateY;
+              val.valTitle = "On The Market Since";
+              val.listingDate = moment(val.listingDate.split(' ')[0], 'YYYY-MM-DD').format("M/D/YYYY");
             }
             // Counter for rank #
             val.counter = counter++;
