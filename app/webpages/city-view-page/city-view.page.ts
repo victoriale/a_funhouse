@@ -110,7 +110,6 @@ export class CityViewPage implements OnInit{
           }
           sanitizedArray[objCount].push(item);
             if(item !== null  && sanitizedArray[objCount].length == size){
-              console.log('data here', size);
               objCount++;
             }
         });
