@@ -108,8 +108,6 @@ export class MediaImages implements OnInit {
       this.expandIcon='fa-compress';
     }
 
-
-
     //loops through and put each image into groups of subImageSize for the square container
     for(var i = 0; i < totalImgs; i++){
       if(typeof newImageArray[objCount] == 'undefined'){
