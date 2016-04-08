@@ -8,6 +8,7 @@ import {HeroListComponent} from "../../components/hero/hero-list/hero-list.compo
 import {GlobalFunctions} from "../../global/global-functions";
 import {DynamicCarousel2} from "../../components/carousel/dynamic-carousel2/dynamic-carousel2";
 import {BackTabComponent} from "../../components/backtab/backtab.component";
+import {PaginationFooter} from '../../components/pagination-footer/pagination-footer.component';
 
 declare var moment: any;
 
@@ -15,7 +16,7 @@ declare var moment: any;
     selector: 'city-view-page',
     templateUrl: './app/webpages/city-view-page/city-view.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [WidgetModule, TitleComponent, HeroListComponent, DynamicCarousel2, BackTabComponent, ROUTER_DIRECTIVES],
+    directives: [PaginationFooter, WidgetModule, TitleComponent, HeroListComponent, DynamicCarousel2, BackTabComponent, ROUTER_DIRECTIVES],
     providers: [CityViewService, GlobalFunctions],
 })
 
@@ -26,8 +27,11 @@ export class CityViewPage implements OnInit{
     cityStateLocation: string;
     cityView: any;
     cities: Array<any> = [];
+    displayData: Array<any> = [];
     carouselData: any = [];
-
+    paginationParameters:Object;
+    index:number = 0;
+    arraySize: number = 10;
     constructor(private _params: RouteParams, private _cityViewService: CityViewService, private _globalFunctions: GlobalFunctions) {}
 
     getData() {
@@ -85,8 +89,52 @@ export class CityViewPage implements OnInit{
             carouselData.push(carData);
         }
         this.carouselData = carouselData;
+        this.sanitizeListofListData();
+    }
+    sanitizeListofListData(){
+        var data = this.cityView;
+        var dataToArray = [];
+        var size = this.arraySize;
+        var sanitizedArray = [];
+        var objCount = 0;
+        for( var obj in data ){
+          dataToArray.push(data[obj]);
+        }
+        var max = Math.ceil(dataToArray.length / size);
+        //Run through a loop the check data and generated and obj array fill with a max of size variable
+        dataToArray.forEach(function(item, index){
+          if(typeof sanitizedArray[objCount] == 'undefined'){
+            sanitizedArray[objCount] = [];
+          }
+          sanitizedArray[objCount].push(item);
+            if(item !== null  && sanitizedArray[objCount].length == size){
+              objCount++;
+            }
+        });
+
+        //display current data that user has click on and possibly the page user has declared
+        this.displayData = sanitizedArray[this.index];
+        if(data != '' || data.length > 0){ //only show if there are results
+          //Set up parameters for pagination display
+          this.setPaginationParameters(max);
+        }
     }
 
+    //Function to set up parameters for pagination footer
+    setPaginationParameters(max){
+        //Define parameters to send to pagination footer
+        this.paginationParameters = {
+            index: this.index+1,
+            max: max,
+            paginationType: 'module',
+            viewAllPage: 'Search-page',
+        }
+    }
+    //Function that fires when a new index is clicked on pagination footer
+    newIndex(index){
+        this.index = index-1;
+        this.sanitizeListofListData();
+    }
     ngOnInit() {
         // Get City & State from route params
         this.stateLocation = decodeURI(this._params.get('state'));
