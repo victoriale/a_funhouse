@@ -41,7 +41,7 @@
       </div>
 
       <div class="details">
-        <div>{{featureListing.price}}</div>
+        <div>{{featureListing.price | priceFormat}}</div>
         <div>{{featureListing.priceName}}</div>
       </div>
       <a *ngIf="trending" [routerLink]="[featureListing.url1, featureListing.url2]" class='mod-page-btn'>

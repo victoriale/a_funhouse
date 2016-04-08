@@ -5,6 +5,7 @@ import {Component, OnInit, Input, Output, EventEmitter} from 'angular2/core';
 import {CircleButton} from "../../components/buttons/circle/circle.button";
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {List2} from '../../global/global-interface';
+import {PriceFormatPipe} from '../../pipes/price-format.pipe';
 
 declare var jQuery : any;
 @Component({
@@ -14,7 +15,8 @@ declare var jQuery : any;
   directives: [ROUTER_DIRECTIVES, CircleButton],
   providers: [],
   inputs: ['trending', 'mediaImages', 'featureListing', 'modalButton'],
-  outputs: ['leftCircle', 'rightCircle', 'expand']
+  outputs: ['leftCircle', 'rightCircle', 'expand'],
+  pipes: [PriceFormatPipe]
 })
 
 export class MediaImages implements OnInit {

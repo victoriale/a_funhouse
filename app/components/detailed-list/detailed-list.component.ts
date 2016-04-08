@@ -1,6 +1,8 @@
 import {Component, OnInit, Input} from 'angular2/core';
 import {ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
 
+import {PriceFormatPipe} from '../../pipes/price-format.pipe';
+
 @Component({
     selector: 'detailed-list',
     templateUrl: './app/components/detailed-list/detailed-list.component.html',
@@ -8,6 +10,7 @@ import {ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
     directives: [ROUTER_DIRECTIVES],
     providers: [],
     inputs: ['listData'],
+    pipes: [PriceFormatPipe]
 })
 
 export class DetailedListComponent implements OnInit{

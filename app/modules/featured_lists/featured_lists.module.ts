@@ -121,7 +121,7 @@ export class FeaturedListsModule implements OnInit{
             hding2: this.globalFunctions.toTitleCase(listData.city) + ', ' + this.globalFunctions.stateToAP(listData.stateOrProvince) + ' ' + listData.postalCode,
             detail1: heading2,
             detail2: listData.listPrice === null ? '' : 'Asking Price: ',
-            detail3: listData.listPrice === null ? '' : '$' + this.globalFunctions.commaSeparateNumber(listData.listPrice),
+            detail3: this.globalFunctions.formatPriceNumber(listData.listPrice),
             imageUrl: listData.photos.length === 0 ? null : listData.photos[0],
             ListUrl: 'List-page',
             listParam: {
