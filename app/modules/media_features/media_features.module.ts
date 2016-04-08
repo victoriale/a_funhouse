@@ -118,7 +118,7 @@ export class MediaFeatureModule implements OnInit {
       city: originalData.city,
       state: originalData.state,
       daysOnMarket: formattedDays,
-      price: "$" + (originalData.listPrice),
+      price: originalData.listPrice,
       priceName: 'Sale Price',
       detail1: this.globalFunctions.commaSeparateNumber(originalData['squareFeet']),
       unit1: 'Sq Ft',
