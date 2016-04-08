@@ -20,6 +20,6 @@ export class trendingCarousel implements OnInit{
     ngOnInit(){
         this.dummyData();
         this.module_title = this.mod_title;
-        console.log(this);
+        // console.log(this);
     }
 }

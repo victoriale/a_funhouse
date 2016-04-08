@@ -91,7 +91,6 @@ export class ListPage implements OnInit{
 
     sortChange(event){
         var sortOption = event.target.value;
-        //console.log(sortOption);
         var self = this;
         var params: any = {
             viewType: self.viewType,
@@ -539,7 +538,7 @@ export class ListPage implements OnInit{
     goBack() {
         window.history.back();
     }
-    
+
   closeTooltip() {
     this.showTooltip = false;
   }
@@ -569,7 +568,6 @@ export class ListPage implements OnInit{
           // Add selected class to menu item based on viewType param
           jQuery('#' + this.viewCheck).addClass('selected');
       }, 400);
-      //console.log(this);
   }
 
 }

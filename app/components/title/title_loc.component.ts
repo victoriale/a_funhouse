@@ -27,7 +27,7 @@ export class TitleLocComponent implements OnInit{
                 hasHover: true
             };
         }
-        console.log(this);
+        // console.log(this);
     }
 
     ngOnInit(){
