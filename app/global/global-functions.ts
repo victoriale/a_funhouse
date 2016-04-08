@@ -37,6 +37,22 @@ export class GlobalFunctions{
         return val;
     }
 
+    //Takes a number/string and adds commas
+    formatPriceNumber(val){
+      if ( val === null || val === undefined ) {
+        return "";
+      }
+      else if ( val === 0 || val === "0" || val === "$0" ) {
+        return "N/A";
+      }
+      else if ( /(#+)/.test(val.toString()) ) {
+        return val;
+      }
+      else {
+        return "$" + this.commaSeparateNumber(val);
+      }
+    }
+
     fullstate = function(state){
         var stateName = {
             AL: 'Alabama',

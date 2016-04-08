@@ -24,7 +24,7 @@
                                     <p class="city-address">{{city.city}}, {{city.stateAP}}</p>
                                     <a [routerLink]="['Location-page', {loc: city.locationUrl}]" class="city-type">
                                         <span><i class="fa fa-map-marker"></i>{{city.city}}, {{city.stateAP}}</span>
-                                    </a> | <span><i class="fa fa-car"></i> Distance: {{city.distance}} mi.</span>
+                                    </a> | <span class="city-market"><i class="fa fa-car"></i> Distance: {{city.distance}} mi.</span>
                                 </div>
                                 <div class="city-content-row2">
                                     <p class="city-date">{{city.totalListings}}</p>
