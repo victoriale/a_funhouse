@@ -29,7 +29,8 @@ export class TrendingHomes implements OnInit {
     modal:boolean = true;
     public index: number = 0;
     @Input() trendingHomesData: any;
-
+    image_url = './app/public/no_photo_images/onError.png';
+    
     constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions){
       //Determine what page the profile header module is on
       this.profileType = this.router.hostComponent.name;
@@ -63,12 +64,13 @@ export class TrendingHomes implements OnInit {
     dataFormatter(){// TRANSFORM DATA TO PLUG INTO COMPONENTS
       //grab data for the header
       var data = this.trendingHomesData;
-
       //grab data for the list
-      var originalData = data.data;
+      var originalData = data.listData;
       var listData = [];
       var carouselData = [];
       var globeFunc = this.globalFunctions;
+      var totalLength = originalData.length;
+
       originalData.forEach(function(val, i){
         val.listPrice = globeFunc.commaSeparateNumber(val.listPrice);
         for(var obj in val){
@@ -81,6 +83,10 @@ export class TrendingHomes implements OnInit {
         //grab featured data about listing
         if(typeof val.virtualTour == 'undefined'){
           val.virtualTour = 'N/A';
+        }
+        //if there is no photo put in default photo
+        if(val.photos.length == 0){
+          val.photos.push(this.image_url);
         }
         var carData = {
           address:val.fullStreetAddress,
@@ -95,6 +101,9 @@ export class TrendingHomes implements OnInit {
           locUrl1: "Location-page",
           locUrl2: {loc: val.city + '_' +val.stateOrProvince},
           virtualTour: val.virtualTour,
+          listName: globeFunc.convertListName(data.listName),
+          totalListings: totalLength,
+          rank: i+1,
         }
         carData['url1'] = "../../Magazine";
         carData['url2'] = {addr:val.addressKey};
@@ -102,7 +111,6 @@ export class TrendingHomes implements OnInit {
 
         carouselData.push(carData);
       })//END of forEach
-
       //set to listData
       this.carouselData = carouselData;
       this.counter = 0;
@@ -125,6 +133,7 @@ export class TrendingHomes implements OnInit {
             var address = tempArr.join(' ');
             this.moduleTitle = 'Most Trending Homes Around ' + this.globalFunctions.toTitleCase(address) + ' ' + this.globalFunctions.toTitleCase(paramCity) + ', ' + paramState;
         }
+
     }
     ngOnInit(){
         this.setModuleTitle();

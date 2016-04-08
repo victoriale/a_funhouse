@@ -117,6 +117,9 @@ export class DirectoryPage {
             this.isPartnerSite = partnerID[0] != '' ? true : false;
           }
         );
+
+        // Scroll page to top to fix routerLink bug
+        window.scrollTo(0, 0);
     }
 
     //Function to set static data on the page

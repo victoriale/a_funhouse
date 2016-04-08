@@ -12,10 +12,11 @@
               <dropdown-component></dropdown-component>
               <div class="lv-sort-filter">Filter <i class="fa fa-cog"></i></div>
             </div> -->
-            <div *ngIf="listData">
-              <dynamic-list [listData]="listData"></dynamic-list>
+            <div *ngIf="displayData">
+              <dynamic-list [listData]="displayData"></dynamic-list>
             </div>
-            <pagination-footer></pagination-footer>
+            <!-- Pagination Footer -->
+            <pagination-footer *ngIf="paginationParameters" [paginationParameters]="paginationParameters" (newIndex)="newIndex($event)"></pagination-footer>
           </section>
         </section>
         <div class="four-col">

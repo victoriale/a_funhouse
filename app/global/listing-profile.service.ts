@@ -105,7 +105,6 @@ export class ListingProfileService{
         var headers = this.setToken();
 
         address = encodeURI(address);
-        // console.log('Listing Property Image Input', address);
 
         return this.http.get(this.apiUrl + '/listing/propertyImagesForListing/' + address, {
             headers: headers
@@ -125,8 +124,6 @@ export class ListingProfileService{
         var headers = this.setToken();
 
         address = encodeURI(address);
-        // console.log('Listing Amenities Nearby Input', address);
-
         return this.http.get(this.apiUrl + '/listing/amenitiesNearListing/' + address, {
             headers: headers
         })
@@ -145,8 +142,7 @@ export class ListingProfileService{
         var headers = this.setToken();
 
         address = encodeURI(address);
-
-        return this.http.get(this.apiUrl + '/list/trendingByAddress/' + address, {
+        return this.http.get(this.apiUrl + '/list/randomByAddress/' + address, {
                 headers: headers
             })
             .map(
@@ -154,7 +150,7 @@ export class ListingProfileService{
             )
             .map(
                 data => {
-                    return data;
+                    return data.data;
                 }
             )
     }

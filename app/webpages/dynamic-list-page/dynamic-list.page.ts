@@ -17,6 +17,8 @@ import {BackTabComponent} from "../../components/backtab/backtab.component";
 import {DynamicCarousel2} from "../../components/carousel/dynamic-carousel2/dynamic-carousel2";
 import {Router} from "angular2/router";
 
+declare var moment: any;
+
 @Component({
   selector: 'List-page',
   templateUrl: './app/webpages/dynamic-list-page/dynamic-list.page.html',
@@ -37,6 +39,10 @@ export class DynamicListPage implements OnInit {
   curRoute: any;
   partnerID: string;
   isMyHouseKit: any;
+  paginationSize: number = 10;
+  paginationParameters: Object;
+  displayData: {}; //this is what is being inputed into the DOM
+  index: number = 0;
 
 
   constructor(private _params: RouteParams, private _globalFunctions: GlobalFunctions, private dynamicWidget: DynamicWidgetCall, public router: Router) {
@@ -108,7 +114,8 @@ export class DynamicListPage implements OnInit {
     this.headerData = {
         // Old placeholder image:  http://www.myinvestkit.com/StateImages/Location_National.jpg
         imageURL : './app/public/joyfulhome_house.png',
-        smallText1 : data.date,
+
+        smallText1 : 'Last Updated: ' + moment(data.date).format('dddd, MMMM Do, YYYY'),
         smallText2 : ' United States of America',
         heading1 : data.title,
         heading2 : '',
@@ -130,7 +137,7 @@ export class DynamicListPage implements OnInit {
 
       var newData = {
           img : val.img,
-          list_sub : val.list_sub,
+          list_sub : "<i class='fa fa-map-marker'></i> " + val.title + ", " + val.list_sub,
           title : val.title,
           subtype : val.tag,
           numBed : '',
@@ -149,8 +156,8 @@ export class DynamicListPage implements OnInit {
 
       var carData = {
         textDetails:    [
-                        "<i class='fa fa-map-marker'></i> " + val.title,
-                        "<small>"+val.list_sub+"</small>",
+                        val.title,
+                        "<small><i class='fa fa-map-marker'></i> " +val.title + ", " + val.list_sub+"</small>",
                         "&nbsp;",
                         val.value,
                         "<small>"+val.tag+"</small>"
@@ -170,9 +177,73 @@ export class DynamicListPage implements OnInit {
     this.listData = listData;
     this.carouselData = carouselData;
 
+    this.sanitizeListofListData();
   }//END OF TRANSFORM FUNCTION
 
-  ngOnInit() {
+
+    sanitizeListofListData(){
+        var data = this.listData;  // full array
+        var size = this.paginationSize;
+        var sanitizedArray = [];
+        var max = Math.ceil(data.length / size);
+        var objCount = 0;
+
+        //Run through a loop the check data and generated and obj array fill with a max of size variable
+        data.forEach(function(item, index){
+            if(typeof sanitizedArray[objCount] == 'undefined'){
+                sanitizedArray[objCount] = [];
+            }
+            sanitizedArray[objCount].push(item);
+            if(item !== null  && sanitizedArray[objCount].length == size){
+                objCount++;
+            }
+        });
+
+        //display current data that user has click on and possibly the page user has declared
+        this.displayData = sanitizedArray[this.index];
+
+        if(typeof this.displayData == 'undefined'){
+            this.displayData = null;
+        }
+
+        if(data != '' || data.length > 0){ //only show if there are results
+            //Set up parameters for pagination display
+            this.setPaginationParameters(max);
+        }else{
+            this.paginationParameters = false;
+        }
+    }
+
+    //Function to set up parameters for pagination footer
+    setPaginationParameters(max){
+        //Define parameters to send to pagination footer
+        this.paginationParameters = {
+            index: this.index+1,
+            max: max,
+            paginationType: 'module',
+            viewAllPage: 'Widget-page',
+            // viewAllParams: {
+            //     query:
+            // }
+        }
+    }
+
+    //Function that fires when a new index is clicked on pagination footer
+    newIndex(index){
+        this.index = index-1;
+        this.showCurrentData();
+    }
+
+    //will run for every event that triggers, keystroke, click, tab changes and it will updated the page
+    showCurrentData() {
+        //check to make sure to only run correctly if data is being shown
+        if (typeof this.listData !== 'undefined' && typeof this.listData !== 'undefined') {
+            this.sanitizeListofListData();// this is where the data will be sanitized for pagination
+        }
+    }
+
+
+    ngOnInit() {
   }
 
 }
