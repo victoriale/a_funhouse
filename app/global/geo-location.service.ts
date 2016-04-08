@@ -14,7 +14,7 @@ export class GeoLocationService {
         if (this.cachedGeoLocation) {
             return Observable.of(this.cachedGeoLocation);
         } else {
-            return this.http.get('http://w1.synapsys.us/listhuv/?action=get_remote_addr')
+            return this.http.get('http://w1.synapsys.us/listhuv/?action=get_remote_addr2')
                 .map(
                     res => res.json()
                 )
