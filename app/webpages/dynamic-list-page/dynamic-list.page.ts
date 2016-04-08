@@ -17,6 +17,8 @@ import {BackTabComponent} from "../../components/backtab/backtab.component";
 import {DynamicCarousel2} from "../../components/carousel/dynamic-carousel2/dynamic-carousel2";
 import {Router} from "angular2/router";
 
+declare var moment: any;
+
 @Component({
   selector: 'List-page',
   templateUrl: './app/webpages/dynamic-list-page/dynamic-list.page.html',
@@ -108,7 +110,8 @@ export class DynamicListPage implements OnInit {
     this.headerData = {
         // Old placeholder image:  http://www.myinvestkit.com/StateImages/Location_National.jpg
         imageURL : './app/public/joyfulhome_house.png',
-        smallText1 : data.date,
+
+        smallText1 : 'Last Updated: ' + moment(data.date).format('dddd, MMMM Do, YYYY')
         smallText2 : ' United States of America',
         heading1 : data.title,
         heading2 : '',
@@ -130,7 +133,7 @@ export class DynamicListPage implements OnInit {
 
       var newData = {
           img : val.img,
-          list_sub : val.list_sub,
+          list_sub : "<i class='fa fa-map-marker'></i> " + val.title + ", " + val.list_sub,
           title : val.title,
           subtype : val.tag,
           numBed : '',
@@ -149,8 +152,8 @@ export class DynamicListPage implements OnInit {
 
       var carData = {
         textDetails:    [
-                        "<i class='fa fa-map-marker'></i> " + val.title,
-                        "<small>"+val.list_sub+"</small>",
+                        val.title,
+                        "<small><i class='fa fa-map-marker'></i> " +val.title + ", " + val.list_sub+"</small>",
                         "&nbsp;",
                         val.value,
                         "<small>"+val.tag+"</small>"
