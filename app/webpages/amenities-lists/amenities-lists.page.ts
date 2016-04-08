@@ -14,6 +14,7 @@ import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
 import {TitleComponent} from '../../components/title/title.component';
 import {DynamicCarousel2} from "../../components/carousel/dynamic-carousel2/dynamic-carousel2";
+import {PaginationFooter} from '../../components/pagination-footer/pagination-footer.component';
 
 declare var moment: any;
 
@@ -21,7 +22,7 @@ declare var moment: any;
     selector: 'Amenities-list-page',
     templateUrl: './app/webpages/amenities-lists/amenities-lists.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [WidgetModule, moduleHeader, HeroListComponent, ROUTER_DIRECTIVES, LoadingComponent, BackTabComponent, ErrorComponent, TitleComponent, DynamicCarousel2],
+    directives: [PaginationFooter, WidgetModule, moduleHeader, HeroListComponent, ROUTER_DIRECTIVES, LoadingComponent, BackTabComponent, ErrorComponent, TitleComponent, DynamicCarousel2],
     providers: [LocationProfileService]
 })
 
@@ -41,6 +42,10 @@ export class AmenitiesListPage implements OnInit{
   public titleComponentData: {};
   carouselData: any = [];
   private amenitiesData: any;
+  paginationParameters:Object;
+  displayData: Array<any> = [];
+  index:number = 0;
+  arraySize: number = 10;
   providerUrl = 'http://www.yelp.com/';
   providerLogo = './app/public/amenities_yelp.png';
   @Input() amenitiesNearListingData: any;
@@ -55,7 +60,10 @@ export class AmenitiesListPage implements OnInit{
   getData(){
       this._locationService.getAmenitiesData(this.locCity, this.locState)
           .subscribe(
-              amenitiesData => {this.amenitiesData = this.dataFormatter(amenitiesData)},
+              amenitiesData => {
+                this.amenitiesData = this.dataFormatter(amenitiesData);
+                this.sanitizeListofListData();
+              },
               err => {
                 console.log('Error: Amenities Page API', err);
                 this.isError = true;
@@ -126,7 +134,49 @@ export class AmenitiesListPage implements OnInit{
     this.carouselData = carouselData;
     return dataLists;
   }//end dataFormatter
+  sanitizeListofListData(){
+      var data = this.amenitiesData;
+      var dataToArray = [];
+      var size = this.arraySize;
+      var sanitizedArray = [];
+      var objCount = 0;
+      for( var obj in data ){
+        dataToArray.push(data[obj]);
+      }
+      var max = Math.ceil(dataToArray.length / size);
+      //Run through a loop the check data and generated and obj array fill with a max of size variable
+      dataToArray.forEach(function(item, index){
+        if(typeof sanitizedArray[objCount] == 'undefined'){
+          sanitizedArray[objCount] = [];
+        }
+        sanitizedArray[objCount].push(item);
+          if(item !== null  && sanitizedArray[objCount].length == size){
+            objCount++;
+          }
+      });
 
+      //display current data that user has click on and possibly the page user has declared
+      this.displayData = sanitizedArray[this.index];
+      if(data != '' || data.length > 0){ //only show if there are results
+        //Set up parameters for pagination display
+        this.setPaginationParameters(max);
+      }
+  }
+  //Function to set up parameters for pagination footer
+  setPaginationParameters(max){
+      //Define parameters to send to pagination footer
+      this.paginationParameters = {
+          index: this.index+1,
+          max: max,
+          paginationType: 'module',
+          viewAllPage: 'Search-page',
+      }
+  }
+  //Function that fires when a new index is clicked on pagination footer
+  newIndex(index){
+      this.index = index-1;
+      this.sanitizeListofListData();
+  }
   ngOnInit(){
     this.locState = decodeURI(this._params.get('state'));
     this.locCity = decodeURI(this._params.get('city'));

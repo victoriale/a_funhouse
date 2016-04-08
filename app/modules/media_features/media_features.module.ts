@@ -31,7 +31,7 @@ export class MediaFeatureModule implements OnInit {
   expand: boolean = false; // for modal
   modal: boolean = true;
   lastUpdated = "";
-  image_url = './app/public/no_photo_images/680x360_House#1.png';
+  image_url = './app/public/no_photo_images/onError.png';
   featureHeading = "Features Of This Property";
   lastUpdate = "";
 
