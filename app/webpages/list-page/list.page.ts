@@ -303,7 +303,7 @@ export class ListPage implements OnInit{
             this.listState = this._params.get('state');
             this.listStateAP = this.globalFunctions.stateToAP(this.listState);
             this.listCity = this._params.get('city');
-            this.listCity = this.globalFunctions.toTitleCase(this.listCity);
+            this.listCity = this.globalFunctions.toTitleCase(decodeURI(this.listCity));
             this.listPage = this._params.get('page');
 
             //list/homesAtLeast5YearsOld/KS/Wichita/empty/10/1
