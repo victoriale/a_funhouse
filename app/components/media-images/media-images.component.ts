@@ -88,8 +88,9 @@ export class MediaImages implements OnInit {
 
   //this is where the angular2 decides what is the main image
   changeMain(num){
-    this.displayCounter = (this.smallObjCounter*this.subImageSize) + num + 1;
-    this.displayCounter;
+    if(!this.trending){
+      this.displayCounter = (this.smallObjCounter*this.subImageSize) + num + 1;
+    }
     this.imageCounter = num;
     if(typeof this.smallImage == 'undefined'){
       this.smallImage = this.mediaImages[0];
