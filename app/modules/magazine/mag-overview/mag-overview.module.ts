@@ -54,7 +54,7 @@ export class MagOverviewModule implements OnInit {
             .subscribe(
                 magData => {
                     this.magOverview = magData.overview;
-                    console.log(magData);
+                    // console.log(magData);
                     var listingKey = magData.overview['listingKey'];//send key to listhub
                     lh('submit', 'DETAIL_PAGE_VIEWED', {lkey:listingKey});
                     if (typeof magData.overview.price === 'string' && magData.overview != 'undefined') {

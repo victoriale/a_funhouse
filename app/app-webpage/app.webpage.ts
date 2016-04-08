@@ -185,7 +185,7 @@ export class AppComponent implements OnInit {
             .subscribe(
                 partnerScript => {
                     this.partnerData = partnerScript;
-                    console.log(this.partnerData);
+                    // console.log(this.partnerData);
                     this.partnerScript = this.partnerData['results'].header.script;
                 }
             );
@@ -217,7 +217,7 @@ export class AppComponent implements OnInit {
 
     defaultCity() {
         // Set default city and state if geo location call fails
-        console.log('Geo Location is Borked!');
+        // console.log('Geo Location is Borked!');
         this.stateLocation = "KS";
         this.cityLocation = "Wichita";
         this.cityStateLocation = this.cityLocation + '_' + this.stateLocation;
