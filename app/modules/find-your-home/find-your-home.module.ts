@@ -100,27 +100,21 @@ export class FindYourHomeModule implements OnInit{
     }
 
     onInputFocus($event) {
-        console.log("focusing element");
         var stringVal = jQuery($event.target)[0].value;
         
-        console.log("value of element: " + stringVal);
         if ( stringVal.indexOf('.') != -1 ) {
             stringVal = this.numberToCommaNumber(stringVal.replace('$','').replace('.','').replace('M','00000').replace('K','000').replace('+',''));
         } else {
             stringVal = this.numberToCommaNumber(stringVal.replace('$','').replace('M','000000').replace('K','000').replace('+',''));
         }
-        console.log("updated value of element: " + stringVal);
         jQuery($event.target).val(stringVal);
         
-        console.log("setting jquery element to that value");
         if ( jQuery($event.target)[0].setSelectionRange ) {
             jQuery($event.target)[0].setSelectionRange(99,100);
-            console.log("setting selection range");
         }
     }
 
     onInputBlur($event) {
-      console.log("bluring element");
         var stringVal = jQuery($event.target)[0].value;
         stringVal = stringVal.replace(/,/g,'');
         var xPos = Math.round(this.logslider(Number(stringVal)/1000,1));
