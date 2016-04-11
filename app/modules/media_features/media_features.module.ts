@@ -87,7 +87,7 @@ export class MediaFeatureModule implements OnInit {
             originalData['address'] = this.globalFunctions.toTitleCase(originalData['address']);
             break;
           case 'daysOnMarket':
-            var formattedDays = moment().subtract('days', originalData.daysOnMarket).format('dddd, MMMM Do, YYYY');
+            var formattedDays = moment().subtract(originalData.daysOnMarket, 'days').format('dddd, MMMM Do, YYYY');
             break;
           case 'listingDate':
             originalData['listingDate'] = originalData['listingDate'].split(' ')[0];
