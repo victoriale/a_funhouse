@@ -70,6 +70,8 @@ export class MagOverviewModule implements OnInit {
     }
 
     ngOnInit() {
+        //remove min-width from body so the responsiveness on the magazine works.
+        jQuery('body').css("min-width", "0px");
         this.getMagazineOverview();
     }
 }
