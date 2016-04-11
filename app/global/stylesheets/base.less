@@ -340,6 +340,21 @@ code.less-var-name-light {
   transition: @transitionVals;
 }
 
+.backfaceVisibility(@backfaceVisibility){
+  backface-visibility: @backfaceVisibility;
+  -webkit-backface-visibility: @backfaceVisibility;
+  -moz-backface-visibility: @backfaceVisibility;
+  -ms-backface-visibility: @backfaceVisibility;
+  -o-backface-visibility: @backfaceVisibility;
+}
+
+.perspective(@perspectiveVals){
+  -webkit-perspective: @perspectiveVals;
+  -moz-perspective: @perspectiveVals;
+  -ms-perspective: @perspectiveVals;
+  perspective: @perspectiveVals;
+}
+
 .noclick {
   // For elements that shouldn't be highlightable
   -webkit-touch-callout: none;
