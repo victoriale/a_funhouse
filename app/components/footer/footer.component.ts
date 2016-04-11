@@ -1,6 +1,8 @@
 import {Component, OnInit, OnChanges, Input} from 'angular2/core';
 import {Router, ROUTER_DIRECTIVES} from "angular2/router";
 
+declare var jQuery:any;
+
 @Component({
     selector: 'footer-component',
     templateUrl: './app/components/footer/footer.component.html',
@@ -43,6 +45,8 @@ export class FooterComponent implements OnInit {
           )
     }
     ngOnInit() {
+        //set min-width to prevent responsiveness
+        jQuery('body').css("min-width", "1044px");
         // Get current URL for social sharing
         this.currentUrl = window.location.href;
     }
