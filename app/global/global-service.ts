@@ -9,6 +9,7 @@ import {List, List2} from './global-interface';
 import {Injectable} from 'angular2/core';
 import {HomePageData} from "./global-interface";
 import {Http, Headers} from 'angular2/http';
+import {GlobalFunctions} from './global-functions';
 
 @Injectable()
 
@@ -58,10 +59,13 @@ export class listViewPage {
   public protocolToUse: string = (location.protocol == "https:") ? "https" : "http";
   public apiUrl: string = '://api2.joyfulhome.com';
 
-  constructor(public http: Http) {}
+  constructor(public http: Http, private globalFunctions: GlobalFunctions) {}
 
   //API for listview page data
   getListData(listname, state, city, limit, page, sort) {
+    listname = this.globalFunctions.kababCaseToCamelCase(listname);
+    console.log('al;fdlaksfjas;klfjdas', listname);
+
     var query:any  = {
       listname: listname,
       state: state,
