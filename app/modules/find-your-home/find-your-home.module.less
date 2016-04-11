@@ -15,31 +15,59 @@
   }
   .property-options-select {
     width: 100%;
-    select {
-      width: 149px;
-      height: 40px;
+
+    &-item {
       margin-left: 0px;
       margin-right: 20px;
       margin-bottom: 20px;
-      padding: 2px 0 0 7px;
       float: left;
+      position: relative;
+      width: 149px;
+      height: 40px;
+      overflow: hidden;
       border: 1px solid @strokeGrey;
       background-color: @borderGrey;
       border-radius: 5px;
       font-size: 14px;
       color: @black;
       text-align: left;
-      position: relative;
-      cursor: pointer;
-      &:last-child {
-        margin-right: 0;
+      //Use padding to push select into proper position
+      padding-left: 10px;
+
+      &::after{
+        content: "";
+        width: 0px;
+        height: 0px;
+        border-style: solid;
+        border-width: 6px 5px 0 5px;
+        border-color: @strokeGrey transparent transparent transparent;
+        position: absolute;
+        top: 18px;
+        right: 20px;
       }
+
       &:hover {
         border: 1px solid #000;
       }
-      &:focus {
-        outline: none;
-        border-color: @masterBrandColor;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      select {
+        height: 40px;
+        width: 170px;
+        font-size: 14px;
+        background: transparent;
+        border: none;
+        //Use -webkit-appearance none to fix safari select styling
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+
+        &:focus{
+          outline: none;
+        }
       }
     }
   }
