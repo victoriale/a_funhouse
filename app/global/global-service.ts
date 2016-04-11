@@ -64,7 +64,6 @@ export class listViewPage {
   //API for listview page data
   getListData(listname, state, city, limit, page, sort) {
     listname = this.globalFunctions.kababCaseToCamelCase(listname);
-    console.log('al;fdlaksfjas;klfjdas', listname);
 
     var query:any  = {
       listname: listname,
