@@ -1189,6 +1189,9 @@ goalsHeader
       .transformPrefixes(rotateY(0deg));
     }
     [class*='tile-flipper'] {
+      a{
+        color: @white;
+      }
       .perspective(1000);
       position: relative;
       .transitionPrefixes(0.3s);
@@ -1200,7 +1203,7 @@ goalsHeader
       .transitionPrefixes(0.3s);
       width: 180px;
       height: 180px;
-      background-color: #333;
+      background-color: @tileBackground;
       .backfaceVisibility(hidden);
       position: absolute;
       top: 0;
@@ -1254,3 +1257,4 @@ goalsHeader
 /*************************/
 @carouselGradientBegin: #2a4968;
 @carouselGradientEnd:   #1d243f;
+@tileBackground: #333333;
