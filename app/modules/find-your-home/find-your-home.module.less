@@ -15,31 +15,59 @@
   }
   .property-options-select {
     width: 100%;
-    select {
-      width: 149px;
-      height: 40px;
+
+    &-item {
       margin-left: 0px;
       margin-right: 20px;
       margin-bottom: 20px;
-      padding: 2px 0 0 7px;
       float: left;
-      border: 1px solid @strokeGrey;
-      background-color: @borderGrey;
-      border-radius: 5px;
-      font-size: 14px;
-      color: @black;
-      text-align: left;
       position: relative;
-      cursor: pointer;
+
       &:last-child {
         margin-right: 0;
       }
-      &:hover {
-        border: 1px solid #000;
+
+      //If browser supports appearance and pointer-events stylings use custom dropdown arrow
+      @supports (pointer-events: none) and ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) {
+        &::after {
+          font-family: 'FontAwesome';
+          content: '\f0d7';
+          position: absolute;
+          right: 20px;
+          top: 12px;
+          color: @strokeGrey;
+          pointer-events: none;
+        }
+
+        select {
+          //Remove the dropdown select for firefox, safari, and chrome
+          appearance: none;
+          -moz-appearance: none; /* Firefox */
+          -webkit-appearance: none; /* Safari and Chrome */
+        }
       }
-      &:focus {
-        outline: none;
-        border-color: @masterBrandColor;
+
+      select {
+        width: 149px;
+        height: 40px;
+        padding: 2px 0 0 20px;
+        float: left;
+        border: 1px solid @strokeGrey;
+        background-color: @borderGrey;
+        border-radius: 5px;
+        font-size: 14px;
+        color: @black;
+        text-align: left;
+        position: relative;
+        cursor: pointer;
+
+        &:hover {
+          border: 1px solid #000;
+        }
+        &:focus {
+          outline: none;
+          border-color: @masterBrandColor;
+        }
       }
     }
   }
