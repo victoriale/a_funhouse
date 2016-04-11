@@ -14,7 +14,7 @@ import {Http, Headers} from 'angular2/http';
 
 export class PartnerHeader {
   public protocolToUse: string = (location.protocol == "https:") ? "https" : "http";
-  public apiUrl: string = '://apireal.synapsys.us/listhuv/?action=get_partner_data&domain=';
+  public apiUrl: string = '://dev-real-api.synapsys.us/listhuv/?action=get_partner_data&domain=';
 
   constructor(public http: Http) {
 
@@ -23,10 +23,22 @@ export class PartnerHeader {
   //API for listing profile
   getPartnerData(partner_id) {
 
-    console.log('Grabbing Partner Data', partner_id);
+    // var partnerID = partner_id.split('-');
+    //
+    // //handles some cases where domain registries are different
+    // var combinedID = [];
+    // var domainRegisters = [];
+    // for(var i = 0; i < partnerID.length; i++){
+    //     if(partnerID[i] == "com" || partnerID[i] == "gov" || partnerID[i] == "net" || partnerID[i] == "org" || partnerID[i] == "co"){
+    //       combinedID.push(partnerID[i]);
+    //     }else{
+    //       domainRegisters.push(partnerID[i]);
+    //     }
+    // }
+    //
+    // partner_id = domainRegisters.join('-')+ "." + combinedID.join('.');
 
     var fullUrl = this.protocolToUse + this.apiUrl + partner_id;
-    console.log(fullUrl);
     return this.http.get(fullUrl, {
     })
     .map(
@@ -44,13 +56,13 @@ export class PartnerHeader {
 
 export class listViewPage {
   public protocolToUse: string = (location.protocol == "https:") ? "https" : "http";
-  public apiUrl: string = '://api2.joyfulhome.com:280';
+  public apiUrl: string = '://api2.joyfulhome.com';
 
   constructor(public http: Http) {}
 
   //API for listview page data
   getListData(listname, state, city, limit, page, sort) {
-    var query = {
+    var query:any  = {
       listname: listname,
       state: state,
       city: city,
@@ -62,12 +74,11 @@ export class listViewPage {
     if(sort !== null){
       query.sort = sort;
     }
-
     var fullUrl = this.protocolToUse + this.apiUrl +"/list";
 
     //list/homesAtLeast5YearsOld/KS/Wichita/empty/10/1
     for (var q in query) {
-      if (query[q] == null || query[q] == 'empty') {
+      if (query[q] == 'Null' || query[q] == null || query[q] == 'empty') {
         query[q] = '/empty';
       } else {
         query[q] = '/' + query[q];
@@ -117,7 +128,7 @@ export class ListOfListPage {
 
   constructor(public http: Http) { }
 
-  public apiUrl: string = 'http://api2.joyfulhome.com:280';
+  public apiUrl: string = 'http://api2.joyfulhome.com';
 
   getAddressListOfListPage(address){
     address = encodeURIComponent(address);
@@ -145,12 +156,25 @@ export class ListOfListPage {
       }
       )
   }
+
+  getListOfListPageState(state) {
+    //Nearby Cities call (Returns city, state, distance)
+    return this.http.get(this.apiUrl + '/list/listOfLists/' + state)
+        .map(
+            res => res.json()
+        )
+        .map(
+            data => {
+              return data.data;
+            }
+        )
+  }
 }
 
 @Injectable()
 
 export class GlobalPage {
-  public apiUrl: string = 'http://api2.joyfulhome.com:280';
+  public apiUrl: string = 'http://api2.joyfulhome.com';
 
   constructor(public http: Http){}
   //Function to set custom headers
@@ -171,7 +195,7 @@ export class GlobalPage {
 @Injectable()
 
 export class DynamicWidgetCall {
-  public apiUrl: string = "http://dw.synapsys.us/list_creator_api.php";
+  public apiUrl: string = "http://108.170.11.234:190/list_creator_api.php";
 
   constructor(public http: Http) { }
   //Function to set custom headers
@@ -218,7 +242,10 @@ export class DynamicWidgetCall {
       .map(
       data => {
         return data;
+      },
+      err =>{
+        return err;
       }
-      )
+  )
   }
 }

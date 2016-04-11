@@ -6,6 +6,7 @@ import {WidgetModule} from "../../modules/widget/widget.module";
 import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
 import {GlobalFunctions} from '../../global/global-functions';
+import {PaginationFooter} from '../../components/pagination-footer/pagination-footer.component';
 
 import {Observable} from 'rxjs/Rx';
 import {Control} from 'angular2/common';
@@ -16,7 +17,7 @@ declare var jQuery: any;
   selector: 'Search-page',
   templateUrl: './app/webpages/search-page/search.page.html',
   styleUrls: ['./app/global/stylesheets/master.css'],
-  directives: [ROUTER_DIRECTIVES, BackTabComponent, WidgetModule, LoadingComponent, ErrorComponent],
+  directives: [PaginationFooter, ROUTER_DIRECTIVES, BackTabComponent, WidgetModule, LoadingComponent, ErrorComponent],
   providers: [SearchService],
   inputs: ['searchResults', 'showResults']
 })
@@ -26,17 +27,21 @@ export class SearchPage implements OnInit {
     searchResults: any = {};
     showResults: boolean;
     tab: string = 'address';
-    showTotal: number = 0;
-    currentTotal: number = 0;
+    showTotal: number = 0;//currently unused in html
+    tabTotal: number = 0;
+    currentTotal: string = '0';
     displayData: {}; //this is what is being inputed into the DOM
     dataInput:string;
+    paginationParameters:Object;
+    paginationSize: number = 10; //set pagination size
+    httpSubscription: any;
+    index:number = 0;
 
     //resultsFound determines if results page should be shown (through ngIfs)
     public resultsFound: boolean = false;
     //isError determines if error message should be displayed
     public isError: boolean = false;
     public term: any = new Control();
-    httpSubscription: any;
 
     constructor(private _searchService: SearchService, private params: RouteParams, private _router:Router, private globalFunctions: GlobalFunctions) {
         var query = this.params.get('query');
@@ -81,8 +86,7 @@ export class SearchPage implements OnInit {
     //used as a click event on tabs to grab selected tab
     tabTarget(event) {
         this.tab = event.target.id;
-        jQuery('.search-tab').removeClass('active').find('i').removeClass('fa fa-circle');
-        jQuery(event.target).addClass('active').find('i').addClass('fa fa-circle');
+        this.index = 0;// reset objects to 0
         this.showCurrentData();
     }
 
@@ -90,10 +94,71 @@ export class SearchPage implements OnInit {
     showCurrentData() {
         //check to make sure to only run correctly if data is being shown
         if (typeof this.searchResults !== 'undefined' && typeof this.searchResults[this.tab] !== 'undefined') {
-            this.displayData = this.searchResults[this.tab];
-            this.currentTotal = this.displayData['length'];
+            var totalLength = this.searchResults[this.tab];//variable to get total results number given back by api
+
+            this.sanitizeListofListData();// this is where the data will be sanitized for pagination
+            if(typeof this.displayData != 'undefined' && this.displayData != null){
+              this.currentTotal = this.globalFunctions.commaSeparateNumber(this.index*this.paginationSize) + 1 + " - " + this.globalFunctions.commaSeparateNumber((this.index)*this.paginationSize + this.displayData['length']);
+            }else{
+              this.currentTotal = '0';
+            }
             return this.displayData;
         }
+    }
+
+    sanitizeListofListData(){
+        var data = this.searchResults[this.tab];//grab current tab the user has clicked on and start use this array to create a paginated array
+        var size = this.paginationSize;
+        var sanitizedArray = [];
+        var max = Math.ceil(data.length / size);
+        var objCount = 0;
+
+        //Run through a loop the check data and generated and obj array fill with a max of size variable
+        data.forEach(function(item, index){
+          if(typeof sanitizedArray[objCount] == 'undefined'){
+            sanitizedArray[objCount] = [];
+          }
+          sanitizedArray[objCount].push(item);
+            if(item !== null  && sanitizedArray[objCount].length == size){
+              objCount++;
+            }
+        });
+
+        //display current data that user has click on and possibly the page user has declared
+        this.displayData = sanitizedArray[this.index];
+        this.tabTotal = data.length;
+
+        if(typeof this.displayData == 'undefined'){
+          this.displayData = null;
+        }
+
+
+        if(data != '' || data.length > 0){ //only show if there are results
+          //Set up parameters for pagination display
+          this.setPaginationParameters(max);
+        }else{
+          this.paginationParameters = false;
+        }
+    }
+
+    //Function to set up parameters for pagination footer
+    setPaginationParameters(max){
+        //Define parameters to send to pagination footer
+        this.paginationParameters = {
+            index: this.index+1,
+            max: max,
+            paginationType: 'module',
+            viewAllPage: 'Search-page',
+            // viewAllParams: {
+            //     query:
+            // }
+        }
+    }
+
+    //Function that fires when a new index is clicked on pagination footer
+    newIndex(index){
+        this.index = index-1;
+        this.showCurrentData();
     }
 
     onSubmit(event){
@@ -110,28 +175,6 @@ export class SearchPage implements OnInit {
         this._router.navigate(['Search-page', {query: value}]);
     }
 
-    //with the keyup inside the html this function will make a search call on every keystroke
-    //Unused - replaced with ngFormControl
-    searchText(event) {
-        //// console.log(event);
-        //if(event.code == 'Enter'){
-        //  this._router.navigate(['Search-page', {query: this.dataInput}]);
-        //}
-        //var input = event.target.value;
-        //this.dataInput = input;
-        ////makes sure the input is not empty and do an unneccesary call
-        //if (input != '') {
-        //  // console.log('Search page event', input);
-        //  this.searchResults = this._searchService.getSearchResults(input, 'raw')
-        //    .subscribe(
-        //    data => {
-        //      this.searchResults = this.dataModify(data);
-        //      this.showCurrentData();
-        //    }
-        //    )
-        // }//end if
-    }
-
     //on page load
     loadCall(param) {
         var input = decodeURIComponent(param);
@@ -140,7 +183,16 @@ export class SearchPage implements OnInit {
             .subscribe(
                 data => {
                     this.searchResults = this.dataModify(data);
+
+                    //Build dummy event target for tabTarget function to use (this will cause the tab with the most results to be selected)
+                    var event = {
+                      target: {
+                          id: this.searchResults.maxType
+                      }
+                    };
                     this.showCurrentData();
+                    this.tabTarget(event);
+
                     this.resultsFound = true;
                 },
                 err => {
@@ -185,7 +237,7 @@ export class SearchPage implements OnInit {
               addr: item.address_key,
               page: page,
               params: params,
-              display: self.globalFunctions.toTitleCase(parsedAddress) + " - " + item.city + ", " + item.state_or_province,
+              display: self.globalFunctions.toTitleCase(parsedAddress) + " - " + self.globalFunctions.toTitleCase(item.city) + ", " + item.state_or_province,
           };
         address.push(dataAddr);
         addrCount++;
@@ -239,7 +291,7 @@ export class SearchPage implements OnInit {
             'zipcode': item.zipcode,
             page: '../../Magazine',
             params: { addr: item.address_key },
-            display: '[' + item.zipcode + '] - ' + self.globalFunctions.toTitleCase(item.city) + " " + item.state_or_province + " - " + item.address_key,
+            display: item.zipcode + ' - ' + item.full_street_address + ', ' + self.globalFunctions.toTitleCase(item.city) + ', ' + item.state_or_province,
           };
           zipcode.push(zip);
           zipCount++;
@@ -275,8 +327,30 @@ export class SearchPage implements OnInit {
         this._router.navigate([location[0].page, location[0].params])
       }
     }
+    this.showTotal = this.globalFunctions.commaSeparateNumber(total);
 
-    this.showTotal = total;
+      //This determines what tab to display (Only used on initial load)
+      var max = 0;
+      var maxType;
+      if(addrCount > max) {
+          max = addrCount;
+          maxType = 'address';
+      }
+      if(locCount > max) {
+          max = locCount;
+          maxType = 'location';
+      }
+      if(zipCount > max) {
+          max = zipCount;
+          maxType = 'zipcode';
+      }else{
+          maxType = 'address';
+      }
+
+      //Add commas to results counts
+      addrCount = this.globalFunctions.commaSeparateNumber(addrCount);
+      locCount = this.globalFunctions.commaSeparateNumber(locCount);
+      zipCount = this.globalFunctions.commaSeparateNumber(zipCount);
 
     return {
       'address': address,
@@ -285,7 +359,8 @@ export class SearchPage implements OnInit {
       'addrCount': addrCount,
       'zipCount': zipCount,
       'locCount': locCount,
-      'total': total
+      'total': total,
+      'maxType': maxType
     };
   }
 

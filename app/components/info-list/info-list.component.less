@@ -8,7 +8,7 @@
   .flexDirection(row);
   display: flex;
   &.odd {
-    background: @backgroundGrey
+    background: @backgroundGrey;
   }
   &.even {
     background: @white;
@@ -18,18 +18,25 @@
 //style for large image box
 .info-imagebox {
   margin-right:25px;
-  .largeRoundImageNoHover(125px, 3px, @masterStrokeColor);
+  .largeRoundImageLinkWithHover(125px, 3px, @masterStrokeColor);
+  img{
+    position: absolute;
+  }
   .info-rank {
     text-align: center;
-    padding-top: 12px;
-    color: #000;
-    width: 42px;
+    color: @black;
+    min-width: 42px;
+    width:auto;
     height: 42px;
+    line-height: 42px;
     border: 1px solid @backgroundGrey;
-    border-radius: 50%;
-    position: relative;
-    top: -130px;
+    border-radius: 42px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
     background-color: @white;
+    padding: 0px 5px;
+    z-index: 1;
   }
 }
 
@@ -89,7 +96,7 @@
     }
 
   .info-price {
-    .globalDefaultModFont(14px, 600, @black) !important;
+    .globalDefaultModFont(14px, 400, @black) !important;
     margin: 0;
   }
 

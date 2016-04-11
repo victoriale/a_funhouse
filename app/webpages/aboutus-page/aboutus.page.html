@@ -6,22 +6,11 @@
                     <div class="page-container au">
                         <backtab-component></backtab-component>
                         <title-component [titleData]="titleData"></title-component>
-
-                        <div class="au-heading">
-                          <div><b>What is </b>{{pageName}}?</div>
-                          <div class = "au-heading-dropdown">
-                            Now Reading:
-                            <select (change) ='nav($event)' id="sortBy" style = "margin-top: 1px;">
-                              <option value="About">About Us</option>
-                              <option value="Disclaimer">Disclaimer</option>
-                              <option value="Contact">Contact Us</option>
-                            </select>
-                          </div>
-                        </div>
-
+                        <au-header-component [title]="auHeaderTitle"></au-header-component>
+                        <hr class="au-hr" />
                         <div class="au-desc">
-                            <p>Founded in July, 2015, Wichita, Kan. - based {{pageName}} is a trusted community marketplace for people to discover their prospective  {{pageName}}.</p>
-                            <p>Whether you are buying your first home, starting a family or looking to retire in the home of your dreams, {{pageName}} connects you to real estate listings—from multi-million dollar mansions to budget-friendly starter homes—in over 3,000 counties in the United States. With an ever-growing database of listings from prime real estate agents across the United States, {{pageName}} is the easiest way to purchase your next home.</p>
+                            <p>We created Wichita, Kan. -based {{pageName}} in July, 2015 to connect prospective home buyers with genuine, personable and informative real estate listings.</p>
+                            <p>Here at {{pageName}}, we have an appetite for digesting down big data in the world of real estate. We create unique content so you can weigh every option when hunting for your perfect home. From multi-million dollar mansions to budget-friendly starter homes, {{pageName}}'s ever-growing data base provides real estate listings in over 3,000 counties across the United States.</p>
                         </div>
                         <div class="au-blocks">
                             <div class="au-blocks-block">
@@ -56,7 +45,6 @@
                         <!--Blocks End-->
                         <div class="au-nat">
                             <div>{{subText_nat}}</div>
-                            <div>{{mainText_nat}}</div>
                             <img src="{{nat_map}}" alt="nationwide image" />
                         </div>
                     </div>

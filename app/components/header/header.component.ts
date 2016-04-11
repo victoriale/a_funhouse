@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from 'angular2/core';
+import {Router, ROUTER_DIRECTIVES} from "angular2/router";
+
 import {HeaderSearchComponent} from "./header-search/header-search.component";
-import {ROUTER_DIRECTIVES} from "angular2/router";
-import {Router} from "angular2/router";
 declare var jQuery: any;
 
 @Component({
@@ -16,12 +16,13 @@ declare var jQuery: any;
 export class HeaderComponent implements OnInit{
 
     public isHomePage: boolean = false;
-    public isMyHouseKit: boolean;
+    public isMyHouseKit: boolean = true;
     partnerID: string;
     directoryVisible: boolean;
     isScrolling: boolean;
     pageNum: string = "1";
     curRoute: any;
+    partnerUrl: string;
 
     constructor(public router: Router) {
        this.directoryVisible = false;
@@ -30,19 +31,30 @@ export class HeaderComponent implements OnInit{
             .subscribe(
                 route => {
                     this.curRoute = route;
-                    //is blank and partner=true
-                    if(this.curRoute == "/home"){
-                        this.isHomePage = true;
-                    }else if(this.partnerID != null){
-                        if(this.curRoute == this.partnerID.replace('.','-') + "/home"){
-                            this.isHomePage = true;
-                        }else {
-                            this.isHomePage = false;
-                        }
-                    }else {
-                        this.isHomePage = false;
+                    var partnerID = this.curRoute.split('/');
+                    var hostname = window.location.hostname;
+                    var partnerIdExists = partnerID[0] != '' ? true : false;
+
+                    var myhousekit = /myhousekit/.test(hostname);
+                    // var myhousekit = /localhost/.test(hostname); //used for testing locally
+                    //checks if partner ID exists
+                    if(!partnerIdExists){
+                      this.partnerID = null;
+                      this.isMyHouseKit = false;
+                    }else{
+                      this.partnerID = partnerID[0];
+                      this.isMyHouseKit = true;
+                      this.partnerUrl = '/'+this.partnerID+'/loc';
                     }
-                    //console.log('Current Route: ', route, 'isHomepage:', this.isHomePage, 'PID', this.partnerID)
+
+                    //check to make sure if home page is being displayed
+                    if(partnerIdExists && myhousekit && partnerID.length == 1){
+                      this.isHomePage = true;
+                    }else if(!partnerIdExists && partnerID.length == 1){
+                      this.isHomePage = true;
+                    }else{
+                      this.isHomePage = false;
+                    }
                 }
             )
     }
@@ -54,7 +66,7 @@ export class HeaderComponent implements OnInit{
         { "listName": "Least expensive homes with waterfront", "listUrl": "Homes-with-waterfront-least-expensive" },
         { "listName": "Largest homes", "listUrl": "Homes-largest" },
         { "listName": "Most expensive homes", "listUrl": "Homes-most-expensive" },
-        { "listName": "Least Expensive Homes", "listUrl": "Homes-least-expensive" },
+        { "listName": "Least expensive homes", "listUrl": "Homes-least-expensive" },
         { "listName": "Least expensive homes with a swimming pool", "listUrl": "Homes-with-pool-least-expensive" },
         { "listName": "Least expensive brick houses", "listUrl": "Homes-brick-least-expensive" },
         { "listName": "Homes less than 5 years old", "listUrl": "Homes-less-than-5-years-old" },
@@ -77,28 +89,15 @@ export class HeaderComponent implements OnInit{
 
     // Page is being scrolled
     onScroll(event) {
-
         var scrollTop = jQuery(window).scrollTop();
-
         if ((55) > scrollTop) {
             this.isScrolling = false;
         }else{
             this.isScrolling = true;
         }
-
        //console.log('scroll event', event, scrollTop, this.isScrolling);
     }
 
     ngOnInit() {
-        //check for partner and hide search
-        console.log('Partner ID:', this.partnerID);
-        if(this.partnerID != null) {
-            this.isMyHouseKit = true;
-            //console.log('Housekit True');
-        }else {
-            this.isMyHouseKit = false;
-            //console.log('Housekit False');
-        }
     }
-
 }

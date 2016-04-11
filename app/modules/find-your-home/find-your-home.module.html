@@ -1,4 +1,4 @@
-<section class="module-container">
+<section class="module-container findHome">
     <module-header [module_title]="module_title"></module-header>
     <image-header [imageUrl]="imageUrl" [location]="location"></image-header>
     <div class="property-type">
@@ -6,28 +6,28 @@
             <span>Pick a Property Type</span>
         </div>
         <div class="filters">
-            <label class="filters_frame" (click)="onClickPropertyType()">
+            <label class="filters_frame" (click)="onClickPropertyType($event)">
                 <img src="http://images.myhousekit.com/icons/Icon_House.png">
                 <span>House</span>
-                <input type="radio" id="type1" name="type" value="House" class="with-font">
+                <input type="radio" id="type1" name="filterType" value="House" class="with-font">
                 <label for="type1"></label>
             </label>
-            <label class="filters_frame" (click)="onClickPropertyType()">
+            <label class="filters_frame" (click)="onClickPropertyType($event)">
                 <img src="http://images.myhousekit.com/icons/Icon_Condo.png">
                 <span>Condo</span>
-                <input type="radio" id="type2" name="type" value="Condominium" class="with-font">
+                <input type="radio" id="type2" name="filterType" value="Condominium" class="with-font">
                 <label for="type2"></label>
             </label>
-            <label class="filters_frame" (click)="onClickPropertyType()">
+            <label class="filters_frame" (click)="onClickPropertyType($event)">
                 <img src="http://images.myhousekit.com/icons/Icon_Apartment.png">
                 <span>Apartment</span>
-                <input type="radio" id="type3" name="type" value="Apartment" class="with-font">
+                <input type="radio" id="type3" name="filterType" value="Apartment" class="with-font">
                 <label for="type3"></label>
             </label>
-            <label class="filters_frame" (click)="onClickPropertyType()">
+            <label class="filters_frame" (click)="onClickPropertyType($event)">
                 <img src="http://images.myhousekit.com/icons/Icon_Townhome.png">
                 <span>Townhome</span>
-                <input type="radio" id="type4" name="type" value="Townhouse" class="with-font">
+                <input type="radio" id="type4" name="filterType" value="Townhouse" class="with-font">
                 <label for="type4"></label>
             </label>
         </div>

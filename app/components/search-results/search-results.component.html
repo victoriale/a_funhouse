@@ -1,10 +1,11 @@
 <ul *ngIf="searchResults && showResults" class="search-results">
     <div class="caret-top"></div>
-    <i (click)="closeResults($event)" class="fa fa-times search-results-close"></i>
+    <!-- <i (click)="closeResults($event)" class="fa fa-times search-results-close"></i> -->
     <a *ngFor = "#item of searchResults" [routerLink]="[item.page, item.params]" (click)="closeResults($event)">
         <li>
             {{item.title}}
         </li>
+        <i class="fa fa-angle-right"></i>
     </a>
     <div *ngIf="noResultsFound" class="search-results-no-results">
         No Results Found

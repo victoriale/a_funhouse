@@ -4,6 +4,8 @@
 import {Component, OnInit} from 'angular2/core';
 import {moduleHeader} from "../../components/module-header/module-header";
 
+declare var DISQUS: any;
+
 @Component({
     selector: 'comment-module',
     templateUrl: './app/modules/comment/comment.module.html',
@@ -16,26 +18,25 @@ export class CommentModule implements OnInit{
 
     ngOnInit(){
         var script = document.createElement("script");
-        script.innerHTML =`
-            /**
-             * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-             * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
-             */
-            /*
-            var disqus_config = function () {
-            this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-            };
-            */
-            (function() { // DON'T EDIT BELOW THIS LINE
-                var d = document, s = d.createElement('script');
 
-                s.src = '//myjoyfulhome.disqus.com/embed.js';
+        // DisQus Plugin
+        script.innerHTML = (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)){
+                    DISQUS.reset({
+                        reload: true,
+                        config: function () {
+                            this.page.identifier = (window.location.pathname + " ").replace("/"," ");
+                            this.page.url = window.location.href + "#!newthread";
+                        }
+                    });
+                }else{
+                    js = d.createElement(s); js.id = id;
+                    js.src = "//myjoyfulhome.disqus.com/embed.js";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }
+              }(document, 'script', 'disqusJS'));
 
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-            })();
-        `
         document.body.appendChild(script);
         this.module_title = 'Share Your Comments With Us';
     }

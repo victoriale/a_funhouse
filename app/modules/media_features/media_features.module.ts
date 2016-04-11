@@ -29,8 +29,9 @@ export class MediaFeatureModule implements OnInit {
   private propertyData: any;//data to send from module into components
   private date;
   expand: boolean = false; // for modal
+  modal: boolean = true;
   lastUpdated = "";
-  image_url = './app/public/placeholder_XL.png';
+  image_url = './app/public/no_photo_images/onError.png';
   featureHeading = "Features Of This Property";
   lastUpdate = "";
 
@@ -63,11 +64,19 @@ export class MediaFeatureModule implements OnInit {
     for (var feature in originalData) {
       if (originalData[feature] == null || typeof originalData[feature] == 'undefined') {
         originalData[feature] = 'N/A';
+
       }
       if (feature != 'listingImages' && feature != 'imageCount' && feature != 'listingID' && originalData[feature] != "" && originalData[feature] != null) {
         //get the date
         if (feature == 'listingDate') {
           originalData[feature] = originalData[feature].split(' ')[0];
+        }
+        if(feature == 'hasBasement'){
+          if(originalData[feature] != 'N/A'){
+            originalData[feature] = 'Yes';
+          } else {
+            originalData[feature] = 'No';
+          }
         }
         switch (feature) {
           //if feautre is any below do not push into featureHaves array
@@ -109,7 +118,7 @@ export class MediaFeatureModule implements OnInit {
       city: originalData.city,
       state: originalData.state,
       daysOnMarket: formattedDays,
-      price: "$" + (originalData.listPrice),
+      price: originalData.listPrice,
       priceName: 'Sale Price',
       detail1: this.globalFunctions.commaSeparateNumber(originalData['squareFeet']),
       unit1: 'Sq Ft',
@@ -150,7 +159,7 @@ export class MediaFeatureModule implements OnInit {
       heating: 'Heating',
       cooling: 'Cooling',
       numFloors: 'Num. of Floors',
-      exterior: 'Extorior',
+      exterior: 'Exterior',
       parking: 'Parking',
       view: 'View',
       floor: 'Floor',

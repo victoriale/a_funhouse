@@ -34,6 +34,7 @@
                         <!-- Amenities Section -->
                         <headline-component *ngIf="amenitiesData" [data]="headlineAmenities"></headline-component>
                         <amenities-module *ngIf="amenitiesData" [amenitiesData]="amenitiesData"></amenities-module>
+                        
                         <!-- Other Homes Section -->
                         <headline-component *ngIf="trendingHomesData || lists" [data]="headlineOtherHomes"></headline-component>
 
@@ -43,20 +44,20 @@
                         <!--List of List Section-->
                         <list-of-lists-module *ngIf="lists" [listOfLists]="lists" [city]="city" [state]="state"></list-of-lists-module>
 
-                        <!-- Interact Section -->
-                        <headline-component [data]="headlineInteract"></headline-component>
-
                         <!--Feature List Module-->
                         <featured-lists-module *ngIf="featuredListData" [featuredListData]="featuredListData"></featured-lists-module>
 
+                        <!-- Interact Section -->
+                        <headline-component *ngIf="headlineInteract" [data]="headlineInteract"></headline-component>
+
                         <!--Share Module-->
-                        <share-module></share-module>
+                        <share-module *ngIf="profileHeaderData" [locData]="profileHeaderData"></share-module>
                         <!--Like Us On FB Module-->
                         <section *ngIf="!partnerCheck">
                           <like-us-module></like-us-module>
                         </section>
                         <!--Learn More About Us-->
-                        <about-us-module></about-us-module>
+                        <about-us-module *ngIf="isChecked" [partnerID]="partnerID"></about-us-module>
                     </div>
                 </section>
                 <div class="four-col">

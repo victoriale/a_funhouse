@@ -5,7 +5,7 @@
   .flexDirection(row);
   display: flex;
   &.odd {
-    background: @backgroundGrey
+    background: @backgroundGrey;
   }
   &.even {
     background: @white;
@@ -13,24 +13,31 @@
   &:last-child {
     margin-bottom: 20px;
   }
+  i{
+    color:@masterBrandColor;
+  }
 }
 
 //style for large image box
 .city-imagebox {
   margin-right:25px;
-  .largeRoundImageNoHover(125px, 3px, @masterStrokeColor);
+  .largeRoundImageLinkWithHover(125px, 2px, @masterStrokeColor);
+  img{
+    position: absolute;
+  }
   .city-rank {
     .globalDefaultModFont(14px, 400, @black) !important;
     text-align: center;
-    padding-top: 12px;
-    color: #000;
+    color: @white;
     width: 42px;
     height: 42px;
     border: 1px solid @backgroundGrey;
     border-radius: 50%;
-    position: relative;
-    top: -130px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
     background-color: @white;
+    z-index: 1;
   }
 }
 
@@ -42,13 +49,10 @@
   .flexDirection(column);
   .flexJustify(space-around);
   span:first-child{
-    font-size: 12px;
+    font-size: 14px;
     & > i{
       color:@masterBrandColor;
       padding-right:5px;
-    }
-    &:hover{
-      color:@masterBrandColor;
     }
   }
 
@@ -58,12 +62,8 @@
     .flexJustify(space-between);
   }
 
-  .city-location {
-    .globalDefaultModFont(10px, 600, @black) !important;
-  }
-
   .city-address {
-    .globalDefaultModFont(20px, 900, @black) !important;
+    .globalDefaultModFont(20px, 900, @black);
     margin-top: 5px;
     margin-bottom: 5px;
     overflow: hidden;
@@ -71,8 +71,11 @@
   }
 
   .city-type {
-    .globalDefaultModFont(14px, 400, @black) !important;
+    .globalDefaultModFont(14px, 400, @black);
     margin-top: 5px;
+    &:hover{
+      color: @masterBrandColor;
+    }
   }
 
   .city-content-row2 {
@@ -80,28 +83,28 @@
   }
 
   .city-market {
-    .globalDefaultModFont(12px, 400, @black) !important;
+    .globalDefaultModFont(14px, 400, @black);
     margin: 0;
   }
 
   .city-date {
-    .globalDefaultModFont(20px, 900, @black) !important;
+    .globalDefaultModFont(20px, 900, @black);
     margin: 0;
   }
 
   .city-price {
-    .globalDefaultModFont(14px, 600, @black) !important;
+    .globalDefaultModFont(14px, 600, @black);
     margin: 0;
   }
 
   .city-content-bottom{
-    .globalDefaultModFont(12px, 400, @white) !important;
+    .globalDefaultModFont(12px, 400, @white);
     .flexDirection(column);
     border: 1px solid @strokeGrey;
     border-radius: 5px;
     padding: 3px;
     p {
-      .globalDefaultModFont(14px, 400, @black) !important;
+      .globalDefaultModFont(14px, 400, @black);
       margin-top: 8px;
       margin-left: 5px;
       margin-bottom: 0px;
@@ -111,9 +114,6 @@
     }
     &.even {
       background: @backgroundGrey;
-    }
-    &:hover {
-      border: 1px solid @masterBrandColor;
     }
   }
   .city-content-subbox {

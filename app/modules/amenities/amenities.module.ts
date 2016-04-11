@@ -44,7 +44,7 @@ export class AmenitiesModule implements OnInit{
             var paramCity: string = this.globalFunctions.toTitleCase(this.locData.city);
             paramCity = this.globalFunctions.toTitleCase(paramCity.replace(/%20/g, " "));
             var paramState: string = this.locData.state;
-            this.moduleTitle = 'Top Rated Amenities In and Around ' + paramCity + ', ' + paramState;
+            this.moduleTitle = 'Amenities in and Around ' + paramCity + ', ' + paramState;
         }else if(this.profileType === 'ProfilePage'){
             //Listing Crime Module
             var paramAddress = this._params.get('address').split('-');
@@ -52,7 +52,7 @@ export class AmenitiesModule implements OnInit{
             var paramCity = paramAddress [paramAddress.length - 2];
             var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
             var address = tempArr.join(' ');
-            this.moduleTitle = 'Top Rated Amenities In and Around ' + this.globalFunctions.toTitleCase(address) + ' ' + this.globalFunctions.toTitleCase(paramCity) + ', ' + paramState;
+            this.moduleTitle = 'Amenities in and Around ' + this.globalFunctions.toTitleCase(address) + ' ' + this.globalFunctions.toTitleCase(paramCity) + ', ' + paramState;
         }
     }
 
@@ -95,18 +95,18 @@ export class AmenitiesModule implements OnInit{
       }
       var dataLists = data['restaurant']['businesses'];
       var listData = dataLists[this.index];
-      var loc = listData['location']['city'] + ', ' + listData['location']['state_code'] + ' ' + listData['location']['postal_code'];
+      var loc = listData['location']['city'] + ', ' + this.globalFunctions.stateToAP(listData['location']['state_code']) + ' ' + listData['location']['postal_code'];
       var address = listData['location']['address'];
       var imageURL = dataLists[this.index].image_url;
 
       this.listData = {
         hasHoverNoSubImg: true,
-        header: "What's the Highest Rated Restaurant in this area?",
+        header: "What Restaurants Are in the Area?",
         name: loc,
         establishment: listData.name,
         imageUrl: listData.image_url,
         address: address[0],
-        location: loc,
+        location:  listData['location']['city'] + ', ' + listData['location']['state_code'] + ' ' + listData['location']['postal_code'],
         originalUrl: listData.url,
         url: 'Amenities-lists-page',//for the see the list button
         paramOptions:
@@ -198,24 +198,24 @@ export class AmenitiesModule implements OnInit{
     }
     //On Change Call
     ngOnChanges(event){
+      if(typeof event.amenitiesData != 'undefined'){
         //Get changed input
         var currentAmenitiesData = event.amenitiesData.currentValue;
         //If the data input is valid run transform data function
         if(currentAmenitiesData !== null && currentAmenitiesData !== false) {
-
-            // Perform try catch to make sure module doesnt break page
-            try{
-                //If featured list data has no list data (length of 0) throw error to hide module
-                if(this.amenitiesData.restaurant.businesses.length === 0){
-                    throw 'No Data available for Amenities list - hiding module';
-                }
-
-                this.dataFormatter();
-            }catch(e){
-                console.log('Error - Amenities List Module ', e);
-                this.amenitiesData = undefined;
+          // Perform try catch to make sure module doesnt break page
+          try{
+            //If featured list data has no list data (length of 0) throw error to hide module
+            if(this.amenitiesData.restaurant.businesses.length === 0){
+              throw 'No Data available for Amenities list - hiding module';
             }
             this.dataFormatter();
-        }
+          }catch(e){
+            console.log('Error - Amenities List Module ', e);
+            this.amenitiesData = undefined;
+          }
+          this.dataFormatter();
+        }//end off null check
+      }//end of event check
     }
 }

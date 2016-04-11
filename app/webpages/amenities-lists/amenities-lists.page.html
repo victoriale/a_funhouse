@@ -9,31 +9,47 @@
 
           <section *ngIf="amenitiesData && !isError" class="page-container">
             <div class="page-content">
-              <module-header [module_title]="moduleTitle"></module-header>
+              <!-- <module-header [module_title]="moduleTitle"></module-header> -->
+              <backtab-component></backtab-component>
+              <title-component [titleData]="titleComponentData"></title-component>
+              <dynamic-carousel2 [carouselData]="carouselData"></dynamic-carousel2>
 
-              <div *ngFor="#item of amenitiesData; #i=odd" class="al" [ngClass]="{'odd': i == true}">
-                <div>
+              <div *ngFor="#item of displayData" class="al {{item.bgClass}}">
+                <div class="al-imagebox">
                   <a href='{{item.url}}' class='al-image'>
                     <img src='{{item.image_url}}' onerror="this.src='./app/public/placeholder-location.jpg';" />
-                    <div>
-                      <p>View</p>
-                      <p>Profile</p>
-                    </div>
+                    <div><p>View</p><p>On Yelp</p></div>
                   </a>
                   <div class="al-image-rank">#{{item.rank}}</div>
                 </div>
-                <div>
-                    <div class='al-loc'>
-                      <span><i class='fa fa-map-marker'></i></span><span> {{item.displayAddress1}}</span>
-                      <span><i class='fa fa-angle-right'></i></span><a [routerLink]="['Location-page',item.locationUrl]"><span> {{item.displayAddress2}}</span></a>
+                <div class="info-content-box">
+                    <div class="info-content-row-wrapper">
+                        <div class="info-content-row1">
+                            <p class="info-address">{{item.name}}</p>
+                            <p class="info-type"><i class='fa fa-map-marker colorReset'></i>
+                              <a [routerLink]="['Location-page',item.locationUrl]" class="al-location">
+                                <span> {{item.displayAddress2}}</span>
+                              </a>
+                              <span> | <i class='fa fa-phone-square colorReset'></i> Phone: {{item.phone}}</span>
+                            </p>
+                        </div>
+                        <div class="info-content-row2">
+                            <p class="info-date"></p>
+                            <p class="info-price">{{item.categories}}</p>
+                        </div>
                     </div>
-
-                    <div class='al-name'>{{item.name}}</div>
-                    <div class='al-desc'><b>What people are saying: </b>{{item.snippet_text}}</div>
+                    <div class="al-bottom {{item.bgClass}}">
+                        <div class='info-content-subbox'><p>Want more information?</p></div>
+                        <a href='{{item.url}}' class='info-list-button'>
+                            <span><img class="info-icon" src="./app/public/realestate_icon.png" /></span>
+                            <span style="font-weight: 400;">View on Yelp</span><i class='fa fa-angle-right'></i>
+                        </a>
+                    </div>
                 </div>
               </div>
             </div>
             <a href="{{providerUrl}}"><img class="al-provider" src='{{providerLogo}}' /></a>
+            <pagination-footer *ngIf="paginationParameters" [paginationParameters]="paginationParameters" (newIndex)="newIndex($event)"></pagination-footer>
             <hero-list-component></hero-list-component>
           </section>
         </section>

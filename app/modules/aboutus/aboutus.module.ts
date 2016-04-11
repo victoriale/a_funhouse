@@ -30,12 +30,22 @@ export class AboutUsModule{
     public partnerParam: string;
     public partnerID: string;
     constructor(private injector:Injector, private _router: Router){
-      // let partnerParam = this.injector.get(WebApp);
-      // this.partnerID = partnerParam.partnerID;
+      this._router.root
+      .subscribe(
+          route => {
+            var curRoute = route;
+            var partnerID = curRoute.split('/');
+            if(partnerID[0] != ''){
+              this.partnerID = partnerID[0];
+              var partnerParam = this.partnerID.replace('-','.');
+            }else{
+              this.partnerID = null;
+            }
+      })
       window.scrollTo(0, 0);
     }
     ngOnInit(){
-      if(this.partnerID === null ){
+      if(this.partnerID === null || this.partnerID == '' || typeof this.partnerID == 'undefined'){
         this.pageName = "Joyful Home";
         this.logo = './app/public/joyfulhome_logo_large.png';
       } else {
@@ -43,7 +53,7 @@ export class AboutUsModule{
         this.logo = './app/public/myhousekit_logo.png';
       }
       this.header = this.pageName + ' Disclaimer';
-      this.mainText = 'This site is powered by '+this.pageName+'. Ideas and opinions presented on this website are for informational and educational purposes only,and do not reflect the opinions of '+this.pageName+', or any of its alliates, subsidiaries or partners.';
+      this.mainText = 'This site is powered by '+this.pageName+'. Ideas and opinions presented on this website are for informational and educational purposes only, and do not reflect the opinions of '+this.pageName+', or any of its affiliates, subsidiaries or partners.';
       this.currentYear = new Date().getFullYear();
       this.providerText = this.currentYear+' Data provided by ListHub';
       this.module_title = 'Learn More About ' + this.pageName;

@@ -4,10 +4,16 @@
   width: 680px;
   height: 165px;
   &.odd {
-    background: @backgroundGrey
+    background: @white;
   }
   &.even {
-    background: @white;
+    background: @backgroundGrey;
+  }
+  &-imagebox{
+    width: 150px;
+  }
+  &-location{
+    color: @black;
   }
   &-image{
     width: 150px;
@@ -15,7 +21,7 @@
     &-rank{
       text-align: center;
       padding-top: 12px;
-      color: #000;
+      color: @black;
       width: 42px;
       height: 42px;
       border: 1px solid @backgroundGrey;
@@ -24,12 +30,31 @@
       top: -130px;
       background-color: @white;
     }
-  }
+  }//image ends
   &-loc{
     margin-left: 20px;
     .globalDefaultModFont(12px, 400, @black);
     span:first-child{
       color: @masterBrandColor;
+    }
+  }
+  &-bottom{
+    .globalDefaultModFont(12px, 400, @white) !important;
+    .flexDirection(column);
+    border: 1px solid @strokeGrey;
+    border-radius: 5px;
+    padding: 3px;
+    p {
+      .globalDefaultModFont(14px, 400, @black) !important;
+      margin-top: 8px;
+      margin-left: 5px;
+      margin-bottom: 0px;
+    }
+    &.odd {
+      background: @backgroundGrey;
+    }
+    &.even {
+      background: @white;
     }
   }
   &-name{
@@ -49,4 +74,7 @@
     bottom: 0;
     margin: 0 225px;
   }
+}
+.colorReset{
+  color: @masterBrandColor;
 }

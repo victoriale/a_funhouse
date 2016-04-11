@@ -1,5 +1,5 @@
 import {Component, OnInit, OnChanges, Input} from 'angular2/core';
-import {ROUTER_DIRECTIVES} from "angular2/router";
+import {Router, ROUTER_DIRECTIVES} from "angular2/router";
 
 @Component({
     selector: 'footer-component',
@@ -15,27 +15,36 @@ export class FooterComponent implements OnInit {
     cityLocation: string;
     stateLocation: string;
 
-    public isMyHouseKit: boolean;
+    public isMyHouseKit: boolean = true;
     partnerID: string;
     title: string = "National Real Estate";
     pageNumber: string = "1";
     listTitle: string = "listings-most-recent";
     currentUrl: any;
+    curRoute: any;
 
+    constructor(public router: Router){
+      this.router.root
+          .subscribe(
+              route => {
+                  this.curRoute = route;
+                  var partnerID = this.curRoute.split('/');
+                  if(partnerID[0] == ''){
+                    this.partnerID = null;
+                  }else{
+                    this.partnerID = partnerID[0];
+                  }
+                  if(this.partnerID != null) {
+                      this.isMyHouseKit = true;
+                  }else {
+                      this.isMyHouseKit = false;
+                  }
+              }
+          )
+    }
     ngOnInit() {
         // Get current URL for social sharing
         this.currentUrl = window.location.href;
-        console.log('Current URL', this.currentUrl);
-
-        //check for partner and hide search
-        console.log('Partner ID:', this.partnerID);
-        if(this.partnerID != null) {
-            this.isMyHouseKit = true;
-            //console.log('Housekit True');
-        }else {
-            this.isMyHouseKit = false;
-            //console.log('Housekit False');
-        }
     }
 
     states = [
@@ -111,7 +120,7 @@ export class FooterComponent implements OnInit {
         { "name": "San Francisco", nameUrl: "San-Francisco", "state": "CA" },
         { "name": "San Jose", nameUrl: "San-Jose", "state": "CA" },
         { "name": "Seattle", nameUrl: "Seattle", "state": "WA" },
-        { "name": "Washington, D.C.", nameUrl: "Washington-DC", "state": "DC" }
+        { "name": "Washington, D.C.", nameUrl: "Washington", "state": "DC" }
     ];
 
 }

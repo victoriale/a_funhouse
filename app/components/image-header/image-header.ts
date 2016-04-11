@@ -21,6 +21,5 @@ export class imageHeader implements OnInit{
     ){ }
 
     ngOnInit() {
-        console.log(this);
     }
 }

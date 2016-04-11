@@ -1,0 +1,14 @@
+<div class="au-heading">
+  <div [innerHTML]="title"></div>
+  <div class = "au-heading-dropdown">
+    Now Reading:
+    <select (change)="nav($event)" 
+      id="sortBy" 
+      style="margin-top: 1px;"
+      [ngModel]="selectedPage">     
+      <option value="DisclaimerPage">Disclaimer</option>
+      <option value="AboutUsPage">About Us</option>
+      <option value="ContactUsPage">Contact Us</option>
+    </select>
+  </div>
+</div>

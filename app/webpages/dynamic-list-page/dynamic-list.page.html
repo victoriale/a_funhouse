@@ -3,17 +3,20 @@
     <div class="inner-wrapper">
       <main>
         <section class='content-main eight-col'>
-          <section class="page-container lv">
-            <title-component [titleData]="headerData"></title-component>
-            <dynamic-carousel [carouselData]="carouselData"></dynamic-carousel>
+          <error-component *ngIf="isError"></error-component>
+          <section *ngIf="!isError" class="page-container lv">
+            <backtab-component></backtab-component>
+            <title-component *ngIf="headerData" [titleData]="headerData"></title-component>
+            <dynamic-carousel2 [carouselData]="carouselData" [partnerID]="partnerID"></dynamic-carousel2>
             <!-- <div class="lv-sort">
               <dropdown-component></dropdown-component>
               <div class="lv-sort-filter">Filter <i class="fa fa-cog"></i></div>
             </div> -->
-            <div *ngIf="listData">
-              <dynamic-list [listData]="listData"></dynamic-list>
+            <div *ngIf="displayData">
+              <dynamic-list [listData]="displayData"></dynamic-list>
             </div>
-            <pagination-footer></pagination-footer>
+            <!-- Pagination Footer -->
+            <pagination-footer *ngIf="paginationParameters" [paginationParameters]="paginationParameters" (newIndex)="newIndex($event)"></pagination-footer>
           </section>
         </section>
         <div class="four-col">

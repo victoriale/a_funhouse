@@ -21,7 +21,7 @@ export class SearchService{
             //return new Observable.return([]);
         }
 
-        return this.http.get('http://api2.joyfulhome.com:280/search/' + input, {
+        return this.http.get('http://api2.joyfulhome.com/search/' + input, {
                 headers: headers
             })
             .map(
@@ -97,7 +97,7 @@ export class SearchService{
                 //If count is 10 skip over remaining zipcodes
                 if(zipcodeCount < 5 && count < maxCount) {
                     searchArray.push({
-                        title: item.city + ', ' + item.state_or_province,
+                        title: item.zipcode + ' - ' + item.full_street_address + ', ' + item.city + ', ' + item.state_or_province,
                         page: 'Location-page',
                         params: {
                             loc: item.city + '_' + item.state_or_province

@@ -27,6 +27,8 @@ import {GlobalFunctions} from '../../global/global-functions';
 import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
 
+declare var lh: any;
+
 @Component({
     selector: 'profile-page',
     templateUrl: './app/webpages/profile-page/profile.page.html',
@@ -60,12 +62,34 @@ export class ProfilePage implements OnInit{
     public partnerParam: string;
     public partnerID: string;
     public isError: boolean = false;
+    public isChecked: boolean;
     //  Get current route name
     constructor(private _router:Router, private _listingProfileService: ListingProfileService, private _params: RouteParams, private _listService:ListOfListPage, private globalFunctions: GlobalFunctions){
-        // Scroll page to top to fix routerLink bug
-        // let partnerParam = this.injector.get(MyWebApp);
-        // this.partnerID = partnerParam.partnerID;
-        console.log(this);
+      this._router.root
+          .subscribe(
+              route => {
+                var curRoute = route;
+                var partnerID = curRoute.split('/');
+                if(partnerID[0] != ''){
+                  this.partnerID = partnerID[0];
+                  this.isChecked = true;
+                  var partnerParam = this.partnerID.replace('-','.');
+                }else{
+                  this.partnerID = null;
+                  this.isChecked = true;
+                }
+                if(this.partnerID === null || this.partnerID == '' || typeof this.partnerID == 'undefined'){
+                    this.partnerCheck = false;
+                    this.pageName = "Joyful Home";
+                } else {
+                    this.partnerCheck = true;
+                    this.pageName = "My HouseKit";
+                }
+                this.headlineInteract = {
+                    title: 'Interact with ' + this.pageName,
+                    icon: 'fa-comment-o'
+                };
+          })
         this.paramAddress = _params.get('address');
         window.scrollTo(0, 0);
     }
@@ -75,6 +99,8 @@ export class ProfilePage implements OnInit{
             .subscribe(
                 data => {
                     this.profileHeaderData = data;
+                    var listingKey = data['listingKey']; //send key to listhub
+                    lh('submit', 'DETAIL_PAGE_VIEWED', {lkey:listingKey});
                     this.profileHeaderData['paramAddress'] = this.paramAddress;
                 },
                 err => {
@@ -98,7 +124,24 @@ export class ProfilePage implements OnInit{
         this._listingProfileService.getMap(this.paramAddress)
             .subscribe(
                 data => {
-                    this.mapData = data;
+                    //Check to see if map data exists
+                    if(typeof data !== 'undefined' && data.length !== 0){
+                        var hasGeoData = false;
+
+                        for(var i = 0, length = data.length; i < length; i++){
+                            if(data[i].latitude !== null && data[i].longitude !== null){
+                                hasGeoData = true;
+                                break;
+                            }
+                        };
+                        if(hasGeoData === true){
+                            this.mapData = data;
+                        }else{
+                            this.mapData = undefined;
+                        }
+                    }else{
+                        this.mapData = undefined;
+                    }
                 },
                 err => console.log('Error - Map Data', err)
             )
@@ -158,13 +201,6 @@ export class ProfilePage implements OnInit{
 
     ngOnInit(){
       //Run each call
-      if(this.partnerID === null || this.partnerID == '' || typeof this.partnerID == 'undefined'){
-          this.partnerCheck = false;
-          this.pageName = "Joyful Home";
-        } else {
-          this.partnerCheck = true;
-          this.pageName = "My HouseKit";
-        }
         this.getAddress();
         this.getProfileHeader();
         this.getCrime();
@@ -188,10 +224,6 @@ export class ProfilePage implements OnInit{
         this.headlineOtherHomes = {
             title: 'Other Homes You May Be Interested In',
             icon: 'fa-heart-o'
-        };
-        this.headlineInteract = {
-            title: 'Interact with ' + this.pageName,
-            icon: 'fa-comment-o'
         };
     }
 }

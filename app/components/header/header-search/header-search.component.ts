@@ -78,7 +78,7 @@ export class HeaderSearchComponent{
     //Function to submit form to navigate to results page
     onSubmit(event){
         var value = this.term._value;
-        if(typeof value === 'undefined' || value === ''){
+        if(typeof value === 'undefined' || value === '' || value == null){
             return false;
         }
 

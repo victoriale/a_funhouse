@@ -1,14 +1,14 @@
 import {Injectable} from 'angular2/core';
 import {Http, Headers} from 'angular2/http';
-
+import {GlobalFunctions} from '../global/global-functions';
 @Injectable()
 
 export class LocationProfileService{
-    public apiUrl: string = 'http://api2.joyfulhome.com:280';
+    public apiUrl: string = 'http://api2.joyfulhome.com';
     public apiToken: string = 'BApA7KEfj';
     public headerName: string = 'X-SNT-TOKEN';
 
-    constructor(public http: Http){
+    constructor(public http: Http, public globFunc: GlobalFunctions){
 
     }
 
@@ -42,7 +42,7 @@ export class LocationProfileService{
     getLocationProfile(city, state){
         //Configure HTTP Headers
         var headers = this.setToken();
-
+        city = this.globFunc.toTitleCase(city);
         city = encodeURI(city);
         state = encodeURI(state);
 
@@ -143,8 +143,7 @@ export class LocationProfileService{
 
           city = encodeURI(city);
           state = encodeURI(state);
-
-          return this.http.get(this.apiUrl + '/list/trending/' + state + '/' + city, {
+          return this.http.get(this.apiUrl + '/list/random/' + state + '/' + city, {
                   headers: headers
               })
               .map(
@@ -152,7 +151,7 @@ export class LocationProfileService{
               )
               .map(
                   data => {
-                      return data;
+                      return data.data;
                   }
               )
       }
