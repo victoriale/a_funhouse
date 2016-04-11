@@ -17,10 +17,10 @@
   .globalDefaultModFont(18, 400, @black);
 
   // Glow animation
-  -webkit-transition: all 0.30s ease-in-out;
-  -moz-transition: all 0.30s ease-in-out;
-  -ms-transition: all 0.30s ease-in-out;
-  -o-transition: all 0.30s ease-in-out;
+  -webkit-transition: box-shadow 0.30s ease-in-out, border 0.30s ease-in-out;
+  -moz-transition: box-shadow 0.30s ease-in-out, border 0.30s ease-in-out;
+  -ms-transition: box-shadow 0.30s ease-in-out, border 0.30s ease-in-out;
+  -o-transition: box-shadow 0.30s ease-in-out, border 0.30s ease-in-out;
   &:focus {
     box-shadow: 0 1px 10px 0 rgba(68, 178, 36, 35);
     border: 1px solid rgba(68, 178, 36, 35);
@@ -49,6 +49,10 @@
       position: relative;
       top: -27px;
       right: 9px;
+    }
+
+    &:focus{
+      outline: none;
     }
   }
 
