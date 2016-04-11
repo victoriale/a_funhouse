@@ -22,51 +22,51 @@
       margin-bottom: 20px;
       float: left;
       position: relative;
+      width: 149px;
+      height: 40px;
+      overflow: hidden;
+      border: 1px solid @strokeGrey;
+      background-color: @borderGrey;
+      border-radius: 5px;
+      font-size: 14px;
+      color: @black;
+      text-align: left;
+      //Use padding to push select into proper position
+      padding-left: 10px;
+
+      &::after{
+        content: "";
+        width: 0px;
+        height: 0px;
+        border-style: solid;
+        border-width: 6px 5px 0 5px;
+        border-color: @strokeGrey transparent transparent transparent;
+        position: absolute;
+        top: 18px;
+        right: 20px;
+      }
+
+      &:hover {
+        border: 1px solid #000;
+      }
 
       &:last-child {
         margin-right: 0;
       }
 
-      //If browser supports appearance and pointer-events stylings use custom dropdown arrow
-      @supports (pointer-events: none) and ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) {
-        &::after {
-          font-family: 'FontAwesome';
-          content: '\f0d7';
-          position: absolute;
-          right: 20px;
-          top: 12px;
-          color: @strokeGrey;
-          pointer-events: none;
-        }
-
-        select {
-          //Remove the dropdown select for firefox, safari, and chrome
-          appearance: none;
-          -moz-appearance: none; /* Firefox */
-          -webkit-appearance: none; /* Safari and Chrome */
-        }
-      }
-
       select {
-        width: 149px;
         height: 40px;
-        padding: 2px 0 0 20px;
-        float: left;
-        border: 1px solid @strokeGrey;
-        background-color: @borderGrey;
-        border-radius: 5px;
+        width: 170px;
         font-size: 14px;
-        color: @black;
-        text-align: left;
-        position: relative;
-        cursor: pointer;
+        background: transparent;
+        border: none;
+        //Use -webkit-appearance none to fix safari select styling
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
 
-        &:hover {
-          border: 1px solid #000;
-        }
-        &:focus {
+        &:focus{
           outline: none;
-          border-color: @masterBrandColor;
         }
       }
     }
