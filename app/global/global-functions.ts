@@ -205,6 +205,6 @@ export class GlobalFunctions{
             'condosMostExpensive': 'Most expensive condos'
         };
 
-        return typeof names[val] === 'undefined' ? val : names[val];
+        return typeof names[val] === 'undefined' ? this.camelCaseToRegularCase(val) : names[val];
     }
 }
