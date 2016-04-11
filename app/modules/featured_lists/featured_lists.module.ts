@@ -116,7 +116,7 @@ export class FeaturedListsModule implements OnInit{
         this.listData = {
             rank: this.index + 1,
             header: 'Trending Real Estate',
-            title: this.globalFunctions.camelCaseToRegularCase(data.listName),
+            title: this.globalFunctions.convertListName(data.listName),
             hding1: this.globalFunctions.toTitleCase(listData.fullStreetAddress),
             hding2: this.globalFunctions.toTitleCase(listData.city) + ', ' + this.globalFunctions.stateToAP(listData.stateOrProvince) + ' ' + listData.postalCode,
             detail1: heading2,
