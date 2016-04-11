@@ -2,6 +2,8 @@ import {Component, OnInit, Input} from 'angular2/core';
 import {ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
 import {CircleButton} from "../buttons/circle/circle.button";
 
+import {PriceFormatPipe} from '../../pipes/price-format.pipe';
+
 @Component({
     selector: 'photo-list',
     templateUrl: './app/components/photo-list/photo-list.component.html',
@@ -9,6 +11,7 @@ import {CircleButton} from "../buttons/circle/circle.button";
     directives: [CircleButton, ROUTER_DIRECTIVES],
     providers: [],
     inputs: ['listData', 'carouselData'],
+    pipes: [PriceFormatPipe]
 })
 
 export class PhotoListComponent implements OnInit{

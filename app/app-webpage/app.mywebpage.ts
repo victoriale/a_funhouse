@@ -29,6 +29,7 @@ import {GeoLocationService} from "../global/geo-location.service";
 
 import {MyWebApp} from "../app-layout/app.mylayout";
 import {PartnerHeader} from "../global/global-service";
+import {GlobalFunctions} from "../global/global-functions";
 import {CityViewPage} from "../webpages/city-view-page/city-view.page";
 
 @Component({
@@ -41,15 +42,10 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
 
 @RouteConfig([
     {
-       path: '/home',
+       path: '/',
        name: 'Home-page',
-       component: PartnerHomePage,
+       component: HomePage,
        useAsDefault: true,
-    },
-    {
-       path: '/housekit-home',
-       name: 'Housekit-home-page',
-       component: PartnerHomePage,
     },
     {
         path: '/index/:address',
@@ -79,6 +75,11 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
     {
         path: '/lists/:state/:city',
         name: 'List-of-lists-page',
+        component: ListOfListsPage,
+    },
+    {
+        path: '/lists/:state',
+        name: 'List-of-lists-page-state',
         component: ListOfListsPage,
     },
     {
@@ -178,7 +179,11 @@ export class MyAppComponent implements OnInit {
     // address: string = "503-C-Avenue-Vinton-IA";
     nearByCities: Object;
 
-    constructor(private _injector: Injector,private _partnerData: PartnerHeader, private _params: RouteParams, private route: Router, private routeData: RouteData, private routerLink: RouterLink, private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService){
+    constructor(private _injector: Injector,private _partnerData: PartnerHeader, private _params: RouteParams, private route: Router, private routeData: RouteData, private routerLink: RouterLink, private _globalFunctions: GlobalFunctions, private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService){
+      var parentParams = this._injector.get(MyWebApp);
+      if(typeof parentParams.partnerID != 'undefined'){
+          this.partnerID = parentParams.partnerID;
+      }
     }
 
     getPartnerHeader(){
@@ -196,9 +201,16 @@ export class MyAppComponent implements OnInit {
         this._geoLocationService.getGeoLocation()
             .subscribe(
                 geoLocationData => {
+                  if(typeof this.partnerData != 'undefined' && this.partnerData['results']['location']['realestate']['location']['city'].length != 0){
+                    var dataPartner = this.partnerData['results']['location']['realestate'];
+                    this.cityLocation = this._globalFunctions.toTitleCase(decodeURI(dataPartner['location']['city'][0].city));
+                    this.stateLocation = decodeURI(dataPartner['location']['city'][0].state);
+                    this.cityStateLocation = this.cityLocation + '_' + this.stateLocation;
+                  }else{
                     this.cityLocation = geoLocationData[0].city;
                     this.stateLocation = geoLocationData[0].state;
                     this.cityStateLocation = this.cityLocation + '_' + this.stateLocation;
+                  }
                 },
                 err => this.defaultCity(),
                 () => this.getNearByCities()
@@ -210,10 +222,9 @@ export class MyAppComponent implements OnInit {
         this._nearByCitiesService.getNearByCities(this.stateLocation, this.cityLocation)
             .subscribe(
                 nearByCities => { this.nearByCities = nearByCities },
-                err => console.log(err),
-                () => console.log('Near By Cities Success!')
+                err => console.log(err)
             );
-    } 
+    }
 
     defaultCity() {
         // Set default city and state if geo location call fails

@@ -20,14 +20,15 @@
         </div>
     </div>
 </div>
-<div *ngIf="!isMyHouseKitHomePage" class="header-bottom-bar-wrapper" (window:scroll)="onScroll($event)" [class.stick-header]="isScrolling">
+<div *ngIf="!isMyHouseKit || !isHomePage" class="header-bottom-bar-wrapper" (window:scroll)="onScroll($event)" [class.stick-header]="isScrolling">
     <div class="wrapper">
         <div class="inner-wrapper">
             <div class="header-bottom-bar">
                 <div *ngIf="!isMyHouseKit" class="header-logo six-col">
-                    <a href="/"><img src="./app/public/joyful_home_logo.png" width="147px" height="27px" alt="Joyful Home | A Little Place to Call Home"/></a>
+                    <a href="/"><img src="./app/public/joyful_logo_resized.png" alt="Joyful Home | A Little Place to Call Home"/></a>
                 </div>
-                <div *ngIf="isMyHouseKit" class="header-logo six-col">
+                <div *ngIf="isMyHouseKit" class="header-logo six-col" style="font-size:20px;font-family:'Lato'; line-height:24px;">
+                  <a href="{{partnerUrl}}" style="color:#000">Home</a>
                 </div>
                 <header-search-component [isHomePage]="isHomePage"></header-search-component>
             </div>

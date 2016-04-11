@@ -35,12 +35,14 @@
                         <school-module *ngIf="schoolData" [schoolData]="schoolData" [locData]="locData"></school-module>
                         <amenities-module *ngIf="amenitiesData" [amenitiesData]="amenitiesData" [locData]="locData"></amenities-module>
 
-                        <!-- Interact Section -->
-                        <headline-component *ngIf="headlineInteract" [data]="headlineInteract"></headline-component>
                         <featured-lists-module *ngIf="featuredListData" [featuredListData]="featuredListData" [locData]="locData"></featured-lists-module>
 
+                        <!-- Interact Section -->
+                        <headline-component *ngIf="headlineInteract" [data]="headlineInteract"></headline-component>
+
+
                         <!--Share Module-->
-                        <share-module [locData]="locData"></share-module>
+                        <share-module *ngIf="profileHeaderData" [locData]="profileHeaderData"></share-module>
                         <!--Like Us On FB Module-->
                         <section *ngIf="!partnerCheck">
                           <like-us-module></like-us-module>

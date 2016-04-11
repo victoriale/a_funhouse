@@ -560,9 +560,8 @@ goalsHeader
     border-radius: @liwh*.25;
     line-height: @liwh*.25;
     padding: 0px @liss;
-    font-size: 1em;
+    font-size: 18px;
     font-family: @globalFont;
-    font-weight: bold;
     text-align: center;
     //line-height: 1.8em;
     background-color: @white;
@@ -1044,12 +1043,13 @@ goalsHeader
   .globalDefaultModFont(12px, 900, @white);
   border: 1px solid @masterBrandColor;
   .borderRadiusPrefix(3px);
+  background-color: @masterBrandColor;
   i {
     margin-left: 8px;
   }
-  &:hover {
-    background-color: @masterBrandColor;
-  }
+  // &:hover {
+  //   background-color: @masterBrandColor;
+  // }
 }
 .feature-btn {
   .inlineFlexDisplay;
@@ -1057,7 +1057,6 @@ goalsHeader
   .flexJustify(center);
   .flexAlignItems(center);
   min-width: 115px;
-  max-width: 185px;
   height: 30px;
   position: absolute;
   padding-left: 15px;
@@ -1235,7 +1234,7 @@ goalsHeader
       p {
         margin-top: 20px;
         line-height: 26px;
-        width: 140px;
+        width: 150px;
         .globalDefaultModFont(22px, 300, @white);
       }
     }
@@ -1247,6 +1246,7 @@ goalsHeader
       .transformPrefixes(rotateY(-180deg));
       span:first-child {
         .globalDefaultModFont(20px, 300, @white);
+        width: 150px;
       }
       span:nth-child(2) {
         display: inline-block;
@@ -1260,3 +1260,9 @@ goalsHeader
     }
   }
 }
+
+/*************************/
+/* @Carousel Background Colors*/
+/*************************/
+@carouselGradientBegin: #2a4968;
+@carouselGradientEnd:   #1d243f;

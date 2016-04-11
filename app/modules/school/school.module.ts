@@ -73,10 +73,12 @@ export class SchoolModule implements OnInit{
       var schoolData = data['meta'];
       var elementaryData = data.elementary[this.index];
       var schoolName =  this.globalFunctions.toTitleCase(elementaryData.school_name);
+      schoolName = schoolName.replace("Elementary", "Elem");
+      schoolName = schoolName.replace("Elem", "Elementary");
       this.listData = {
         hasHoverNoSubImg: false,
-        header: "What's the Highest Rated School in this area?",
-        name: schoolData.city + ', ' + schoolData.state,
+        header: "What Schools are in the Area?",
+        name: schoolData.city + ', ' + this.globalFunctions.stateToAP(schoolData.state),
         establishment:  schoolName,
         address: elementaryData.type,
         imageUrl: schoolData.locationImage,
@@ -188,23 +190,24 @@ export class SchoolModule implements OnInit{
 
     //On Change Call
     ngOnChanges(event){
+      if(typeof event.schoolData != 'undefined'){
         //Get changed input
         var currentSchoolData = event.schoolData.currentValue;
         //If the data input is valid run transform data function
         if(currentSchoolData !== null && currentSchoolData !== false){
           // Perform try catch to make sure module doesnt break page
           try{
-              //If featured list data has no list data (length of 0) throw error to hide module
-              if(this.schoolData.elementary.length === 0){
-                  throw 'No Data available for school list - hiding module';
-              }
-
-              this.dataFormatter();
+            //If featured list data has no list data (length of 0) throw error to hide module
+            if(this.schoolData.elementary.length === 0){
+              throw 'No Data available for school list - hiding module';
+            }
+            this.dataFormatter();
           }catch(e){
-              console.log('Error - School List Module ', e);
-              this.schoolData = undefined;
+            console.log('Error - School List Module ', e);
+            this.schoolData = undefined;
           }
           this.dataFormatter();
-       }
+        }//end of null check
+      }//end of event check
     }// end On Change Call
 }

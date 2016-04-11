@@ -17,13 +17,14 @@ import {MapComponent} from '../../components/map/map.component';
 
 declare var jQuery: any;
 declare var moment: any;
+declare var lh: any;
 
 @Component({
     selector: 'List-page',
     templateUrl: './app/webpages/list-page/list.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [PhotoListComponent, ROUTER_DIRECTIVES, DetailedListComponent, ListViewCarousel, WidgetModule, PaginationFooter, LoadingComponent, ErrorComponent, MapComponent],
-    providers: [listViewPage],
+    providers: [listViewPage]
 })
 
 export class ListPage implements OnInit{
@@ -36,12 +37,14 @@ export class ListPage implements OnInit{
 
     public listName: string;
     public listState: string;
+    public listStateAP: string;
     public listCity: string;
     public listLimit: string = "20";
     public listPage: string;
 
     noListings: boolean = false;
     showFilters: boolean = false;
+    showTooltip: boolean = true;
 
     //For select filters
     selectBedrooms: string;
@@ -67,6 +70,8 @@ export class ListPage implements OnInit{
 
     public geoExists: boolean = false;
 
+    viewCheck: string;
+
     //Filter params for FYH
     filterState: string;
     filterCity: string;
@@ -86,7 +91,6 @@ export class ListPage implements OnInit{
 
     sortChange(event){
         var sortOption = event.target.value;
-        //console.log(sortOption);
         var self = this;
         var params: any = {
             viewType: self.viewType,
@@ -268,6 +272,7 @@ export class ListPage implements OnInit{
         // Get listname param to determine which API to call
         this.listName = this._params.get('listname');
         this.viewType = this._params.get('viewType');
+        this.showTooltip = this.listName !== 'filter';
 
         if(this.listName !== "filter"){
             //Normal Listing
@@ -296,8 +301,9 @@ export class ListPage implements OnInit{
             }
 
             this.listState = this._params.get('state');
+            this.listStateAP = this.globalFunctions.stateToAP(this.listState);
             this.listCity = this._params.get('city');
-            this.listCity = this.globalFunctions.toTitleCase(this.listCity);
+            this.listCity = this.globalFunctions.toTitleCase(decodeURI(this.listCity));
             this.listPage = this._params.get('page');
 
             //list/homesAtLeast5YearsOld/KS/Wichita/empty/10/1
@@ -360,6 +366,7 @@ export class ListPage implements OnInit{
     var listData = [];
     var carouselData = [];
     var globeFunc = this.globalFunctions;
+    var listhubKeys = [];//USED TO PUSH ALL KEYS FOR LISTHUB TRACKING
         //Assign data to send to map component
       this.mapData = data.data;
       var self = this;
@@ -391,7 +398,7 @@ export class ListPage implements OnInit{
           numBed : val.numBedrooms + " Beds ",
           numBath: val.numBathrooms + " Baths ",
           date: formattedDate,
-          value: "$"+ val.listPrice,
+          value: val.listPrice,
           listPrice: val.listPrice,
           livingArea: val.livingArea,
           tag: livingArea + ' sqft',
@@ -407,19 +414,24 @@ export class ListPage implements OnInit{
       newData['url1'] = "../../Magazine";
       newData['url2'] = {addr:val.addressKey};
       newData['url3'] = "PropertyOverview";
+      newData['locUrl1'] = "Location-page";
+      newData['locUrl2'] = {loc: val.city + "_" + val.stateOrProvince};
 
       var carData = {
         heading:'Featured Listing',
         image_url:val.photos[0],
-        listing_price: "$"+val.listPrice,
+        listing_price: val.listPrice,
         listing_area: livingArea + " sqft",
         listing_addr1: val.fullStreetAddress + ' ',
-        listing_addr2:val.loc + ' ' + val.postalCode,
+        listing_addr2: val.loc + ' ' + val.postalCode,
       };
       carData['url1'] = "../../Magazine";
       carData['url2'] = {addr:val.addressKey};
       carData['url3'] = "PropertyOverview";
+      carData['locUrl1'] = "Location-page";
+      carData['locUrl2'] = {loc: val.city + "_" + val.stateOrProvince};
 
+      listhubKeys.push({lkey: val.listingKey});//send key to listhub
       carouselData.push(carData);
       listData.push(newData);
     });//END of forEach
@@ -434,7 +446,11 @@ export class ListPage implements OnInit{
     this.listData = listData;
     this.carouselData = carouselData;
 
-    //console.log('ListData', this.listData);
+    //send array of keys for listhub to track
+    lh('submit', 'SEARCH_DISPLAY', listhubKeys);
+
+    // console.log('listhubKeys', listhubKeys);
+    // console.log('ListData', this.listData);
     // console.log('carouselData', this.carouselData);
   }//END OF TRANSFORM FUNCTION
 
@@ -523,6 +539,10 @@ export class ListPage implements OnInit{
         window.history.back();
     }
 
+  closeTooltip() {
+    this.showTooltip = false;
+  }
+
   ngOnInit() {
     this.getListView();
       if(this.listName == "filter") {
@@ -533,13 +553,21 @@ export class ListPage implements OnInit{
       this.selectSqFeet = this._params.get('squareFeet');
       this.selectLot = this._params.get('lotSize');
 
+      this.viewCheck = this._params.get('viewType');
+
       setTimeout(() => {
+          // Set filter dropdown values based on url params
           jQuery('#select-bedrooms').val(this.selectBedrooms);
           jQuery('#select-bathrooms').val(this.selectBathrooms);
           jQuery('#select-square-feet').val(this.selectSqFeet);
           jQuery('#select-lot-size').val(this.selectLot);
+
+          // Set sort dropdown values based on url param
+          jQuery('#sort_by').val(this.sort);
+
+          // Add selected class to menu item based on viewType param
+          jQuery('#' + this.viewCheck).addClass('selected');
       }, 400);
-      //console.log(this);
   }
 
 }

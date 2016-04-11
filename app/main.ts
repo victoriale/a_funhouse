@@ -11,4 +11,4 @@ import {provide} from "angular2/core"
 // Needed for http map on observables
 import 'rxjs/add/operator/map';
 import {HTTP_PROVIDERS} from "angular2/http";
-bootstrap(AppDomain,[ROUTER_PROVIDERS, HTTP_PROVIDERS, ROUTER_DIRECTIVES, GlobalFunctions,MyWebApp,WebApp, provide(Window, {useValue: window})]);
+bootstrap(AppDomain,[ROUTER_PROVIDERS, HTTP_PROVIDERS, ROUTER_DIRECTIVES, GlobalFunctions,MyWebApp,WebApp]);

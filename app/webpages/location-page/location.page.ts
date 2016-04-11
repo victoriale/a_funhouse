@@ -24,13 +24,15 @@ import {MyWebApp} from '../../app-layout/app.mylayout';
 import {PartnerHeader} from "../../global/global-service";
 import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
+import {GlobalFunctions} from "../../global/global-functions";
+import {GeoLocationService} from "../../global/geo-location.service";
 
 @Component({
     selector: 'location-page',
     templateUrl: './app/webpages/location-page/location.page.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [ListOfListModule, HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, FindYourHomeModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule, WidgetModule, AmenitiesModule, TrendingHomes, ErrorComponent, LoadingComponent],
-    providers: [PartnerHeader, ListOfListPage, LocationProfileService],
+    providers: [PartnerHeader, ListOfListPage, LocationProfileService, GlobalFunctions],
     inputs:['partnerData']
 })
 
@@ -61,7 +63,7 @@ export class LocationPage implements OnInit {
     public isError: boolean = false;
     public isChecked: boolean;
 
-    constructor(private _partnerData:PartnerHeader, private _router:Router, private _params: RouteParams, private _locationProfileService: LocationProfileService, private _listService: ListOfListPage) {
+    constructor(private _partnerData:PartnerHeader, private _router:Router, private _params: RouteParams, private _locationProfileService: LocationProfileService, private _listService: ListOfListPage, private _globalFunctions: GlobalFunctions, private _geoLocationService: GeoLocationService) {
 
         this._router.root
             .subscribe(
@@ -100,12 +102,28 @@ export class LocationPage implements OnInit {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }
+    //Subscribe to getGeoLocation in geo-location.service.ts. On Success call getNearByCities function.
+    getGeoLocation() {
+        this._geoLocationService.getGeoLocation()
+            .subscribe(
+                geoLocationData => {
+                  this.locCity = this._globalFunctions.toTitleCase(decodeURI(geoLocationData[0].city));
+                  this.locState = decodeURI(geoLocationData[0].state);
+                },
+                err => this._router.navigate(['Error-page'])
+            );
+    }
 
     getProfileHeader(){
         this._locationProfileService.getLocationProfile(this.locCity, this.locState)
             .subscribe(
                 data => {
                     this.profileHeaderData = data;
+                    this.locData = {//USED IN MULTIPLE MODULES
+                      city:this.profileHeaderData['city'],
+                      state:this._globalFunctions.stateToAP(this.profileHeaderData['state']),
+                      locationImage:this.profileHeaderData['locationImage']
+                    };
                 },
                 err => {
                     console.log('Error - Location Profile Header Data: ', err);
@@ -148,8 +166,7 @@ export class LocationPage implements OnInit {
         this._locationProfileService.getRecentListings(this.locCity, this.locState)
             .subscribe(
                 recentListingsData => { this.recentListingsData = recentListingsData },
-                err => console.log(err),
-                () => console.log('Recent Listings Data Acquired!')
+                err => console.log(err)
             );
     }
 
@@ -184,17 +201,23 @@ export class LocationPage implements OnInit {
 
     }
     dataCalls() {
+      //checks if it is a partner page with no location then grab partner location infomation
         if(typeof this._params.get('loc') == 'undefined' || this._params.get('loc') == null){
-          this.locCity = decodeURI(this.partnerData['location']['city'][0].city);
-          this.locState = decodeURI(this.partnerData['location']['city'][0].state);
-          this.locDisplay = this.partnerData['location_name'];
-        }else{
+          if(this.partnerData['location']['city'].length != 0){//checks partner data being returned if there is even information for their location entered into partner database otherwise run geo location
+            this.locCity = this._globalFunctions.toTitleCase(decodeURI(this.partnerData['location']['city'][0].city));
+            this.locState = decodeURI(this.partnerData['location']['city'][0].state);
+            this.locDisplay = this.partnerData['location_name'];
+          }else{//else if no parther location data is present then grab clients geolocation
+            this.getGeoLocation();
+            this.locDisplay = decodeURI(this.locCity + ', ' + this._globalFunctions.stateToAP(this.locState));
+          }
+        }else{//end of if for partner page :loc check, start of else
           this.loc = this._params.get('loc');
-          this.locCity = decodeURI(this.loc.split('_')[0]);
+          this.locCity = this._globalFunctions.toTitleCase(decodeURI(this.loc.split('_')[0]));
           this.locState = decodeURI(this.loc.split('_')[1]);
-          this.locDisplay = decodeURI(this.locCity + ', ' + this.locState);
+          this.locDisplay = decodeURI(this.locCity + ', ' + this._globalFunctions.stateToAP(this.locState));
         }
-        this.locData = {city:this.locCity, state:this.locState}
+
         this.headlineAbout = {
             title: 'About ' + this.locDisplay,
             icon: 'fa-map-marker'

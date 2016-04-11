@@ -1,35 +1,31 @@
-/**
- * Created by Victoria on 3/8/2016.
- */
 import {Component, OnInit, Input, EventEmitter} from 'angular2/core';
 import {CircleButton} from "../../buttons/circle/circle.button";
-
+import {Image180} from "../../images/image-180.component";
+import {ViewEncapsulation} from "angular2/core";
 
 @Component({
-    selector: 'dynamic-carousel',
-    templateUrl: './app/components/carousel/dynamic-carousel/dynamic-carousel.html',
+    selector: 'dynamic-carousel2',
+    templateUrl: './app/components/carousel/dynamic-carousel2/dynamic-carousel2.html',
     styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [CircleButton],
+    directives: [CircleButton, Image180],
     providers: [],
-    inputs: ['carouselData'],
+    inputs: ['carouselData','partnerID'],
+    encapsulation: ViewEncapsulation.None
 })
 
-export class DynamicCarousel implements OnInit{
+export class DynamicCarousel2 implements OnInit{
   carouselData: any;
   imageCounter: number = 0;
   data: any;
+  callToAction: string = "Want more detailed information?";
+  cssStyle: string = "";
+  hasIndex: boolean = true;
+  curRoute: any;
+  partnerIdExists: boolean = false;
+  partnerID: any;
+  isMyHouseKit: any;
+
   ngOnInit(){
-    if(typeof this.carouselData == "undefined"){
-      this.carouselData = [{
-        heading : "Featured Listing",
-        image_url : './app/public/placeholder_XL.png',
-        button_url : '',
-        listing_price : "$###,###",
-        listing_area : "#### sqft",
-        listing_addr1 : "123 Test Street",
-        listing_addr2 : "City, ST 54321",
-      }];
-    }
   }
 
   newCarousel(index){

@@ -4,6 +4,7 @@
 import {Component, OnInit, Input, EventEmitter} from 'angular2/core';
 import {CircleButton} from "../../buttons/circle/circle.button";
 import {ROUTER_DIRECTIVES} from 'angular2/router';
+import {PriceFormatPipe} from '../../../pipes/price-format.pipe';
 
 @Component({
     selector: 'list-view-carousel',
@@ -12,6 +13,7 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
     directives: [ROUTER_DIRECTIVES, CircleButton],
     providers: [],
     inputs: ['carouselData'],
+    pipes: [PriceFormatPipe]
 })
 
 export class ListViewCarousel implements OnInit{
@@ -22,7 +24,7 @@ export class ListViewCarousel implements OnInit{
     if(typeof this.carouselData == "undefined"){
       this.carouselData = [{
         heading : "Featured Listing",
-        image_url : './app/public/placeholder_XL.png',
+        image_url : './app/public/no_photo_images/onError.png',
         button_url : '',
         listing_price : "$###,###",
         listing_area : "#### sqft",

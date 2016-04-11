@@ -95,7 +95,7 @@ export class AmenitiesModule implements OnInit{
       }
       var dataLists = data['restaurant']['businesses'];
       var listData = dataLists[this.index];
-      var loc = listData['location']['city'] + ', ' + listData['location']['state_code'] + ' ' + listData['location']['postal_code'];
+      var loc = listData['location']['city'] + ', ' + this.globalFunctions.stateToAP(listData['location']['state_code']) + ' ' + listData['location']['postal_code'];
       var address = listData['location']['address'];
       var imageURL = dataLists[this.index].image_url;
 
@@ -106,7 +106,7 @@ export class AmenitiesModule implements OnInit{
         establishment: listData.name,
         imageUrl: listData.image_url,
         address: address[0],
-        location: loc,
+        location:  listData['location']['city'] + ', ' + listData['location']['state_code'] + ' ' + listData['location']['postal_code'],
         originalUrl: listData.url,
         url: 'Amenities-lists-page',//for the see the list button
         paramOptions:
@@ -198,24 +198,24 @@ export class AmenitiesModule implements OnInit{
     }
     //On Change Call
     ngOnChanges(event){
+      if(typeof event.amenitiesData != 'undefined'){
         //Get changed input
         var currentAmenitiesData = event.amenitiesData.currentValue;
         //If the data input is valid run transform data function
         if(currentAmenitiesData !== null && currentAmenitiesData !== false) {
-
-            // Perform try catch to make sure module doesnt break page
-            try{
-                //If featured list data has no list data (length of 0) throw error to hide module
-                if(this.amenitiesData.restaurant.businesses.length === 0){
-                    throw 'No Data available for Amenities list - hiding module';
-                }
-
-                this.dataFormatter();
-            }catch(e){
-                console.log('Error - Amenities List Module ', e);
-                this.amenitiesData = undefined;
+          // Perform try catch to make sure module doesnt break page
+          try{
+            //If featured list data has no list data (length of 0) throw error to hide module
+            if(this.amenitiesData.restaurant.businesses.length === 0){
+              throw 'No Data available for Amenities list - hiding module';
             }
             this.dataFormatter();
-        }
+          }catch(e){
+            console.log('Error - Amenities List Module ', e);
+            this.amenitiesData = undefined;
+          }
+          this.dataFormatter();
+        }//end off null check
+      }//end of event check
     }
 }

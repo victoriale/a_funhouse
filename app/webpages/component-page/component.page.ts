@@ -99,7 +99,7 @@ export class ComponentPage implements OnInit{
     };
 
     testEvent(event){
-        console.log('Lutz - Pagination Footer New Index', event);
+        // console.log('Pagination Footer New Index', event);
     }
 
     ngOnInit(){
@@ -110,8 +110,7 @@ export class ComponentPage implements OnInit{
     constructor(public router: Router){
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
-
-        console.log('Route Name:', this.router.hostComponent.name);
+        // console.log('Route Name:', this.router.hostComponent.name);
     }
 
 }
