@@ -40,7 +40,6 @@ export class MagMapModule implements OnInit {
                     } else {
                         this.partnerID = partnerID[0];
                     }
-                    this.getMagazineMap();
                 }
             )//end of route subscribe
     }
