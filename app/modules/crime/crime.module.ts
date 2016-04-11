@@ -157,7 +157,9 @@ export class CrimeModule implements OnInit{
 
         jQuery('#crime-pie').highcharts({
             chart: {
-                type: 'pie'
+                type: 'pie',
+                width: 280,
+                height: 235
             },
             tooltip: false,
             title: false,
