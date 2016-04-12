@@ -21,7 +21,7 @@ export class LearnMoreComponent{
     magLink: MagOverview;
 
     constructor(private _injector:Injector, private _magazineDataService:MagazineDataService) {
-        this.address = _injector.get(MagazinePage).address;
+        this.address = _injector.get(MagazinePage).address.toLowerCase();
     }
 
     getProfileLink() {

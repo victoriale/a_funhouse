@@ -1,4 +1,4 @@
-import {Component, provide, OnInit,ViewEncapsulation, ViewChild, ElementRef, Injector} from 'angular2/core';
+import {Component, provide, OnInit, ViewEncapsulation, ViewChild, ElementRef} from 'angular2/core';
 import {bootstrap} from 'angular2/platform/browser';
 import {Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, RouteParams} from 'angular2/router';
 import {MapMarkerComponent} from "../../../components/mapMarker/mapMarker.component";
@@ -14,7 +14,6 @@ declare var jQuery:any;
     encapsulation: ViewEncapsulation.None,
     selector: 'magazine-map-module',
     templateUrl: './app/modules/magazine/mag-map/mag-map.module.html',
-    
     directives: [MapMarkerComponent, ROUTER_DIRECTIVES],
 })
 
@@ -27,7 +26,7 @@ export class MagMapModule implements OnInit {
     marker:string;
     public partnerID:string;
 
-    constructor(private _router:Router, private _injector:Injector, private _magazineDataService:MagazineDataService) {
+    constructor(private _router:Router, private _magazineDataService:MagazineDataService) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
         this._router.root
@@ -66,9 +65,9 @@ export class MagMapModule implements OnInit {
                             }
                             this.imgAddress = this.data[i].address.fullStreetAddress;
                             if (partnerUrl == null) {
-                                this.imgURL = 'magazine/' + this.data[i].key + '/overview';
+                                this.imgURL = 'magazine/' + this.data[i].key.toLowerCase() + '/overview';
                             } else {
-                                this.imgURL = partnerUrl + '/magazine/' + this.data[i].key + '/overview';
+                                this.imgURL = partnerUrl + '/magazine/' + this.data[i].key.toLowerCase() + '/overview';
                             }
                             var mapOptions = {
                                 zoom: 12,
@@ -123,9 +122,9 @@ export class MagMapModule implements OnInit {
                                 }
                                 jQuery('.mag_n1_img_text').html(magData.neighborhood.neighbors[index].address.fullStreetAddress);
                                 if (partnerUrl == null) {
-                                    jQuery('.mag_n1_img_view').attr("href", 'magazine/' + magData.neighborhood.neighbors[index].key + '/overview');
+                                    jQuery('.mag_n1_img_view').attr("href", 'magazine/' + magData.neighborhood.neighbors[index].key.toLowerCase() + '/overview');
                                 } else {
-                                    jQuery('.mag_n1_img_view').attr("href", partnerUrl + '/magazine/' + magData.neighborhood.neighbors[index].key + '/overview');
+                                    jQuery('.mag_n1_img_view').attr("href", partnerUrl + '/magazine/' + magData.neighborhood.neighbors[index].key.toLowerCase() + '/overview');
                                 }
                                 jQuery('.googleMap_item').removeClass('focus');
                                 jQuery(this).addClass('focus');
