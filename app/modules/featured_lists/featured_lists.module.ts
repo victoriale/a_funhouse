@@ -116,7 +116,7 @@ export class FeaturedListsModule implements OnInit{
         this.listData = {
             rank: this.index + 1,
             header: 'Trending Real Estate',
-            title: this.globalFunctions.camelCaseToRegularCase(data.listName),
+            title: this.globalFunctions.convertListName(data.listName),
             hding1: this.globalFunctions.toTitleCase(listData.fullStreetAddress),
             hding2: this.globalFunctions.toTitleCase(listData.city) + ', ' + this.globalFunctions.stateToAP(listData.stateOrProvince) + ' ' + listData.postalCode,
             detail1: heading2,
@@ -126,7 +126,7 @@ export class FeaturedListsModule implements OnInit{
             ListUrl: 'List-page',
             listParam: {
                 viewType: 'list',
-              listname: data.listName,
+              listname: this.globalFunctions.camelCaseToKababCase(data.listName),
               state: listData.stateOrProvince,
               city: listData.city,
               page: '1',
@@ -145,7 +145,7 @@ export class FeaturedListsModule implements OnInit{
             url1: 'List-page',
             paramOptions1: {
                 viewType: 'list',
-              listname: data.listName,
+              listname: this.globalFunctions.camelCaseToKababCase(data.listName),
               state: listData.stateOrProvince,
               city: listData.city,
               page: '1',

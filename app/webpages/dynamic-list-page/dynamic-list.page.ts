@@ -163,7 +163,7 @@ export class DynamicListPage implements OnInit {
                         "<small>"+val.tag+"</small>"
                         ],
         callToAction:   "Want more detailed information?",
-        buttonLabel:    "<span></span> <span>View Profile</span> <i class='fa fa-angle-right'></i>",
+        buttonLabel:    "<span class='transparent'></span> <span>View Profile</span> <i class='fa fa-angle-right'></i>",
         index:          val.rank,
         imageUrl1:      val.img,
         linkUrl1:       generatedUrl
@@ -221,10 +221,7 @@ export class DynamicListPage implements OnInit {
             index: this.index+1,
             max: max,
             paginationType: 'module',
-            viewAllPage: 'Widget-page',
-            // viewAllParams: {
-            //     query:
-            // }
+            viewAllPage: 'Widget-page'
         }
     }
 
@@ -242,8 +239,7 @@ export class DynamicListPage implements OnInit {
         }
     }
 
-
     ngOnInit() {
-  }
+    }
 
 }
