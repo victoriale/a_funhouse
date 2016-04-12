@@ -65,7 +65,7 @@ export class ProfileHeader implements OnInit{
                 imageURL: data.locationImage,
                 //Unused field of component for this module
                 smallText: '',
-                smallText2: 'Last Updated: ' + moment(data.lastUpdated).format('dddd, MMMM Do, YYYY') + ' at ' + moment(data.lastUpdated).format('HH:mm') + ' EST',
+                smallText2: 'Last Updated: ' + moment(data.lastUpdated).format('dddd, MMMM Do, YYYY') + ' at ' + moment(data.lastUpdated).format('hh:mm A') + ' EST',
                 heading1: data.city + ', ' + this.globalFunctions.stateToAP(data.state),
                 heading2: '',
                 heading3: this.globalFunctions.commaSeparateNumber(data.numberOfListings) + ' Listings Available for Sale',
@@ -97,7 +97,7 @@ export class ProfileHeader implements OnInit{
                 imageURL: data.listingImage,
                 //Unused field of component for this module
                 smallText: '',
-                smallText2: data.city + ', ' + this.globalFunctions.stateToAP(data.state) + ' > ' + moment(data.lastUpdated).format('dddd, MMMM Do, YYYY'),
+                smallText2: data.city + ', ' + this.globalFunctions.stateToAP(data.state) + ' > ' + moment(data.lastUpdated).format('dddd, MMMM Do, YYYY') + ' at ' + moment(data.lastUpdated).format('hh:mm A') + ' EST',
                 heading1: this.globalFunctions.toTitleCase(data.address),
                 heading2: data.listingStatus === null ? '' : '- ' + data.listingStatus,
                 heading3: 'Listing Price: $' + this.globalFunctions.commaSeparateNumber(data.listingPrice),
