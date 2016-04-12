@@ -10,7 +10,7 @@ import {WebApp} from '../../app-layout/app.layout';
 @Component({
     selector: 'Error-page',
     templateUrl: './app/webpages/error-page/error-page.page.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [HeroListComponent],
     providers: [],
 })

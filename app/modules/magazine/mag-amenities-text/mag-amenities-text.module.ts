@@ -5,7 +5,7 @@ import {LearnMoreComponent} from "../../../components/magazine/mag-btns/learnmor
 @Component({
     selector: 'magazine-amenities-text-module',
     templateUrl: './app/modules/magazine/mag-amenities-text/mag-amenities-text.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [AdzoneComponent, LearnMoreComponent],
     inputs: ['magAmenities', 'hasImage'],
 })

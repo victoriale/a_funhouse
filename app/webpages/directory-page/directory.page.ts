@@ -12,7 +12,7 @@ declare var lh: any;
 @Component({
     selector: 'Directory-page',
     templateUrl: './app/webpages/directory-page/directory.page.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [ROUTER_DIRECTIVES, NgClass, LoadingComponent, ErrorComponent],
     providers: [DirectoryService],
 })

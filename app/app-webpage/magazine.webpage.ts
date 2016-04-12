@@ -21,7 +21,7 @@ declare var jQuery:any;
 @Component({
     selector: 'magazine-page',
     templateUrl: './app/app-webpage/magazine.webpage.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [Contact, Neighborhood, Recommendations, Amenities, MagHeaderModule, FooterComponent, ROUTER_DIRECTIVES, MagOverviewModule, NavLeftComponent, NavRightComponent, MagErrorModule],
     providers: [MagazineDataService],
 })

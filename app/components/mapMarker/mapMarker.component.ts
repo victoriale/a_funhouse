@@ -6,7 +6,7 @@ declare var google: any;
 @Component({
     selector: 'mapmarker-component',
     templateUrl: './app/components/mapMarker/mapMarker.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
 })
 
 export class MapMarkerComponent{

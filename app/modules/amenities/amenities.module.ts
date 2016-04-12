@@ -13,7 +13,7 @@ import {GlobalFunctions} from '../../global/global-functions';
 @Component({
     selector: 'amenities-module',
     templateUrl: './app/modules/amenities/amenities.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [moduleHeader, TilesComponent, AmenitiesComponent, ROUTER_DIRECTIVES],
     inputs:['locData']
 })
@@ -27,7 +27,7 @@ export class AmenitiesModule implements OnInit{
     public tileData: Object;
     public index: number = 0;
 
-    providerLogo = './app/public/amenities_yelp.png';
+    providerLogo = '/app/public/amenities_yelp.png';
     providerUrl = 'http://www.yelp.com/';
 
     @Input() amenitiesData: any;

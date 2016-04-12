@@ -5,7 +5,7 @@ declare var jQuery: any;
 @Component({
     selector: 'pagination-footer',
     templateUrl: './app/components/pagination-footer/pagination-footer.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives:[ROUTER_DIRECTIVES],
     providers: [],
     outputs: ['newIndex']

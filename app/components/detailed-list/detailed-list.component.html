@@ -1,8 +1,8 @@
-<div *ngFor="#list of listData; #i = even" class="detailed-list" [ngClass]="{'odd': i == true}">
+<div *ngFor="#list of listData; #i = odd" class="detailed-list" [ngClass]="{'odd': i == true}">
     <div class='detailed-imagebox'>
       <div class="detailed-rank">#{{list.rank}}</div>
         <a [routerLink]="[list.url1, list.url2, list.url3]">
-            <img src='{{list.img}}' onerror="this.src='./app/public/placeholder-location.jpg';" alt='' />
+            <img src='{{list.img}}' onerror="this.src='/app/public/placeholder-location.jpg';" alt='' />
             <div>
               <p>View</p>
               <p>Profile</p>
@@ -34,7 +34,7 @@
                 <p>Want more detailed information about this listing?</p>
             </div>
             <a [routerLink]="[list.url1, list.url2, list.url3]" class='detailed-list-button'>
-                <span><img class="detailed-icon" src="./app/public/realestate_icon.png" /></span>
+                <span><img class="detailed-icon" src="/app/public/realestate_icon.png" /></span>
                 <span>{{list.buttonName}}</span>
                 <i class='fa fa-angle-right'></i>
             </a>

@@ -1,5 +1,7 @@
 import {Injectable} from 'angular2/core';
 
+declare var moment: any;
+
 @Injectable()
 
 export class GlobalFunctions{
@@ -212,8 +214,8 @@ export class GlobalFunctions{
             'homes-with-sprinkler-and-deck': 'Homes with sprinkler and deck',
             'homesWithVaultedCeilingsAndSecuritySystem': 'Homes with vaulted ceiling and security system',
             'homes-with-vaulted-ceilings-and-security-system': 'Homes with vaulted ceiling and security system',
-            'homesLargest': 'Largest Homes',
-            'homes-largest': 'Largest Homes',
+            'homesLargest': 'Largest homes',
+            'homes-largest': 'Largest homes',
             'homesBrickLeastExpensive': 'Least expensive brick houses',
             'homes-brick-least-expensive': 'Least expensive brick houses',
             'homesLeastExpensive': 'Least expensive homes',
@@ -247,5 +249,14 @@ export class GlobalFunctions{
         };
 
         return typeof names[val] === 'undefined' ? this.camelCaseToRegularCase(val) : names[val];
+    }
+    
+    formatDaysOnMarket = function(daysOnMarket) {
+        if ( daysOnMarket === null || daysOnMarket === undefined || daysOnMarket === "N/A" ) {
+          return "N/A";
+        }
+        else {
+          return moment().subtract(daysOnMarket, 'days').format('dddd, MMMM Do, YYYY');
+        }
     }
 }

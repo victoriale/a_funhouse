@@ -16,7 +16,7 @@ import {AuHeaderComponent} from '../../components/au-header/au-header.component'
 @Component({
     selector: 'Aboutus-page',
     templateUrl: './app/webpages/aboutus-page/aboutus.page.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [BackTabComponent, TitleComponent, AuHeaderComponent, WidgetModule, ROUTER_DIRECTIVES],
     providers: [GlobalPage],
 })
@@ -25,11 +25,11 @@ export class AboutUsPage implements OnInit{
     whatIs = "";
     pageName = "";
     
-    au_icon1 = './app/public/icons/Listing_Icon.png';
-    au_icon2 = './app/public/icons/Building_Icon.png';
-    au_icon3 = './app/public/icons/Real_Estate_Icon.png';
-    au_icon4 = './app/public/icons/Globe_Icon.png';
-    nat_map = './app/public/icons/AboutUs_Map.png';
+    au_icon1 = '/app/public/icons/Listing_Icon.png';
+    au_icon2 = '/app/public/icons/Building_Icon.png';
+    au_icon3 = '/app/public/icons/Real_Estate_Icon.png';
+    au_icon4 = '/app/public/icons/Globe_Icon.png';
+    nat_map = '/app/public/icons/AboutUs_Map.png';
 
     subText1 = "Listings For Sale";
     subText2 = "Cities in United States";
@@ -83,7 +83,7 @@ export class AboutUsPage implements OnInit{
       })
       //About us title
       this.titleData = {
-          imageURL : './app/public/joyfulhome_house.png',
+          imageURL : '/app/public/joyfulhome_house.png',
           smallText1 : 'Last Updated: Monday, February 26, 2016',
           smallText2 : ' United States of America',
           heading1 : 'About Us',

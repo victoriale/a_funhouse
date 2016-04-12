@@ -10,7 +10,7 @@ import {MagKeyInformationTextModule} from "../mag-key-information-text/mag-key-i
 @Component({
     selector: 'key-information-module',
     templateUrl: './app/modules/magazine/key-information/key-information.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [NavRightComponent, NavLeftComponent, MagKeyInformationTextModule],
 })
 

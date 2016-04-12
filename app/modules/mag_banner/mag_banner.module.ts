@@ -4,7 +4,7 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 @Component({
     selector: 'mag-banner-module',
     templateUrl: './app/modules/mag_banner/mag_banner.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [ROUTER_DIRECTIVES],
     providers: [],
     inputs:['listingData', 'listing']

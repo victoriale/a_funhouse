@@ -12,7 +12,7 @@ declare var lh: any;
 @Component({
     selector: 'magazine-overview-module',
     templateUrl: './app/modules/magazine/mag-overview/mag-overview.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [AdzoneComponent, LearnMoreComponent, MagCarouselModule],
 })
 export class MagOverviewModule implements OnInit {

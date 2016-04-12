@@ -9,7 +9,7 @@ import {GlobalFunctions} from "../../global/global-functions";
 @Component({
     selector: 'list-of-lists-module',
     templateUrl: './app/modules/listoflist/listoflist.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [contentList,moduleHeader, PaginationFooter],
     providers: [],
     inputs:['listOfLists', 'state', 'city']

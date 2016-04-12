@@ -6,7 +6,7 @@ import {Component, Input} from 'angular2/core';
 @Component({
     selector: 'module-header',
     templateUrl: './app/components/module-header/module-header.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives:[],
     providers: [],
     inputs: ['module_title']

@@ -7,7 +7,7 @@ declare var jQuery: any;
 @Component({
     selector: 'header-component',
     templateUrl: './app/components/header/header.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [HeaderSearchComponent, ROUTER_DIRECTIVES],
     providers: [],
     inputs: ['partnerID'],
@@ -60,23 +60,23 @@ export class HeaderComponent implements OnInit{
     }
 
     directoryList = [
-        { "listName": "Most expensive 2 bedroom homes", "listUrl": "Homes-with-2-bedrooms-most-expensive" },
-        { "listName": "Most expensive 3 bedroom homes", "listUrl": "Homes-with-3-bedrooms-most-expensive" },
-        { "listName": "Most expensive condos", "listUrl": "Condos-most-expensive" },
-        { "listName": "Least expensive homes with waterfront", "listUrl": "Homes-with-waterfront-least-expensive" },
-        { "listName": "Largest homes", "listUrl": "Homes-largest" },
-        { "listName": "Most expensive homes", "listUrl": "Homes-most-expensive" },
-        { "listName": "Least expensive homes", "listUrl": "Homes-least-expensive" },
-        { "listName": "Least expensive homes with a swimming pool", "listUrl": "Homes-with-pool-least-expensive" },
-        { "listName": "Least expensive brick houses", "listUrl": "Homes-brick-least-expensive" },
-        { "listName": "Homes less than 5 years old", "listUrl": "Homes-less-than-5-years-old" },
-        { "listName": "Listings with more than 5 photos", "listUrl": "Listings-with-more-than-5-photos" },
-        { "listName": "Homes with sprinkler system and deck", "listUrl": "Homes-with-sprinkler-and-deck" },
-        { "listName": "New traditional homes", "listUrl": "Homes-new-traditional" },
-        { "listName": "Homes with vaulted ceiling and security", "listUrl": "Homes-with-vaulted-ceilings-and-security-system" },
-        { "listName": "Homes at least 5 years old", "listUrl": "Homes-at-least-5-years-old" },
-        { "listName": "Listings with more than 10 photos", "listUrl": "Listings-with-more-than-10-photos" },
-        { "listName": "Listings with long descriptions", "listUrl": "Listings-with-long-descriptions" }
+        { "listName": "Most expensive 2 bedroom homes", "listUrl": "homes-with-2-bedrooms-most-expensive" },
+        { "listName": "Most expensive 3 bedroom homes", "listUrl": "homes-with-3-bedrooms-most-expensive" },
+        { "listName": "Most expensive condos", "listUrl": "condos-most-expensive" },
+        { "listName": "Least expensive homes with waterfront", "listUrl": "homes-with-waterfront-least-expensive" },
+        { "listName": "Largest homes", "listUrl": "homes-largest" },
+        { "listName": "Most expensive homes", "listUrl": "homes-most-expensive" },
+        { "listName": "Least expensive homes", "listUrl": "homes-least-expensive" },
+        { "listName": "Least expensive homes with a swimming pool", "listUrl": "homes-with-pool-least-expensive" },
+        { "listName": "Least expensive brick houses", "listUrl": "homes-brick-least-expensive" },
+        { "listName": "Homes less than 5 years old", "listUrl": "homes-less-than-5-years-old" },
+        { "listName": "Listings with more than 5 photos", "listUrl": "listings-with-more-than-5-photos" },
+        { "listName": "Homes with sprinkler system and deck", "listUrl": "homes-with-sprinkler-and-deck" },
+        { "listName": "New traditional homes", "listUrl": "homes-new-traditional" },
+        { "listName": "Homes with vaulted ceiling and security", "listUrl": "homes-with-vaulted-ceilings-and-security-system" },
+        { "listName": "Homes at least 5 years old", "listUrl": "homes-at-least-5-years-old" },
+        { "listName": "Listings with more than 10 photos", "listUrl": "listings-with-more-than-10-photos" },
+        { "listName": "Listings with long descriptions", "listUrl": "listings-with-long-descriptions" }
     ];
 
     directoryToggle() {

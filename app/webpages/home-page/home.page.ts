@@ -19,7 +19,7 @@ declare var jQuery:any;
 @Component({
     selector: 'PartnerHomePage',
     templateUrl: './app/webpages/home-page/home.page.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [PartnerHomePage, HeaderComponent, FooterComponent, HeroComponent, ExploreTilesComponent, ExploreButtonComponent, HeroBottomComponent, FeatureTilesComponent, ROUTER_DIRECTIVES],
     providers: [GeoLocationService, NearByCitiesService],
     inputs: [],

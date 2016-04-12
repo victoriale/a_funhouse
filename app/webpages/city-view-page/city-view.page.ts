@@ -15,7 +15,7 @@ declare var moment: any;
 @Component({
     selector: 'city-view-page',
     templateUrl: './app/webpages/city-view-page/city-view.page.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [PaginationFooter, WidgetModule, TitleComponent, HeroListComponent, DynamicCarousel2, BackTabComponent, ROUTER_DIRECTIVES],
     providers: [CityViewService, GlobalFunctions],
 })
@@ -47,7 +47,7 @@ export class CityViewPage implements OnInit{
     dataToArray() {
         this.titleData =
           {
-              imageURL : './app/public/joyfulhome_house.png',
+              imageURL : '/app/public/joyfulhome_house.png',
               smallText1 : 'Last Updated: ' + moment(new Date()).format('dddd, MMMM Do, YYYY'),
               smallText2 : ''+ this.cityLocation + ', ' + this._globalFunctions.stateToAP(this.stateLocation) + '',
               heading1 : 'Nearby Cities for the ' + this.cityLocation + ', ' + this._globalFunctions.stateToAP(this.stateLocation) + ' Area',

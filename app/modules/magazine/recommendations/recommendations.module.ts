@@ -12,7 +12,7 @@ import {WebApp} from "../../../app-layout/app.layout";
 @Component({
     selector: 'recommendations-module',
     templateUrl: './app/modules/magazine/recommendations/recommendations.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [NavRightComponent, MagRecommendationsImgModule, MagRecommendationsTextModule, NavLeftComponent, ROUTER_DIRECTIVES],
 })
 
