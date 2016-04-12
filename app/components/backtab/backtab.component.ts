@@ -3,7 +3,7 @@ import {Component} from 'angular2/core';
 @Component({
     selector: 'backtab-component',
     templateUrl: './app/components/backtab/backtab.component.html',
-    
+
 
 })
 export class BackTabComponent{
