@@ -9,6 +9,10 @@ import {Component} from 'angular2/core';
 export class BackTabComponent{
     backgroundImg = './app/public/header_texture.png';
     goBack() {
-      window.history.back();
+      if(history.length <= 2){
+        window.location.href = '/';
+      } else {
+        window.history.back();
+      }
     }
 }
