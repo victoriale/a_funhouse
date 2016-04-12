@@ -181,28 +181,69 @@ export class GlobalFunctions{
         return str;
     };
 
+    //Transforms kabab-case to camelCase
+    kababCaseToCamelCase = function(str){
+        str = str.replace(/-/g, ' ');
+        str = this.toTitleCase(str);
+        str = str.replace(/ /g, '');
+        str = str[0].toLowerCase() + str.slice(1);
+        return str;
+    };
+
+    //Transforms camelCase to kabab-case
+    camelCaseToKababCase = function(str){
+        str = str
+            .replace(/([A-Z][a-z]+)/g, " $1")
+            .replace(/([A-Z][A-Z]+)/g, " $1")
+            .replace(/([^A-Za-z ]+)/g, " $1")
+            .replace(/ /g, '-');
+        //Lowercase entire string
+        str = str.toLowerCase();
+        return str;
+    };
+
     convertListName = function(val){
         var names = {
             'homesAtLeast5YearsOld': 'Homes at least 5 years old',
+            'homes-at-least-5-years-old': 'Homes at least 5 years old',
             'homesLessThan5YearsOld': 'Homes less than 5 years old',
+            'homes-less-than-5-years-old': 'Homes less than 5 years old',
             'homesWithSprinklerAndDeck': 'Homes with sprinkler and deck',
+            'homes-with-sprinkler-and-deck': 'Homes with sprinkler and deck',
             'homesWithVaultedCeilingsAndSecuritySystem': 'Homes with vaulted ceiling and security system',
+            'homes-with-vaulted-ceilings-and-security-system': 'Homes with vaulted ceiling and security system',
             'homesLargest': 'Largest Homes',
+            'homes-largest': 'Largest Homes',
             'homesBrickLeastExpensive': 'Least expensive brick houses',
+            'homes-brick-least-expensive': 'Least expensive brick houses',
             'homesLeastExpensive': 'Least expensive homes',
+            'homes-least-expensive': 'Least expensive homes',
             'homesWithPoolLeastExpensive': 'Least expensive homes with a swimming pool',
+            'homes-with-pool-least-expensive': 'Least expensive homes with a swimming pool',
             'homesWithWaterfrontLeastExpensive': 'Least expensive homes with waterfront',
+            'homes-with-waterfront-least-expensive': 'Least expensive homes with waterfront',
             'homesWith2BedroomsMostExpensive': 'Most expensive 2 bedroom homes',
+            'homes-with-2-bedrooms-most-expensive': 'Most expensive 2 bedroom homes',
             'homesWith3BedroomsMostExpensive': 'Most expensive 3 bedroom homes',
+            'homes-with-3-bedrooms-most-expensive': 'Most expensive 3 bedroom homes',
             'homesMostExpensive': 'Most expensive homes',
+            'homes-most-expensive': 'Most expensive homes',
             'homesNewTraditional': 'New traditional homes',
+            'homes-new-traditional': 'New traditional homes',
             'listingsInWealthiestZipCode': 'Listings in wealthiest ZIP code in area',
+            'listings-in-wealthiest-zipcode': 'Listings in wealthiest ZIP code in area',
             'listingsWithLongDescriptions': 'Listings with long descriptions',
+            'listings-with-long-descriptions': 'Listings with long descriptions',
             'listingsWithMoreThan10Photos': 'Listings with more than 10 photos',
+            'listings-with-more-than-10-photos': 'Listings with more than 10 photos',
             'listingsWithMoreThan5Photos': 'Listings with more than 5 photos',
+            'listings-with-more-than-5-photos': 'Listings with more than 5 photos',
             'listingsWithVirtualTours': 'Listings with virtual tours',
+            'listings-with-virtual-tours': 'Listings with virtual tours',
             'listingsMostRecent': 'Most recent listings',
-            'condosMostExpensive': 'Most expensive condos'
+            'listings-most-recent': 'Most recent listings',
+            'condosMostExpensive': 'Most expensive condos',
+            'condos-most-expensive': 'Most expensive condos'
         };
 
         return typeof names[val] === 'undefined' ? this.camelCaseToRegularCase(val) : names[val];

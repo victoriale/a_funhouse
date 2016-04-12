@@ -52,7 +52,7 @@ export class ListOfListModule {
             }
 
             //Add title and original title to List Item Object
-            arrayItem.listTitleOrig = listItem.listTitle;
+            arrayItem.listTitleOrig = this._globalFunctions.camelCaseToKababCase(listItem.listTitle);
             arrayItem.listTitle = self._globalFunctions.convertListName(arrayItem.listTitleOrig);
 
             //Add data for small images to listData array if it exists
