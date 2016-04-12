@@ -1,7 +1,7 @@
 @backgroundColor: rgba(0, 0, 0, 0.75);
 .cardv{
   width: 680px;
-  height: 360px;
+  height: auto;
   position: relative;
   &-image-link{
     float: left;
@@ -21,11 +21,12 @@
       color: @masterBrandColor;
     }
     small{
-      .globalDefaultModFont(16px, 300, @white);
+      .globalDefaultModFont(16px, 400, @white);
     }
   }
   &-plcholder{
-    background: svg-gradient(to top right, #2a4968, #1d243f);
+    background: svg-gradient(to top right, @carouselGradientBegin, @carouselGradientEnd);
+    background-size: cover;
     height: 325px;
     width: 100%;
     position: relative;
@@ -54,7 +55,7 @@
         line-height: 22px;
       }
       .mod-page-btn{
-        span:first-child{
+        span.transparent:first-child {
           background-color: transparent;
         }
         span:nth-child(2){

@@ -78,9 +78,9 @@ export class ListOfListsPage implements OnInit{
                     this.listOfLists[i].bgClass = "odd";
                 }
                 // Save original for url
-                this.listOfLists[i].listTitleOrig = this.listOfLists[i].listTitle;
+                this.listOfLists[i].listTitleOrig = this._globalFunctions.camelCaseToKababCase(this.listOfLists[i].listTitle);
                 // Fix list title using global function cameCaseToRegularCase
-                this.listOfLists[i].listTitle = self._globalFunctions.camelCaseToRegularCase(this.listOfLists[i].listTitle);
+                this.listOfLists[i].listTitle = self._globalFunctions.convertListName(this.listOfLists[i].listTitle);
                 // Check for empty list
                 if(this.listOfLists[i].listData === null || this.listOfLists[i].listData.length <= 0 ) {
                 }else {

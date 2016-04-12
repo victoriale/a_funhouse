@@ -5,6 +5,7 @@ import {Component, OnInit, Input, Output, EventEmitter} from 'angular2/core';
 import {CircleButton} from "../../components/buttons/circle/circle.button";
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {List2} from '../../global/global-interface';
+import {PriceFormatPipe} from '../../pipes/price-format.pipe';
 
 declare var jQuery : any;
 @Component({
@@ -14,7 +15,8 @@ declare var jQuery : any;
   directives: [ROUTER_DIRECTIVES, CircleButton],
   providers: [],
   inputs: ['trending', 'mediaImages', 'featureListing', 'modalButton'],
-  outputs: ['leftCircle', 'rightCircle', 'expand']
+  outputs: ['leftCircle', 'rightCircle', 'expand'],
+  pipes: [PriceFormatPipe]
 })
 
 export class MediaImages implements OnInit {
@@ -23,6 +25,7 @@ export class MediaImages implements OnInit {
   leftCircle: EventEmitter<boolean> = new EventEmitter();
   rightCircle: EventEmitter<boolean> = new EventEmitter();
   expand: EventEmitter<boolean> = new EventEmitter();
+  subImageSize: number = 5;
   modalButton: boolean = false;
   expandText: string = 'Expand';
   expandIcon: string = 'fa-expand';
@@ -33,6 +36,9 @@ export class MediaImages implements OnInit {
   virtualTourCount: number = 0;
   totalImageCount: number = 0;
   imageCounter: number = 0;
+  displayCounter: number;
+  imagesTitle: string = "Images";
+  image_url = './app/public/no_photo_images/onError.png';
 
   constructor() {}
 
@@ -43,20 +49,21 @@ export class MediaImages implements OnInit {
   left() {
     if(this.trending){
       this.leftCircle.next(true);
-    }
-    //make a check to see if the obj array is below 0 change the obj array to the top level
-    if(this.imageCounter == 0){
-      this.smallObjCounter--;
-      //makes sure to change to new obj before checking the length to know what position the array should be starting at
-      if(this.smallObjCounter < 0){
-        this.smallObjCounter = (this.mediaImages.totalObj - 1);
-      }
-      this.imageCounter = (this.mediaImages[this.smallObjCounter].length - 1);
     }else{
-      this.imageCounter--;
+      //make a check to see if the obj array is below 0 change the obj array to the top level
+      if(this.imageCounter == 0){
+        this.smallObjCounter--;
+        //makes sure to change to new obj before checking the length to know what position the array should be starting at
+        if(this.smallObjCounter < 0){
+          this.smallObjCounter = (this.mediaImages.totalObj - 1);
+        }
+        this.imageCounter = (this.mediaImages[this.smallObjCounter].length - 1);
+      }else{
+        this.imageCounter--;
+      }
+      //run the changeMain function to change the main image once a new array has been established
+      this.changeMain(this.imageCounter);
     }
-    //run the changeMain function to change the main image once a new array has been established
-    this.changeMain(this.imageCounter);
   }
 
   right() {
@@ -74,14 +81,16 @@ export class MediaImages implements OnInit {
       }else{
         this.imageCounter++;
       }
+      //run the changeMain function to change the main image once a new array has been established
+      this.changeMain(this.imageCounter);
     }//endif this.trending
-    //run the changeMain function to change the main image once a new array has been established
-    this.changeMain(this.imageCounter);
   }
 
   //this is where the angular2 decides what is the main image
   changeMain(num){
-
+    if(!this.trending){
+      this.displayCounter = (this.smallObjCounter*this.subImageSize) + num + 1;
+    }
     this.imageCounter = num;
     if(typeof this.smallImage == 'undefined'){
       this.smallImage = this.mediaImages[0];
@@ -91,7 +100,7 @@ export class MediaImages implements OnInit {
      this.largeImage = this.smallImage[num].image;
   }
 
-  //take the input from the module and put them into groups of 5 obj array
+  //take the input from the module and put them into groups of subImageSize obj array
   modifyMedia(images){
     var totalImgs = images.length;
     var newImageArray = [];
@@ -102,15 +111,15 @@ export class MediaImages implements OnInit {
       this.expandIcon='fa-compress';
     }
 
-    //loops through and put each image into groups of 5 for the square container
+    //loops through and put each image into groups of subImageSize for the square container
     for(var i = 0; i < totalImgs; i++){
       if(typeof newImageArray[objCount] == 'undefined'){
         newImageArray[objCount] = [];
       }
 
-      newImageArray[objCount].push({id:(i%5), image:images[i]});
+      newImageArray[objCount].push({id:(i%this.subImageSize), image:images[i]});
 
-      if(newImageArray[objCount].length == 5 && (i != totalImgs - 1)){
+      if(newImageArray[objCount].length == this.subImageSize && (i != totalImgs - 1)){
         objCount++;
       }
     }
@@ -126,8 +135,14 @@ export class MediaImages implements OnInit {
         this.smallObjCounter = 0;
         this.imageCounter = 0;
         this.mediaImages = this.modifyMedia(this.mediaImages);
-        this.totalImageCount = this.mediaImages.totalImages;
         this.changeMain(0);
+        if(this.trending){
+          this.imagesTitle = this.featureListing.listName;
+          this.totalImageCount = this.featureListing.totalListings;
+          this.displayCounter = this.featureListing.rank;
+        }else{
+          this.totalImageCount = this.mediaImages.totalImages;
+        }
       }
   }
 

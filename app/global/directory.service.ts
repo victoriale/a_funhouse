@@ -65,13 +65,18 @@ export class DirectoryService{
     }
 
     //API to get cities list
-    getAllCities(pageNumber, state){
+    getAllCities(pageNumber, state, cityStartsWithLetter){
         var headers = this.setToken();
 
         var skip = encodeURI(pageNumber);
         state = encodeURI(state);
+        var url = this.apiUrl + '/directory/cities/cityList/'+ state + '/' + 20 + '/' + skip;        
+        
+        if ( cityStartsWithLetter !== undefined && cityStartsWithLetter !== null ) {
+          url += '/' + cityStartsWithLetter;
+        }
 
-        return this.http.get(this.apiUrl + '/directory/cities/cityList/'+ state + '/' + 20 + '/' + skip, {
+        return this.http.get(url, {
                 headers: headers
             })
             .map(
@@ -82,7 +87,7 @@ export class DirectoryService{
                     if(data.success == false){
                         throw new Error('Error: getAllCities api success, message failed');
                     }
-
+                    
                     return data.data;
                 }
             )

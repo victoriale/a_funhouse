@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit{
     isScrolling: boolean;
     pageNum: string = "1";
     curRoute: any;
+    partnerUrl: string;
 
     constructor(public router: Router) {
        this.directoryVisible = false;
@@ -35,6 +36,7 @@ export class HeaderComponent implements OnInit{
                     var partnerIdExists = partnerID[0] != '' ? true : false;
 
                     var myhousekit = /myhousekit/.test(hostname);
+                    // var myhousekit = /localhost/.test(hostname); //used for testing locally
                     //checks if partner ID exists
                     if(!partnerIdExists){
                       this.partnerID = null;
@@ -42,6 +44,7 @@ export class HeaderComponent implements OnInit{
                     }else{
                       this.partnerID = partnerID[0];
                       this.isMyHouseKit = true;
+                      this.partnerUrl = '/'+this.partnerID+'/loc';
                     }
 
                     //check to make sure if home page is being displayed

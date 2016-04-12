@@ -7,27 +7,43 @@
   margin-bottom: 20px;
 
   &-tooltip{
-    width: 660px;
-    font-size: 12px;
-    border: 3px solid @borderGrey;
-    margin: 0 auto;
+    width: 300px;
+    font-size: 14px;
+    border: 1px solid @borderGrey;
+    margin: 0;
     margin-bottom: 10px;
+    font-family: @globalFont;
 
     &-header{
-      font-weight: 900;
       background-color: @borderGrey;
       padding: 4px 10px;
-    }
-    &-description{
-      height: 45px;
-      line-height: 45px;
-      padding: 0px 20px;
-
-      .bold{
-        font-weight: 900;
+      
+      &-cancel {
+        float: right;
+        cursor: pointer;
       }
     }
+    &-description{
+      line-height: 16px;
+      padding: 10px;
+      background: @backgroundGrey;
+    }
+    
+    .bold{
+      font-weight: 900;
+    }
   }
+  
+  &-result-summary {
+    font-size: 12px;
+    font-family: @globalFont;    
+    margin-bottom: 10px;
+    
+    .bold{
+      font-weight: 900;
+    }
+  }
+
 
   &-menu{
       a{

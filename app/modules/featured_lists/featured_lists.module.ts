@@ -116,17 +116,17 @@ export class FeaturedListsModule implements OnInit{
         this.listData = {
             rank: this.index + 1,
             header: 'Trending Real Estate',
-            title: this.globalFunctions.camelCaseToRegularCase(data.listName),
+            title: this.globalFunctions.convertListName(data.listName),
             hding1: this.globalFunctions.toTitleCase(listData.fullStreetAddress),
             hding2: this.globalFunctions.toTitleCase(listData.city) + ', ' + this.globalFunctions.stateToAP(listData.stateOrProvince) + ' ' + listData.postalCode,
             detail1: heading2,
             detail2: listData.listPrice === null ? '' : 'Asking Price: ',
-            detail3: listData.listPrice === null ? '' : '$' + this.globalFunctions.commaSeparateNumber(listData.listPrice),
+            detail3: this.globalFunctions.formatPriceNumber(listData.listPrice),
             imageUrl: listData.photos.length === 0 ? null : listData.photos[0],
             ListUrl: 'List-page',
             listParam: {
                 viewType: 'list',
-              listname: data.listName,
+              listname: this.globalFunctions.camelCaseToKababCase(data.listName),
               state: listData.stateOrProvince,
               city: listData.city,
               page: '1',
@@ -145,12 +145,12 @@ export class FeaturedListsModule implements OnInit{
             url1: 'List-page',
             paramOptions1: {
                 viewType: 'list',
-              listname: data.listName,
+              listname: this.globalFunctions.camelCaseToKababCase(data.listName),
               state: listData.stateOrProvince,
               city: listData.city,
               page: '1',
             },
-            title2: 'Top 10 Lists',
+            title2: 'Top City Lists',
             icon2: 'fa-trophy',
             desc2: '',
             url2: 'List-of-lists-page',
@@ -171,22 +171,22 @@ export class FeaturedListsModule implements OnInit{
     //On Change Call
     ngOnChanges(event){
         //Get changed input
-        var currentFeaturedListData = event.featuredListData.currentValue;
-        //If the data input is valid run transform data function
-        if(currentFeaturedListData !== null && currentFeaturedListData !== false) {
-
+        if(typeof event.featuredListData != 'undefined'){
+          var currentFeaturedListData = event.featuredListData.currentValue;
+          //If the data input is valid run transform data function
+          if(currentFeaturedListData !== null && currentFeaturedListData !== false) {
             //Perform try catch to make sure module doesnt break page
             try{
-                //If featured list data has no list data (length of 0) throw error to hide module
-                if(this.featuredListData.listData.length === 0){
-                    throw 'No Data available for featured list - hiding module';
-                }
-
-                this.transformData();
+              //If featured list data has no list data (length of 0) throw error to hide module
+              if(this.featuredListData.listData.length === 0){
+                throw 'No Data available for featured list - hiding module';
+              }
+              this.transformData();
             }catch(e){
-                console.log('Error - Featured List Module ', e);
-                this.featuredListData = undefined;
-            }
-        }
+              console.log('Error - Featured List Module ', e);
+              this.featuredListData = undefined;
+            }//end of
+          }//end of null check
+        }//end of event check
     }
 }

@@ -7,23 +7,30 @@
   &-main{
     &-img{
       margin: 10px 10px 15px 20px;
-      width: 295px;
+      -webkit-flex:1 0 auto; /* needed for Safari, otherwise columns overlap */
     }
     .flexDisplay;
     &-opt{
       margin: 36px 0 0 0;
+      padding-left: 15px;
       color: #666666;
       font-size: 24px;
       font-weight: 400;
       .text{
-        margin-left: 15px;
+        margin-bottom: 16px;
       }
       .groupButtons{
-        margin: 16px 0 0 15px;
+        .clearfix;
+        a{
+          display: block !important;
+          float: left;
+          margin: 0 10px 10px 0;
+          line-height: 34px;
+          span{
+            vertical-align: middle;
+          }
+        }
         .btn-fb{
-          .inlineFlexDisplay;
-          .flexDirection(row);
-          .flexAlignItems(center);
           height: 40px;
           width: 200px;
           background-color: @facebook;
@@ -49,9 +56,6 @@
           }
         }
         .btn-twitter{
-          .inlineFlexDisplay;
-          .flexDirection(row);
-          .flexAlignItems(center);
           margin: 0 15px 15px 0;
           height: 40px;
           width: 200px;
@@ -77,9 +81,6 @@
           }
         }
         .btn-google{
-          .inlineFlexDisplay;
-          .flexDirection(row);
-          .flexAlignItems(center);
           height: 40px;
           width: 200px;
           margin: 0 15px 15px 0;
@@ -109,9 +110,6 @@
           }
         }
         .btn-pin{
-          .inlineFlexDisplay;
-          .flexDirection(row);
-          .flexAlignItems(center);
           height: 40px;
           width: 200px;
           margin: 0 15px 15px 0;

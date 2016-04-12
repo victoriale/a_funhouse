@@ -7,6 +7,7 @@ import {MagazinePage} from "../../../app-webpage/magazine.webpage";
 import {MagCarouselModule} from "../mag-carousel/mag-carousel.module";
 
 declare var jQuery:any;
+declare var lh: any;
 
 @Component({
     selector: 'magazine-overview-module',
@@ -53,6 +54,9 @@ export class MagOverviewModule implements OnInit {
             .subscribe(
                 magData => {
                     this.magOverview = magData.overview;
+                    // console.log(magData);
+                    var listingKey = magData.overview['listingKey'];//send key to listhub
+                    lh('submit', 'DETAIL_PAGE_VIEWED', {lkey:listingKey});
                     if (typeof magData.overview.price === 'string' && magData.overview != 'undefined') {
                         this.contactAgent = magData.overview.price;
                     } else {
@@ -66,6 +70,8 @@ export class MagOverviewModule implements OnInit {
     }
 
     ngOnInit() {
+        //remove min-width from body so the responsiveness on the magazine works.
+        jQuery('body').css("min-width", "0px");
         this.getMagazineOverview();
     }
 }

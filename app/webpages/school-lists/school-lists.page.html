@@ -9,26 +9,35 @@
 
           <section *ngIf="schoolData && !isError" class="page-container">
             <div class="page-content">
-            <module-header [module_title]="moduleTitle"></module-header>
-              <div *ngFor="#item of schoolData; #i=odd" class="al" [ngClass]="{'odd': i == true}">
+              <backtab-component></backtab-component>
+              <title-component [titleData]="titleComponentData"></title-component>
+              <dynamic-carousel2 [carouselData]="carouselData"></dynamic-carousel2>
+              <div *ngFor="#item of displayData" class="al {{item.bgClass}}">
                 <div class='al-schoolImage'>
                   <img src='{{item.imageUrl}}' onerror="this.src='./app/public/mag_stock_img/stock_school_1.png';" />
                   <div class="al-schoolImage-rank">#{{item.rank}}</div>
                 </div>
-                <div>
-                    <div class='al-loc'>
-                      <span><i class='fa fa-map-marker'></i></span>
-                      <span> {{item.location_address}}</span>
-                      <span><i class='fa fa-angle-right'></i></span>
-                      <a [routerLink]="['Location-page',item.locationUrl]">
-                        <span> {{item.location_city}}, {{item.location_state}} {{item.zipCode}}</span>
-                      </a>
+
+                <div class="info-content-box">
+                    <div class="info-content-row-wrapper">
+                        <div class="info-content-row1">
+                            <p class="info-address">{{item.school_name}}</p>
+                            <p class="info-type"><i class='fa fa-map-marker colorReset'></i>
+                              <a [routerLink]="['Location-page',item.locationUrl]" class="al-location">
+                                <span> {{item.location_city}}, {{item.location_state}}</span>
+                              </a>
+                              <span></span>
+                            </p>
+                        </div>
+                        <div class="info-content-row2" style="padding-top: 5px;">
+                            <p class="info-date">{{item.type}}</p>
+                            <p class="info-price">{{item.categoryName}}</p>
+                        </div>
                     </div>
-                    <div class='al-name'>{{item.school_name}}</div>
-                    <div class='al-desc'>{{item.type}}</div>
                 </div>
               </div>
             </div>
+            <pagination-footer *ngIf="paginationParameters" [paginationParameters]="paginationParameters" (newIndex)="newIndex($event)"></pagination-footer>
             <hero-list-component></hero-list-component>
           </section>
         </section>

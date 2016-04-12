@@ -16,6 +16,7 @@ export class FindYourHomeModule implements OnInit{
     @Input() locDisplay;
     @Input() locState;
     @Input() locCity;
+    @Input() filterType: any  = 'empty';
 
     public module_title: string;
     public imageUrl: string;
@@ -27,7 +28,6 @@ export class FindYourHomeModule implements OnInit{
     private filterBathrooms: any  = 'empty';
     private filterSqFeet: any  = 'empty';
     private filterLot: any  = 'empty';
-    private filterType: any  = 'empty';
     private filterLimit: any = 20;
     private filterPage: any = 1;
 
@@ -38,9 +38,21 @@ export class FindYourHomeModule implements OnInit{
 
     // EVENTS
     // Get selected radio input value for property type
-    onClickPropertyType() {
-        this.filterType = jQuery('input:checked').val();
-        //console.log(this.filterType);
+    onClickPropertyType($event) {      
+      if ( $event.target.tagName === "INPUT" ) {
+        let selectedFilterRadioBtn = jQuery($event.target);
+        let newFilterType = selectedFilterRadioBtn.val();
+        if ( newFilterType === '' ) newFilterType = undefined;
+
+        if ( this.filterType !== newFilterType ) {
+          this.filterType = newFilterType;
+        }
+        else {
+          //uncheck radio button and set undefined
+          this.filterType = undefined;
+          selectedFilterRadioBtn.removeProp('checked');
+        }
+      }
     }
 
     // Get selected select value for number bedrooms
@@ -88,28 +100,30 @@ export class FindYourHomeModule implements OnInit{
     }
 
     onInputFocus($event) {
-        var stringVal = jQuery(event.target)[0].value;
+        var stringVal = jQuery($event.target)[0].value;
+        
         if ( stringVal.indexOf('.') != -1 ) {
             stringVal = this.numberToCommaNumber(stringVal.replace('$','').replace('.','').replace('M','00000').replace('K','000').replace('+',''));
         } else {
             stringVal = this.numberToCommaNumber(stringVal.replace('$','').replace('M','000000').replace('K','000').replace('+',''));
         }
-        jQuery(event.target).val(stringVal);
-        if ( jQuery(event.target)[0].setSelectionRange ) {
-            jQuery(event.target)[0].setSelectionRange(99,100);
+        jQuery($event.target).val(stringVal);
+        
+        if ( jQuery($event.target)[0].setSelectionRange ) {
+            jQuery($event.target)[0].setSelectionRange(99,100);
         }
     }
 
     onInputBlur($event) {
-        var stringVal = jQuery(event.target)[0].value;
+        var stringVal = jQuery($event.target)[0].value;
         stringVal = stringVal.replace(/,/g,'');
         var xPos = Math.round(this.logslider(Number(stringVal)/1000,1));
-        if ( jQuery(jQuery(event.target)[0].parentElement).is('#minBall') ) {
+        if ( jQuery(jQuery($event.target)[0].parentElement).is('#minBall') ) {
             if ( !this.moveBall('minBall',xPos) ) {
                 this.moveBall('minBall', undefined);
                 return true;
             }
-        } else if ( jQuery(jQuery(event.target)[0].parentElement).is('#maxBall') ) {
+        } else if ( jQuery(jQuery($event.target)[0].parentElement).is('#maxBall') ) {
             if ( !this.moveBall('maxBall',xPos) ) {
                 this.moveBall('maxBall', undefined);
                 return true;
@@ -120,7 +134,7 @@ export class FindYourHomeModule implements OnInit{
         } else {
             stringVal = "$" + Math.round(Number(stringVal)/1000) + "K";
         }
-        jQuery(event.target)[0].value = stringVal;
+        jQuery($event.target)[0].value = stringVal;
     }
 
     onClickBall($event) {

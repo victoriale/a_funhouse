@@ -8,7 +8,7 @@
   .flexDirection(row);
   display: flex;
   &.odd {
-    background: @backgroundGrey
+    background: @backgroundGrey;
   }
   &.even {
     background: @white;
@@ -25,7 +25,8 @@
   .info-rank {
     text-align: center;
     color: @black;
-    width: 42px;
+    min-width: 42px;
+    width:auto;
     height: 42px;
     line-height: 42px;
     border: 1px solid @backgroundGrey;
@@ -95,7 +96,7 @@
     }
 
   .info-price {
-    .globalDefaultModFont(14px, 600, @black) !important;
+    .globalDefaultModFont(14px, 400, @black) !important;
     margin: 0;
   }
 

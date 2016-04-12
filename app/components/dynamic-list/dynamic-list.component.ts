@@ -1,5 +1,8 @@
 import {Component, OnInit, Input} from 'angular2/core';
 import {ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
+import {ViewEncapsulation} from "angular2/core";
+
+import {PriceFormatPipe} from '../../pipes/price-format.pipe';
 
 @Component({
     selector: 'dynamic-list',
@@ -8,6 +11,8 @@ import {ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
     directives: [ROUTER_DIRECTIVES],
     providers: [],
     inputs: ['listData'],
+    encapsulation: ViewEncapsulation.None,
+    pipes: [PriceFormatPipe]
 })
 
 export class DynamicListComponent implements OnInit{

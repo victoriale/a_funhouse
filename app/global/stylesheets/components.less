@@ -560,7 +560,7 @@ goalsHeader
     border-radius: @liwh*.25;
     line-height: @liwh*.25;
     padding: 0px @liss;
-    font-size: 20px;
+    font-size: 18px;
     font-family: @globalFont;
     text-align: center;
     //line-height: 1.8em;
@@ -1057,7 +1057,6 @@ goalsHeader
   .flexJustify(center);
   .flexAlignItems(center);
   min-width: 115px;
-  max-width: 185px;
   height: 30px;
   position: absolute;
   padding-left: 15px;
@@ -1180,10 +1179,7 @@ goalsHeader
   .tile-container {
     width: 180px;
     height: 180px;
-    -webkit-perspective: 1000;
-    -moz-perspective: 1000;
-    -ms-perspective: 1000;
-    perspective: 1000;
+    .perspective(1000);
     &:hover [class*='tile-front'],
     &.hover [class*='tile-front'] {
       .transformPrefixes(rotateY(180deg));
@@ -1193,10 +1189,10 @@ goalsHeader
       .transformPrefixes(rotateY(0deg));
     }
     [class*='tile-flipper'] {
-      -webkit-perspective: 1000;
-      -moz-perspective: 1000;
-      -ms-perspective: 1000;
-      perspective: 1000;
+      a{
+        color: @white;
+      }
+      .perspective(1000);
       position: relative;
       .transitionPrefixes(0.3s);
       .transformStylePrefixes(preserve-3d);
@@ -1207,11 +1203,8 @@ goalsHeader
       .transitionPrefixes(0.3s);
       width: 180px;
       height: 180px;
-      background-color: #333;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      -moz-backface-visibility: hidden;
-      -ms-backface-visibility: hidden;
+      background-color: @tileBackground;
+      .backfaceVisibility(hidden);
       position: absolute;
       top: 0;
       left: 0;
@@ -1227,10 +1220,7 @@ goalsHeader
         margin-top: 40px;
         font-size: 48px;
         color: @white;
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-        -moz-backface-visibility: hidden;
-        -ms-backface-visibility: hidden;
+        .backfaceVisibility(hidden);
       }
       p {
         margin-top: 20px;
@@ -1238,7 +1228,7 @@ goalsHeader
         width: 150px;
         .globalDefaultModFont(22px, 300, @white);
       }
-    }
+    }//tile-front ends
     [class*='tile-back'] {
       .flexDisplay;
       .flexDirection(column);
@@ -1258,6 +1248,13 @@ goalsHeader
       span:last-child {
         .tile-btn;
       }
-    }
+    }//tile-back ends
   }
 }
+
+/*************************/
+/* @Carousel Background Colors*/
+/*************************/
+@carouselGradientBegin: #2a4968;
+@carouselGradientEnd:   #1d243f;
+@tileBackground: #333333;
