@@ -14,7 +14,7 @@ declare var jQuery:any;
     encapsulation: ViewEncapsulation.None,
     selector: 'magazine-map-module',
     templateUrl: './app/modules/magazine/mag-map/mag-map.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [MapMarkerComponent, ROUTER_DIRECTIVES],
 })
 

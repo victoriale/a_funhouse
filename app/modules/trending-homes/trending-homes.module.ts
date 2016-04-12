@@ -10,7 +10,7 @@ declare var moment: any;
 @Component({
     selector: 'trending-homes',
     templateUrl: './app/modules/trending-homes/trending-homes.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [ListViewCarousel, moduleHeader, MediaImages],
     inputs:['locData']
 })
@@ -29,7 +29,7 @@ export class TrendingHomes implements OnInit {
     modal:boolean = true;
     public index: number = 0;
     @Input() trendingHomesData: any;
-    image_url:string ='./app/public/no_photo_images/onError.png';
+    image_url:string ='/app/public/no_photo_images/onError.png';
 
     constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions){
       //Determine what page the profile header module is on

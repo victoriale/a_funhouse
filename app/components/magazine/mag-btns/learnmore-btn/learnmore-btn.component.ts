@@ -11,7 +11,7 @@ import {ROUTER_DIRECTIVES} from "angular2/router";
 @Component({
     selector: 'learnmore-component',
     templateUrl: './app/components/magazine/mag-btns/learnmore-btn/learnmore-btn.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [ROUTER_DIRECTIVES]
 })
 

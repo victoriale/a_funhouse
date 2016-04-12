@@ -13,7 +13,7 @@ declare var moment: any;
 @Component({
   selector: 'media-features-module',
   templateUrl: './app/modules/media_features/media_features.module.html',
-  styleUrls: ['./app/global/stylesheets/master.css'],
+  
   directives: [moduleHeader, MediaImages],
   providers: [],
   inputs:['locData']
@@ -31,7 +31,7 @@ export class MediaFeatureModule implements OnInit {
   expand: boolean = false; // for modal
   modal: boolean = true;
   lastUpdated = "";
-  image_url = './app/public/no_photo_images/onError.png';
+  image_url = '/app/public/no_photo_images/onError.png';
   featureHeading = "Features Of This Property";
   lastUpdate = "";
 

@@ -5,7 +5,7 @@ import {LearnMoreComponent} from "../../../components/magazine/mag-btns/learnmor
 @Component({
     selector: 'magazine-recommendations-text-module',
     templateUrl: './app/modules/magazine/mag-recommendations-text/mag-recommendations-text.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [AdzoneComponent, LearnMoreComponent],
     inputs: ['magRecommendations', 'recommendations'],
 })

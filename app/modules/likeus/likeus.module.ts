@@ -7,7 +7,7 @@ import {moduleHeader} from "../../components/module-header/module-header";
 @Component({
     selector: 'like-us-module',
     templateUrl: './app/modules/likeus/likeus.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [moduleHeader],
 })
 export class LikeUs implements OnInit{

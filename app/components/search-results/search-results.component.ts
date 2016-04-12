@@ -5,7 +5,7 @@ import {Observable} from 'rxjs/Observable';
 @Component({
     selector: 'search-results',
     templateUrl: './app/components/search-results/search-results.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [ROUTER_DIRECTIVES],
     providers: [],
     inputs: ['searchResults', 'showResults']

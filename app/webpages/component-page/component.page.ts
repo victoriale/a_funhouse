@@ -33,7 +33,7 @@ import {WidgetModule} from "../../modules/widget/widget.module";
 @Component({
     selector: 'component-page',
     templateUrl: './app/webpages/component-page/component.page.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [
         BackTabComponent,
         TitleComponent,

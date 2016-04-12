@@ -4,7 +4,7 @@ import {Router, RouteParams, ROUTER_DIRECTIVES} from 'angular2/router';
 @Component({
     selector: 'Housekit-home-page',
     templateUrl: './app/webpages/partner-home-page/partner-home-page.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [ROUTER_DIRECTIVES],
     providers: [],
 })

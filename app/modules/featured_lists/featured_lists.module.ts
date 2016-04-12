@@ -10,7 +10,7 @@ import {GlobalFunctions} from '../../global/global-functions';
 @Component({
     selector: 'featured-lists-module',
     templateUrl: './app/modules/featured_lists/featured_lists.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [moduleHeader, TilesComponent, FeatureComponent],
     providers: [],
     inputs:['locData']

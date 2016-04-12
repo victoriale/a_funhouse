@@ -13,7 +13,7 @@ import {AmenitiesComponent} from '../../components/amenities/amenities.component
 @Component({
     selector: 'school-module',
     templateUrl: './app/modules/school/school.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [moduleHeader, TilesComponent, AmenitiesComponent],
     providers: [],
     inputs:['locData']

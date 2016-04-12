@@ -4,7 +4,7 @@ import {moduleHeader} from "../../components/module-header/module-header";
 @Component({
     selector: 'trending-carousel-list',
     templateUrl: './app/components/trending-carousel-list/trending-carousel-list.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [moduleHeader],
     providers: [],
 })

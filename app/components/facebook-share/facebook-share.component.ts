@@ -7,7 +7,7 @@ import {Component, OnInit} from 'angular2/core';
 @Component({
     selector: 'share-component',
     templateUrl: './app/components/facebook-share/facebook-share.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [],
 })
 

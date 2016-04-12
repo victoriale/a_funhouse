@@ -4,7 +4,7 @@ import {ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
 @Component({
     selector: 'detailed-image-circle',
     templateUrl: './app/components/dynamic-list/dynamic-list.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [ROUTER_DIRECTIVES],
     providers: [],
     inputs: ['listData'],
@@ -19,7 +19,7 @@ export class DynamicListComponent implements OnInit{
         if(typeof this.listData == 'undefined'){
             this.listData =
             {
-                imageURL : './app/public/joyfulhome_house.png',
+                imageURL : '/app/public/joyfulhome_house.png',
                 location : 'Wichita, KS',
                 postal : ' 67260',
                 livingarea : 'livingarea',

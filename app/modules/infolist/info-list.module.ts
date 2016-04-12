@@ -11,7 +11,7 @@ declare var moment: any;
 @Component({
     selector: 'info-list-module',
     templateUrl: './app/modules/infolist/info-list.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [moduleHeader, moduleFooter, InfoListComponent, PaginationFooter],
     inputs: ['module_title', 'recentListingsData', 'locDisplay'],
     providers: [],

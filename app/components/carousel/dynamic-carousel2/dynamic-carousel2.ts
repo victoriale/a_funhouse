@@ -6,7 +6,7 @@ import {ViewEncapsulation} from "angular2/core";
 @Component({
     selector: 'dynamic-carousel2',
     templateUrl: './app/components/carousel/dynamic-carousel2/dynamic-carousel2.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [CircleButton, Image180],
     providers: [],
     inputs: ['carouselData','partnerID'],

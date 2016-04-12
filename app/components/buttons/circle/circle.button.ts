@@ -6,7 +6,7 @@ import {Component, Output, EventEmitter} from 'angular2/core';
 @Component({
     selector: 'circle-button',
     templateUrl: './app/components/buttons/circle/circle.button.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     outputs: ['scrollRight', 'scrollLeft']
 })
 export class CircleButton{

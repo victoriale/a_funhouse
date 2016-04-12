@@ -7,7 +7,7 @@ declare var jQuery: any;
 @Component({
     selector: 'header-component',
     templateUrl: './app/components/header/header.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [HeaderSearchComponent, ROUTER_DIRECTIVES],
     providers: [],
     inputs: ['partnerID'],

@@ -10,7 +10,7 @@ import {Injector} from 'angular2/core';
 @Component({
     selector: 'about-us-module',
     templateUrl: './app/modules/aboutus/aboutus.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [moduleHeader, TilesComponent, ROUTER_DIRECTIVES],
     providers: [],
     inputs:['partnerID']
@@ -47,10 +47,10 @@ export class AboutUsModule{
     ngOnInit(){
       if(this.partnerID === null || this.partnerID == '' || typeof this.partnerID == 'undefined'){
         this.pageName = "Joyful Home";
-        this.logo = './app/public/joyfulhome_logo_large.png';
+        this.logo = '/app/public/joyfulhome_logo_large.png';
       } else {
         this.pageName = "My HouseKit";
-        this.logo = './app/public/myhousekit_logo.png';
+        this.logo = '/app/public/myhousekit_logo.png';
       }
       this.header = this.pageName + ' Disclaimer';
       this.mainText = 'This site is powered by '+this.pageName+'. Ideas and opinions presented on this website are for informational and educational purposes only, and do not reflect the opinions of '+this.pageName+', or any of its affiliates, subsidiaries or partners.';

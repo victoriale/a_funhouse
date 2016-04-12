@@ -5,7 +5,7 @@ declare var jQuery: any;
 @Component({
     selector: 'widget-module',
     templateUrl: './app/modules/widget/widget.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [],
     providers: [],
 })
