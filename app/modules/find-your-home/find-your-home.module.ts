@@ -100,28 +100,30 @@ export class FindYourHomeModule implements OnInit{
     }
 
     onInputFocus($event) {
-        var stringVal = jQuery(event.target)[0].value;
+        var stringVal = jQuery($event.target)[0].value;
+        
         if ( stringVal.indexOf('.') != -1 ) {
             stringVal = this.numberToCommaNumber(stringVal.replace('$','').replace('.','').replace('M','00000').replace('K','000').replace('+',''));
         } else {
             stringVal = this.numberToCommaNumber(stringVal.replace('$','').replace('M','000000').replace('K','000').replace('+',''));
         }
-        jQuery(event.target).val(stringVal);
-        if ( jQuery(event.target)[0].setSelectionRange ) {
-            jQuery(event.target)[0].setSelectionRange(99,100);
+        jQuery($event.target).val(stringVal);
+        
+        if ( jQuery($event.target)[0].setSelectionRange ) {
+            jQuery($event.target)[0].setSelectionRange(99,100);
         }
     }
 
     onInputBlur($event) {
-        var stringVal = jQuery(event.target)[0].value;
+        var stringVal = jQuery($event.target)[0].value;
         stringVal = stringVal.replace(/,/g,'');
         var xPos = Math.round(this.logslider(Number(stringVal)/1000,1));
-        if ( jQuery(jQuery(event.target)[0].parentElement).is('#minBall') ) {
+        if ( jQuery(jQuery($event.target)[0].parentElement).is('#minBall') ) {
             if ( !this.moveBall('minBall',xPos) ) {
                 this.moveBall('minBall', undefined);
                 return true;
             }
-        } else if ( jQuery(jQuery(event.target)[0].parentElement).is('#maxBall') ) {
+        } else if ( jQuery(jQuery($event.target)[0].parentElement).is('#maxBall') ) {
             if ( !this.moveBall('maxBall',xPos) ) {
                 this.moveBall('maxBall', undefined);
                 return true;
@@ -132,7 +134,7 @@ export class FindYourHomeModule implements OnInit{
         } else {
             stringVal = "$" + Math.round(Number(stringVal)/1000) + "K";
         }
-        jQuery(event.target)[0].value = stringVal;
+        jQuery($event.target)[0].value = stringVal;
     }
 
     onClickBall($event) {

@@ -34,7 +34,8 @@ export class AmenitiesListPage implements OnInit{
   name: string;
   displayAddress1: string;
   displayAddress2: string;
-  public category: string;
+  public displayCategory: string;
+  public paramCategory: string;
   public location: string;
   public locCity: string;
   public locState: string;
@@ -53,7 +54,13 @@ export class AmenitiesListPage implements OnInit{
   public isError: boolean = false;
 
   constructor(private _params: RouteParams, private router: Router, private globalFunctions: GlobalFunctions,  private _locationService: LocationProfileService, params: RouteParams){
-      this.category = params.params['listname'];
+      this.paramCategory = params.params['listname'];
+      if(this.paramCategory == 'restaurant'){
+        this.displayCategory = 'restaurants';
+      }
+      else {
+        this.displayCategory = this.paramCategory;
+      }
       window.scrollTo(0, 0);
   }
 
@@ -78,16 +85,13 @@ export class AmenitiesListPage implements OnInit{
         imageURL: './app/public/joyfulhome_house.png',
         smallText1: 'Last Updated: ' + moment(new Date()).format('dddd, MMMM Do, YYYY'),
         smallText2: decodeURI(this._params.get('city')) + ', ' + decodeURI(this._params.get('state')),
-        heading1: this.globalFunctions.toTitleCase(this.category) + ' in and around ' + decodeURI(this._params.get('city')) + ', ' + decodeURI(this._params.get('state')),
+        heading1: this.globalFunctions.toTitleCase(this.displayCategory) + ' in and around ' + this.locCity + ', ' + this.locState + ".",
         icon: 'fa fa-map-marker',
         hasHover: false
    }//end data input for title component
 
-    var dataLists = data[this.category]['businesses'];
+    var dataLists = data[this.paramCategory]['businesses'];
     var globalFunc = this.globalFunctions;
-    if(this.category == 'restaurant'){
-      this.category = 'restaurants';
-    }
     var carouselData = [];
     dataLists.forEach(function(val, i){
       val.rank = i+1;

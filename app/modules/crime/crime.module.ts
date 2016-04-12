@@ -94,6 +94,7 @@ export class CrimeModule implements OnInit{
         //Aggravated Assault
         returnArray.push({
             title: 'Aggravated Assault',
+            class: 'crime-assault',
             color: '#44b244',
             pct: (Math.round(data.aggravatedAssaultPercentage * 100) / 100) + '%',
             value: data.aggravatedAssaultPercentage
@@ -101,6 +102,7 @@ export class CrimeModule implements OnInit{
         //Burglary
         returnArray.push({
             title: 'Burglary',
+            class: 'crime-burglary',
             color: '#1C31CE',
             pct: (Math.round(data.burglaryPercentage * 100) / 100) + '%',
             value: data.burglaryPercentage
@@ -108,6 +110,7 @@ export class CrimeModule implements OnInit{
         //Larceny
         returnArray.push({
             title: 'Larceny',
+            class: 'crime-larceny',
             color: '#FFC600',
             pct: (Math.round(data.larcenyPercentage * 100) / 100) + '%',
             value: data.larcenyPercentage
@@ -115,6 +118,7 @@ export class CrimeModule implements OnInit{
         //Murder
         returnArray.push({
             title: 'Murder',
+            class: 'crime-murder',
             color: '#ff0101',
             pct: (Math.round(data.murderPercentage * 100) / 100) + '%',
             value: data.murderPercentage
@@ -122,6 +126,7 @@ export class CrimeModule implements OnInit{
         //Vehicle Theft
         returnArray.push({
             title: 'Vehicle Theft',
+            class: 'crime-vehicle',
             color: '#65398E',
             pct: (Math.round(data.vehicleTheftPercentage * 100) / 100) + '%',
             value: data.vehicleTheftPercentage
@@ -129,6 +134,7 @@ export class CrimeModule implements OnInit{
         //Other Crime
         returnArray.push({
             title: 'Other',
+            class: 'crime-other',
             color: '#898989',
             pct: (Math.round(data.otherPercentage * 100) / 100) + '%',
             value: data.otherPercentage
@@ -157,7 +163,9 @@ export class CrimeModule implements OnInit{
 
         jQuery('#crime-pie').highcharts({
             chart: {
-                type: 'pie'
+                type: 'pie',
+                width: 280,
+                height: 235
             },
             tooltip: false,
             title: false,
