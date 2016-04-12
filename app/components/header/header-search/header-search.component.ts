@@ -16,7 +16,7 @@ import {Control} from 'angular2/common';
 @Component({
     selector: 'header-search-component',
     templateUrl: './app/components/header/header-search/header-search.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [SearchResults],
     providers: [SearchService],
     inputs: ['isHomePage'],

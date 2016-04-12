@@ -13,7 +13,7 @@ import {AuHeaderComponent} from '../../components/au-header/au-header.component'
 @Component({
     selector: 'Disclaimer-page',
     templateUrl: './app/webpages/disclaimer-page/disclaimer.page.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [BackTabComponent, TitleComponent, AuHeaderComponent, WidgetModule, ROUTER_DIRECTIVES],
     providers: [],
 })
@@ -61,7 +61,7 @@ export class DisclaimerPage implements OnInit {
       }
       //disclaimer data
       this.title_data = {
-          imageURL : './app/public/joyfulhome_house.png',
+          imageURL : '/app/public/joyfulhome_house.png',
           smallText1 : 'Last Updated: Saturday, December 19, 2015.',
           smallText2 : ' United States of America',
           heading1 : 'Disclaimer',

@@ -8,7 +8,7 @@ import {Router} from "angular2/router";
 @Component({
     selector: 'mag-footer-component',
     templateUrl: './app/components/magazine/mag-footer/mag-footer.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: []
 })
 

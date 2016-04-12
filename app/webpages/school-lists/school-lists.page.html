@@ -14,7 +14,7 @@
               <dynamic-carousel2 [carouselData]="carouselData"></dynamic-carousel2>
               <div *ngFor="#item of displayData" class="al {{item.bgClass}}">
                 <div class='al-schoolImage'>
-                  <img src='{{item.imageUrl}}' onerror="this.src='./app/public/mag_stock_img/stock_school_1.png';" />
+                  <img src='{{item.imageUrl}}' onerror="this.src='/app/public/mag_stock_img/stock_school_1.png';" />
                   <div class="al-schoolImage-rank">#{{item.rank}}</div>
                 </div>
 

@@ -21,7 +21,7 @@ declare var moment: any;
 @Component({
     selector: 'Amenities-list-page',
     templateUrl: './app/webpages/amenities-lists/amenities-lists.page.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [PaginationFooter, WidgetModule, moduleHeader, HeroListComponent, ROUTER_DIRECTIVES, LoadingComponent, BackTabComponent, ErrorComponent, TitleComponent, DynamicCarousel2],
     providers: [LocationProfileService]
 })
@@ -48,7 +48,7 @@ export class AmenitiesListPage implements OnInit{
   index:number = 0;
   arraySize: number = 10;
   providerUrl = 'http://www.yelp.com/';
-  providerLogo = './app/public/amenities_yelp.png';
+  providerLogo = '/app/public/amenities_yelp.png';
   @Input() amenitiesNearListingData: any;
 
   public isError: boolean = false;
@@ -82,7 +82,7 @@ export class AmenitiesListPage implements OnInit{
     var counter = 1;
     if(!data) return false;
     this.titleComponentData = {
-        imageURL: './app/public/joyfulhome_house.png',
+        imageURL: '/app/public/joyfulhome_house.png',
         smallText1: 'Last Updated: ' + moment(new Date()).format('dddd, MMMM Do, YYYY'),
         smallText2: decodeURI(this._params.get('city')) + ', ' + decodeURI(this._params.get('state')),
         heading1: this.globalFunctions.toTitleCase(this.displayCategory) + ' in and around ' + this.locCity + ', ' + this.locState + ".",

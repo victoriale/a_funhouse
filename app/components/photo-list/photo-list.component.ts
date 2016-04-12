@@ -7,7 +7,7 @@ import {PriceFormatPipe} from '../../pipes/price-format.pipe';
 @Component({
     selector: 'photo-list',
     templateUrl: './app/components/photo-list/photo-list.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [CircleButton, ROUTER_DIRECTIVES],
     providers: [],
     inputs: ['listData', 'carouselData'],

@@ -4,7 +4,7 @@ declare var jQuery: any;
 @Component({
     selector: 'range-slider',
     templateUrl: './app/components/range-slider/range-slider.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [],
     providers: [],
 })

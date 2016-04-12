@@ -8,7 +8,7 @@ import {ROUTER_DIRECTIVES, RouteParams} from "angular2/router";
 @Component({
     selector: 'magtab-component',
     templateUrl: './app/components/magazine/mag-tabs/mag-tabs.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [MagTabComponent, ROUTER_DIRECTIVES]
 })
 export class MagTabComponent implements OnInit {

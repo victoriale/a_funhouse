@@ -7,7 +7,6 @@ import {Router} from 'angular2/router';
 @Component({
     selector: 'au-header-component',
     templateUrl: './app/components/au-header/au-header.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css']
 })
 
 export class AuHeaderComponent {

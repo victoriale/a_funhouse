@@ -16,14 +16,14 @@ declare var jQuery: any;
 @Component({
   selector: 'Search-page',
   templateUrl: './app/webpages/search-page/search.page.html',
-  styleUrls: ['./app/global/stylesheets/master.css'],
+  
   directives: [PaginationFooter, ROUTER_DIRECTIVES, BackTabComponent, WidgetModule, LoadingComponent, ErrorComponent],
   providers: [SearchService],
   inputs: ['searchResults', 'showResults']
 })
 
 export class SearchPage implements OnInit {
-    searchImage: string = "./app/public/Image_Search.png";
+    searchImage: string = "/app/public/Image_Search.png";
     searchResults: any = {};
     showResults: boolean;
     tab: string = 'address';

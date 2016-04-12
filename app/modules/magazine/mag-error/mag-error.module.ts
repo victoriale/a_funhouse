@@ -6,7 +6,7 @@ import {MagazineDataService} from "../../../global/global-mag-service";
 @Component({
     selector: 'magazine-error-module',
     templateUrl: './app/modules/magazine/mag-error/mag-error.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [ROUTER_DIRECTIVES],
 })
 export class MagErrorModule {

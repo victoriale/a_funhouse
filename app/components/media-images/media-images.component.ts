@@ -11,7 +11,7 @@ declare var jQuery : any;
 @Component({
   selector: 'media-images',
   templateUrl: './app/components/media-images/media-images.component.html',
-  styleUrls: ['./app/global/stylesheets/master.css'],
+  
   directives: [ROUTER_DIRECTIVES, CircleButton],
   providers: [],
   inputs: ['trending', 'mediaImages', 'featureListing', 'modalButton'],
@@ -38,7 +38,7 @@ export class MediaImages implements OnInit {
   imageCounter: number = 0;
   displayCounter: number;
   imagesTitle: string = "Images";
-  image_url = './app/public/no_photo_images/onError.png';
+  image_url = '/app/public/no_photo_images/onError.png';
 
   constructor() {}
 

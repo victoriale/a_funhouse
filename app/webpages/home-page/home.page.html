@@ -3,7 +3,7 @@
       <div class="inner-wrapper">
           <section class='content-main twelve-col'>
               <h1 class="home-tagline">
-                  <img class="map-icon" src="./app/public/Icons_Explore.png" /> Explore <span class="thin">The {{cityLocation}} Area</span>
+                  <img class="map-icon" src="/app/public/Icons_Explore.png" /> Explore <span class="thin">The {{cityLocation}} Area</span>
               </h1>
           </section>
           <div class="twelve-col">
@@ -20,7 +20,7 @@
   <div class="wrapper" *ngIf="!isMyHouseKitHome">
       <div class="inner-wrapper">
           <section class='content-main twelve-col'>
-              <h1 class="home-tagline"><img class="map-icon" src="./app/public/Icons_Features.png" /> Features <span class="thin">To Note</span></h1>
+              <h1 class="home-tagline"><img class="map-icon" src="/app/public/Icons_Features.png" /> Features <span class="thin">To Note</span></h1>
           </section>
           <feature-tiles-component *ngIf="cityLocation && stateLocation" [cityLocation]="cityLocation" [stateLocation]="stateLocation"></feature-tiles-component>
       </div>
