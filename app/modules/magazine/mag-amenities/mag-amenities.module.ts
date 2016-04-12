@@ -9,7 +9,7 @@ import {MagAmenitiesTextModule} from "../mag-amenities-text/mag-amenities-text.m
 @Component({
     selector: 'amenities-module',
     templateUrl: './app/modules/magazine/mag-amenities/mag-amenities.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [NavRightComponent, NavLeftComponent, MagAmenitiesTextModule],
 })
 

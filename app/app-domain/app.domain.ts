@@ -7,7 +7,6 @@ import {MyWebApp} from "../app-layout/app.mylayout";
 @Component({
     selector: 'app-domain',
     templateUrl: './app/app-domain/app.domain.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [MyWebApp, WebApp, ROUTER_DIRECTIVES],
     providers: []
 })

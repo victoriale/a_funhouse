@@ -14,7 +14,7 @@ declare var moment: any;
 @Component({
     selector: 'profile-header',
     templateUrl: './app/modules/profile_header/profile_header.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [TitleComponent, Image180],
     providers: [GlobalFunctions]
 })

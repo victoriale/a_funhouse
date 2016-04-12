@@ -22,7 +22,7 @@ declare var lh: any;
 @Component({
     selector: 'List-page',
     templateUrl: './app/webpages/list-page/list.page.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [PhotoListComponent, ROUTER_DIRECTIVES, DetailedListComponent, ListViewCarousel, WidgetModule, PaginationFooter, LoadingComponent, ErrorComponent, MapComponent],
     providers: [listViewPage]
 })

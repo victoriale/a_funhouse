@@ -12,7 +12,7 @@ declare var jQuery:any;
 @Component({
     selector: 'mag-nav-right-component',
     templateUrl: './app/components/magazine/mag-nav-right/mag-nav-right.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [],
     //outputs: ['navRight']
 })

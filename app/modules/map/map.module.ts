@@ -9,7 +9,7 @@ declare var google:any;
 @Component({
     selector: 'map-module',
     templateUrl: './app/modules/map/map.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [moduleHeader, MapComponent],
     providers: []
 })
@@ -58,7 +58,7 @@ export class MapModule implements OnChanges{
     //            position: homePosition,
     //            map: map,
     //            title: item.fullStreetAddress + ', ' + item.loc + ' ' + item.postalCode,
-    //            icon: './app/public/icons/Icon_Home_Unselected.png'
+    //            icon: '/app/public/icons/Icon_Home_Unselected.png'
     //        });
     //
     //        //Get data to push to info window template (infoTemplate)

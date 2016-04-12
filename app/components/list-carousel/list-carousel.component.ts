@@ -6,7 +6,7 @@ import {ROUTER_DIRECTIVES} from "angular2/router";
 @Component({
     selector: 'list-carousel-component',
     templateUrl: './app/components/list-carousel/list-carousel.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [Image180, ROUTER_DIRECTIVES],
     providers: [],
     inputs: ['lists', 'stateLocation', 'cityLocation', 'isStateOnly'],

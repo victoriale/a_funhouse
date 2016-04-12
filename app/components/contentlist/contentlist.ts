@@ -6,7 +6,7 @@ import {GlobalFunctions} from "../../global/global-functions";
 @Component({
     selector: 'contentlist',
     templateUrl: './app/components/contentlist/contentlist.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [ROUTER_DIRECTIVES],
     providers: [GlobalFunctions],
 })

@@ -7,7 +7,7 @@ declare var jQuery: any;
 @Component({
     selector: 'find-your-home-module',
     templateUrl: './app/modules/find-your-home/find-your-home.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [moduleHeader, imageHeader, ROUTER_DIRECTIVES],
     providers: [],
 })

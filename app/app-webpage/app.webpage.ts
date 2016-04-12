@@ -35,7 +35,7 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
 @Component({
     selector: 'my-app',
     templateUrl: './app/app-webpage/app.webpage.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [PartnerHomePage, RouterOutlet, ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ListPage, ListOfListsPage, AmenitiesListPage, ROUTER_DIRECTIVES, DirectoryPage, SchoolListsPage],
     providers: [PartnerHeader, ROUTER_DIRECTIVES, GeoLocationService, NearByCitiesService, ErrorPage],
 })

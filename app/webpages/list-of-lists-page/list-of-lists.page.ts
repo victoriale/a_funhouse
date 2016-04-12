@@ -15,7 +15,7 @@ import {ErrorComponent} from '../../components/error/error.component';
 @Component({
     selector: 'list-of-lists-page',
     templateUrl: './app/webpages/list-of-lists-page/list-of-lists.page.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [BackTabComponent, TitleComponent, ListCarouselComponent, contentList, HeroListComponent, WidgetModule, LoadingComponent, ErrorComponent],
     providers: [ListOfListPage],
 })
@@ -99,7 +99,7 @@ export class ListOfListsPage implements OnInit{
         if (!this.isStateOnly) {
             this.titleData =
             {
-                imageURL: './app/public/joyfulhome_house.png',
+                imageURL: '/app/public/joyfulhome_house.png',
                 smallText1: 'Monday, February 23, 2016',
                 smallText2: ' United States of America',
                 heading1: this.cityLocation + ', ' + this._globalFunctions.stateToAP(this.stateLocation) + ' Top Lists',
@@ -112,7 +112,7 @@ export class ListOfListsPage implements OnInit{
         } else {
             this.titleData =
             {
-                imageURL: './app/public/joyfulhome_house.png',
+                imageURL: '/app/public/joyfulhome_house.png',
                 smallText1: 'Monday, February 23, 2016',
                 smallText2: ' United States of America',
                 heading1: this._globalFunctions.fullstate(this.stateLocation) + ' Top Lists',

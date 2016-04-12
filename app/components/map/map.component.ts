@@ -7,7 +7,7 @@ declare var google:any;
 @Component({
     selector: 'map-component',
     templateUrl: './app/components/map/map.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [],
     providers: []
 })
@@ -60,7 +60,7 @@ export class MapComponent implements OnInit{
                 position: homePosition,
                 map: map,
                 title: item.fullStreetAddress + ', ' + item.loc + ' ' + item.postalCode,
-                icon: './app/public/icons/Icon_Home_Unselected.png'
+                icon: '/app/public/icons/Icon_Home_Unselected.png'
             });
 
             var listingImage: any;

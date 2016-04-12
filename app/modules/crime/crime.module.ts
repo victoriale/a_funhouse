@@ -8,7 +8,7 @@ import {moduleHeader} from '../../components/module-header/module-header';
 @Component({
     selector: 'crime-module',
     templateUrl: './app/modules/crime/crime.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [moduleHeader],
     providers: [],
     inputs:['locData']
@@ -35,28 +35,28 @@ export class CrimeModule implements OnInit{
     //        description: 'Shooting/Stabbing. CPD o/s with person stabbed in head during quarrel. Victim is in good condition...',
     //        date: '02/23/2016',
     //        imgId: 'shooting',
-    //        imgSrc: './app/public/icons/Icon_Shooting.png'
+    //        imgSrc: '/app/public/icons/Icon_Shooting.png'
     //    },
     //    {
     //        type: 'Arrest',
     //        description: 'INTERFERENCE WITH PUBLIC OFFICER. OBSTRUCTING JUSTICE. Location description: STREET...',
     //        date: '02/23/2016',
     //        imgId: 'arrest',
-    //        imgSrc: './app/public/icons/Icon_Arrest.png'
+    //        imgSrc: '/app/public/icons/Icon_Arrest.png'
     //    },
     //    {
     //        type: 'Vandalism',
     //        description: 'CRIMINAL DAMAGE TO VEHICLE. Location description: CHA PARKING LOT/GROUNDS...',
     //        date: '02/23/2016',
     //        imgId: 'vandalism',
-    //        imgSrc: './app/public/icons/Icon_Vandalism.png'
+    //        imgSrc: '/app/public/icons/Icon_Vandalism.png'
     //    },
     //    {
     //        type: 'Theft',
     //        description: 'THEFT. $500 AND UNDER. Location description. GAS STATION...',
     //        date: '02/23/2016',
     //        imgId: 'theft',
-    //        imgSrc: './app/public/icons/Icon_Theft.png'
+    //        imgSrc: '/app/public/icons/Icon_Theft.png'
     //    }
     //];
 
@@ -134,7 +134,7 @@ export class CrimeModule implements OnInit{
             value: data.otherPercentage
         });
 
-        this.imageUrl = data.locationImage === null ? './app/public/placeholder-location.jpg' : data.locationImage;
+        this.imageUrl = data.locationImage === null ? '/app/public/placeholder-location.jpg' : data.locationImage;
         this.crimeStats = returnArray;
         this.tooltipTitle = 'Crime Grade:';
         this.tooltipData = data.totalGrade;

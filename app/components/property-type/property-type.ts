@@ -7,7 +7,7 @@ import {RouteParams} from 'angular2/router';
 @Component({
     selector: 'property-type',
     templateUrl: './app/components/property-type/property-type.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [],
     providers: [],
 })

@@ -2,7 +2,7 @@
     <div class='info-imagebox'>
       <div class="info-rank">#{{infoList.counter}}</div>
         <a [routerLink]="['../../Magazine', {addr: infoList.addressKey}, 'PropertyOverview' ]">
-            <img src='{{infoList.photos[0]}}' onerror="this.src='./app/public/placeholder-location.jpg';" />
+            <img src='{{infoList.photos[0]}}' onerror="this.src='/app/public/placeholder-location.jpg';" />
             <div>
               <p>View</p>
               <p>Profile</p>
@@ -27,7 +27,7 @@
                 <p>Want more information about this listing?</p>
             </div>
             <a [routerLink]="['../../Magazine', {addr: infoList.addressKey}, 'PropertyOverview' ]" class='info-list-button'>
-                <span><img class="info-icon" src="./app/public/realestate_icon.png" /></span>
+                <span><img class="info-icon" src="/app/public/realestate_icon.png" /></span>
                 <span>{{infoList.buttonName}}</span>
                 <i class='fa fa-angle-right'></i>
             </a>

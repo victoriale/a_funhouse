@@ -8,7 +8,7 @@ declare var jQuery:any;
 @Component({
     selector: 'magazine-carousel-module',
     templateUrl: './app/modules/magazine/mag-carousel/mag-carousel.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
 })
 export class MagCarouselModule implements OnInit {
     @Input() magOverview:MagOverview;
