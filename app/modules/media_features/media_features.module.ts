@@ -45,7 +45,7 @@ export class MediaFeatureModule implements OnInit {
   getData() {
     this.propertyData = this._listingService.getPropertyListing(this._params.get('address'))
       .subscribe(data => {
-      this.propertyData = this.dataFormatter(data);
+        this.propertyData = this.dataFormatter(data);
     })
   }
 
@@ -60,6 +60,7 @@ export class MediaFeatureModule implements OnInit {
 
   dataFormatter(originalData) {
     var featureHaves = [];
+    var formattedDays = "N/A";
 
     for (var feature in originalData) {
       if (originalData[feature] == null || typeof originalData[feature] == 'undefined') {
@@ -87,12 +88,7 @@ export class MediaFeatureModule implements OnInit {
             originalData['address'] = this.globalFunctions.toTitleCase(originalData['address']);
             break;
           case 'daysOnMarket':
-            var formattedDays;
-            if( originalData.daysOnMarket == "N/A" || originalData.daysOnMarket == "null" || originalData.daysOnMarket == null ){
-              formattedDays = originalData.daysOnMarket;
-            }else {
-              formattedDays = moment().subtract(originalData.daysOnMarket, 'days').format('dddd, MMMM Do, YYYY');
-            }
+            formattedDays = this.globalFunctions.formatDaysOnMarket(originalData.daysOnMarket);
             break;
           case 'listingDate':
             originalData['listingDate'] = originalData['listingDate'].split(' ')[0];

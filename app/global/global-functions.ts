@@ -1,5 +1,7 @@
 import {Injectable} from 'angular2/core';
 
+declare var moment: any;
+
 @Injectable()
 
 export class GlobalFunctions{
@@ -247,5 +249,14 @@ export class GlobalFunctions{
         };
 
         return typeof names[val] === 'undefined' ? this.camelCaseToRegularCase(val) : names[val];
+    }
+    
+    formatDaysOnMarket = function(daysOnMarket) {
+        if ( daysOnMarket === null || daysOnMarket === undefined || daysOnMarket === "N/A" ) {
+          return "N/A";
+        }
+        else {
+          return moment().subtract(daysOnMarket, 'days').format('dddd, MMMM Do, YYYY');
+        }
     }
 }
