@@ -63,6 +63,11 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
         component: ListPage,
     },
     {
+        path: '/:viewType/:listname/:state/page/:page',
+        name: 'List-page-state',
+        component: ListPage,
+    },
+    {
         path: '/:viewType/:listname/:state/:city/:priceLowerBound/:priceUpperBound/:type/:bedrooms/:bathrooms/:squareFeet/:lotSize/:limit/:page',
         name: 'List-page-filter',
         component: ListPage,

@@ -143,7 +143,7 @@
                 <span class="lv-tooltip-header-cancel" (click)="closeTooltip()" title="Close"><i class="fa fa-remove"></i></span>
             </div>
             <div *ngIf="totalListings && listNameDisplay" class="lv-tooltip-description">
-                This is a list of the <span class="bold">{{totalListings}} {{listNameDisplay | lowercase}}</span> in <span class="bold">{{listCity}}, {{listStateAP}}</span>
+                This is a list of the <span class="bold">{{totalListings}} {{listNameDisplay | lowercase}}</span> in <span class="bold"><span *ngIf="listCity">{{listCity}},</span> {{listStateAP}}</span>
                 <span *ngIf="sort">This list is sorted by <span class="bold">{{sortType}}</span> from <span class="bold">{{sortDirection}}</span>.</span>
             </div>
           </div> 
