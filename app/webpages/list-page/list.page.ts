@@ -41,6 +41,8 @@ export class ListPage implements OnInit{
     public listCity: string;
     public listLimit: string = "20";
     public listPage: string;
+    //Route's name
+    public pageName:
 
     noListings: boolean = false;
     showFilters: boolean = false;
@@ -96,15 +98,20 @@ export class ListPage implements OnInit{
             viewType: self.viewType,
             listname: self.listName,
             state: self.listState,
-            city: self.listCity,
-            page: self.listPage
+            page: self.listPage,
+            city: self.listCity
         };
+
+        //If city does not exist in url set page to page state
+        if(self.listCity === null){
+            delete params.city;
+        }
 
         if(sortOption !== 'none'){
             params.sort = sortOption;
         }
 
-        this._router.navigate(['List-page', params]);
+        this._router.navigate([self.pageName, params]);
     }
 
     setPaginationParams(input) {
@@ -127,9 +134,14 @@ export class ListPage implements OnInit{
             var navigationParams: any = {
                 listname: this.listName,
                 state: this.listState,
-                city: this.listCity,
-                viewType: this.viewType
+                viewType: this.viewType,
+                city: this.listCity
             };
+
+            //If city does not exist in url set page to page state
+            if(this.listCity === null){
+                delete navigationParams.city;
+            }
             //If sort parameter exists use in navigation parameters
             if(this.sort !== null){
                 navigationParams.sort = this.sort;
@@ -139,7 +151,7 @@ export class ListPage implements OnInit{
                 index: pageNumber,
                 max: max,
                 paginationType: 'page',
-                navigationPage: 'List-page',
+                navigationPage: this.pageName,
                 navigationParams: navigationParams,
                 indexKey: 'page'
             };
@@ -200,6 +212,14 @@ export class ListPage implements OnInit{
                 city: this.listCity,
                 page: this.listPage
             };
+
+            //If city does not exist set to state page
+            if(this.listCity === null){
+                delete menuListParams.city;
+                delete menuPhotoParams.city;
+                delete menuMapParams.city;
+            }
+
             //If sort query parameter is defined add to menu button paramters
             if (this.sort !== null) {
                 menuListParams.sort = this.sort;
@@ -210,7 +230,7 @@ export class ListPage implements OnInit{
             this.menuListParams = menuListParams;
             this.menuPhotoParams = menuPhotoParams;
             this.menuMapParams = menuMapParams;
-            this.listPageName = 'List-page';
+            this.listPageName = this.pageName;
         }else{
             //Filter Listing
             var menuListParams:any = {
@@ -302,8 +322,8 @@ export class ListPage implements OnInit{
 
             this.listState = this._params.get('state');
             this.listStateAP = this.globalFunctions.stateToAP(this.listState);
-            this.listCity = this._params.get('city');
-            this.listCity = this.globalFunctions.toTitleCase(decodeURI(this.listCity));
+            this.listCity = this._params.get('city') === null ? null : this.globalFunctions.toTitleCase(decodeURI(this.listCity));
+            this.pageName = this.listCity === null ? 'List-page-state' : 'List-page';
             this.listPage = this._params.get('page');
 
             //list/homesAtLeast5YearsOld/KS/Wichita/empty/10/1
