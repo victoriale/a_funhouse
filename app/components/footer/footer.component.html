@@ -3,7 +3,7 @@
         <div class="inner-wrapper">
             <div class="footer-top-bar">
                 <div *ngIf="!isMyHouseKit" class="footer-logo six-col">
-                    <a href="/"><img src="./app/public/joyful_logo_footer_resized.png" alt="Joyful Home | A Little Place to Call Home"/></a>
+                    <a href="/"><img src="/app/public/joyful_logo_footer_resized.png" alt="Joyful Home | A Little Place to Call Home"/></a>
                 </div>
                 <div *ngIf="isMyHouseKit" class="footer-logo six-col">
                 </div>
@@ -45,9 +45,9 @@
                         <ul>
                             <li>You Might Like: </li>
                             <li><a [routerLink]="['List-of-lists-page', {state: stateLocation, city: cityLocation}]">Trending Lists</a> <i class="fa fa-caret-right"></i></li>
-                            <li><a [routerLink]="['List-page', {viewType: 'list', state: stateLocation, listname: 'listingsMostRecent', city: cityLocation, page: 1}]">Most Recent Listings in your Area</a> <i class="fa fa-caret-right"></i></li>
-                            <li><a [routerLink]="['List-page', {viewType: 'list', state: stateLocation, listname: 'homesLargest', city: cityLocation, page: 1}]">Largest Homes in your Area</a> <i class="fa fa-caret-right"></i></li>
-                            <li><a [routerLink]="['List-page', {viewType: 'list', state: stateLocation, listname: 'homesLeastExpensive', city: cityLocation, page: 1}]">Least Expensive Homes in your Area</a></li>
+                            <li><a [routerLink]="['List-page', {viewType: 'list', state: stateLocation, listname: 'listings-most-recent', city: cityLocation, page: 1}]">Most Recent Listings in your Area</a> <i class="fa fa-caret-right"></i></li>
+                            <li><a [routerLink]="['List-page', {viewType: 'list', state: stateLocation, listname: 'homes-largest', city: cityLocation, page: 1}]">Largest Homes in your Area</a> <i class="fa fa-caret-right"></i></li>
+                            <li><a [routerLink]="['List-page', {viewType: 'list', state: stateLocation, listname: 'homes-least-expensive', city: cityLocation, page: 1}]">Least Expensive Homes in your Area</a></li>
                         </ul>
                     </section>
                     <hr />

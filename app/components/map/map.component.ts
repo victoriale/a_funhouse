@@ -7,7 +7,7 @@ declare var google:any;
 @Component({
     selector: 'map-component',
     templateUrl: './app/components/map/map.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [],
     providers: []
 })
@@ -60,7 +60,7 @@ export class MapComponent implements OnInit{
                 position: homePosition,
                 map: map,
                 title: item.fullStreetAddress + ', ' + item.loc + ' ' + item.postalCode,
-                icon: './app/public/icons/Icon_Home_Unselected.png'
+                icon: '/app/public/icons/Icon_Home_Unselected.png'
             });
 
             var listingImage: any;
@@ -76,7 +76,12 @@ export class MapComponent implements OnInit{
             var lineTwo = '$' + self.globalFunctions.commaSeparateNumber(item.listPrice);
             lineTwo = item.livingArea === null ? lineTwo : lineTwo + ' | ' + self.globalFunctions.commaSeparateNumber(item.livingArea) + ' sq. ft';
 
-            var infoTemplate = '<div style="font-family: Lato; font-size: 16px; line-height: 20px"><div style="width: 60px; height: 60px; margin-right: 10px; border-radius: 50%; border: 2px solid #ccc; float: left; background-size: cover; background-image: url(\'' + listingImage +'\')"></div><span style="font-weight: 700">' + lineOne + '</span><br>' + lineTwo + '<br>' + '<a id="map-view-profile" style="text-decoration: none; color: #000; font-size: 14px; color: #44b244; font-weight: 500; cursor: pointer">View Profile</a></div>';
+            var infoTemplate = '<div class="map-info-container">'
+                + '<div class="map-info-image" style="background-image: url(\'' + listingImage +'\')"></div>'
+                + '<span class="map-info-title">' + lineOne + '</span><br>'
+                + lineTwo + '<br>'
+                + '<a id="map-view-profile" class="map-info-link">View Profile</a>'
+                + '</div>';
 
             //Add click event to markers
             google.maps.event.addListener(marker, 'click', function(){

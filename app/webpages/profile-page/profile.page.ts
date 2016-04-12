@@ -32,7 +32,7 @@ declare var lh: any;
 @Component({
     selector: 'profile-page',
     templateUrl: './app/webpages/profile-page/profile.page.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [magazineModule, magazineBanner, TrendingHomes, MediaImages, HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs, ShareModule, FeaturedListsModule, AmenitiesModule, WidgetModule, MapModule, LoadingComponent, ErrorComponent],
     providers: [ListOfListPage, ListingProfileService]
 })

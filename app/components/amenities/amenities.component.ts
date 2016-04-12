@@ -9,7 +9,7 @@ import {Router,ROUTER_DIRECTIVES} from 'angular2/router';
 @Component({
     selector: 'amenities-component',
     templateUrl: './app/components/amenities/amenities.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [Image150, CarouselButton, ROUTER_DIRECTIVES],
     inputs: ['list_data', 'hasFooterButton'],
     outputs: ['scrollRight', 'scrollLeft']

@@ -17,7 +17,7 @@
               <div *ngFor="#item of displayData" class="al {{item.bgClass}}">
                 <div class="al-imagebox">
                   <a href='{{item.url}}' class='al-image'>
-                    <img src='{{item.image_url}}' onerror="this.src='./app/public/placeholder-location.jpg';" />
+                    <img src='{{item.image_url}}' onerror="this.src='/app/public/placeholder-location.jpg';" />
                     <div><p>View</p><p>On Yelp</p></div>
                   </a>
                   <div class="al-image-rank">#{{item.rank}}</div>

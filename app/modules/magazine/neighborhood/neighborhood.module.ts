@@ -7,7 +7,7 @@ import {NavLeftComponent} from "../../../components/magazine/mag-nav-left/mag-na
 @Component({
     selector: 'neighborhood-module',
     templateUrl: './app/modules/magazine/neighborhood/neighborhood.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [MagNeighborhoodModule, NavRightComponent, MagMapModule, NavLeftComponent],
     providers: [],
 })

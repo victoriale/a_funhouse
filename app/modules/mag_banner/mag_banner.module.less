@@ -5,7 +5,7 @@
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  background: url('./app/public/mag_banner.png'), @strokeGrey;
+  background: url('/app/public/mag_banner.png'), @strokeGrey;
 
   &_button {
     position: absolute;
@@ -20,7 +20,7 @@
     background-position: center center;
     background-size: 13px 28px;
     background-repeat: no-repeat;
-    background-image: url('./app/public/right_arrow.png'), url('./app/public/right_arrow_black.png');
+    background-image: url('/app/public/right_arrow.png'), url('/app/public/right_arrow_black.png');
   } // END .mag_banner_button
 
   &_img {
@@ -29,7 +29,7 @@
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
-    background-image: url('./app/public/magazine_icon.png');
+    background-image: url('/app/public/magazine_icon.png');
   } // END .mag_banner_img
 
   &_mag {
@@ -68,6 +68,6 @@
 
   &:hover .mag_banner_button {
     background-color: @white;
-    background-image: url('./app/public/right_arrow_black.png');
+    background-image: url('/app/public/right_arrow_black.png');
   }
 }

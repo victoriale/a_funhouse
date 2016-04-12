@@ -8,7 +8,7 @@ import {Router,ROUTER_DIRECTIVES} from 'angular2/router';
 @Component({
     selector: 'tiles-component',
     templateUrl: './app/components/tiles/tiles.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [moduleHeader, ROUTER_DIRECTIVES],
     providers: [],
     inputs: ['tile_data']

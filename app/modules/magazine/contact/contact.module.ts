@@ -10,7 +10,7 @@ import {ContactComponent} from "../../../components/magazine/mag-btns/contact-bt
 @Component({
     selector: 'contact-module',
     templateUrl: './app/modules/magazine/contact/contact.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [MagExploreModule, NavLeftComponent, ContactComponent]
 })
 

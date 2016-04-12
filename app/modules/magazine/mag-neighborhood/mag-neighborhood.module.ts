@@ -12,7 +12,7 @@ declare var jQuery:any;
 @Component({
     selector: 'magazine-neighborhood-module',
     templateUrl: './app/modules/magazine/mag-neighborhood/mag-neighborhood.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [AdzoneComponent, LearnMoreComponent, ROUTER_DIRECTIVES],
 })
 export class MagNeighborhoodModule implements OnInit {

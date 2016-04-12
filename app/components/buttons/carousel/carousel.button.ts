@@ -4,7 +4,7 @@ import {Component, Output, EventEmitter} from 'angular2/core';
 @Component({
     selector: 'carousel-button',
     templateUrl: './app/components/buttons/carousel/carousel.button.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     outputs: ['scrollRight', 'scrollLeft']
 })
 export class CarouselButton{

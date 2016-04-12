@@ -10,7 +10,7 @@ declare var moment: any;
 @Component({
     selector: 'trending-homes',
     templateUrl: './app/modules/trending-homes/trending-homes.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [ListViewCarousel, moduleHeader, MediaImages],
     inputs:['locData']
 })
@@ -29,7 +29,7 @@ export class TrendingHomes implements OnInit {
     modal:boolean = true;
     public index: number = 0;
     @Input() trendingHomesData: any;
-    image_url:string ='./app/public/no_photo_images/onError.png';
+    image_url:string ='/app/public/no_photo_images/onError.png';
 
     constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions){
       //Determine what page the profile header module is on
@@ -80,7 +80,6 @@ export class TrendingHomes implements OnInit {
           }
         }
 
-        var formattedDays = moment().subtract(val.daysOnMarket, 'days').format('dddd, MMMM Do, YYYY');
         //grab featured data about listing
         if(typeof val.virtualTour == 'undefined'){
           val.virtualTour = 'N/A';
@@ -91,7 +90,7 @@ export class TrendingHomes implements OnInit {
         }
         var carData = {
           address:val.fullStreetAddress,
-          daysOnMarket:formattedDays,
+          daysOnMarket: globeFunc.formatDaysOnMarket(val.daysOnMarket),
           largeImage:val.photos[0],
           price: val.listPrice,
           priceName: "SALE",

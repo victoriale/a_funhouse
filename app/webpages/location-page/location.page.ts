@@ -30,7 +30,7 @@ import {GeoLocationService} from "../../global/geo-location.service";
 @Component({
     selector: 'location-page',
     templateUrl: './app/webpages/location-page/location.page.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [ListOfListModule, HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, FindYourHomeModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule, WidgetModule, AmenitiesModule, TrendingHomes, ErrorComponent, LoadingComponent],
     providers: [PartnerHeader, ListOfListPage, LocationProfileService, GlobalFunctions],
     inputs:['partnerData']

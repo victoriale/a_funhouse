@@ -9,7 +9,7 @@ import {PriceFormatPipe} from '../../../pipes/price-format.pipe';
 @Component({
     selector: 'list-view-carousel',
     templateUrl: './app/components/carousel/list-view/list-view.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [ROUTER_DIRECTIVES, CircleButton],
     providers: [],
     inputs: ['carouselData'],
@@ -24,7 +24,7 @@ export class ListViewCarousel implements OnInit{
     if(typeof this.carouselData == "undefined"){
       this.carouselData = [{
         heading : "Featured Listing",
-        image_url : './app/public/no_photo_images/onError.png',
+        image_url : '/app/public/no_photo_images/onError.png',
         button_url : '',
         listing_price : "$###,###",
         listing_area : "#### sqft",

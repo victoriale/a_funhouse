@@ -20,7 +20,7 @@ declare var moment: any;
 @Component({
     selector: 'School-list-page',
     templateUrl: './app/webpages/school-lists/school-lists.page.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [PaginationFooter, WidgetModule, HeroListComponent, ROUTER_DIRECTIVES, LoadingComponent, ErrorComponent, BackTabComponent, DynamicCarousel2, TitleComponent],
     providers: [LocationProfileService]
 })
@@ -93,7 +93,7 @@ export class SchoolListsPage implements OnInit{
    var metaData = data['meta'];
    var schoolImage = this.getSchoolImages();
    this.titleComponentData = {
-       imageURL: './app/public/joyfulhome_house.png',
+       imageURL: '/app/public/joyfulhome_house.png',
        smallText1: 'Last Updated: ' + moment(new Date()).format('dddd, MMMM Do, YYYY'),
        smallText2: decodeURI(this._params.get('city')) + ', ' + decodeURI(this._params.get('state')),
        heading1: this.globalFunctions.toTitleCase(this.category) + ' schools in and around ' + decodeURI(this._params.get('city')) + ', ' + decodeURI(this._params.get('state')),
@@ -104,7 +104,7 @@ export class SchoolListsPage implements OnInit{
 
    dataLists.forEach(function(val, i){
      var num = Math.floor(Math.random() * schoolImage.length); //randomize array of images
-     val.imageUrl = './app/public/mag_stock_img/schools_banks_grocery/' + schoolImage[num];//with path and random image, will generate random imageUrl
+     val.imageUrl = '/app/public/mag_stock_img/schools_banks_grocery/' + schoolImage[num];//with path and random image, will generate random imageUrl
      val.rank = i+1;
      val.rank = counter++;
      val.categoryName = categoryName;

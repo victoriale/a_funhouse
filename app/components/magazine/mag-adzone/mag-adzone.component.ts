@@ -8,7 +8,7 @@ declare var jQuery: any;
 @Component({
     selector: 'adzone-component',
     templateUrl: './app/components/magazine/mag-adzone/mag-adzone.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [],
 })
 

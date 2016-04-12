@@ -6,7 +6,7 @@ declare var jQuery:any;
 @Component({
     selector: 'footer-component',
     templateUrl: './app/components/footer/footer.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [ROUTER_DIRECTIVES],
     inputs: ['cityLocation', 'stateLocation', 'partnerID'],
     providers: [],

@@ -10,7 +10,7 @@ import {GlobalFunctions} from '../../global/global-functions';
 @Component({
     selector: 'featured-lists-module',
     templateUrl: './app/modules/featured_lists/featured_lists.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [moduleHeader, TilesComponent, FeatureComponent],
     providers: [],
     inputs:['locData']
@@ -126,7 +126,7 @@ export class FeaturedListsModule implements OnInit{
             ListUrl: 'List-page',
             listParam: {
                 viewType: 'list',
-              listname: data.listName,
+              listname: this.globalFunctions.camelCaseToKababCase(data.listName),
               state: listData.stateOrProvince,
               city: listData.city,
               page: '1',
@@ -145,7 +145,7 @@ export class FeaturedListsModule implements OnInit{
             url1: 'List-page',
             paramOptions1: {
                 viewType: 'list',
-              listname: data.listName,
+              listname: this.globalFunctions.camelCaseToKababCase(data.listName),
               state: listData.stateOrProvince,
               city: listData.city,
               page: '1',
