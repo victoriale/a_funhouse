@@ -1,4 +1,4 @@
-<div *ngFor="#list of listData; #i = even" class="detailed-list" [ngClass]="{'odd': i == true}">
+<div *ngFor="#list of listData; #i = odd" class="detailed-list" [ngClass]="{'odd': i == true}">
     <div class='detailed-imagebox'>
       <div class="detailed-rank">#{{list.rank}}</div>
         <a [routerLink]="[list.url1, list.url2, list.url3]">
