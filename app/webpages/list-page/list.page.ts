@@ -424,7 +424,7 @@ export class ListPage implements OnInit{
           buttonName: 'View Profile',
           icon: 'fa fa-map-marker',
           location: val.loc + ' - ' + val.postalCode,
-          market:'Built in ' + val.yearBuilt,
+          market: val.yearBuilt === null ? '' : 'Built in ' + val.yearBuilt,
           rank: (indexStart + i),
           desc: val.listingDescription,
           photos: val.photos,
