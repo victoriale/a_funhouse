@@ -65,7 +65,7 @@ export class ProfileHeader implements OnInit{
                 imageURL: data.locationImage,
                 //Unused field of component for this module
                 smallText: '',
-                smallText2: 'Last Updated: ' + moment(data.lastUpdated).format('dddd, MMMM Do, YYYY'),
+                smallText2: 'Last Updated: ' + moment(data.lastUpdated).format('dddd, MMMM Do, YYYY') + ' at ' + moment(data.lastUpdated).format('HH:mm') + ' EST',
                 heading1: data.city + ', ' + this.globalFunctions.stateToAP(data.state),
                 heading2: '',
                 heading3: this.globalFunctions.commaSeparateNumber(data.numberOfListings) + ' Listings Available for Sale',
