@@ -14,8 +14,13 @@
   text-align: center;
   align-items: flex-start;
   cursor: pointer;
+  .no-select;
   &:hover{
     background-color: @masterBrandColor;
+    color: @black;
+    i{
+      color: @white;
+    }
   }
 }
 .next{
@@ -33,7 +38,12 @@
   text-align: center;
   align-item: flex-end;
   cursor: pointer;
+  .no-select;
   &:hover{
     background-color: @masterBrandColor;
+    color: @white;
+    i{
+      color: @white;
+    }
   }
 }
