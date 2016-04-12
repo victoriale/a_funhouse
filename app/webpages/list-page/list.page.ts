@@ -42,7 +42,7 @@ export class ListPage implements OnInit{
     public listLimit: string = "20";
     public listPage: string;
     //Route's name
-    public pageName:
+    public pageName: string;
 
     noListings: boolean = false;
     showFilters: boolean = false;
