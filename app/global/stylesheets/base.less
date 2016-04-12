@@ -160,7 +160,6 @@ ToC
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-
 body, html {
   width: 100%;
   height: 100%;
@@ -172,6 +171,9 @@ body {
   background: @white;
   font-family: @globalFont;
   overflow: auto;
+  margin: 0 !important;
+  background-color: @highlightGrey !important;
+  min-width: 1044px;
 }
 
 div {
@@ -184,6 +186,8 @@ p {
 
 ul {
   list-style-type: none;
+  margin: 0px;
+  padding: 0px;
 }
 
 a {
