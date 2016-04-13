@@ -21,7 +21,7 @@ declare var moment: any;
 @Component({
     selector: 'Amenities-list-page',
     templateUrl: './app/webpages/amenities-lists/amenities-lists.page.html',
-    
+
     directives: [PaginationFooter, WidgetModule, moduleHeader, HeroListComponent, ROUTER_DIRECTIVES, LoadingComponent, BackTabComponent, ErrorComponent, TitleComponent, DynamicCarousel2],
     providers: [LocationProfileService]
 })
@@ -117,8 +117,11 @@ export class AmenitiesListPage implements OnInit{
         val.phone = 'No Phone Listed';
       }
       val.phone = globalFunc.formatPhoneNumber(val['phone']);
-      val.categories = val.categories[0][0];
-
+      if(val.categories === 'null' || val.categories == "" || typeof val.categories == 'undefined'){
+        val.categories = 'N/A';
+      } else {
+        val.categories = val.categories[0][0];
+      }
       var carData = {
         textDetails:    [
                         val.name,
