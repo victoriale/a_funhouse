@@ -19,6 +19,8 @@ export class FindYourHomeModule implements OnInit{
     public module_title: string;
     public imageUrl: string;
     public location: string;
+    public locCity: string;
+    public locState: string;
 
     private filterMinPrice = 50;
     private filterMaxPrice = 10000;
