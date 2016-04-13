@@ -13,9 +13,7 @@ declare var jQuery: any;
 })
 
 export class FindYourHomeModule implements OnInit{
-    @Input() locDisplay;
-    @Input() locState;
-    @Input() locCity;
+    @Input() locData: any;
     @Input() filterType: any  = 'empty';
 
     public module_title: string;
@@ -266,7 +264,10 @@ export class FindYourHomeModule implements OnInit{
     ngOnInit() {
         this.module_title = "Find Your Next Joyful Home";
         this.imageUrl = "app/public/filter_background.jpg";
-        this.location = this.locDisplay;
+        console.log(';lkaf;lkadsfj;kladsfa', this.locData);
+        this.location = this.locData.city + ', ' + this.locData.state;
+        this.locCity = this.locData.city;
+        this.locState = this.locData.stateAbbreviation;
     }
 
 }

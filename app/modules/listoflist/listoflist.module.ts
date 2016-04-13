@@ -12,7 +12,7 @@ import {GlobalFunctions} from "../../global/global-functions";
     
     directives: [contentList,moduleHeader, PaginationFooter],
     providers: [],
-    inputs:['listOfLists', 'state', 'city']
+    inputs:['listOfLists']
 })
 
 export class ListOfListModule {
