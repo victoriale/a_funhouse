@@ -1,6 +1,5 @@
 import {Component, OnInit, Input} from 'angular2/core';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
-import {GlobalFunctions} from '../../global/global-functions';
 
 @Component({
     selector: 'mag-banner-module',
@@ -16,7 +15,7 @@ export class magazineBanner {
   showMagazine: boolean = false; //will only show if it is a residential listing
   data: any;
 
-  constructor(private _globalFunctions: GlobalFunctions) { }
+  constructor() { }
 
     ngOnInit() {
       var address:string;
