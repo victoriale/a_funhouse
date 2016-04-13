@@ -46,6 +46,10 @@ export class SchoolListsPage implements OnInit{
 
   constructor(private _params: RouteParams, private router: Router, private globalFunctions: GlobalFunctions, private _locationService: LocationProfileService, params: RouteParams){
       this.category = params.params['listname'];
+      this.locState = decodeURI(this._params.get('state'));
+      this.locCity = decodeURI(this._params.get('city'));
+      this.location = this.globalFunctions.toTitleCase(this.locCity) + ', ' + this.globalFunctions.stateToAP(this.locState);
+      this.moduleTitle = "Schools in and Around " + this.location;
       window.scrollTo(0, 0);
   }
 
@@ -191,10 +195,6 @@ export class SchoolListsPage implements OnInit{
       this.sanitizeListofListData();
   }
   ngOnInit(){
-    this.locState = decodeURI(this._params.get('state'));
-    this.locCity = decodeURI(this._params.get('city'));
-    this.location = this.globalFunctions.toTitleCase(this.locCity) + ', ' + this.globalFunctions.stateToAP(this.locState);
-    this.moduleTitle = "Schools in and Around " + this.location;
     this.getData();
   }
 
