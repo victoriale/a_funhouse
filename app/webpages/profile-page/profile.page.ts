@@ -32,7 +32,7 @@ declare var lh: any;
 @Component({
     selector: 'profile-page',
     templateUrl: './app/webpages/profile-page/profile.page.html',
-    
+
     directives: [magazineModule, magazineBanner, TrendingHomes, MediaImages, HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs, ShareModule, FeaturedListsModule, AmenitiesModule, WidgetModule, MapModule, LoadingComponent, ErrorComponent],
     providers: [ListOfListPage, ListingProfileService]
 })
@@ -190,8 +190,8 @@ export class ProfilePage implements OnInit{
 
     getAddress() {
       var paramAddress = this._params.get('address').split('-');
-      var paramState = paramAddress[paramAddress.length - 1];
-      var paramCity = paramAddress[paramAddress.length - 2];
+      var paramCity = this.globalFunctions.toTitleCase(paramAddress[paramAddress.length - 2]);
+      var paramState = this.globalFunctions.stateToAP(paramAddress[paramAddress.length - 1]);
       var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
       var address = tempArr.join(' ');
       this.city = paramCity;

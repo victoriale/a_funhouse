@@ -13,7 +13,7 @@ import {GlobalFunctions} from '../../global/global-functions';
 @Component({
     selector: 'amenities-module',
     templateUrl: './app/modules/amenities/amenities.module.html',
-    
+
     directives: [moduleHeader, TilesComponent, AmenitiesComponent, ROUTER_DIRECTIVES],
     inputs:['locData']
 })
@@ -95,7 +95,7 @@ export class AmenitiesModule implements OnInit{
       }
       var dataLists = data['restaurant']['businesses'];
       var listData = dataLists[this.index];
-      var loc = listData['location']['city'] + ', ' + this.globalFunctions.stateToAP(listData['location']['state_code']) + ' ' + listData['location']['postal_code'];
+      var loc = listData['location']['city'] + ', ' + listData['location']['state_code'] + ' ' + listData['location']['postal_code'];
       var address = listData['location']['address'];
       var imageURL = dataLists[this.index].image_url;
 
