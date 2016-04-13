@@ -213,8 +213,11 @@ export class LocationPage implements OnInit {
           }
         }else{//end of if for partner page :loc check, start of else
           this.loc = this._params.get('loc');
-          this.locCity = this._globalFunctions.toTitleCase(decodeURI(this.loc.split('_')[0]));
-          this.locState = decodeURI(this.loc.split('_')[1]);
+          let tmp = decodeURI(this.loc).split("-");
+          // assigns value to this.locState and removes last item in tmp array
+          this.locState = tmp.pop();
+          let tmpCity = tmp.join(" ");
+          this.locCity = this._globalFunctions.toTitleCase( tmpCity );
           this.locDisplay = decodeURI(this.locCity + ', ' + this._globalFunctions.stateToAP(this.locState));
         }
 
