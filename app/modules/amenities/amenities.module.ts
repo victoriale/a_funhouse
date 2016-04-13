@@ -36,25 +36,7 @@ export class AmenitiesModule implements OnInit{
         //Determine what page the profile header module is on
         this.profileType = this.router.hostComponent.name;
     }
-    //Build Module Title
-    setModuleTitle(){
-        if(this.profileType === 'LocationPage'){
-            //Location Crime Module
-            var paramLocation: string = this._params.get('loc');
-            var paramCity: string = this.globalFunctions.toTitleCase(this.locData.city);
-            paramCity = this.globalFunctions.toTitleCase(paramCity.replace(/%20/g, " "));
-            var paramState: string = this.locData.state;
-            this.moduleTitle = 'Amenities in and Around ' + paramCity + ', ' + paramState;
-        }else if(this.profileType === 'ProfilePage'){
-            //Listing Crime Module
-            var paramAddress = this._params.get('address').split('-');
-            var paramState = paramAddress[paramAddress.length -1];
-            var paramCity = paramAddress [paramAddress.length - 2];
-            var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
-            var address = tempArr.join(' ');
-            this.moduleTitle = 'Amenities in and Around ' + this.globalFunctions.toTitleCase(address) + ' ' + this.globalFunctions.toTitleCase(paramCity) + ', ' + paramState;
-        }
-    }
+
 
     left(){
         if(this.amenitiesData === null){
@@ -96,9 +78,15 @@ export class AmenitiesModule implements OnInit{
       var dataLists = data['restaurant']['businesses'];
       var listData = dataLists[this.index];
       var loc = listData['location']['city'] + ', ' + listData['location']['state_code'] + ' ' + listData['location']['postal_code'];
+      var location = listData['location']['city'] + ', ' + this.globalFunctions.stateToAP(listData['location']['state_code']);
       var address = listData['location']['address'];
+      var fullAdress = address + ' ' + location;
       var imageURL = dataLists[this.index].image_url;
-
+      if(this.profileType === 'LocationPage'){
+          this.moduleTitle = 'Amenities in and Around ' + location;
+      }else if(this.profileType === 'ProfilePage'){
+          this.moduleTitle = 'Amenities in and Around ' + fullAdress;
+      }
       this.listData = {
         hasHoverNoSubImg: true,
         header: "What Restaurants Are in the Area?",
@@ -194,7 +182,6 @@ export class AmenitiesModule implements OnInit{
 
     ngOnInit(){
         this.hasFooterButton = false;
-        this.setModuleTitle();
     }
     //On Change Call
     ngOnChanges(event){
