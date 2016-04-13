@@ -6,7 +6,7 @@ declare var moment: any;
 
 export class GlobalFunctions{
     //Transforms a string to titlecase
-    toTitleCase = function(str){
+    toTitleCase(str) {
         return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     };
 
@@ -14,7 +14,7 @@ export class GlobalFunctions{
     //Formats
     // 10 character length (000) 000-0000
     // 7 character legnth 000-0000
-    formatPhoneNumber(val){
+    formatPhoneNumber(val) {
       if(isNaN(val) == false){
         var val = val.toString();
       }
@@ -111,6 +111,9 @@ export class GlobalFunctions{
             WI: 'Wisconsin',
             WY: 'Wyoming'
         };
+        if ( state !== undefined && state !== null ) {
+          state = state.toUpperCase();
+        }
         return stateName[state];
     };
 
@@ -169,6 +172,9 @@ export class GlobalFunctions{
             WI: 'Wis.',
             WY: 'Wyo.'
         };
+        if ( state !== undefined && state !== null ) {
+          state = state.toUpperCase();
+        }
         return stateAP[state];
     };
 

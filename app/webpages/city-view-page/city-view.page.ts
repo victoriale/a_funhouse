@@ -22,9 +22,11 @@ declare var moment: any;
 
 export class CityViewPage implements OnInit{
     public titleData: any;
-    stateLocation: string;
-    cityLocation: string;
-    cityStateLocation: string;
+    paramState: string;
+    paramCity: string;
+    displayAPState: string;
+    displayCity: string;
+    cityStateLocationKey: string;
     cityView: any;
     cities: Array<any> = [];
     displayData: Array<any> = [];
@@ -36,7 +38,7 @@ export class CityViewPage implements OnInit{
 
     getData() {
         // Subscribe to getNearByCities in geo-location.service.ts
-        this._cityViewService.getCityView(this.stateLocation, this.cityLocation)
+        this._cityViewService.getCityView(this.paramState, this.paramCity)
             .subscribe(
                 cityView => { this.cityView = cityView },
                 err => console.log(err),
@@ -49,8 +51,8 @@ export class CityViewPage implements OnInit{
           {
               imageURL : '/app/public/joyfulhome_house.png',
               smallText1 : 'Last Updated: ' + moment(new Date()).format('dddd, MMMM Do, YYYY'),
-              smallText2 : ''+ this.cityLocation + ', ' + this._globalFunctions.stateToAP(this.stateLocation) + '',
-              heading1 : 'Nearby Cities for the ' + this.cityLocation + ', ' + this._globalFunctions.stateToAP(this.stateLocation) + ' Area',
+              smallText2 : ''+ this.displayCity + ', ' + this.displayAPState + '',
+              heading1 : 'Nearby Cities for the ' + this.displayCity + ', ' + this.displayAPState + ' Area',
               heading2 : '',
               heading3 : '',
               heading4 : '',
@@ -137,11 +139,14 @@ export class CityViewPage implements OnInit{
         this.index = index-1;
         this.sanitizeListofListData();
     }
+    
     ngOnInit() {
         // Get City & State from route params
-        this.stateLocation = decodeURI(this._params.get('state'));
-        this.cityLocation = decodeURI(this._params.get('city'));
-        this.cityStateLocation = this.stateLocation + '_' + this.cityLocation;
+        this.paramState = decodeURI(this._params.get('state'));
+        this.paramCity = decodeURI(this._params.get('city'));
+        this.displayAPState =  this._globalFunctions.stateToAP(this.paramState);
+        this.displayCity = this._globalFunctions.toTitleCase(this.paramCity);        
+        this.cityStateLocationKey = this.paramState + '_' + this.paramCity;
         this.getData();
     }
 
