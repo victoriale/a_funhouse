@@ -54,6 +54,10 @@ export class ListingProfileService{
         )
         .map(
             data => {
+                if(data.success == false){
+                    throw new Error('Error: getListingProfile api success, message failed');
+                }
+
                 return data.data;
             }
         )

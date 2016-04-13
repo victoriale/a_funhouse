@@ -54,6 +54,10 @@ export class LocationProfileService{
             )
             .map(
                 data => {
+                    if(data.success == false){
+                        throw new Error('Error: getLocationProfile Header api success, message failed');
+                    }
+
                     return data.data;
                 }
             )
