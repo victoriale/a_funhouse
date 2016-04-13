@@ -264,7 +264,6 @@ export class FindYourHomeModule implements OnInit{
     ngOnInit() {
         this.module_title = "Find Your Next Joyful Home";
         this.imageUrl = "app/public/filter_background.jpg";
-        console.log(';lkaf;lkadsfj;kladsfa', this.locData);
         this.location = this.locData.city + ', ' + this.locData.state;
         this.locCity = this.locData.city;
         this.locState = this.locData.stateAbbreviation;
