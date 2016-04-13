@@ -10,7 +10,7 @@ import {GlobalFunctions} from '../../global/global-functions';
 @Component({
     selector: 'featured-lists-module',
     templateUrl: './app/modules/featured_lists/featured_lists.module.html',
-    
+
     directives: [moduleHeader, TilesComponent, FeatureComponent],
     providers: [],
     inputs:['locData']
@@ -118,7 +118,7 @@ export class FeaturedListsModule implements OnInit{
             header: 'Trending Real Estate',
             title: this.globalFunctions.convertListName(data.listName),
             hding1: this.globalFunctions.toTitleCase(listData.fullStreetAddress),
-            hding2: this.globalFunctions.toTitleCase(listData.city) + ', ' + this.globalFunctions.stateToAP(listData.stateOrProvince) + ' ' + listData.postalCode,
+            hding2: this.globalFunctions.toTitleCase(listData.city) + ', ' + listData.stateOrProvince + ' ' + listData.postalCode,
             detail1: heading2,
             detail2: listData.listPrice === null ? '' : 'Asking Price: ',
             detail3: this.globalFunctions.formatPriceNumber(listData.listPrice),
