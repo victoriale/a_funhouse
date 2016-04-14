@@ -21,6 +21,7 @@ export class Image180 implements OnInit {
     imageClass:string = '';
     originalUrl:string;
     useRouterLink:boolean = false;
+    @Input() viewLocationText:string = "Profile";
     @Input() urlRouteArray: string[];
 
     ngOnChanges(event){
@@ -40,8 +41,14 @@ export class Image180 implements OnInit {
     }
     
     ngOnInit() {
+        //If urlRouteArray is an array with data, then use the RouterLink <a>
         if(typeof this.urlRouteArray !== 'undefined' && this.urlRouteArray !== null && this.urlRouteArray.length > 0 ){
             this.useRouterLink = true;
+        }
+        
+        //If viewLocationText is null or empty, then initialize to "Profile"
+        if(typeof this.viewLocationText === 'undefined' || this.viewLocationText === null || this.viewLocationText.length === 0 ){
+            this.viewLocationText = "Profile";
         }
     }
 }
