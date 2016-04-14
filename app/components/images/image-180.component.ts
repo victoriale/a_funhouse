@@ -1,15 +1,16 @@
 /**
  * Created by Victoria on 3/1/2016.
  */
-import {Component, Input, OnChanges} from 'angular2/core';
+import {Component, Input, OnChanges, OnInit} from 'angular2/core';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({
     selector: 'image-180',
     templateUrl: './app/components/images/image.html',
-    
+    directives: [ROUTER_DIRECTIVES],
     inputs: ['hasSubImg', 'imageURL', 'imageURL2', 'counterIf', 'counter', 'hasHover', 'hasBottomImg', 'imageClass', 'originalUrl']
 })
-export class Image180 {
+export class Image180 implements OnInit {
     imageURL: string = '/app/public/placeholder-location.jpg';
     imageURL2: string = '/app/public/placeholder-location.jpg';
     size: string = "180";
@@ -19,6 +20,8 @@ export class Image180 {
     hasBottomImg: boolean = false;
     imageClass:string = '';
     originalUrl:string;
+    useRouterLink:boolean = false;
+    @Input() urlRouteArray: string[];
 
     ngOnChanges(event){
         //If an image is not undefined (Input WAS sent to component) and value passed in is null, set image to placeholder
@@ -33,6 +36,12 @@ export class Image180 {
         }
         if(typeof event.hasHover !== 'undefined' && event.hasHover.currentValue === null){
             this.hasHover = false;
+        }
+    }
+    
+    ngOnInit() {
+        if(typeof this.urlRouteArray !== 'undefined' && this.urlRouteArray !== null && this.urlRouteArray.length > 0 ){
+            this.useRouterLink = true;
         }
     }
 }
