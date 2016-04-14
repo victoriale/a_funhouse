@@ -59,7 +59,7 @@ export class MediaFeatureModule implements OnInit {
   }
 
   dataFormatter(originalData) {
-    this.location = this.globalFunctions.toTitleCase(originalData.address) + ' ' + this.globalFunctions.toTitleCase(originalData.city) + ', ' + this.globalFunctions.stateToAP(originalData.state);
+    this.location = this.globalFunctions.toTitleCase(originalData.address) + ', ' + this.globalFunctions.toTitleCase(originalData.city) + ', ' + this.globalFunctions.stateToAP(originalData.state);
     if (this.profileType === 'ProfilePage') {
       this.moduleTitle = 'Property Images, Media & Features for ' + this.location;
     }
@@ -131,7 +131,7 @@ export class MediaFeatureModule implements OnInit {
       zipCode: originalData.zipCode,
       address: originalData.address,
       locUrl1: "Location-page",
-      locUrl2: { loc: originalData.city + '_' + originalData.state },
+      locUrl2: { loc: this.globalFunctions.toLowerKebab(originalData.city) + '-' + originalData.state.toLowerCase() },
       virtualTour: originalData.virtualTour,
     };
     return {

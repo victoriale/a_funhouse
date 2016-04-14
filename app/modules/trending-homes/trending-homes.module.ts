@@ -72,7 +72,7 @@ export class TrendingHomes implements OnInit {
       var totalLength = originalData.length;
       var defaultImage = this.image_url;
       var cityState = this.globalFunctions.toTitleCase(originalData[0].city) + ', ' + this.globalFunctions.stateToAP(originalData[0].stateOrProvince);
-      var location = this.globalFunctions.toTitleCase(originalData[0].fullStreetAddress) + ' ' + cityState;
+      var location = this.globalFunctions.toTitleCase(originalData[0].fullStreetAddress) + ', ' + cityState;
       if(this.profileType === 'LocationPage'){
           this.moduleTitle = 'Most Trending Homes In ' + cityState;
       }else if(this.profileType === 'ProfilePage'){
@@ -105,7 +105,7 @@ export class TrendingHomes implements OnInit {
           state: val.stateOrProvince,
           photos:val.photos,
           locUrl1: "Location-page",
-          locUrl2: {loc: val.city + '_' +val.stateOrProvince},
+          locUrl2: {loc: globeFunc.toLowerKebab(val.city) + '-' +val.stateOrProvince.toLowerCase()},
           virtualTour: val.virtualTour,
           listName: globeFunc.convertListName(data.listName),
           totalListings: totalLength,
