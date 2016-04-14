@@ -145,7 +145,7 @@ export class SchoolListsPage implements OnInit{
        index:          val.rank,
        imageUrl1:      val.imageUrl
      }
-     carData['linkUrl1'] = "/location/" +  globeFunc.toTitleCase(val['city']).toLowerCase() + '-' + val['state_or_province'].toLowerCase();
+     carData['linkUrl1'] = "/location/" +  globeFunc.toLowerKebab(val['city']) + '-' + val['state_or_province'].toLowerCase();
      carouselData.push(carData);
    })//end forEach
    this.carouselData = carouselData;
