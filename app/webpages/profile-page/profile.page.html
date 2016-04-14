@@ -20,7 +20,7 @@
                         <media-features-module [trending]="mediaFeature"></media-features-module>
                         <mag-module *ngIf="addressObject" [listingData]="addressObject"></mag-module>
                         <!--Map Section-->
-                        <map-module *ngIf="mapData" [mapData]="mapData"></map-module>
+                        <map-module *ngIf="mapData && addressObject" [addressObject]="addressObject" [mapData]="mapData"></map-module>
 
                         <!--Comment Section-->
                         <section *ngIf="!partnerCheck">

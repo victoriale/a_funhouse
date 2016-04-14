@@ -64,7 +64,14 @@ export class ProfilePage implements OnInit{
     public isError: boolean = false;
     public isChecked: boolean;
 
-    public addressObject: Object;
+    public addressObject: {
+        address: string;
+        city: string;
+        state: string;
+        stateAP: string;
+        listingImage: string;
+        propertyType: string;
+    };
     //  Get current route name
     constructor(private _router:Router, private _listingProfileService: ListingProfileService, private _params: RouteParams, private _listService:ListOfListPage, private globalFunctions: GlobalFunctions){
       this._router.root
