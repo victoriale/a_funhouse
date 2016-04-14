@@ -11,14 +11,14 @@
                         <!-- Modules Go Here -->
 
                         <!-- About Section -->
-                        <mag-banner-module *ngIf="profileHeaderData" [listingData]="profileHeaderData"></mag-banner-module>
+                        <mag-banner-module *ngIf="addressObject" [listingData]="addressObject"></mag-banner-module>
                         <headline-component [data]="headlineAbout"></headline-component>
                         <!--Listing Profile Header-->
                         <profile-header *ngIf="profileHeaderData" [profileHeaderData]="profileHeaderData"></profile-header>
 
                         <!--Media Feature Section-->
                         <media-features-module [trending]="mediaFeature"></media-features-module>
-                        <mag-module *ngIf="profileHeaderData" [listingData]="profileHeaderData"></mag-module>
+                        <mag-module *ngIf="addressObject" [listingData]="addressObject"></mag-module>
                         <!--Map Section-->
                         <map-module *ngIf="mapData" [mapData]="mapData"></map-module>
 
