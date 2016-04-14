@@ -45,7 +45,7 @@
                         <list-of-lists-module *ngIf="lists" [listOfLists]="lists"></list-of-lists-module>
 
                         <!--Feature List Module-->
-                        <featured-lists-module *ngIf="featuredListData" [featuredListData]="featuredListData"></featured-lists-module>
+                        <featured-lists-module *ngIf="featuredListData && addressObject" [addressObject]="addressObject" [featuredListData]="featuredListData"></featured-lists-module>
 
                         <!-- Interact Section -->
                         <headline-component *ngIf="headlineInteract" [data]="headlineInteract"></headline-component>
