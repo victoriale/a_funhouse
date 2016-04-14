@@ -210,6 +210,13 @@ export class GlobalFunctions{
         return str;
     };
 
+    //Transforms any string to kab
+    toLowerKebab = function(str){
+        str = str.toLowerCase()
+            .replace(/ /g, '-');
+        return str;
+    }
+
     convertListName = function(val){
         var names = {
             'homesAtLeast5YearsOld': 'Homes at least 5 years old',
