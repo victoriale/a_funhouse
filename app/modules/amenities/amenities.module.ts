@@ -80,7 +80,7 @@ export class AmenitiesModule implements OnInit{
       var loc = listData['location']['city'] + ', ' + listData['location']['state_code'] + ' ' + listData['location']['postal_code'];
       var location = listData['location']['city'] + ', ' + this.globalFunctions.stateToAP(listData['location']['state_code']);
       var address = listData['location']['address'];
-      var fullAdress = address + ' ' + location;
+      var fullAdress = address + ', ' + location;
       var imageURL = dataLists[this.index].image_url;
       if(this.profileType === 'LocationPage'){
           this.moduleTitle = 'Amenities in and Around ' + location;

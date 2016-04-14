@@ -39,9 +39,6 @@ declare var lh: any;
 
 export class ProfilePage implements OnInit{
     paramAddress: string;
-    address: string;
-    city: string;
-    state: string;
     public pageName: string;
     public headlineAbout: any;
     public headlineCrime: any;
@@ -210,17 +207,6 @@ export class ProfilePage implements OnInit{
         });
     }
 
-    getAddress() {
-      var paramAddress = this._params.get('address').split('-');
-      var paramCity = this.globalFunctions.toTitleCase(paramAddress[paramAddress.length - 2]);
-      var paramState = this.globalFunctions.stateToAP(paramAddress[paramAddress.length - 1]);
-      var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
-      var address = tempArr.join(' ');
-      this.city = paramCity;
-      this.state = paramState;
-      this.address = this.globalFunctions.toTitleCase(address) + ' ' + paramCity + ', ' + paramState;
-    }
-
     //Sets the titles of the headline components based on profile header data
     setHeadlines(){
         var address = this.addressObject.address + ', ' + this.addressObject.city + ', ' + this.addressObject.stateAP;
@@ -245,7 +231,6 @@ export class ProfilePage implements OnInit{
 
     ngOnInit(){
       //Run each call
-        this.getAddress();
         this.getProfileHeader();
         this.getCrime();
         this.getMap();
