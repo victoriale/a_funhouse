@@ -59,7 +59,7 @@ export class MediaFeatureModule implements OnInit {
   }
 
   dataFormatter(originalData) {
-    this.location = this.globalFunctions.toTitleCase(originalData.address) + ' ' + this.globalFunctions.toTitleCase(originalData.city) + ', ' + this.globalFunctions.stateToAP(originalData.state);
+    this.location = this.globalFunctions.toTitleCase(originalData.address) + ', ' + this.globalFunctions.toTitleCase(originalData.city) + ', ' + this.globalFunctions.stateToAP(originalData.state);
     if (this.profileType === 'ProfilePage') {
       this.moduleTitle = 'Property Images, Media & Features for ' + this.location;
     }
