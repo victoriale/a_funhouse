@@ -72,7 +72,6 @@ export class FeaturedListsModule implements OnInit{
             return false;
         }
         var listData = data.listData[this.index];
-        console.log(data, listData);
         //Build heading 2 description
         //Disabled until component can handle empty values for descriptions
         //if((listData.numBedrooms === null || listData.numBedrooms === '0') && (listData.numBathrooms === null || listData.numBedrooms === '0')){
