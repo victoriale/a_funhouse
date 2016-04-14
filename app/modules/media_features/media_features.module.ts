@@ -128,7 +128,7 @@ export class MediaFeatureModule implements OnInit {
       zipCode: originalData.zipCode,
       address: originalData.address,
       locUrl1: "Location-page",
-      locUrl2: { loc: originalData.city + '_' + originalData.state },
+      locUrl2: { loc: this.globalFunctions.toLowerKebab(originalData.city) + '-' + originalData.state.toLowerCase() },
       virtualTour: originalData.virtualTour,
     };
     return {

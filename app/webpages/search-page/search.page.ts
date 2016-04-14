@@ -307,7 +307,7 @@ export class SearchPage implements OnInit {
 
           var locationData = {
             page: 'Location-page',
-            params: { loc: item.city + "_" + item.state_or_province },
+            params: { loc: self.globalFunctions.toLowerKebab(item.city) + "-" + item.state_or_province.toLowerCase() },
             display: self.globalFunctions.toTitleCase(item.city) + " - " + item.state_or_province,
           };
           location.push(locationData);

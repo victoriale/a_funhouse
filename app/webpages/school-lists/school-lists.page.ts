@@ -123,10 +123,10 @@ export class SchoolListsPage implements OnInit{
        val.location_city = globeFunc.toTitleCase(metaData.city);
        val.location_state = metaData.state;
        val.zipCode =  "";
-       val.locationUrl = {loc: metaData.city + '_' + metaData.state};
+       val.locationUrl = {loc: globeFunc.toLowerKebab(metaData.city) + '-' + metaData.state.toLowerCase()};
      } else {
        val.location_city = globeFunc.toTitleCase(val['city']);
-       val.locationUrl = {loc: globeFunc.toTitleCase(val['city']) + '_' + val['state_or_province']};
+       val.locationUrl = {loc: globeFunc.toTitleCase(val['city']).toLowerCase() + '-' + val['state_or_province'].toLowerCase()};
        val.location_address = globeFunc.toTitleCase(val['full_street_address']);
        val.location_state = val['state_or_province'];
        val.zipCode = val['postal_code'];
@@ -145,7 +145,7 @@ export class SchoolListsPage implements OnInit{
        index:          val.rank,
        imageUrl1:      val.imageUrl
      }
-     carData['linkUrl1'] = "/location/" +  globeFunc.toTitleCase(val['city']) + '_' + val['state_or_province'];
+     carData['linkUrl1'] = "/location/" +  globeFunc.toTitleCase(val['city']).toLowerCase() + '-' + val['state_or_province'].toLowerCase();
      carouselData.push(carData);
    })//end forEach
    this.carouselData = carouselData;

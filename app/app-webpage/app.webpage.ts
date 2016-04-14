@@ -206,11 +206,11 @@ export class AppComponent implements OnInit {
                     var dataPartner = this.partnerData['results']['location']['realestate'];
                     this.cityLocation = this._globalFunctions.toTitleCase(decodeURI(dataPartner['location']['city'][0].city));
                     this.stateLocation = decodeURI(dataPartner['location']['city'][0].state);
-                    this.cityStateLocation = this.cityLocation + '_' + this.stateLocation;
+                    this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
                   }else{
                     this.cityLocation = geoLocationData[0].city;
                     this.stateLocation = geoLocationData[0].state;
-                    this.cityStateLocation = this.cityLocation + '_' + this.stateLocation;
+                    this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
                   }
                 },
                 err => this.defaultCity(),
@@ -232,7 +232,7 @@ export class AppComponent implements OnInit {
         // console.log('Geo Location is Borked!');
         this.stateLocation = "KS";
         this.cityLocation = "Wichita";
-        this.cityStateLocation = this.cityLocation + '_' + this.stateLocation;
+        this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '_' + this.stateLocation.toLowerCase();
         this.getNearByCities();
     }
 

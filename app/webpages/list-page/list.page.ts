@@ -434,7 +434,7 @@ export class ListPage implements OnInit{
       newData['url2'] = {addr:val.addressKey};
       newData['url3'] = "PropertyOverview";
       newData['locUrl1'] = "Location-page";
-      newData['locUrl2'] = {loc: val.city + "_" + val.stateOrProvince};
+      newData['locUrl2'] = {loc: self.globalFunctions.toLowerKebab(val.city) + "-" + val.stateOrProvince.toLowerCase()};
 
       var carData = {
         heading:'Featured Listing',
@@ -448,7 +448,7 @@ export class ListPage implements OnInit{
       carData['url2'] = {addr:val.addressKey};
       carData['url3'] = "PropertyOverview";
       carData['locUrl1'] = "Location-page";
-      carData['locUrl2'] = {loc: val.city + "_" + val.stateOrProvince};
+      carData['locUrl2'] = {loc: self.globalFunctions.toLowerKebab(val.city) + "-" + val.stateOrProvince.toLowerCase()};
 
       listhubKeys.push({lkey: val.listingKey});//send key to listhub
       carouselData.push(carData);

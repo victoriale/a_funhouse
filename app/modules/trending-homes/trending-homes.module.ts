@@ -99,7 +99,7 @@ export class TrendingHomes implements OnInit {
           state: val.stateOrProvince,
           photos:val.photos,
           locUrl1: "Location-page",
-          locUrl2: {loc: val.city + '_' +val.stateOrProvince},
+          locUrl2: {loc: globeFunc.toLowerKebab(val.city) + '-' +val.stateOrProvince.toLowerCase()},
           virtualTour: val.virtualTour,
           listName: globeFunc.convertListName(data.listName),
           totalListings: totalLength,
