@@ -90,7 +90,7 @@ export class AmenitiesModule implements OnInit{
         name: loc,
         establishment: listData.name,
         imageUrl: listData.image_url,
-        address: address[0],
+        address: address[0] + ', ',
         location:  loc,
         originalUrl: listData.url,
         url: 'Amenities-lists-page',//for the see the list button
