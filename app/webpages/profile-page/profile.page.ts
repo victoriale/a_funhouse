@@ -117,7 +117,6 @@ export class ProfilePage implements OnInit{
                     var listingKey = data['listingKey']; //send key to listhub
                     lh('submit', 'DETAIL_PAGE_VIEWED', {lkey:listingKey});
                     this.profileHeaderData['paramAddress'] = this.paramAddress;
-                    console.log(this.paramAddress);
                 },
                 err => {
                     console.log('Error - Listing Profile Header Data: ', err);
