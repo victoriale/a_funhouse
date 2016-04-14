@@ -21,6 +21,7 @@ export class AmenitiesComponent implements OnInit{
     listView: Object;
     public scrollRight: EventEmitter<boolean> = new EventEmitter();
     public scrollLeft: EventEmitter<boolean> = new EventEmitter();
+    public imageLocationText = "On Yelp";
 
     left(){
         this.scrollLeft.next(true);

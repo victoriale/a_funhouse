@@ -4,7 +4,15 @@
         <!--<a [routerLink]="['List-page', {viewType: 'list', state: stateLocation, listname: lists[carCount].listTitleOrig, city: cityLocation, page: 1}]">-->
         <div class="cardv-image-link">
             <div class="list-img">
-                <image-180 [hasSubImg]="true" [hasHover]="true" [counterIf]="hasIndex" [counter]="data.index" [imageURL]="data.imageUrl1" [imageURL2]="data.imageUrl2" [originalUrl]="data.linkUrl1"></image-180>
+                <image-180 
+                  [hasSubImg]="true" 
+                  [hasHover]="true" 
+                  [counterIf]="hasIndex" 
+                  [counter]="data.index" 
+                  [imageURL]="data.imageUrl1" 
+                  [imageURL2]="data.imageUrl2" 
+                  [originalUrl]="data.linkUrl1"
+                  [viewLocationText]="data.imageLocationText"></image-180>
             </div>
         </div>
 
