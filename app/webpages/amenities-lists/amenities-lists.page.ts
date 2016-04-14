@@ -133,7 +133,8 @@ export class AmenitiesListPage implements OnInit{
         callToAction:   "Interested in discovering more about this amenity?",
         buttonLabel:    "<span></span> <span>View on Yelp</span> <i class='fa fa-angle-right'></i>",
         index:          val.rank,
-        imageUrl1:      val.image_url
+        imageUrl1:      val.image_url,
+        imageLocationText: "On Yelp"
       }
       carData['linkUrl1'] = val.url;
       carouselData.push(carData);
