@@ -33,7 +33,7 @@
 
                         <!-- Amenities Section -->
                         <headline-component *ngIf="amenitiesData" [data]="headlineAmenities"></headline-component>
-                        <amenities-module *ngIf="amenitiesData" [amenitiesData]="amenitiesData"></amenities-module>
+                        <amenities-module *ngIf="amenitiesData" [amenitiesData]="amenitiesData" [addressObject]="addressObject"></amenities-module>
                         
                         <!-- Other Homes Section -->
                         <headline-component *ngIf="trendingHomesData || lists" [data]="headlineOtherHomes"></headline-component>
