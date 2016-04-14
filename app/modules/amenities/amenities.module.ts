@@ -31,7 +31,7 @@ export class AmenitiesModule implements OnInit{
     providerUrl = 'http://www.yelp.com/';
 
     @Input() amenitiesData: any;
-
+    @Input() addressObject: any;
     constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions){
         //Determine what page the profile header module is on
         this.profileType = this.router.hostComponent.name;
@@ -78,11 +78,15 @@ export class AmenitiesModule implements OnInit{
       var dataLists = data['restaurant']['businesses'];
       var listData = dataLists[this.index];
       var loc = listData['location']['city'] + ', ' + listData['location']['state_code'] + ' ' + listData['location']['postal_code'];
-      var location = listData['location']['city'] + ', ' + this.globalFunctions.stateToAP(listData['location']['state_code']);
       var address = listData['location']['address'];
       var imageURL = dataLists[this.index].image_url;
-      this.moduleTitle = 'Amenities in and Around ' + location;
-
+      var city = this.globalFunctions.toTitleCase(this.addressObject.city);
+      var stateAP = this.addressObject.stateAP;
+      if(this.profileType === 'LocationPage'){
+          this.moduleTitle = 'Amenities in and Around ' + city + ', ' + stateAP;
+      }else if(this.profileType === 'ProfilePage'){
+          this.moduleTitle = 'Amenities in and Around ' + this.globalFunctions.toTitleCase(this.addressObject.address) + ', ' + city + ', ' + stateAP;
+      }
       this.listData = {
         hasHoverNoSubImg: true,
         header: "What Restaurants Are in the Area?",

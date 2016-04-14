@@ -89,21 +89,20 @@ export class FeaturedListsModule implements OnInit{
         //    var heading2 = 'Bedrooms: ' + listData.numBedrooms + ' | Bathrooms: ' + listData.numBathrooms;
         //}
         var heading2 = 'Bedrooms: ' + listData.numBedrooms + ' | Bathrooms: ' + listData.numBathrooms;
-        var city = this.globalFunctions.toTitleCase(listData.city);
-        var stateAP = this.globalFunctions.stateToAP(listData.stateOrProvince);
+        var city = this.globalFunctions.toTitleCase(this.addressObject.city);
+        var stateAP = this.addressObject.stateAP;
         if(this.profileType === 'LocationPage'){
             this.moduleTitle = 'Featured Lists for ' + city + ', ' + stateAP;
         }else if(this.profileType === 'ProfilePage'){
-            var address = this.addressObject.address + ', ' + this.addressObject.city + ', ' + this.addressObject.stateAP;
-            this.moduleTitle = 'Featured List for ' + address;
+            this.moduleTitle = 'Featured List for ' + this.globalFunctions.toTitleCase(this.addressObject.address) + ', ' + city + ', ' + stateAP;
         }
         //Used for both location and listing profile
         this.listData = {
             rank: this.index + 1,
             header: 'Trending Real Estate',
             title: this.globalFunctions.convertListName(data.listName),
-            hding1: address,
-            hding2: city + ', ' + listData.stateOrProvince + ' ' + listData.postalCode,
+            hding1: this.globalFunctions.toTitleCase(listData.fullStreetAddress),
+            hding2: this.globalFunctions.toTitleCase(listData.city) + ', ' + listData.stateOrProvince + ' ' + listData.postalCode,
             detail1: heading2,
             detail2: listData.listPrice === null ? '' : 'Asking Price: ',
             detail3: this.globalFunctions.formatPriceNumber(listData.listPrice),
