@@ -54,9 +54,10 @@ export class ProfileHeader implements OnInit{
     transformData(){
         var data = this.profileHeaderData;
 
-        var location = data.city + ", " + this.globalFunctions.stateToAP(data.state);
-        //Sanitize city value
+        //Sanitize city/state values
         data.city = this.globalFunctions.toTitleCase(data.city);
+        data.state = this.globalFunctions.stateToAP(data.state);
+        var location = data.city + ", " + data.state;
 
         if(this.profileType== 'LocationPage'){
             //Location Profile Header
@@ -66,7 +67,7 @@ export class ProfileHeader implements OnInit{
                 //Unused field of component for this module
                 smallText: '',
                 smallText2: 'Last Updated: ' + moment(data.lastUpdated).format('dddd, MMMM Do, YYYY') + ' at ' + moment(data.lastUpdated).format('hh:mm A') + ' ET',
-                heading1: data.city + ', ' + this.globalFunctions.stateToAP(data.state),
+                heading1: data.city + ', ' + data.state,
                 heading2: '',
                 heading3: this.globalFunctions.commaSeparateNumber(data.numberOfListings) + ' Listings Available for Sale',
                 heading4: '',
@@ -74,7 +75,7 @@ export class ProfileHeader implements OnInit{
                 hasHover: false
             };
 
-            this.descriptionTitle = data.city + ', ' + this.globalFunctions.stateToAP(data.state);
+            this.descriptionTitle = data.city + ', ' + data.state;
             this.descriptionLocation = "";
             var defaultText ="Did you know that";
             var fallback = "Do you know what "+ location +" has to offer? Explore what's trending, properties for sale and neighborhood amenities for "+ location + '.';
@@ -92,12 +93,11 @@ export class ProfileHeader implements OnInit{
             this.mainImageURL = data.locationImage;
         }else if(this.profileType === 'ProfilePage') {
             //Listing Profile Header
-
             this.titleComponentData = {
                 imageURL: data.listingImage,
                 //Unused field of component for this module
                 smallText: '',
-                smallText2: data.city + ', ' + this.globalFunctions.stateToAP(data.state) + ' > ' + moment(data.lastUpdated).format('dddd, MMMM Do, YYYY') + ' at ' + moment(data.lastUpdated).format('hh:mm A') + ' ET',
+                smallText2: data.city + ', ' + data.state + ' > ' + moment(data.lastUpdated).format('dddd, MMMM Do, YYYY') + ' at ' + moment(data.lastUpdated).format('hh:mm A') + ' ET',
                 heading1: this.globalFunctions.toTitleCase(data.address),
                 heading2: data.listingStatus === null ? '' : '- ' + data.listingStatus,
                 heading3: 'Listing Price: $' + this.globalFunctions.commaSeparateNumber(data.listingPrice),
