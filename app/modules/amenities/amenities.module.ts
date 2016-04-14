@@ -80,21 +80,17 @@ export class AmenitiesModule implements OnInit{
       var loc = listData['location']['city'] + ', ' + listData['location']['state_code'] + ' ' + listData['location']['postal_code'];
       var location = listData['location']['city'] + ', ' + this.globalFunctions.stateToAP(listData['location']['state_code']);
       var address = listData['location']['address'];
-      var fullAdress = address + ', ' + location;
       var imageURL = dataLists[this.index].image_url;
-      if(this.profileType === 'LocationPage'){
-          this.moduleTitle = 'Amenities in and Around ' + location;
-      }else if(this.profileType === 'ProfilePage'){
-          this.moduleTitle = 'Amenities in and Around ' + fullAdress;
-      }
+      this.moduleTitle = 'Amenities in and Around ' + location;
+
       this.listData = {
         hasHoverNoSubImg: true,
         header: "What Restaurants Are in the Area?",
         name: loc,
         establishment: listData.name,
         imageUrl: listData.image_url,
-        address: address[0],
-        location:  listData['location']['city'] + ', ' + listData['location']['state_code'] + ' ' + listData['location']['postal_code'],
+        address: address[0] + ', ',
+        location:  loc,
         originalUrl: listData.url,
         url: 'Amenities-lists-page',//for the see the list button
         paramOptions:
