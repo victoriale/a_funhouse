@@ -24,6 +24,7 @@ export class FeaturedListsModule implements OnInit{
     public listData: Object;
     public index: number = 0;
     @Input() featuredListData: any;
+    @Input() addressObject: any;
 
     constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions){
         //Determine what page the profile header module is on
@@ -90,11 +91,11 @@ export class FeaturedListsModule implements OnInit{
         var heading2 = 'Bedrooms: ' + listData.numBedrooms + ' | Bathrooms: ' + listData.numBathrooms;
         var city = this.globalFunctions.toTitleCase(listData.city);
         var stateAP = this.globalFunctions.stateToAP(listData.stateOrProvince);
-        var address = this.globalFunctions.toTitleCase(listData.fullStreetAddress);
         if(this.profileType === 'LocationPage'){
             this.moduleTitle = 'Featured Lists for ' + city + ', ' + stateAP;
         }else if(this.profileType === 'ProfilePage'){
-            this.moduleTitle = 'Featured List for ' + address + ', ' + city + ', ' + stateAP;
+            var address = this.addressObject.address + ', ' + this.addressObject.city + ', ' + this.addressObject.stateAP;
+            this.moduleTitle = 'Featured List for ' + address;
         }
         //Used for both location and listing profile
         this.listData = {
