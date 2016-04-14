@@ -25,10 +25,10 @@ export class contentList implements OnInit{
 
     ngOnInit(){
         if(!this.isStateOnly) {
-            this.location = this._globalFunctions.toLowerKebab(this.cityLocation) + ', ' + this._globalFunctions.stateToAP(this.stateLocation);
+            this.location = this._globalFunctions.toTitleCase(this.cityLocation) + ', ' + this._globalFunctions.stateToAP(this.stateLocation);
             this.locationURL = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' +this.stateLocation.toLowerCase();
         } else {
-            this.location = this.data.listData[0].city + ', ' + this._globalFunctions.stateToAP(this.stateLocation);
+            this.location = this._globalFunctions.toTitleCase(this.data.listData[0].city) + ', ' + this._globalFunctions.stateToAP(this.stateLocation);
             this.locationURL = this._globalFunctions.toLowerKebab(this.data.listData[0].city) + '-' +this.stateLocation.toLowerCase();
         }
     }

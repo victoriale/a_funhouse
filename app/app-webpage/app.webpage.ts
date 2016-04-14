@@ -232,7 +232,7 @@ export class AppComponent implements OnInit {
         // console.log('Geo Location is Borked!');
         this.stateLocation = "KS";
         this.cityLocation = "Wichita";
-        this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '_' + this.stateLocation.toLowerCase();
+        this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
         this.getNearByCities();
     }
 
