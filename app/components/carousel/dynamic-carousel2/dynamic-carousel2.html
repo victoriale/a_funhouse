@@ -16,7 +16,7 @@
 
         <div class="cardv-plcholder-details">
           <div><span>{{data.callToAction}}</span></div>
-          <a href='{{data.linkUrl1}}' class='mod-page-btn cardv-button' [innerHtml]="data.buttonLabel">
+          <a [routerLink]='["Location-page",{loc: "Wichita-KS"}]' class='mod-page-btn cardv-button' [innerHtml]="data.buttonLabel">
           </a>
         </div>
     </section>

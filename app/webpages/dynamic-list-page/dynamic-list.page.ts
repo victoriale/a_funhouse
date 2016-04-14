@@ -133,7 +133,8 @@ export class DynamicListPage implements OnInit {
     originalData.forEach(function(val, i){
 
       // format the url depending on if partner page or not
-      let generatedUrl = partnerID && partnerID.length ? val.partner_url.replace(/\{partner\}/, partnerID) : val.primary_url
+      // let generatedUrl = partnerID && partnerID.length ? val.partner_url.replace(/\{partner\}/, partnerID) : val.primary_url
+      let generatedUrl = val.primary_url.split("|");
 
       var newData = {
           img : val.img,
