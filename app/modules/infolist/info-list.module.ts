@@ -109,7 +109,7 @@ export class InfoListModule implements OnInit {
             viewAllPage: 'List-page',
             viewAllParams: {
                 viewType: 'list',
-                listname: 'listingsMostRecent',
+                listname: 'listings-most-recent',
                 city: 'Wichita',
                 state: 'KS',
                 page: 1
