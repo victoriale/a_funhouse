@@ -7,7 +7,7 @@ import {GlobalFunctions} from "./global-functions";
 
 export class SearchService{
     result: Array<Object>;
-    constructor(public http: Http, private _globalFunctions: GlobalFunctions){
+    constructor(public http: Http, private _globalFunctions: GlobalFunctions){}
 
     //API for search bar
     getSearchResults(input, type){
