@@ -10,7 +10,7 @@ declare var moment: any;
 @Component({
     selector: 'trending-homes',
     templateUrl: './app/modules/trending-homes/trending-homes.module.html',
-    
+
     directives: [ListViewCarousel, moduleHeader, MediaImages],
     inputs:['locData']
 })
@@ -71,7 +71,13 @@ export class TrendingHomes implements OnInit {
       var globeFunc = this.globalFunctions;
       var totalLength = originalData.length;
       var defaultImage = this.image_url;
-
+      var cityState = this.globalFunctions.toTitleCase(originalData[0].city) + ', ' + this.globalFunctions.stateToAP(originalData[0].stateOrProvince);
+      var location = this.globalFunctions.toTitleCase(originalData[0].fullStreetAddress) + ' ' + cityState;
+      if(this.profileType === 'LocationPage'){
+          this.moduleTitle = 'Most Trending Homes In ' + cityState;
+      }else if(this.profileType === 'ProfilePage'){
+          this.moduleTitle = 'Most Trending Homes Around ' + location;
+      }
       originalData.forEach(function(val, i){
         val.listPrice = globeFunc.commaSeparateNumber(val.listPrice);
         for(var obj in val){
@@ -117,26 +123,7 @@ export class TrendingHomes implements OnInit {
       this.listData = carouselData[this.counter];
     }//END OF TRANSFORM FUNCTION
 
-    //Build Module Title
-    setModuleTitle(){
-        if(this.profileType === 'LocationPage'){
-            var paramLocation: string = this._params.get('loc');
-            var paramCity: string = this.globalFunctions.toTitleCase(this.locData.city);
-            paramCity = this.globalFunctions.toTitleCase(paramCity.replace(/%20/g, " "));
-            var paramState: string = this.locData.state;
-            this.moduleTitle = 'Most Trending Homes In ' + paramCity + ', ' + paramState;
-        }else if(this.profileType === 'ProfilePage'){
-            var paramAddress = this._params.get('address').split('-');
-            var paramState = paramAddress[paramAddress.length -1];
-            var paramCity = paramAddress [paramAddress.length - 2];
-            var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
-            var address = tempArr.join(' ');
-            this.moduleTitle = 'Most Trending Homes Around ' + this.globalFunctions.toTitleCase(address) + ' ' + this.globalFunctions.toTitleCase(paramCity) + ', ' + paramState;
-        }
-
-    }
     ngOnInit(){
-        this.setModuleTitle();
         this.trending = true; // set flag to display trending button for media-images.component
     }
     //On Change Call
