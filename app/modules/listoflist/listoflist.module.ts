@@ -128,10 +128,10 @@ export class ListOfListModule {
         }else {
             //Else insert array items that have list data
             this.listOfLists = sanitizedArray;
-            //Set up parameters for pagination footer
-            this.setPaginationParameters();
             //Do initial data transformation for first 3 lists to be displayed
             this.transformData();
+            //Set up parameters for pagination footer
+            this.setPaginationParameters();
         }
     }
 

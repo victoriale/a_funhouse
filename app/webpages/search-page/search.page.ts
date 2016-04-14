@@ -219,10 +219,6 @@ export class SearchPage implements OnInit {
     //group address's together, routerLink goes to Magazine
     if (typeof data.address !== 'undefined' && data.address !== null) {
       data.address.forEach(function(item, index) {
-          var fullAddress = item.address_key.split('-');
-          var tempArr = fullAddress.splice(-fullAddress.length, fullAddress.length - 2);
-          var parsedAddress = tempArr.join(' ');
-
           var params: any = {};
 
           if(item.property_type === 'Residential'){
@@ -237,7 +233,7 @@ export class SearchPage implements OnInit {
               addr: item.address_key,
               page: page,
               params: params,
-              display: self.globalFunctions.toTitleCase(parsedAddress) + " - " + self.globalFunctions.toTitleCase(item.city) + ", " + item.state_or_province,
+              display: self.globalFunctions.toTitleCase(item.full_street_address) + " - " + self.globalFunctions.toTitleCase(item.city) + ", " + item.state_or_province,
           };
         address.push(dataAddr);
         addrCount++;
@@ -253,10 +249,6 @@ export class SearchPage implements OnInit {
             item[obj] = 'N/A';
           }
         }
-          var fullAddress = item.address_key.split('-');
-          var tempArr = fullAddress.splice(-fullAddress.length, fullAddress.length - 2);
-          var parsedAddress = tempArr.join(' ');
-
           var params: any = {};
 
           if(item.property_type === 'Residential'){
@@ -271,7 +263,7 @@ export class SearchPage implements OnInit {
             addr: item.address_key,
             page: page,
             params: params,
-            display: self.globalFunctions.toTitleCase(parsedAddress) + " - " + self.globalFunctions.toTitleCase(item.city) + ", " + item.state_or_province,
+            display: self.globalFunctions.toTitleCase(item.full_street_address) + " - " + self.globalFunctions.toTitleCase(item.city) + ", " + item.state_or_province,
           };
           address.push(dataAddr);
           addrCount++;
