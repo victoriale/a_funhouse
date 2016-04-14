@@ -126,7 +126,7 @@ export class SchoolListsPage implements OnInit{
        val.locationUrl = {loc: globeFunc.toLowerKebab(metaData.city) + '-' + metaData.state.toLowerCase()};
      } else {
        val.location_city = globeFunc.toTitleCase(val['city']);
-       val.locationUrl = {loc: globeFunc.toTitleCase(val['city']).toLowerCase() + '-' + val['state_or_province'].toLowerCase()};
+       val.locationUrl = {loc: globeFunc.toLowerKebab(val['city']) + '-' + val['state_or_province'].toLowerCase()};
        val.location_address = globeFunc.toTitleCase(val['full_street_address']);
        val.location_state = val['state_or_province'];
        val.zipCode = val['postal_code'];
