@@ -8,7 +8,7 @@ import {moduleHeader} from '../../components/module-header/module-header';
 @Component({
     selector: 'crime-module',
     templateUrl: './app/modules/crime/crime.module.html',
-    
+
     directives: [moduleHeader],
     providers: [],
     inputs:['locData']
@@ -65,31 +65,11 @@ export class CrimeModule implements OnInit{
         this.profileType = this.router.hostComponent.name;
     }
 
-    //Build Module Title
-    setModuleTitle(){
-
-        if(this.profileType === 'LocationPage'){
-            //Location Crime Module
-            var paramLocation: string = this._params.get('loc');
-            var paramCity: string = this.globalFunctions.toTitleCase(this.locData.city);
-            paramCity = this.globalFunctions.toTitleCase(paramCity.replace(/%20/g, " "));
-            var paramState: string = this.locData.state;
-            this.moduleTitle = 'Crime Activity in ' + paramCity + ', ' + paramState;
-        }else if(this.profileType === 'ProfilePage'){
-            //Listing Crime Module
-            var paramAddress = this._params.get('address').split('-');
-            var paramState = paramAddress[paramAddress.length -1];
-            var paramCity = paramAddress [paramAddress.length - 2];
-            var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
-            var address = tempArr.join(' ');
-            this.moduleTitle = 'Crime Activity in and Around ' + this.globalFunctions.toTitleCase(address) + ' ' + this.globalFunctions.toTitleCase(paramCity) + ', ' + paramState;
-        }
-    }
-
     transformData(){
         var data = this.crimeData;
-
+        var cityState = this.globalFunctions.toTitleCase(data.city) + ', ' + this.globalFunctions.stateToAP(data.state);
         var returnArray = [];
+        this.moduleTitle = 'Crime Activity in ' + cityState;
 
         //Aggravated Assault
         returnArray.push({
@@ -197,7 +177,6 @@ export class CrimeModule implements OnInit{
 
     //Initialization Call
     ngOnInit(){
-        this.setModuleTitle();
     }
 
     //On Change Call

@@ -83,7 +83,7 @@ export class HomePage implements OnInit {
                     this.cityLocation = geoLocationData[0].city;
                     this.stateLocation = geoLocationData[0].state;
                     this.stateAPLocation = this._globalFunctions.stateToAP(this.stateLocation);
-                    this.cityStateLocation = this.cityLocation + '_' + this.stateLocation;
+                    this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
                 },
                 err => this.defaultCity(),
                 () => this.getNearByCities()
@@ -111,7 +111,7 @@ export class HomePage implements OnInit {
         this.stateLocation = "KS";
         this.stateAPLocation = this._globalFunctions.stateToAP(this.stateLocation);
         this.cityLocation = "Wichita";
-        this.cityStateLocation = this.cityLocation + '_' + this.stateLocation;
+        this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
         this.getNearByCities();
     }
 

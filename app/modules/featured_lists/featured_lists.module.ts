@@ -30,27 +30,6 @@ export class FeaturedListsModule implements OnInit{
         this.profileType = this.router.hostComponent.name;
     }
 
-    //Build Module Title
-    setModuleTitle(){
-        if(this.profileType === 'LocationPage'){
-            //Location Featured List Module
-            var paramLocation: string = this._params.get('loc');
-            var paramCity: string = this.globalFunctions.toTitleCase(this.locData.city);
-            paramCity = this.globalFunctions.toTitleCase(paramCity.replace(/%20/g, " "));
-            var paramState: string = this.locData.state;
-            this.moduleTitle = 'Featured Lists for ' + paramCity + ', ' + paramState;
-        }else if(this.profileType === 'ProfilePage'){
-            //Listing Crime Module
-            var paramAddress = this._params.get('address').split('-');
-            var paramState = paramAddress[paramAddress.length -1];
-            var paramCity = paramAddress [paramAddress.length - 2];
-            var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
-            var address = tempArr.join(' ');
-
-            this.moduleTitle = 'Featured List for ' + this.globalFunctions.toTitleCase(address) + ' ' + this.globalFunctions.toTitleCase(paramCity) + ', ' + paramState;
-        }
-    }
-
     left(){
         if(this.featuredListData === null){
             return false;
@@ -84,10 +63,7 @@ export class FeaturedListsModule implements OnInit{
     }
 
     //Initialization Call
-    ngOnInit(){
-        this.setModuleTitle();
-        //Set static data - Will remove when routes further defined
-    }
+    ngOnInit(){}
 
     transformData(){
         var data = this.featuredListData;
@@ -112,23 +88,31 @@ export class FeaturedListsModule implements OnInit{
         //    var heading2 = 'Bedrooms: ' + listData.numBedrooms + ' | Bathrooms: ' + listData.numBathrooms;
         //}
         var heading2 = 'Bedrooms: ' + listData.numBedrooms + ' | Bathrooms: ' + listData.numBathrooms;
+        var city = this.globalFunctions.toTitleCase(listData.city);
+        var stateAP = this.globalFunctions.stateToAP(listData.stateOrProvince);
+        var address = this.globalFunctions.toTitleCase(listData.fullStreetAddress);
+        if(this.profileType === 'LocationPage'){
+            this.moduleTitle = 'Featured Lists for ' + city + ', ' + stateAP;
+        }else if(this.profileType === 'ProfilePage'){
+            this.moduleTitle = 'Featured List for ' + address + ', ' + city + ', ' + stateAP;
+        }
         //Used for both location and listing profile
         this.listData = {
             rank: this.index + 1,
             header: 'Trending Real Estate',
             title: this.globalFunctions.convertListName(data.listName),
-            hding1: this.globalFunctions.toTitleCase(listData.fullStreetAddress),
-            hding2: this.globalFunctions.toTitleCase(listData.city) + ', ' + listData.stateOrProvince + ' ' + listData.postalCode,
+            hding1: address,
+            hding2: city + ', ' + listData.stateOrProvince + ' ' + listData.postalCode,
             detail1: heading2,
             detail2: listData.listPrice === null ? '' : 'Asking Price: ',
             detail3: this.globalFunctions.formatPriceNumber(listData.listPrice),
             imageUrl: listData.photos.length === 0 ? null : listData.photos[0],
             ListUrl: 'List-page',
             listParam: {
-                viewType: 'list',
+              viewType: 'list',
               listname: this.globalFunctions.camelCaseToKababCase(data.listName),
               state: listData.stateOrProvince,
-              city: listData.city,
+              city: city,
               page: '1',
             },
             listingUrl1: '../../Magazine',

@@ -49,6 +49,7 @@ export class AmenitiesListPage implements OnInit{
   arraySize: number = 10;
   providerUrl = 'http://www.yelp.com/';
   providerLogo = '/app/public/amenities_yelp.png';
+
   @Input() amenitiesNearListingData: any;
 
   public isError: boolean = false;
@@ -112,7 +113,7 @@ export class AmenitiesListPage implements OnInit{
           val.bgClass = "odd";
       }
       val.displayAddress2 =  val['location']['city'] + ', ' + val['location']['state_code'];
-      val.locationUrl = {loc: val['location']['city'] + '_' + val['location']['state_code']};
+      val.locationUrl = {loc: globalFunc.toLowerKebab(val['location']['city']) + '-' + val['location']['state_code'].toLowerCase()};
       if(typeof val.phone == 'undefined' || val.phone === 'null'){
         val.phone = 'No Phone Listed';
       }
@@ -133,7 +134,8 @@ export class AmenitiesListPage implements OnInit{
         callToAction:   "Interested in discovering more about this amenity?",
         buttonLabel:    "<span></span> <span>View on Yelp</span> <i class='fa fa-angle-right'></i>",
         index:          val.rank,
-        imageUrl1:      val.image_url
+        imageUrl1:      val.image_url,
+        imageLocationText: "On Yelp"
       }
       carData['linkUrl1'] = val.url;
       carouselData.push(carData);

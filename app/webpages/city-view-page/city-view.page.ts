@@ -65,7 +65,7 @@ export class CityViewPage implements OnInit{
                 this.cityView[i].stateAP = this._globalFunctions.stateToAP(this.cityView[i].state);
                 this.cityView[i].rank = Number(i) + 1;
                 this.cityView[i].distance = parseFloat(this.cityView[i].distance).toFixed(2);
-                this.cityView[i].locationUrl = this.cityView[i].city + '_' + this.cityView[i].state;
+                this.cityView[i].locationUrl = this._globalFunctions.toLowerKebab(this.cityView[i].city) + '-' + this.cityView[i].state.toLowerCase();
                 this.cities.push(this.cityView[i]);
                 if(this.cityView[i].rank % 2 == 0) {
                   this.cityView[i].bgClass = "even";
@@ -146,7 +146,7 @@ export class CityViewPage implements OnInit{
         this.paramCity = decodeURI(this._params.get('city'));
         this.displayAPState =  this._globalFunctions.stateToAP(this.paramState);
         this.displayCity = this._globalFunctions.toTitleCase(this.paramCity);        
-        this.cityStateLocationKey = this.paramState + '_' + this.paramCity;
+        this.cityStateLocationKey = this._globalFunctions.toLowerKebab(this.paramState) + '-' + this.paramCity.toLowerCase();
         this.getData();
     }
 
