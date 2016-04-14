@@ -5,6 +5,8 @@ import {MediaImages} from "../../components/media-images/media-images.component"
 import {GlobalFunctions} from '../../global/global-functions';
 import {PropertyListingInterface} from '../../global/global-interface';
 import {ListViewCarousel} from '../../components/carousel/list-view/list-view.component';
+import {LocationProfileService} from '../../global/location-profile.service';
+
 declare var moment: any;
 
 @Component({
@@ -31,7 +33,7 @@ export class TrendingHomes implements OnInit {
     @Input() trendingHomesData: any;
     image_url:string ='/app/public/no_photo_images/onError.png';
 
-    constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions){
+    constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions, private _locationProfileService: LocationProfileService){
       //Determine what page the profile header module is on
       this.profileType = this.router.hostComponent.name;
     }
@@ -61,15 +63,26 @@ export class TrendingHomes implements OnInit {
       this.listData = this.carouselData[this.counter];
     }
 
+    getTrendingListings(){
+        this._locationProfileService.getTrendingHomesData(this.locCity, this.locState)
+            .subscribe(
+                data => {
+                    this.trendingHomesData = data;
+                },
+                err => console.log('Error - Location Trending Homes Data: ', err)
+            )
+    }
+
     dataFormatter(){// TRANSFORM DATA TO PLUG INTO COMPONENTS
       //grab data for the header
       var data = this.trendingHomesData;
       //grab data for the list
-      var originalData = data.listData;
+      //call has changed to receive only one data instead of Array[100] keeping code for now
+      var originalData = data;
       var listData = [];
       var carouselData = [];
       var globeFunc = this.globalFunctions;
-      var totalLength = originalData.length;
+      var totalLength = originalData[0].totalListings;
       var defaultImage = this.image_url;
       var cityState = this.globalFunctions.toTitleCase(originalData[0].city) + ', ' + this.globalFunctions.stateToAP(originalData[0].stateOrProvince);
       var location = this.globalFunctions.toTitleCase(originalData[0].fullStreetAddress) + ' ' + cityState;
@@ -78,6 +91,7 @@ export class TrendingHomes implements OnInit {
       }else if(this.profileType === 'ProfilePage'){
           this.moduleTitle = 'Most Trending Homes Around ' + location;
       }
+      console.log(originalData);
       originalData.forEach(function(val, i){
         val.listPrice = globeFunc.commaSeparateNumber(val.listPrice);
         for(var obj in val){
@@ -94,6 +108,10 @@ export class TrendingHomes implements OnInit {
         if(val.photos.length == 0){
           val.photos.push(defaultImage);
         }
+        if(typeof data.listName == 'undefined'){
+          data.listName = 'Listing';
+        }
+        console.log(data.listName);
         var carData = {
           address:val.fullStreetAddress,
           daysOnMarket: globeFunc.formatDaysOnMarket(val.daysOnMarket),
@@ -109,7 +127,7 @@ export class TrendingHomes implements OnInit {
           virtualTour: val.virtualTour,
           listName: globeFunc.convertListName(data.listName),
           totalListings: totalLength,
-          rank: i+1,
+          rank: this.counter+1,
         }
         carData['url1'] = "../../Magazine";
         carData['url2'] = {addr:val.addressKey};

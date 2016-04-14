@@ -26,7 +26,7 @@ export class LocationProfileService{
         city = encodeURI(city);
         state = encodeURI(state);
 
-        return this.http.get(this.apiUrl + '/list/random/' + state + '/' + city, {
+        return this.http.get(this.apiUrl + '/list/random/' + state + '/' + city + '/empty/1/1', {
                 headers: headers
             })
             .map(
@@ -34,6 +34,7 @@ export class LocationProfileService{
             )
             .map(
                 data => {
+                  console.log('featuredList',data);
                     return data.data;
                 }
             )
@@ -90,7 +91,7 @@ export class LocationProfileService{
         city = encodeURI(city);
         state = encodeURI(state);
 
-        return this.http.get(this.apiUrl + '/list/listingsMostRecent/' + state + '/' + city, {
+        return this.http.get(this.apiUrl + '/list/listingsMostRecent/' + state + '/' + city + '/empty/4/1', {
                 headers: headers
             })
             .map(
@@ -98,6 +99,7 @@ export class LocationProfileService{
             )
             .map(
                 data => {
+                  console.log('RecentListings',data);
                     return data.data;
                 }
             )
@@ -147,7 +149,7 @@ export class LocationProfileService{
 
           city = encodeURI(city);
           state = encodeURI(state);
-          return this.http.get(this.apiUrl + '/list/random/' + state + '/' + city, {
+          return this.http.get(this.apiUrl + '/list/random/' + state + '/' + city + '/empty/1/1', {
                   headers: headers
               })
               .map(

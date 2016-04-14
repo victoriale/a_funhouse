@@ -200,6 +200,7 @@ export class GlobalFunctions{
 
     //Transforms camelCase to kabab-case
     camelCaseToKababCase = function(str){
+      console.log(str);
         str = str
             .replace(/([A-Z][a-z]+)/g, " $1")
             .replace(/([A-Z][A-Z]+)/g, " $1")
@@ -256,7 +257,7 @@ export class GlobalFunctions{
 
         return typeof names[val] === 'undefined' ? this.camelCaseToRegularCase(val) : names[val];
     }
-    
+
     formatDaysOnMarket = function(daysOnMarket) {
         if ( daysOnMarket === null || daysOnMarket === undefined || daysOnMarket === "N/A" ) {
           return "N/A";
