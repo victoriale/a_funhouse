@@ -65,7 +65,7 @@ export class InfoListModule implements OnInit {
             // Counter for rank #
             val.counter = index++;
             // Check if even or odd for BG color class
-            if(counter % 2 == 0) {
+            if(val.counter % 2 == 0) {
                 val.bgClass = "even";
             }else{
                 val.bgClass = "odd";
@@ -126,7 +126,6 @@ export class InfoListModule implements OnInit {
         this._locationProfileService.getRecentListings(this._globalFunctions.toTitleCase(this.city), this.state.toUpperCase(), this.index)
             .subscribe(
                 recentListingsData => {
-                  console.log(recentListingsData);
                   this.recentListingsData = recentListingsData;
                   this.dataTransform();
                   this.dataPaginate();

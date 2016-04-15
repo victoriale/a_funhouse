@@ -15,11 +15,10 @@ import {listViewPage} from '../../global/global-service';
 
     directives: [moduleHeader, TilesComponent, FeatureComponent],
     providers: [listViewPage],
-    inputs:['locData']
+    inputs:[]
 })
 
 export class FeaturedListsModule implements OnInit{
-    public locData: any;
     public listName:string;
     public profileType: string;
     public moduleTitle: string;
@@ -66,8 +65,8 @@ export class FeaturedListsModule implements OnInit{
 
     getFeaturedListings(){
       // getListData(listname, state, city, limit, page, sort)
-      console.log(this.index);
-        this.listService.getListData(this.listName, this.locData['stateAbbreviation'].toUpperCase(), this.globalFunctions.toTitleCase(this.locData['city']), 1, this.index, null)
+      console.log(this.addressObject);
+        this.listService.getListData(this.listName, this.addressObject['state'].toUpperCase(), this.globalFunctions.toTitleCase(this.addressObject['city']), 1, this.index, null)
             .subscribe(
                 data => {
                     this.featuredListData.listData = data.data;
@@ -112,6 +111,7 @@ export class FeaturedListsModule implements OnInit{
             this.moduleTitle = 'Featured List for ' + this.addressObject.address + ', ' + this.addressObject.city + ', ' + this.addressObject.stateAP;
         }
         this.listName = data.listName;
+        console.log(this.listName);
         //Used for both location and listing profile
         this.listData = {
             rank: this.index,
@@ -126,9 +126,9 @@ export class FeaturedListsModule implements OnInit{
             ListUrl: 'List-page',
             listParam: {
               viewType: 'list',
-              listname: this.globalFunctions.camelCaseToKababCase(data.listName),
-              state: listData.stateOrProvince,
-              city: city,
+              listname: this.globalFunctions.camelCaseToKababCase(data.listName).toLowerCase(),
+              state: listData.stateOrProvince.toLowerCase(),
+              city: city.toLowerCase(),
               page: '1',
             },
             listingUrl1: '../../Magazine',
