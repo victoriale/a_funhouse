@@ -25,14 +25,13 @@ export class InfoListModule implements OnInit {
     data: any;
     public paginationParameters: Object;
     public index: number = 1;
-
     constructor(private _globalFunctions: GlobalFunctions){
     }
 
     dataTransform() {
         var self = this;
         var counter = 1;
-
+        // this.city = data.
         this.recentListingsData.forEach(function(val,i) {
             // Format address to Title Case
             if(val.fullStreetAddress === null || val.fullStreetAddress == 'undefined') {
@@ -100,7 +99,6 @@ export class InfoListModule implements OnInit {
     setPaginationParameters(){
         var data = this.recentListingsData;
         var max = Math.ceil(data.length / 4);
-
         //Define parameters to send to pagination footer
         this.paginationParameters = {
             index: this.index,
@@ -108,11 +106,11 @@ export class InfoListModule implements OnInit {
             paginationType: 'module',
             viewAllPage: 'List-page',
             viewAllParams: {
-                viewType: 'list',
-                listname: 'listings-most-recent',
-                city: 'Wichita',
-                state: 'KS',
-                page: 1
+              viewType: 'list',
+              listname: 'listings-most-recent',
+              city: this._globalFunctions.toLowerKebab(data[0].city),
+              state: data[0].stateOrProvince.toLowerCase(),
+              page: 1
             }
         }
     }
