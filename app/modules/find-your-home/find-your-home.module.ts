@@ -185,7 +185,7 @@ export class FindYourHomeModule implements OnInit{
 
     moveBall(id, position) {
         if ( typeof position == "undefined" ) {
-            var position = jQuery("#" + id).position().left;
+            position = jQuery("#" + id).position().left;
         }
 
         if ( id == 'minBall' ) {
@@ -269,6 +269,8 @@ export class FindYourHomeModule implements OnInit{
         this.location = this.locData.city + ', ' + this.locData.state;
         this.locCity = this.locData.city;
         this.locState = this.locData.stateAbbreviation;
+        
+        //Needed for IE, since IE didn't shift the #maxBall right through the HTML
+        jQuery("#maxBall").css({left: this.maxSliderPosition});
     }
-
 }
