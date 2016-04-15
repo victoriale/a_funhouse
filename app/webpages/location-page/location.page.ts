@@ -30,7 +30,7 @@ import {GeoLocationService} from "../../global/geo-location.service";
 @Component({
     selector: 'location-page',
     templateUrl: './app/webpages/location-page/location.page.html',
-    
+
     directives: [ListOfListModule, HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, FindYourHomeModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule, WidgetModule, AmenitiesModule, TrendingHomes, ErrorComponent, LoadingComponent],
     providers: [PartnerHeader, ListOfListPage, LocationProfileService, GlobalFunctions],
     inputs:['partnerData']
@@ -108,7 +108,7 @@ export class LocationPage implements OnInit {
             .subscribe(
                 geoLocationData => {
                   this.locCity = this._globalFunctions.toTitleCase(decodeURI(geoLocationData[0].city));
-                  this.locState = decodeURI(geoLocationData[0].state);
+                  this.locState = decodeURI(geoLocationData[0].state).toUpperCase();
                 },
                 err => this._router.navigate(['Error-page'])
             );
@@ -121,20 +121,21 @@ export class LocationPage implements OnInit {
                     this.profileHeaderData = data;
                     this.locData = {//USED IN MULTIPLE MODULES
                       city: this._globalFunctions.toTitleCase(this.profileHeaderData['city']),
-                      state:this._globalFunctions.stateToAP(this.profileHeaderData['state']),
-                        stateAbbreviation: this.profileHeaderData['state'],
+                      state: this.profileHeaderData['state'].toUpperCase(),
+                      stateAP:this._globalFunctions.stateToAP(this.profileHeaderData['state']),
+                      stateAbbreviation: this.profileHeaderData['state'],
                       locationImage:this.profileHeaderData['locationImage']
-                    };
+                    }
                 },
                 err => {
-                    console.log('Error - Location Profile Header Data: ', err);
-                    this.isError = true;
+                    console.log('Error - Location Profile Header Data: ', err),
+                    this.isError = true
                 }
             )
     }
 
     getTrendingListings(){
-        this._locationProfileService.getTrendingHomesData(this.locCity, this.locState)
+        this._locationProfileService.getTrendingHomesData(this.locCity, this.locState, 1)
             .subscribe(
                 data => {
                     this.trendingHomesData = data;
@@ -144,7 +145,7 @@ export class LocationPage implements OnInit {
     }
 
     getFeaturedList(){
-        this._locationProfileService.getLocationFeaturedList(this.locCity, this.locState)
+        this._locationProfileService.getLocationFeaturedList(this.locCity, this.locState, 1)
             .subscribe(
                 data => {
                     this.featuredListData = data;
@@ -164,7 +165,7 @@ export class LocationPage implements OnInit {
     }
 
     getRecentListings() {
-        this._locationProfileService.getRecentListings(this.locCity, this.locState)
+        this._locationProfileService.getRecentListings(this.locCity, this.locState, 1)
             .subscribe(
                 recentListingsData => { this.recentListingsData = recentListingsData },
                 err => console.log(err)
@@ -216,7 +217,7 @@ export class LocationPage implements OnInit {
           this.loc = this._params.get('loc');
           let tmp = decodeURI(this.loc).split("-");
           // assigns value to this.locState and removes last item in tmp array
-          this.locState = tmp.pop();
+          this.locState = tmp.pop().toUpperCase();
           let tmpCity = tmp.join(" ");
           this.locCity = this._globalFunctions.toTitleCase( tmpCity );
           this.locDisplay = decodeURI(this.locCity + ', ' + this._globalFunctions.stateToAP(this.locState));

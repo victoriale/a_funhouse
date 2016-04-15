@@ -15,7 +15,7 @@
                         <i *ngIf="pageType === 'state' || pageType === 'city' || pageType === 'allCities' || pageType === 'zipcode'" class="fa fa-angle-right"></i>
                         <a [routerLink]="['Directory-page-state', {listTitle: paramListTitle, pageNumber: 1, state: paramState}]" *ngIf="pageType === 'state' || pageType === 'city' || pageType === 'allCities' || pageType === 'zipcode'">{{fullState}}</a>
                         <i *ngIf="pageType === 'city' || pageType === 'zipcode'" class="fa fa-angle-right"></i>
-                        <a [routerLink]="['Directory-page-city', {listTitle: paramListTitle, pageNumber: 1, state: paramState, city: paramCityHyphen}]"*ngIf="pageType === 'city' || pageType === 'zipcode'">{{paramCity}}</a>
+                        <a [routerLink]="['Directory-page-city', {listTitle: paramListTitle, pageNumber: 1, state: paramState, city: paramCity}]"*ngIf="pageType === 'city' || pageType === 'zipcode'">{{paramCityDisplay}}</a>
                         <i *ngIf="pageType === 'zipcode'" class="fa fa-angle-right"></i>
                         <span *ngIf="pageType === 'zipcode'">{{paramZipcode}}</span>
                     </div>
@@ -47,7 +47,7 @@
                 
                 <div *ngIf="showMetroAreaSection" class="directory-nav">
                     <div class="directory-nav-title">
-                      Browse <b>{{paramCity}}, {{fullState}}</b> Listings
+                      Browse <b>{{paramCityDisplay}}, {{fullState}}</b> Listings
                     </div>
                 </div>
 
@@ -75,13 +75,13 @@
                             <span *ngIf="item.address">
                                 |
                             </span>
-                            <a *ngIf="item.city" [routerLink]="['Directory-page-city', {state: item.state, city: item.cityLink, listTitle: paramListTitle, pageNumber: 1}]">
+                            <a *ngIf="item.city" [routerLink]="['Directory-page-city', {state: item.stateLink, city: item.cityLink, listTitle: paramListTitle, pageNumber: 1}]">
                                 {{item.city}},
                             </a>
-                            <a *ngIf="item.state" [routerLink]="['Directory-page-state', {state: item.state, listTitle: paramListTitle, pageNumber: 1}]">
+                            <a *ngIf="item.state" [routerLink]="['Directory-page-state', {state: item.stateLink, listTitle: paramListTitle, pageNumber: 1}]">
                                 {{item.state}}
                             </a>
-                            <a *ngIf="item.zipcode" [routerLink]="['Directory-page-zipcode', {state: item.state, city: item.cityLink, zipcode: item.zipcode, listTitle: paramListTitle, pageNumber: 1}]">
+                            <a *ngIf="item.zipcode" [routerLink]="['Directory-page-zipcode', {state: item.stateLink, city: item.cityLink, zipcode: item.zipcode, listTitle: paramListTitle, pageNumber: 1}]">
                                 , {{item.zipcode}}
                             </a>
                         </span>

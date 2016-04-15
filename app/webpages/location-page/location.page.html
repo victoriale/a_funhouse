@@ -35,7 +35,7 @@
                         <school-module *ngIf="schoolData" [schoolData]="schoolData" [locData]="locData"></school-module>
                         <amenities-module *ngIf="amenitiesData && locData" [amenitiesData]="amenitiesData" [locData]="locData"></amenities-module>
 
-                        <featured-lists-module *ngIf="featuredListData" [featuredListData]="featuredListData" [locData]="locData"></featured-lists-module>
+                        <featured-lists-module *ngIf="featuredListData && locData" [featuredListData]="featuredListData" [addressObject]="locData"></featured-lists-module>
 
                         <!-- Interact Section -->
                         <headline-component *ngIf="headlineInteract" [data]="headlineInteract"></headline-component>

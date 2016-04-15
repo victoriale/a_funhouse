@@ -9,7 +9,7 @@ declare var DISQUS: any;
 @Component({
     selector: 'comment-module',
     templateUrl: './app/modules/comment/comment.module.html',
-    
+
     directives: [moduleHeader],
     providers: [],
 })
@@ -17,7 +17,7 @@ export class CommentModule implements OnInit{
     module_title: string;
 
     ngOnInit(){
-        var script = document.createElement("script");
+        var script:any = document.createElement("script");
 
         // DisQus Plugin
         script.innerHTML = (function(d, s, id) {

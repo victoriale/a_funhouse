@@ -34,12 +34,12 @@
                         <!-- Amenities Section -->
                         <headline-component *ngIf="amenitiesData" [data]="headlineAmenities"></headline-component>
                         <amenities-module *ngIf="amenitiesData" [amenitiesData]="amenitiesData" [addressObject]="addressObject"></amenities-module>
-                        
+
                         <!-- Other Homes Section -->
                         <headline-component *ngIf="trendingHomesData || lists" [data]="headlineOtherHomes"></headline-component>
 
                         <!--Trending Section-->
-                        <trending-homes *ngIf="trendingHomesData" [trending]="trendingFeature" [trendingHomesData]="trendingHomesData"></trending-homes>
+                        <trending-homes *ngIf="trendingHomesData && profileHeaderData" [locData]="locData" [trending]="trendingFeature" [trendingHomesData]="trendingHomesData"></trending-homes>
 
                         <!--List of List Section-->
                         <list-of-lists-module *ngIf="lists" [listOfLists]="lists"></list-of-lists-module>
