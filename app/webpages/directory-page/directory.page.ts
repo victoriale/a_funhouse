@@ -32,12 +32,11 @@ export class DirectoryPage {
     //displayListTitle is the list title without hyphens
     public displayListTitle: string;
     //Parameters
-    //paramCityHyphen is the city parameter with hyphens. This is used for the url (normal paramCity is used for apis
     public paramListTitle: string;
     public paramPageNumber: string;
     public paramState: string;
     public paramCity: string;
-    public paramCityHyphen: string;
+    public paramCityDisplay: string;
     public paramZipcode: string;
     public paramCityStartsWith: string;
     //Variable to determine what type of directory page is displaying
@@ -84,16 +83,16 @@ export class DirectoryPage {
         if(this._params.get('zipcode') !== null){
             this.pageType = 'zipcode';
             //Grab dynamic parameters
-            this.paramState = this._params.get('state');
-            this.paramCity = this._params.get('city').replace(/-/g, ' ');
-            this.paramCityHyphen = this._params.get('city');
+            this.paramState = this._params.get('state').toLowerCase();
+            this.paramCity = this.globalFunctions.toLowerKebab(this._params.get('city'));
+            this.paramCityDisplay = this.globalFunctions.toTitleCase(this.paramCity.replace(/-/g, ' '));
             this.paramZipcode = this._params.get('zipcode');
         }else if(this._params.get('city') !== null){
             this.pageType = 'city';
             //Grab dynamic parameters
-            this.paramState = this._params.get('state');
-            this.paramCity = this._params.get('city').replace(/-/g, ' ');
-            this.paramCityHyphen = this._params.get('city');
+            this.paramState = this._params.get('state').toLowerCase();
+            this.paramCity = this.globalFunctions.toLowerKebab(this._params.get('city'));
+            this.paramCityDisplay = this.globalFunctions.toTitleCase(this.paramCity.replace(/-/g, ' '));
         }else if(this._params.get('state') !== null){
             this.pageType = 'state';
 
@@ -103,7 +102,7 @@ export class DirectoryPage {
             }
 
             //Grab dynamic parameters
-            this.paramState = this._params.get('state');
+            this.paramState = this._params.get('state').toLowerCase();
             this.paramCityStartsWith = this._params.get("startsWith");
         }else{
             this.pageType = 'national';
@@ -218,6 +217,8 @@ export class DirectoryPage {
                                 this.moreCitiesAvailable = true;
                             }
 
+                            var self = this;
+
                             //Build cities array for navigation links
                             data.cities.forEach(function(item, index){
                                 navigationArray.push({
@@ -225,7 +226,7 @@ export class DirectoryPage {
                                     page: 'Directory-page-city',
                                     params : {
                                         state: self.paramState,
-                                        city: item.replace(/ /g, '-'),
+                                        city: self.globalFunctions.toLowerKebab(item),
                                         listTitle: self.paramListTitle,
                                         pageNumber: 1
                                     }
@@ -268,8 +269,9 @@ export class DirectoryPage {
                             data.cities.forEach(function(item, index){
                                 returnArray.push({
                                     city: item,
-                                    cityLink: item.replace(/ /g, '-'),
-                                    state: self.paramState
+                                    cityLink: self.globalFunctions.toLowerKebab(item),
+                                    state: self.paramState.toUpperCase(),
+                                    stateLink: self.paramState.toLowerCase()
                                 })
                             });
                             this.listingItems = returnArray;
@@ -319,12 +321,13 @@ export class DirectoryPage {
             var listing = {};
 
             listing['lastUpdated'] = item.modificationTimestamp === null ? null : 'Last Updated: ' + moment(item.modificationTimestamp).format('YYYY-MM-DD');
-            listing['addressKey'] = item.addressKey;
-            listing['address'] = item.fullStreetAddress;
+            listing['addressKey'] = item.addressKey === null ? null : item.addressKey.toLowerCase();
+            listing['address'] = item.fullStreetAddresss === null ? null : self.globalFunctions.toTitleCase(item.fullStreetAddress);
             listing['city'] = item.city;
             //City Parameter used for routing where spaces are replaced with hyphens
-            listing['cityLink'] = item.city.replace(/ /g, '-');
+            listing['cityLink'] = self.globalFunctions.toLowerKebab(item.city);
             listing['state'] = item.stateOrProvince;
+            listing['stateLink'] = item.stateOrProvince.toLowerCase();
             listing['zipcode'] = item.postalCode;
             listing['squareFeet'] = item.livingArea === null ? null : self.globalFunctions.commaSeparateNumber(item.livingArea) + ' sq. ft';
 
@@ -407,13 +410,13 @@ export class DirectoryPage {
                     listTitle: this.paramListTitle,
                     pageNumber: Number(this.paramPageNumber) + 1 <= maxPageCount ? Number(this.paramPageNumber) + 1 : this.paramPageNumber,
                     state: this.paramState,
-                    city: this.paramCityHyphen
+                    city: this.paramCity
                 };
                 this.backParams = {
                     listTitle: this.paramListTitle,
                     pageNumber: Number(this.paramPageNumber) - 1 > 0 ? Number(this.paramPageNumber) - 1 : 1,
                     state: this.paramState,
-                    city: this.paramCityHyphen
+                    city: this.paramCity
                 };
                 break;
             case 'zipcode':
@@ -422,14 +425,14 @@ export class DirectoryPage {
                     listTitle: this.paramListTitle,
                     pageNumber: Number(this.paramPageNumber) + 1 <= maxPageCount ? Number(this.paramPageNumber) + 1 : this.paramPageNumber,
                     state: this.paramState,
-                    city: this.paramCityHyphen,
+                    city: this.paramCity,
                     zipcode: this.paramZipcode
                 };
                 this.backParams = {
                     listTitle: this.paramListTitle,
                     pageNumber: Number(this.paramPageNumber) - 1 > 0 ? Number(this.paramPageNumber) - 1 : 1,
                     state: this.paramState,
-                    city: this.paramCityHyphen,
+                    city: this.paramCity,
                     zipcode: this.paramZipcode
                 };
                 break;
@@ -473,7 +476,7 @@ export class DirectoryPage {
             title: itemTitle,// self.globalFunctions.fullstate(item),
             page: 'Directory-page-state',
             params: {
-                state: item,
+                state: item.toLowerCase(),
                 listTitle: self.paramListTitle,
                 pageNumber: 1
             }
