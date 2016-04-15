@@ -20,7 +20,7 @@
                         <media-features-module [trending]="mediaFeature"></media-features-module>
                         <mag-module *ngIf="addressObject" [listingData]="addressObject"></mag-module>
                         <!--Map Section-->
-                        <map-module *ngIf="mapData" [mapData]="mapData"></map-module>
+                        <map-module *ngIf="mapData && addressObject" [addressObject]="addressObject" [mapData]="mapData"></map-module>
 
                         <!--Comment Section-->
                         <section *ngIf="!partnerCheck">
@@ -33,7 +33,7 @@
 
                         <!-- Amenities Section -->
                         <headline-component *ngIf="amenitiesData" [data]="headlineAmenities"></headline-component>
-                        <amenities-module *ngIf="amenitiesData" [amenitiesData]="amenitiesData"></amenities-module>
+                        <amenities-module *ngIf="amenitiesData" [amenitiesData]="amenitiesData" [addressObject]="addressObject"></amenities-module>
 
                         <!-- Other Homes Section -->
                         <headline-component *ngIf="trendingHomesData || lists" [data]="headlineOtherHomes"></headline-component>
@@ -45,7 +45,7 @@
                         <list-of-lists-module *ngIf="lists" [listOfLists]="lists"></list-of-lists-module>
 
                         <!--Feature List Module-->
-                        <featured-lists-module *ngIf="featuredListData && locData" [featuredListData]="featuredListData" [locData]="locData"></featured-lists-module>
+                        <featured-lists-module *ngIf="featuredListData && addressObject" [addressObject]="addressObject" [featuredListData]="featuredListData"></featured-lists-module>
 
                         <!-- Interact Section -->
                         <headline-component *ngIf="headlineInteract" [data]="headlineInteract"></headline-component>

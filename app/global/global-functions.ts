@@ -272,4 +272,19 @@ export class GlobalFunctions{
           return moment().subtract(daysOnMarket, 'days').format('dddd, MMMM Do, YYYY');
         }
     }
+
+    // Create a valid value to set to routerLink by parsing a string delimited by a | pipe
+    // -- creating an object for params when the object syntax is present in string
+    // example input string: "Location-page|{‘loc’:'Industry-CA’}"
+    parseToRoute = function(stringRoute) {
+        let generatedUrl = stringRoute.map(function (item) {
+            try {
+                return JSON.parse(item);
+            } catch (e) {
+            }
+            return item;
+        });
+        return generatedUrl;
+    }
+
 }

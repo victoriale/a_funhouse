@@ -79,6 +79,7 @@ export class HeroSearchComponent{
         if(typeof value === 'undefined' || value === '' || value === null){
             return false;
         }
+        value = value.replace(/ /g, '-');
 
         value = encodeURIComponent(value);
         //Cancel previous call by passing empty string to the observable

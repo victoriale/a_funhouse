@@ -88,7 +88,6 @@ export class DynamicListPage implements OnInit {
         )
   }
 
-
   getDynamicList() {// GET DATA FROM GLOBAL SERVICE
     //EXAMPLE
     //this.dynamicWidget.getWidgetData('1', 103, 'TAMPA')
@@ -109,6 +108,7 @@ export class DynamicListPage implements OnInit {
   }
 
   transformData(data){// TRANSFORM DATA TO PLUG INTO COMPONENTS
+    var globalFunc = this._globalFunctions;
     if(!data) return false;
     //grab data for the header
     this.headerData = {
@@ -131,28 +131,29 @@ export class DynamicListPage implements OnInit {
     var carouselData = [];
     var partnerID = this.partnerID;
     originalData.forEach(function(val, i){
-
-      // format the url depending on if partner page or not
-      let generatedUrl = partnerID && partnerID.length ? val.partner_url.replace(/\{partner\}/, partnerID) : val.primary_url
+        //var test = 'Location-page|{"loc":"kansas-city-ks"}'.split("|");
+        //let generatedUrl = globalFunc.parseToRoute(test);
+        let generatedUrl = globalFunc.parseToRoute(val.primary_url);
 
       var newData = {
-          img : val.img,
-          list_sub : "<i class='fa fa-map-marker'></i> " + val.title + ", " + val.list_sub,
-          title : val.title,
-          subtype : val.tag,
-          numBed : '',
-          numBath: '',
-          date: 'Date',
-          value: val.value,
-          tag: val.tag,
-          buttonName: 'View Profile',
-          icon: '',
-          location: '',
-          market:'',
-          rank: val.rank,
-          desc: val.desc,
-          url: generatedUrl
-      };
+          img :         val.img,
+          list_sub :    "<i class='fa fa-map-marker'></i> " + val.title + ", " + val.list_sub,
+          title :       val.title,
+          subtype :     val.tag,
+          numBed :      '',
+          numBath:      '',
+          date:         'Date',
+          value:        val.value,
+          tag:          val.tag,
+          buttonName:   'View Profile',
+          icon:         '',
+          location:     '',
+          market:       '',
+          rank:         val.rank,
+          desc:         val.desc,
+          url:          "#",
+          routePath:    generatedUrl
+          };
 
       var carData = {
         textDetails:    [
@@ -166,7 +167,8 @@ export class DynamicListPage implements OnInit {
         buttonLabel:    "<span class='transparent'></span> <span>View Profile</span> <i class='fa fa-angle-right'></i>",
         index:          val.rank,
         imageUrl1:      val.img,
-        linkUrl1:       generatedUrl
+        linkUrl1:       "#",
+        routePath:      generatedUrl
       }
 
       carouselData.push(carData);

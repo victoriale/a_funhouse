@@ -22,7 +22,7 @@ export class Image180 implements OnInit {
     originalUrl:string;
     useRouterLink:boolean = false;
     @Input() viewLocationText:string = "Profile";
-    @Input() urlRouteArray: string[];
+    @Input() urlRouteArray: Array<string> = [];    
 
     ngOnChanges(event){
         //If an image is not undefined (Input WAS sent to component) and value passed in is null, set image to placeholder

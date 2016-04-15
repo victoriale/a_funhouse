@@ -33,7 +33,7 @@
                         <!-- Amenities and School Section -->
                         <headline-component *ngIf="schoolData || amenitiesData" [data]="headlineSchool"></headline-component>
                         <school-module *ngIf="schoolData" [schoolData]="schoolData" [locData]="locData"></school-module>
-                        <amenities-module *ngIf="amenitiesData" [amenitiesData]="amenitiesData" [locData]="locData"></amenities-module>
+                        <amenities-module *ngIf="amenitiesData && locData" [amenitiesData]="amenitiesData" [locData]="locData"></amenities-module>
 
                         <featured-lists-module *ngIf="featuredListData && locData" [featuredListData]="featuredListData" [locData]="locData"></featured-lists-module>
 

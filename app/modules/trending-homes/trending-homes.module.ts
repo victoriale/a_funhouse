@@ -90,7 +90,7 @@ export class TrendingHomes implements OnInit {
       var totalLength = originalData[0].totalListings;
       var defaultImage = this.image_url;
       var cityState = this.globalFunctions.toTitleCase(originalData[0].city) + ', ' + this.globalFunctions.stateToAP(originalData[0].stateOrProvince);
-      var location = this.globalFunctions.toTitleCase(originalData[0].fullStreetAddress) + ' ' + cityState;
+      var location = this.globalFunctions.toTitleCase(originalData[0].fullStreetAddress) + ', ' + cityState;
       var counter = this.counter;
       //determine title of module
       if(this.profileType === 'LocationPage'){
