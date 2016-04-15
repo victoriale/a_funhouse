@@ -95,9 +95,9 @@ export class CityViewPage implements OnInit{
                   index:          this.cityView[i].rank,
                   imageUrl1:      this.cityView[i].locationImage
                 }// carousel data ends
+                carData['linkUrl1'] = "/location/"+this.cityView[i].locationUrl;
+                carouselData.push(carData);
             }
-            carData['linkUrl1'] = "/location/"+this.cityView[i].locationUrl;
-            carouselData.push(carData);
         }
         this.carouselData = carouselData;
         this.sanitizeListofListData();
@@ -152,7 +152,7 @@ export class CityViewPage implements OnInit{
     ngOnInit() {
         // Get City & State from route params
         this.paramState = decodeURI(this._params.get('state'));
-        this.paramCity = decodeURI(this._params.get('city'));
+        this.paramCity = decodeURI(this._params.get('city')).replace(/-/g, " ");
         this.displayAPState =  this._globalFunctions.stateToAP(this.paramState);
         this.displayCity = this._globalFunctions.toTitleCase(this.paramCity);        
         this.cityStateLocationKey = this._globalFunctions.toLowerKebab(this.paramState) + '-' + this.paramCity.toLowerCase();
