@@ -264,7 +264,7 @@ export class GlobalFunctions{
         return typeof names[val] === 'undefined' ? this.camelCaseToRegularCase(val) : names[val];
     }
 
-    randomList = function(num){
+    randomList = function(){
       var lists = ["homesAtLeast5YearsOld",
         "homesLessThan5YearsOld",
         "homesWithSprinklerAndDeck",
@@ -284,7 +284,7 @@ export class GlobalFunctions{
         "listingsWithVirtualTours",
         "listingsMostRecent",
         "condosMostExpensive"];
-        return lists[num];
+        return lists;
     }
     formatDaysOnMarket = function(daysOnMarket) {
         if ( daysOnMarket === null || daysOnMarket === undefined || daysOnMarket === "N/A" ) {

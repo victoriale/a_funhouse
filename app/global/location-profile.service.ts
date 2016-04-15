@@ -26,10 +26,10 @@ export class LocationProfileService{
         city = encodeURI(city);
         state = encodeURI(state);
 
-        var random = Math.floor(Math.random() * 19);
-        var list = this.globFunc.randomList(random);
+        var list = this.globFunc.randomList();
+        var random = Math.floor(Math.random() * list.length);
 
-        return this.http.get(this.apiUrl + '/list/'+list+'/' + state + '/' + city + '/empty/1/1', {
+        return this.http.get(this.apiUrl + '/list/'+list[random]+'/' + state + '/' + city + '/empty/1/1', {
                 headers: headers
             })
             .map(
@@ -154,9 +154,9 @@ export class LocationProfileService{
           city = encodeURI(city);
           state = encodeURI(state);
 
-          var random = Math.floor(Math.random() * 19);
-          var list = this.globFunc.randomList(random);
-          return this.http.get(this.apiUrl + '/list/'+list+'/' + state + '/' + city + '/empty/1/'+ counter, {
+          var list = this.globFunc.randomList();
+          var random = Math.floor(Math.random() * list.length);
+          return this.http.get(this.apiUrl + '/list/'+list[random]+'/' + state + '/' + city + '/empty/1/'+ counter, {
                   headers: headers
               })
               .map(
