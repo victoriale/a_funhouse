@@ -22,7 +22,7 @@
                         <list-of-lists-module *ngIf="lists" [listOfLists]="lists"></list-of-lists-module>
 
                         <!--Trending Section-->
-                        <trending-homes *ngIf="trendingHomesData" [trendingHomesData]="trendingHomesData" [trending]="trendingFeature" [locData]="locData"></trending-homes>
+                        <trending-homes *ngIf="trendingHomesData && locData" [trendingHomesData]="trendingHomesData" [trending]="trendingFeature" [addressObject]="locData"></trending-homes>
 
                         <info-list-module *ngIf="recentListingsData" [recentListingsData]="recentListingsData" [locDisplay]="locDisplay"></info-list-module>
 

@@ -33,6 +33,7 @@ export class TrendingHomes implements OnInit {
     modal:boolean = true;
     public index: number = 0;
     @Input() trendingHomesData: any;
+    @Input() addressObject: any;
     image_url:string ='/app/public/no_photo_images/onError.png';
 
     constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions, private listService: listViewPage){
@@ -67,10 +68,12 @@ export class TrendingHomes implements OnInit {
 
     getTrendingListings(){
       // getListData(listname, state, city, limit, page, sort)
-        this.listService.getListData(this.listName, this.locState.toUpperCase(), this.globalFunctions.toTitleCase(this.locCity), 1, this.counter, null)
+      console.log(this.addressObject);
+        this.listService.getListData(this.listName, this.addressObject['state'].toUpperCase(), this.globalFunctions.toTitleCase(this.addressObject['city']), 1, this.counter, null)
             .subscribe(
                 data => {
                     this.trendingHomesData.listData = data.data;
+                    console.log(this.trendingHomesData.listData);
                     this.trendingHomesData.listName = this.listName;
                     this.dataFormatter();
                 },
@@ -81,6 +84,7 @@ export class TrendingHomes implements OnInit {
     dataFormatter(){// TRANSFORM DATA TO PLUG INTO COMPONENTS
       //grab data for the header
       var data = this.trendingHomesData;
+      console.log(data);
       //grab data for the list
       //call has changed to receive only one data instead of Array[100] keeping code for now
       var originalData = data.listData;
@@ -92,14 +96,13 @@ export class TrendingHomes implements OnInit {
         var globeFunc = this.globalFunctions;
         var totalLength = originalData[0].totalListings;
         var defaultImage = this.image_url;
-        var cityState = this.globalFunctions.toTitleCase(originalData[0].city) + ', ' + this.globalFunctions.stateToAP(originalData[0].stateOrProvince);
-        var location = this.globalFunctions.toTitleCase(originalData[0].fullStreetAddress) + ', ' + cityState;
         var counter = this.counter;
         //determine title of module
+        console.log(this.addressObject.city + ', ' + this.addressObject.stateAP);
         if(this.profileType === 'LocationPage'){
-            this.moduleTitle = 'Most Trending Homes In ' + cityState;
+            this.moduleTitle = 'Most Trending Homes In ' + this.addressObject.city + ', ' + this.addressObject.stateAP;
         }else if(this.profileType === 'ProfilePage'){
-            this.moduleTitle = 'Most Trending Homes Around ' + location;
+            this.moduleTitle = 'Most Trending Homes Around '  + this.addressObject.address + ', ' + this.addressObject.city + ', ' + this.addressObject.stateAP;
         }
         //Get listname
         if(typeof data.listName == 'undefined'){
