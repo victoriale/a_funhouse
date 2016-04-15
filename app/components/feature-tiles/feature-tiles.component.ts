@@ -5,10 +5,10 @@ import {GlobalFunctions} from "../../global/global-functions";
 @Component({
     selector: 'feature-tiles-component',
     templateUrl: './app/components/feature-tiles/feature-tiles.component.html',
-    
+
     directives: [ROUTER_DIRECTIVES],
     providers: [ROUTER_DIRECTIVES],
-    inputs: ['cityLocation', 'stateLocation'],
+    inputs: ['cityLocation', 'stateLocation', 'cityName'],
 })
 
 export class FeatureTilesComponent{
