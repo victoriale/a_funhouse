@@ -104,8 +104,8 @@ export class DirectoryService{
         var skip = encodeURI(pageNumber);
         //Null check is because encodeURI turns null into "null"
         listTitle = listTitle === null ? null : encodeURI(listTitle);
-        state = state === null ? null : encodeURI(state);
-        city = city === null ? null : encodeURI(city);
+        state = state === null ? null : encodeURI(state.toUpperCase());
+        city = city === null ? null : encodeURI(city.replace(/-/g, ' '));
         zipcode = zipcode === null ? null : encodeURI(zipcode);
 
         //Transform list title
