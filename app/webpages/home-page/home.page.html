@@ -16,13 +16,13 @@
           </div>
       </div>
   </div>
-  <hero-bottom-component *ngIf="!isMyHouseKitHome" [buttonTitle]="heroButtonTitle" [buttonWidth]="heroButtonWidth" [buttonIcon]="heroButtonIcon" [cityLocation]="cityLocation" [stateLocation]="stateLocation"></hero-bottom-component>
+  <hero-bottom-component *ngIf="!isMyHouseKitHome" [buttonTitle]="heroButtonTitle" [buttonWidth]="heroButtonWidth" [buttonIcon]="heroButtonIcon" [cityLocation]="cityLocation" [stateLocation]="stateLocation" [cityName]="cityName" [stateAPLocation]="stateAPLocation"></hero-bottom-component>
   <div class="wrapper" *ngIf="!isMyHouseKitHome">
       <div class="inner-wrapper">
           <section class='content-main twelve-col'>
               <h1 class="home-tagline"><img class="map-icon" src="/app/public/Icons_Features.png" /> Features <span class="thin">To Note</span></h1>
           </section>
-          <feature-tiles-component *ngIf="cityLocation && stateLocation" [cityLocation]="cityLocation" [stateLocation]="stateLocation"></feature-tiles-component>
+          <feature-tiles-component *ngIf="cityLocation && stateLocation" [cityLocation]="cityLocation" [stateLocation]="stateLocation" [cityName]="cityName"></feature-tiles-component>
       </div>
   </div>
 
