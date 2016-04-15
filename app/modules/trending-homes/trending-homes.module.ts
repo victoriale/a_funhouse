@@ -84,76 +84,80 @@ export class TrendingHomes implements OnInit {
       //grab data for the list
       //call has changed to receive only one data instead of Array[100] keeping code for now
       var originalData = data.listData;
-      var listData = [];
-      var carouselData = [];
-      var globeFunc = this.globalFunctions;
-      var totalLength = originalData[0].totalListings;
-      var defaultImage = this.image_url;
-      var cityState = this.globalFunctions.toTitleCase(originalData[0].city) + ', ' + this.globalFunctions.stateToAP(originalData[0].stateOrProvince);
-      var location = this.globalFunctions.toTitleCase(originalData[0].fullStreetAddress) + ', ' + cityState;
-      var counter = this.counter;
-      //determine title of module
-      if(this.profileType === 'LocationPage'){
-          this.moduleTitle = 'Most Trending Homes In ' + cityState;
-      }else if(this.profileType === 'ProfilePage'){
-          this.moduleTitle = 'Most Trending Homes Around ' + location;
-      }
-      //Get listname
-      if(typeof data.listName == 'undefined'){
-        data.listName = 'Listing';
+      if(originalData.length < 1 ){
+        this.listData = false;
       }else{
-        this.listName = data.listName;
+        var listData = [];
+        var carouselData = [];
+        var globeFunc = this.globalFunctions;
+        var totalLength = originalData[0].totalListings;
+        var defaultImage = this.image_url;
+        var cityState = this.globalFunctions.toTitleCase(originalData[0].city) + ', ' + this.globalFunctions.stateToAP(originalData[0].stateOrProvince);
+        var location = this.globalFunctions.toTitleCase(originalData[0].fullStreetAddress) + ', ' + cityState;
+        var counter = this.counter;
+        //determine title of module
+        if(this.profileType === 'LocationPage'){
+            this.moduleTitle = 'Most Trending Homes In ' + cityState;
+        }else if(this.profileType === 'ProfilePage'){
+            this.moduleTitle = 'Most Trending Homes Around ' + location;
+        }
+        //Get listname
+        if(typeof data.listName == 'undefined'){
+          data.listName = 'Listing';
+        }else{
+          this.listName = data.listName;
+        }
+        originalData.forEach(function(val, i){
+          val.listPrice = globeFunc.commaSeparateNumber(val.listPrice);
+          if(val.listingDate === null || typeof val.listingDate == 'undefined') {
+            val.valTitle = "Last Updated Since";
+            var timeFallback = val.modificationTimestamp;
+            val.listingDate = moment(timeFallback.split(' ')[0], 'YYYY-MM-DD').format("dddd, MMMM Do, YYYY");
+              if(timeFallback === null || typeof timeFallback == 'undefined'){
+                val.valTitle = "On The Market Since";
+                val.listingDate = 'N/A';
+              }
+          }else {
+            val.valTitle = "On The Market Since";
+            val.listingDate = moment(val.listingDate.split(' ')[0], 'YYYY-MM-DD').format("dddd, MMMM Do, YYYY");
+          }
+          //grab featured data about listing
+          if(typeof val.virtualTour == 'undefined'){
+            val.virtualTour = 'N/A';
+          }
+          //if there is no photo put in default photo
+          if(val.photos.length == 0){
+            val.photos.push(defaultImage);
+          }
+
+          var carData = {
+            address:val.fullStreetAddress,
+            daysOnMarket: val.listingDate,
+            largeImage:val.photos[0],
+            price: val.listPrice,
+            priceName: "SALE",
+            zipCode:val.postalCode,
+            city: val.city,
+            state: val.stateOrProvince,
+            photos:val.photos,
+            locUrl1: "Location-page",
+            locUrl2: {loc: globeFunc.toLowerKebab(val.city) + '-' +val.stateOrProvince.toLowerCase()},
+            virtualTour: val.virtualTour,
+            listName: globeFunc.convertListName(data.listName),
+            totalListings: totalLength,
+            rank: counter,
+          }
+          carData['url1'] = "../../Magazine";
+          carData['url2'] = {addr:val.addressKey};
+          carData['url3'] = "PropertyOverview";
+
+          carouselData.push(carData);
+        })//END of forEach
+        //set to listData
+        this.carouselData = carouselData;
+        // this.counter = 0;
+        this.listData = carouselData[0];
       }
-      originalData.forEach(function(val, i){
-        val.listPrice = globeFunc.commaSeparateNumber(val.listPrice);
-        if(val.listingDate === null || typeof val.listingDate == 'undefined') {
-          val.valTitle = "Last Updated Since";
-          var timeFallback = val.modificationTimestamp;
-          val.listingDate = moment(timeFallback.split(' ')[0], 'YYYY-MM-DD').format("dddd, MMMM Do, YYYY");
-            if(timeFallback === null || typeof timeFallback == 'undefined'){
-              val.valTitle = "On The Market Since";
-              val.listingDate = 'N/A';
-            }
-        }else {
-          val.valTitle = "On The Market Since";
-          val.listingDate = moment(val.listingDate.split(' ')[0], 'YYYY-MM-DD').format("dddd, MMMM Do, YYYY");
-        }
-        //grab featured data about listing
-        if(typeof val.virtualTour == 'undefined'){
-          val.virtualTour = 'N/A';
-        }
-        //if there is no photo put in default photo
-        if(val.photos.length == 0){
-          val.photos.push(defaultImage);
-        }
-
-        var carData = {
-          address:val.fullStreetAddress,
-          daysOnMarket: val.listingDate,
-          largeImage:val.photos[0],
-          price: val.listPrice,
-          priceName: "SALE",
-          zipCode:val.postalCode,
-          city: val.city,
-          state: val.stateOrProvince,
-          photos:val.photos,
-          locUrl1: "Location-page",
-          locUrl2: {loc: globeFunc.toLowerKebab(val.city) + '-' +val.stateOrProvince.toLowerCase()},
-          virtualTour: val.virtualTour,
-          listName: globeFunc.convertListName(data.listName),
-          totalListings: totalLength,
-          rank: counter,
-        }
-        carData['url1'] = "../../Magazine";
-        carData['url2'] = {addr:val.addressKey};
-        carData['url3'] = "PropertyOverview";
-
-        carouselData.push(carData);
-      })//END of forEach
-      //set to listData
-      this.carouselData = carouselData;
-      // this.counter = 0;
-      this.listData = carouselData[0];
     }//END OF TRANSFORM FUNCTION
 
     ngOnInit(){
@@ -161,15 +165,10 @@ export class TrendingHomes implements OnInit {
     }
     //On Change Call
     ngOnChanges(event){
-        //Get changed input
-        var currentTrendingHomesData = event.trendingHomesData.currentValue;
-        //If the data input is valid run transform data function
-        if(currentTrendingHomesData !== null && currentTrendingHomesData !== false) {
-          //Determine what page the profile header module is on
-            this.profileType = this.router.hostComponent.name;
-            this.locCity = this.globalFunctions.toTitleCase(this.locData.city);
-            this.locState = this.locData.state;
-            this.dataFormatter();
-        }
+        //Determine what page the profile header module is on
+        this.profileType = this.router.hostComponent.name;
+        this.locCity = this.globalFunctions.toTitleCase(this.locData.city);
+        this.locState = this.locData.state;
+        this.dataFormatter();
     }
 }
