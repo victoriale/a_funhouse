@@ -177,6 +177,7 @@ export class SearchPage implements OnInit {
 
     //on page load
     loadCall(param) {
+        param = param.replace(/-/g, ' ');
         var input = decodeURIComponent(param);
         this.term.updateValue(input);
         this.searchResults = this._searchService.getSearchResults(input, 'raw')
