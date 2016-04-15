@@ -63,8 +63,11 @@ export class listViewPage {
 
   //API for listview page data
   getListData(listname, state, city, limit, page, sort) {
-    listname = this.globalFunctions.kababCaseToCamelCase(listname);
-
+    if ( /-/.exec(listname) ) {
+      //only reformat if listname is actually in kabab case, as it will change camelCase to lowercase
+      listname = this.globalFunctions.kababCaseToCamelCase(listname);
+    }
+    
     var query:any  = {
       listname: listname,
       state: state,
