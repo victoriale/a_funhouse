@@ -80,12 +80,14 @@ export class AmenitiesModule implements OnInit{
       var loc = listData['location']['city'] + ', ' + listData['location']['state_code'] + ' ' + listData['location']['postal_code'];
       var address = listData['location']['address'];
       var imageURL = dataLists[this.index].image_url;
-      var city = this.globalFunctions.toTitleCase(this.addressObject.city);
-      var stateAP = this.addressObject.stateAP;
       if(this.profileType === 'LocationPage'){
+          var city = this.locData.city;
+          var stateAP = this.locData.state;
           this.moduleTitle = 'Amenities in and Around ' + city + ', ' + stateAP;
       }else if(this.profileType === 'ProfilePage'){
-          this.moduleTitle = 'Amenities in and Around ' + this.globalFunctions.toTitleCase(this.addressObject.address) + ', ' + city + ', ' + stateAP;
+          var city = this.addressObject.city;
+          var stateAP = this.addressObject.stateAP;
+          this.moduleTitle = 'Amenities in and Around ' + this.addressObject.address + ', ' + city + ', ' + stateAP;
       }
       this.listData = {
         hasHoverNoSubImg: true,
@@ -201,7 +203,7 @@ export class AmenitiesModule implements OnInit{
             console.log('Error - Amenities List Module ', e);
             this.amenitiesData = undefined;
           }
-          this.dataFormatter();
+          //this.dataFormatter();
         }//end off null check
       }//end of event check
     }

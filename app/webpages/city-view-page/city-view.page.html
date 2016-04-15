@@ -3,7 +3,11 @@
         <div class="inner-wrapper">
             <main>
                 <section class='content-main eight-col'>
-                  <section class="page-container">
+                    <loading-component *ngIf="!displayData && !isError"></loading-component>
+
+                    <error-component *ngIf="isError"></error-component>
+
+                  <section *ngIf="displayData && !isError" class="page-container">
                     <backtab-component></backtab-component>
                     <title-component *ngIf="titleData" [titleData]="titleData"></title-component>
                     <dynamic-carousel2 [carouselData]="carouselData"></dynamic-carousel2>
