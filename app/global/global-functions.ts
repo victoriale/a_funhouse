@@ -264,6 +264,28 @@ export class GlobalFunctions{
         return typeof names[val] === 'undefined' ? this.camelCaseToRegularCase(val) : names[val];
     }
 
+    randomList = function(){
+      var lists = ["homesAtLeast5YearsOld",
+        "homesLessThan5YearsOld",
+        "homesWithSprinklerAndDeck",
+        "homesWithVaultedCeilingsAndSecuritySystem",
+        "homesLargest",
+        "homesBrickLeastExpensive",
+        "homesLeastExpensive",
+        "homesWithPoolLeastExpensive",
+        "homesWithWaterfrontLeastExpensive",
+        "homesWith2BedroomsMostExpensive",
+        "homesWith3BedroomsMostExpensive",
+        "homesMostExpensive",
+        "homesNewTraditional",
+        "listingsWithLongDescriptions",
+        "listingsWithMoreThan10Photos",
+        "listingsWithMoreThan5Photos",
+        "listingsWithVirtualTours",
+        "listingsMostRecent",
+        "condosMostExpensive"];
+        return lists;
+    }
     formatDaysOnMarket = function(daysOnMarket) {
         if ( daysOnMarket === null || daysOnMarket === undefined || daysOnMarket === "N/A" ) {
           return "N/A";
