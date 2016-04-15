@@ -108,7 +108,7 @@ export class LocationPage implements OnInit {
             .subscribe(
                 geoLocationData => {
                   this.locCity = this._globalFunctions.toTitleCase(decodeURI(geoLocationData[0].city));
-                  this.locState = decodeURI(geoLocationData[0].state);
+                  this.locState = decodeURI(geoLocationData[0].state).toUpperCase();
                 },
                 err => this._router.navigate(['Error-page'])
             );
@@ -217,7 +217,7 @@ export class LocationPage implements OnInit {
           this.loc = this._params.get('loc');
           let tmp = decodeURI(this.loc).split("-");
           // assigns value to this.locState and removes last item in tmp array
-          this.locState = tmp.pop();
+          this.locState = tmp.pop().toUpperCase();
           let tmpCity = tmp.join(" ");
           this.locCity = this._globalFunctions.toTitleCase( tmpCity );
           this.locDisplay = decodeURI(this.locCity + ', ' + this._globalFunctions.stateToAP(this.locState));

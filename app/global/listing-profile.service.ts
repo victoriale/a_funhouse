@@ -154,7 +154,6 @@ export class ListingProfileService{
             )
             .map(
                 data => {
-                  console.log(data);
                     return data.data;
                 }
             )
