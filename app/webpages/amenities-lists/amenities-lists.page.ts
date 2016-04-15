@@ -85,8 +85,8 @@ export class AmenitiesListPage implements OnInit{
     this.titleComponentData = {
         imageURL: '/app/public/joyfulhome_house.png',
         smallText1: 'Last Updated: ' + moment(new Date()).format('dddd, MMMM Do, YYYY'),
-        smallText2: decodeURI(this._params.get('city')) + ', ' + decodeURI(this._params.get('state')),
-        heading1: this.globalFunctions.toTitleCase(this.displayCategory) + ' in and around ' + this.locCity + ', ' + this.locState + ".",
+        smallText2: this.location,
+        heading1: this.globalFunctions.toTitleCase(this.displayCategory) + ' in and around ' + this.location + ".",
         icon: 'fa fa-map-marker',
         hasHover: false
    }//end data input for title component
@@ -188,8 +188,8 @@ export class AmenitiesListPage implements OnInit{
   }
   ngOnInit(){
     this.locState = decodeURI(this._params.get('state'));
-    this.locCity = decodeURI(this._params.get('city'));
-    this.location = this.globalFunctions.toTitleCase(this.locCity) + ', ' + this.locState;
+    this.locCity = decodeURI(this._params.get('city')).split("-").join(" ");
+    this.location = this.globalFunctions.toTitleCase(this.locCity) + ', ' + this.globalFunctions.stateToAP(this.locState);
     this.getData();
   }//end ngOnInit
 
