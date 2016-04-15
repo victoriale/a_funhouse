@@ -32,7 +32,12 @@
             <div class='detailed-content-subbox'>
                 <p>Want more information?</p>
             </div>
-            <a href="{{list.url}}" class='detailed-list-button'>
+            <a *ngIf="list.routePath" [routerLink]="list.routePath" class='detailed-list-button'>
+                <span></span>
+                <span>{{list.buttonName}}</span>
+                <i class='fa fa-angle-right'></i>
+            </a>
+            <a *ngIf="!list.routePath && list.url" [href]="list.url" class='detailed-list-button'>
                 <span></span>
                 <span>{{list.buttonName}}</span>
                 <i class='fa fa-angle-right'></i>
