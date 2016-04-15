@@ -129,7 +129,7 @@ export class listViewPage {
 @Injectable()
 export class ListOfListPage {
 
-  constructor(public http: Http) { }
+  constructor(public http: Http, private _globalFunctions: GlobalFunctions) { }
 
   public apiUrl: string = 'http://api2.joyfulhome.com';
 
@@ -148,6 +148,9 @@ export class ListOfListPage {
   }
 
   getListOfListPage(state, city) {
+    city = this._globalFunctions.toTitleCase(city.replace(/-/g, ' '));
+    state = state.toUpperCase();
+
     //Nearby Cities call (Returns city, state, distance)
     return this.http.get(this.apiUrl + '/list/listOfLists/' + state + '/' + city)
       .map(
@@ -161,6 +164,8 @@ export class ListOfListPage {
   }
 
   getListOfListPageState(state) {
+    state = state.toUpperCase();
+
     //Nearby Cities call (Returns city, state, distance)
     return this.http.get(this.apiUrl + '/list/listOfLists/' + state)
         .map(
