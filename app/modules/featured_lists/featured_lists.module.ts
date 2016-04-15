@@ -24,6 +24,7 @@ export class FeaturedListsModule implements OnInit{
     public listData: Object;
     public index: number = 0;
     @Input() featuredListData: any;
+    @Input() addressObject: any;
 
     constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions){
         //Determine what page the profile header module is on
@@ -90,18 +91,17 @@ export class FeaturedListsModule implements OnInit{
         var heading2 = 'Bedrooms: ' + listData.numBedrooms + ' | Bathrooms: ' + listData.numBathrooms;
         var city = this.globalFunctions.toTitleCase(listData.city);
         var stateAP = this.globalFunctions.stateToAP(listData.stateOrProvince);
-        var address = this.globalFunctions.toTitleCase(listData.fullStreetAddress);
         if(this.profileType === 'LocationPage'){
             this.moduleTitle = 'Featured Lists for ' + city + ', ' + stateAP;
         }else if(this.profileType === 'ProfilePage'){
-            this.moduleTitle = 'Featured List for ' + address + ', ' + city + ', ' + stateAP;
+            this.moduleTitle = 'Featured List for ' + this.addressObject.address + ', ' + this.addressObject.city + ', ' + this.addressObject.stateAP;
         }
         //Used for both location and listing profile
         this.listData = {
             rank: this.index + 1,
             header: 'Trending Real Estate',
             title: this.globalFunctions.convertListName(data.listName),
-            hding1: address,
+            hding1: this.globalFunctions.toTitleCase(listData.fullStreetAddress),
             hding2: city + ', ' + listData.stateOrProvince + ' ' + listData.postalCode,
             detail1: heading2,
             detail2: listData.listPrice === null ? '' : 'Asking Price: ',

@@ -9,6 +9,8 @@ import {GlobalFunctions} from "../../global/global-functions";
 import {DynamicCarousel2} from "../../components/carousel/dynamic-carousel2/dynamic-carousel2";
 import {BackTabComponent} from "../../components/backtab/backtab.component";
 import {PaginationFooter} from '../../components/pagination-footer/pagination-footer.component';
+import {LoadingComponent} from '../../components/loading/loading.component';
+import {ErrorComponent} from '../../components/error/error.component';
 
 declare var moment: any;
 
@@ -16,11 +18,13 @@ declare var moment: any;
     selector: 'city-view-page',
     templateUrl: './app/webpages/city-view-page/city-view.page.html',
     
-    directives: [PaginationFooter, WidgetModule, TitleComponent, HeroListComponent, DynamicCarousel2, BackTabComponent, ROUTER_DIRECTIVES],
+    directives: [PaginationFooter, WidgetModule, TitleComponent, HeroListComponent, DynamicCarousel2, BackTabComponent, ROUTER_DIRECTIVES, LoadingComponent, ErrorComponent],
     providers: [CityViewService, GlobalFunctions],
 })
 
 export class CityViewPage implements OnInit{
+    //Boolean to determine if an error has occurred
+    public isError: boolean = false;
     public titleData: any;
     paramState: string;
     paramCity: string;
@@ -29,7 +33,7 @@ export class CityViewPage implements OnInit{
     cityStateLocationKey: string;
     cityView: any;
     cities: Array<any> = [];
-    displayData: Array<any> = [];
+    displayData: Array<any>;
     carouselData: any = [];
     paginationParameters:Object;
     index:number = 0;
@@ -40,9 +44,14 @@ export class CityViewPage implements OnInit{
         // Subscribe to getNearByCities in geo-location.service.ts
         this._cityViewService.getCityView(this.paramState, this.paramCity)
             .subscribe(
-                cityView => { this.cityView = cityView },
-                err => console.log(err),
-                () => this.dataToArray()
+                cityView => {
+                    this.cityView = cityView;
+                    this.dataToArray();
+                },
+                err => {
+                    console.log('Error: City View Data: ', err);
+                    this.isError = true;
+                }
         );
     }
 
