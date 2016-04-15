@@ -42,7 +42,9 @@ export class ListOfListsPage implements OnInit{
     getListOfListPage() {
         this._listOfListPageService.getListOfListPage(this.stateLocation, this.cityLocation)
             .subscribe(
-                listOfLists => this.listOfLists = listOfLists,
+                listOfLists => {
+                    this.listOfLists = listOfLists;
+                },
                 err => {
                     console.log('Error: List of List Page API: ', err);
                     this.isError = true;
@@ -82,6 +84,7 @@ export class ListOfListsPage implements OnInit{
                 // Fix list title using global function cameCaseToRegularCase
                 this.listOfLists[i].listTitle = self._globalFunctions.convertListName(this.listOfLists[i].listTitle);
                 // Check for empty list
+                console.log('a;lkfjlk;asjdfkls;ds', this.listOfLists[i]);
                 if(this.listOfLists[i].listData === null || this.listOfLists[i].listData.length <= 0 ) {
                 }else {
                     //Check for no image, replace with placeholder
@@ -94,6 +97,7 @@ export class ListOfListsPage implements OnInit{
                 }
             }
         }
+        console.log('abcdefghijklmnopqrstuvwxyz', this.lists);
 
         // Data for Title component
         if (!this.isStateOnly) {
