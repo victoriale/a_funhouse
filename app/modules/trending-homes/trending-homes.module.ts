@@ -68,12 +68,10 @@ export class TrendingHomes implements OnInit {
 
     getTrendingListings(){
       // getListData(listname, state, city, limit, page, sort)
-      console.log(this.addressObject);
         this.listService.getListData(this.listName, this.addressObject['state'].toUpperCase(), this.globalFunctions.toTitleCase(this.addressObject['city']), 1, this.counter, null)
             .subscribe(
                 data => {
                     this.trendingHomesData.listData = data.data;
-                    console.log(this.trendingHomesData.listData);
                     this.trendingHomesData.listName = this.listName;
                     this.dataFormatter();
                 },
@@ -84,7 +82,6 @@ export class TrendingHomes implements OnInit {
     dataFormatter(){// TRANSFORM DATA TO PLUG INTO COMPONENTS
       //grab data for the header
       var data = this.trendingHomesData;
-      console.log(data);
       //grab data for the list
       //call has changed to receive only one data instead of Array[100] keeping code for now
       var originalData = data.listData;
@@ -98,7 +95,6 @@ export class TrendingHomes implements OnInit {
         var defaultImage = this.image_url;
         var counter = this.counter;
         //determine title of module
-        console.log(this.addressObject.city + ', ' + this.addressObject.stateAP);
         if(this.profileType === 'LocationPage'){
             this.moduleTitle = 'Most Trending Homes In ' + this.addressObject.city + ', ' + this.addressObject.stateAP;
         }else if(this.profileType === 'ProfilePage'){
@@ -170,8 +166,6 @@ export class TrendingHomes implements OnInit {
     ngOnChanges(event){
         //Determine what page the profile header module is on
         this.profileType = this.router.hostComponent.name;
-        this.locCity = this.globalFunctions.toTitleCase(this.locData.city);
-        this.locState = this.locData.state;
         this.dataFormatter();
     }
 }
