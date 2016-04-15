@@ -30,7 +30,7 @@ import {GeoLocationService} from "../../global/geo-location.service";
 @Component({
     selector: 'location-page',
     templateUrl: './app/webpages/location-page/location.page.html',
-    
+
     directives: [ListOfListModule, HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, FindYourHomeModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule, WidgetModule, AmenitiesModule, TrendingHomes, ErrorComponent, LoadingComponent],
     providers: [PartnerHeader, ListOfListPage, LocationProfileService, GlobalFunctions],
     inputs:['partnerData']
@@ -134,7 +134,7 @@ export class LocationPage implements OnInit {
     }
 
     getTrendingListings(){
-        this._locationProfileService.getTrendingHomesData(this.locCity, this.locState)
+        this._locationProfileService.getTrendingHomesData(this.locCity, this.locState, 1)
             .subscribe(
                 data => {
                     this.trendingHomesData = data;
@@ -144,7 +144,7 @@ export class LocationPage implements OnInit {
     }
 
     getFeaturedList(){
-        this._locationProfileService.getLocationFeaturedList(this.locCity, this.locState)
+        this._locationProfileService.getLocationFeaturedList(this.locCity, this.locState, 1)
             .subscribe(
                 data => {
                     this.featuredListData = data;
@@ -164,7 +164,7 @@ export class LocationPage implements OnInit {
     }
 
     getRecentListings() {
-        this._locationProfileService.getRecentListings(this.locCity, this.locState)
+        this._locationProfileService.getRecentListings(this.locCity, this.locState, 1)
             .subscribe(
                 recentListingsData => { this.recentListingsData = recentListingsData },
                 err => console.log(err)

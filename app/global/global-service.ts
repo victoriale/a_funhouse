@@ -91,7 +91,7 @@ export class listViewPage {
       }
       fullUrl += query[q];
     }
-
+    console.log(fullUrl);
     return this.http.get(fullUrl, {
     })
       .map(

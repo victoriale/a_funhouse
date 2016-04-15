@@ -6,26 +6,29 @@ import {TilesComponent} from '../../components/tiles/tiles.component';
 import {FeatureComponent} from '../../components/feature-list/feature-list.component';
 import {FeaturedListInterface} from '../../global/global-interface';
 import {GlobalFunctions} from '../../global/global-functions';
+import {listViewPage} from '../../global/global-service';
+
 
 @Component({
     selector: 'featured-lists-module',
     templateUrl: './app/modules/featured_lists/featured_lists.module.html',
 
     directives: [moduleHeader, TilesComponent, FeatureComponent],
-    providers: [],
+    providers: [listViewPage],
     inputs:['locData']
 })
 
 export class FeaturedListsModule implements OnInit{
     public locData: any;
+    public listName:string;
     public profileType: string;
     public moduleTitle: string;
     public tileData: Object;
     public listData: Object;
-    public index: number = 0;
+    public index: number = 1;
     @Input() featuredListData: any;
 
-    constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions){
+    constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions, private listService: listViewPage){
         //Determine what page the profile header module is on
         this.profileType = this.router.hostComponent.name;
     }
@@ -34,32 +37,44 @@ export class FeaturedListsModule implements OnInit{
         if(this.featuredListData === null){
             return false;
         }
-
-        var max = this.featuredListData.listData.length - 1;
-        if(this.index > 0){
+        var max = this.featuredListData.listData[0].totalListings;
+        if(this.index > 1){
             this.index -= 1;
             this.transformData();
         }else{
             this.index = max;
             this.transformData();
         }
-
-
+        this.getFeaturedListings();
     }
+
     right(){
         if(this.featuredListData === null){
             return false;
         }
-
-        var max = this.featuredListData.listData.length - 1;
-
+        var max = this.featuredListData.listData[0].totalListings;
         if(this.index < max){
             this.index += 1;
             this.transformData();
         }else{
-            this.index = 0;
+            this.index = 1;
             this.transformData();
         }
+        this.getFeaturedListings();
+    }
+
+    getFeaturedListings(){
+      // getListData(listname, state, city, limit, page, sort)
+      console.log(this.index);
+        this.listService.getListData(this.listName, this.locData['stateAbbreviation'].toUpperCase(), this.globalFunctions.toTitleCase(this.locData['city']), 1, this.index, null)
+            .subscribe(
+                data => {
+                    this.featuredListData.listData = data.data;
+                    this.featuredListData.listName = this.listName;
+                    this.transformData();
+                },
+                err => console.log('Error - Location Trending Homes Data: ', err)
+            )
     }
 
     //Initialization Call
@@ -68,10 +83,10 @@ export class FeaturedListsModule implements OnInit{
     transformData(){
         var data = this.featuredListData;
         // Exit function if no list data is found
-        if(data.listData.length === 0){
-            return false;
-        }
-        var listData = data.listData[this.index];
+        // if(data.listData.length === 0){
+        //     return false;
+        // }
+        var listData = data.listData[0];
         //Build heading 2 description
         //Disabled until component can handle empty values for descriptions
         //if((listData.numBedrooms === null || listData.numBedrooms === '0') && (listData.numBathrooms === null || listData.numBedrooms === '0')){
@@ -96,9 +111,10 @@ export class FeaturedListsModule implements OnInit{
         }else if(this.profileType === 'ProfilePage'){
             this.moduleTitle = 'Featured List for ' + address + ', ' + city + ', ' + stateAP;
         }
+        this.listName = data.listName;
         //Used for both location and listing profile
         this.listData = {
-            rank: this.index + 1,
+            rank: this.index,
             header: 'Trending Real Estate',
             title: this.globalFunctions.convertListName(data.listName),
             hding1: address,

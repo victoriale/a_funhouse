@@ -19,14 +19,14 @@ export class LocationProfileService{
         return headers;
     }
 
-    getLocationFeaturedList(city, state){
+    getLocationFeaturedList(city, state, counter){
         //Configure HTTP Headers
         var headers = this.setToken();
 
         city = encodeURI(city);
         state = encodeURI(state);
 
-        return this.http.get(this.apiUrl + '/list/random/' + state + '/' + city + '/empty/1/1', {
+        return this.http.get(this.apiUrl + '/list/random/' + state + '/' + city + '/1/1', {
                 headers: headers
             })
             .map(
@@ -34,7 +34,6 @@ export class LocationProfileService{
             )
             .map(
                 data => {
-                  console.log('featuredList',data);
                     return data.data;
                 }
             )
@@ -84,14 +83,14 @@ export class LocationProfileService{
         )
     }
 
-    getRecentListings(city, state) {
+    getRecentListings(city, state, counter) {
         //Configure HTTP Headers
         var headers = this.setToken();
 
         city = encodeURI(city);
         state = encodeURI(state);
-
-        return this.http.get(this.apiUrl + '/list/listingsMostRecent/' + state + '/' + city + '/empty/4/1', {
+        console.log(this.apiUrl + '/list/listingsMostRecent/' + state + '/' + city + '/empty/4/'+counter);
+        return this.http.get(this.apiUrl + '/list/listingsMostRecent/' + state + '/' + city + '/empty/4/'+counter, {
                 headers: headers
             })
             .map(
@@ -99,7 +98,6 @@ export class LocationProfileService{
             )
             .map(
                 data => {
-                  console.log('RecentListings',data);
                     return data.data;
                 }
             )
@@ -143,13 +141,13 @@ export class LocationProfileService{
                   }
               )
       }
-      getTrendingHomesData(city, state){
+      getTrendingHomesData(city, state, counter){
           //Configure HTTP Headers
           var headers = this.setToken();
 
           city = encodeURI(city);
           state = encodeURI(state);
-          return this.http.get(this.apiUrl + '/list/random/' + state + '/' + city + '/empty/1/1', {
+          return this.http.get(this.apiUrl + '/list/random/' + state + '/' + city + '/1/'+ counter, {
                   headers: headers
               })
               .map(

@@ -200,7 +200,6 @@ export class GlobalFunctions{
 
     //Transforms camelCase to kabab-case
     camelCaseToKababCase = function(str){
-      console.log(str);
         str = str
             .replace(/([A-Z][a-z]+)/g, " $1")
             .replace(/([A-Z][A-Z]+)/g, " $1")
