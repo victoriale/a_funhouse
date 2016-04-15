@@ -13,7 +13,7 @@ import {PropertyListingInterface} from '../../global/global-interface';
 @Component({
     selector: 'share-module',
     templateUrl: './app/modules/share/share.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [moduleHeader, Image180],
     providers: [ListingProfileService, LocationProfileService],
     inputs:['locData']
@@ -27,7 +27,7 @@ export class ShareModule implements OnInit{
     locData: any;
     moduleTitle: string;
     currentUrl: any;
-    image_url = './app/public/img_bckgnd.png';
+    image_url = '/app/public/img_bckgnd.png';
     share = 'Share This Profile Below:'; //default if profiletype is undefined
     icon1 = 'fa fa-facebook';
     icon2 = 'fa fa-twitter';
@@ -47,18 +47,14 @@ export class ShareModule implements OnInit{
           if(this.profileType == 'LocationPage') {
             var paramLocation: string = this._params.get('loc');
             var paramCity: string = this.globalFunctions.toTitleCase(this.locData.city);
-            paramCity = this.globalFunctions.toTitleCase(paramCity.replace(/%20/g, " "));
+            paramCity = paramCity.replace(/%20/g, " ");
             var paramState: string = this.locData.state;
-            this._locationService.getLocationProfile(paramCity, paramState).subscribe(data => {
-              this.share = 'Share This Location Below:';
-              this.mainImageURL = data.locationImage;
-            })
+            this.share = 'Share This Location Below:';
+            this.mainImageURL = this.locData.locationImage;
           }else if(this.profileType === 'ProfilePage') {
-            this._listingService.getListingProfile(this._params.get('address')).subscribe(data => {
-              this.share = 'Share This Listing Below:';
-              this.mainImageURL = data.listingImage;
-          })
-        }
+            this.share = 'Share This Listing Below:';
+            this.mainImageURL = this.locData.listingImage;
+          }
     }
     ngOnInit(){
         this.getData();

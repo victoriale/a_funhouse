@@ -1,4 +1,4 @@
-import {Component, provide, OnInit,ViewEncapsulation, ViewChild, ElementRef, Injector} from 'angular2/core';
+import {Component, provide, OnInit, ViewEncapsulation, ViewChild, ElementRef} from 'angular2/core';
 import {bootstrap} from 'angular2/platform/browser';
 import {Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, RouteParams} from 'angular2/router';
 import {MapMarkerComponent} from "../../../components/mapMarker/mapMarker.component";
@@ -14,7 +14,6 @@ declare var jQuery:any;
     encapsulation: ViewEncapsulation.None,
     selector: 'magazine-map-module',
     templateUrl: './app/modules/magazine/mag-map/mag-map.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
     directives: [MapMarkerComponent, ROUTER_DIRECTIVES],
 })
 
@@ -24,22 +23,22 @@ export class MagMapModule implements OnInit {
     imgAddress:string;
     address:string;
     data:MagNeighborhood;
+    marker:string;
     public partnerID:string;
 
-    constructor(private _router:Router, private _injector:Injector, private _magazineDataService:MagazineDataService) {
+    constructor(private _router:Router, private _magazineDataService:MagazineDataService) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
         this._router.root
             .subscribe(
                 route => {
-                  var curRoute = route;
-                  var partnerID = curRoute.split('/');
-                  if(partnerID[0] == ''){
-                    this.partnerID = null;
-                  }else{
-                    this.partnerID = partnerID[0];
-                  }
-                  this.getMagazineMap();
+                    var curRoute = route;
+                    var partnerID = curRoute.split('/');
+                    if (partnerID[0] == '') {
+                        this.partnerID = null;
+                    } else {
+                        this.partnerID = partnerID[0];
+                    }
                 }
             )//end of route subscribe
     }
@@ -52,7 +51,12 @@ export class MagMapModule implements OnInit {
                     var partnerUrl = this.partnerID;
                     for (var i = 0; i < magData.neighborhood.neighbors.length; i++) {
                         if (magData.neighborhood.neighbors[i].address.lng != null && magData.neighborhood.neighbors[i].address.lat != null) {
-                            var myLatlng = new google.maps.LatLng(parseFloat(this.data[i].address.lat), parseFloat(this.data[i].address.lng));
+                            if (magData.neighborhood.address.lat != null && magData.neighborhood.address.lat != null && i < 1) {
+                                var myLatlng = new google.maps.LatLng(magData.neighborhood.address.lat, magData.neighborhood.address.lng);
+                                var icon = 'http://images.joyfulhome.com/icons/Icon_Home_Selected.png';
+                            } else {
+                                var myLatlng = new google.maps.LatLng(parseFloat(this.data[i].address.lat), parseFloat(this.data[i].address.lng));
+                            }
                             if (this.data[i].photos[0] != null) {
                                 jQuery('.mag_n1_img').css("background-image", 'url(' + this.data[i].photos[0] + ')');
                             }
@@ -61,18 +65,29 @@ export class MagMapModule implements OnInit {
                             }
                             this.imgAddress = this.data[i].address.fullStreetAddress;
                             if (partnerUrl == null) {
-                                this.imgURL = 'magazine/' + this.data[i].key + '/overview';
+                                this.imgURL = 'magazine/' + this.data[i].key.toLowerCase() + '/overview';
                             } else {
-                                this.imgURL = partnerUrl + '/magazine/' + this.data[i].key + '/overview';
+                                this.imgURL = partnerUrl + '/magazine/' + this.data[i].key.toLowerCase() + '/overview';
                             }
                             var mapOptions = {
                                 zoom: 12,
-                                center: myLatlng
+                                center: myLatlng,
+                                fullscreenControl: true,
+                                fullscreenControlOptions: {
+                                    position: google.maps.ControlPosition.TOP_LEFT
+                                }
                             };
                             break;
                         }
                     }
                     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+                    if (icon) {
+                        this.marker = new google.maps.Marker({
+                            position: myLatlng,
+                            map: map,
+                            icon: icon
+                        });
+                    }
                     for (var i = 0; i < magData.neighborhood.neighbors.length; i++) {
                         var home = new google.maps.LatLng(parseFloat(this.data[i].address.lat), parseFloat(this.data[i].address.lng));
                         if (+this.data[i].price >= 1000000) {
@@ -107,9 +122,9 @@ export class MagMapModule implements OnInit {
                                 }
                                 jQuery('.mag_n1_img_text').html(magData.neighborhood.neighbors[index].address.fullStreetAddress);
                                 if (partnerUrl == null) {
-                                    jQuery('.mag_n1_img_view').attr("href", 'magazine/' + magData.neighborhood.neighbors[index].key + '/overview');
+                                    jQuery('.mag_n1_img_view').attr("href", 'magazine/' + magData.neighborhood.neighbors[index].key.toLowerCase() + '/overview');
                                 } else {
-                                    jQuery('.mag_n1_img_view').attr("href", partnerUrl + '/magazine/' + magData.neighborhood.neighbors[index].key + '/overview');
+                                    jQuery('.mag_n1_img_view').attr("href", partnerUrl + '/magazine/' + magData.neighborhood.neighbors[index].key.toLowerCase() + '/overview');
                                 }
                                 jQuery('.googleMap_item').removeClass('focus');
                                 jQuery(this).addClass('focus');
@@ -122,6 +137,6 @@ export class MagMapModule implements OnInit {
     }
 
     ngOnInit() {
-
+        this.getMagazineMap();
     }
 }

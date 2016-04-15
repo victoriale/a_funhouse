@@ -1,13 +1,14 @@
 import {Component} from 'angular2/core';
 import {ROUTER_DIRECTIVES} from "angular2/router";
+import {GlobalFunctions} from "../../global/global-functions";
 
 @Component({
     selector: 'feature-tiles-component',
     templateUrl: './app/components/feature-tiles/feature-tiles.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+
     directives: [ROUTER_DIRECTIVES],
     providers: [ROUTER_DIRECTIVES],
-    inputs: ['cityLocation', 'stateLocation'],
+    inputs: ['cityLocation', 'stateLocation', 'cityName'],
 })
 
 export class FeatureTilesComponent{
@@ -15,7 +16,9 @@ export class FeatureTilesComponent{
     cityLocation: string;
     stateLocation: string;
 
+    constructor(private _globalFunctions: GlobalFunctions) {}
+
     ngOnInit() {
-        this.location = this.cityLocation + '_' + this.stateLocation;
+        this.location = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
     }
 }

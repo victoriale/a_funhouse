@@ -12,7 +12,7 @@ declare var jQuery:any;
 @Component({
     selector: 'mag-nav-left-component',
     templateUrl: './app/components/magazine/mag-nav-left/mag-nav-left.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [],
     //outputs: ['navLeft']
 })
@@ -30,10 +30,10 @@ export class NavLeftComponent {
         let prevLink = currentPageLink.prev("a");
         jQuery(".router-link-active").removeClass("router-link-active");
         let lastLink = jQuery("magtab-component>span>a:last-child");
-        console.log(lastLink);
+        // console.log(lastLink);
         let args = lastLink.attr("href").split("/");
         let address = args[2];
-        console.log("prevLink.length",prevLink.length);
+        // console.log("prevLink.length",prevLink.length);
         if( !prevLink.length){
             this._router.navigate([ this.toc[ this.toc.length-1 ].routeName ]);
             lastLink.addClass("router-link-active");

@@ -5,24 +5,26 @@ import {Component, OnInit} from 'angular2/core';
 import {BackTabComponent} from '../../components/backtab/backtab.component';
 import {TitleComponent} from '../../components/title/title.component';
 import {WidgetModule} from "../../modules/widget/widget.module";
+import {AuHeaderComponent} from '../../components/au-header/au-header.component';
 
 declare var jQuery: any;
 
 @Component({
     selector: 'Contactus-page',
     templateUrl: './app/webpages/contactus-page/contactus.page.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
-    directives: [BackTabComponent, TitleComponent, WidgetModule],
+    
+    directives: [BackTabComponent, TitleComponent, AuHeaderComponent, WidgetModule],
     providers: [],
 })
 
 export class ContactUsPage implements OnInit{
     //PLACEHOLDERS
     full_name = "John Smith";
-    email = "johnSmith@sntmedia.com";
+    email = "email@domain.com";
     text_area = "Detailed description of your question here...";
     title_data: {};
     submissionform: any;
+    auHeaderTitle = "Contact Us";
 
     constructor() {
     // Scroll page to top to fix routerLink bug
@@ -32,7 +34,7 @@ export class ContactUsPage implements OnInit{
     getData(){
         //Contact us data
         this.title_data = {
-            imageURL : './app/public/joyfulhome_house.png',
+            imageURL : '/app/public/joyfulhome_house.png',
             smallText1 : 'Last Updated: Friday, February 26, 2016',
             smallText2 : ' United States of America',
             heading1 : 'Contact Us',

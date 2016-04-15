@@ -13,7 +13,7 @@ declare var moment: any;
 @Component({
   selector: 'media-features-module',
   templateUrl: './app/modules/media_features/media_features.module.html',
-  styleUrls: ['./app/global/stylesheets/master.css'],
+
   directives: [moduleHeader, MediaImages],
   providers: [],
   inputs:['locData']
@@ -25,12 +25,13 @@ export class MediaFeatureModule implements OnInit {
   public trending: boolean;
   public prop_features: any;
   public profileType: string;
-
+  public location: string;
   private propertyData: any;//data to send from module into components
   private date;
   expand: boolean = false; // for modal
+  modal: boolean = true;
   lastUpdated = "";
-  image_url = './app/public/placeholder_XL.png';
+  image_url = '/app/public/no_photo_images/onError.png';
   featureHeading = "Features Of This Property";
   lastUpdate = "";
 
@@ -44,7 +45,7 @@ export class MediaFeatureModule implements OnInit {
   getData() {
     this.propertyData = this._listingService.getPropertyListing(this._params.get('address'))
       .subscribe(data => {
-      this.propertyData = this.dataFormatter(data);
+        this.propertyData = this.dataFormatter(data);
     })
   }
 
@@ -58,16 +59,28 @@ export class MediaFeatureModule implements OnInit {
   }
 
   dataFormatter(originalData) {
+    this.location = this.globalFunctions.toTitleCase(originalData.address) + ', ' + this.globalFunctions.toTitleCase(originalData.city) + ', ' + this.globalFunctions.stateToAP(originalData.state);
+    if (this.profileType === 'ProfilePage') {
+      this.moduleTitle = 'Property Images, Media & Features for ' + this.location;
+    }
     var featureHaves = [];
-
+    var formattedDays = "N/A";
     for (var feature in originalData) {
       if (originalData[feature] == null || typeof originalData[feature] == 'undefined') {
         originalData[feature] = 'N/A';
+
       }
       if (feature != 'listingImages' && feature != 'imageCount' && feature != 'listingID' && originalData[feature] != "" && originalData[feature] != null) {
         //get the date
         if (feature == 'listingDate') {
           originalData[feature] = originalData[feature].split(' ')[0];
+        }
+        if(feature == 'hasBasement'){
+          if(originalData[feature] != 'N/A'){
+            originalData[feature] = 'Yes';
+          } else {
+            originalData[feature] = 'No';
+          }
         }
         switch (feature) {
           //if feautre is any below do not push into featureHaves array
@@ -78,7 +91,7 @@ export class MediaFeatureModule implements OnInit {
             originalData['address'] = this.globalFunctions.toTitleCase(originalData['address']);
             break;
           case 'daysOnMarket':
-            var formattedDays = moment().subtract('days', originalData.daysOnMarket).format('dddd, MMMM Do, YYYY');
+            formattedDays = this.globalFunctions.formatDaysOnMarket(originalData.daysOnMarket);
             break;
           case 'listingDate':
             originalData['listingDate'] = originalData['listingDate'].split(' ')[0];
@@ -109,7 +122,7 @@ export class MediaFeatureModule implements OnInit {
       city: originalData.city,
       state: originalData.state,
       daysOnMarket: formattedDays,
-      price: "$" + (originalData.listPrice),
+      price: originalData.listPrice,
       priceName: 'Sale Price',
       detail1: this.globalFunctions.commaSeparateNumber(originalData['squareFeet']),
       unit1: 'Sq Ft',
@@ -118,7 +131,7 @@ export class MediaFeatureModule implements OnInit {
       zipCode: originalData.zipCode,
       address: originalData.address,
       locUrl1: "Location-page",
-      locUrl2: { loc: originalData.city + '_' + originalData.state },
+      locUrl2: { loc: this.globalFunctions.toLowerKebab(originalData.city) + '-' + originalData.state.toLowerCase() },
       virtualTour: originalData.virtualTour,
     };
     return {
@@ -150,7 +163,7 @@ export class MediaFeatureModule implements OnInit {
       heating: 'Heating',
       cooling: 'Cooling',
       numFloors: 'Num. of Floors',
-      exterior: 'Extorior',
+      exterior: 'Exterior',
       parking: 'Parking',
       view: 'View',
       floor: 'Floor',
@@ -158,30 +171,8 @@ export class MediaFeatureModule implements OnInit {
     };
     return featureProp[name];
   }
-  //Build Module Title
-  setModuleTitle() {
-
-    if (this.profileType === 'LocationPage') {
-      //Location Crime Module
-      var paramLocation: string = this._params.get('loc');
-      var paramCity: string = this.globalFunctions.toTitleCase(this.locData.city);
-      paramCity = this.globalFunctions.toTitleCase(paramCity.replace(/%20/g, " "));
-      var paramState: string = this.locData.state;
-      this.moduleTitle = 'Property Images, Media & Features for ' + paramCity + ', ' + paramState;
-    } else if (this.profileType === 'ProfilePage') {
-      //Listing Crime Module
-      var paramAddress = this._params.get('address').split('-');
-      var paramState = paramAddress[paramAddress.length - 1];
-      var paramCity = paramAddress[paramAddress.length - 2];
-      var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
-      var address = tempArr.join(' ');
-
-      this.moduleTitle = 'Property Images, Media & Features for ' + this.globalFunctions.toTitleCase(address) + ' ' + this.globalFunctions.toTitleCase(paramCity) + ', ' + paramState;
-    }
-  }
 
   ngOnInit() {
-    this.setModuleTitle();
     this.trending = false;
     this.getData();
   }

@@ -16,7 +16,7 @@ import {Control} from 'angular2/common';
 @Component({
     selector: 'hero-search-component',
     templateUrl: './app/components/hero/hero-search/hero-search.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [SearchResults],
     providers: [SearchService],
 })
@@ -76,9 +76,10 @@ export class HeroSearchComponent{
     //Function to submit form to navigate to results page
     onSubmit(event){
         var value = this.term._value;
-        if(typeof value === 'undefined' || value === ''){
+        if(typeof value === 'undefined' || value === '' || value === null){
             return false;
         }
+        value = value.replace(/ /g, '-');
 
         value = encodeURIComponent(value);
         //Cancel previous call by passing empty string to the observable

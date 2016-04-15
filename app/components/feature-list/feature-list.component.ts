@@ -8,7 +8,7 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 @Component({
     selector: 'feature-component',
     templateUrl: './app/components/feature-list/feature-list.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [ROUTER_DIRECTIVES, Image180, CarouselButton],
     providers: [],
     inputs: ['list_data'],

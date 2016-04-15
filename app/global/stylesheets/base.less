@@ -16,7 +16,6 @@ ToC
 /**********/
 /* @Colors */
 /**********/
-
 @white: #fff;
 @black: #000;
 
@@ -38,10 +37,10 @@ ToC
 @fbblue: #3a5b97;
 
 // Icon links
-@hoopsloyalicon:'./app/public/basketball_icon.png';
-@hoopsloyaliconhover:'./app/public/basketball_icon_hover.png';
-@joyfulhomeicon:'./app/public/realestate_icon.png';
-@joyfulhomeiconhover:'./app/public/realestate_icon.png';
+@hoopsloyalicon:'/app/public/basketball_icon.png';
+@hoopsloyaliconhover:'/app/public/basketball_icon_hover.png';
+@joyfulhomeicon:'/app/public/icons/home_icon.png';
+@joyfulhomeiconhover:'/app/public/icons/home_icon.png';
 @joyfulbutton: url('http://images.joyfulhome.com/joyfulhome_house_clear.png');
 
 // Brand Color Image Hovers
@@ -74,6 +73,7 @@ ToC
 @amenitiesGrey: #cecece;
 @partnerGrey: #e6e6e6;
 @partnerLocGrey: #333333;
+@listSeparatorGrey: #818181;
 // Box Shadow for Image Borders
 @masterLargeImageShadow: rgba(0,0,0,0.2);
 @masterSmallImageShadow: rgba(204, 204, 204, 1);
@@ -89,8 +89,8 @@ ToC
 @masterTabIconColor: @investKitBlue;
 
 //master ICON logo
-@masterIcon: './app/public/icons/home_icon.png';
-@masterIconHover:'./app/public/favicon.png';
+@masterIcon: '/app/public/icons/home_icon.png';
+@masterIconHover:'/app/public/favicon.png';
 //social media COLOR
 @facebook: #3b5998;
 @twitter: #00aced;
@@ -160,7 +160,6 @@ ToC
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-
 body, html {
   width: 100%;
   height: 100%;
@@ -172,6 +171,9 @@ body {
   background: @white;
   font-family: @globalFont;
   overflow: auto;
+  margin: 0 !important;
+  background-color: @highlightGrey !important;
+  min-width: 1044px;
 }
 
 div {
@@ -184,6 +186,8 @@ p {
 
 ul {
   list-style-type: none;
+  margin: 0px;
+  padding: 0px;
 }
 
 a {
@@ -339,6 +343,21 @@ code.less-var-name-light {
   transition: @transitionVals;
 }
 
+.backfaceVisibility(@backfaceVisibility){
+  backface-visibility: @backfaceVisibility;
+  -webkit-backface-visibility: @backfaceVisibility;
+  -moz-backface-visibility: @backfaceVisibility;
+  -ms-backface-visibility: @backfaceVisibility;
+  -o-backface-visibility: @backfaceVisibility;
+}
+
+.perspective(@perspectiveVals){
+  -webkit-perspective: @perspectiveVals;
+  -moz-perspective: @perspectiveVals;
+  -ms-perspective: @perspectiveVals;
+  perspective: @perspectiveVals;
+}
+
 .noclick {
   // For elements that shouldn't be highlightable
   -webkit-touch-callout: none;
@@ -434,3 +453,19 @@ code.less-var-name-light {
 @mobileView:      ~"only screen and (max-width: 768px)";
 @tabletView:      ~"only screen and (min-width: 769px) and (max-width: 1024px)";
 @desktopView:     ~"only screen and (min-width: 1025px)";
+
+
+// clear fix
+.clearfix {
+  display: block;
+  zoom: 1;
+
+  &:after {
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}

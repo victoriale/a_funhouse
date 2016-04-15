@@ -14,7 +14,7 @@ export class GeoLocationService {
         if (this.cachedGeoLocation) {
             return Observable.of(this.cachedGeoLocation);
         } else {
-            return this.http.get('http://w1.synapsys.us/listhuv/?action=get_remote_addr')
+            return this.http.get('http://w1.synapsys.us/listhuv/?action=get_remote_addr2')
                 .map(
                     res => res.json()
                 )
@@ -38,7 +38,7 @@ export class NearByCitiesService {
         if (this.cachedNearByCities) {
             return Observable.of(this.cachedNearByCities);
         } else {
-            return this.http.get('http://api2.joyfulhome.com:280/nearbyCities/' + state + '/' + city)
+            return this.http.get('http://prod-joyfulhome-api.synapsys.us/nearbyCities/' + state + '/' + city)
                 .map(
                     res => res.json()
                 )
@@ -66,7 +66,7 @@ export class CityViewService {
         if (this.cachedCityView) {
             return Observable.of(this.cachedCityView);
         } else {
-            return this.http.get('http://api2.joyfulhome.com:280/cityView/' + state + '/' + city)
+            return this.http.get('http://prod-joyfulhome-api.synapsys.us/cityView/' + state + '/' + city)
                 .map(
                     res => res.json()
                 )
@@ -75,6 +75,9 @@ export class CityViewService {
                 })
                 .map(
                     data => {
+                        if(data.success === false){
+                            throw new Error('Error: getCityView api success, message failed');
+                        }
                         return data.data;
                     }
                 )

@@ -3,44 +3,53 @@
         <div class="inner-wrapper">
             <main>
                 <section class='content-main eight-col'>
-                    <title-component *ngIf="titleData" [titleData]="titleData"></title-component>
+                    <loading-component *ngIf="!displayData && !isError"></loading-component>
 
-                    <div *ngFor="#city of cities" class="city-list even">
+                    <error-component *ngIf="isError"></error-component>
+
+                  <section *ngIf="displayData && !isError" class="page-container">
+                    <backtab-component></backtab-component>
+                    <title-component *ngIf="titleData" [titleData]="titleData"></title-component>
+                    <dynamic-carousel2 [carouselData]="carouselData"></dynamic-carousel2>
+                    <div *ngFor="#city of displayData" class="city-list {{city.bgClass}}" >
                         <div class='city-imagebox'>
+                          <div class="city-rank">#{{city.rank}}</div>
                             <a [routerLink]="['Location-page', {loc: city.locationUrl}]">
-                                <img src='./app/public/placeholder-location.jpg' alt='' />
-                                <div class="city-rank">#{{city.counter}}</div>
+                                <img src='{{city.locationImage}}' onerror="this.src='/app/public/placeholder-location.jpg';" />
+                                <div>
+                                  <p>View</p>
+                                  <p>Profile</p>
+                                </div>
                             </a>
                         </div>
                         <div class="city-content-box even">
                             <div class="city-content-row-wrapper">
                                 <div class="city-content-row1">
-                                    <a [routerLink]="['Location-page', {loc: city.locationUrl}]">
-                                        <span class="city-location"><i class="fa fa-map-marker"></i>{{city.city}}, {{city.state}}</span>
-                                    </a>
-                                    <p class="city-address">{{city.city}}, {{city.state}}</p>
-                                    <p class="city-type">Distance: {{city.distance}} Miles</p>
+                                    <p class="city-address">{{city.city}}, {{city.stateAP}}</p>
+                                    <a [routerLink]="['Location-page', {loc: city.locationUrl}]" class="city-type">
+                                        <span><i class="fa fa-map-marker"></i>{{city.city}}, {{city.stateAP}}</span>
+                                    </a> | <span class="city-market"><i class="fa fa-car"></i> Distance: {{city.distance}} mi.</span>
                                 </div>
                                 <div class="city-content-row2">
-                                    <p class="city-market">Total Listings</p>
-                                    <p class="city-date">{{city.totalListings}} Homes</p>
+                                    <p class="city-date">{{city.totalListings}}</p>
+                                    <p class="city-market">Total Listed Homes</p>
                                 </div>
                             </div>
-                            <div class="city-content-bottom">
+                            <div class="city-content-bottom {{city.bgClass}}">
                                 <div class='city-content-subbox'>
-                                    <p>Discover What's In This Unique Area</p>
+                                    <p>Want more information?</p>
                                 </div>
                                 <a [routerLink]="['Location-page', {loc: city.locationUrl}]" class='city-list-button'>
-                                    <span><img class="city-icon" src="./app/public/realestate_icon.png" /></span>
-                                    <span>View City Profile</span>
+                                    <span></span>
+                                    <span style="font-weight: 400;">View Profile</span>
                                     <i class='fa fa-angle-right'></i>
                                 </a>
                             </div>
                         </div>
                     </div>
-                    
+                    <pagination-footer *ngIf="paginationParameters" [paginationParameters]="paginationParameters" (newIndex)="newIndex($event)"></pagination-footer>
                     <hero-list-component></hero-list-component>
-
+                  </section>
                 </section>
                 <div class="four-col">
                     <widget-module></widget-module>

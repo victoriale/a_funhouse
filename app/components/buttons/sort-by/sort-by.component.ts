@@ -5,7 +5,7 @@
  @Component({
      selector: 'dropdown-component',
      templateUrl: './app/components/buttons/sort-by/sort-by.component.html',
-     styleUrls: ['./app/global/stylesheets/master.css'],
+     
      inputs: ['data'],
  })
  export class DropdownComponent {

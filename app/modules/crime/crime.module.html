@@ -5,7 +5,7 @@
             <i class="fa fa-th-large"></i>Crimes <span class="text-right">Net %</span>
         </div>
         <ul class="crime-stats-list">
-            <li *ngFor="#item of crimeStats" class="crime-stats-item" style="border-left-color: {{item.color}}">
+            <li *ngFor="#item of crimeStats" class="crime-stats-item {{item.class}}">
                 {{item.title}} <span class="text-right text-bold">{{item.pct}}</span>
             </li>
         </ul>
@@ -13,7 +13,7 @@
 
     <div class="crime-pie">
         <div id="crime-pie"></div>
-        <img class="crime-pie-image" src="{{imageUrl}}" onerror="this.src='./app/public/placeholder-location.jpg';" />
+        <img class="crime-pie-image" src="{{imageUrl}}" onerror="this.src='/app/public/placeholder-location.jpg';" />
     </div>
 
     <div class="crime-tooltip">

@@ -12,7 +12,7 @@ declare var jQuery:any;
 @Component({
     selector: 'mag-nav-right-component',
     templateUrl: './app/components/magazine/mag-nav-right/mag-nav-right.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [],
     //outputs: ['navRight']
 })
@@ -24,7 +24,6 @@ export class NavRightComponent {
     ){ }
 
     clickNext(){
-        console.log( jQuery("magtab-component a"))
         let currentPageLink = jQuery("magtab-component a.router-link-active");
         let currentIndex = currentPageLink.index();
         let nextLink = currentPageLink.next("a");

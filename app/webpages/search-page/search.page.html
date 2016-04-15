@@ -25,21 +25,21 @@
               <nav class="search_tab-menu">
                 <ul id='tab-list-three'>
                   <li>
-                    <a class='search-tab active' id='address' (click)="tabTarget($event)">
+                    <a class='search-tab' [ngClass]="{active: tab === 'address'}" id='address' (click)="tabTarget($event)">
                       <i class='fa fa-circle'></i>
-                      Address({{searchResults.addrCount}})
+                      Address ({{searchResults.addrCount}})
                     </a>
                   </li>
                   <li>
-                    <a class='search-tab' id='location' (click)="tabTarget($event)">
-                      <i class=''></i>
-                      Location({{searchResults.locCount}})
+                    <a class='search-tab' [ngClass]="{active: tab === 'location'}" id='location' (click)="tabTarget($event)">
+                      <i class='fa fa-circle'></i>
+                      Location ({{searchResults.locCount}})
                     </a>
                   </li>
                   <li>
-                    <a class='search-tab' id='zipcode' (click)="tabTarget($event)">
-                      <i class=''></i>
-                      Zip Code({{searchResults.zipCount}})
+                    <a class='search-tab' [ngClass]="{active: tab === 'zipcode'}" id='zipcode' (click)="tabTarget($event)">
+                      <i class='fa fa-circle'></i>
+                      Zip Code ({{searchResults.zipCount}})
                     </a>
                   </li>
                 </ul>
@@ -50,10 +50,15 @@
             <!--below tabs where results are to be displayed-->
             <div class="search_results">
               <div class="search_results-showing">
-                Showing {{currentTotal}} results of {{showTotal}}
+                <span>Showing {{currentTotal}} results of {{tabTotal}}</span>
               </div>
 
               <!--RESULTS FROM API BELOW-->
+              <div *ngIf="!paginationParameters">
+                <div class="no_results">
+                  <span>Sorry, there are no search results</span>
+                </div>
+              </div>
 
               <a *ngFor="#item of displayData" [routerLink]="[item.page, item.params]">
                 <div class="search_results-info">
@@ -61,6 +66,9 @@
                 </div>
               </a>
               <!--below tabs where results are to be displayed END-->
+
+              <!-- Pagination Footer -->
+              <pagination-footer *ngIf="paginationParameters" [paginationParameters]="paginationParameters" (newIndex)="newIndex($event)"></pagination-footer>
             </div>
           </div>
         </section>

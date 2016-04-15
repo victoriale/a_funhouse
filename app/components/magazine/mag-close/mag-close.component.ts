@@ -11,7 +11,7 @@ import {ROUTER_DIRECTIVES} from "angular2/router";
 @Component({
     selector: 'close-component',
     templateUrl: './app/components/magazine/mag-close/mag-close.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [ROUTER_DIRECTIVES]
 })
 

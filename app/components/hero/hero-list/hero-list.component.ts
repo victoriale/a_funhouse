@@ -4,7 +4,7 @@ import {HeroSearchComponent} from "../hero-search/hero-search.component";
 @Component({
     selector: 'hero-list-component',
     templateUrl: './app/components/hero/hero-list/hero-list.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [HeroSearchComponent],
     providers: [],
 })

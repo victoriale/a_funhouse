@@ -1,14 +1,14 @@
 import {Injectable} from 'angular2/core';
 import {Http, Headers} from 'angular2/http';
-
+import {GlobalFunctions} from '../global/global-functions';
 @Injectable()
 
 export class LocationProfileService{
-    public apiUrl: string = 'http://api2.joyfulhome.com:280';
+    public apiUrl: string = 'http://prod-joyfulhome-api.synapsys.us';
     public apiToken: string = 'BApA7KEfj';
     public headerName: string = 'X-SNT-TOKEN';
 
-    constructor(public http: Http){
+    constructor(public http: Http, public globFunc: GlobalFunctions){
 
     }
 
@@ -19,14 +19,18 @@ export class LocationProfileService{
         return headers;
     }
 
-    getLocationFeaturedList(city, state){
+    getLocationFeaturedList(city, state, counter){
         //Configure HTTP Headers
         var headers = this.setToken();
 
         city = encodeURI(city);
         state = encodeURI(state);
 
-        return this.http.get(this.apiUrl + '/list/random/' + state + '/' + city, {
+        var list = this.globFunc.randomList();
+        var random = Math.floor(Math.random() * list.length);
+        var chosenList = list[random];
+
+        return this.http.get(this.apiUrl + '/list/'+chosenList+'/' + state + '/' + city + '/empty/1/1', {
                 headers: headers
             })
             .map(
@@ -34,7 +38,11 @@ export class LocationProfileService{
             )
             .map(
                 data => {
-                    return data.data;
+                  var returnData = {
+                    listName: chosenList,
+                    listData: data.data
+                  }
+                    return returnData;
                 }
             )
     }
@@ -42,7 +50,7 @@ export class LocationProfileService{
     getLocationProfile(city, state){
         //Configure HTTP Headers
         var headers = this.setToken();
-
+        city = this.globFunc.toTitleCase(city);
         city = encodeURI(city);
         state = encodeURI(state);
 
@@ -54,6 +62,10 @@ export class LocationProfileService{
             )
             .map(
                 data => {
+                    if(data.success == false){
+                        throw new Error('Error: getLocationProfile Header api success, message failed');
+                    }
+
                     return data.data;
                 }
             )
@@ -79,14 +91,13 @@ export class LocationProfileService{
         )
     }
 
-    getRecentListings(city, state) {
+    getRecentListings(city, state, counter) {
         //Configure HTTP Headers
         var headers = this.setToken();
 
         city = encodeURI(city);
         state = encodeURI(state);
-
-        return this.http.get(this.apiUrl + '/list/listingsMostRecent/' + state + '/' + city, {
+        return this.http.get(this.apiUrl + '/list/listingsMostRecent/' + state + '/' + city + '/empty/4/'+counter, {
                 headers: headers
             })
             .map(
@@ -137,14 +148,17 @@ export class LocationProfileService{
                   }
               )
       }
-      getTrendingHomesData(city, state){
+      getTrendingHomesData(city, state, counter){
           //Configure HTTP Headers
           var headers = this.setToken();
 
           city = encodeURI(city);
           state = encodeURI(state);
 
-          return this.http.get(this.apiUrl + '/list/trending/' + state + '/' + city, {
+          var list = this.globFunc.randomList();
+          var random = Math.floor(Math.random() * list.length);
+          var chosenList = list[random];
+          return this.http.get(this.apiUrl + '/list/'+chosenList+'/' + state + '/' + city + '/empty/1/'+ counter, {
                   headers: headers
               })
               .map(
@@ -152,7 +166,11 @@ export class LocationProfileService{
               )
               .map(
                   data => {
-                      return data;
+                    var returnData = {
+                      listName: chosenList,
+                      listData: data.data
+                    }
+                      return returnData;
                   }
               )
       }

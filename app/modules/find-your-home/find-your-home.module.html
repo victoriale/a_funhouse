@@ -1,4 +1,4 @@
-<section class="module-container">
+<section class="module-container findHome">
     <module-header [module_title]="module_title"></module-header>
     <image-header [imageUrl]="imageUrl" [location]="location"></image-header>
     <div class="property-type">
@@ -6,30 +6,30 @@
             <span>Pick a Property Type</span>
         </div>
         <div class="filters">
-            <div class="filters_frame">
+            <label class="filters_frame" (click)="onClickPropertyType($event)">
                 <img src="http://images.myhousekit.com/icons/Icon_House.png">
                 <span>House</span>
-                <input (click)="onClickPropertyType()" type="radio" id="type1" name="type" value="House" class="with-font">
+                <input type="radio" id="type1" name="filterType" value="House" class="with-font">
                 <label for="type1"></label>
-            </div>
-            <div class="filters_frame">
+            </label>
+            <label class="filters_frame" (click)="onClickPropertyType($event)">
                 <img src="http://images.myhousekit.com/icons/Icon_Condo.png">
                 <span>Condo</span>
-                <input (click)="onClickPropertyType()" type="radio" id="type2" name="type" value="Condominium" class="with-font">
+                <input type="radio" id="type2" name="filterType" value="Condominium" class="with-font">
                 <label for="type2"></label>
-            </div>
-            <div class="filters_frame">
+            </label>
+            <label class="filters_frame" (click)="onClickPropertyType($event)">
                 <img src="http://images.myhousekit.com/icons/Icon_Apartment.png">
                 <span>Apartment</span>
-                <input (click)="onClickPropertyType()" type="radio" id="type3" name="type" value="Apartment" class="with-font">
+                <input type="radio" id="type3" name="filterType" value="Apartment" class="with-font">
                 <label for="type3"></label>
-            </div>
-            <div class="filters_frame">
+            </label>
+            <label class="filters_frame" (click)="onClickPropertyType($event)">
                 <img src="http://images.myhousekit.com/icons/Icon_Townhome.png">
                 <span>Townhome</span>
-                <input (click)="onClickPropertyType()" type="radio" id="type4" name="type" value="Townhouse" class="with-font">
+                <input type="radio" id="type4" name="filterType" value="Townhouse" class="with-font">
                 <label for="type4"></label>
-            </div>
+            </label>
         </div>
     </div>
     <div class="slider">
@@ -43,7 +43,7 @@
                 <div (mousedown)="onClickBall($event)" class="price_slider_ball" style="left: 0" id="minBall">
                     <input (focus)="onInputFocus($event)" (blur)="onInputBlur($event)" class="price_slider_ball_label" value="$50K">
                 </div>
-                <div (mousedown)="onClickBall($event)" class="price_slider_ball" style="right: 0" id="maxBall">
+                <div (mousedown)="onClickBall($event)" class="price_slider_ball" style="left: {{maxSliderPosition}}" id="maxBall">
                     <input (focus)="onInputFocus($event)" (blur)="onInputBlur($event)" class="price_slider_ball_label" value="$10M+">
                 </div>
                 <div class="price_slider_avg">
@@ -58,50 +58,58 @@
             <span>Must Haves</span>
         </div>
         <div class="property-options-select">
-            <select (change)="onSelectBedrooms()" name="select-bedrooms" id="select-bedrooms">
-                <option value="empty" style="display:none;" selected>Bedrooms</option>
-                <option value="empty">All Beds</option>
-                <option value="1">+1</option>
-                <option value="2">+2</option>
-                <option value="3">+3</option>
-                <option value="4">+4</option>
-                <option value="5">+5</option>
-            </select>
-            <select (change)="onSelectBathrooms()" name="select-bathrooms" id="select-bathrooms">
-                <option value="empty" style="display:none;" selected>Bathrooms</option>
-                <option value="empty">All Baths</option>
-                <option value="1">+1</option>
-                <option value="2">+2</option>
-                <option value="3">+3</option>
-                <option value="4">+4</option>
-                <option value="5">+5</option>
-            </select>
-            <select (change)="onSelectSqFeet()" name="select-square-feet" id="select-square-feet">
-                <option value="empty" style="display:none;" selected>Square Feet</option>
-                <option value="empty">All Sizes</option>
-                <option value="500">+500 sq ft</option>
-                <option value="1000">+1000 sq ft</option>
-                <option value="2000">+2000 sq ft</option>
-                <option value="3000">+3000 sq ft</option>
-                <option value="4000">+4000 sq ft</option>
-                <option value="5000">+5000 sq ft</option>
-                <option value="10000">+10000 sq ft</option>
-            </select>
-            <select (change)="onSelectLotSize()" name="select-lot-size" id="select-lot-size">
-                <option value="empty" style="display:none;" selected>Lot Size</option>
-                <option value="empty">All Sizes</option>
-                <option value="0.04591368">+2000 sq ft</option>
-                <option value="0.06887052">+3000 sq ft</option>
-                <option value="0.09182736">+4000 sq ft</option>
-                <option value="0.1147842">+5000 sq ft</option>
-                <option value="0.1606979">+7000 sq ft</option>
-                <option value="0.25">+1/4 acre</option>
-                <option value="0.50">+1/2 acre</option>
-                <option value="1">+1 acre</option>
-                <option value="2">+2 acre</option>
-                <option value="5">+5 acre</option>
-                <option value="10">+10 acre</option>
-            </select>
+            <div class="property-options-select-item">
+                <select (change)="onSelectBedrooms()" name="select-bedrooms" id="select-bedrooms">
+                    <option value="empty" style="display:none;" selected>Bedrooms</option>
+                    <option value="empty">All Beds</option>
+                    <option value="1">+1 Bedrooms</option>
+                    <option value="2">+2 Bedrooms</option>
+                    <option value="3">+3 Bedrooms</option>
+                    <option value="4">+4 Bedrooms</option>
+                    <option value="5">+5 Bedrooms</option>
+                </select>
+            </div>
+            <div class="property-options-select-item">
+                <select (change)="onSelectBathrooms()" name="select-bathrooms" id="select-bathrooms">
+                    <option value="empty" style="display:none;" selected>Bathrooms</option>
+                    <option value="empty">All Baths</option>
+                    <option value="1">+1 Bathrooms</option>
+                    <option value="2">+2 Bathrooms</option>
+                    <option value="3">+3 Bathrooms</option>
+                    <option value="4">+4 Bathrooms</option>
+                    <option value="5">+5 Bathrooms</option>
+                </select>
+            </div>
+            <div class="property-options-select-item">
+                <select (change)="onSelectSqFeet()" name="select-square-feet" id="select-square-feet">
+                    <option value="empty" style="display:none;" selected>Square Feet</option>
+                    <option value="empty">All Sizes</option>
+                    <option value="500">+500 sq ft</option>
+                    <option value="1000">+1000 sq ft</option>
+                    <option value="2000">+2000 sq ft</option>
+                    <option value="3000">+3000 sq ft</option>
+                    <option value="4000">+4000 sq ft</option>
+                    <option value="5000">+5000 sq ft</option>
+                    <option value="10000">+10000 sq ft</option>
+                </select>
+            </div>
+            <div class="property-options-select-item">
+                <select (change)="onSelectLotSize()" name="select-lot-size" id="select-lot-size">
+                    <option value="empty" style="display:none;" selected>Lot Size</option>
+                    <option value="empty">All Sizes</option>
+                    <option value="0.04591368">+2000 sq ft</option>
+                    <option value="0.06887052">+3000 sq ft</option>
+                    <option value="0.09182736">+4000 sq ft</option>
+                    <option value="0.1147842">+5000 sq ft</option>
+                    <option value="0.1606979">+7000 sq ft</option>
+                    <option value="0.25">+1/4 acre</option>
+                    <option value="0.50">+1/2 acre</option>
+                    <option value="1">+1 acre</option>
+                    <option value="2">+2 acre</option>
+                    <option value="5">+5 acre</option>
+                    <option value="10">+10 acre</option>
+                </select>
+            </div>
         </div>
     </div>
     <div class="property-buttons">

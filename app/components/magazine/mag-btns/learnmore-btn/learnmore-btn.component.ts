@@ -11,7 +11,7 @@ import {ROUTER_DIRECTIVES} from "angular2/router";
 @Component({
     selector: 'learnmore-component',
     templateUrl: './app/components/magazine/mag-btns/learnmore-btn/learnmore-btn.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [ROUTER_DIRECTIVES]
 })
 
@@ -21,7 +21,7 @@ export class LearnMoreComponent{
     magLink: MagOverview;
 
     constructor(private _injector:Injector, private _magazineDataService:MagazineDataService) {
-        this.address = _injector.get(MagazinePage).address;
+        this.address = _injector.get(MagazinePage).address.toLowerCase();
     }
 
     getProfileLink() {

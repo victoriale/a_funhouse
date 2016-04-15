@@ -4,7 +4,7 @@ import {moduleHeader} from "../../components/module-header/module-header";
 @Component({
     selector: 'trending-carousel-list',
     templateUrl: './app/components/trending-carousel-list/trending-carousel-list.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [moduleHeader],
     providers: [],
 })
@@ -20,6 +20,6 @@ export class trendingCarousel implements OnInit{
     ngOnInit(){
         this.dummyData();
         this.module_title = this.mod_title;
-        console.log(this);
+        // console.log(this);
     }
 }

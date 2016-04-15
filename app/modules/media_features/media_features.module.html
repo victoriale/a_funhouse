@@ -1,4 +1,4 @@
-<section class="module-container media">
+<section *ngIf="propertyData" class="module-container media">
     <module-header [module_title]="moduleTitle"></module-header>
     <div style="height:466px; width:100%">
       <media-images *ngIf="propertyData" [mediaImages] = "propertyData.imageArray" [featureListing]="propertyData.featureListing" (expand)="expandModal()"></media-images>
@@ -18,5 +18,5 @@
 
 <div class="modal" (keyup)="close($event)" [ngClass]="{'modal-open': expand == true}">
   <div class="modal-exit" (click)="expandModal()">X</div>
-  <media-images *ngIf="propertyData" [mediaImages] = "propertyData.imageArray" [featureListing]="propertyData.featureListing" (expand)="expandModal()"></media-images>
+  <media-images *ngIf="propertyData" [mediaImages] = "propertyData.imageArray" [featureListing]="propertyData.featureListing" [modalButton]="modal" (expand)="expandModal()"></media-images>
 </div>

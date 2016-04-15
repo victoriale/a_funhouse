@@ -6,10 +6,10 @@ import {ROUTER_DIRECTIVES} from "angular2/router";
 @Component({
     selector: 'list-carousel-component',
     templateUrl: './app/components/list-carousel/list-carousel.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [Image180, ROUTER_DIRECTIVES],
     providers: [],
-    inputs: ['lists', 'stateLocation', 'cityLocation'],
+    inputs: ['lists', 'stateLocation', 'cityLocation', 'isStateOnly'],
 })
 
 export class ListCarouselComponent implements OnInit {
@@ -18,6 +18,7 @@ export class ListCarouselComponent implements OnInit {
     public description: string;
     public cityLocation: string;
     public stateLocation: string;
+    public isStateOnly: boolean;
     public main_hasSubImg: boolean = false;
     location: string;
     lists: any;
@@ -48,8 +49,6 @@ export class ListCarouselComponent implements OnInit {
     ngOnInit(){
         this.length = this.lists.length;
         this.carCount = 0;
-
         this.setStaticData();
-        console.log(this);
     }
 }

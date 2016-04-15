@@ -4,7 +4,7 @@ import {Http, Headers} from 'angular2/http';
 @Injectable()
 
 export class ListingProfileService{
-    public apiUrl: string = 'http://api2.joyfulhome.com:280';
+    public apiUrl: string = 'http://prod-joyfulhome-api.synapsys.us';
     public apiToken: string = 'BApA7KEfj';
     public headerName: string = 'X-SNT-TOKEN';
 
@@ -20,7 +20,7 @@ export class ListingProfileService{
     }
 
     //API to get featured list data
-    getListingFeaturedList(address){
+    getListingFeaturedList(address){ // using location featured call
         //Configure HTTP Headers
         var headers = this.setToken();
 
@@ -54,6 +54,10 @@ export class ListingProfileService{
         )
         .map(
             data => {
+                if(data.success == false){
+                    throw new Error('Error: getListingProfile api success, message failed');
+                }
+
                 return data.data;
             }
         )
@@ -105,7 +109,6 @@ export class ListingProfileService{
         var headers = this.setToken();
 
         address = encodeURI(address);
-        console.log('Listing Property Image Input', address);
 
         return this.http.get(this.apiUrl + '/listing/propertyImagesForListing/' + address, {
             headers: headers
@@ -125,8 +128,6 @@ export class ListingProfileService{
         var headers = this.setToken();
 
         address = encodeURI(address);
-        console.log('Listing Amenities Nearby Input', address);
-
         return this.http.get(this.apiUrl + '/listing/amenitiesNearListing/' + address, {
             headers: headers
         })
@@ -140,13 +141,12 @@ export class ListingProfileService{
         )
     }
 
-    getTrendingHomesData(address){
+    getTrendingHomesData(address, counter){ //Using location trending call
         //Configure HTTP Headers
         var headers = this.setToken();
 
         address = encodeURI(address);
-
-        return this.http.get(this.apiUrl + '/list/trendingByAddress/' + address, {
+        return this.http.get(this.apiUrl + '/list/randomByAddress/' + address + "/1/"+ counter, {
                 headers: headers
             })
             .map(
@@ -154,7 +154,7 @@ export class ListingProfileService{
             )
             .map(
                 data => {
-                    return data;
+                    return data.data;
                 }
             )
     }

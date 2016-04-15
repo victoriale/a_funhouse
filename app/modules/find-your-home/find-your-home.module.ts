@@ -7,19 +7,20 @@ declare var jQuery: any;
 @Component({
     selector: 'find-your-home-module',
     templateUrl: './app/modules/find-your-home/find-your-home.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [moduleHeader, imageHeader, ROUTER_DIRECTIVES],
     providers: [],
 })
 
 export class FindYourHomeModule implements OnInit{
-    @Input() locDisplay;
-    @Input() locState;
-    @Input() locCity;
+    @Input() locData: any;
+    @Input() filterType: any  = 'empty';
 
     public module_title: string;
     public imageUrl: string;
     public location: string;
+    public locCity: string;
+    public locState: string;
 
     private filterMinPrice = 50;
     private filterMaxPrice = 10000;
@@ -27,9 +28,10 @@ export class FindYourHomeModule implements OnInit{
     private filterBathrooms: any  = 'empty';
     private filterSqFeet: any  = 'empty';
     private filterLot: any  = 'empty';
-    private filterType: any  = 'empty';
     private filterLimit: any = 20;
     private filterPage: any = 1;
+    
+    private maxSliderPosition: number = 632;
 
     constructor(private _router: Router) {}
 
@@ -38,9 +40,21 @@ export class FindYourHomeModule implements OnInit{
 
     // EVENTS
     // Get selected radio input value for property type
-    onClickPropertyType() {
-        this.filterType = jQuery('input:checked').val();
-        //console.log(this.filterType);
+    onClickPropertyType($event) {      
+      if ( $event.target.tagName === "INPUT" ) {
+        let selectedFilterRadioBtn = jQuery($event.target);
+        let newFilterType = selectedFilterRadioBtn.val();
+        if ( newFilterType === '' ) newFilterType = undefined;
+
+        if ( this.filterType !== newFilterType ) {
+          this.filterType = newFilterType;
+        }
+        else {
+          //uncheck radio button and set undefined
+          this.filterType = undefined;
+          selectedFilterRadioBtn.removeProp('checked');
+        }
+      }
     }
 
     // Get selected select value for number bedrooms
@@ -73,7 +87,7 @@ export class FindYourHomeModule implements OnInit{
         jQuery('select').prop('selectedIndex', 0);
         // Reset ball positions
         this.moveBall('minBall', 0);
-        this.moveBall('maxBall', 632);
+        this.moveBall('maxBall', this.maxSliderPosition);
     }
 
     onViewClick() {
@@ -88,28 +102,30 @@ export class FindYourHomeModule implements OnInit{
     }
 
     onInputFocus($event) {
-        var stringVal = jQuery(event.target)[0].value;
+        var stringVal = jQuery($event.target)[0].value;
+        
         if ( stringVal.indexOf('.') != -1 ) {
             stringVal = this.numberToCommaNumber(stringVal.replace('$','').replace('.','').replace('M','00000').replace('K','000').replace('+',''));
         } else {
             stringVal = this.numberToCommaNumber(stringVal.replace('$','').replace('M','000000').replace('K','000').replace('+',''));
         }
-        jQuery(event.target).val(stringVal);
-        if ( jQuery(event.target)[0].setSelectionRange ) {
-            jQuery(event.target)[0].setSelectionRange(99,100);
+        jQuery($event.target).val(stringVal);
+        
+        if ( jQuery($event.target)[0].setSelectionRange ) {
+            jQuery($event.target)[0].setSelectionRange(99,100);
         }
     }
 
-    onInputBlur($event) {
-        var stringVal = jQuery(event.target)[0].value;
+    onInputBlur($event) {            
+        var stringVal = jQuery($event.target)[0].value;
         stringVal = stringVal.replace(/,/g,'');
         var xPos = Math.round(this.logslider(Number(stringVal)/1000,1));
-        if ( jQuery(jQuery(event.target)[0].parentElement).is('#minBall') ) {
+        if ( jQuery(jQuery($event.target)[0].parentElement).is('#minBall') ) {
             if ( !this.moveBall('minBall',xPos) ) {
                 this.moveBall('minBall', undefined);
                 return true;
             }
-        } else if ( jQuery(jQuery(event.target)[0].parentElement).is('#maxBall') ) {
+        } else if ( jQuery(jQuery($event.target)[0].parentElement).is('#maxBall') ) {
             if ( !this.moveBall('maxBall',xPos) ) {
                 this.moveBall('maxBall', undefined);
                 return true;
@@ -120,7 +136,7 @@ export class FindYourHomeModule implements OnInit{
         } else {
             stringVal = "$" + Math.round(Number(stringVal)/1000) + "K";
         }
-        jQuery(event.target)[0].value = stringVal;
+        jQuery($event.target)[0].value = stringVal;
     }
 
     onClickBall($event) {
@@ -149,9 +165,9 @@ export class FindYourHomeModule implements OnInit{
 
     // FUNCTIONS
     logslider(position,reverse) {
-        // position will be between 0 and 100
+        // position will be between 0 and maxSliderPosition
         var minp = 0;
-        var maxp = 632;
+        var maxp = this.maxSliderPosition;
 
         // The result should be between 100 an 10000000
         var minv = Math.log(50);
@@ -167,16 +183,16 @@ export class FindYourHomeModule implements OnInit{
         }
     }
 
-    moveBall(id,position) {
+    moveBall(id, position) {
         if ( typeof position == "undefined" ) {
-            var position = jQuery("#" + id).position().left;
+            position = jQuery("#" + id).position().left;
         }
 
         if ( id == 'minBall' ) {
             var min: number = 0, max: number = jQuery('#maxBall').position().left - 20;
             var oldPerc = Math.round((jQuery('#maxBall').position().left + 5)/636 * 100);
         } else {
-            var max: number = 632, min: number = jQuery('#minBall').position().left + 20;
+            var max: number = this.maxSliderPosition, min: number = jQuery('#minBall').position().left + 20;
             var oldPerc = Math.round((jQuery('#minBall').position().left + 5)/636 * 100);
         }
 
@@ -185,12 +201,10 @@ export class FindYourHomeModule implements OnInit{
             jQuery('#' + id).css({left: position});
             if ( id == 'minBall' ) {
                this.filterMinPrice = newVal;
-                //console.log(this.filterMinPrice * 1000);
             } else if ( id == 'maxBall' ) {
                 this.filterMaxPrice = newVal;
-                //console.log(this.filterMaxPrice * 1000);
             }
-            if ( position == 632 ) {
+            if ( position == this.maxSliderPosition ) {
                 newVal = "$10M+";
             } else if ( newVal > 1000 ) {
                 newVal = Math.round(newVal/100)/10;
@@ -252,7 +266,11 @@ export class FindYourHomeModule implements OnInit{
     ngOnInit() {
         this.module_title = "Find Your Next Joyful Home";
         this.imageUrl = "app/public/filter_background.jpg";
-        this.location = this.locDisplay;
+        this.location = this.locData.city + ', ' + this.locData.state;
+        this.locCity = this.locData.city;
+        this.locState = this.locData.stateAbbreviation;
+        
+        //Needed for IE, since IE didn't shift the #maxBall right through the HTML
+        jQuery("#maxBall").css({left: this.maxSliderPosition});
     }
-
 }

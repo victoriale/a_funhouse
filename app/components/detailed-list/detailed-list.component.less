@@ -18,17 +18,20 @@
 //style for large image box
 .detailed-imagebox {
   margin-right:25px;
-  .largeRoundImageNoHover(125px, 3px, @masterStrokeColor);
+  .largeRoundImageLinkWithHover(125px, 3px, @masterStrokeColor);
   .detailed-rank {
     text-align: center;
-    padding-top: 12px;
-    color: #000;
-    width: 42px;
+    padding: 0px 5px;
+    color: @black;
+    min-width: 42px;
+    width: auto;
     height: 42px;
+    line-height: 42px;
     border: 1px solid @backgroundGrey;
-    border-radius: 50%;
-    position: relative;
-    top: -130px;
+    border-radius: 42px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
     background-color: @white;
   }
 }

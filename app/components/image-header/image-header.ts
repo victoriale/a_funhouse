@@ -7,7 +7,7 @@ import {RouteParams} from 'angular2/router';
 @Component({
     selector: 'image-header',
     templateUrl: './app/components/image-header/image-header.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [],
     providers: [],
 })
@@ -21,6 +21,5 @@ export class imageHeader implements OnInit{
     ){ }
 
     ngOnInit() {
-        console.log(this);
     }
 }

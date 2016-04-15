@@ -21,6 +21,7 @@
 
 .magheader {
   //.noclick;
+  font-family: @globalFont;
   position: fixed;
   height: 75px;
   width: 100%;
@@ -33,7 +34,7 @@
     font-size: 16px;
     height: 75px;
     cursor: pointer;
-    font-family: @globalFont;
+    font-family: inherit;
     font-weight: 400;
     // END .magheader_but_bottom
 
@@ -52,7 +53,7 @@
     padding-top: 3px;
     text-align: center;
     font-size: 50px;
-    font-family: @globalFont;
+    font-family: inherit;
     margin-left: 10px;
     cursor: pointer;
 
@@ -84,7 +85,7 @@
   // END .magheader_logo
   &_soc {
     font-size: 16px;
-    font-family: @globalFont;
+    font-family: inherit;
     color: @white;
     cursor: pointer;
     position: relative;
@@ -209,8 +210,10 @@
 }
 
 @media (min-width: 1600px) {
+
   //Needed for partner sites
   .pagenumPartner {
+    font-family: @globalFont;
     top: 20px !important;
   }
 
@@ -229,6 +232,7 @@
       position: relative;
       top: -8px;
       width: auto;
+      font-family: @globalFont;
 
       &:hover {
         color: @joyfulHomeGreen;
@@ -267,12 +271,11 @@
       position: relative;
       left: 50px;
       top: -10px;
-
+      font-family: inherit;
       height: 75px;
       width: 75px;
       background-color: @joyfulHomeGreen;
       border-radius: 50%;
-
       color: @white;
       font-size: 24px;
       text-align: center;
@@ -301,7 +304,11 @@
 
 @media (min-width: 750px) and (max-width: 1599px) {
   //Needed for partner sites
+  .router-link-active {
+    color: @joyfulHomeGreen;
+  }
   .pagenumPartner {
+    font-family: @globalFont;
     top: 20px !important;
     padding-top: 24px !important;
   }
@@ -326,6 +333,7 @@
       width: 345px;
       top: 0;
       border-top: 1px solid @black;
+      font-family: @globalFont;
 
       &:hover {
         color: @white;
@@ -367,12 +375,11 @@
       position: relative;
       left: 50px;
       top: -10px;
-
+      font-family: inherit;
       height: 75px;
       width: 75px;
       background-color: @joyfulHomeGreen;
       border-radius: 50%;
-
       color: @white;
       font-size: 24px;
       text-align: center;

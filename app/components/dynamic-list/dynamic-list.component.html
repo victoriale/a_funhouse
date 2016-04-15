@@ -1,7 +1,11 @@
-<div *ngFor="#list of listData; #i = odd" class="detailed-list" [ngClass]="{'odd': i == true}">
+<div *ngFor="#list of listData; #i = odd" class="dynamic-list detailed-list" [ngClass]="{'odd': i == true}">
     <div class='detailed-imagebox'>
         <a href="{{list.url}}">
-            <img src='{{list.img}}' alt='' />
+            <img src='{{list.img}}' onerror="this.src='/app/public/placeholder-location.jpg';" alt='' />
+            <div>
+                <p>View</p>
+                <p>Profile</p>
+            </div>
             <div class="detailed-rank">#{{list.rank}}</div>
         </a>
     </div>
@@ -12,13 +16,13 @@
                     <span class="detailed-location"><i class="{{list.icon}}"></i>{{list.location}}</span>
                 </a>
                 <p class="detailed-title">{{list.title}}</p>
-                <p class="detailed-list_sub">{{list.list_sub}}</p>
+                <p class="detailed-list_sub" [innerHtml]="list.list_sub"></p>
             </div>
             <div class="detailed-content-row2">
                 <a>
                   <span class="detailed-market"><i></i>{{list.market}}</span>
                 </a>
-                <p class="detailed-value">{{list.value}}</p>
+                <p class="detailed-value">{{list.value | priceFormat}}</p>
 
 
                 <p class="detailed-tag">{{list.tag}}</p>
@@ -26,10 +30,15 @@
         </div>
         <div class="detailed-content-bottom">
             <div class='detailed-content-subbox'>
-                <p>Want more detailed information about this listing?</p>
+                <p>Want more information?</p>
             </div>
-            <a href="{{list.url}}" class='detailed-list-button'>
-                <span><img class="detailed-icon" src="./app/public/realestate_icon.png" /></span>
+            <a *ngIf="list.routePath" [routerLink]="list.routePath" class='detailed-list-button'>
+                <span></span>
+                <span>{{list.buttonName}}</span>
+                <i class='fa fa-angle-right'></i>
+            </a>
+            <a *ngIf="!list.routePath && list.url" [href]="list.url" class='detailed-list-button'>
+                <span></span>
                 <span>{{list.buttonName}}</span>
                 <i class='fa fa-angle-right'></i>
             </a>

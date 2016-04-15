@@ -14,9 +14,9 @@ declare var moment: any;
 @Component({
     selector: 'profile-header',
     templateUrl: './app/modules/profile_header/profile_header.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [TitleComponent, Image180],
-    providers: []
+    providers: [GlobalFunctions]
 })
 export class ProfileHeader implements OnInit{
     public profileType: string;
@@ -31,6 +31,7 @@ export class ProfileHeader implements OnInit{
     public subImageURL: string;
     public main_hasSubImg: boolean;
     public titleComponentData: {};
+    public imageClass="image180Shadow10";
     @Input() profileHeaderData: ProfileHeaderInterface;
 
     constructor(private router: Router, private globalFunctions: GlobalFunctions){
@@ -53,9 +54,10 @@ export class ProfileHeader implements OnInit{
     transformData(){
         var data = this.profileHeaderData;
 
-        var location = data.city + ", " + data.state;
-        //Sanitize city value
+        //Sanitize city/state values
         data.city = this.globalFunctions.toTitleCase(data.city);
+        data.state = this.globalFunctions.stateToAP(data.state);
+        var location = data.city + ", " + data.state;
 
         if(this.profileType== 'LocationPage'){
             //Location Profile Header
@@ -64,7 +66,7 @@ export class ProfileHeader implements OnInit{
                 imageURL: data.locationImage,
                 //Unused field of component for this module
                 smallText: '',
-                smallText2: 'Last Updated: ' + moment(data.lastUpdated).format('dddd, MMMM Do, YYYY'),
+                smallText2: 'Last Updated: ' + moment(data.lastUpdated).format('dddd, MMMM Do, YYYY') + ' at ' + moment(data.lastUpdated).format('hh:mm A') + ' ET',
                 heading1: data.city + ', ' + data.state,
                 heading2: '',
                 heading3: this.globalFunctions.commaSeparateNumber(data.numberOfListings) + ' Listings Available for Sale',
@@ -76,7 +78,7 @@ export class ProfileHeader implements OnInit{
             this.descriptionTitle = data.city + ', ' + data.state;
             this.descriptionLocation = "";
             var defaultText ="Did you know that";
-            var fallback = "Do you know what "+ location +" has to offer? Explore what's trending, properties for sale and neigborhood amenities for "+ location + '.';
+            var fallback = "Do you know what "+ location +" has to offer? Explore what's trending, properties for sale and neighborhood amenities for "+ location + '.';
 
             this.descriptionLocation += data.averageAge === null ? '' : ' the average age for a ' + data.city + ' resident is ' + data.averageAge + ',';
             this.descriptionLocation += data.averageRentalPrice === null ? '' : ' the average rental price is $' + this.globalFunctions.commaSeparateNumber(data.averageRentalPrice) + '/month,';
@@ -91,12 +93,11 @@ export class ProfileHeader implements OnInit{
             this.mainImageURL = data.locationImage;
         }else if(this.profileType === 'ProfilePage') {
             //Listing Profile Header
-
             this.titleComponentData = {
                 imageURL: data.listingImage,
                 //Unused field of component for this module
                 smallText: '',
-                smallText2: data.city + ', ' + data.state + ' > ' + moment(data.lastUpdated).format('dddd, MMMM Do, YYYY'),
+                smallText2: data.city + ', ' + data.state + ' > ' + moment(data.lastUpdated).format('dddd, MMMM Do, YYYY') + ' at ' + moment(data.lastUpdated).format('hh:mm A') + ' ET',
                 heading1: this.globalFunctions.toTitleCase(data.address),
                 heading2: data.listingStatus === null ? '' : '- ' + data.listingStatus,
                 heading3: 'Listing Price: $' + this.globalFunctions.commaSeparateNumber(data.listingPrice),

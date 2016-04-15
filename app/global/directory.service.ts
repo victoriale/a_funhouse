@@ -5,7 +5,7 @@ import {GlobalFunctions} from './global-functions';
 @Injectable()
 
 export class DirectoryService{
-    public apiUrl: string = 'http://api2.joyfulhome.com:280';
+    public apiUrl: string = 'http://prod-joyfulhome-api.synapsys.us';
     public apiToken: string = 'BApA7KEfj';
     public headerName: string = 'X-SNT-TOKEN';
 
@@ -65,13 +65,18 @@ export class DirectoryService{
     }
 
     //API to get cities list
-    getAllCities(pageNumber, state){
+    getAllCities(pageNumber, state, cityStartsWithLetter){
         var headers = this.setToken();
 
         var skip = encodeURI(pageNumber);
         state = encodeURI(state);
+        var url = this.apiUrl + '/directory/cities/cityList/'+ state + '/' + 20 + '/' + skip;        
+        
+        if ( cityStartsWithLetter !== undefined && cityStartsWithLetter !== null ) {
+          url += '/' + cityStartsWithLetter;
+        }
 
-        return this.http.get(this.apiUrl + '/directory/cities/cityList/'+ state + '/' + 20 + '/' + skip, {
+        return this.http.get(url, {
                 headers: headers
             })
             .map(
@@ -82,7 +87,7 @@ export class DirectoryService{
                     if(data.success == false){
                         throw new Error('Error: getAllCities api success, message failed');
                     }
-
+                    
                     return data.data;
                 }
             )
@@ -99,8 +104,8 @@ export class DirectoryService{
         var skip = encodeURI(pageNumber);
         //Null check is because encodeURI turns null into "null"
         listTitle = listTitle === null ? null : encodeURI(listTitle);
-        state = state === null ? null : encodeURI(state);
-        city = city === null ? null : encodeURI(city);
+        state = state === null ? null : encodeURI(state.toUpperCase());
+        city = city === null ? null : encodeURI(city.replace(/-/g, ' '));
         zipcode = zipcode === null ? null : encodeURI(zipcode);
 
         //Transform list title

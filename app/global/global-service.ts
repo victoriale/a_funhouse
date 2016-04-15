@@ -9,6 +9,7 @@ import {List, List2} from './global-interface';
 import {Injectable} from 'angular2/core';
 import {HomePageData} from "./global-interface";
 import {Http, Headers} from 'angular2/http';
+import {GlobalFunctions} from './global-functions';
 
 @Injectable()
 
@@ -23,10 +24,22 @@ export class PartnerHeader {
   //API for listing profile
   getPartnerData(partner_id) {
 
-    console.log('Grabbing Partner Data', partner_id);
+    // var partnerID = partner_id.split('-');
+    //
+    // //handles some cases where domain registries are different
+    // var combinedID = [];
+    // var domainRegisters = [];
+    // for(var i = 0; i < partnerID.length; i++){
+    //     if(partnerID[i] == "com" || partnerID[i] == "gov" || partnerID[i] == "net" || partnerID[i] == "org" || partnerID[i] == "co"){
+    //       combinedID.push(partnerID[i]);
+    //     }else{
+    //       domainRegisters.push(partnerID[i]);
+    //     }
+    // }
+    //
+    // partner_id = domainRegisters.join('-')+ "." + combinedID.join('.');
 
     var fullUrl = this.protocolToUse + this.apiUrl + partner_id;
-    console.log(fullUrl);
     return this.http.get(fullUrl, {
     })
     .map(
@@ -44,13 +57,18 @@ export class PartnerHeader {
 
 export class listViewPage {
   public protocolToUse: string = (location.protocol == "https:") ? "https" : "http";
-  public apiUrl: string = '://api2.joyfulhome.com:280';
+  public apiUrl: string = '://prod-joyfulhome-api.synapsys.us';
 
-  constructor(public http: Http) {}
+  constructor(public http: Http, private globalFunctions: GlobalFunctions) {}
 
   //API for listview page data
   getListData(listname, state, city, limit, page, sort) {
-    var query = {
+    if ( /-/.exec(listname) ) {
+      //only reformat if listname is actually in kabab case, as it will change camelCase to lowercase
+      listname = this.globalFunctions.kababCaseToCamelCase(listname);
+    }
+    
+    var query:any  = {
       listname: listname,
       state: state,
       city: city,
@@ -62,12 +80,11 @@ export class listViewPage {
     if(sort !== null){
       query.sort = sort;
     }
-
     var fullUrl = this.protocolToUse + this.apiUrl +"/list";
 
     //list/homesAtLeast5YearsOld/KS/Wichita/empty/10/1
     for (var q in query) {
-      if (query[q] == null || query[q] == 'empty') {
+      if (query[q] == 'Null' || query[q] == null || query[q] == 'empty') {
         query[q] = '/empty';
       } else {
         query[q] = '/' + query[q];
@@ -115,9 +132,9 @@ export class listViewPage {
 @Injectable()
 export class ListOfListPage {
 
-  constructor(public http: Http) { }
+  constructor(public http: Http, private _globalFunctions: GlobalFunctions) { }
 
-  public apiUrl: string = 'http://api2.joyfulhome.com:280';
+  public apiUrl: string = 'http://prod-joyfulhome-api.synapsys.us';
 
   getAddressListOfListPage(address){
     address = encodeURIComponent(address);
@@ -134,6 +151,9 @@ export class ListOfListPage {
   }
 
   getListOfListPage(state, city) {
+    city = this._globalFunctions.toTitleCase(city.replace(/-/g, ' '));
+    state = state.toUpperCase();
+
     //Nearby Cities call (Returns city, state, distance)
     return this.http.get(this.apiUrl + '/list/listOfLists/' + state + '/' + city)
       .map(
@@ -145,12 +165,27 @@ export class ListOfListPage {
       }
       )
   }
+
+  getListOfListPageState(state) {
+    state = state.toUpperCase();
+
+    //Nearby Cities call (Returns city, state, distance)
+    return this.http.get(this.apiUrl + '/list/listOfLists/' + state)
+        .map(
+            res => res.json()
+        )
+        .map(
+            data => {
+              return data.data;
+            }
+        )
+  }
 }
 
 @Injectable()
 
 export class GlobalPage {
-  public apiUrl: string = 'http://api2.joyfulhome.com:280';
+  public apiUrl: string = 'http://prod-joyfulhome-api.synapsys.us';
 
   constructor(public http: Http){}
   //Function to set custom headers
@@ -218,7 +253,10 @@ export class DynamicWidgetCall {
       .map(
       data => {
         return data;
+      },
+      err =>{
+        return err;
       }
-      )
+  )
   }
 }

@@ -8,7 +8,7 @@ import {ROUTER_DIRECTIVES, RouteParams} from "angular2/router";
 @Component({
     selector: 'magtab-component',
     templateUrl: './app/components/magazine/mag-tabs/mag-tabs.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [MagTabComponent, ROUTER_DIRECTIVES]
 })
 export class MagTabComponent implements OnInit {
@@ -26,7 +26,6 @@ export class MagTabComponent implements OnInit {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
         this.address = _params.get('addr');
-        //console.log( "address", this.addr);
     }
 
     selectItem( selectedItem ) {

@@ -8,7 +8,7 @@ import {moduleHeader} from '../../components/module-header/module-header';
 @Component({
     selector: 'crime-module',
     templateUrl: './app/modules/crime/crime.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+
     directives: [moduleHeader],
     providers: [],
     inputs:['locData']
@@ -35,28 +35,28 @@ export class CrimeModule implements OnInit{
     //        description: 'Shooting/Stabbing. CPD o/s with person stabbed in head during quarrel. Victim is in good condition...',
     //        date: '02/23/2016',
     //        imgId: 'shooting',
-    //        imgSrc: './app/public/icons/Icon_Shooting.png'
+    //        imgSrc: '/app/public/icons/Icon_Shooting.png'
     //    },
     //    {
     //        type: 'Arrest',
     //        description: 'INTERFERENCE WITH PUBLIC OFFICER. OBSTRUCTING JUSTICE. Location description: STREET...',
     //        date: '02/23/2016',
     //        imgId: 'arrest',
-    //        imgSrc: './app/public/icons/Icon_Arrest.png'
+    //        imgSrc: '/app/public/icons/Icon_Arrest.png'
     //    },
     //    {
     //        type: 'Vandalism',
     //        description: 'CRIMINAL DAMAGE TO VEHICLE. Location description: CHA PARKING LOT/GROUNDS...',
     //        date: '02/23/2016',
     //        imgId: 'vandalism',
-    //        imgSrc: './app/public/icons/Icon_Vandalism.png'
+    //        imgSrc: '/app/public/icons/Icon_Vandalism.png'
     //    },
     //    {
     //        type: 'Theft',
     //        description: 'THEFT. $500 AND UNDER. Location description. GAS STATION...',
     //        date: '02/23/2016',
     //        imgId: 'theft',
-    //        imgSrc: './app/public/icons/Icon_Theft.png'
+    //        imgSrc: '/app/public/icons/Icon_Theft.png'
     //    }
     //];
 
@@ -65,35 +65,16 @@ export class CrimeModule implements OnInit{
         this.profileType = this.router.hostComponent.name;
     }
 
-    //Build Module Title
-    setModuleTitle(){
-
-        if(this.profileType === 'LocationPage'){
-            //Location Crime Module
-            var paramLocation: string = this._params.get('loc');
-            var paramCity: string = this.globalFunctions.toTitleCase(this.locData.city);
-            paramCity = this.globalFunctions.toTitleCase(paramCity.replace(/%20/g, " "));
-            var paramState: string = this.locData.state;
-            this.moduleTitle = 'Crime Activity In ' + paramCity + ', ' + paramState;
-        }else if(this.profileType === 'ProfilePage'){
-            //Listing Crime Module
-            var paramAddress = this._params.get('address').split('-');
-            var paramState = paramAddress[paramAddress.length -1];
-            var paramCity = paramAddress [paramAddress.length - 2];
-            var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
-            var address = tempArr.join(' ');
-            this.moduleTitle = 'Crime Activity In and Around ' + this.globalFunctions.toTitleCase(address) + ' ' + this.globalFunctions.toTitleCase(paramCity) + ', ' + paramState;
-        }
-    }
-
     transformData(){
         var data = this.crimeData;
-
+        var cityState = this.globalFunctions.toTitleCase(data.city) + ', ' + this.globalFunctions.stateToAP(data.state);
         var returnArray = [];
+        this.moduleTitle = 'Crime Activity in ' + cityState;
 
         //Aggravated Assault
         returnArray.push({
             title: 'Aggravated Assault',
+            class: 'crime-assault',
             color: '#44b244',
             pct: (Math.round(data.aggravatedAssaultPercentage * 100) / 100) + '%',
             value: data.aggravatedAssaultPercentage
@@ -101,6 +82,7 @@ export class CrimeModule implements OnInit{
         //Burglary
         returnArray.push({
             title: 'Burglary',
+            class: 'crime-burglary',
             color: '#1C31CE',
             pct: (Math.round(data.burglaryPercentage * 100) / 100) + '%',
             value: data.burglaryPercentage
@@ -108,6 +90,7 @@ export class CrimeModule implements OnInit{
         //Larceny
         returnArray.push({
             title: 'Larceny',
+            class: 'crime-larceny',
             color: '#FFC600',
             pct: (Math.round(data.larcenyPercentage * 100) / 100) + '%',
             value: data.larcenyPercentage
@@ -115,6 +98,7 @@ export class CrimeModule implements OnInit{
         //Murder
         returnArray.push({
             title: 'Murder',
+            class: 'crime-murder',
             color: '#ff0101',
             pct: (Math.round(data.murderPercentage * 100) / 100) + '%',
             value: data.murderPercentage
@@ -122,6 +106,7 @@ export class CrimeModule implements OnInit{
         //Vehicle Theft
         returnArray.push({
             title: 'Vehicle Theft',
+            class: 'crime-vehicle',
             color: '#65398E',
             pct: (Math.round(data.vehicleTheftPercentage * 100) / 100) + '%',
             value: data.vehicleTheftPercentage
@@ -129,12 +114,13 @@ export class CrimeModule implements OnInit{
         //Other Crime
         returnArray.push({
             title: 'Other',
+            class: 'crime-other',
             color: '#898989',
             pct: (Math.round(data.otherPercentage * 100) / 100) + '%',
             value: data.otherPercentage
         });
 
-        this.imageUrl = data.locationImage === null ? './app/public/placeholder-location.jpg' : data.locationImage;
+        this.imageUrl = data.locationImage === null ? '/app/public/placeholder-location.jpg' : data.locationImage;
         this.crimeStats = returnArray;
         this.tooltipTitle = 'Crime Grade:';
         this.tooltipData = data.totalGrade;
@@ -157,7 +143,9 @@ export class CrimeModule implements OnInit{
 
         jQuery('#crime-pie').highcharts({
             chart: {
-                type: 'pie'
+                type: 'pie',
+                width: 280,
+                height: 235
             },
             tooltip: false,
             title: false,
@@ -189,7 +177,6 @@ export class CrimeModule implements OnInit{
 
     //Initialization Call
     ngOnInit(){
-        this.setModuleTitle();
     }
 
     //On Change Call

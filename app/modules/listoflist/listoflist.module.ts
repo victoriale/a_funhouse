@@ -9,16 +9,16 @@ import {GlobalFunctions} from "../../global/global-functions";
 @Component({
     selector: 'list-of-lists-module',
     templateUrl: './app/modules/listoflist/listoflist.module.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+
     directives: [contentList,moduleHeader, PaginationFooter],
     providers: [],
-    inputs:['listOfLists', 'state', 'city']
+    inputs:['listOfLists']
 })
 
 export class ListOfListModule {
     public module_title: string;
-    public state: string;
-    public city: string;
+    public paramState: string;
+    public paramCity: string;
     public lists: Array<any> = [];
     public listOfLists: Array<any>;
     public paginationParameters: Object;
@@ -52,8 +52,8 @@ export class ListOfListModule {
             }
 
             //Add title and original title to List Item Object
-            arrayItem.listTitleOrig = listItem.listTitle;
-            arrayItem.listTitle = self._globalFunctions.camelCaseToRegularCase(arrayItem.listTitleOrig);
+            arrayItem.listTitleOrig = this._globalFunctions.camelCaseToKababCase(listItem.listTitle);
+            arrayItem.listTitle = self._globalFunctions.convertListName(arrayItem.listTitleOrig);
 
             //Add data for small images to listData array if it exists
             if(listItem !== null && listItem.listData.length > 0){
@@ -78,8 +78,10 @@ export class ListOfListModule {
 
         //If first item in array has city and state use it (This fixes problems where city is multiple words)
         if(displayArray.length !== 0){
-            this.city = displayArray[0].listData[0].city;
-            this.state = displayArray[0].listData[0].stateOrProvince;
+            this.paramCity = this._globalFunctions.toLowerKebab(displayArray[0].listData[0].city);
+            this.paramState = displayArray[0].listData[0].stateOrProvince.toLowerCase();
+            //Build module title
+            this.module_title = 'Top Lists for ' + this._globalFunctions.toTitleCase(this.paramCity.replace(/-/g, " ")) + ", " + this._globalFunctions.stateToAP(this.paramState);
         }
 
         //Assign data to display in module
@@ -104,8 +106,8 @@ export class ListOfListModule {
             paginationType: 'module',
             viewAllPage: 'List-of-lists-page',
             viewAllParams: {
-                state: this.state,
-                city: this.city
+                state: this.paramState,
+                city: this.paramCity
             }
         }
     }
@@ -128,17 +130,15 @@ export class ListOfListModule {
         }else {
             //Else insert array items that have list data
             this.listOfLists = sanitizedArray;
-            //Set up parameters for pagination footer
-            this.setPaginationParameters();
             //Do initial data transformation for first 3 lists to be displayed
             this.transformData();
+            //Set up parameters for pagination footer
+            this.setPaginationParameters();
         }
     }
 
     ngOnInit() {
         //Sanitize list data
         this.sanitizeListofListData();
-        //Build module title
-        this.module_title = 'Tops Lists For ' + this.city + ", " + this.state;
     }
 }

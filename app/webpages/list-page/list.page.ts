@@ -1,10 +1,9 @@
-/**
- * Created by Victoria on 3/8/2016.
- */
-import {Component} from 'angular2/core';
-import {RouteParams, ROUTER_DIRECTIVES, RouteConfig, Router} from 'angular2/router';
+import {Component, OnInit, OnChanges} from 'angular2/core';
+import {Router, RouteParams, ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
 
 import {ListViewCarousel} from '../../components/carousel/list-view/list-view.component';
+import {DropdownComponent} from '../../components/buttons/sort-by/sort-by.component';
+import {ListMenuComponent} from '../../components/list-menu/list-menu.component';
 import {DetailedListComponent} from '../../components/detailed-list/detailed-list.component';
 import {PhotoListComponent} from '../../components/photo-list/photo-list.component';
 import {WidgetModule} from "../../modules/widget/widget.module";
@@ -16,17 +15,19 @@ import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
 import {MapComponent} from '../../components/map/map.component';
 
+declare var jQuery: any;
 declare var moment: any;
+declare var lh: any;
 
 @Component({
     selector: 'List-page',
     templateUrl: './app/webpages/list-page/list.page.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [PhotoListComponent, ROUTER_DIRECTIVES, DetailedListComponent, ListViewCarousel, WidgetModule, PaginationFooter, LoadingComponent, ErrorComponent, MapComponent],
-    providers: [listViewPage],
+    providers: [listViewPage]
 })
 
-export class ListPage {
+export class ListPage implements OnInit{
     carouselData: any = [];
     listData: any;
     data: any;
@@ -36,9 +37,22 @@ export class ListPage {
 
     public listName: string;
     public listState: string;
+    public listStateAP: string;
     public listCity: string;
     public listLimit: string = "20";
     public listPage: string;
+    //Route's name
+    public pageName: string;
+
+    noListings: boolean = false;
+    showFilters: boolean = false;
+    showTooltip: boolean = true;
+
+    //For select filters
+    selectBedrooms: string;
+    selectBathrooms: string;
+    selectSqFeet: string;
+    selectLot: string;
 
     //Sort is the sort query parameter. sortType is the type of sort (price, living area, etc). sortDirection is the direction of the sort (high to low or low to high)
     public sort: string;
@@ -58,6 +72,8 @@ export class ListPage {
 
     public geoExists: boolean = false;
 
+    viewCheck: string;
+
     //Filter params for FYH
     filterState: string;
     filterCity: string;
@@ -70,35 +86,45 @@ export class ListPage {
     filterLot: string;
     filterType: string;
 
-    constructor(private _router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions, private listViewData: listViewPage) {
+    constructor(private _params: RouteParams, private globalFunctions: GlobalFunctions, private listViewData: listViewPage, private _router: Router) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }
 
     sortChange(event){
         var sortOption = event.target.value;
-        console.log(sortOption);
         var self = this;
         var params: any = {
             viewType: self.viewType,
             listname: self.listName,
             state: self.listState,
-            city: self.listCity,
-            page: self.listPage
+            page: self.listPage,
+            city: self.listCity
         };
+
+        //If city does not exist in url set page to page state
+        if(self.listCity === null){
+            delete params.city;
+        }
 
         if(sortOption !== 'none'){
             params.sort = sortOption;
         }
 
-        this._router.navigate(['List-page', params]);
+        this._router.navigate([self.pageName, params]);
     }
 
     setPaginationParams(input) {
         var data = input.data;
 
-        if(this.listName !== 'filter') {
-            //Normal Listing
+        if (data.length <= 0) {
+            this.noListings = true;
+            return;
+        } else {
+            this.noListings = false;
+        }
+
+        if (this.listName !== 'filter') {
             var listLimit = Number(this.listLimit);
             var pageNumber = Number(this.listPage);
             //Find max amount of pages to send to pagination footer
@@ -108,10 +134,14 @@ export class ListPage {
             var navigationParams: any = {
                 listname: this.listName,
                 state: this.listState,
-                city: this.listCity,
-                viewType: this.viewType
+                viewType: this.viewType,
+                city: this.listCity
             };
 
+            //If city does not exist in url set page to page state
+            if(this.listCity === null){
+                delete navigationParams.city;
+            }
             //If sort parameter exists use in navigation parameters
             if(this.sort !== null){
                 navigationParams.sort = this.sort;
@@ -121,12 +151,11 @@ export class ListPage {
                 index: pageNumber,
                 max: max,
                 paginationType: 'page',
-                navigationPage: 'List-page',
+                navigationPage: this.pageName,
                 navigationParams: navigationParams,
                 indexKey: 'page'
             };
-        }else {
-            //Filter Listing
+        } else {
             var listLimit = Number(this.listLimit);
             var pageNumber = Number(this.listPage);
             //Find max amount of pages to send to pagination footer
@@ -138,6 +167,7 @@ export class ListPage {
                 paginationType: 'page',
                 navigationPage: 'List-page-filter',
                 navigationParams: {
+                    viewType: this.viewType,
                     listname: this.listName,
                     state: this._params.get('state'),
                     city: this._params.get('city'),
@@ -150,7 +180,6 @@ export class ListPage {
                     type: this._params.get('type'),
                     limit: this.listLimit,
                     page: this._params.get('page'),
-                    viewType: this.viewType
                 },
                 indexKey: 'page'
             };
@@ -183,6 +212,14 @@ export class ListPage {
                 city: this.listCity,
                 page: this.listPage
             };
+
+            //If city does not exist set to state page
+            if(this.listCity === null){
+                delete menuListParams.city;
+                delete menuPhotoParams.city;
+                delete menuMapParams.city;
+            }
+
             //If sort query parameter is defined add to menu button paramters
             if (this.sort !== null) {
                 menuListParams.sort = this.sort;
@@ -193,7 +230,7 @@ export class ListPage {
             this.menuListParams = menuListParams;
             this.menuPhotoParams = menuPhotoParams;
             this.menuMapParams = menuMapParams;
-            this.listPageName = 'List-page';
+            this.listPageName = this.pageName;
         }else{
             //Filter Listing
             var menuListParams:any = {
@@ -255,6 +292,7 @@ export class ListPage {
         // Get listname param to determine which API to call
         this.listName = this._params.get('listname');
         this.viewType = this._params.get('viewType');
+        this.showTooltip = this.listName !== 'filter';
 
         if(this.listName !== "filter"){
             //Normal Listing
@@ -281,10 +319,10 @@ export class ListPage {
                         break;
                 }
             }
-
             this.listState = this._params.get('state');
-            this.listCity = this._params.get('city');
-            this.listCity = this.globalFunctions.toTitleCase(this.listCity);
+            this.listStateAP = this.globalFunctions.stateToAP(this.listState);
+            this.listCity = this._params.get('city') === null ? null : this.globalFunctions.toTitleCase(decodeURI(this._params.get('city').replace(/-/g," ")));
+            this.pageName = this.listCity === null ? 'List-page-state' : 'List-page';
             this.listPage = this._params.get('page');
 
             //list/homesAtLeast5YearsOld/KS/Wichita/empty/10/1
@@ -347,6 +385,7 @@ export class ListPage {
     var listData = [];
     var carouselData = [];
     var globeFunc = this.globalFunctions;
+    var listhubKeys = [];//USED TO PUSH ALL KEYS FOR LISTHUB TRACKING
         //Assign data to send to map component
       this.mapData = data.data;
       var self = this;
@@ -366,22 +405,26 @@ export class ListPage {
           if(val.livingArea === null){
               val.livingArea = "N/A";
           }
+          if(val.photos.length <= 0) {
+              val.photos[0] = "app/public/no_photo_images/House_1.png";
+          }
       var livingArea = globeFunc.commaSeparateNumber(val.livingArea);
       var newData = {
           img : val.photos[0],
           list_sub : val.propertyType + ": " + val.numBedrooms + " Beds & " + val.numBathrooms + " Baths",
-          title : val.addressKey.replace(/-/g, ' '),
+          //title : val.addressKey.replace(/-/g, ' '),
+          title: val.fullStreetAddress === null ? '' : self.globalFunctions.toTitleCase(val.fullStreetAddress),
           numBed : val.numBedrooms + " Beds ",
           numBath: val.numBathrooms + " Baths ",
           date: formattedDate,
-          value: "$"+ val.listPrice,
+          value: val.listPrice,
           listPrice: val.listPrice,
           livingArea: val.livingArea,
           tag: livingArea + ' sqft',
           buttonName: 'View Profile',
           icon: 'fa fa-map-marker',
           location: val.loc + ' - ' + val.postalCode,
-          market:'Built in ' + val.yearBuilt,
+          market: val.yearBuilt === null ? '' : 'Built in ' + val.yearBuilt,
           rank: (indexStart + i),
           desc: val.listingDescription,
           photos: val.photos,
@@ -390,19 +433,24 @@ export class ListPage {
       newData['url1'] = "../../Magazine";
       newData['url2'] = {addr:val.addressKey};
       newData['url3'] = "PropertyOverview";
+      newData['locUrl1'] = "Location-page";
+      newData['locUrl2'] = {loc: self.globalFunctions.toLowerKebab(val.city) + "-" + val.stateOrProvince.toLowerCase()};
 
       var carData = {
         heading:'Featured Listing',
         image_url:val.photos[0],
-        listing_price: "$"+val.listPrice,
+        listing_price: val.listPrice,
         listing_area: livingArea + " sqft",
         listing_addr1: val.fullStreetAddress + ' ',
-        listing_addr2:val.loc + ' ' + val.postalCode,
+        listing_addr2: val.loc + ' ' + val.postalCode,
       };
       carData['url1'] = "../../Magazine";
       carData['url2'] = {addr:val.addressKey};
       carData['url3'] = "PropertyOverview";
+      carData['locUrl1'] = "Location-page";
+      carData['locUrl2'] = {loc: self.globalFunctions.toLowerKebab(val.city) + "-" + val.stateOrProvince.toLowerCase()};
 
+      listhubKeys.push({lkey: val.listingKey});//send key to listhub
       carouselData.push(carData);
       listData.push(newData);
     });//END of forEach
@@ -417,11 +465,128 @@ export class ListPage {
     this.listData = listData;
     this.carouselData = carouselData;
 
-    //console.log('ListData', this.listData);
+    //send array of keys for listhub to track
+    lh('submit', 'SEARCH_DISPLAY', listhubKeys);
+
+    // console.log('listhubKeys', listhubKeys);
+    // console.log('ListData', this.listData);
     // console.log('carouselData', this.carouselData);
   }//END OF TRANSFORM FUNCTION
 
+    //Events for select box filters
+    onSelectBedrooms(event) {
+        this.selectBedrooms = event.target.value;
+        var params: any = {
+            viewType: this.viewType,
+            listname: this.listName,
+            state: this._params.get('state'),
+            city: this._params.get('city'),
+            priceLowerBound: this._params.get('priceLowerBound'),
+            priceUpperBound: this._params.get('priceUpperBound'),
+            bedrooms: this.selectBedrooms,
+            bathrooms: this.selectBathrooms,
+            squareFeet: this.selectSqFeet,
+            lotSize: this.selectLot,
+            type: this._params.get('type'),
+            limit: this.listLimit,
+            page: this._params.get('page'),
+        };
+        this._router.navigate(['List-page-filter', params]);
+    }
+
+    onSelectBathrooms(event) {
+        this.selectBathrooms = event.target.value;
+        var params: any = {
+            viewType: this.viewType,
+            listname: this.listName,
+            state: this._params.get('state'),
+            city: this._params.get('city'),
+            priceLowerBound: this._params.get('priceLowerBound'),
+            priceUpperBound: this._params.get('priceUpperBound'),
+            bedrooms: this.selectBedrooms,
+            bathrooms: this.selectBathrooms,
+            squareFeet: this.selectSqFeet,
+            lotSize: this.selectLot,
+            type: this._params.get('type'),
+            limit: this.listLimit,
+            page: this._params.get('page'),
+        };
+        this._router.navigate(['List-page-filter', params]);
+    }
+
+    onSelectSqFeet(event) {
+        this.selectSqFeet = event.target.value;
+        var params: any = {
+            viewType: this.viewType,
+            listname: this.listName,
+            state: this._params.get('state'),
+            city: this._params.get('city'),
+            priceLowerBound: this._params.get('priceLowerBound'),
+            priceUpperBound: this._params.get('priceUpperBound'),
+            bedrooms: this.selectBedrooms,
+            bathrooms: this.selectBathrooms,
+            squareFeet: this.selectSqFeet,
+            lotSize: this.selectLot,
+            type: this._params.get('type'),
+            limit: this.listLimit,
+            page: this._params.get('page'),
+        };
+        this._router.navigate(['List-page-filter', params]);
+    }
+
+    onSelectLotSize(event) {
+        this.selectLot = event.target.value;
+        var params: any = {
+            viewType: this.viewType,
+            listname: this.listName,
+            state: this._params.get('state'),
+            city: this._params.get('city'),
+            priceLowerBound: this._params.get('priceLowerBound'),
+            priceUpperBound: this._params.get('priceUpperBound'),
+            bedrooms: this.selectBedrooms,
+            bathrooms: this.selectBathrooms,
+            squareFeet: this.selectSqFeet,
+            lotSize: this.selectLot,
+            type: this._params.get('type'),
+            limit: this.listLimit,
+            page: this._params.get('page'),
+        };
+        this._router.navigate(['List-page-filter', params]);
+    }
+
+    goBack() {
+        window.history.back();
+    }
+
+  closeTooltip() {
+    this.showTooltip = false;
+  }
+
   ngOnInit() {
     this.getListView();
+      if(this.listName == "filter") {
+          this.showFilters = true;
+      }
+      this.selectBedrooms = this._params.get('bedrooms');
+      this.selectBathrooms = this._params.get('bathrooms');
+      this.selectSqFeet = this._params.get('squareFeet');
+      this.selectLot = this._params.get('lotSize');
+
+      this.viewCheck = this._params.get('viewType');
+
+      setTimeout(() => {
+          // Set filter dropdown values based on url params
+          jQuery('#select-bedrooms').val(this.selectBedrooms);
+          jQuery('#select-bathrooms').val(this.selectBathrooms);
+          jQuery('#select-square-feet').val(this.selectSqFeet);
+          jQuery('#select-lot-size').val(this.selectLot);
+
+          // Set sort dropdown values based on url param
+          jQuery('#sort_by').val(this.sort);
+
+          // Add selected class to menu item based on viewType param
+          jQuery('#' + this.viewCheck).addClass('selected');
+      }, 400);
   }
+
 }

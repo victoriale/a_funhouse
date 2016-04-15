@@ -1,13 +1,16 @@
 import {Component, OnInit, Input} from 'angular2/core';
 import {ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
 
+import {PriceFormatPipe} from '../../pipes/price-format.pipe';
+
 @Component({
     selector: 'detailed-list',
     templateUrl: './app/components/detailed-list/detailed-list.component.html',
-    styleUrls: ['./app/global/stylesheets/master.css'],
+    
     directives: [ROUTER_DIRECTIVES],
     providers: [],
     inputs: ['listData'],
+    pipes: [PriceFormatPipe]
 })
 
 export class DetailedListComponent implements OnInit{
@@ -19,7 +22,7 @@ export class DetailedListComponent implements OnInit{
       if(typeof this.listData == 'undefined'){
           this.listData =
           {
-              imageURL : './app/public/joyfulhome_house.png',
+              imageURL : '/app/public/joyfulhome_house.png',
               location : 'Wichita, KS',
               postal : ' 67260',
               livingarea : 'livingarea',
