@@ -26,7 +26,6 @@ export class LocationProfileService{
         city = encodeURI(city);
         state = encodeURI(state);
 
-        console.log(this.apiUrl + '/list/random/' + state + '/' + city + '/1/1');
         return this.http.get(this.apiUrl + '/list/random/' + state + '/' + city + '/1/1', {
                 headers: headers
             })
@@ -90,7 +89,6 @@ export class LocationProfileService{
 
         city = encodeURI(city);
         state = encodeURI(state);
-        console.log(this.apiUrl + '/list/listingsMostRecent/' + state + '/' + city + '/empty/4/'+counter);
         return this.http.get(this.apiUrl + '/list/listingsMostRecent/' + state + '/' + city + '/empty/4/'+counter, {
                 headers: headers
             })
