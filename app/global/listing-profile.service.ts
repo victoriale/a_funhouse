@@ -20,7 +20,7 @@ export class ListingProfileService{
     }
 
     //API to get featured list data
-    getListingFeaturedList(address){
+    getListingFeaturedList(address){ // using location featured call
         //Configure HTTP Headers
         var headers = this.setToken();
 
@@ -141,7 +141,7 @@ export class ListingProfileService{
         )
     }
 
-    getTrendingHomesData(address, counter){
+    getTrendingHomesData(address, counter){ //Using location trending call
         //Configure HTTP Headers
         var headers = this.setToken();
 

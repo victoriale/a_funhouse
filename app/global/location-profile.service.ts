@@ -26,7 +26,10 @@ export class LocationProfileService{
         city = encodeURI(city);
         state = encodeURI(state);
 
-        return this.http.get(this.apiUrl + '/list/random/' + state + '/' + city + '/1/1', {
+        var random = Math.floor(Math.random() * 19);
+        var list = this.globFunc.randomList(random);
+
+        return this.http.get(this.apiUrl + '/list/'+list+'/' + state + '/' + city + '/empty/1/1', {
                 headers: headers
             })
             .map(
@@ -34,7 +37,11 @@ export class LocationProfileService{
             )
             .map(
                 data => {
-                    return data.data;
+                  var returnData = {
+                    listName: list,
+                    listData: data.data
+                  }
+                    return returnData;
                 }
             )
     }
@@ -146,7 +153,10 @@ export class LocationProfileService{
 
           city = encodeURI(city);
           state = encodeURI(state);
-          return this.http.get(this.apiUrl + '/list/random/' + state + '/' + city + '/1/'+ counter, {
+
+          var random = Math.floor(Math.random() * 19);
+          var list = this.globFunc.randomList(random);
+          return this.http.get(this.apiUrl + '/list/'+list+'/' + state + '/' + city + '/empty/1/'+ counter, {
                   headers: headers
               })
               .map(
@@ -154,7 +164,11 @@ export class LocationProfileService{
               )
               .map(
                   data => {
-                      return data.data;
+                    var returnData = {
+                      listName: list,
+                      listData: data.data
+                    }
+                      return returnData;
                   }
               )
       }
