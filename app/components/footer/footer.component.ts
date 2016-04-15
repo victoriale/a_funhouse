@@ -76,7 +76,7 @@ export class FooterComponent implements OnInit {
         { "name": "Michigan", "abr": "mi" },
         { "name": "Minnesota", "abr": "mn" },
         { "name": "Mississippi", "abr": "ms" },
-        { "name": "Missouri", "abr": "mi" },
+        { "name": "Missouri", "abr": "mo" },
         { "name": "Montana", "abr": "mt" },
         { "name": "Nebraska", "abr": "ne" },
         { "name": "Nevada", "abr": "nv" },
