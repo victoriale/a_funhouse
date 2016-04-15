@@ -321,7 +321,7 @@ export class ListPage implements OnInit{
             }
             this.listState = this._params.get('state');
             this.listStateAP = this.globalFunctions.stateToAP(this.listState);
-            this.listCity = this._params.get('city') === null ? null : this.globalFunctions.toTitleCase(decodeURI(this._params.get('city')));
+            this.listCity = this._params.get('city') === null ? null : this.globalFunctions.toTitleCase(decodeURI(this._params.get('city').replace(/-/g," ")));
             this.pageName = this.listCity === null ? 'List-page-state' : 'List-page';
             this.listPage = this._params.get('page');
 

@@ -17,8 +17,8 @@ import {GlobalFunctions} from "../../global/global-functions";
 
 export class ListOfListModule {
     public module_title: string;
-    public state: string;
-    public city: string;
+    public paramState: string;
+    public paramCity: string;
     public lists: Array<any> = [];
     public listOfLists: Array<any>;
     public paginationParameters: Object;
@@ -78,8 +78,8 @@ export class ListOfListModule {
 
         //If first item in array has city and state use it (This fixes problems where city is multiple words)
         if(displayArray.length !== 0){
-            this.city = this._globalFunctions.toLowerKebab(displayArray[0].listData[0].city);
-            this.state = displayArray[0].listData[0].stateOrProvince.toLowerCase();
+            this.paramCity = this._globalFunctions.toLowerKebab(displayArray[0].listData[0].city);
+            this.paramState = displayArray[0].listData[0].stateOrProvince.toLowerCase();
         }
 
         //Assign data to display in module
@@ -104,8 +104,8 @@ export class ListOfListModule {
             paginationType: 'module',
             viewAllPage: 'List-of-lists-page',
             viewAllParams: {
-                state: this.state.toLowerCase(),
-                city: this._globalFunctions.toLowerKebab(this.city)
+                state: this.paramState,
+                city: this.paramCity
             }
         }
     }
@@ -139,6 +139,6 @@ export class ListOfListModule {
         //Sanitize list data
         this.sanitizeListofListData();
         //Build module title
-        this.module_title = 'Top Lists for ' + this.city + ", " + this._globalFunctions.stateToAP(this.state);
+        this.module_title = 'Top Lists for ' + this._globalFunctions.toTitleCase(this.paramCity.replace(/-/g, " ")) + ", " + this._globalFunctions.stateToAP(this.paramState);
     }
 }
