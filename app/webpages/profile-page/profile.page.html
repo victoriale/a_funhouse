@@ -39,7 +39,7 @@
                         <headline-component *ngIf="trendingHomesData || lists" [data]="headlineOtherHomes"></headline-component>
 
                         <!--Trending Section-->
-                        <trending-homes *ngIf="trendingHomesData && profileHeaderData" [locData]="locData" [trending]="trendingFeature" [trendingHomesData]="trendingHomesData"></trending-homes>
+                        <trending-homes *ngIf="trendingHomesData && profileHeaderData && addressObject" [addressObject]="addressObject" [locData]="locData" [trending]="trendingFeature" [trendingHomesData]="trendingHomesData"></trending-homes>
 
                         <!--List of List Section-->
                         <list-of-lists-module *ngIf="lists" [listOfLists]="lists"></list-of-lists-module>

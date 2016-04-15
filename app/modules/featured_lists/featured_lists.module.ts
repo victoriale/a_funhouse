@@ -72,7 +72,7 @@ export class FeaturedListsModule implements OnInit{
                     this.featuredListData.listName = this.listName;
                     this.transformData();
                 },
-                err => console.log('Error - Location Trending Homes Data: ', err)
+                err => console.log('Error - Feature Lists Data: ', err)
             )
     }
 
