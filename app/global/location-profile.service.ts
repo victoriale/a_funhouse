@@ -28,8 +28,9 @@ export class LocationProfileService{
 
         var list = this.globFunc.randomList();
         var random = Math.floor(Math.random() * list.length);
+        var chosenList = list[random];
 
-        return this.http.get(this.apiUrl + '/list/'+list[random]+'/' + state + '/' + city + '/empty/1/1', {
+        return this.http.get(this.apiUrl + '/list/'+chosenList+'/' + state + '/' + city + '/empty/1/1', {
                 headers: headers
             })
             .map(
@@ -38,7 +39,7 @@ export class LocationProfileService{
             .map(
                 data => {
                   var returnData = {
-                    listName: list,
+                    listName: chosenList,
                     listData: data.data
                   }
                     return returnData;
@@ -156,7 +157,8 @@ export class LocationProfileService{
 
           var list = this.globFunc.randomList();
           var random = Math.floor(Math.random() * list.length);
-          return this.http.get(this.apiUrl + '/list/'+list[random]+'/' + state + '/' + city + '/empty/1/'+ counter, {
+          var chosenList = list[random];
+          return this.http.get(this.apiUrl + '/list/'+chosenList+'/' + state + '/' + city + '/empty/1/'+ counter, {
                   headers: headers
               })
               .map(
@@ -165,7 +167,7 @@ export class LocationProfileService{
               .map(
                   data => {
                     var returnData = {
-                      listName: list,
+                      listName: chosenList,
                       listData: data.data
                     }
                       return returnData;
