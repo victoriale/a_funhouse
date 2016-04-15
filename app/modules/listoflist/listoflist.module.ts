@@ -80,6 +80,8 @@ export class ListOfListModule {
         if(displayArray.length !== 0){
             this.paramCity = this._globalFunctions.toLowerKebab(displayArray[0].listData[0].city);
             this.paramState = displayArray[0].listData[0].stateOrProvince.toLowerCase();
+            //Build module title
+            this.module_title = 'Top Lists for ' + this._globalFunctions.toTitleCase(this.paramCity.replace(/-/g, " ")) + ", " + this._globalFunctions.stateToAP(this.paramState);
         }
 
         //Assign data to display in module
@@ -138,7 +140,5 @@ export class ListOfListModule {
     ngOnInit() {
         //Sanitize list data
         this.sanitizeListofListData();
-        //Build module title
-        this.module_title = 'Top Lists for ' + this._globalFunctions.toTitleCase(this.paramCity.replace(/-/g, " ")) + ", " + this._globalFunctions.stateToAP(this.paramState);
     }
 }
