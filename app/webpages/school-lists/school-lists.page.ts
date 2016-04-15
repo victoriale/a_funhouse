@@ -27,8 +27,6 @@ declare var moment: any;
 
 export class SchoolListsPage implements OnInit{
   imageUrl: string;
-  moduleTitle: string;
-  public location: string;
   public locCity: string;
   public locState: string;
   public profileType: string;
@@ -47,9 +45,7 @@ export class SchoolListsPage implements OnInit{
   constructor(private _params: RouteParams, private router: Router, private globalFunctions: GlobalFunctions, private _locationService: LocationProfileService, params: RouteParams){
       this.category = params.params['listname'];
       this.locState = decodeURI(this._params.get('state'));
-      this.locCity = decodeURI(this._params.get('city'));
-      this.location = this.globalFunctions.toTitleCase(this.locCity) + ', ' + this.globalFunctions.stateToAP(this.locState);
-      this.moduleTitle = "Schools in and Around " + this.location;
+      this.locCity = decodeURI(this._params.get('city')).split("-").join(" ");
       window.scrollTo(0, 0);
   }
 
@@ -96,11 +92,13 @@ export class SchoolListsPage implements OnInit{
    var categoryName = globeFunc.toTitleCase(this.category) + " School";
    var metaData = data['meta'];
    var schoolImage = this.getSchoolImages();
+   var displayState = globeFunc.stateToAP(this.locState);
+   var displayCity = globeFunc.toTitleCase(this.locCity);
    this.titleComponentData = {
        imageURL: '/app/public/joyfulhome_house.png',
        smallText1: 'Last Updated: ' + moment(new Date()).format('dddd, MMMM Do, YYYY'),
-       smallText2: decodeURI(this._params.get('city')) + ', ' + decodeURI(this._params.get('state')),
-       heading1: this.globalFunctions.toTitleCase(this.category) + ' schools in and around ' + decodeURI(this._params.get('city')) + ', ' + decodeURI(this._params.get('state')),
+       smallText2: displayCity + ', ' + displayState,
+       heading1: this.globalFunctions.toTitleCase(this.category) + ' schools in and around ' + displayCity + ', ' + displayState,
        icon: 'fa fa-map-marker',
        hasHover: false
   }//end data input for title component
@@ -121,14 +119,14 @@ export class SchoolListsPage implements OnInit{
      if(val.city == '' || val.state_or_province == '' || val.postal_code == "NA" || val.postal_code == '' || val.full_street_address == ''){
        val.location_address  = 'N/A';
        val.location_city = globeFunc.toTitleCase(metaData.city);
-       val.location_state = metaData.state;
+       val.location_state = globeFunc.stateToAP(metaData.state);
        val.zipCode =  "";
        val.locationUrl = {loc: globeFunc.toLowerKebab(metaData.city) + '-' + metaData.state.toLowerCase()};
      } else {
        val.location_city = globeFunc.toTitleCase(val['city']);
        val.locationUrl = {loc: globeFunc.toLowerKebab(val['city']) + '-' + val['state_or_province'].toLowerCase()};
        val.location_address = globeFunc.toTitleCase(val['full_street_address']);
-       val.location_state = val['state_or_province'];
+       val.location_state = globeFunc.stateToAP(val['state_or_province']);
        val.zipCode = val['postal_code'];
      }
      val.school_name = globeFunc.toTitleCase(val['school_name']);

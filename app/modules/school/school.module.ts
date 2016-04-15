@@ -76,6 +76,8 @@ export class SchoolModule implements OnInit{
       var schoolName =  this.globalFunctions.toTitleCase(elementaryData.school_name);
       schoolName = schoolName.replace("Elementary", "Elem");
       schoolName = schoolName.replace("Elem", "Elementary");
+      var paramState = schoolData.state.toLowerCase();
+      var paramCity = this.globalFunctions.toLowerKebab(schoolData.city);
       this.listData = {
         hasHoverNoSubImg: false,
         header: "What Schools are in the Area?",
@@ -86,8 +88,8 @@ export class SchoolModule implements OnInit{
         url: 'School-lists-page',
         paramOptions: {
                     listname: 'elementary',
-                    city: schoolData.city,
-                    state: schoolData.state
+                    city: paramCity,
+                    state: paramState
                   },
         listView: [
           {
@@ -97,8 +99,8 @@ export class SchoolModule implements OnInit{
             url: 'School-lists-page',
             paramOptions: {
                         listname: 'elementary',
-                        city: schoolData.city,
-                        state: schoolData.state
+                        city: paramCity,
+                        state: paramState
                       },
             viewMore: "See All"
           },
@@ -109,8 +111,8 @@ export class SchoolModule implements OnInit{
             url: 'School-lists-page',
             paramOptions: {
                         listname: 'middle',
-                        city: schoolData.city,
-                        state: schoolData.state
+                        city: paramCity,
+                        state: paramState
                       },
             viewMore: "See All"
           },
@@ -121,8 +123,8 @@ export class SchoolModule implements OnInit{
             url: 'School-lists-page',
             paramOptions: {
                         listname: 'high',
-                        city: schoolData.city,
-                        state: schoolData.state
+                        city: paramCity,
+                        state: paramState
                       },
             viewMore: "See All"
           }
@@ -134,8 +136,8 @@ export class SchoolModule implements OnInit{
           url1: 'School-lists-page',
           paramOptions1: {
                       listname: 'elementary',
-                      city: schoolData.city,
-                      state: schoolData.state
+                      city: paramCity,
+                      state: paramState
                     },
           icon1: 'fa-pencil',
           title1: 'Elementary Schools',
@@ -144,8 +146,8 @@ export class SchoolModule implements OnInit{
           url2: 'School-lists-page',
           paramOptions2: {
                       listname: 'middle',
-                      city: schoolData.city,
-                      state: schoolData.state
+                      city: paramCity,
+                      state: paramState
                     },
           icon2: 'fa-child',
           title2: 'Middle Schools',
@@ -154,8 +156,8 @@ export class SchoolModule implements OnInit{
           url3: 'School-lists-page',
           paramOptions3: {
                       listname: 'high',
-                      city: schoolData.city,
-                      state: schoolData.state
+                      city: paramCity,
+                      state: paramState
                     },
           icon3: 'fa-graduation-cap',
           title3: 'High Schools',

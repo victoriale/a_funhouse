@@ -89,6 +89,8 @@ export class AmenitiesModule implements OnInit{
           var stateAP = this.addressObject.stateAP;
           this.moduleTitle = 'Amenities in and Around ' + this.addressObject.address + ', ' + city + ', ' + stateAP;
       }
+      var paramCity = this.globalFunctions.toLowerKebab(listData['location'].city);
+      var paramState = this.globalFunctions.toLowerKebab(listData['location'].state_code);
       this.listData = {
         hasHoverNoSubImg: true,
         header: "What Restaurants Are in the Area?",
@@ -102,8 +104,8 @@ export class AmenitiesModule implements OnInit{
         paramOptions:
                   {
                     listname: 'restaurant',
-                    city: listData['location'].city,
-                    state: listData['location'].state_code
+                    city: paramCity,
+                    state: paramState
                   },
         listView: [//data for amenities component tiles
             {
@@ -114,8 +116,8 @@ export class AmenitiesModule implements OnInit{
               paramOptions:
                         {
                           listname: 'restaurant',
-                          city: listData['location'].city,
-                          state: listData['location'].state_code
+                          city: paramCity,
+                          state: paramState
                         },
               viewMore: "See All"
             },
@@ -127,8 +129,8 @@ export class AmenitiesModule implements OnInit{
               paramOptions:
                         {
                           listname: 'grocers',
-                          city: listData['location'].city,
-                          state: listData['location'].state_code
+                          city: paramCity,
+                          state: paramState
                         },
               viewMore: "See All"
             },
@@ -140,8 +142,8 @@ export class AmenitiesModule implements OnInit{
               paramOptions:
                         {
                           listname: 'banks',
-                          city: listData['location'].city,
-                          state: listData['location'].state_code
+                          city: paramCity,
+                          state: paramState
                         },
               viewMore: "See All"
             }
@@ -153,8 +155,8 @@ export class AmenitiesModule implements OnInit{
           url1: 'Amenities-lists-page',
           paramOptions1: {
                       listname: 'restaurant',
-                      city: listData['location'].city,
-                      state: listData['location'].state_code
+                      city: paramCity,
+                      state: paramState
                     },
           icon1: 'fa-cutlery',
           title1: 'Nearby Restaurants',
@@ -163,8 +165,8 @@ export class AmenitiesModule implements OnInit{
           url2: 'Amenities-lists-page',
           paramOptions2: {
                       listname: 'grocers',
-                      city: listData['location'].city,
-                      state: listData['location'].state_code
+                      city: paramCity,
+                      state: paramState
                     },
           icon2: 'fa-shopping-cart',
           title2: 'Nearby Groceries',
@@ -173,8 +175,8 @@ export class AmenitiesModule implements OnInit{
           url3: 'Amenities-lists-page',
           paramOptions3: {
                       listname: 'banks',
-                      city: listData['location'].city,
-                      state: listData['location'].state_code
+                      city: paramCity,
+                      state: paramState
                     },
           icon3: 'fa-dollar',
           title3: 'Nearby Banks',
