@@ -28,6 +28,7 @@ export class SchoolModule implements OnInit{
     public moduleTitle: string;
     public profileType: string;
     public location: string;
+    public allSchool: Array<any> = [];
     @Input() schoolData: any;
 
     constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions){
@@ -39,7 +40,7 @@ export class SchoolModule implements OnInit{
             return false;
         }
 
-        var max = this.schoolData.elementary.length - 1;
+        var max = this.allSchool.length - 1;
 
         if(this.index > 0){
             this.index -= 1;
@@ -54,7 +55,7 @@ export class SchoolModule implements OnInit{
             return false;
         }
 
-        var max = this.schoolData.elementary.length - 1;
+        var max = this.allSchool.length - 1;
 
         if(this.index < max){
             this.index += 1;
@@ -72,24 +73,33 @@ export class SchoolModule implements OnInit{
       }
       var schoolData = data['meta'];
       this.location = schoolData.city + ', ' + this.globalFunctions.stateToAP(schoolData.state);
-      var elementaryData = data.elementary[this.index];
-      var schoolName =  this.globalFunctions.toTitleCase(elementaryData.school_name);
+
+      var allSchool = [];
+      for(var obj in data){
+        if(obj != 'meta'){
+          data[obj].forEach(function(item){
+            allSchool.push(item);
+          })
+        }
+      }
+      this.allSchool = allSchool;
+      var allSchoolData = allSchool[this.index];
+      var schoolName =  this.globalFunctions.toTitleCase(allSchoolData.school_name);
       schoolName = schoolName.replace("Elementary", "Elem");
       schoolName = schoolName.replace("Elem", "Elementary");
-      var paramState = schoolData.state.toLowerCase();
-      var paramCity = this.globalFunctions.toLowerKebab(schoolData.city);
+
       this.listData = {
         hasHoverNoSubImg: false,
         header: "What Schools are in the Area?",
         name: this.location,
         establishment:  schoolName,
-        address: elementaryData.type,
+        address: allSchoolData.type,
         imageUrl: schoolData.locationImage,
         url: 'School-lists-page',
         paramOptions: {
                     listname: 'elementary',
-                    city: paramCity,
-                    state: paramState
+                    city: schoolData.city,
+                    state: schoolData.state
                   },
         listView: [
           {
@@ -99,8 +109,8 @@ export class SchoolModule implements OnInit{
             url: 'School-lists-page',
             paramOptions: {
                         listname: 'elementary',
-                        city: paramCity,
-                        state: paramState
+                        city: schoolData.city,
+                        state: schoolData.state
                       },
             viewMore: "See All"
           },
@@ -111,8 +121,8 @@ export class SchoolModule implements OnInit{
             url: 'School-lists-page',
             paramOptions: {
                         listname: 'middle',
-                        city: paramCity,
-                        state: paramState
+                        city: schoolData.city,
+                        state: schoolData.state
                       },
             viewMore: "See All"
           },
@@ -123,21 +133,22 @@ export class SchoolModule implements OnInit{
             url: 'School-lists-page',
             paramOptions: {
                         listname: 'high',
-                        city: paramCity,
-                        state: paramState
+                        city: schoolData.city,
+                        state: schoolData.state
                       },
             viewMore: "See All"
           }
         ]
       }//listData ends
+
       // get data for tiles
       this.tileData = {
           button_txt: 'Open Page',
           url1: 'School-lists-page',
           paramOptions1: {
                       listname: 'elementary',
-                      city: paramCity,
-                      state: paramState
+                      city: schoolData.city,
+                      state: schoolData.state
                     },
           icon1: 'fa-pencil',
           title1: 'Elementary Schools',
@@ -146,8 +157,8 @@ export class SchoolModule implements OnInit{
           url2: 'School-lists-page',
           paramOptions2: {
                       listname: 'middle',
-                      city: paramCity,
-                      state: paramState
+                      city: schoolData.city,
+                      state: schoolData.state
                     },
           icon2: 'fa-child',
           title2: 'Middle Schools',
@@ -156,8 +167,8 @@ export class SchoolModule implements OnInit{
           url3: 'School-lists-page',
           paramOptions3: {
                       listname: 'high',
-                      city: paramCity,
-                      state: paramState
+                      city: schoolData.city,
+                      state: schoolData.state
                     },
           icon3: 'fa-graduation-cap',
           title3: 'High Schools',
