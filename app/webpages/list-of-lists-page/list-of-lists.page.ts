@@ -102,7 +102,7 @@ export class ListOfListsPage implements OnInit{
                 imageURL: '/app/public/joyfulhome_house.png',
                 smallText1: 'Monday, February 23, 2016',
                 smallText2: ' United States of America',
-                heading1: this.cityLocation + ', ' + this._globalFunctions.stateToAP(this.stateLocation) + ' Top Lists',
+                heading1: this._globalFunctions.toTitleCase(this.cityLocation) + ', ' + this._globalFunctions.stateToAP(this.stateLocation) + ' Top Lists',
                 heading2: '',
                 heading3: '',
                 heading4: '',
