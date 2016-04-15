@@ -1,14 +1,13 @@
 import {Injectable} from 'angular2/core';
 import {Http, Headers} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
+import {GlobalFunctions} from "./global-functions";
 
 @Injectable()
 
 export class SearchService{
     result: Array<Object>;
-    constructor(public http: Http){
-
-    }
+    constructor(public http: Http, private _globalFunctions: GlobalFunctions){}
 
     //API for search bar
     getSearchResults(input, type){
@@ -50,6 +49,7 @@ export class SearchService{
         var zipcodeCount = 0;
         var maxCount = 10;
         var searchArray = [];
+        var self = this;
 
         //If addresses are not null in api return iterate through addresses
         if(typeof data.address !== 'undefined' && data.address !== null) {
@@ -81,7 +81,7 @@ export class SearchService{
                         title: item.city + ', ' + item.state_or_province,
                         page: 'Location-page',
                         params: {
-                            loc: item.city + '_' + item.state_or_province
+                            loc: self._globalFunctions.toLowerKebab(item.city) + '-' + item.state_or_province.toLowerCase()
                         }
                     });
                     //Increment count to ensure only 10 results are displayed and 5 city results are displayed
@@ -100,7 +100,7 @@ export class SearchService{
                         title: item.zipcode + ' - ' + item.full_street_address + ', ' + item.city + ', ' + item.state_or_province,
                         page: 'Location-page',
                         params: {
-                            loc: item.city + '_' + item.state_or_province
+                            loc: self._globalFunctions.toLowerKebab(item.city) + '-' + item.state_or_province.toLowerCase()
                         }
                     });
                     //Increment count to ensure only 10 results are displayed and 5 zipcode results are displayed

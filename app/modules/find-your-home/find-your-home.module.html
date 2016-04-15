@@ -43,7 +43,7 @@
                 <div (mousedown)="onClickBall($event)" class="price_slider_ball" style="left: 0" id="minBall">
                     <input (focus)="onInputFocus($event)" (blur)="onInputBlur($event)" class="price_slider_ball_label" value="$50K">
                 </div>
-                <div (mousedown)="onClickBall($event)" class="price_slider_ball" style="right: 0" id="maxBall">
+                <div (mousedown)="onClickBall($event)" class="price_slider_ball" style="left: {{maxSliderPosition}}" id="maxBall">
                     <input (focus)="onInputFocus($event)" (blur)="onInputBlur($event)" class="price_slider_ball_label" value="$10M+">
                 </div>
                 <div class="price_slider_avg">

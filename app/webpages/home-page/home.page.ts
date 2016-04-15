@@ -19,7 +19,7 @@ declare var jQuery:any;
 @Component({
     selector: 'PartnerHomePage',
     templateUrl: './app/webpages/home-page/home.page.html',
-    
+
     directives: [PartnerHomePage, HeaderComponent, FooterComponent, HeroComponent, ExploreTilesComponent, ExploreButtonComponent, HeroBottomComponent, FeatureTilesComponent, ROUTER_DIRECTIVES],
     providers: [GeoLocationService, NearByCitiesService],
     inputs: [],
@@ -28,6 +28,7 @@ declare var jQuery:any;
 export class HomePage implements OnInit {
 
     // Location data
+    cityName: string;
     cityLocation: string;
     stateLocation: string;
     stateAPLocation: string;
@@ -80,10 +81,11 @@ export class HomePage implements OnInit {
         this._geoLocationService.getGeoLocation()
             .subscribe(
                 geoLocationData => {
-                    this.cityLocation = geoLocationData[0].city;
-                    this.stateLocation = geoLocationData[0].state;
+                    this.cityLocation = this._globalFunctions.toLowerKebab(geoLocationData[0].city);
+                    this.cityName = this._globalFunctions.toTitleCase(geoLocationData[0].city);
+                    this.stateLocation = geoLocationData[0].state.toLowerCase();
                     this.stateAPLocation = this._globalFunctions.stateToAP(this.stateLocation);
-                    this.cityStateLocation = this.cityLocation + '_' + this.stateLocation;
+                    this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
                 },
                 err => this.defaultCity(),
                 () => this.getNearByCities()
@@ -111,7 +113,7 @@ export class HomePage implements OnInit {
         this.stateLocation = "KS";
         this.stateAPLocation = this._globalFunctions.stateToAP(this.stateLocation);
         this.cityLocation = "Wichita";
-        this.cityStateLocation = this.cityLocation + '_' + this.stateLocation;
+        this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
         this.getNearByCities();
     }
 

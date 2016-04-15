@@ -21,7 +21,7 @@ declare var moment: any;
 @Component({
     selector: 'Amenities-list-page',
     templateUrl: './app/webpages/amenities-lists/amenities-lists.page.html',
-    
+
     directives: [PaginationFooter, WidgetModule, moduleHeader, HeroListComponent, ROUTER_DIRECTIVES, LoadingComponent, BackTabComponent, ErrorComponent, TitleComponent, DynamicCarousel2],
     providers: [LocationProfileService]
 })
@@ -49,6 +49,7 @@ export class AmenitiesListPage implements OnInit{
   arraySize: number = 10;
   providerUrl = 'http://www.yelp.com/';
   providerLogo = '/app/public/amenities_yelp.png';
+
   @Input() amenitiesNearListingData: any;
 
   public isError: boolean = false;
@@ -84,8 +85,8 @@ export class AmenitiesListPage implements OnInit{
     this.titleComponentData = {
         imageURL: '/app/public/joyfulhome_house.png',
         smallText1: 'Last Updated: ' + moment(new Date()).format('dddd, MMMM Do, YYYY'),
-        smallText2: decodeURI(this._params.get('city')) + ', ' + decodeURI(this._params.get('state')),
-        heading1: this.globalFunctions.toTitleCase(this.displayCategory) + ' in and around ' + this.locCity + ', ' + this.locState + ".",
+        smallText2: this.location,
+        heading1: this.globalFunctions.toTitleCase(this.displayCategory) + ' in and around ' + this.location + ".",
         icon: 'fa fa-map-marker',
         hasHover: false
    }//end data input for title component
@@ -112,13 +113,16 @@ export class AmenitiesListPage implements OnInit{
           val.bgClass = "odd";
       }
       val.displayAddress2 =  val['location']['city'] + ', ' + val['location']['state_code'];
-      val.locationUrl = {loc: val['location']['city'] + '_' + val['location']['state_code']};
+      val.locationUrl = {loc: globalFunc.toLowerKebab(val['location']['city']) + '-' + val['location']['state_code'].toLowerCase()};
       if(typeof val.phone == 'undefined' || val.phone === 'null'){
         val.phone = 'No Phone Listed';
       }
       val.phone = globalFunc.formatPhoneNumber(val['phone']);
-      val.categories = val.categories[0][0];
-
+      if(val.categories === 'null' || val.categories == "" || typeof val.categories == 'undefined'){
+        val.categories = 'N/A';
+      } else {
+        val.categories = val.categories[0][0];
+      }
       var carData = {
         textDetails:    [
                         val.name,
@@ -130,7 +134,8 @@ export class AmenitiesListPage implements OnInit{
         callToAction:   "Interested in discovering more about this amenity?",
         buttonLabel:    "<span></span> <span>View on Yelp</span> <i class='fa fa-angle-right'></i>",
         index:          val.rank,
-        imageUrl1:      val.image_url
+        imageUrl1:      val.image_url,
+        imageLocationText: "On Yelp"
       }
       carData['linkUrl1'] = val.url;
       carouselData.push(carData);
@@ -183,8 +188,8 @@ export class AmenitiesListPage implements OnInit{
   }
   ngOnInit(){
     this.locState = decodeURI(this._params.get('state'));
-    this.locCity = decodeURI(this._params.get('city'));
-    this.location = this.globalFunctions.toTitleCase(this.locCity) + ', ' + this.locState;
+    this.locCity = decodeURI(this._params.get('city')).split("-").join(" ");
+    this.location = this.globalFunctions.toTitleCase(this.locCity) + ', ' + this.globalFunctions.stateToAP(this.locState);
     this.getData();
   }//end ngOnInit
 

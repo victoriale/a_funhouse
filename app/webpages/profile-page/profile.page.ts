@@ -32,7 +32,7 @@ declare var lh: any;
 @Component({
     selector: 'profile-page',
     templateUrl: './app/webpages/profile-page/profile.page.html',
-    
+
     directives: [magazineModule, magazineBanner, TrendingHomes, MediaImages, HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs, ShareModule, FeaturedListsModule, AmenitiesModule, WidgetModule, MapModule, LoadingComponent, ErrorComponent],
     providers: [ListOfListPage, ListingProfileService]
 })
@@ -42,6 +42,7 @@ export class ProfilePage implements OnInit{
     address: string;
     city: string;
     state: string;
+    public locData: Object;
     public pageName: string;
     public headlineAbout: any;
     public headlineCrime: any;
@@ -63,6 +64,15 @@ export class ProfilePage implements OnInit{
     public partnerID: string;
     public isError: boolean = false;
     public isChecked: boolean;
+
+    public addressObject: {
+        address: string;
+        city: string;
+        state: string;
+        stateAP: string;
+        listingImage: string;
+        propertyType: string;
+    };
     //  Get current route name
     constructor(private _router:Router, private _listingProfileService: ListingProfileService, private _params: RouteParams, private _listService:ListOfListPage, private globalFunctions: GlobalFunctions){
       this._router.root
@@ -99,6 +109,25 @@ export class ProfilePage implements OnInit{
             .subscribe(
                 data => {
                     this.profileHeaderData = data;
+
+                    this.addressObject = {
+                        address: data.address === null ? '' : this.globalFunctions.toTitleCase(data.address),
+                        city: data.city === null ? '' : this.globalFunctions.toTitleCase(data.city),
+                        state: data.state === null ? '' : data.state.toUpperCase(),
+                        stateAP: this.globalFunctions.stateToAP(data.state),
+                        listingImage: data.listingImage,
+                        propertyType: data.propertyType
+                    };
+                    this.locData = {
+                      city: data.city === null ? '' : this.globalFunctions.toTitleCase(data.city),
+                      state: data.state === null ? '' : data.state.toUpperCase(),
+                      stateAP: this.globalFunctions.stateToAP(data.state),
+                      stateAbbreviation: data.state.toUpperCase(),
+                    };
+
+                    //Set titles for headlines based on profile header data
+                    this.setHeadlines();
+
                     var listingKey = data['listingKey']; //send key to listhub
                     lh('submit', 'DETAIL_PAGE_VIEWED', {lkey:listingKey});
                     this.profileHeaderData['paramAddress'] = this.paramAddress;
@@ -158,7 +187,7 @@ export class ProfilePage implements OnInit{
     }
 
     getTrendingListings(){
-        this._listingProfileService.getTrendingHomesData(this.paramAddress)
+        this._listingProfileService.getTrendingHomesData(this.paramAddress, 1)
             .subscribe(
                 data => {
                     this.trendingHomesData = data;
@@ -188,20 +217,30 @@ export class ProfilePage implements OnInit{
         });
     }
 
-    getAddress() {
-      var paramAddress = this._params.get('address').split('-');
-      var paramState = paramAddress[paramAddress.length - 1];
-      var paramCity = paramAddress[paramAddress.length - 2];
-      var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
-      var address = tempArr.join(' ');
-      this.city = paramCity;
-      this.state = paramState;
-      this.address = this.globalFunctions.toTitleCase(address) + ' ' + paramCity + ', ' + paramState;
+    //Sets the titles of the headline components based on profile header data
+    setHeadlines(){
+        var address = this.addressObject.address + ', ' + this.addressObject.city + ', ' + this.addressObject.stateAP;
+
+        this.headlineAbout  = {
+            title: 'About ' + address,
+            icon: 'fa-map-marker'
+        };
+        this.headlineCrime  = {
+            title: 'Most Recent Crimes in ' + address,
+            icon: 'fa-gavel'
+        };
+        this.headlineAmenities = {
+            title: 'Amenities Around ' + address,
+            icon: 'fa-cutlery'
+        };
+        this.headlineOtherHomes = {
+            title: 'Other Homes You May Be Interested In',
+            icon: 'fa-heart-o'
+        };
     }
 
     ngOnInit(){
       //Run each call
-        this.getAddress();
         this.getProfileHeader();
         this.getCrime();
         this.getMap();
@@ -209,21 +248,5 @@ export class ProfilePage implements OnInit{
         this.getAmenitiesData();
         this.getTrendingListings();
         this.getListOfList();
-        this.headlineAbout  = {
-            title: 'About ' + this.address,
-            icon: 'fa-map-marker'
-        };
-        this.headlineCrime  = {
-            title: 'Most Recent Crimes in ' + this.address,
-            icon: 'fa-gavel'
-        };
-        this.headlineAmenities = {
-            title: 'Amenities Around ' + this.address,
-            icon: 'fa-cutlery'
-        };
-        this.headlineOtherHomes = {
-            title: 'Other Homes You May Be Interested In',
-            icon: 'fa-heart-o'
-        };
     }
 }

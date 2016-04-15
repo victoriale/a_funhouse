@@ -6,7 +6,7 @@ declare var moment: any;
 
 export class GlobalFunctions{
     //Transforms a string to titlecase
-    toTitleCase = function(str){
+    toTitleCase(str) {
         return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     };
 
@@ -14,7 +14,7 @@ export class GlobalFunctions{
     //Formats
     // 10 character length (000) 000-0000
     // 7 character legnth 000-0000
-    formatPhoneNumber(val){
+    formatPhoneNumber(val) {
       if(isNaN(val) == false){
         var val = val.toString();
       }
@@ -111,6 +111,9 @@ export class GlobalFunctions{
             WI: 'Wisconsin',
             WY: 'Wyoming'
         };
+        if ( state !== undefined && state !== null ) {
+          state = state.toUpperCase();
+        }
         return stateName[state];
     };
 
@@ -169,6 +172,9 @@ export class GlobalFunctions{
             WI: 'Wis.',
             WY: 'Wyo.'
         };
+        if ( state !== undefined && state !== null ) {
+          state = state.toUpperCase();
+        }
         return stateAP[state];
     };
 
@@ -203,6 +209,13 @@ export class GlobalFunctions{
         str = str.toLowerCase();
         return str;
     };
+
+    //Transforms any string to kab
+    toLowerKebab = function(str){
+        str = str.toLowerCase()
+            .replace(/ /g, '-');
+        return str;
+    }
 
     convertListName = function(val){
         var names = {
@@ -250,7 +263,29 @@ export class GlobalFunctions{
 
         return typeof names[val] === 'undefined' ? this.camelCaseToRegularCase(val) : names[val];
     }
-    
+
+    randomList = function(){
+      var lists = ["homesAtLeast5YearsOld",
+        "homesLessThan5YearsOld",
+        "homesWithSprinklerAndDeck",
+        "homesWithVaultedCeilingsAndSecuritySystem",
+        "homesLargest",
+        "homesBrickLeastExpensive",
+        "homesLeastExpensive",
+        "homesWithPoolLeastExpensive",
+        "homesWithWaterfrontLeastExpensive",
+        "homesWith2BedroomsMostExpensive",
+        "homesWith3BedroomsMostExpensive",
+        "homesMostExpensive",
+        "homesNewTraditional",
+        "listingsWithLongDescriptions",
+        "listingsWithMoreThan10Photos",
+        "listingsWithMoreThan5Photos",
+        "listingsWithVirtualTours",
+        "listingsMostRecent",
+        "condosMostExpensive"];
+        return lists;
+    }
     formatDaysOnMarket = function(daysOnMarket) {
         if ( daysOnMarket === null || daysOnMarket === undefined || daysOnMarket === "N/A" ) {
           return "N/A";
@@ -259,4 +294,21 @@ export class GlobalFunctions{
           return moment().subtract(daysOnMarket, 'days').format('dddd, MMMM Do, YYYY');
         }
     }
+
+    // Create a valid value to set to routerLink by parsing a string delimited by a | pipe
+    // -- creating an object for params when the object syntax is present in string
+    // example input string: "Location-page|{‘loc’:'Industry-CA’}"
+    parseToRoute = function(stringRoute) {
+        let stringRouteArr = stringRoute.split("|");
+
+        let generatedUrl = stringRouteArr.map(function (item) {
+            try {
+                return JSON.parse(item);
+            } catch (e) {
+            }
+            return item;
+        });
+        return generatedUrl;
+    }
+
 }

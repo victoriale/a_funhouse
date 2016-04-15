@@ -2,12 +2,13 @@ import {Component, OnInit, Input, EventEmitter} from 'angular2/core';
 import {CircleButton} from "../../buttons/circle/circle.button";
 import {Image180} from "../../images/image-180.component";
 import {ViewEncapsulation} from "angular2/core";
+import {ROUTER_DIRECTIVES} from "angular2/router";
 
 @Component({
     selector: 'dynamic-carousel2',
     templateUrl: './app/components/carousel/dynamic-carousel2/dynamic-carousel2.html',
     
-    directives: [CircleButton, Image180],
+    directives: [CircleButton, Image180, ROUTER_DIRECTIVES],
     providers: [],
     inputs: ['carouselData','partnerID'],
     encapsulation: ViewEncapsulation.None

@@ -73,7 +73,7 @@ export class MapComponent implements OnInit{
                 listingImage = '/app/public/joyfulhome_house.png';
             }
             var lineOne = item.fullStreetAddress + ', ' + item.loc + ' ' + item.postalCode;
-            var lineTwo = '$' + self.globalFunctions.commaSeparateNumber(item.listPrice);
+            var lineTwo = item.listPrice === null ? 'Listing Price N/A' : '$' + self.globalFunctions.commaSeparateNumber(item.listPrice);
             lineTwo = item.livingArea === null ? lineTwo : lineTwo + ' | ' + self.globalFunctions.commaSeparateNumber(item.livingArea) + ' sq. ft';
 
             var infoTemplate = '<div class="map-info-container">'
