@@ -1,10 +1,11 @@
 import {Component, Input, OnInit} from 'angular2/core';
-
+import {RouteParams} from "angular2/router";
 import {moduleHeader} from "../../components/module-header/module-header";
 import {moduleFooter} from "../../components/module-footer/module-footer";
 import {InfoListComponent} from "../../components/info-list/info-list.component";
 import {GlobalFunctions} from "../../global/global-functions";
 import {PaginationFooter} from "../../components/pagination-footer/pagination-footer.component";
+import {LocationProfileService} from '../../global/location-profile.service';
 
 declare var moment: any;
 
@@ -14,7 +15,7 @@ declare var moment: any;
 
     directives: [moduleHeader, moduleFooter, InfoListComponent, PaginationFooter],
     inputs: ['module_title', 'recentListingsData', 'locDisplay'],
-    providers: [],
+    providers: [LocationProfileService],
 })
 
 export class InfoListModule implements OnInit {
@@ -23,15 +24,22 @@ export class InfoListModule implements OnInit {
     recentListingsData: any;
     locDisplay: string;
     data: any;
+    state:string;
+    city:string;
     public paginationParameters: Object;
     public index: number = 1;
-    constructor(private _globalFunctions: GlobalFunctions){
+
+    constructor(private _globalFunctions: GlobalFunctions, private _locationProfileService: LocationProfileService, private _params: RouteParams){
+      var params = this._params.params;
+      this.city = params['loc'].split('-')[0];
+      this.state = params['loc'].split('-')[1];
     }
 
     dataTransform() {
         var self = this;
         var counter = 1;
-        // this.city = data.
+        var index = ((this.index - 1)*4) + 1;
+
         this.recentListingsData.forEach(function(val,i) {
             // Format address to Title Case
             if(val.fullStreetAddress === null || val.fullStreetAddress == 'undefined') {
@@ -55,9 +63,9 @@ export class InfoListModule implements OnInit {
               val.listingDate = moment(val.listingDate.split(' ')[0], 'YYYY-MM-DD').format("M/D/YYYY");
             }
             // Counter for rank #
-            val.counter = counter++;
+            val.counter = index++;
             // Check if even or odd for BG color class
-            if(counter % 2 == 0) {
+            if(val.counter % 2 == 0) {
                 val.bgClass = "even";
             }else{
                 val.bgClass = "odd";
@@ -82,9 +90,7 @@ export class InfoListModule implements OnInit {
         this.data = this.recentListingsData;
         var index = this.index;
         var displayArray = [];
-        var startIndex = ((index - 1) * 4);
-
-        for(var i = startIndex; i < startIndex + 4; i++) {
+        for(var i = 0; i < 4; i++) {
             var listItem = this.data[i];
             if(typeof listItem === 'undefined') {
                 continue;
@@ -98,7 +104,8 @@ export class InfoListModule implements OnInit {
     //Function to set up parameters for pagination footer
     setPaginationParameters(){
         var data = this.recentListingsData;
-        var max = Math.ceil(data.length / 4);
+        var max = Math.ceil(Number(data[0].totalListings) / 4);
+
         //Define parameters to send to pagination footer
         this.paginationParameters = {
             index: this.index,
@@ -115,10 +122,22 @@ export class InfoListModule implements OnInit {
         }
     }
 
+    getRecentListings() {
+        this._locationProfileService.getRecentListings(this._globalFunctions.toTitleCase(this.city), this.state.toUpperCase(), this.index)
+            .subscribe(
+                recentListingsData => {
+                  this.recentListingsData = recentListingsData;
+                  this.dataTransform();
+                  this.dataPaginate();
+                },
+                err => console.log(err)
+            );
+    }
+
     //Function that fires when a new index is clicked on pagination footer
     newIndex(index){
         this.index = index;
-        this.dataPaginate();
+        this.getRecentListings();
     }
 
     ngOnInit() {

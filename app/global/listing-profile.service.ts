@@ -141,12 +141,12 @@ export class ListingProfileService{
         )
     }
 
-    getTrendingHomesData(address){
+    getTrendingHomesData(address, counter){
         //Configure HTTP Headers
         var headers = this.setToken();
 
         address = encodeURI(address);
-        return this.http.get(this.apiUrl + '/list/randomByAddress/' + address, {
+        return this.http.get(this.apiUrl + '/list/randomByAddress/' + address + "/1/"+ counter, {
                 headers: headers
             })
             .map(

@@ -39,6 +39,10 @@ declare var lh: any;
 
 export class ProfilePage implements OnInit{
     paramAddress: string;
+    address: string;
+    city: string;
+    state: string;
+    public locData: Object;
     public pageName: string;
     public headlineAbout: any;
     public headlineCrime: any;
@@ -114,6 +118,12 @@ export class ProfilePage implements OnInit{
                         listingImage: data.listingImage,
                         propertyType: data.propertyType
                     };
+                    this.locData = {
+                      city: data.city === null ? '' : this.globalFunctions.toTitleCase(data.city),
+                      state: data.state === null ? '' : data.state.toUpperCase(),
+                      stateAP: this.globalFunctions.stateToAP(data.state),
+                      stateAbbreviation: data.state.toUpperCase(),
+                    };
 
                     //Set titles for headlines based on profile header data
                     this.setHeadlines();
@@ -177,7 +187,7 @@ export class ProfilePage implements OnInit{
     }
 
     getTrendingListings(){
-        this._listingProfileService.getTrendingHomesData(this.paramAddress)
+        this._listingProfileService.getTrendingHomesData(this.paramAddress, 1)
             .subscribe(
                 data => {
                     this.trendingHomesData = data;
