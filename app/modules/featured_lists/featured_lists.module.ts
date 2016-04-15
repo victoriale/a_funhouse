@@ -96,6 +96,8 @@ export class FeaturedListsModule implements OnInit{
         }else if(this.profileType === 'ProfilePage'){
             this.moduleTitle = 'Featured List for ' + this.addressObject.address + ', ' + this.addressObject.city + ', ' + this.addressObject.stateAP;
         }
+        var paramCity = this.globalFunctions.toLowerKebab(listData.city);
+        var paramState = this.globalFunctions.toLowerKebab(listData.stateOrProvince);
         //Used for both location and listing profile
         this.listData = {
             rank: this.index + 1,
@@ -111,8 +113,8 @@ export class FeaturedListsModule implements OnInit{
             listParam: {
               viewType: 'list',
               listname: this.globalFunctions.camelCaseToKababCase(data.listName),
-              state: listData.stateOrProvince,
-              city: city,
+              state: paramState,
+              city: paramCity,
               page: '1',
             },
             listingUrl1: '../../Magazine',
@@ -130,8 +132,8 @@ export class FeaturedListsModule implements OnInit{
             paramOptions1: {
                 viewType: 'list',
               listname: this.globalFunctions.camelCaseToKababCase(data.listName),
-              state: listData.stateOrProvince,
-              city: listData.city,
+              state: paramState,
+              city: paramCity,
               page: '1',
             },
             title2: 'Top City Lists',
@@ -139,15 +141,15 @@ export class FeaturedListsModule implements OnInit{
             desc2: '',
             url2: 'List-of-lists-page',
             paramOptions2: {
-              state: listData.stateOrProvince,
-              city: listData.city
+              state: paramState,
+              city: paramCity,
             },
             title3: 'Similar Statewide Lists',
             icon3: 'fa-th-large',
             desc3: '',
             url3: 'List-of-lists-page-state',
             paramOptions3: {
-              state: listData.stateOrProvince
+              state: paramState
             },
         }
     }
