@@ -120,10 +120,11 @@ export class ProfilePage implements OnInit{
                     };
                     this.locData = {
                       city: data.city === null ? '' : this.globalFunctions.toTitleCase(data.city),
-                      // state: data.state === null ? '' : this.globalFunctions.stateToAPdata(data.state),
+                      state: data.state === null ? '' : data.state.toUpperCase(),
+                      stateAP: this.globalFunctions.stateToAP(data.state),
                       stateAbbreviation: data.state.toUpperCase(),
+                    };
 
-                    }
                     //Set titles for headlines based on profile header data
                     this.setHeadlines();
 

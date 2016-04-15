@@ -9,7 +9,7 @@ import {GlobalFunctions} from "../../global/global-functions";
 @Component({
     selector: 'list-of-lists-module',
     templateUrl: './app/modules/listoflist/listoflist.module.html',
-    
+
     directives: [contentList,moduleHeader, PaginationFooter],
     providers: [],
     inputs:['listOfLists']
@@ -78,8 +78,8 @@ export class ListOfListModule {
 
         //If first item in array has city and state use it (This fixes problems where city is multiple words)
         if(displayArray.length !== 0){
-            this.city = displayArray[0].listData[0].city;
-            this.state = displayArray[0].listData[0].stateOrProvince;
+            this.city = this._globalFunctions.toLowerKebab(displayArray[0].listData[0].city);
+            this.state = displayArray[0].listData[0].stateOrProvince.toLowerCase();
         }
 
         //Assign data to display in module
@@ -104,8 +104,8 @@ export class ListOfListModule {
             paginationType: 'module',
             viewAllPage: 'List-of-lists-page',
             viewAllParams: {
-                state: this.state,
-                city: this.city
+                state: this.state.toLowerCase(),
+                city: this._globalFunctions.toLowerKebab(this.city)
             }
         }
     }

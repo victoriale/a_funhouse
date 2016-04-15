@@ -67,7 +67,7 @@ export class TrendingHomes implements OnInit {
 
     getTrendingListings(){
       // getListData(listname, state, city, limit, page, sort)
-        this.listService.getListData(this.listName, this.locState.toUpperCase(), this.globalFunctions.toTitleCase(this.locCity), 1, this.counter, null)
+        this.listService.getListData(this.listName, this.locState, this.globalFunctions.toTitleCase(this.locCity), 1, this.counter, null)
             .subscribe(
                 data => {
                     this.trendingHomesData.listData = data.data;
@@ -167,8 +167,9 @@ export class TrendingHomes implements OnInit {
         if(currentTrendingHomesData !== null && currentTrendingHomesData !== false) {
           //Determine what page the profile header module is on
             this.profileType = this.router.hostComponent.name;
+            console.log('locData',this.locData);
             this.locCity = this.globalFunctions.toTitleCase(this.locData.city);
-            this.locState = this.locData.stateAbbreviation.toUpperCase();
+            this.locState = this.locData.state;
             this.dataFormatter();
         }
     }

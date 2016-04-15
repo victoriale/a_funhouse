@@ -125,11 +125,11 @@ export class LocationPage implements OnInit {
                       stateAP:this._globalFunctions.stateToAP(this.profileHeaderData['state']),
                       stateAbbreviation: this.profileHeaderData['state'],
                       locationImage:this.profileHeaderData['locationImage']
-                    };
+                    }
                 },
                 err => {
-                    console.log('Error - Location Profile Header Data: ', err);
-                    this.isError = true;
+                    console.log('Error - Location Profile Header Data: ', err),
+                    this.isError = true
                 }
             )
     }

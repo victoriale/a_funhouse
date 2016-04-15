@@ -277,7 +277,9 @@ export class GlobalFunctions{
     // -- creating an object for params when the object syntax is present in string
     // example input string: "Location-page|{‘loc’:'Industry-CA’}"
     parseToRoute = function(stringRoute) {
-        let generatedUrl = stringRoute.map(function (item) {
+        let stringRouteArr = stringRoute.split("|");
+
+        let generatedUrl = stringRouteArr.map(function (item) {
             try {
                 return JSON.parse(item);
             } catch (e) {

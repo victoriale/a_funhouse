@@ -65,7 +65,6 @@ export class FeaturedListsModule implements OnInit{
 
     getFeaturedListings(){
       // getListData(listname, state, city, limit, page, sort)
-      console.log(this.addressObject);
         this.listService.getListData(this.listName, this.addressObject['state'].toUpperCase(), this.globalFunctions.toTitleCase(this.addressObject['city']), 1, this.index, null)
             .subscribe(
                 data => {
@@ -111,7 +110,8 @@ export class FeaturedListsModule implements OnInit{
             this.moduleTitle = 'Featured List for ' + this.addressObject.address + ', ' + this.addressObject.city + ', ' + this.addressObject.stateAP;
         }
         this.listName = data.listName;
-        console.log(this.listName);
+        var paramCity = this.globalFunctions.toLowerKebab(listData.city);
+        var paramState = this.globalFunctions.toLowerKebab(listData.stateOrProvince);
         //Used for both location and listing profile
         this.listData = {
             rank: this.index,
@@ -126,9 +126,9 @@ export class FeaturedListsModule implements OnInit{
             ListUrl: 'List-page',
             listParam: {
               viewType: 'list',
-              listname: this.globalFunctions.camelCaseToKababCase(data.listName).toLowerCase(),
-              state: listData.stateOrProvince.toLowerCase(),
-              city: city.toLowerCase(),
+              listname: this.globalFunctions.camelCaseToKababCase(data.listName),
+              state: paramState,
+              city: paramCity,
               page: '1',
             },
             listingUrl1: '../../Magazine',
@@ -146,8 +146,8 @@ export class FeaturedListsModule implements OnInit{
             paramOptions1: {
                 viewType: 'list',
               listname: this.globalFunctions.camelCaseToKababCase(data.listName),
-              state: listData.stateOrProvince,
-              city: listData.city,
+              state: paramState,
+              city: paramCity,
               page: '1',
             },
             title2: 'Top City Lists',
@@ -155,15 +155,15 @@ export class FeaturedListsModule implements OnInit{
             desc2: '',
             url2: 'List-of-lists-page',
             paramOptions2: {
-              state: listData.stateOrProvince,
-              city: listData.city
+              state: paramState,
+              city: paramCity,
             },
             title3: 'Similar Statewide Lists',
             icon3: 'fa-th-large',
             desc3: '',
             url3: 'List-of-lists-page-state',
             paramOptions3: {
-              state: listData.stateOrProvince
+              state: paramState
             },
         }
     }

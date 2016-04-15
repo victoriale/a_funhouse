@@ -113,11 +113,11 @@ export class InfoListModule implements OnInit {
             paginationType: 'module',
             viewAllPage: 'List-page',
             viewAllParams: {
-                viewType: 'list',
-                listname: 'listings-most-recent',
-                city: 'Wichita',
-                state: 'KS',
-                page: 1
+              viewType: 'list',
+              listname: 'listings-most-recent',
+              city: this._globalFunctions.toLowerKebab(data[0].city),
+              state: data[0].stateOrProvince.toLowerCase(),
+              page: 1
             }
         }
     }
