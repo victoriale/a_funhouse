@@ -82,7 +82,7 @@ export class AmenitiesModule implements OnInit{
       var imageURL = dataLists[this.index].image_url;
       if(this.profileType === 'LocationPage'){
           var city = this.locData.city;
-          var stateAP = this.locData.state;
+          var stateAP = this.locData.stateAP;
           this.moduleTitle = 'Amenities in and Around ' + city + ', ' + stateAP;
       }else if(this.profileType === 'ProfilePage'){
           var city = this.addressObject.city;
