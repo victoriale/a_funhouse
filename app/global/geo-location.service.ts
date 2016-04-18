@@ -75,6 +75,9 @@ export class CityViewService {
                 })
                 .map(
                     data => {
+                        if(data.success === false){
+                            throw new Error('Error: getCityView api success, message failed');
+                        }
                         return data.data;
                     }
                 )

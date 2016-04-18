@@ -20,7 +20,7 @@ export class ListingProfileService{
     }
 
     //API to get featured list data
-    getListingFeaturedList(address){
+    getListingFeaturedList(address){ // using location featured call
         //Configure HTTP Headers
         var headers = this.setToken();
 
@@ -54,6 +54,10 @@ export class ListingProfileService{
         )
         .map(
             data => {
+                if(data.success == false){
+                    throw new Error('Error: getListingProfile api success, message failed');
+                }
+
                 return data.data;
             }
         )
@@ -137,12 +141,12 @@ export class ListingProfileService{
         )
     }
 
-    getTrendingHomesData(address){
+    getTrendingHomesData(address, counter){ //Using location trending call
         //Configure HTTP Headers
         var headers = this.setToken();
 
         address = encodeURI(address);
-        return this.http.get(this.apiUrl + '/list/randomByAddress/' + address, {
+        return this.http.get(this.apiUrl + '/list/randomByAddress/' + address + "/1/"+ counter, {
                 headers: headers
             })
             .map(

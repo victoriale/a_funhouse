@@ -13,7 +13,7 @@ import {AmenitiesComponent} from '../../components/amenities/amenities.component
 @Component({
     selector: 'school-module',
     templateUrl: './app/modules/school/school.module.html',
-    
+
     directives: [moduleHeader, TilesComponent, AmenitiesComponent],
     providers: [],
     inputs:['locData']
@@ -27,7 +27,8 @@ export class SchoolModule implements OnInit{
     public index: number = 0;
     public moduleTitle: string;
     public profileType: string;
-
+    public location: string;
+    public allSchool: Array<any> = [];
     @Input() schoolData: any;
 
     constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions){
@@ -39,7 +40,7 @@ export class SchoolModule implements OnInit{
             return false;
         }
 
-        var max = this.schoolData.elementary.length - 1;
+        var max = this.allSchool.length - 1;
 
         if(this.index > 0){
             this.index -= 1;
@@ -54,7 +55,7 @@ export class SchoolModule implements OnInit{
             return false;
         }
 
-        var max = this.schoolData.elementary.length - 1;
+        var max = this.allSchool.length - 1;
 
         if(this.index < max){
             this.index += 1;
@@ -71,22 +72,38 @@ export class SchoolModule implements OnInit{
           return false;
       }
       var schoolData = data['meta'];
-      var elementaryData = data.elementary[this.index];
-      var schoolName =  this.globalFunctions.toTitleCase(elementaryData.school_name);
+      this.location = schoolData.city + ', ' + this.globalFunctions.stateToAP(schoolData.state);
+
+      var allSchool = [];
+      for(var obj in data){
+        if(obj != 'meta'){
+          data[obj].forEach(function(item){
+            item.schoolType = obj;//return type of school into array
+            allSchool.push(item);
+          })
+        }
+      }
+      this.allSchool = allSchool;
+      var allSchoolData = allSchool[this.index];
+      var schoolName =  this.globalFunctions.toTitleCase(allSchoolData.school_name);
       schoolName = schoolName.replace("Elementary", "Elem");
       schoolName = schoolName.replace("Elem", "Elementary");
+
+      var paramState = schoolData.state.toLowerCase();
+      var paramCity = this.globalFunctions.toLowerKebab(schoolData.city);
+
       this.listData = {
         hasHoverNoSubImg: false,
         header: "What Schools are in the Area?",
-        name: schoolData.city + ', ' + this.globalFunctions.stateToAP(schoolData.state),
+        name: this.location,
         establishment:  schoolName,
-        address: elementaryData.type,
+        address: allSchoolData.type,
         imageUrl: schoolData.locationImage,
         url: 'School-lists-page',
         paramOptions: {
-                    listname: 'elementary',
-                    city: schoolData.city,
-                    state: schoolData.state
+                    listname: allSchoolData.schoolType,
+                    city: paramCity,
+                    state: paramState
                   },
         listView: [
           {
@@ -96,8 +113,8 @@ export class SchoolModule implements OnInit{
             url: 'School-lists-page',
             paramOptions: {
                         listname: 'elementary',
-                        city: schoolData.city,
-                        state: schoolData.state
+                        city: paramCity,
+                        state: paramState
                       },
             viewMore: "See All"
           },
@@ -108,8 +125,8 @@ export class SchoolModule implements OnInit{
             url: 'School-lists-page',
             paramOptions: {
                         listname: 'middle',
-                        city: schoolData.city,
-                        state: schoolData.state
+                        city: paramCity,
+                        state: paramState
                       },
             viewMore: "See All"
           },
@@ -120,21 +137,22 @@ export class SchoolModule implements OnInit{
             url: 'School-lists-page',
             paramOptions: {
                         listname: 'high',
-                        city: schoolData.city,
-                        state: schoolData.state
+                        city: paramCity,
+                        state: paramState
                       },
             viewMore: "See All"
           }
         ]
       }//listData ends
+
       // get data for tiles
       this.tileData = {
           button_txt: 'Open Page',
           url1: 'School-lists-page',
           paramOptions1: {
                       listname: 'elementary',
-                      city: schoolData.city,
-                      state: schoolData.state
+                      city: paramCity,
+                      state: paramState
                     },
           icon1: 'fa-pencil',
           title1: 'Elementary Schools',
@@ -143,8 +161,8 @@ export class SchoolModule implements OnInit{
           url2: 'School-lists-page',
           paramOptions2: {
                       listname: 'middle',
-                      city: schoolData.city,
-                      state: schoolData.state
+                      city: paramCity,
+                      state: paramState
                     },
           icon2: 'fa-child',
           title2: 'Middle Schools',
@@ -153,8 +171,8 @@ export class SchoolModule implements OnInit{
           url3: 'School-lists-page',
           paramOptions3: {
                       listname: 'high',
-                      city: schoolData.city,
-                      state: schoolData.state
+                      city: paramCity,
+                      state: paramState
                     },
           icon3: 'fa-graduation-cap',
           title3: 'High Schools',
@@ -163,29 +181,12 @@ export class SchoolModule implements OnInit{
 
     }//dataFormatter ends
 
-    //Build Module Title
-    setModuleTitle(){
-        if(this.profileType === 'LocationPage'){
-            //Location Crime Module
-            var paramLocation: string = this._params.get('loc');
-            var paramCity: string = this.globalFunctions.toTitleCase(this.locData.city);
-            paramCity = this.globalFunctions.toTitleCase(paramCity.replace(/%20/g, " "));
-            var paramState: string = this.locData.state;
-            this.moduleTitle = 'Schools in ' + paramCity + ', ' + paramState;
-        }else if(this.profileType === 'ProfilePage'){
-            //Listing Crime Module
-            var paramAddress = this._params.get('address').split('-');
-            var paramState = paramAddress[paramAddress.length -1];
-            var paramCity = paramAddress [paramAddress.length - 2];
-            var tempArr = paramAddress.splice(-paramAddress.length, paramAddress.length - 2);
-            var address = tempArr.join(' ');
-            this.moduleTitle = 'Schools in ' + address + ' ' + paramCity + ', ' + paramState;
-        }
-    }
-
     ngOnInit(){
-      this.setModuleTitle();
+      // this.setModuleTitle();
       this.hasFooterButton = false;
+      if(this.profileType === 'LocationPage'){
+          this.moduleTitle = 'Schools in ' + this.location;
+      }
     }// end ngOnInit
 
     //On Change Call

@@ -3,7 +3,11 @@
         <div class="inner-wrapper">
             <main>
                 <section class='content-main eight-col'>
-                  <section class="page-container">
+                    <loading-component *ngIf="!displayData && !isError"></loading-component>
+
+                    <error-component *ngIf="isError"></error-component>
+
+                  <section *ngIf="displayData && !isError" class="page-container">
                     <backtab-component></backtab-component>
                     <title-component *ngIf="titleData" [titleData]="titleData"></title-component>
                     <dynamic-carousel2 [carouselData]="carouselData"></dynamic-carousel2>
@@ -36,7 +40,7 @@
                                     <p>Want more information?</p>
                                 </div>
                                 <a [routerLink]="['Location-page', {loc: city.locationUrl}]" class='city-list-button'>
-                                    <span><img class="city-icon" src="/app/public/realestate_icon.png" /></span>
+                                    <span></span>
                                     <span style="font-weight: 400;">View Profile</span>
                                     <i class='fa fa-angle-right'></i>
                                 </a>

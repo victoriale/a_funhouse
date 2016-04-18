@@ -321,7 +321,7 @@ export class ListPage implements OnInit{
             }
             this.listState = this._params.get('state');
             this.listStateAP = this.globalFunctions.stateToAP(this.listState);
-            this.listCity = this._params.get('city') === null ? null : this.globalFunctions.toTitleCase(decodeURI(this._params.get('city')));
+            this.listCity = this._params.get('city') === null ? null : this.globalFunctions.toTitleCase(decodeURI(this._params.get('city').replace(/-/g," ")));
             this.pageName = this.listCity === null ? 'List-page-state' : 'List-page';
             this.listPage = this._params.get('page');
 
@@ -424,7 +424,7 @@ export class ListPage implements OnInit{
           buttonName: 'View Profile',
           icon: 'fa fa-map-marker',
           location: val.loc + ' - ' + val.postalCode,
-          market:'Built in ' + val.yearBuilt,
+          market: val.yearBuilt === null ? '' : 'Built in ' + val.yearBuilt,
           rank: (indexStart + i),
           desc: val.listingDescription,
           photos: val.photos,
@@ -434,7 +434,7 @@ export class ListPage implements OnInit{
       newData['url2'] = {addr:val.addressKey};
       newData['url3'] = "PropertyOverview";
       newData['locUrl1'] = "Location-page";
-      newData['locUrl2'] = {loc: val.city + "_" + val.stateOrProvince};
+      newData['locUrl2'] = {loc: self.globalFunctions.toLowerKebab(val.city) + "-" + val.stateOrProvince.toLowerCase()};
 
       var carData = {
         heading:'Featured Listing',
@@ -448,7 +448,7 @@ export class ListPage implements OnInit{
       carData['url2'] = {addr:val.addressKey};
       carData['url3'] = "PropertyOverview";
       carData['locUrl1'] = "Location-page";
-      carData['locUrl2'] = {loc: val.city + "_" + val.stateOrProvince};
+      carData['locUrl2'] = {loc: self.globalFunctions.toLowerKebab(val.city) + "-" + val.stateOrProvince.toLowerCase()};
 
       listhubKeys.push({lkey: val.listingKey});//send key to listhub
       carouselData.push(carData);

@@ -177,6 +177,7 @@ export class SearchPage implements OnInit {
 
     //on page load
     loadCall(param) {
+        param = param.replace(/-/g, ' ');
         var input = decodeURIComponent(param);
         this.term.updateValue(input);
         this.searchResults = this._searchService.getSearchResults(input, 'raw')
@@ -219,10 +220,6 @@ export class SearchPage implements OnInit {
     //group address's together, routerLink goes to Magazine
     if (typeof data.address !== 'undefined' && data.address !== null) {
       data.address.forEach(function(item, index) {
-          var fullAddress = item.address_key.split('-');
-          var tempArr = fullAddress.splice(-fullAddress.length, fullAddress.length - 2);
-          var parsedAddress = tempArr.join(' ');
-
           var params: any = {};
 
           if(item.property_type === 'Residential'){
@@ -237,7 +234,7 @@ export class SearchPage implements OnInit {
               addr: item.address_key,
               page: page,
               params: params,
-              display: self.globalFunctions.toTitleCase(parsedAddress) + " - " + self.globalFunctions.toTitleCase(item.city) + ", " + item.state_or_province,
+              display: self.globalFunctions.toTitleCase(item.full_street_address) + " - " + self.globalFunctions.toTitleCase(item.city) + ", " + item.state_or_province,
           };
         address.push(dataAddr);
         addrCount++;
@@ -253,10 +250,6 @@ export class SearchPage implements OnInit {
             item[obj] = 'N/A';
           }
         }
-          var fullAddress = item.address_key.split('-');
-          var tempArr = fullAddress.splice(-fullAddress.length, fullAddress.length - 2);
-          var parsedAddress = tempArr.join(' ');
-
           var params: any = {};
 
           if(item.property_type === 'Residential'){
@@ -271,7 +264,7 @@ export class SearchPage implements OnInit {
             addr: item.address_key,
             page: page,
             params: params,
-            display: self.globalFunctions.toTitleCase(parsedAddress) + " - " + self.globalFunctions.toTitleCase(item.city) + ", " + item.state_or_province,
+            display: self.globalFunctions.toTitleCase(item.full_street_address) + " - " + self.globalFunctions.toTitleCase(item.city) + ", " + item.state_or_province,
           };
           address.push(dataAddr);
           addrCount++;
@@ -291,7 +284,7 @@ export class SearchPage implements OnInit {
             'zipcode': item.zipcode,
             page: '../../Magazine',
             params: { addr: item.address_key },
-            display: item.zipcode + ' - ' + item.full_street_address + ', ' + self.globalFunctions.toTitleCase(item.city) + ', ' + item.state_or_province,
+            display: item.zipcode + ' - ' + self.globalFunctions.toTitleCase(item.full_street_address) + ', ' + self.globalFunctions.toTitleCase(item.city) + ', ' + item.state_or_province,
           };
           zipcode.push(zip);
           zipCount++;
@@ -307,7 +300,7 @@ export class SearchPage implements OnInit {
 
           var locationData = {
             page: 'Location-page',
-            params: { loc: item.city + "_" + item.state_or_province },
+            params: { loc: self.globalFunctions.toLowerKebab(item.city) + "-" + item.state_or_province.toLowerCase() },
             display: self.globalFunctions.toTitleCase(item.city) + " - " + item.state_or_province,
           };
           location.push(locationData);

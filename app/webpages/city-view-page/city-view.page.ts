@@ -9,6 +9,8 @@ import {GlobalFunctions} from "../../global/global-functions";
 import {DynamicCarousel2} from "../../components/carousel/dynamic-carousel2/dynamic-carousel2";
 import {BackTabComponent} from "../../components/backtab/backtab.component";
 import {PaginationFooter} from '../../components/pagination-footer/pagination-footer.component';
+import {LoadingComponent} from '../../components/loading/loading.component';
+import {ErrorComponent} from '../../components/error/error.component';
 
 declare var moment: any;
 
@@ -16,18 +18,22 @@ declare var moment: any;
     selector: 'city-view-page',
     templateUrl: './app/webpages/city-view-page/city-view.page.html',
     
-    directives: [PaginationFooter, WidgetModule, TitleComponent, HeroListComponent, DynamicCarousel2, BackTabComponent, ROUTER_DIRECTIVES],
+    directives: [PaginationFooter, WidgetModule, TitleComponent, HeroListComponent, DynamicCarousel2, BackTabComponent, ROUTER_DIRECTIVES, LoadingComponent, ErrorComponent],
     providers: [CityViewService, GlobalFunctions],
 })
 
 export class CityViewPage implements OnInit{
+    //Boolean to determine if an error has occurred
+    public isError: boolean = false;
     public titleData: any;
-    stateLocation: string;
-    cityLocation: string;
-    cityStateLocation: string;
+    paramState: string;
+    paramCity: string;
+    displayAPState: string;
+    displayCity: string;
+    cityStateLocationKey: string;
     cityView: any;
     cities: Array<any> = [];
-    displayData: Array<any> = [];
+    displayData: Array<any>;
     carouselData: any = [];
     paginationParameters:Object;
     index:number = 0;
@@ -36,11 +42,16 @@ export class CityViewPage implements OnInit{
 
     getData() {
         // Subscribe to getNearByCities in geo-location.service.ts
-        this._cityViewService.getCityView(this.stateLocation, this.cityLocation)
+        this._cityViewService.getCityView(this.paramState, this.paramCity)
             .subscribe(
-                cityView => { this.cityView = cityView },
-                err => console.log(err),
-                () => this.dataToArray()
+                cityView => {
+                    this.cityView = cityView;
+                    this.dataToArray();
+                },
+                err => {
+                    console.log('Error: City View Data: ', err);
+                    this.isError = true;
+                }
         );
     }
 
@@ -49,8 +60,8 @@ export class CityViewPage implements OnInit{
           {
               imageURL : '/app/public/joyfulhome_house.png',
               smallText1 : 'Last Updated: ' + moment(new Date()).format('dddd, MMMM Do, YYYY'),
-              smallText2 : ''+ this.cityLocation + ', ' + this._globalFunctions.stateToAP(this.stateLocation) + '',
-              heading1 : 'Nearby Cities for the ' + this.cityLocation + ', ' + this._globalFunctions.stateToAP(this.stateLocation) + ' Area',
+              smallText2 : ''+ this.displayCity + ', ' + this.displayAPState + '',
+              heading1 : 'Nearby Cities for the ' + this.displayCity + ', ' + this.displayAPState + ' Area',
               heading2 : '',
               heading3 : '',
               heading4 : '',
@@ -63,7 +74,7 @@ export class CityViewPage implements OnInit{
                 this.cityView[i].stateAP = this._globalFunctions.stateToAP(this.cityView[i].state);
                 this.cityView[i].rank = Number(i) + 1;
                 this.cityView[i].distance = parseFloat(this.cityView[i].distance).toFixed(2);
-                this.cityView[i].locationUrl = this.cityView[i].city + '_' + this.cityView[i].state;
+                this.cityView[i].locationUrl = this._globalFunctions.toLowerKebab(this.cityView[i].city) + '-' + this.cityView[i].state.toLowerCase();
                 this.cities.push(this.cityView[i]);
                 if(this.cityView[i].rank % 2 == 0) {
                   this.cityView[i].bgClass = "even";
@@ -84,9 +95,9 @@ export class CityViewPage implements OnInit{
                   index:          this.cityView[i].rank,
                   imageUrl1:      this.cityView[i].locationImage
                 }// carousel data ends
+                carData['linkUrl1'] = "/location/"+this.cityView[i].locationUrl;
+                carouselData.push(carData);
             }
-            carData['linkUrl1'] = "/location/"+this.cityView[i].locationUrl;
-            carouselData.push(carData);
         }
         this.carouselData = carouselData;
         this.sanitizeListofListData();
@@ -137,11 +148,14 @@ export class CityViewPage implements OnInit{
         this.index = index-1;
         this.sanitizeListofListData();
     }
+    
     ngOnInit() {
         // Get City & State from route params
-        this.stateLocation = decodeURI(this._params.get('state'));
-        this.cityLocation = decodeURI(this._params.get('city'));
-        this.cityStateLocation = this.stateLocation + '_' + this.cityLocation;
+        this.paramState = decodeURI(this._params.get('state'));
+        this.paramCity = decodeURI(this._params.get('city')).replace(/-/g, " ");
+        this.displayAPState =  this._globalFunctions.stateToAP(this.paramState);
+        this.displayCity = this._globalFunctions.toTitleCase(this.paramCity);        
+        this.cityStateLocationKey = this._globalFunctions.toLowerKebab(this.paramState) + '-' + this.paramCity.toLowerCase();
         this.getData();
     }
 
