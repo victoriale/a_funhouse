@@ -4,8 +4,8 @@
             <form (ngSubmit)="onSubmit($event)">
                 <input autocomplete="off" type="text" (focus)="focusResults($event)" (blur)="blurResults($event)" [ngFormControl]="term" placeholder="Where do you want to live? (City, ST)">
                 <button type="submit" class="hero-search-button fa fa-search"></button>
-                <search-results (mousedown)="preventBlur()" [showResults]="showResults" [searchResults]="searchResults"></search-results>
             </form>
+            <search-results (mousedown)="preventBlur()" [showResults]="showResults" [searchResults]="searchResults"></search-results>
         </div>
     </div>
 </div>
