@@ -78,6 +78,7 @@ export class SchoolModule implements OnInit{
       for(var obj in data){
         if(obj != 'meta'){
           data[obj].forEach(function(item){
+            item.schoolType = obj;//return type of school into array
             allSchool.push(item);
           })
         }
@@ -100,7 +101,7 @@ export class SchoolModule implements OnInit{
         imageUrl: schoolData.locationImage,
         url: 'School-lists-page',
         paramOptions: {
-                    listname: 'elementary',
+                    listname: allSchoolData.schoolType,
                     city: paramCity,
                     state: paramState
                   },
