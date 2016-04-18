@@ -356,6 +356,10 @@ export class ListPage implements OnInit{
             this.filterType = this._params.get('type');
             this.listPage = this._params.get('page');
 
+            this.listState = this._params.get('state');
+            this.listStateAP = this.globalFunctions.stateToAP(this.listState);
+            this.listCity = this._params.get('city') === null ? null : this.globalFunctions.toTitleCase(decodeURI(this._params.get('city').replace(/-/g," ")));
+
             console.log('FYH-Params-ListPage: ', this.filterMinPrice, this.filterMaxPrice, this.filterBedrooms, this.filterBathrooms, this.filterSqFeet, this.filterLot, this.filterType);
 
             // location/findYourHome/{state}/{city}/{priceLowerBound}/{priceUpperBound}/{type}/{bedrooms}/{bathrooms}/{squareFeet}/{lotSize}/{limit}/{page}

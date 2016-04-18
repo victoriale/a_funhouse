@@ -135,7 +135,7 @@
         <div class="four-col">
           <!-- Tooltip currently commented out due to UI review-->
           <div class="lv-result-summary">
-            Property Listings for {{listCity}}, {{listStateAP}} | <span class="bold">{{totalListings}} Results</span>
+            Property Listings for {{listCity}}<span *ngIf="listCity">,</span> {{listStateAP}} | <span class="bold">{{totalListings}} Results</span>
           </div>
           <div *ngIf="showTooltip" class="lv-tooltip">
             <div class="lv-tooltip-header">
