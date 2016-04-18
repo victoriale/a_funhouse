@@ -79,7 +79,8 @@ export class MagazinePage {
                     this.toc = this.buildToc(rawData);
                 },
                 err => {
-                    this.showErrorPage = true;
+                    this._router.navigate(['../Webpages', 'Profile-page', {address: this.address}]);
+                    //this.showErrorPage = true; <--This stays for when this is fixed the correct way.
                 },
                 () => this.showErrorPage = false
             );
