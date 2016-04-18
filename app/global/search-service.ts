@@ -58,11 +58,11 @@ export class SearchService{
                     //Pass property_type and address_key so individual search components can build the magazine route (This is needed because the search components are on different levels of the router
                     searchArray.push({
                         property_type: item.property_type,
-                        title: item.address_key.replace(/-/g, ' '),
+                        title: self._globalFunctions.toTitleCase(item.full_street_address) + ', ' + self._globalFunctions.toTitleCase(item.city) + ', ' + item.state_or_province.toUpperCase(),
                         //Default page and route params
                         page: 'Profile-page',
                         params: {
-                            address: item.address_key
+                            address: item.address_key.toLowerCase()
                         },
                         address_key: item.address_key
                     });
@@ -78,7 +78,7 @@ export class SearchService{
             data.location_city.forEach(function (item, index) {
                 if(cityCount < 5 && count < maxCount) {
                     searchArray.push({
-                        title: item.city + ', ' + item.state_or_province,
+                        title: self._globalFunctions.toTitleCase(item.city) + ', ' + item.state_or_province.toUpperCase(),
                         page: 'Location-page',
                         params: {
                             loc: self._globalFunctions.toLowerKebab(item.city) + '-' + item.state_or_province.toLowerCase()
@@ -97,7 +97,7 @@ export class SearchService{
                 //If count is 10 skip over remaining zipcodes
                 if(zipcodeCount < 5 && count < maxCount) {
                     searchArray.push({
-                        title: item.zipcode + ' - ' + item.full_street_address + ', ' + item.city + ', ' + item.state_or_province,
+                        title: item.zipcode + ' - ' + self._globalFunctions.toTitleCase(item.full_street_addres) + ', ' + self._globalFunctions.toTitleCase(item.city) + ', ' + item.state_or_province.toUpperCase(),
                         page: 'Location-page',
                         params: {
                             loc: self._globalFunctions.toLowerKebab(item.city) + '-' + item.state_or_province.toLowerCase()

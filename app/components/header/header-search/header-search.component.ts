@@ -26,16 +26,23 @@ export class HeaderSearchComponent{
     isHomePage: boolean;
     searchResults: Array<Object>;
     showResults: boolean;
+    subscription: any;
 
     term:any = new Control();
 
     constructor(private _searchService: SearchService, private _router: Router){
+        this.initializeSearch();
+    }
+
+    //Function to initialize search observable
+    initializeSearch(){
+        var self = this;
         //Function chain to pull api data for search
         //.debounceTime - only fire following function calls after 400 milliseconds after user input is done
         //.distinctUntilChanged - Ensures that api is not hit twice with the same parameters. This could happen if a person types 'car' in the input -> gets a result -> types 'cart' -> backspaces to 'car' (before the debounce time), the previous parameter was zoo and the new parameter hasnt changed therefore no new api call is needed
         //.switchMap - Ensures that api calls are in order. If a new api call is fired before the previous call finishes, the previous call is cancelled. Also in this case if the input is of length 0 then the api call is ignored and undefined is passed to search results
         //.subscribe - Assign result data to variable
-        this.term.valueChanges
+        this.subscription = this.term.valueChanges
             .debounceTime(400)
             .distinctUntilChanged()
             .switchMap((term: string) => term.length > 0 ? this._searchService.getSearchResults(term, 'list') : Observable.of(undefined))
@@ -46,9 +53,14 @@ export class HeaderSearchComponent{
                         data = this.addRoutingParams(data);
                     }
                     this.searchResults = data;
+                },
+                err => {
+                    //Unsubscribe if api fails. (It appears the observable is destroyed on error. This is just extra clean up just in case)
+                    self.subscription.unsubscribe();
+                    //Reinitialize search functionality
+                    this.initializeSearch();
                 }
             )
-
     }
 
     //Function to modify routing parameters (pick between magazine and listing profile)
