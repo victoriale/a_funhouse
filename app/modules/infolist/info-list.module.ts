@@ -30,15 +30,19 @@ export class InfoListModule implements OnInit {
     public index: number = 1;
 
     constructor(private _globalFunctions: GlobalFunctions, private _locationProfileService: LocationProfileService, private _params: RouteParams){
-      var params = this._params.params;
-      this.city = params['loc'].split('-')[0];
-      this.state = params['loc'].split('-')[1];
     }
 
     dataTransform() {
         var self = this;
         var counter = 1;
         var index = ((this.index - 1)*4) + 1;
+
+        var infoData = this.recentListingsData;
+
+        if(typeof infoData[0] != 'undefined'){//sets the city and state interface so when paginating it will have the required fields to make a datacall for getRecentListings();
+          this.city = infoData[0].city;
+          this.state = infoData[0].stateOrProvince;
+        }
 
         this.recentListingsData.forEach(function(val,i) {
             // Format address to Title Case

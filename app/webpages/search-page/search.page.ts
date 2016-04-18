@@ -284,7 +284,7 @@ export class SearchPage implements OnInit {
             'zipcode': item.zipcode,
             page: '../../Magazine',
             params: { addr: item.address_key },
-            display: item.zipcode + ' - ' + item.full_street_address + ', ' + self.globalFunctions.toTitleCase(item.city) + ', ' + item.state_or_province,
+            display: item.zipcode + ' - ' + self.globalFunctions.toTitleCase(item.full_street_address) + ', ' + self.globalFunctions.toTitleCase(item.city) + ', ' + item.state_or_province,
           };
           zipcode.push(zip);
           zipCount++;
@@ -336,7 +336,8 @@ export class SearchPage implements OnInit {
       if(zipCount > max) {
           max = zipCount;
           maxType = 'zipcode';
-      }else{
+      }
+      if(addrCount === 0 && locCount === 0 && zipCount === 0){
           maxType = 'address';
       }
 
