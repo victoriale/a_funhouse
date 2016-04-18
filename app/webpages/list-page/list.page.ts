@@ -463,7 +463,7 @@ export class ListPage implements OnInit{
       //Fetch total Listings
       if(listData.length !== 0){
           this.totalListings = this.globalFunctions.commaSeparateNumber(listData[0].totalListings);
-          this.totalListingsDisplay = listData[0].totalListings <= 1 ? this.totalListings + ' Result' : this.totalListings + ' Results hi';
+          this.totalListingsDisplay = listData[0].totalListings <= 1 ? this.totalListings + ' Result' : this.totalListings + ' Results';
           this.listNameDisplay = this.globalFunctions.convertListName(this.listName);
       }
 
