@@ -336,7 +336,8 @@ export class SearchPage implements OnInit {
       if(zipCount > max) {
           max = zipCount;
           maxType = 'zipcode';
-      }else{
+      }
+      if(addrCount === 0 && locCount === 0 && zipCount === 0){
           maxType = 'address';
       }
 

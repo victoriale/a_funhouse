@@ -61,6 +61,7 @@ export class ListPage implements OnInit{
     public viewType: string;
     public listNameDisplay: string;
     public totalListings: string;
+    public totalListingsDisplay: string;
     public isError: boolean = false;
     //Data sent to map component
     public mapData: any;
@@ -356,6 +357,10 @@ export class ListPage implements OnInit{
             this.filterType = this._params.get('type');
             this.listPage = this._params.get('page');
 
+            this.listState = this._params.get('state');
+            this.listStateAP = this.globalFunctions.stateToAP(this.listState);
+            this.listCity = this._params.get('city') === null ? null : this.globalFunctions.toTitleCase(decodeURI(this._params.get('city').replace(/-/g," ")));
+
             console.log('FYH-Params-ListPage: ', this.filterMinPrice, this.filterMaxPrice, this.filterBedrooms, this.filterBathrooms, this.filterSqFeet, this.filterLot, this.filterType);
 
             // location/findYourHome/{state}/{city}/{priceLowerBound}/{priceUpperBound}/{type}/{bedrooms}/{bathrooms}/{squareFeet}/{lotSize}/{limit}/{page}
@@ -458,6 +463,7 @@ export class ListPage implements OnInit{
       //Fetch total Listings
       if(listData.length !== 0){
           this.totalListings = this.globalFunctions.commaSeparateNumber(listData[0].totalListings);
+          this.totalListingsDisplay = listData[0].totalListings <= 1 ? this.totalListings + ' Result' : this.totalListings + ' Results';
           this.listNameDisplay = this.globalFunctions.convertListName(this.listName);
       }
 
