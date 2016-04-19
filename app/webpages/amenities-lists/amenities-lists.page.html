@@ -12,6 +12,13 @@
               <!-- <module-header [module_title]="moduleTitle"></module-header> -->
               <backtab-component></backtab-component>
               <title-component [titleData]="titleComponentData"></title-component>
+              <div *ngIf="noListings" class="list-error">
+                  <p><i class="fa fa-exclamation-circle"></i> There are no {{displayCategory}} in this area.</p>
+                  <a [routerLink]="['Location-page', locUrl]">
+                    <button>Go to Location Page</button>
+                  </a>
+              </div>
+
               <dynamic-carousel2 [carouselData]="carouselData"></dynamic-carousel2>
 
               <div *ngFor="#item of displayData" class="al {{item.bgClass}}">
