@@ -86,7 +86,7 @@ export class AmenitiesListPage implements OnInit{
         imageURL: '/app/public/joyfulhome_house.png',
         smallText1: 'Last Updated: ' + moment(new Date()).format('dddd, MMMM Do, YYYY'),
         smallText2: this.location,
-        heading1: this.globalFunctions.toTitleCase(this.displayCategory) + ' in and around ' + this.location + ".",
+        heading1: this.globalFunctions.toTitleCase(this.displayCategory) + ' in and around ' + this.location,
         icon: 'fa fa-map-marker',
         hasHover: false
    }//end data input for title component

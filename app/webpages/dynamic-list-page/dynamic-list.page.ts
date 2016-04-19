@@ -137,8 +137,8 @@ export class DynamicListPage implements OnInit {
 
       var newData = {
           img :         val.img,
-          list_sub :    "<i class='fa fa-map-marker'></i> " + val.title + ", " + val.list_sub,
-          title :       val.title,
+          list_sub :    val.list_sub,
+          title :       "<i class='fa fa-map-marker'></i> " + val.title,
           subtype :     val.tag,
           numBed :      '',
           numBath:      '',
@@ -157,8 +157,8 @@ export class DynamicListPage implements OnInit {
 
       var carData = {
         textDetails:    [
-                        val.title,
-                        "<small><i class='fa fa-map-marker'></i> " +val.title + ", " + val.list_sub+"</small>",
+                        "<i class='fa fa-map-marker'></i> " + val.title,
+                        "<small>" + val.list_sub+"</small>",
                         "&nbsp;",
                         val.value,
                         "<small>"+val.tag+"</small>"
