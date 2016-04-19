@@ -14,7 +14,7 @@ declare var jQuery:any;
 
 export class AdzoneComponent implements OnInit {
     hasRun:boolean = false;
-    currentAdZoneSize:number;
+    currentAdZoneSize:number = jQuery('#adzone').width();
 
     onResize(event) {
         if (!this.hasRun) {
@@ -66,7 +66,6 @@ export class AdzoneComponent implements OnInit {
     }
 
     displayAd() {
-        this.currentAdZoneSize = jQuery('#adzone').width();
         var embedURL = "http://content.synapsys.us/embeds/realestate/standard/joyful.js";
         var widgetURL = "";  //ad-stack only (solo)
         var domain = "joyfulhome.com";
