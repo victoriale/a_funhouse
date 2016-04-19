@@ -72,15 +72,20 @@
 
     .detailed-title {
       .globalDefaultModFont(20px, 900, @black) !important;
-      margin-top: 5px;
-      margin-bottom: 5px;
+      margin: 0;
+      line-height: 26px;
       overflow: hidden;
       text-overflow: ellipsis;
+      & > i{
+        color:@masterBrandColor;
+        padding-right:5px;
+      }
     }
 
     .detailed-list_sub {
       .globalDefaultModFont(14px, 400, @black) !important;
-      margin-top: 5px;
+      margin: 0;
+      line-height: 25px;
       i{
         color: @masterBrandColor;
       }
@@ -98,11 +103,13 @@
       .detailed-value {
         .globalDefaultModFont(20px, 900, @black) !important;
         margin: 0;
+        line-height: 26px;
       }
 
     .detailed-tag {
       .globalDefaultModFont(14px, 400, @black) !important;
       margin: 0;
+      line-height: 25px;
     }
 
     .detailed-content-bottom{
