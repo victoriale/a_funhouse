@@ -19,7 +19,7 @@ export class WidgetModule {
 
     ngOnInit(){
       // var widgetEmbedd = "http://content.synapsys.us/embeds/realestate/standard2/realestate.js";
-      var widgetEmbedd = "http://w1.synapsys.us/widgets/realestate/standard2.html";
+      var widgetEmbedd = "http://w1.synapsys.us/widgets/realestate/standard.html";
       this.widgetEmbedd = widgetEmbedd;
 
       // console.log(widgetScript);
