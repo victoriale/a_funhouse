@@ -81,6 +81,9 @@ export class FeaturedListsModule implements OnInit{
 
     transformData(){
         var data = this.featuredListData;
+        if ( data === undefined || data === null ) {
+          return;
+        }
         // Exit function if no list data is found
         // if(data.listData.length === 0){
         //     return false;
