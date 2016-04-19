@@ -7,7 +7,7 @@ declare var jQuery: any;
 @Component({
     selector: 'find-your-home-module',
     templateUrl: './app/modules/find-your-home/find-your-home.module.html',
-    
+
     directives: [moduleHeader, imageHeader, ROUTER_DIRECTIVES],
     providers: [],
 })
@@ -30,7 +30,7 @@ export class FindYourHomeModule implements OnInit{
     private filterLot: any  = 'empty';
     private filterLimit: any = 20;
     private filterPage: any = 1;
-    
+
     private maxSliderPosition: number = 632;
 
     constructor(private _router: Router) {}
@@ -40,7 +40,7 @@ export class FindYourHomeModule implements OnInit{
 
     // EVENTS
     // Get selected radio input value for property type
-    onClickPropertyType($event) {      
+    onClickPropertyType($event) {
       if ( $event.target.tagName === "INPUT" ) {
         let selectedFilterRadioBtn = jQuery($event.target);
         let newFilterType = selectedFilterRadioBtn.val();
@@ -103,20 +103,20 @@ export class FindYourHomeModule implements OnInit{
 
     onInputFocus($event) {
         var stringVal = jQuery($event.target)[0].value;
-        
+
         if ( stringVal.indexOf('.') != -1 ) {
             stringVal = this.numberToCommaNumber(stringVal.replace('$','').replace('.','').replace('M','00000').replace('K','000').replace('+',''));
         } else {
             stringVal = this.numberToCommaNumber(stringVal.replace('$','').replace('M','000000').replace('K','000').replace('+',''));
         }
         jQuery($event.target).val(stringVal);
-        
+
         if ( jQuery($event.target)[0].setSelectionRange ) {
             jQuery($event.target)[0].setSelectionRange(99,100);
         }
     }
 
-    onInputBlur($event) {            
+    onInputBlur($event) {
         var stringVal = jQuery($event.target)[0].value;
         stringVal = stringVal.replace(/,/g,'');
         var xPos = Math.round(this.logslider(Number(stringVal)/1000,1));
@@ -141,10 +141,11 @@ export class FindYourHomeModule implements OnInit{
 
     onClickBall($event) {
         var self = this;
-        //console.log('mousedown');
         if ( !jQuery($event.target).hasClass('price_slider_ball') ) {
             return true;
         }
+        // console.log('mousedown');
+        jQuery('.inner-wrapper').addClass('no-select');
         var data = {target: $event.target};
         var startX = $event.pageX;
         var startXButton = jQuery($event.target).position().left;
@@ -154,6 +155,8 @@ export class FindYourHomeModule implements OnInit{
             var eventId = 'maxBall';
         }
         jQuery(document).mouseup(function(){
+            // console.log('mouseup');
+            jQuery('.inner-wrapper').removeClass('no-select');
             jQuery(document).unbind('mousemove');
         });
         jQuery(document).mousemove(data,function(e){
@@ -269,7 +272,7 @@ export class FindYourHomeModule implements OnInit{
         this.location = this.locData.city + ', ' + this.locData.state;
         this.locCity = this.locData.city;
         this.locState = this.locData.stateAbbreviation;
-        
+
         //Needed for IE, since IE didn't shift the #maxBall right through the HTML
         jQuery("#maxBall").css({left: this.maxSliderPosition});
     }
