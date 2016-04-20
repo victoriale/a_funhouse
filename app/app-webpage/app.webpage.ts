@@ -246,9 +246,5 @@ export class AppComponent implements OnInit {
     /* Navigates to top of page on navigation */
     routerOnDeactivate(){
         window.scrollTo(0,0);
-        console.log("test1")
-    }
-    routerOnActivate(){
-        console.log("test1B")
     }
 }
