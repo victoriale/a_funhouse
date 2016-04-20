@@ -361,4 +361,8 @@ export class SearchPage implements OnInit {
     ngOnInit() {
         this.showCurrentData();
     }
+    /* Navigates to top of page on navigation */
+    routerOnDeactivate(){
+        window.scrollTo(0,0);
+    }
 }
