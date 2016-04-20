@@ -1,6 +1,6 @@
 import {Component, OnInit, Input} from 'angular2/core';
 import {moduleHeader} from "../../components/module-header/module-header";
-import {ROUTER_DIRECTIVES} from 'angular2/router';
+import {RouteParams, ROUTER_DIRECTIVES} from 'angular2/router';
 import {ElementRef} from "angular2/core";
 import {GlobalFunctions} from "../../global/global-functions";
 
@@ -22,7 +22,7 @@ export class magazineModule {
   showMagazine: boolean = false; //will only show if it is a residential listing
   data: any;
 
-    constructor(private _globalFunctions: GlobalFunctions){
+    constructor(private _globalFunctions: GlobalFunctions, private _params:RouteParams){
     }
     getData(){
         var address:string;
@@ -44,7 +44,7 @@ export class magazineModule {
         this.data = {
             address: address,
             url1: '../../Magazine',
-            param: {addr: this._globalFunctions.toLowerKebab(addrParam)},
+            param: {addr: this._params.params.address},
             url2: 'PropertyOverview',
         }
     }
