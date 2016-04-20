@@ -15,15 +15,17 @@ export class magazineBanner {
   listingData: any;
   showMagazine: boolean = false; //will only show if it is a residential listing
   data: any;
+    paramAddress: string;
 
   constructor(private _globalFunctions: GlobalFunctions, private _params:RouteParams){
-    console.log(this._params);
+      this.paramAddress = this._params.get('address');
   }
 
     ngOnInit() {
       var address:string;
       var addrParam:string;
       var dataList = this.listingData;
+        var self = this;
       if(dataList['propertyType'] == 'Residential'){
         this.showMagazine = true;
       }
@@ -32,7 +34,7 @@ export class magazineBanner {
       this.data = {
           address: address,
           url1: '../../Magazine',
-          param: {addr: this._params.params.address},
+          param: {addr: self.paramAddress},
           url2: 'PropertyOverview',
       }
     }
