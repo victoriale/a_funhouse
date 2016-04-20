@@ -68,6 +68,10 @@ export class SchoolModule implements OnInit{
 
     dataFormatter(){
       var data = this.schoolData;
+      if ( data === undefined || data === null ) {
+        return;
+      }
+      
       if(data.elementary.length === 0){
           return false;
       }
