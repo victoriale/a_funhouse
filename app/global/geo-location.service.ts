@@ -38,7 +38,7 @@ export class NearByCitiesService {
         if (this.cachedNearByCities) {
             return Observable.of(this.cachedNearByCities);
         } else {
-            return this.http.get('http://prod-joyfulhome-api.synapsys.us/nearbyCities/' + state + '/' + city)
+            return this.http.get('http://api2.joyfulhome.com/nearbyCities/' + state + '/' + city)
                 .map(
                     res => res.json()
                 )
