@@ -17,7 +17,7 @@ export class magazineBanner {
   data: any;
 
   constructor(private _globalFunctions: GlobalFunctions, private _params:RouteParams){
-    console.log(this._params);
+
   }
 
     ngOnInit() {
