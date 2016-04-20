@@ -51,6 +51,24 @@ export class SearchService{
         var searchArray = [];
         var self = this;
 
+        //If location cities are not null in api return iterate through cities
+        if(typeof data.location_city !== 'undefined' && data.location_city !== null) {
+            data.location_city.forEach(function (item, index) {
+                if(cityCount < 5 && count < maxCount) {
+                    searchArray.push({
+                        title: self._globalFunctions.toTitleCase(item.city) + ', ' + item.state_or_province.toUpperCase(),
+                        page: 'Location-page',
+                        params: {
+                            loc: self._globalFunctions.toLowerKebab(item.city) + '-' + item.state_or_province.toLowerCase()
+                        }
+                    });
+                    //Increment count to ensure only 10 results are displayed and 5 city results are displayed
+                    cityCount++;
+                    count++;
+                }
+            });
+        }
+
         //If addresses are not null in api return iterate through addresses
         if(typeof data.address !== 'undefined' && data.address !== null) {
             data.address.forEach(function (item, index) {
@@ -68,24 +86,6 @@ export class SearchService{
                     });
                     //Increment counter to ensure only 10 results total are displayed and 5 address results are displayed
                     addressCount++;
-                    count++;
-                 }
-            });
-        }
-
-        //If location cities are not null in api return iterate through cities
-        if(typeof data.location_city !== 'undefined' && data.location_city !== null) {
-            data.location_city.forEach(function (item, index) {
-                if(cityCount < 5 && count < maxCount) {
-                    searchArray.push({
-                        title: self._globalFunctions.toTitleCase(item.city) + ', ' + item.state_or_province.toUpperCase(),
-                        page: 'Location-page',
-                        params: {
-                            loc: self._globalFunctions.toLowerKebab(item.city) + '-' + item.state_or_province.toLowerCase()
-                        }
-                    });
-                    //Increment count to ensure only 10 results are displayed and 5 city results are displayed
-                    cityCount++;
                     count++;
                 }
             });
