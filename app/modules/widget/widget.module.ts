@@ -5,7 +5,7 @@ declare var jQuery: any;
 @Component({
     selector: 'widget-module',
     templateUrl: './app/modules/widget/widget.module.html',
-    
+
     directives: [],
     providers: [],
 })
@@ -19,15 +19,15 @@ export class WidgetModule {
 
     ngOnInit(){
       // var widgetEmbedd = "http://content.synapsys.us/embeds/realestate/standard2/realestate.js";
-      var widgetEmbedd = "http://w1.synapsys.us/widgets/realestate/standard.html";
+      var widgetEmbedd = "http://content.synapsys.us/embeds/realestate/standard/realestate.js";
       this.widgetEmbedd = widgetEmbedd;
 
       // console.log(widgetScript);
 
-      // var newScript = document.createElement("script");
-      // newScript.src =  widgetEmbedd;
-      // jQuery('#widget').html('');
-      // jQuery('#widget')[0].appendChild(newScript);
+      var newScript = document.createElement("script");
+      newScript.src =  widgetEmbedd;
+      jQuery('#widget').html('');
+      jQuery('#widget')[0].appendChild(newScript);
     }
     // Page is being scrolled
     onScroll(event) {
