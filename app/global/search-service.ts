@@ -20,7 +20,7 @@ export class SearchService{
             //return new Observable.return([]);
         }
 
-        return this.http.get('http://api2.joyfulhome-api.synapsys.us/search/' + input, {
+        return this.http.get('http://api2.joyfulhome.com/search/' + input, {
                 headers: headers
             })
             .map(
