@@ -196,7 +196,7 @@ export class AmenitiesListPage implements OnInit{
   ngOnInit(){
     this.locState = decodeURI(this._params.get('state'));
     this.locCity = decodeURI(this._params.get('city')).split("-").join(" ");
-    this.locUrl = {loc: this.locCity + '-' + this.locState};
+    this.locUrl = {loc: globalFunc.toLowerKebab(this.locCity) + '-' + this.locState.toLowerCase()};
     this.location = this.globalFunctions.toTitleCase(this.locCity) + ', ' + this.globalFunctions.stateToAP(this.locState);
     this.getData();
   }//end ngOnInit
