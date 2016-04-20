@@ -8,26 +8,25 @@ import {MagazinePage} from "../../../app-webpage/magazine.webpage";
 import {MagazineDataService} from "../../../global/global-mag-service";
 import {MagRecommendations} from "../../../global/global-interface";
 import {WebApp} from "../../../app-layout/app.layout";
+import {Injectable} from "angular2/core";
 
 @Component({
     selector: 'recommendations-module',
     templateUrl: './app/modules/magazine/recommendations/recommendations.module.html',
-    
+
     directives: [NavRightComponent, MagRecommendationsImgModule, MagRecommendationsTextModule, NavLeftComponent, ROUTER_DIRECTIVES],
+    provider: []
 })
 
-export class Recommendations implements OnInit {
-    address: string;
-    magRecommendations:MagRecommendations;
-    public partnerID: string;
-    isPartner: boolean;
+@Injectable()
 
-    constructor( private _injector: Injector, private _magazineDataService: MagazineDataService ) {
+export class Recommendations implements OnInit {
+    address:string;
+    magRecommendations:MagRecommendations;
+
+    constructor(private _magazineDataService:MagazineDataService) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
-        this.address = _injector.get(MagazinePage).address;
-        let partnerParam = this._injector.get(WebApp);
-        this.partnerID = partnerParam.partnerID;
     }
 
     getMagazineSimilarListings() {
@@ -40,14 +39,7 @@ export class Recommendations implements OnInit {
             )
     }
 
-    checkPartner(){
-        if (this.partnerID != null){
-            this.isPartner = true;
-        }
-    }
-
     ngOnInit() {
         this.getMagazineSimilarListings();
-        this.checkPartner();
     }
 }

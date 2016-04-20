@@ -7,10 +7,8 @@
                     <div class="mag_n1_img_text">{{magListings.address.fullStreetAddress}}</div>
                     <div class="mag_n1_img_bar"></div>
                     <span *ngIf="!isPartner">
-                        <a class="mag_n1_img_view" href="magazine/{{magListings.key.toLowerCase()}}/overview">View <i class="fa fa-eye"></i></a>
-                    </span>
-                    <span *ngIf="isPartner">
-                        <a class="mag_n1_img_view" href="{{partnerID}}/magazine/{{magListings.key.toLowerCase()}}/overview">View <i class="fa fa-eye"></i></a>
+                        <a [routerLink]="['../../Magazine', {addr: magListings.key.toLowerCase()}, 'PropertyOverview' ]"
+                           class="mag_n1_img_view">View <i class="fa fa-eye"></i></a>
                     </span>
                 </div>
             </div>
@@ -22,10 +20,8 @@
                     <div class="mag_n1_img_text">{{magListings.address.fullStreetAddress}}</div>
                     <div class="mag_n1_img_bar"></div>
                     <span *ngIf="!isPartner">
-                        <a class="mag_n1_img_view" href="magazine/{{magListings.key.toLowerCase()}}/overview">View <i class="fa fa-eye"></i></a>
-                    </span>
-                    <span *ngIf="isPartner">
-                        <a class="mag_n1_img_view" href="{{partnerID}}/magazine/{{magListings.key.toLowerCase()}}/overview">View <i class="fa fa-eye"></i></a>
+                        <a [routerLink]="['../../Magazine', {addr: magListings.key.toLowerCase()}, 'PropertyOverview' ]"
+                           class="mag_n1_img_view">View <i class="fa fa-eye"></i></a>
                     </span>
                 </div>
             </div>
