@@ -43,7 +43,7 @@ export class MagazineDataService {
                         this.cachedData = data;
                     });
             } else {
-                return this.http.get('http://prod-joyfulhome-ai.synapsys.us/' + address + '?partner=' + this.partnerID)
+                return this.http.get('http://dev-realestate-ai.synapsys.us/' + address + '?partner=' + this.partnerID)
                     .map(res => res.json())
                     .do((data) => {
                         this.cachedData = data;
