@@ -48,7 +48,7 @@
   .flexDirection(column);
   .flexJustify(space-around);
   span:first-child{
-    font-size: 12px;
+    font-size: 14px;
     & > i{
       color:@masterBrandColor;
       padding-right:5px;
@@ -70,6 +70,7 @@
 
   .info-address {
     .globalDefaultModFont(20px, 900, @black) !important;
+    line-height: 22px;
     margin-top: 5px;
     margin-bottom: 5px;
     overflow: hidden;
@@ -88,11 +89,12 @@
     .info-market {
       .globalDefaultModFont(12px, 400, @black) !important;
       margin: 0;
+      line-height: 1;
     }
 
     .info-date {
       .globalDefaultModFont(20px, 900, @black) !important;
-      margin: 0;
+      margin: 5px 0 5px 0;
     }
 
   .info-price {

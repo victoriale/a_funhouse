@@ -264,7 +264,7 @@ export class SearchPage implements OnInit {
             addr: item.address_key,
             page: page,
             params: params,
-            display: self.globalFunctions.toTitleCase(item.full_street_address) + " - " + self.globalFunctions.toTitleCase(item.city) + ", " + item.state_or_province,
+            display: self.globalFunctions.toTitleCase(item.full_street_address) + " - " + self.globalFunctions.toTitleCase(item.city) + ", " + item.state,
           };
           address.push(dataAddr);
           addrCount++;
@@ -300,8 +300,8 @@ export class SearchPage implements OnInit {
 
           var locationData = {
             page: 'Location-page',
-            params: { loc: self.globalFunctions.toLowerKebab(item.city) + "-" + item.state_or_province.toLowerCase() },
-            display: self.globalFunctions.toTitleCase(item.city) + " - " + item.state_or_province,
+            params: { loc: self.globalFunctions.toLowerKebab(item.city) + "-" + item.state.toLowerCase() },
+            display: self.globalFunctions.toTitleCase(item.city) + " - " + item.state,
           };
           location.push(locationData);
           locCount++;

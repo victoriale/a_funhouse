@@ -15,7 +15,7 @@ import {GlobalFunctions} from './global-functions';
 
 export class PartnerHeader {
   public protocolToUse: string = (location.protocol == "https:") ? "https" : "http";
-  public apiUrl: string = '://apireal.synapsys.us/listhuv/?action=get_partner_data&domain=';
+  public apiUrl: string = '://dev-real-api.synapsys.us/listhuv/?action=get_partner_data&domain=';
 
   constructor(public http: Http) {
 
@@ -57,7 +57,7 @@ export class PartnerHeader {
 
 export class listViewPage {
   public protocolToUse: string = (location.protocol == "https:") ? "https" : "http";
-  public apiUrl: string = '://prod-joyfulhome-api.synapsys.us';
+  public apiUrl: string = '://api2.joyfulhome.com';
 
   constructor(public http: Http, private globalFunctions: GlobalFunctions) {}
 
@@ -134,7 +134,7 @@ export class ListOfListPage {
 
   constructor(public http: Http, private _globalFunctions: GlobalFunctions) { }
 
-  public apiUrl: string = 'http://prod-joyfulhome-api.synapsys.us';
+  public apiUrl: string = 'http://api2.joyfulhome.com';
 
   getAddressListOfListPage(address){
     address = encodeURIComponent(address);
@@ -185,7 +185,7 @@ export class ListOfListPage {
 @Injectable()
 
 export class GlobalPage {
-  public apiUrl: string = 'http://prod-joyfulhome-api.synapsys.us';
+  public apiUrl: string = 'http://api2.joyfulhome.com';
 
   constructor(public http: Http){}
   //Function to set custom headers
@@ -206,7 +206,7 @@ export class GlobalPage {
 @Injectable()
 
 export class DynamicWidgetCall {
-  public apiUrl: string = "http://dw.synapsys.us/list_creator_api.php";
+  public apiUrl: string = "http://108.170.11.234:190/list_creator_api.php";
 
   constructor(public http: Http) { }
   //Function to set custom headers

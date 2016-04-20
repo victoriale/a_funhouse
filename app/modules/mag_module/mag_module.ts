@@ -20,13 +20,16 @@ export class magazineModule {
   magImg:string = "/app/public/mag_module_bg.png";
   listingData: any;
   showMagazine: boolean = false; //will only show if it is a residential listing
+    paramAddress: string;
   data: any;
 
     constructor(private _globalFunctions: GlobalFunctions, private _params:RouteParams){
+        this.paramAddress = this._params.get('address');
     }
     getData(){
         var address:string;
         var addrParam:string;
+        var self = this;
         if(this.listingData['propertyType'] === "Residential"){
             this.showMagazine = true;
         }
@@ -44,7 +47,7 @@ export class magazineModule {
         this.data = {
             address: address,
             url1: '../../Magazine',
-            param: {addr: this._params.params.address},
+            param: {addr: self.paramAddress},
             url2: 'PropertyOverview',
         }
     }
