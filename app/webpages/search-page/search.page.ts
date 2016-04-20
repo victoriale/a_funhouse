@@ -183,7 +183,6 @@ export class SearchPage implements OnInit {
         this.searchResults = this._searchService.getSearchResults(input, 'raw')
             .subscribe(
                 data => {
-                    console.log('hihi', data);
                     this.searchResults = this.dataModify(data);
 
                     //Build dummy event target for tabTarget function to use (this will cause the tab with the most results to be selected)
@@ -285,7 +284,7 @@ export class SearchPage implements OnInit {
             'zipcode': item.zipcode,
             page: '../../Magazine',
             params: { addr: item.address_key },
-            display: item.zipcode + ' - ' + self.globalFunctions.toTitleCase(item.full_street_address) + ', ' + self.globalFunctions.toTitleCase(item.city) + ', ' + item.state,
+            display: item.zipcode + ' - ' + self.globalFunctions.toTitleCase(item.full_street_address) + ', ' + self.globalFunctions.toTitleCase(item.city) + ', ' + item.state_or_province,
           };
           zipcode.push(zip);
           zipCount++;
