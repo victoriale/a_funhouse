@@ -243,4 +243,12 @@ export class AppComponent implements OnInit {
         // Call to get current State and City
         this.getGeoLocation();
     }
+    /* Navigates to top of page on navigation */
+    routerOnDeactivate(){
+        window.scrollTo(0,0);
+        console.log("test1")
+    }
+    routerOnActivate(){
+        console.log("test1B")
+    }
 }

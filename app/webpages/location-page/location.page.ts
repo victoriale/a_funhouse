@@ -247,4 +247,8 @@ export class LocationPage implements OnInit {
         this.getAmenitiesData();
         this.getListOfList();
     }
+    /* Navigates to top of page on navigation */
+    routerOnDeactivate(){
+        window.scrollTo(0,0);
+    }
 }

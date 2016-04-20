@@ -34,4 +34,8 @@ export class ErrorPage implements OnInit{
     }    
     this.errorMessage = "<p>Oops! That page doesn't exist! Try looking for a location below or go to <a style='color: #44b224; text-decoration: inherit;' href='"+ this.pageLink +"'> our home page</a>!</p>";
   }
+    /* Navigates to top of page on navigation */
+    routerOnDeactivate(){
+        window.scrollTo(0,0);
+    }
 }
