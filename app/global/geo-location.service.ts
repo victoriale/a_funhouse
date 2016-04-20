@@ -66,7 +66,7 @@ export class CityViewService {
         if (this.cachedCityView) {
             return Observable.of(this.cachedCityView);
         } else {
-            return this.http.get('http://prod-joyfulhome-api.synapsys.us/cityView/' + state + '/' + city)
+            return this.http.get('http://api2.joyfulhome.com/cityView/' + state + '/' + city)
                 .map(
                     res => res.json()
                 )
