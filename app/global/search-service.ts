@@ -47,7 +47,7 @@ export class SearchService{
         var addressCount = 0;
         var cityCount = 0;
         var zipcodeCount = 0;
-        var maxCount = 10;
+        var maxCount = 5;
         var searchArray = [];
         var self = this;
 
@@ -96,12 +96,15 @@ export class SearchService{
             data.zipcode.forEach(function(item, index){
                 //If count is 10 skip over remaining zipcodes
                 if(zipcodeCount < 5 && count < maxCount){
+                    //Pass property_type and address_key so individual search components can build the magazine route (This is needed because the search components are on different levels of the router
                     searchArray.push({
+                        property_type: item.property_type,
                         title: item.zipcode + ' - ' + self._globalFunctions.toTitleCase(item.full_street_address) + ', ' + self._globalFunctions.toTitleCase(item.city) + ', ' + item.state_or_province.toUpperCase(),
-                        page: 'Location-page',
+                        page: 'Profile-page',
                         params: {
-                            loc: self._globalFunctions.toLowerKebab(item.city) + '-' + item.state_or_province.toLowerCase()
-                        }
+                            address: item.address_key.toLowerCase()
+                        },
+                        address_key: item.address_key
                     });
                     //Increment count to ensure only 10 results are displayed and 5 zipcode results are displayed
                     zipcodeCount++;
