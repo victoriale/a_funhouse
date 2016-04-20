@@ -4,7 +4,7 @@ import {GlobalFunctions} from '../global/global-functions';
 @Injectable()
 
 export class LocationProfileService{
-    public apiUrl: string = 'http://prod-joyfulhome-api.synapsys.us';
+    public apiUrl: string = 'http://api2.joyfulhome-api.synapsys.us';
     public apiToken: string = 'BApA7KEfj';
     public headerName: string = 'X-SNT-TOKEN';
 
