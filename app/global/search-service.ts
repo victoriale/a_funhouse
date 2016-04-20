@@ -95,9 +95,9 @@ export class SearchService{
         if(typeof data.zipcode !== 'undefined' && data.zipcode !== null && count < 10){
             data.zipcode.forEach(function(item, index){
                 //If count is 10 skip over remaining zipcodes
-                if(zipcodeCount < 5 && count < maxCount) {
+                if(zipcodeCount < 5 && count < maxCount){
                     searchArray.push({
-                        title: item.zipcode + ' - ' + self._globalFunctions.toTitleCase(item.full_street_addres) + ', ' + self._globalFunctions.toTitleCase(item.city) + ', ' + item.state_or_province.toUpperCase(),
+                        title: item.zipcode + ' - ' + self._globalFunctions.toTitleCase(item.full_street_address) + ', ' + self._globalFunctions.toTitleCase(item.city) + ', ' + item.state_or_province.toUpperCase(),
                         page: 'Location-page',
                         params: {
                             loc: self._globalFunctions.toLowerKebab(item.city) + '-' + item.state_or_province.toLowerCase()
@@ -107,7 +107,7 @@ export class SearchService{
                     zipcodeCount++;
                     count++;
                 }
-            })
+            });
         }
 
         return searchArray;
