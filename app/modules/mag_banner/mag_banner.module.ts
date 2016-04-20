@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from 'angular2/core';
-import {ROUTER_DIRECTIVES} from 'angular2/router';
+import {RouteParams, ROUTER_DIRECTIVES} from 'angular2/router';
 import {GlobalFunctions} from "../../global/global-functions";
 
 @Component({
@@ -16,7 +16,8 @@ export class magazineBanner {
   showMagazine: boolean = false; //will only show if it is a residential listing
   data: any;
 
-  constructor(private _globalFunctions: GlobalFunctions){
+  constructor(private _globalFunctions: GlobalFunctions, private _params:RouteParams){
+
   }
 
     ngOnInit() {
@@ -31,7 +32,7 @@ export class magazineBanner {
       this.data = {
           address: address,
           url1: '../../Magazine',
-          param: {addr: this._globalFunctions.toLowerKebab(addrParam)},
+          param: {addr: this._params.params.address},
           url2: 'PropertyOverview',
       }
     }

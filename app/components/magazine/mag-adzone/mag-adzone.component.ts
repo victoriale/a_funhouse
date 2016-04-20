@@ -20,6 +20,7 @@ export class AdzoneComponent implements OnInit {
         if (!this.hasRun) {
             this.hasRun = true;
             if (this.currentAdZoneSize != jQuery('#adzone').width()) {
+                this.currentAdZoneSize = jQuery('#adzone').width();
                 setTimeout(() => {
                     var embedURL = "http://content.synapsys.us/embeds/realestate/standard/joyful.js";
                     var widgetURL = "";  //ad-stack only (solo)
@@ -58,7 +59,7 @@ export class AdzoneComponent implements OnInit {
                     jQuery('#adzone').html('');
                     jQuery('#adzone')[0].appendChild(newScript);
                     this.hasRun = false;
-                }, 500);
+                }, 50);
             } else {
                 this.hasRun = false;
             }

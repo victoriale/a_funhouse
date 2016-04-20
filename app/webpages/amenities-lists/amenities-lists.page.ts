@@ -49,7 +49,8 @@ export class AmenitiesListPage implements OnInit{
   arraySize: number = 10;
   providerUrl = 'http://www.yelp.com/';
   providerLogo = '/app/public/amenities_yelp.png';
-
+  noListings: boolean = false;
+  public locUrl: Object;
   @Input() amenitiesNearListingData: any;
 
   public isError: boolean = false;
@@ -86,7 +87,7 @@ export class AmenitiesListPage implements OnInit{
         imageURL: '/app/public/joyfulhome_house.png',
         smallText1: 'Last Updated: ' + moment(new Date()).format('dddd, MMMM Do, YYYY'),
         smallText2: this.location,
-        heading1: this.globalFunctions.toTitleCase(this.displayCategory) + ' in and around ' + this.location + ".",
+        heading1: this.globalFunctions.toTitleCase(this.displayCategory) + ' in and around ' + this.location,
         icon: 'fa fa-map-marker',
         hasHover: false
    }//end data input for title component
@@ -145,6 +146,12 @@ export class AmenitiesListPage implements OnInit{
   }//end dataFormatter
   sanitizeListofListData(){
       var data = this.amenitiesData;
+      if (data.length <= 0) {
+          this.noListings = true;
+          return;
+      } else {
+          this.noListings = false;
+      }
       var dataToArray = [];
       var size = this.arraySize;
       var sanitizedArray = [];
@@ -189,6 +196,7 @@ export class AmenitiesListPage implements OnInit{
   ngOnInit(){
     this.locState = decodeURI(this._params.get('state'));
     this.locCity = decodeURI(this._params.get('city')).split("-").join(" ");
+    this.locUrl = {loc: this.globalFunctions.toLowerKebab(this.locCity) + '-' + this.locState.toLowerCase()};
     this.location = this.globalFunctions.toTitleCase(this.locCity) + ', ' + this.globalFunctions.stateToAP(this.locState);
     this.getData();
   }//end ngOnInit

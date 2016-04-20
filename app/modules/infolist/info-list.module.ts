@@ -108,6 +108,7 @@ export class InfoListModule implements OnInit {
     //Function to set up parameters for pagination footer
     setPaginationParameters(){
         var data = this.recentListingsData;
+        
         var max = Math.ceil(Number(data[0].totalListings) / 4);
 
         //Define parameters to send to pagination footer
@@ -146,8 +147,11 @@ export class InfoListModule implements OnInit {
 
     ngOnInit() {
         this.module_title = 'Recent Listings for ' + this.locDisplay;
-        this.setPaginationParameters();
-        this.dataTransform();
-        this.dataPaginate();
+        if ( this.recentListingsData === undefined || this.recentListingsData === null ) {
+          this.setPaginationParameters();
+          this.dataTransform();
+          this.dataPaginate();
+          return;
+        }
     }
 }
