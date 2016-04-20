@@ -15,7 +15,7 @@ import {GlobalFunctions} from './global-functions';
 
 export class PartnerHeader {
   public protocolToUse: string = (location.protocol == "https:") ? "https" : "http";
-  public apiUrl: string = '://apireal.synapsys.us/listhuv/?action=get_partner_data&domain=';
+  public apiUrl: string = '://dev-real-api.synapsys.us/listhuv/?action=get_partner_data&domain=';
 
   constructor(public http: Http) {
 
