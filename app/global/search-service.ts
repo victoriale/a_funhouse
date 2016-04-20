@@ -20,7 +20,13 @@ export class SearchService{
             //return new Observable.return([]);
         }
 
-        return this.http.get('http://api2.joyfulhome.com/search/' + input, {
+        var url = 'http://api2.joyfulhome.com/search/' + input;
+
+        if(type === 'list'){
+            url += '/true';
+        }
+
+        return this.http.get(url, {
                 headers: headers
             })
             .map(
@@ -29,16 +35,71 @@ export class SearchService{
             .map(
                 data => {
                     data = data.data;
-
                     //If type is set to list, extract array out of data
                     if(type === 'list') {
-                        data = this.dataToLink(data);
+                        data = this.newDataToLink(data.dropdown);
                     }
 
                     return data;
                 }
             );
 
+    }
+
+    newDataToLink(data){
+        var maxCount = 5;
+        var searchArray = [];
+        var self = this;
+
+        for(var i = 0; i < maxCount; i++){
+            var result = data[i];
+
+            if(typeof result === 'undefined'){
+                break;
+            }
+
+            switch(result.type){
+                case 'location':
+                    searchArray.push({
+                        title: self._globalFunctions.toTitleCase(result.city) + ', ' + result.state.toUpperCase(),
+                        page: 'Location-page',
+                        params: {
+                            loc: self._globalFunctions.toLowerKebab(result.city) + '-' + result.state.toLowerCase()
+                        }
+                    });
+                    break;
+                case 'address':
+                    //Pass property_type and address_key so individual search components can build the magazine route (This is needed because the search components are on different levels of the router
+                    searchArray.push({
+                        property_type: result.property_type,
+                        title: self._globalFunctions.toTitleCase(result.full_street_address) + ', ' + self._globalFunctions.toTitleCase(result.city) + ', ' + result.state_or_province.toUpperCase(),
+                        //Default page and route params
+                        page: 'Profile-page',
+                        params: {
+                            address: result.address_key.toLowerCase()
+                        },
+                        address_key: result.address_key
+                    });
+                    break;
+                case 'zipcode':
+                    //Pass property_type and address_key so individual search components can build the magazine route (This is needed because the search components are on different levels of the router
+                    searchArray.push({
+                        property_type: result.property_type,
+                        title: result.zipcode + ' - ' + self._globalFunctions.toTitleCase(result.full_street_address) + ', ' + self._globalFunctions.toTitleCase(result.city) + ', ' + result.state_or_province.toUpperCase(),
+                        page: 'Profile-page',
+                        params: {
+                            address: result.address_key.toLowerCase()
+                        },
+                        address_key: result.address_key
+                    });
+                    break;
+                default:
+
+                    break;
+            }
+        }
+
+        return searchArray;
     }
 
     //API to transform data to link
