@@ -137,4 +137,8 @@ export class ListOfListsPage implements OnInit{
             this.getListOfListPageState();
         }
     }
+    /* Navigates to top of page on navigation */
+    routerOnDeactivate(){
+        window.scrollTo(0,0);
+    }
 }

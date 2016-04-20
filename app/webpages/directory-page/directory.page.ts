@@ -508,4 +508,8 @@ export class DirectoryPage {
 
         self.navigationLinks = navigationArray;
     }
+    /* Navigates to top of page on navigation */
+    routerOnDeactivate(){
+        window.scrollTo(0,0);
+    }
 }

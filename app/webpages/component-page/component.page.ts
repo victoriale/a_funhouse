@@ -113,4 +113,8 @@ export class ComponentPage implements OnInit{
         // console.log('Route Name:', this.router.hostComponent.name);
     }
 
+    /* Navigates to top of page on navigation */
+    routerOnDeactivate(){
+        window.scrollTo(0,0);
+    }
 }

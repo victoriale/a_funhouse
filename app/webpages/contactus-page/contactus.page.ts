@@ -68,4 +68,8 @@ export class ContactUsPage implements OnInit{
     ngOnInit(){
         this.getData();
     }
+    /* Navigates to top of page on navigation */
+    routerOnDeactivate(){
+        window.scrollTo(0,0);
+    }
 }
