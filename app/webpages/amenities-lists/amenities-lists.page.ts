@@ -210,4 +210,9 @@ export class AmenitiesListPage implements OnInit{
       this.getData();
     }
   }//end ngOnChanges
+
+    /* Navigates to top of page on navigation */
+    routerOnDeactivate(){
+        window.scrollTo(0,0);
+    }
 }

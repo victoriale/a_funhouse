@@ -689,4 +689,8 @@ export class PartnerHomePage implements OnInit{
     ngOnInit() {
       this.partners = this.getPartners();
     }
+  /* Navigates to top of page on navigation */
+  routerOnDeactivate(){
+    window.scrollTo(0,0);
+  }
 }
