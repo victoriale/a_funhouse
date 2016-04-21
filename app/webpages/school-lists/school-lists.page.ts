@@ -204,9 +204,9 @@ export class SchoolListsPage implements OnInit{
     if (currentSchoolDataInput !== null && currentSchoolDataInput!== false) {
       this.getData();
     }
-      /* Navigates to top of page on navigation */
-      routerOnDeactivate(){
-          window.scrollTo(0,0);
-      }
+  }
+  /* Navigates to top of page on navigation */
+  routerOnDeactivate(){
+    window.scrollTo(0,0);
   }
 }
