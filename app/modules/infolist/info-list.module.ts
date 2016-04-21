@@ -38,7 +38,7 @@ export class InfoListModule implements OnInit {
         var index = ((this.index - 1)*4) + 1;
 
         var infoData = this.recentListingsData;
-
+        console.log('INFODATA',infoData);
         if(typeof infoData[0] != 'undefined'){//sets the city and state interface so when paginating it will have the required fields to make a datacall for getRecentListings();
           this.city = infoData[0].city;
           this.state = infoData[0].stateOrProvince;
@@ -108,7 +108,7 @@ export class InfoListModule implements OnInit {
     //Function to set up parameters for pagination footer
     setPaginationParameters(){
         var data = this.recentListingsData;
-        
+
         var max = Math.ceil(Number(data[0].totalListings) / 4);
 
         //Define parameters to send to pagination footer
@@ -147,7 +147,7 @@ export class InfoListModule implements OnInit {
 
     ngOnInit() {
         this.module_title = 'Recent Listings for ' + this.locDisplay;
-        if ( this.recentListingsData === undefined || this.recentListingsData === null ) {
+        if (typeof this.recentListingsData != 'undefined' && this.recentListingsData != null ) {
           this.setPaginationParameters();
           this.dataTransform();
           this.dataPaginate();
