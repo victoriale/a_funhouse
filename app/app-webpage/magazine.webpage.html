@@ -1,5 +1,5 @@
 <div class="overview-page">
-    <magazine-header-module [toc]="toc" [address]="address"></magazine-header-module>
+    <magazine-header-module (click)="resetTimer()" [toc]="toc" [address]="address"></magazine-header-module>
     <div *ngIf="!magazineData" class="page-loading">
         <img src="/app/public/page_loading.gif"/>
     </div>
