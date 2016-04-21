@@ -293,37 +293,7 @@ export class SearchPage implements OnInit {
               total++;
           })
       }
-
-    //group city together, routerLink goes go Listing page
-    //if (typeof data.city !== 'undefined' && data.city !== null) {
-    //  data.city.forEach(function(item, index) {
-    //    for(var obj in item){
-    //      if(item[obj] == null || typeof item[obj] == 'undefined'){
-    //        item[obj] = 'N/A';
-    //      }
-    //    }
-    //      var params: any = {};
-    //
-    //      if(item.property_type === 'Residential'){
-    //          var page = '../../Magazine';
-    //          params.addr = item.address_key;
-    //      }else{
-    //          var page = 'Profile-page';
-    //          params.address = item.address_key;
-    //      }
-    //
-    //      var dataAddr = {
-    //        addr: item.address_key,
-    //        page: page,
-    //        params: params,
-    //        display: self.globalFunctions.toTitleCase(item.full_street_address) + " - " + self.globalFunctions.toTitleCase(item.city) + ", " + item.state,
-    //      };
-    //      address.push(dataAddr);
-    //      addrCount++;
-    //      total++;
-    //  });
-    //}
-
+      
     //group zipcodes && location together, routerLink links to city, state
     if (typeof data.zipcode !== 'undefined' && data.zipcode !== null) {
       data.zipcode.forEach(function(item, index) {
