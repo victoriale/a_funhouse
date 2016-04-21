@@ -59,7 +59,7 @@ export class AdzoneComponent implements OnInit {
                     jQuery('#adzone').html('');
                     jQuery('#adzone')[0].appendChild(newScript);
                     this.hasRun = false;
-                }, 50);
+                }, 100);
             } else {
                 this.hasRun = false;
             }
