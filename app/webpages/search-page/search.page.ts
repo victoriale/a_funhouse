@@ -242,35 +242,87 @@ export class SearchPage implements OnInit {
       });
     }
 
+      //Build and prioritize locations
+      if(typeof data.location_state_city !== 'undefined' && data.location_state_city !== null){
+          data.location_state_city.forEach(function(item, index){
+              if(typeof item.city === 'undefined' || item.city === null){
+                  return false;
+              }
+
+              var locationData = {
+                  page: 'Location-page',
+                  params: { loc: self.globalFunctions.toLowerKebab(item.city) + "-" + item.state.toLowerCase() },
+                  display: self.globalFunctions.toTitleCase(item.city) + " - " + item.state,
+              };
+              location.push(locationData);
+              locCount++;
+              total++;
+          })
+      }
+
+      if(typeof data.location_city !== 'undefined' && data.location_city !== null){
+          data.location_city.forEach(function(item, index){
+              if(typeof item.city === 'undefined' || item.city === null){
+                  return false;
+              }
+
+              var locationData = {
+                  page: 'Location-page',
+                  params: { loc: self.globalFunctions.toLowerKebab(item.city) + "-" + item.state.toLowerCase() },
+                  display: self.globalFunctions.toTitleCase(item.city) + " - " + item.state,
+              };
+              location.push(locationData);
+              locCount++;
+              total++;
+          })
+      }
+
+      if(typeof data.location_state !== 'undefined' && data.location_state !== null){
+          data.location_state.forEach(function(item, index){
+              if(typeof item.city === 'undefined' || item.city === null){
+                  return false;
+              }
+
+              var locationData = {
+                  page: 'Location-page',
+                  params: { loc: self.globalFunctions.toLowerKebab(item.city) + "-" + item.state.toLowerCase() },
+                  display: self.globalFunctions.toTitleCase(item.city) + " - " + item.state,
+              };
+              location.push(locationData);
+              locCount++;
+              total++;
+          })
+      }
+
     //group city together, routerLink goes go Listing page
-    if (typeof data.city !== 'undefined' && data.city !== null) {
-      data.city.forEach(function(item, index) {
-        for(var obj in item){
-          if(item[obj] == null || typeof item[obj] == 'undefined'){
-            item[obj] = 'N/A';
-          }
-        }
-          var params: any = {};
-
-          if(item.property_type === 'Residential'){
-              var page = '../../Magazine';
-              params.addr = item.address_key;
-          }else{
-              var page = 'Profile-page';
-              params.address = item.address_key;
-          }
-
-          var dataAddr = {
-            addr: item.address_key,
-            page: page,
-            params: params,
-            display: self.globalFunctions.toTitleCase(item.full_street_address) + " - " + self.globalFunctions.toTitleCase(item.city) + ", " + item.state,
-          };
-          address.push(dataAddr);
-          addrCount++;
-          total++;
-      });
-    }
+    //if (typeof data.city !== 'undefined' && data.city !== null) {
+    //  data.city.forEach(function(item, index) {
+    //    for(var obj in item){
+    //      if(item[obj] == null || typeof item[obj] == 'undefined'){
+    //        item[obj] = 'N/A';
+    //      }
+    //    }
+    //      var params: any = {};
+    //
+    //      if(item.property_type === 'Residential'){
+    //          var page = '../../Magazine';
+    //          params.addr = item.address_key;
+    //      }else{
+    //          var page = 'Profile-page';
+    //          params.address = item.address_key;
+    //      }
+    //
+    //      var dataAddr = {
+    //        addr: item.address_key,
+    //        page: page,
+    //        params: params,
+    //        display: self.globalFunctions.toTitleCase(item.full_street_address) + " - " + self.globalFunctions.toTitleCase(item.city) + ", " + item.state,
+    //      };
+    //      address.push(dataAddr);
+    //      addrCount++;
+    //      total++;
+    //  });
+    //}
 
     //group zipcodes && location together, routerLink links to city, state
     if (typeof data.zipcode !== 'undefined' && data.zipcode !== null) {
@@ -288,23 +340,6 @@ export class SearchPage implements OnInit {
           };
           zipcode.push(zip);
           zipCount++;
-          total++;
-      });
-    }
-
-    if (typeof data.location_city !== 'undefined' && data.location_city !== null) {
-      data.location_city.forEach(function(item, index) {
-          if(typeof item.city === 'undefined' || item.city === null){
-              return false;
-          }
-
-          var locationData = {
-            page: 'Location-page',
-            params: { loc: self.globalFunctions.toLowerKebab(item.city) + "-" + item.state.toLowerCase() },
-            display: self.globalFunctions.toTitleCase(item.city) + " - " + item.state,
-          };
-          location.push(locationData);
-          locCount++;
           total++;
       });
     }
