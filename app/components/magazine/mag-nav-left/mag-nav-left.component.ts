@@ -18,28 +18,34 @@ declare var jQuery:any;
 })
 
 export class NavLeftComponent {
-    isClicked:boolean = false;
     @Input() toc:any;
+    isClicked:boolean = false;
 
     constructor(private _router:Router) {
     }
 
     clickPrev() {
-        let currentPageLink = jQuery("magtab-component>span>a.router-link-active");
-        let currentIndex = currentPageLink.index();
-        let prevLink = currentPageLink.prev("a");
-        jQuery(".router-link-active").removeClass("router-link-active");
-        let lastLink = jQuery("magtab-component>span>a:last-child");
-        // console.log(lastLink);
-        let args = lastLink.attr("href").split("/");
-        let address = args[2];
-        // console.log("prevLink.length",prevLink.length);
-        if (!prevLink.length) {
-            this._router.navigate([this.toc[this.toc.length - 1].routeName]);
-            lastLink.addClass("router-link-active");
-        } else {
-            this._router.navigate([this.toc[currentIndex - 1].routeName]);
-            prevLink.addClass("router-link-active");
+        if (!this.isClicked) {
+            this.isClicked = true;
+            setTimeout(() => {
+                this.isClicked = false;
+            }, 1000);
+            let currentPageLink = jQuery("magtab-component>span>a.router-link-active");
+            let currentIndex = currentPageLink.index();
+            let prevLink = currentPageLink.prev("a");
+            jQuery(".router-link-active").removeClass("router-link-active");
+            let lastLink = jQuery("magtab-component>span>a:last-child");
+            // console.log(lastLink);
+            let args = lastLink.attr("href").split("/");
+            let address = args[2];
+            // console.log("prevLink.length",prevLink.length);
+            if (!prevLink.length) {
+                this._router.navigate([this.toc[this.toc.length - 1].routeName]);
+                lastLink.addClass("router-link-active");
+            } else {
+                this._router.navigate([this.toc[currentIndex - 1].routeName]);
+                prevLink.addClass("router-link-active");
+            }
         }
     }
 }

@@ -18,25 +18,32 @@ declare var jQuery:any;
 })
 export class NavRightComponent {
     @Input() toc:any;
+    isClicked:boolean = false;
 
     constructor(
         private _router: Router
     ){ }
 
     clickNext(){
-        let currentPageLink = jQuery("magtab-component a.router-link-active");
-        let currentIndex = currentPageLink.index();
-        let nextLink = currentPageLink.next("a");
-        jQuery(".router-link-active").removeClass("router-link-active");
-        let firstLink = jQuery("magtab-component a:first-child");
-        let args = firstLink.attr("href").split("/");
-        let address = args[2];
-        if( !nextLink.length){
-            this._router.navigate( [this.toc[0].routeName]);
-            firstLink.addClass("router-link-active");
-        }else{
-            this._router.navigate( [this.toc[currentIndex+1].routeName] );
-            nextLink.addClass("router-link-active");
+        if (!this.isClicked) {
+            this.isClicked = true;
+            setTimeout(() => {
+                this.isClicked = false;
+            }, 1000);
+            let currentPageLink = jQuery("magtab-component a.router-link-active");
+            let currentIndex = currentPageLink.index();
+            let nextLink = currentPageLink.next("a");
+            jQuery(".router-link-active").removeClass("router-link-active");
+            let firstLink = jQuery("magtab-component a:first-child");
+            let args = firstLink.attr("href").split("/");
+            let address = args[2];
+            if (!nextLink.length) {
+                this._router.navigate([this.toc[0].routeName]);
+                firstLink.addClass("router-link-active");
+            } else {
+                this._router.navigate([this.toc[currentIndex + 1].routeName]);
+                nextLink.addClass("router-link-active");
+            }
         }
     }
 
