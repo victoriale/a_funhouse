@@ -131,4 +131,8 @@ export class HomePage implements OnInit {
         // Call to get current State and City
         this.getGeoLocation();
     }
+    /* Navigates to top of page on navigation */
+    routerOnDeactivate(){
+        window.scrollTo(0,0);
+    }
 }

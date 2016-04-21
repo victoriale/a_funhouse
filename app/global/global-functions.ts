@@ -213,7 +213,7 @@ export class GlobalFunctions{
     //Transforms any string to kab
     toLowerKebab = function(str){
         str = str.toLowerCase()
-            .replace(/ /g, '-');
+            .replace(/\s+/g, '-');
         return str;
     }
 

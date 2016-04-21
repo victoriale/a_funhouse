@@ -249,4 +249,8 @@ export class ProfilePage implements OnInit{
         this.getTrendingListings();
         this.getListOfList();
     }
+    /* Navigates to top of page on navigation */
+    routerOnDeactivate(){
+        window.scrollTo(0,0);
+    }
 }

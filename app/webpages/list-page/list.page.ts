@@ -594,5 +594,9 @@ export class ListPage implements OnInit{
           jQuery('#' + this.viewCheck).addClass('selected');
       }, 400);
   }
+    /* Navigates to top of page on navigation */
+    routerOnDeactivate(){
+        window.scrollTo(0,0);
+    }
 
 }
