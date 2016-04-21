@@ -38,7 +38,7 @@ export class InfoListModule implements OnInit {
         var index = ((this.index - 1)*4) + 1;
 
         var infoData = this.recentListingsData;
-        console.log('INFODATA',infoData);
+
         if(typeof infoData[0] != 'undefined'){//sets the city and state interface so when paginating it will have the required fields to make a datacall for getRecentListings();
           this.city = infoData[0].city;
           this.state = infoData[0].stateOrProvince;
