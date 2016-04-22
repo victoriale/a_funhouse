@@ -28,25 +28,21 @@ export class MagOverviewModule implements OnInit {
     }
 
     onResize(event) {
-        var result;
-        let fontSize = 4;
-        if (jQuery(window).width() > '1020') {
-            while (jQuery('.mag_text')[0].scrollHeight > jQuery('.mag_text')[0].clientHeight) {
-                jQuery('.mag_text').css('font-size', fontSize + 'vw');
-                fontSize = fontSize - 0.01;
-                if (fontSize < 0.5) {
-                    console.log('Too many loops!');
-                    return false;
+        setTimeout(() => {
+            let fontSize = 4;
+            if (jQuery(window).width() > '1020') {
+                while (jQuery('.mag_text')[0].scrollHeight > jQuery('.mag_text')[0].clientHeight) {
+                    jQuery('.mag_text').css('font-size', fontSize + 'vw');
+                    fontSize = fontSize - 0.01;
+                    if (fontSize < 0.5) {
+                        console.log('Too many loops!');
+                        return false;
+                    }
                 }
+            } else {
+                jQuery('.mag_text').css('font-size', '18px');
             }
-        } else {
-            jQuery('.mag_text').css('font-size', '18px');
-        }
-        if (result) {
-            clearTimeout(result)
-        }
-        result = setTimeout(function () {
-        }, 100);
+        },100);
     }
 
     getMagazineOverview() {

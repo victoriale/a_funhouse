@@ -10,12 +10,13 @@ import {MagRecommendations} from "../../../global/global-interface";
 import {WebApp} from "../../../app-layout/app.layout";
 import {Injectable} from "angular2/core";
 
+declare var jQuery:any;
+
 @Component({
     selector: 'recommendations-module',
     templateUrl: './app/modules/magazine/recommendations/recommendations.module.html',
 
     directives: [NavRightComponent, MagRecommendationsImgModule, MagRecommendationsTextModule, NavLeftComponent, ROUTER_DIRECTIVES],
-    provider: []
 })
 
 @Injectable()
@@ -40,6 +41,7 @@ export class Recommendations implements OnInit {
     }
 
     ngOnInit() {
+        jQuery('body').css("min-width", "0px");
         this.getMagazineSimilarListings();
     }
 }

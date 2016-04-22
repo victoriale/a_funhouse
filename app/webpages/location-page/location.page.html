@@ -24,7 +24,7 @@
                         <!--Trending Section-->
                         <trending-homes *ngIf="trendingHomesData && locData" [trendingHomesData]="trendingHomesData" [trending]="trendingFeature" [addressObject]="locData"></trending-homes>
 
-                        <info-list-module *ngIf="recentListingsData" [recentListingsData]="recentListingsData" [locDisplay]="locDisplay"></info-list-module>
+                        <info-list-module *ngIf="recentListingsData && locDisplay" [recentListingsData]="recentListingsData" [locDisplay]="locDisplay"></info-list-module>
 
                         <!-- Crime Section -->
                         <headline-component *ngIf="crimeData" [data]="headlineCrime"></headline-component>
