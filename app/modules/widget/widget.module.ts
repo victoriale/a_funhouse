@@ -1,6 +1,6 @@
 import {Component, OnInit} from 'angular2/core';
 import {Http, Headers} from 'angular2/http';
-import {BrowserDomAdapter} from 'angular2/platform/browser'
+// import {BrowserDomAdapter} from 'angular2/platform/browser'
 
 declare var jQuery: any;
 
@@ -8,17 +8,14 @@ declare var jQuery: any;
     selector: 'widget-module',
     templateUrl: './app/modules/widget/widget.module.html',
     directives: [],
-    providers: [BrowserDomAdapter],
+    providers: [],
 })
 
 export class WidgetModule {
 
     isScrollingPage: boolean;
     widgetEmbedd:string;
-    constructor(private _dom: BrowserDomAdapter){
-      var domIWant = this._dom.query('whatever you want to get');
-      console.log(domIWant);
-      console.log(this._dom);
+    constructor(){
     }
     ngOnInit(){
       // // var widgetEmbedd = "http://content.synapsys.us/embeds/realestate/standard2/realestate.js";
