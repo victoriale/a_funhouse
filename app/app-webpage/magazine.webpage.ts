@@ -1,13 +1,11 @@
 import {Component, OnInit} from 'angular2/core';
-import {ROUTER_DIRECTIVES, RouteConfig, Location, AsyncRoute} from 'angular2/router';
+import {ROUTER_DIRECTIVES, RouteConfig, Location, AsyncRoute, APP_BASE_HREF, PathLocationStrategy, RouteParams, Router} from 'angular2/router';
 import {Contact} from "../modules/magazine/contact/contact.module";
 import {Neighborhood} from "../modules/magazine/neighborhood/neighborhood.module";
 import {Recommendations} from "../modules/magazine/recommendations/recommendations.module";
-import {RouteParams} from "angular2/router";
 import {MagHeaderModule} from "../modules/magazine/mag-header/mag-header.module";
 import {FooterComponent} from "../components/magazine/mag-footer/mag-footer.component";
 import {MagazineDataService} from "../global/global-mag-service";
-import {Router} from "angular2/router";
 import {MagOverviewModule} from "../modules/magazine/mag-overview/mag-overview.module";
 import {MagOverview, MagData} from "../global/global-interface";
 import {Amenities} from "../modules/magazine/mag-amenities/mag-amenities.module";
@@ -23,7 +21,7 @@ declare var jQuery:any;
     templateUrl: './app/app-webpage/magazine.webpage.html',
 
     directives: [Contact, Neighborhood, Recommendations, Amenities, MagHeaderModule, FooterComponent, ROUTER_DIRECTIVES, MagOverviewModule, NavLeftComponent, NavRightComponent, MagErrorModule],
-    providers: [MagazineDataService],
+    providers: [MagazineDataService, PathLocationStrategy],
 })
 
 @RouteConfig([
@@ -70,7 +68,16 @@ export class MagazinePage implements OnInit {
     magazineData:MagData;
     currentIndex:any;
     showErrorPage:boolean = false;
-    timer:number;
+    static timeout:number;
+
+    constructor(private _params:RouteParams, private _magazineDataService:MagazineDataService, private _router:Router, private _location:Location, private _pathLocationStrategy:PathLocationStrategy) {
+        var self = this;
+        _pathLocationStrategy.onPopState(function () {
+            self.resetTimer();
+        });
+        this.address = _params.get('addr');
+        this.getMagServiceData();
+    }
 
     getMagServiceData() {
         this._magazineDataService.getMagazineData(this.address)
@@ -149,11 +156,29 @@ export class MagazinePage implements OnInit {
         jQuery('#adzone')[0].appendChild(newScript);
     }
 
+    static debounce(func, threshold, execAsap) {
+        var self = this;
+        return function debounced() {
+            var obj = this, args = arguments;
+
+            function delayed() {
+                if (!execAsap) {
+                    func.apply(obj, args);
+                }
+                self.timeout = null;
+            };
+            if (self.timeout)
+                clearTimeout(self.timeout);
+            else if (execAsap) {
+                func.apply(obj, args);
+            }
+
+            self.timeout = setTimeout(delayed, threshold || 100);
+        };
+    }
+
     resetTimer() {
-        clearTimeout(this.timer);
-        this.timer = setTimeout(() => {
-            this.displayAd();
-        }, 500);
+        (MagazinePage.debounce(this.displayAd, 500, false))();
     }
 
     buildNavigationElements() {
@@ -163,11 +188,6 @@ export class MagazinePage implements OnInit {
         }
         jQuery(".magheader_pagenum").html(this.currentIndex + 1);
         jQuery(".currentIndexFooter").html(this.currentIndex + 1);
-    }
-
-    constructor(private _params:RouteParams, private _magazineDataService:MagazineDataService, private _router:Router, private _location:Location) {
-        this.address = _params.get('addr');
-        this.getMagServiceData();
     }
 
     ngAfterViewChecked() {

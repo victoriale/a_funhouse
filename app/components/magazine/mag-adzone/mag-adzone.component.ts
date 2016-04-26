@@ -2,7 +2,7 @@
  * Created by Christopher Lynch on 2/24/2016.
  */
 
-import {Component, OnInit, OnDestroy} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 declare var jQuery:any;
 
 @Component({
