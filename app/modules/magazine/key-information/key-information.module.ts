@@ -11,7 +11,7 @@ import {MagKeyInformationTextModule} from "../mag-key-information-text/mag-key-i
     selector: 'key-information-module',
     templateUrl: './app/modules/magazine/key-information/key-information.module.html',
     
-    directives: [NavRightComponent, NavLeftComponent, MagKeyInformationTextModule],
+    directives: [MagKeyInformationTextModule],
 })
 
 export class KeyInformation implements OnInit {

@@ -1,1 +1,3 @@
-<div id='adzone' class='mag_adzone' (window:resize)="onResize($event)"></div>
+<iframe src="{{src}}"
+        style="display: block; height: {{height}}; width: {{width}}; margin: 0px; border: 0px; overflow: hidden; position: relative; z-index: 0;" (window:resize)="onResize($event)">
+</iframe>
