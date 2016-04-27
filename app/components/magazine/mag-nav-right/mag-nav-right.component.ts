@@ -21,7 +21,6 @@ export class NavRightComponent {
     }
 
     clickNext() {
-        MagazinePage.resetTimer();
         let currentPageLink = jQuery("magtab-component a.router-link-active");
         let currentIndex = currentPageLink.index();
         let nextLink = currentPageLink.next("a");

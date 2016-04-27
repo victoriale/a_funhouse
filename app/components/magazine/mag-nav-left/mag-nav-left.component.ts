@@ -22,7 +22,6 @@ export class NavLeftComponent {
     }
 
     clickPrev() {
-        MagazinePage.resetTimer();
         let currentPageLink = jQuery("magtab-component>span>a.router-link-active");
         let currentIndex = currentPageLink.index();
         let prevLink = currentPageLink.prev("a");

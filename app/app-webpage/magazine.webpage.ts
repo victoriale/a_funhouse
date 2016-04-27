@@ -1,5 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
-import {ROUTER_DIRECTIVES, RouteConfig, Location, AsyncRoute, APP_BASE_HREF, PathLocationStrategy, RouteParams, Router} from 'angular2/router';
+import {ROUTER_DIRECTIVES, RouteConfig, Location, AsyncRoute, APP_BASE_HREF, RouteParams, Router} from 'angular2/router';
 import {Contact} from "../modules/magazine/contact/contact.module";
 import {Neighborhood} from "../modules/magazine/neighborhood/neighborhood.module";
 import {Recommendations} from "../modules/magazine/recommendations/recommendations.module";
@@ -21,7 +21,7 @@ declare var jQuery:any;
     templateUrl: './app/app-webpage/magazine.webpage.html',
 
     directives: [Contact, Neighborhood, Recommendations, Amenities, MagHeaderModule, FooterComponent, ROUTER_DIRECTIVES, MagOverviewModule, NavLeftComponent, NavRightComponent, MagErrorModule],
-    providers: [MagazineDataService, PathLocationStrategy],
+    providers: [MagazineDataService],
 })
 
 @RouteConfig([
@@ -70,10 +70,7 @@ export class MagazinePage implements OnInit {
     showErrorPage:boolean = false;
     static timeout:number;
 
-    constructor(private _params:RouteParams, private _magazineDataService:MagazineDataService, private _router:Router, private _location:Location, private _pathLocationStrategy:PathLocationStrategy) {
-        _pathLocationStrategy.onPopState(function () {
-            MagazinePage.resetTimer();
-        });
+    constructor(private _params:RouteParams, private _magazineDataService:MagazineDataService, private _router:Router, private _location:Location) {
         this.address = _params.get('addr');
         this.getMagServiceData();
     }
@@ -116,70 +113,6 @@ export class MagazinePage implements OnInit {
         return toc;
     }
 
-    static displayAd() {
-        var embedURL = "http://content.synapsys.us/embeds/realestate/standard/joyful.js";
-        var widgetURL = "";  //ad-stack only (solo)
-        var domain = "joyfulhome.com";
-        if (jQuery('#adzone').width() == 300) {
-            var adUnitName = "joyfulhome_com_realestate_magazine_300x250";
-        } else if (jQuery('#adzone').width() == 468) {
-            var adUnitName = "joyfulhome_com_realestate_magazine_468x60";
-        } else if (jQuery('#adzone').width() == 320) {
-            var adUnitName = "joyfulhome_com_realestate_magazine_320x50";
-        } else {
-            // console.log('There be no size!');
-            return false;
-        }
-
-        var q = {
-            dom: domain,
-            type: "realestate_solo",
-            subd: false,
-            remn: true,
-            src: embedURL,
-            name: adUnitName,
-            widU: widgetURL,
-            widW: 0,  //the widget's width
-            widH: 0,  //the widget's height
-            adW: jQuery('#adzone').width(),  //the ad's width
-            adH: jQuery('#adzone').height(),  //the ad's height
-            ofx: 0,  //offset in the X direction that the ad-stack needs to be adjusted to match the designated ad-space for this widget
-            ofy: 0,  //offset in the Y direction that the ad-stack needs to be adjusted to match the designated ad-space for this widget
-            rand: Math.random() * 10000000000000000000,
-        };
-        var newScript = document.createElement("script");
-        newScript.src = "http://content.synapsys.us/l/n/index-mdb.php?" + Object.keys(q).map(function (key) {
-                return encodeURIComponent(key) + "=" + encodeURIComponent(q[key])
-            }).join("&");
-        jQuery('#adzone').html('');
-        jQuery('#adzone')[0].appendChild(newScript);
-    }
-
-    static debounce(func, threshold, execAsap) {
-        var self = this;
-        return function debounced() {
-            var obj = this, args = arguments;
-
-            function delayed() {
-                if (!execAsap) {
-                    func.apply(obj, args);
-                }
-                self.timeout = null;
-            };
-            if (self.timeout)
-                clearTimeout(self.timeout);
-            else if (execAsap) {
-                func.apply(obj, args);
-            }
-
-            self.timeout = setTimeout(delayed, threshold || 100);
-        };
-    }
-
-    static resetTimer() {
-        (MagazinePage.debounce(MagazinePage.displayAd, 500, false))();
-    }
-
     buildNavigationElements() {
         this.currentIndex = jQuery("magtab-component>span>a.router-link-active").index();
         if (this.currentIndex < 1) {
@@ -196,7 +129,5 @@ export class MagazinePage implements OnInit {
     }
 
     ngOnInit() {
-        MagazinePage.resetTimer();
     }
-
 }

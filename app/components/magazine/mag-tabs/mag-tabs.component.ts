@@ -30,7 +30,6 @@ export class MagTabComponent implements OnInit {
     }
 
     selectItem(selectedItem) {
-        MagazinePage.resetTimer();
         document.getElementById('tabs').classList.remove('active');
         this.selectedItem = selectedItem;
     }
