@@ -71,9 +71,8 @@ export class MagazinePage implements OnInit {
     static timeout:number;
 
     constructor(private _params:RouteParams, private _magazineDataService:MagazineDataService, private _router:Router, private _location:Location, private _pathLocationStrategy:PathLocationStrategy) {
-        var self = this;
         _pathLocationStrategy.onPopState(function () {
-            self.resetTimer();
+            MagazinePage.resetTimer();
         });
         this.address = _params.get('addr');
         this.getMagServiceData();
@@ -117,7 +116,7 @@ export class MagazinePage implements OnInit {
         return toc;
     }
 
-    displayAd() {
+    static displayAd() {
         var embedURL = "http://content.synapsys.us/embeds/realestate/standard/joyful.js";
         var widgetURL = "";  //ad-stack only (solo)
         var domain = "joyfulhome.com";
@@ -177,8 +176,8 @@ export class MagazinePage implements OnInit {
         };
     }
 
-    resetTimer() {
-        (MagazinePage.debounce(this.displayAd, 500, false))();
+    static resetTimer() {
+        (MagazinePage.debounce(MagazinePage.displayAd, 500, false))();
     }
 
     buildNavigationElements() {
@@ -197,7 +196,7 @@ export class MagazinePage implements OnInit {
     }
 
     ngOnInit() {
-        this.resetTimer();
+        MagazinePage.resetTimer();
     }
 
 }

@@ -4,6 +4,7 @@
 
 import {Component, Input} from 'angular2/core';
 import {Router} from 'angular2/router';
+import {MagazinePage} from "../../../app-webpage/magazine.webpage";
 
 declare var jQuery:any;
 
@@ -21,6 +22,7 @@ export class NavLeftComponent {
     }
 
     clickPrev() {
+        MagazinePage.resetTimer();
         let currentPageLink = jQuery("magtab-component>span>a.router-link-active");
         let currentIndex = currentPageLink.index();
         let prevLink = currentPageLink.prev("a");
