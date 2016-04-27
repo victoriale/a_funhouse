@@ -1,5 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
-import {ROUTER_DIRECTIVES, RouteConfig, Location, AsyncRoute, APP_BASE_HREF, RouteParams, Router} from 'angular2/router';
+import {ROUTER_DIRECTIVES, RouteConfig, AsyncRoute, APP_BASE_HREF, RouteParams, Router} from 'angular2/router';
 import {Contact} from "../modules/magazine/contact/contact.module";
 import {Neighborhood} from "../modules/magazine/neighborhood/neighborhood.module";
 import {Recommendations} from "../modules/magazine/recommendations/recommendations.module";
@@ -70,7 +70,7 @@ export class MagazinePage implements OnInit {
     showErrorPage:boolean = false;
     static timeout:number;
 
-    constructor(private _params:RouteParams, private _magazineDataService:MagazineDataService, private _router:Router, private _location:Location) {
+    constructor(private _params:RouteParams, private _magazineDataService:MagazineDataService, private _router:Router) {
         this.address = _params.get('addr');
         this.getMagServiceData();
     }
