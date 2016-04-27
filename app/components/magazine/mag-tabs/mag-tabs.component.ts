@@ -6,6 +6,8 @@ import {MagazineDataService} from "../../../global/global-mag-service";
 import {ROUTER_DIRECTIVES, RouteParams} from "angular2/router";
 import {MagazinePage} from "../../../app-webpage/magazine.webpage";
 
+declare var jQuery:any;
+
 @Component({
     selector: 'magtab-component',
     templateUrl: './app/components/magazine/mag-tabs/mag-tabs.component.html',
@@ -31,6 +33,7 @@ export class MagTabComponent implements OnInit {
 
     selectItem(selectedItem) {
         document.getElementById('tabs').classList.remove('active');
+        jQuery(".router-link-active").removeClass("router-link-active");
         this.selectedItem = selectedItem;
     }
 
