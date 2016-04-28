@@ -108,6 +108,9 @@ export class InfoListModule implements OnInit {
     //Function to set up parameters for pagination footer
     setPaginationParameters(){
         var data = this.recentListingsData;
+        if ( data === undefined || data === null || data.length === 0 ) {
+          return; // do nothing.
+        }
 
         var max = Math.ceil(Number(data[0].totalListings) / 4);
 
