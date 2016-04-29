@@ -19,7 +19,7 @@
         </span>
         <div class='mag-line'></div>
             <span *ngFor="#p of magOverview?.content; #i=index">
-                <adzone-component *ngIf="i === 2"></adzone-component>
+                <adzone-component *ngIf="i === 2" style="float: left; margin-right: 10px"></adzone-component>
                 <span [innerHTML]="p"></span><br><br>
             </span>
         <learnmore-component></learnmore-component>
