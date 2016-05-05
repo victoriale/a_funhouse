@@ -36,5 +36,8 @@ export class Contact implements OnInit {
 
     ngOnInit() {
         this.getMagazineContact();
+        if (document.getElementById('tabs').classList.contains('active')) {
+            document.getElementById('tabs').classList.remove('active');
+        }
     }
 }

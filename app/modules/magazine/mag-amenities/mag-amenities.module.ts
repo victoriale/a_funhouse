@@ -37,5 +37,8 @@ export class Amenities implements OnInit {
 
     ngOnInit() {
         this.getMagazineSimilarListings();
+        if (document.getElementById('tabs').classList.contains('active')) {
+            document.getElementById('tabs').classList.remove('active');
+        }
     }
 }

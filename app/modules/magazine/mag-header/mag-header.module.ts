@@ -10,7 +10,7 @@ declare var jQuery:any;
 @Component({
     selector: 'magazine-header-module',
     templateUrl: './app/modules/magazine/mag-header/mag-header.module.html',
-    
+
     directives: [MagTabComponent, ShareComponent, CloseComponent, ROUTER_DIRECTIVES],
     providers: []
 })

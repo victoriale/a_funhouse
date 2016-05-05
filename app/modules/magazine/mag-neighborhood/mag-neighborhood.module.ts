@@ -57,5 +57,8 @@ export class MagNeighborhoodModule implements OnInit {
 
     ngOnInit() {
         this.getMagazineNeighborhood();
+        if (document.getElementById('tabs').classList.contains('active')) {
+            document.getElementById('tabs').classList.remove('active');
+        }
     }
 }
