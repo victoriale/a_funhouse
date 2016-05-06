@@ -43,5 +43,8 @@ export class Recommendations implements OnInit {
     ngOnInit() {
         jQuery('body').css("min-width", "0px");
         this.getMagazineSimilarListings();
+        if (document.getElementById('tabs').classList.contains('active')) {
+            document.getElementById('tabs').classList.remove('active');
+        }
     }
 }

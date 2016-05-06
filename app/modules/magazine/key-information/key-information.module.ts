@@ -85,5 +85,8 @@ export class KeyInformation implements OnInit {
 
     ngOnInit() {
         this.getMagazineKeyInformation();
+        if (document.getElementById('tabs').classList.contains('active')) {
+            document.getElementById('tabs').classList.remove('active');
+        }
     }
 }
