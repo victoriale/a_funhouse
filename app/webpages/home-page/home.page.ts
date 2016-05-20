@@ -28,11 +28,12 @@ declare var jQuery:any;
 export class HomePage implements OnInit {
 
     // Location data
-    cityName: string;
-    cityLocation: string;
-    stateLocation: string;
-    stateAPLocation: string;
-    cityStateLocation: string;
+    geoData: any;
+    //cityName: string;
+    //cityLocation: string;
+    //stateLocation: string;
+    //stateAPLocation: string;
+    //cityStateLocation: string;
     nearByCities: Object;
 
     //selectValue: string;
@@ -81,20 +82,28 @@ export class HomePage implements OnInit {
         this._geoLocationService.getGeoLocation()
             .subscribe(
                 geoLocationData => {
-                    this.cityLocation = this._globalFunctions.toLowerKebab(geoLocationData[0].city);
-                    this.cityName = this._globalFunctions.toTitleCase(geoLocationData[0].city);
-                    this.stateLocation = geoLocationData[0].state.toLowerCase();
-                    this.stateAPLocation = this._globalFunctions.stateToAP(this.stateLocation);
-                    this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
+                    if( geoLocationData[0].city == null || geoLocationData[0].state == null){
+                      this.defaultCity();
+                    }else {
+                      this.defaultCity();
+                      //this.geoData = {
+                      //  cityUrl          : this._globalFunctions.toLowerKebab(geoLocationData[0].city),
+                      //  cityNameDisplay  : this._globalFunctions.toTitleCase(geoLocationData[0].city),
+                      //  stateNameDisplay : this._globalFunctions.stateToAP(geoLocationData[0].state),
+                      //  stateUrl         : this._globalFunctions.toLowerKebab(geoLocationData[0].state),
+                      //  stateAPLocation  : this._globalFunctions.stateToAP(geoLocationData[0].state)
+                      //}
+                      this.getNearByCities();
+                    }
                 },
-                err => this.defaultCity(),
-                () => this.getNearByCities()
+                err => this.defaultCity()
             );
     }
 
     // Subscribe to getNearByCities in geo-location.service.ts
+
     getNearByCities() {
-        this._nearByCitiesService.getNearByCities(this.stateLocation, this.cityLocation)
+        this._nearByCitiesService.getNearByCities(this.geoData['stateUrl'], this.geoData['cityNameDisplay'])
             .subscribe(
                 nearByCities => {
                     this.nearByCities = nearByCities;
@@ -110,10 +119,17 @@ export class HomePage implements OnInit {
 
     defaultCity() {
         // Set default city and state if geo location call fails
-        this.stateLocation = "KS";
-        this.stateAPLocation = this._globalFunctions.stateToAP(this.stateLocation);
-        this.cityLocation = "Wichita";
-        this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
+        this.geoData = {
+          cityUrl           : "los-angeles",
+          cityNameDisplay   : "Los Angeles",
+          stateNameDisplay  : "California",
+          stateUrl  : "ca",
+          stateAPLocation   : "Calif."
+        }
+        //this.stateLocation = "KS";
+        //this.stateAPLocation = this._globalFunctions.stateToAP(this.stateLocation);
+        //this.cityLocation = "Wichita";
+        //this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
         this.getNearByCities();
     }
 

@@ -1,28 +1,28 @@
 <hero-component *ngIf="!isMyHouseKitHome"></hero-component>
-  <div class="wrapper" *ngIf="!isMyHouseKitHome">
+  <div class="wrapper" *ngIf="!isMyHouseKitHome && geoData">
       <div class="inner-wrapper">
-          <section class='content-main twelve-col'>
+          <section  class='content-main twelve-col'>
               <h1 class="home-tagline">
-                  <img class="map-icon" src="/app/public/Icons_Explore.png" /> Explore <span class="thin">The {{cityLocation}} Area</span>
+                  <img class="map-icon" src="/app/public/Icons_Explore.png" /> Explore <span class="thin">The {{geoData.cityNameDisplay}} Area</span>
               </h1>
           </section>
           <div class="twelve-col">
               <explore-tiles-component *ngIf="nearByCities" [nearByCities]="nearByCities"></explore-tiles-component>
           </div>
           <div class="twelve-col">
-              <a [routerLink]="['City-view-page', {state: stateLocation, city: cityLocation}]">
+              <a [routerLink]="['City-view-page', {state: geoData.stateUrl, city: geoData.cityUrl}]">
                   <explore-button-component [buttonTitle]="buttonTitle" [buttonWidth]="buttonWidth" [buttonIcon]="buttonIcon"></explore-button-component>
               </a>
           </div>
       </div>
   </div>
-  <hero-bottom-component *ngIf="!isMyHouseKitHome" [buttonTitle]="heroButtonTitle" [buttonWidth]="heroButtonWidth" [buttonIcon]="heroButtonIcon" [cityLocation]="cityLocation" [stateLocation]="stateLocation" [cityName]="cityName" [stateAPLocation]="stateAPLocation"></hero-bottom-component>
-  <div class="wrapper" *ngIf="!isMyHouseKitHome">
+  <hero-bottom-component *ngIf="!isMyHouseKitHome && geoData" [buttonTitle]="heroButtonTitle" [buttonWidth]="heroButtonWidth" [buttonIcon]="heroButtonIcon" [cityLocation]="geoData.cityUrl" [stateLocation]="geoData.stateUrl" [cityName]="geoData.cityNameDisplay" [stateAPLocation]="geoData.stateNameDisplay"></hero-bottom-component>
+  <div class="wrapper" *ngIf="!isMyHouseKitHome && geoData">
       <div class="inner-wrapper">
           <section class='content-main twelve-col'>
               <h1 class="home-tagline"><img class="map-icon" src="/app/public/Icons_Features.png" /> Features <span class="thin">To Note</span></h1>
           </section>
-          <feature-tiles-component *ngIf="cityLocation && stateLocation" [cityLocation]="cityLocation" [stateLocation]="stateLocation" [cityName]="cityName"></feature-tiles-component>
+          <feature-tiles-component *ngIf="geoData" [cityLocation]="geoData.cityUrl" [stateLocation]="geoData.stateUrl" [cityName]="geoData.cityNameDisplay"></feature-tiles-component>
       </div>
   </div>
 
