@@ -212,17 +212,7 @@ export class MyAppComponent implements OnInit {
                     this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
                   }
                 },
-                err => this.defaultCity(),
-                () => this.getNearByCities()
-            );
-    }
-
-    // Subscribe to getNearByCities in geo-location.service.ts
-    getNearByCities() {
-        this._nearByCitiesService.getNearByCities(this.stateLocation, this.cityLocation)
-            .subscribe(
-                nearByCities => { this.nearByCities = nearByCities },
-                err => console.log(err)
+                err => this.defaultCity()
             );
     }
 
@@ -231,7 +221,6 @@ export class MyAppComponent implements OnInit {
         this.stateLocation = "KS";
         this.cityLocation = "Wichita";
         this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
-        this.getNearByCities();
     }
 
     ngOnInit(){
