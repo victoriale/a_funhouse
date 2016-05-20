@@ -85,14 +85,13 @@ export class HomePage implements OnInit {
                     if( geoLocationData[0].city == null || geoLocationData[0].state == null){
                       this.defaultCity();
                     }else {
-                      this.defaultCity();
-                      //this.geoData = {
-                      //  cityUrl          : this._globalFunctions.toLowerKebab(geoLocationData[0].city),
-                      //  cityNameDisplay  : this._globalFunctions.toTitleCase(geoLocationData[0].city),
-                      //  stateNameDisplay : this._globalFunctions.stateToAP(geoLocationData[0].state),
-                      //  stateUrl         : this._globalFunctions.toLowerKebab(geoLocationData[0].state),
-                      //  stateAPLocation  : this._globalFunctions.stateToAP(geoLocationData[0].state)
-                      //}
+                      this.geoData = {
+                        cityUrl          : this._globalFunctions.toLowerKebab(geoLocationData[0].city),
+                        cityNameDisplay  : this._globalFunctions.toTitleCase(geoLocationData[0].city),
+                        stateNameDisplay : this._globalFunctions.stateToAP(geoLocationData[0].state),
+                        stateUrl         : this._globalFunctions.toLowerKebab(geoLocationData[0].state),
+                        stateAPLocation  : this._globalFunctions.stateToAP(geoLocationData[0].state)
+                      }
                       this.getNearByCities();
                     }
                 },
