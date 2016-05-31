@@ -20,7 +20,7 @@ export class SearchService{
             //return new Observable.return([]);
         }
 
-        var url = 'http://api2.joyfulhome.com/search/' + input;
+        var url = 'http://prod-joyfulhome-api.synapsys.us/search/' + input;
 
         if(type === 'list'){
             url += '/true';
