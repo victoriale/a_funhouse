@@ -11,42 +11,23 @@ import {moduleHeader} from "../../components/module-header/module-header";
     directives: [moduleHeader],
 })
 export class LikeUs implements OnInit{
-    module_title: string;
-    ngOnInit(){
-        let FB = window['FB'];
+    module_title: string = 'Like JoyfulHome on Facebook';
+    
+    ngOnInit() {      
+        var d = document;
+        var id = "facebook-jssdk";
+        var s = "script";
+        var fbs = d.getElementById(id);
         
-        var script = document.createElement("script");
-        if ( FB !== undefined && FB !== null ) {
-          window['FB'] = undefined; //remove FB element
-          
-          //cjprieb: Beginning of the script removes the existing FB <script> element if it exists
-          // so that it can be re-added and therefore reloaded.
-          script.innerHTML =`
-              (function(d, s, id) { 
-                var fbs = d.getElementById(id);
-                if (fbs) {
-                  fbs.parentNode.removeChild(fbs); 
-                }
-                
-                var js, fjs = d.getElementsByTagName(s)[0];
-                js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
-                fjs.parentNode.insertBefore(js, fjs);
-              }(document, 'script', 'facebook-jssdk'));
-          `
+        //remove any existing FB element;
+        if (fbs) {
+          fbs.parentNode.removeChild(fbs); 
         }
-        else {
-          script.innerHTML =`
-              (function(d, s, id) {            
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
-                fjs.parentNode.insertBefore(js, fjs);
-              }(document, 'script', 'facebook-jssdk'));
-          `
-        }
-        document.body.appendChild(script);
-        this.module_title = 'Like JoyfulHome on Facebook';
+        window['FB'] = undefined; 
+        
+        var js, fjs = d.getElementsByTagName(s)[0];
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+        fjs.parentNode.insertBefore(js, fjs);
     }
 }
