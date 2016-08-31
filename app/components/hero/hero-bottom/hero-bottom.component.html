@@ -1,7 +1,4 @@
 <div class="hero-bottom container">
-    <h1 class="discover-title">Largest Homes in {{cityName}}, {{stateAPLocation}}</h1>
-    <p class="discover-subtitle">See what {{cityName}}'s neighborhoods have to offer.</p>
-    <a [routerLink]="['List-page', {viewType: 'list', listname: 'homes-largest', state: stateLocation, city: cityLocation, page: '1' }]">
-        <explore-button-component [buttonTitle]="buttonTitle" [buttonWidth]="buttonWidth"></explore-button-component>
-    </a>
+    <h2 class="hero-bottom-title">Are you looking to buy a home in the {{cityName}}, {{stateAPLocation}} Area?</h2>
+    <hero-search-component></hero-search-component>
 </div>
