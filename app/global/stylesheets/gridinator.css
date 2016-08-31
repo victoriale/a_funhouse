@@ -22,9 +22,9 @@
 .wrapper {
 	margin: 0 auto; /* This centers the grid. Remove this line to place the grid on the left of the page. */
 	text-align: left;
-	width: 1044px;
-  	max-width: 1044px;
-	min-width: 1044px;
+	width:100%;
+  max-width: 1044px;
+	min-width: 320px;
 }
 
 .inner-wrapper {
@@ -33,7 +33,7 @@
 	float: left;
 	padding: 0 0px 0 0px;
 	position: relative;
-	width: 1044px;
+	width: 100%;
 }
 
 .container {

@@ -2,10 +2,11 @@
     <div class="hero-search 8-col">
         <div id="hero-search-full-container">
             <form (ngSubmit)="onSubmit($event)">
-                <input autocomplete="off" type="text" (focus)="focusResults($event)" (blur)="blurResults($event)" [ngFormControl]="term" placeholder="Where do you want to live? (City, ST)">
+                <input autocomplete="off" type="text" (focus)="focusResults($event)" (blur)="blurResults($event)" [ngFormControl]="term" placeholder="To Begin Enter Your Home’s Address">
                 <button type="submit" class="hero-search-button fa fa-search"></button>
             </form>
             <search-results (mousedown)="preventBlur()" [showResults]="showResults" [searchResults]="searchResults"></search-results>
+            <div class="searchMls">*Houses must have an active MLS to appear in search.</div>
         </div>
     </div>
 </div>
