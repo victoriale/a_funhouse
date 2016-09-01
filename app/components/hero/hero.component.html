@@ -1,5 +1,5 @@
 <div class="hero container">
-    <h1 class="discover-title">Selling Your Bay Area Home?</h1>
+    <h1 class="discover-title">Selling Your {{geoData.cityNameDisplay + ", " + geoData.stateNameDisplay}} Home?</h1>
     <p class="discover-subtitle">Make it Joyful and Simple, Share Your Homes Magazine.</p>
-    <hero-search-component></hero-search-component>
+    <hero-search-component *ngIf="geoData" [geoData]="geoData"></hero-search-component>
 </div>

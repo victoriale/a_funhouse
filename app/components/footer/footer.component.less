@@ -12,10 +12,16 @@
 .footer-logo {
   margin-top: 5px;
   background-size: contain;
+  width: 230px;
+  @media @mobile {
+    display:none;
+  }
 }
 
   .footer-social {
     text-align: right;
+    float:right;
+    width: 320px;
   }
 
   .footer-social li {
@@ -174,3 +180,7 @@
     .footer-section-three li:first-child {
       font-weight: 600;
     }
+.footer-section-wrapper.twelve-col {
+    width: 100%;
+    background: @lightGrey;
+}
