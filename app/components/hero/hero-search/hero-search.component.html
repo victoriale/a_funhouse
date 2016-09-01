@@ -2,10 +2,32 @@
     <div class="hero-search 8-col">
         <div id="hero-search-full-container">
             <form (ngSubmit)="onSubmit($event)">
-                <input autocomplete="off" type="text" (focus)="focusResults($event)" (blur)="blurResults($event)" [ngFormControl]="term" placeholder="Where do you want to live? (City, ST)">
+                <input autocomplete="off" type="text" (focus)="focusResults($event)" (blur)="blurResults($event)" [ngFormControl]="term" placeholder="To Begin Enter Your Home’s Address">
                 <button type="submit" class="hero-search-button fa fa-search"></button>
             </form>
             <search-results (mousedown)="preventBlur()" [showResults]="showResults" [searchResults]="searchResults"></search-results>
+            <div class="searchMls">*Houses must have an active MLS to appear in search.</div>
         </div>
     </div>
+</div>
+<div class="mlsError-overlay" *ngIf="mlsError">
+  <div class="mlsError-modal">
+    <div class="close-modal" (click)="mlsError = false">X</div>
+    <div class="mlsError-message">
+      <h2>The address you entered does not have an active MLS.</h2>
+      <p>Please check your address and try again.  If the error continues to occur, please contact your real estate agent.</p>
+    </div>
+    <div class="mlsError-nhfs">
+      <h2><i class="fa fa-map-marker"></i> Nearby Houses For Sale</h2>
+      <span class="display-radius"><i class="fa fa-map-marker"></i>Showing homes within a <b>10mi radius</b></span>
+      <hr>
+      <ul class="leftColumn">
+        <li *ngFor="#item of mlsNearbyColumn1"><a [routerLink]="['Profile-page', {address: item.addressKey}]">{{item.fullStreetAddress + " " + item.loc + " " + item.postalCode}}</a></li>
+      </ul>
+      <ul class="rightColumn">
+        <li *ngFor="#item of mlsNearbyColumn2"><a [routerLink]="['Profile-page', {address: item.addressKey}]">{{item.fullStreetAddress + " " + item.loc + " " + item.postalCode}}</a></li>
+      </ul>
+      <div class="button-nearby"><a [routerLink]="['List-page', {viewType: 'list', state: geoData.stateUrl, listname: 'homes-largest', city: geoData.cityUrl, page: 1}]">See All Nearby Homes For Sale</a></div>
+    </div>
+  </div>
 </div>
