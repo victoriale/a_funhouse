@@ -33,6 +33,9 @@ partnerhomepage {
   @media @mobile {
     width: 265px;
   }
+  @media @desktop-m {
+    width: 735px;
+  }
   .inner-wrapper {
     .container-popout {
       margin-top: -150px;
@@ -40,11 +43,17 @@ partnerhomepage {
       text-align:center;
       padding: 0 45px;
       @media @mobile {
-        margin-top: -100px;
+        margin-top: -125px;
+        padding: 0 15px;
+      }
+      @media @tablet {
+        padding: 0;
+        margin-top: -175px;
       }
       h3{
 	      font-size: 24px;
         margin:0 0 5px 0;
+        font-weight: 400;
         @media @mobile {
           font-size:14px;
         }
@@ -62,14 +71,20 @@ partnerhomepage {
       margin-left: 30px;
       margin-bottom: 10px;
       @media @mobile {
-        margin-left:70px;
+        margin-left:40px;
+        width: 240px;
+      }
+      @media @desktop-m {
+        margin-left: 90px;
       }
       h3 {
         font-size: 24px;
         margin-bottom:0;
+        margin-top: 15px;
       }
       p{
         margin-top: 5px;
+        font-size: 18px;
       }
       &-circle {
         height: 164px;
@@ -82,12 +97,21 @@ partnerhomepage {
         fill: @masterBrandColor;
         svg{
           margin-top:30px;
+          @media @desktop-m {
+            height: 110px;
+            width: 110px;
+            margin-top: 35px;
+          }
+        }
+        @media @desktop-m {
+          height: 187px;
+          width: 187px;
         }
       }
     }
     .segment-one {
       @media @mobile {
-        margin-left:70px;
+        margin-left:40px;
       }
       margin-left: 0;
     }
@@ -97,6 +121,9 @@ partnerhomepage {
       display: block;
       margin-bottom: 40px;
       font-size: 24px;
+      @media @mobile {
+        margin-bottom: 15px;
+      }
     }
   }
 }

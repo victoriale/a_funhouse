@@ -7,8 +7,24 @@
   @media @mobile {
     margin-top:0;
   }
+  @media @tablet {
+    margin-top: 16px;
+  }
 }
-
+.hero-search form {
+  display: block;
+  border: solid 2px transparent;
+  border-radius: 8px;
+}
+.hero-search form.active  {
+  border: solid 2px @masterBrandColor;
+}
+.hero-search form:hover {
+  border: solid 2px @masterBrandColor;
+  .hero-search-button {
+    border: 3px solid white;
+  }
+}
 .hero-search input {
   width: 430px;
   float: left;
@@ -28,11 +44,16 @@
   -o-transition: box-shadow 0.30s ease-in-out, border 0.30s ease-in-out;
   @media @mobile {
     width: 220px;
+    height: 40px;
     font-size: 12px;
   }
+  @media @tablet {
+    height:60px;
+    width:520px;
+  }
   &:focus {
-    box-shadow: 0 1px 10px 0 rgba(68, 178, 36, 35);
-    border: 1px solid rgba(68, 178, 36, 35);
+    box-shadow: 0 1px 10px 0 @masterBrandColor;
+    border: 3px solid @white;
     outline: none;
   }
 }
@@ -50,7 +71,12 @@
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     cursor: pointer;
-
+    @media @mobile {
+      height: 40px;
+    }
+    @media @tablet {
+      height:60px;
+    }
     .fa-search{
       font-size: 18px;
       position: relative;
@@ -62,14 +88,20 @@
       outline: none;
     }
   }
+  .hero-search-button.active {
+    border: 3px solid white;
+  }
 
   //Needed id styling to group search input and results dropdown. results dropdown is absolutely bound to this container
   #hero-search-full-container{
     position: relative;
     margin: 0 auto;
-    width: 500px;
+    width: 504px;
     @media @mobile {
-      width: 290px;
+      width: 294px;
+    }
+    @media @tablet {
+      width: 594px;
     }
 
     form {
@@ -80,7 +112,8 @@
       color:#cccccc;
       width: 100%;
       text-align: left;
-      font-size: 12px;
+      font-size: 10px;
+      padding-top:2px;
 	    font-style: italic;
     }
   }
@@ -93,7 +126,7 @@
     background-color: rgba(255, 255, 255, 0.7);
     z-index: 9999;
     .mlsError-modal {
-      max-width:660px;
+      max-width:800px;
       width:90%;
       height: auto;
       position: absolute;
@@ -104,18 +137,27 @@
       background-color:@white;
       box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
       border-radius: 3px;
-      overflow: hidden;
       .close-modal {
         position: absolute;
-        top: 15px;
-        right: 15px;
-        background-color: @white;
+        top: 5px;
+        right: 5px;
+        background-color: rgba(255,255,255,0.8);
         border-radius: 50%;
         height: 25px;
         width: 25px;
         text-align: center;
-        padding: 4px 0;
+        padding: 3px 0;
         cursor: pointer;
+        z-index: 999;
+        @media @desktop-m {
+          top: -45px;
+          right: -45px;
+          height: 45px;
+          width: 45px;
+          border: 1px solid black;
+          padding: 6px 0;
+          font-size: 25px;
+        }
       }
       .mlsError-message {
         padding: 60px 120px;
@@ -124,20 +166,49 @@
         background-size: cover;
         background-position: center center;
         color: @white;
+        position: relative;
+        border-top-right-radius: 3px;
+        border-top-left-radius: 3px;
         @media @mobile {
           padding: 30px 15px;
+        }
+        @media @desktop-m {
+          padding: 60 20px;
         }
         h2 {
           font-size: 30px;
           @media @mobile {
             font-size: 20px;
+            margin-top: 0;
+          }
+          .fa {
+            color: #999;
           }
         }
         p {
           font-size: 18px;
           @media @mobile {
             font-size: 14px;
+            margin-bottom:0;
           }
+          @media @desktop-m {
+            padding: 0 130px;
+          }
+        }
+        .background-icon {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top:0;
+          bottom:0;
+          margin: auto;
+          width: 145px;
+          height: 145px;
+          mix-blend-mode: overlay;
+          z-index: 0;
+          stroke: white;
+          fill:white;
+          fill-opacity: 0.5;
         }
       }
       .mlsError-nhfs {
@@ -145,6 +216,7 @@
         h2 {
           display:inline-block;
           margin: 5px 0;
+          font-weight: 400;
           @media @mobile {
             font-size: 22px;
           }
@@ -156,9 +228,13 @@
         .display-radius {
           float:right;
           margin-top: 6px;
+          font-size: 12px;
+          color: #999;
           @media @mobile {
             margin-top: 16px;
-            font-size: 12px;
+          }
+          b {
+            color: @black;
           }
           .fa {
             color: @masterBrandColor;
@@ -173,9 +249,14 @@
           }
           a {
             color: #3098ff;
+            font-weight: 900;
+            font-size: 14px;
+            line-height: 30px;
+          }
+          a:hover {
+            color: @black;
           }
           li {
-            margin-bottom: 10px;
             width: 100%;
             @media @mobile {
               width:100%;
@@ -190,6 +271,7 @@
         }
         .rightColumn {
           float: right;
+          margin-bottom: 15px;
           @media @mobile {
             float: left;
             margin-top: 0;
@@ -203,11 +285,15 @@
           border-radius: 3px;
           padding: 8px 0;
           text-align: center;
+          font-weight: 900;
           margin-top: 10px;
           clear:both;
           a {
             color:white;
           }
+        }
+        .button-nearby:hover {
+          background-color: @black;
         }
       }
     }
