@@ -1,4 +1,4 @@
-<hero-component *ngIf="!isMyHouseKitHome"></hero-component>
+<hero-component *ngIf="!isMyHouseKitHome && geoData" [geoData]="geoData"></hero-component>
   <div class="page wrapper" *ngIf="!isMyHouseKitHome && geoData">
       <div class="inner-wrapper">
           <div class="container-popout">
