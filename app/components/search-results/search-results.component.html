@@ -5,8 +5,9 @@
         <li>
             {{item.title}}
         </li>
-        <i class="fa fa-angle-right"></i>
+        <i class="fa fa-arrow-right"></i>
     </a>
+    <div class="button-similar" *ngIf="!noResultsFound"><a>See Similar Results</a></div>
     <div *ngIf="noResultsFound" class="search-results-no-results">
         No Results Found
     </div>
