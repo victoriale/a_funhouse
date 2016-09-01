@@ -3,11 +3,11 @@ import {Router, ROUTER_DIRECTIVES} from "angular2/router";
 
 import {HeaderSearchComponent} from "./header-search/header-search.component";
 declare var jQuery: any;
-
+declare var stButtons: any;
 @Component({
     selector: 'header-component',
     templateUrl: './app/components/header/header.component.html',
-    
+
     directives: [HeaderSearchComponent, ROUTER_DIRECTIVES],
     providers: [],
     inputs: ['partnerID'],
@@ -99,5 +99,6 @@ export class HeaderComponent implements OnInit{
     }
 
     ngOnInit() {
+      stButtons.locateElements();
     }
 }

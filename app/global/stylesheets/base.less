@@ -13,11 +13,11 @@ ToC
 
 */
 //Media Queries for responsive
-@mobile:      ~"(max-width: 640px)";
+@mobile:      ~"(max-width: 768px)";
 @small-grid:  ~"(min-width: 576px) and (max-width: 640px)";
-@tablet:      ~"(min-width: 641px)";
-@desktop-m:   ~"(min-width: 1000px)";
-@desktop-l:   ~"(min-width: 1317px)";
+@tablet:      ~"(min-width: 769px)";
+@desktop-m:   ~"(min-width: 992px)";
+@desktop-l:   ~"(min-width: 1280px)";
 @desktop-xl:  ~"(min-width: 1760px)";
 @fluid:       ~"(max-width: 1023px)";
 
@@ -28,7 +28,7 @@ ToC
 @black: #000;
 
 // Body BG
-@bodyBg: #ebebeb;
+@bodyBg: @white;
 
 // Brand Color Palette
 @sntMediaBlue: #009dfb;
@@ -180,7 +180,7 @@ body {
   font-family: @globalFont;
   overflow: auto;
   margin: 0 !important;
-  background-color: @highlightGrey !important;
+  background-color: @white ;
   min-width: 320px!important;
 }
 
