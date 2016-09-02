@@ -30,6 +30,7 @@ export class HeroSearchComponent{
     mlsNearbyColumn1: Array<any> = [];
     mlsNearbyColumn2: Array<any> = [];
     term:any = new Control();
+    @Input() placeholder:string;
     states: Array<any> = [
         ['Arizona', 'AZ'],
         ['Alabama', 'AL'],

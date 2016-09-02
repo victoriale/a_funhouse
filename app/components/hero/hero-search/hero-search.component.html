@@ -2,7 +2,7 @@
     <div class="hero-search 8-col">
         <div id="hero-search-full-container">
             <form (ngSubmit)="onSubmit($event)" [class.active]="showResults">
-                <input autocomplete="off" type="text" (focus)="focusResults($event)" (blur)="blurResults($event)" [ngFormControl]="term" placeholder="To Begin Enter Your Home’s Address">
+                <input autocomplete="off" type="text" (focus)="focusResults($event)" (blur)="blurResults($event)" [ngFormControl]="term" placeholder="{{placeholder}}">
                 <button type="submit" [class.active]="showResults" class="hero-search-button fa fa-search"></button>
             </form>
             <search-results (mousedown)="preventBlur()" [showResults]="showResults" [searchResults]="searchResults"></search-results>
