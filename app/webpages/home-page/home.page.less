@@ -36,6 +36,9 @@ partnerhomepage {
   @media @desktop-m {
     width: 735px;
   }
+  @media @desktop-l {
+    width: 800px;
+  }
   .inner-wrapper {
     .container-popout {
       margin-top: -150px;
@@ -43,12 +46,17 @@ partnerhomepage {
       text-align:center;
       padding: 0 45px;
       @media @mobile {
-        margin-top: -125px;
+        margin-top: -110px;
         padding: 0 15px;
       }
       @media @tablet {
         padding: 0;
         margin-top: -175px;
+      }
+      @media @desktop-l {
+        margin-top: -295px;
+        width: 999px;
+        margin-left: ~"calc(50% - 500px)";
       }
       h3{
 	      font-size: 24px;
@@ -76,6 +84,9 @@ partnerhomepage {
       }
       @media @desktop-m {
         margin-left: 90px;
+      }
+      @media @desktop-l {
+        margin-left: 122px;
       }
       h3 {
         font-size: 24px;
@@ -121,6 +132,7 @@ partnerhomepage {
       display: block;
       margin-bottom: 40px;
       font-size: 24px;
+      padding: 0 30px;
       @media @mobile {
         margin-bottom: 15px;
       }

@@ -25,10 +25,10 @@
       <span class="display-radius"><i class="fa fa-map-marker"></i>Showing homes within a <b>10mi radius</b></span>
       <hr>
       <ul class="leftColumn">
-        <li *ngFor="#item of mlsNearbyColumn1"><a [routerLink]="['Profile-page', {address: item.addressKey}]">{{item.fullStreetAddress + " " + item.loc + " " + item.postalCode}}</a></li>
+        <li *ngFor="#item of mlsNearbyColumn1"><a [routerLink]="['../../Magazine', {addr: item.addressKey}]">{{item.fullStreetAddress + " " + item.loc + " " + item.postalCode}}</a></li>
       </ul>
       <ul class="rightColumn">
-        <li *ngFor="#item of mlsNearbyColumn2"><a [routerLink]="['Profile-page', {address: item.addressKey}]">{{item.fullStreetAddress + " " + item.loc + " " + item.postalCode}}</a></li>
+        <li *ngFor="#item of mlsNearbyColumn2"><a [routerLink]="['../../Magazine', {addr: item.addressKey}]">{{item.fullStreetAddress + " " + item.loc + " " + item.postalCode}}</a></li>
       </ul>
       <div class="button-nearby"><a [routerLink]="['List-page', {viewType: 'list', state: geoData.stateUrl, listname: 'homes-largest', city: geoData.cityUrl, page: 1}]">See All Nearby Homes For Sale</a></div>
     </div>
