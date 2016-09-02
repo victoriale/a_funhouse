@@ -10,8 +10,12 @@
   @media @tablet {
     margin-top: 16px;
   }
-  @media @desktop-l {
-    margin-top: 0;
+}
+.hero {
+  .hero-search{
+    @media @desktop-l {
+      margin-top: 0;
+    }
   }
 }
 .hero-search form {
@@ -217,13 +221,19 @@
           top:0;
           bottom:0;
           margin: auto;
-          width: 145px;
-          height: 145px;
+          width: 35vw;
+          height: 35vw;
+          min-height: 145px;
+          min-width: 145px;
           mix-blend-mode: overlay;
           z-index: 0;
           stroke: white;
           fill:white;
           fill-opacity: 0.5;
+          @media @tablet {
+            width: 247px;
+            height: 247px;
+          }
         }
       }
       .mlsError-nhfs {
@@ -241,12 +251,12 @@
           }
         }
         hr {
-          width: 96%;
+          width: ~"calc(100% - 20px)";
           position: absolute;
         }
         .display-radius {
           float:right;
-          margin-top: 6px;
+          margin-top: 10px;
           font-size: 12px;
           color: #999;
           @media @mobile {
