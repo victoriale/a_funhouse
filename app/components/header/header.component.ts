@@ -99,6 +99,8 @@ export class HeaderComponent implements OnInit{
     }
 
     ngOnInit() {
+    }
+    locateShareThis() {
       stButtons.locateElements();
     }
 }

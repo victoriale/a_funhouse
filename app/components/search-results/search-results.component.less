@@ -41,12 +41,15 @@
         border-right: 6px solid transparent;
       }
     }
+    .caret-top.active::after {
+      border-bottom-color: #ececec;
+    }
 
     a{
       width: 100%;
       padding: 12px 15px 15px 30px;
-      border-bottom: 1px solid @strokeGrey;
       display: block;
+      position: relative;
       .flexDisplay;
       .flexJustify(space-between);
       .flexAlignItems(center);
@@ -75,7 +78,18 @@
         }
       }
     }
-
+    a:after {
+      width: 92%;
+      margin-left: 4%;
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      border-bottom: 1px solid @strokeGrey;
+    }
+    a:hover:after {
+      border-color: transparent;
+    }
     &.active{
       display: block;
     }
