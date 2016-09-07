@@ -237,7 +237,15 @@
         }
       }
       .mlsError-nhfs {
-        padding: 10px;
+        @media @mobile {
+          padding: 10px 8px;
+        }
+        @media @tablet {
+          padding: 10px 16px;
+        }
+        @media @desktop-m {
+          padding: 10px 20px;
+        }
         h2 {
           display:inline-block;
           margin: 5px 0;
@@ -297,9 +305,15 @@
         }
         .leftColumn {
           float: left;
-          padding: 0px 0 0 10px;
           @media @mobile {
             margin-top:10px;
+            padding: 0px 0 0 2px;
+          }
+          @media @tablet {
+            padding: 0px 0 0 9px;
+          }
+          @media @desktop-m {
+            padding: 0px 0 0 10px;
           }
         }
         .rightColumn {
