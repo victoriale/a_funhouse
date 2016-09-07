@@ -135,7 +135,7 @@
     top: 0;
     left:0;
     background-color: rgba(255, 255, 255, 0.7);
-    z-index: 9999;
+    z-index: 99999;
     .mlsError-modal {
       max-width:800px;
       width:90%;
@@ -237,7 +237,15 @@
         }
       }
       .mlsError-nhfs {
-        padding: 10px;
+        @media @mobile {
+          padding: 10px 8px;
+        }
+        @media @tablet {
+          padding: 10px 16px;
+        }
+        @media @desktop-m {
+          padding: 10px 20px;
+        }
         h2 {
           display:inline-block;
           margin: 5px 0;
@@ -297,9 +305,15 @@
         }
         .leftColumn {
           float: left;
-          padding: 0px 0 0 10px;
           @media @mobile {
             margin-top:10px;
+            padding: 0px 0 0 2px;
+          }
+          @media @tablet {
+            padding: 0px 0 0 9px;
+          }
+          @media @desktop-m {
+            padding: 0px 0 0 10px;
           }
         }
         .rightColumn {
