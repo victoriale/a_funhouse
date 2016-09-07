@@ -5,7 +5,7 @@ import {Observable} from 'rxjs/Observable';
 @Component({
     selector: 'search-results',
     templateUrl: './app/components/search-results/search-results.component.html',
-    
+
     directives: [ROUTER_DIRECTIVES],
     providers: [],
     inputs: ['searchResults', 'showResults']
@@ -15,6 +15,7 @@ export class SearchResults{
     showResults: boolean;
     noResultsFound: boolean;
     searchResults: Array<Object>;
+    firstItemHover: number = 0;
 
     closeResults(event){
         this.showResults = false;

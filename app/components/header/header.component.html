@@ -1,31 +1,9 @@
-<div class="header-top-bar-wrapper">
-    <div class="wrapper">
-        <div class="inner-wrapper">
-            <div class="header-top-bar">
-                <div *ngIf="!isMyHouseKit" class="tagline six-col">
-                    <a href="/">Joyful Home | A Little Place to Call Home</a>
-                </div>
-                <div *ngIf="isMyHouseKit" class="tagline six-col">
-                    <a href="{{partnerUrl}}">MyHouseKit | A Little Place to Call Home</a>
-                </div>
-                <div class="directory-link six-col">
-                    <a (click)="directoryToggle()">Directories</a>
-                </div>
-                <div class="directory-dropdown-wrapper" [hidden]="!directoryVisible">
-                    <ul>
-                        <a (click)="directoryClick()" *ngFor="#directoryList of directoryList" [routerLink]="['Directory-page', { listTitle: directoryList.listUrl, pageNumber: pageNum }]"><li><i class="fa fa-angle-right"></i> {{directoryList.listName}}</li></a>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <div *ngIf="!isMyHouseKit || !isHomePage" class="header-bottom-bar-wrapper" (window:scroll)="onScroll($event)" [class.stick-header]="isScrolling">
     <div class="wrapper">
         <div class="inner-wrapper">
             <div class="header-bottom-bar">
-                <div *ngIf="!isMyHouseKit" class="header-logo six-col">
-                    <a href="/"><img src="/app/public/joyful_logo_resized.png" alt="Joyful Home | A Little Place to Call Home"/></a>
+                <div *ngIf="!isMyHouseKit" class="header-logo">
+                    <a href="/"><img height="36px" src="/app/public/Joyful-Home_Logo_All-White-Outlined.svg" alt="Joyful Home | A Little Place to Call Home"/></a>
                 </div>
                 <div *ngIf="isMyHouseKit" class="header-logo six-col" style="font-size:20px;font-family:'Lato'; line-height:24px;">
                   <a href="{{partnerUrl}}" style="color:#000">Home</a>
@@ -34,4 +12,9 @@
             </div>
         </div>
     </div>
+    <a>
+      <div class="header-share st_sharethis_large" (mouseover)="locateShareThis()">
+        <i class="fa fa-share-alt"></i>
+      </div>
+    </a>
 </div>

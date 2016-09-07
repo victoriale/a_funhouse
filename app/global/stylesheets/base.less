@@ -12,6 +12,14 @@ ToC
   @Module Box Shadow
 
 */
+//Media Queries for responsive
+@mobile:      ~"(max-width: 768px)";
+@small-grid:  ~"(min-width: 576px) and (max-width: 640px)";
+@tablet:      ~"(min-width: 769px)";
+@desktop-m:   ~"(min-width: 992px)";
+@desktop-l:   ~"(min-width: 1280px)";
+@desktop-xl:  ~"(min-width: 1760px)";
+@fluid:       ~"(max-width: 1023px)";
 
 /**********/
 /* @Colors */
@@ -20,7 +28,7 @@ ToC
 @black: #000;
 
 // Body BG
-@bodyBg: #ebebeb;
+@bodyBg: @white;
 
 // Brand Color Palette
 @sntMediaBlue: #009dfb;
@@ -32,7 +40,7 @@ ToC
 @sportsLoyalOrange: #f26f26;
 @crimeYellowOrange: #f6af05;
 @weatherYellow: #ffdf30;
-@joyfulHomeGreen: #44b224;
+@joyfulHomeGreen: #1d881d;
 @joyfulHomeGreen-hover: #339f33;
 @fbblue: #3a5b97;
 
@@ -172,8 +180,8 @@ body {
   font-family: @globalFont;
   overflow: auto;
   margin: 0 !important;
-  background-color: @highlightGrey !important;
-  min-width: 1044px;
+  background-color: @white ;
+  min-width: 320px!important;
 }
 
 div {

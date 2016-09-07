@@ -1,7 +1,8 @@
-import {Component} from 'angular2/core';
+import {Component, Input} from 'angular2/core';
 import {SearchService} from '../../../global/search-service';
 import {SearchResults} from '../../search-results/search-results.component';
 import {Router, ROUTER_DIRECTIVES} from 'angular2/router';
+import {listViewPage} from '../../../global/global-service';
 
 import {Observable} from 'rxjs/Rx';
 import {Control} from 'angular2/common';
@@ -16,22 +17,145 @@ import {Control} from 'angular2/common';
 @Component({
     selector: 'hero-search-component',
     templateUrl: './app/components/hero/hero-search/hero-search.component.html',
-    
-    directives: [SearchResults],
-    providers: [SearchService],
+
+    directives: [SearchResults, ROUTER_DIRECTIVES],
+    providers: [SearchService, listViewPage],
 })
 
 export class HeroSearchComponent{
     searchResults: Array<Object>;
     showResults: boolean;
     subscription: any;
-
+    mlsError: any;
+    mlsNearbyColumn1: Array<any> = [];
+    mlsNearbyColumn2: Array<any> = [];
     term:any = new Control();
+    @Input() placeholder:string;
+    states: Array<any> = [
+        ['Arizona', 'AZ'],
+        ['Alabama', 'AL'],
+        ['Alaska', 'AK'],
+        ['Arizona', 'AZ'],
+        ['Arkansas', 'AR'],
+        ['California', 'CA'],
+        ['Colorado', 'CO'],
+        ['Connecticut', 'CT'],
+        ['Delaware', 'DE'],
+        ['Florida', 'FL'],
+        ['Georgia', 'GA'],
+        ['Hawaii', 'HI'],
+        ['Idaho', 'ID'],
+        ['Illinois', 'IL'],
+        ['Indiana', 'IN'],
+        ['Iowa', 'IA'],
+        ['Kansas', 'KS'],
+        ['Kentucky', 'KY'],
+        ['Kentucky', 'KY'],
+        ['Louisiana', 'LA'],
+        ['Maine', 'ME'],
+        ['Maryland', 'MD'],
+        ['Massachusetts', 'MA'],
+        ['Michigan', 'MI'],
+        ['Minnesota', 'MN'],
+        ['Mississippi', 'MS'],
+        ['Missouri', 'MO'],
+        ['Montana', 'MT'],
+        ['Nebraska', 'NE'],
+        ['Nevada', 'NV'],
+        ['New Hampshire', 'NH'],
+        ['New Jersey', 'NJ'],
+        ['New Mexico', 'NM'],
+        ['New York', 'NY'],
+        ['North Carolina', 'NC'],
+        ['North Dakota', 'ND'],
+        ['Ohio', 'OH'],
+        ['Oklahoma', 'OK'],
+        ['Oregon', 'OR'],
+        ['Pennsylvania', 'PA'],
+        ['Rhode Island', 'RI'],
+        ['South Carolina', 'SC'],
+        ['South Dakota', 'SD'],
+        ['Tennessee', 'TN'],
+        ['Texas', 'TX'],
+        ['Utah', 'UT'],
+        ['Vermont', 'VT'],
+        ['Virginia', 'VA'],
+        ['Washington', 'WA'],
+        ['West Virginia', 'WV'],
+        ['Wisconsin', 'WI'],
+        ['Wyoming', 'WY'],
+    ];
+    hardCities: Array<any> = [
+        ['new york', 'york', 'NY'],
+        ['san francisco', 'francisco', 'CA'],
+        ['san bernardino', 'bernardino',  'CA'],
+        ['los angeles', 'angeles',  'CA'],
+        ['san deigo', 'deigo',  'CA'],
+        ['san jose', 'jose',  'CA'],
+        ['long beach', 'beach',  'CA'],
+        ['santa ana', 'ana',  'CA'],
+        ['fort worth', 'worth',  'TX'],
+        ['san antonio', 'antonio',  'TX'],
+        ['corpus christi', 'christi',  'TX'],
+        ['little rock', 'rock',  'AR'],
+        ['des moines', 'moines',  'IA'],
+        ['baton rouge', 'rouge',  'LA'],
+        ['santa fe', 'fe',  'NM'],
+        ['las vegas', 'vegas',  'NV'],
+        ['virginia beach', 'beach',  'VA'],
+        ['colorado springs', 'springs',  'CO'],
+        ['new orleans', 'orleans',  'LA'],
+        ['st paul', 'paul',  'MN'],
+        ['fort wayne', 'wayne',  'IN'],
+        ['chula vista', 'vista',  'CA'],
+        ['st petersburg', 'petersburg',  'FL'],
+        ['winston salem', 'salem',  'NC'],
+        ['gilbert town', 'town',  'AZ']
+    ];
+    @Input() geoData: any;
 
-    constructor(private _searchService: SearchService, private _router: Router){
+    constructor(private _searchService: SearchService, private _router: Router, private listViewData: listViewPage){
         this.initializeSearch();
     }
+    ngOnInit() {
 
+    }
+    setMLS(inCity?, inState?) {
+      //list/homesAtLeast5YearsOld/KS/Wichita/empty/10/1
+      var state = "CA"
+      var city = "los%20angeles"
+      if (inCity && inState) {
+        city = inCity.replace(/-/g, "%20");
+        state = inState;
+      }
+      else if (this.geoData) {
+        if (this.geoData.stateUrl != null && this.geoData.cityUrl != null) {
+          state = this.geoData.stateUrl;
+          city = this.geoData.cityUrl.replace(/-/g, "%20");
+        }
+      }
+      this.listViewData.getListData("homesAtLeast5YearsOld", state, city, "10", "1", "empty")
+          .subscribe(
+              data => {
+                this.mlsNearbyColumn1 = [];
+                this.mlsNearbyColumn2 = [];
+                if (!data.data || data.data.length == 0) {
+                  this.setMLS();
+                }
+                else {
+                    for (var i = 0; i < data.data.length && i < 5; i++) {
+                      this.mlsNearbyColumn1.push(data.data[i]);
+                    }
+                    for (var i = 5; i < data.data.length; i++) {
+                      this.mlsNearbyColumn2.push(data.data[i]);
+                    }
+                  }
+              },
+              err => {
+                  console.log('Error: Non Filter List API: ', err);
+              }
+          );
+    }
     //Function to initialize search observable
     initializeSearch(){
         var self = this;
@@ -87,17 +211,53 @@ export class HeroSearchComponent{
 
     //Function to submit form to navigate to results page
     onSubmit(event){
-        var value = this.term._value;
-        if(typeof value === 'undefined' || value === '' || value === null){
-            return false;
-        }
-        value = value.replace(/ /g, '-');
+        if (this.searchResults) {
+          var value = this.term._value;
+          if(typeof value === 'undefined' || value === '' || value === null){
+              return false;
+          }
+          value = value.replace(/ /g, '-');
 
-        value = encodeURIComponent(value);
-        //Cancel previous call by passing empty string to the observable
-        this.term.updateValue('');
-        //Navigate to search page with query string
-        this._router.navigate(['Search-page', {query: value}]);
+          value = encodeURIComponent(value);
+          //Cancel previous call by passing empty string to the observable
+          this.term.updateValue('');
+          //Navigate to search page with query string
+          this._router.navigate(['Search-page', {query: value}]);
+        }
+        else if (this.term._value) {
+          var value = this.term._value.replace(/^a-zA-Z\d\s/g, '').toLowerCase();
+          var state;
+          var city;
+          for (var i = 0; i < this.states.length; i++) {
+            if (value.includes(" " + this.states[i][0].toLowerCase())) {
+              state = this.states[i][0];
+              var regex = RegExp("(?:\\\S+\\\s)" + state.toLowerCase());
+              city = value.match(regex)[0].replace(state.toLowerCase(),"");
+              for (var ind = 0; ind < this.hardCities.length; ind++) {
+                if (value.includes(this.hardCities[ind][1]) && state == this.hardCities[ind][2]) {
+                  city = this.hardCities[ind][0];
+                }
+              }
+              this.setMLS(city, this.states[i][1]);
+            }
+            else if (value.includes(" " + this.states[i][1].toLowerCase())) {
+              state = this.states[i][1];
+              var regex = RegExp("(?:\\\S+\\\s)" + state.toLowerCase());
+              city = value.match(regex)[0].replace(state.toLowerCase(),"");
+              for (var ind = 0; ind < this.hardCities.length; ind++) {
+                if (value.includes(this.hardCities[ind][1]) && state == this.hardCities[ind][2]) {
+                  city = this.hardCities[ind][0];
+                }
+              }
+              this.setMLS(city, state);
+            }
+          }
+          this.mlsError = true;
+        }
+        else {
+          this.setMLS();
+          this.mlsError = true;
+        }
     }
 
     //Function to tell search results component to show when input is focused
