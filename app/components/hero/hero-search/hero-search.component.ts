@@ -122,7 +122,6 @@ export class HeroSearchComponent{
     }
     setMLS(inCity?, inState?) {
       //list/homesAtLeast5YearsOld/KS/Wichita/empty/10/1
-      console.log('DING - ', this.geoData);
       var state = "CA"
       var city = "los%20angeles"
       if (inCity && inState) {
