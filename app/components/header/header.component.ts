@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit{
                     var partnerIdExists = partnerID[0] != '' ? true : false;
 
                     var myhousekit = /myhousekit/.test(hostname);
-                    // var myhousekit = /localhost/.test(hostname); //used for testing locally
+                    //var myhousekit = /localhost/.test(hostname); //used for testing locally
                     //checks if partner ID exists
                     if(!partnerIdExists){
                       this.partnerID = null;
