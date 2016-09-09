@@ -1,6 +1,6 @@
 <div *ngIf="!isMyHouseKit || !isHomePage" [class.header-margin]="!isHomePage" class="header-bottom-bar-wrapper" (window:scroll)="onScroll($event)" [class.stick-header]="isScrolling">
     <div class="wrapper">
-        <div class="inner-wrapper">
+        <div [class.inner-wrapper-home]="isHomePage" [class.inner-wrapper]="!isHomePage">
             <div class="header-bottom-bar">
                 <div *ngIf="!isMyHouseKit" class="header-logo" [class.logo-left]="!isHomePage">
                     <a href="/"><img height="36px" src="/app/public/Joyful-Home_Logo_All-White-Outlined.svg" alt="Joyful Home | A Little Place to Call Home"/></a>

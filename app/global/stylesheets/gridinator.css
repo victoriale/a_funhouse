@@ -34,7 +34,16 @@
 	padding: 0 0px 0 0px;
 	position: relative;
 	width: 100%;
-	/*width: 1440px;*/
+	min-width: 1044px;
+}
+
+.inner-wrapper-home {
+		clear: both;
+		display: inline;/* IE double margin fix. Feel free to move this to your IE specific stylesheets. */
+		float: left;
+		padding: 0 0px 0 0px;
+		position: relative;
+		width: 100%;
 }
 
 .container {
