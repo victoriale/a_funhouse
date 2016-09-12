@@ -35,6 +35,6 @@
           </div>
       </div>
   </div>
-  <hero-bottom-component *ngIf="!isMyHouseKitHome && geoData" [buttonTitle]="heroButtonTitle" [buttonWidth]="heroButtonWidth" [buttonIcon]="heroButtonIcon" [cityLocation]="geoData.cityUrl" [stateLocation]="geoData.stateUrl" [cityName]="geoData.cityNameDisplay" [stateAPLocation]="geoData.stateNameDisplay"></hero-bottom-component>
+  <hero-bottom-component *ngIf="!isMyHouseKitHome && geoData" [buttonTitle]="heroButtonTitle" [buttonWidth]="heroButtonWidth" [buttonIcon]="heroButtonIcon" [cityLocation]="geoData.cityUrl" [stateLocation]="geoData.stateUrl" [cityName]="geoData.cityNameDisplay" [stateAPLocation]="geoData.stateNameDisplay" [geoData]="geoData"></hero-bottom-component>
 
 <Housekit-home-page *ngIf="isMyHouseKitHome"></Housekit-home-page>

@@ -5,7 +5,7 @@
                 <input autocomplete="off" type="text" (focus)="focusResults($event)" (blur)="blurResults($event)" [ngFormControl]="term" placeholder="{{placeholder}}">
                 <button type="submit" [class.active]="showResults" class="hero-search-button fa fa-search"></button>
             </form>
-            <search-results (mousedown)="preventBlur()" [showResults]="showResults" [searchResults]="searchResults"></search-results>
+            <search-results (mousedown)="preventBlur()" [showResults]="showResults" [searchResults]="searchResults" [term]="term"></search-results>
             <div class="searchMls">*Houses must have an active MLS to appear in search.</div>
         </div>
     </div>

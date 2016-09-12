@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges} from 'angular2/core';
-import {ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
+import {Router, ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
 import {Observable} from 'rxjs/Observable';
 
 @Component({
@@ -8,7 +8,7 @@ import {Observable} from 'rxjs/Observable';
 
     directives: [ROUTER_DIRECTIVES],
     providers: [],
-    inputs: ['searchResults', 'showResults']
+    inputs: ['searchResults', 'showResults', 'term']
 })
 
 export class SearchResults{
@@ -16,9 +16,25 @@ export class SearchResults{
     noResultsFound: boolean;
     searchResults: Array<Object>;
     firstItemHover: number = 0;
+    term: any;
+
+    constructor(private _router: Router){
+    }
 
     closeResults(event){
         this.showResults = false;
+    }
+
+    relatedResults(event){
+      var value = this.term._value;
+      if(typeof value === 'undefined' || value === '' || value === null){
+          return false;
+      }
+      value = value.replace(/ /g, '-');
+      value = encodeURIComponent(value);
+      this.term.updateValue('');
+      this._router.navigate(['Search-page', {query: value}]);
+      this.showResults = false;
     }
 
     ngOnChanges(event){
