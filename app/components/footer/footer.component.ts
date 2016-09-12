@@ -6,7 +6,7 @@ declare var jQuery:any;
 @Component({
     selector: 'footer-component',
     templateUrl: './app/components/footer/footer.component.html',
-    
+
     directives: [ROUTER_DIRECTIVES],
     inputs: ['cityLocation', 'stateLocation', 'partnerID'],
     providers: [],
@@ -18,6 +18,7 @@ export class FooterComponent implements OnInit {
     stateLocation: string;
 
     public isMyHouseKit: boolean = true;
+    public isHomePage: boolean = false;
     partnerID: string;
     title: string = "National Real Estate";
     pageNumber: string = "1";
@@ -31,6 +32,12 @@ export class FooterComponent implements OnInit {
               route => {
                   this.curRoute = route;
                   var partnerID = this.curRoute.split('/');
+                  var hostname = window.location.hostname;
+                  var partnerIdExists = partnerID[0] != '' ? true : false;
+
+                  var myhousekit = /myhousekit/.test(hostname);
+                  //var myhousekit = /localhost/.test(hostname); //used for testing locally
+
                   if(partnerID[0] == ''){
                     this.partnerID = null;
                   }else{
@@ -40,6 +47,15 @@ export class FooterComponent implements OnInit {
                       this.isMyHouseKit = true;
                   }else {
                       this.isMyHouseKit = false;
+                  }
+
+                  //check to make sure if home page is being displayed
+                  if(partnerIdExists && myhousekit && partnerID.length == 1){
+                    this.isHomePage = true;
+                  }else if(!partnerIdExists && partnerID.length == 1){
+                    this.isHomePage = true;
+                  }else{
+                    this.isHomePage = false;
                   }
               }
           )

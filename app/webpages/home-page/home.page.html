@@ -1,6 +1,6 @@
 <hero-component *ngIf="!isMyHouseKitHome && geoData" [geoData]="geoData"></hero-component>
   <div class="page wrapper" *ngIf="!isMyHouseKitHome && geoData">
-      <div class="inner-wrapper">
+      <div class="inner-wrapper-home">
           <div class="container-popout">
             <h3>Preview of Your Magazine</h3>
             <img class="content-highlight" src="/app/public/content_highlight.png">
@@ -35,6 +35,6 @@
           </div>
       </div>
   </div>
-  <hero-bottom-component *ngIf="!isMyHouseKitHome && geoData" [buttonTitle]="heroButtonTitle" [buttonWidth]="heroButtonWidth" [buttonIcon]="heroButtonIcon" [cityLocation]="geoData.cityUrl" [stateLocation]="geoData.stateUrl" [cityName]="geoData.cityNameDisplay" [stateAPLocation]="geoData.stateNameDisplay"></hero-bottom-component>
+  <hero-bottom-component *ngIf="!isMyHouseKitHome && geoData" [buttonTitle]="heroButtonTitle" [buttonWidth]="heroButtonWidth" [buttonIcon]="heroButtonIcon" [cityLocation]="geoData.cityUrl" [stateLocation]="geoData.stateUrl" [cityName]="geoData.cityNameDisplay" [stateAPLocation]="geoData.stateNameDisplay" [geoData]="geoData"></hero-bottom-component>
 
 <Housekit-home-page *ngIf="isMyHouseKitHome"></Housekit-home-page>

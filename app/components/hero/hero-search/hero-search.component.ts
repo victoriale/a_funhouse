@@ -113,13 +113,16 @@ export class HeroSearchComponent{
         ['gilbert town', 'town',  'AZ']
     ];
     @Input() geoData: any;
+    @Input() cityLocation: any;
+    @Input() stateLocation: any;
 
     constructor(private _searchService: SearchService, private _router: Router, private listViewData: listViewPage){
         this.initializeSearch();
     }
+    
     ngOnInit() {
-
     }
+
     setMLS(inCity?, inState?) {
       //list/homesAtLeast5YearsOld/KS/Wichita/empty/10/1
       var state = "CA"

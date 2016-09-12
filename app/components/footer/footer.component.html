@@ -1,6 +1,6 @@
 <div class="footer-top-bar-wrapper clear">
     <div class="wrapper">
-        <div class="inner-wrapper">
+        <div [class.inner-wrapper-home]="isHomePage" [class.inner-wrapper]="!isHomePage">
             <div class="footer-top-bar">
                 <div *ngIf="!isMyHouseKit" class="footer-logo six-col">
                     <a href="/"><img src="/app/public/joyful_logo_footer_resized.png" alt="Joyful Home | A Little Place to Call Home"/></a>
@@ -22,7 +22,7 @@
 </div>
 <div class="footer-bottom-wrapper clear">
     <div class="wrapper">
-        <div class="inner-wrapper">
+        <div [class.inner-wrapper-home]="isHomePage" [class.inner-wrapper]="!isHomePage">
             <footer class="footer-bottom">
                 <div class="footer-section-wrapper twelve-col">
                     <h1>{{title}}</h1>
