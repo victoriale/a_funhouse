@@ -7,7 +7,7 @@ import {HeroSearchComponent} from "../hero-search/hero-search.component";
     selector: 'hero-bottom-component',
     templateUrl: './app/components/hero/hero-bottom/hero-bottom.component.html',
 
-    inputs: ['buttonTitle', 'buttonWidth', 'buttonIcon', 'cityLocation', 'stateLocation', 'stateAPLocation', 'cityName'],
+    inputs: ['buttonTitle', 'buttonWidth', 'buttonIcon', 'cityLocation', 'stateLocation', 'stateAPLocation', 'cityName', 'geoData'],
     directives: [ExploreButtonComponent, ROUTER_DIRECTIVES, HeroSearchComponent],
     providers: [],
 })
@@ -18,6 +18,7 @@ export class HeroBottomComponent{
     public buttonIcon: string;
     public cityLocation: string;
     public stateLocation: string;
+    public geoData: any;
     public cityName: string;
     public stateAPLocation: string;
 }
