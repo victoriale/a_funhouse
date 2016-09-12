@@ -7,7 +7,7 @@
         </li>
         <i class="fa fa-arrow-right"></i>
     </a>
-    <div class="button-similar" *ngIf="!noResultsFound"><a>See Similar Results</a></div>
+    <div class="button-similar" *ngIf="!noResultsFound"><a (click)="relatedResults($event)">See Similar Results</a></div>
     <div *ngIf="noResultsFound" class="search-results-no-results">
         No Results Found
     </div>
