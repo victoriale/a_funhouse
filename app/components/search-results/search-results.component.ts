@@ -33,6 +33,7 @@ export class SearchResults{
       value = value.replace(/ /g, '-');
       value = encodeURIComponent(value);
       this._router.navigate(['Search-page', {query: value}]);
+      this.showResults = false;
     }
 
     ngOnChanges(event){
