@@ -32,6 +32,7 @@ export class SearchResults{
       }
       value = value.replace(/ /g, '-');
       value = encodeURIComponent(value);
+      this.term.updateValue('');
       this._router.navigate(['Search-page', {query: value}]);
       this.showResults = false;
     }
