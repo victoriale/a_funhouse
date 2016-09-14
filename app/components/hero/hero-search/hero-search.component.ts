@@ -121,7 +121,6 @@ export class HeroSearchComponent{
     }
 
     ngOnInit() {
-      console.log(this.cityLocation, this.stateLocation);
     }
 
     setMLS(inCity?, inState?) {
