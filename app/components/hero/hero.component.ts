@@ -11,4 +11,6 @@ import {HeroSearchComponent} from "./hero-search/hero-search.component";
 
 export class HeroComponent{
   @Input() geoData: any;
+  @Input() cityLocation: any;
+  @Input() stateLocation: any;
 }
