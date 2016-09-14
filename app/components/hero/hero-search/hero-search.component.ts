@@ -119,7 +119,7 @@ export class HeroSearchComponent{
     constructor(private _searchService: SearchService, private _router: Router, private listViewData: listViewPage){
         this.initializeSearch();
     }
-    
+
     ngOnInit() {
     }
 
