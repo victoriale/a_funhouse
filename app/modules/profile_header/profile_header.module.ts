@@ -14,7 +14,7 @@ declare var moment: any;
 @Component({
     selector: 'profile-header',
     templateUrl: './app/modules/profile_header/profile_header.module.html',
-    
+
     directives: [TitleComponent, Image180],
     providers: [GlobalFunctions]
 })
@@ -53,6 +53,7 @@ export class ProfileHeader implements OnInit{
 
     transformData(){
         var data = this.profileHeaderData;
+        console.log('Profile Data '+ data.brokerageName);
 
         //Sanitize city/state values
         data.city = this.globalFunctions.toTitleCase(data.city);
@@ -110,14 +111,18 @@ export class ProfileHeader implements OnInit{
             this.descriptionAddress = 'The listing is located at ' + this.globalFunctions.toTitleCase(data.address) + ', ' + data.city + ', ' + data.state + '.';
             this.descriptionSquareFeet = data.squareFeet === null ? '' : 'The living area is around ' + this.globalFunctions.commaSeparateNumber(data.squareFeet) + ' sq ft.';
             this.descriptionContact = '';
+            var brokerageName = data.brokerageName;
+            if (brokerageName === null || typeof brokerageName == 'undefined') {
+              brokerageName = 'N/A';
+            }
             if (data.phoneNumber !== null && data.officeNumber !== null && data.phoneNumber !== data.officeNumber) {
-                this.descriptionContact += 'at the phone number ' + this.globalFunctions.formatPhoneNumber(data.phoneNumber) + ', or their office phone number ' + this.globalFunctions.formatPhoneNumber(data.officeNumber) + '.';
+                this.descriptionContact += 'of ' + brokerageName + ' at the phone number ' + this.globalFunctions.formatPhoneNumber(data.phoneNumber) + ', or their office phone number ' + this.globalFunctions.formatPhoneNumber(data.officeNumber) + '.';
             } else if (data.phoneNumber !== null && data.officeNumber !== null && data.phoneNumber === data.officeNumber) {
-                this.descriptionContact += 'at the phone number ' + this.globalFunctions.formatPhoneNumber(data.phoneNumber) + '.';
+                this.descriptionContact += 'of ' + brokerageName + ' at the phone number ' + this.globalFunctions.formatPhoneNumber(data.phoneNumber) + '.';
             } else if (data.phoneNumber !== null && data.officeNumber === null) {
-                this.descriptionContact += 'at the phone number ' + this.globalFunctions.formatPhoneNumber(data.phoneNumber) + '.';
+                this.descriptionContact += 'of ' + brokerageName + ' at the phone number ' + this.globalFunctions.formatPhoneNumber(data.phoneNumber) + '.';
             } else if (data.phoneNumber === null && data.officeNumber !== null) {
-                this.descriptionContact += 'at their office number ' + this.globalFunctions.formatPhoneNumber(data.officeNumber) + '.';
+                this.descriptionContact += 'of ' + brokerageName + ' at their office number ' + this.globalFunctions.formatPhoneNumber(data.officeNumber) + '.';
             }
             //Build email link for realtor
             this.emailLink = data.email === null ? '' : 'mailto:' + data.email;
