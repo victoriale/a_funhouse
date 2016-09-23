@@ -53,7 +53,6 @@ export class ProfileHeader implements OnInit{
 
     transformData(){
         var data = this.profileHeaderData;
-        console.log('Profile Data '+ data.brokerageName);
 
         //Sanitize city/state values
         data.city = this.globalFunctions.toTitleCase(data.city);
