@@ -191,6 +191,7 @@ export interface ProfileHeaderInterface {
     address: string;
     agent: string;
     brokerageLogoURL: string;
+    brokerageName: string;
     email: string;
     listingID: string;
     listingImage: string;
