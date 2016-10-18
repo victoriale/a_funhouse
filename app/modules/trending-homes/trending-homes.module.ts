@@ -111,14 +111,14 @@ export class TrendingHomes implements OnInit {
           if(val.listingDate === null || typeof val.listingDate == 'undefined') {
             val.valTitle = "Last Updated Since";
             var timeFallback = val.modificationTimestamp;
-            val.listingDate = moment(timeFallback.split(' ')[0], 'YYYY-MM-DD').format("dddd, MMMM Do, YYYY");
+            val.listingDate = moment(timeFallback.split(' ')[0], 'YYYY-MM-DD').format("dddd MMM Do, YYYY");
               if(timeFallback === null || typeof timeFallback == 'undefined'){
                 val.valTitle = "On The Market Since";
                 val.listingDate = 'N/A';
               }
           }else {
             val.valTitle = "On The Market Since";
-            val.listingDate = moment(val.listingDate.split(' ')[0], 'YYYY-MM-DD').format("dddd, MMMM Do, YYYY");
+            val.listingDate = moment(val.listingDate.split(' ')[0], 'YYYY-MM-DD').format("dddd MMM Do, YYYY");
           }
           //grab featured data about listing
           if(typeof val.virtualTour == 'undefined'){

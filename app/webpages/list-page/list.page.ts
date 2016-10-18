@@ -22,7 +22,7 @@ declare var lh: any;
 @Component({
     selector: 'List-page',
     templateUrl: './app/webpages/list-page/list.page.html',
-    
+
     directives: [PhotoListComponent, ROUTER_DIRECTIVES, DetailedListComponent, ListViewCarousel, WidgetModule, PaginationFooter, LoadingComponent, ErrorComponent, MapComponent],
     providers: [listViewPage]
 })
@@ -406,7 +406,7 @@ export class ListPage implements OnInit{
 
         //below are variables that are converted using global functions to a readable state
       val.listPrice = globeFunc.commaSeparateNumber(val.listPrice);
-      var formattedDate = moment(val.modificationTimestamp.split(' ')[0], 'YYYY-MM-DD').format("dddd, MMMM Do, YYYY");
+      var formattedDate = moment(val.modificationTimestamp.split(' ')[0], 'YYYY-MM-DD').format("dddd MMM Do, YYYY");
           if(val.livingArea === null){
               val.livingArea = "N/A";
           }
