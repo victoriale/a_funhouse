@@ -352,7 +352,7 @@ export class GlobalFunctions{
           return "N/A";
         }
         else {
-          return moment().subtract(daysOnMarket, 'days').format('dddd, MMMM Do, YYYY');
+          return moment().subtract(daysOnMarket, 'days').format('dddd MMM Do, YYYY');
         }
     }
 
