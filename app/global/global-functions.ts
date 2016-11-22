@@ -30,6 +30,62 @@ export class GlobalFunctions{
 
         return val;
     }
+    formatGlobalDate(value,identifier){
+      var unixValue = moment(value).unix();
+      if(unixValue.toString().length <= 11){
+        unixValue = Number(unixValue) * 1000;
+      } else {
+        unixValue = Number(unixValue);
+      }
+      var newDate;
+      var day = moment(unixValue).format('dddd');
+      var shortDay = moment(unixValue).format('D');
+      var monthnum = Number(moment(unixValue).format('M')) - 1;
+      var month = GlobalFunctions.formatAPMonth(monthnum);
+      var timeZone = moment(unixValue).tz('America/New_York').format('hh:mmA (z)');
+      var shortDate = moment(unixValue).format('MM/DD/YY');
+      var year = moment(unixValue).format('YYYY');
+      if(unixValue.toString().length <= 11){
+        console.log('Error in formatGlobalDate() [globalfunc.js]');
+        return 'wrong date';
+      }
+      switch(identifier) {
+        case 'defaultDate':
+          newDate = month + ' ' + shortDay + ', ' + year; // Oct. 03, 2006
+          return newDate;
+        case 'shortDate':
+          newDate = shortDate; // 10/03/06
+          return newDate;
+        case 'timeZone':
+          newDate = day + ', ' + month + ' ' + shortDay + ', ' + year + ' ' + timeZone; //Tuesday, Oct. 03, 2006 5:30:10PM (EDT)
+          return newDate;
+        case 'dayOfWeek':
+          newDate = day + ', ' + month + ' ' + shortDay + ', ' + year; //Tuesday, Oct. 03, 2006
+          return newDate;
+        case 'time':
+          newDate = timeZone;
+          return newDate;
+        default:
+          return month + ' ' + day + ', ' + year;
+      }
+    }
+    static formatAPMonth(month) {
+      switch (month) {
+        case 0: return "Jan.";
+        case 1: return "Feb.";
+        case 2: return "March";
+        case 3: return "April";
+        case 4: return "May";
+        case 5: return "June";
+        case 6: return "July";
+        case 7: return "Aug.";
+        case 8: return "Sept.";
+        case 9: return "Oct.";
+        case 10: return "Nov.";
+        case 11: return "Dec.";
+        default: return "";
+      }
+   }
 
     //Takes a number/string and adds commas
     commaSeparateNumber(val){

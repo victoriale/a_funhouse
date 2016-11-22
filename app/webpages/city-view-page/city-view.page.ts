@@ -59,7 +59,7 @@ export class CityViewPage implements OnInit{
         this.titleData =
           {
               imageURL : '/app/public/joyfulhome_house.png',
-              smallText1 : 'Last Updated: ' + moment(new Date()).format('dddd MMM Do, YYYY'),
+              smallText1 : 'Last Updated: ' + this._globalFunctions.formatGlobalDate(new Date(),'timeZone'),
               smallText2 : ''+ this.displayCity + ', ' + this.displayAPState + '',
               heading1 : 'Nearby Cities for the ' + this.displayCity + ', ' + this.displayAPState + ' Area',
               heading2 : '',

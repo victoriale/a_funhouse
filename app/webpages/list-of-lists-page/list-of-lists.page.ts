@@ -15,7 +15,7 @@ import {ErrorComponent} from '../../components/error/error.component';
 @Component({
     selector: 'list-of-lists-page',
     templateUrl: './app/webpages/list-of-lists-page/list-of-lists.page.html',
-    
+
     directives: [BackTabComponent, TitleComponent, ListCarouselComponent, contentList, HeroListComponent, WidgetModule, LoadingComponent, ErrorComponent],
     providers: [ListOfListPage],
 })
@@ -100,7 +100,7 @@ export class ListOfListsPage implements OnInit{
             this.titleData =
             {
                 imageURL: '/app/public/joyfulhome_house.png',
-                smallText1: 'Monday, February 23, 2016',
+                smallText1: this._globalFunctions.formatGlobalDate(new Date(),'dayOfWeek'),
                 smallText2: ' United States of America',
                 heading1: this._globalFunctions.toTitleCase(this.cityLocation) + ', ' + this._globalFunctions.stateToAP(this.stateLocation) + ' Top Lists',
                 heading2: '',
@@ -113,7 +113,7 @@ export class ListOfListsPage implements OnInit{
             this.titleData =
             {
                 imageURL: '/app/public/joyfulhome_house.png',
-                smallText1: 'Monday, February 23, 2016',
+                smallText1: this._globalFunctions.formatGlobalDate(new Date(),'dayOfWeek'),
                 smallText2: ' United States of America',
                 heading1: this._globalFunctions.fullstate(this.stateLocation) + ' Top Lists',
                 heading2: '',

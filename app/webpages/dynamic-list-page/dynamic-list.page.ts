@@ -114,8 +114,7 @@ export class DynamicListPage implements OnInit {
     this.headerData = {
         // Old placeholder image:  http://www.myinvestkit.com/StateImages/Location_National.jpg
         imageURL : '/app/public/joyfulhome_house.png',
-
-        smallText1 : 'Last Updated: ' + moment(data.date).format('dddd MMM Do, YYYY'),
+        smallText1: 'Last Updated: ' + globalFunc.formatGlobalDate(data.date,'dayOfWeek'),
         smallText2 : ' United States of America',
         heading1 : data.title,
         heading2 : '',

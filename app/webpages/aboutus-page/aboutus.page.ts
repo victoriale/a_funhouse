@@ -16,7 +16,7 @@ import {AuHeaderComponent} from '../../components/au-header/au-header.component'
 @Component({
     selector: 'Aboutus-page',
     templateUrl: './app/webpages/aboutus-page/aboutus.page.html',
-    
+
     directives: [BackTabComponent, TitleComponent, AuHeaderComponent, WidgetModule, ROUTER_DIRECTIVES],
     providers: [GlobalPage],
 })
@@ -24,7 +24,7 @@ import {AuHeaderComponent} from '../../components/au-header/au-header.component'
 export class AboutUsPage implements OnInit{
     whatIs = "";
     pageName = "";
-    
+
     au_icon1 = '/app/public/icons/Listing_Icon.png';
     au_icon2 = '/app/public/icons/Building_Icon.png';
     au_icon3 = '/app/public/icons/Real_Estate_Icon.png';
@@ -84,7 +84,7 @@ export class AboutUsPage implements OnInit{
       //About us title
       this.titleData = {
           imageURL : '/app/public/joyfulhome_house.png',
-          smallText1 : 'Last Updated: Monday, February 26, 2016',
+          smallText1 : this.globalFunctions.formatGlobalDate(new Date(),'dayOfWeek'),
           smallText2 : ' United States of America',
           heading1 : 'About Us',
           heading2 : '',

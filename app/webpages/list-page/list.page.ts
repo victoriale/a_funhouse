@@ -406,7 +406,7 @@ export class ListPage implements OnInit{
 
         //below are variables that are converted using global functions to a readable state
       val.listPrice = globeFunc.commaSeparateNumber(val.listPrice);
-      var formattedDate = moment(val.modificationTimestamp.split(' ')[0], 'YYYY-MM-DD').format("dddd MMM Do, YYYY");
+      var formattedDate = globeFunc.formatGlobalDate(val.modificationTimestamp,'dayOfWeek');
           if(val.livingArea === null){
               val.livingArea = "N/A";
           }

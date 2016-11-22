@@ -12,7 +12,7 @@ declare var lh: any;
 @Component({
     selector: 'Directory-page',
     templateUrl: './app/webpages/directory-page/directory.page.html',
-    
+
     directives: [ROUTER_DIRECTIVES, NgClass, LoadingComponent, ErrorComponent],
     providers: [DirectoryService],
 })
@@ -320,7 +320,7 @@ export class DirectoryPage {
         data.forEach(function(item, index){
             var listing = {};
 
-            listing['lastUpdated'] = item.modificationTimestamp === null ? null : 'Last Updated: ' + moment(item.modificationTimestamp).format('YYYY-MM-DD');
+            listing['lastUpdated'] = item.modificationTimestamp === null ? null : 'Last Updated: ' + self.globalFunctions.formatGlobalDate(item.modificationTimestamp,'shortDate');
             listing['addressKey'] = item.addressKey === null ? null : item.addressKey.toLowerCase();
             listing['address'] = item.fullStreetAddresss === null ? null : self.globalFunctions.toTitleCase(item.fullStreetAddress);
             listing['city'] = item.city;
@@ -351,7 +351,7 @@ export class DirectoryPage {
         });
         //send array of keys for listhub to track
         lh('submit', 'SEARCH_DISPLAY', listhubKeys);
-        
+
         return returnArray;
     }
 
