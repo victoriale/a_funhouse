@@ -8,6 +8,7 @@ const concat = require('gulp-concat');
 const less = require('gulp-less');
 const reload = browserSync.reload;
 
+
 // clean the contents of the distribution directory
 gulp.task('clean', function () {
   return del('dist/**/*');
@@ -37,6 +38,7 @@ gulp.task('copy:libs', ['clean'], function() {
       'node_modules/angular2/es6/dev/src/testing/shims_for_IE.js',
       'node_modules/highcharts/highcharts.js',
       'node_modules/moment/moment.js',
+      'node_modules/moment-timezone/builds/moment-timezone-with-data-2010-2020.js',
     ])
     .pipe(gulp.dest('dist/lib'))
 });

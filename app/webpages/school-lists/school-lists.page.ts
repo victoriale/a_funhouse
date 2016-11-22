@@ -20,7 +20,7 @@ declare var moment: any;
 @Component({
     selector: 'School-list-page',
     templateUrl: './app/webpages/school-lists/school-lists.page.html',
-    
+
     directives: [PaginationFooter, WidgetModule, HeroListComponent, ROUTER_DIRECTIVES, LoadingComponent, ErrorComponent, BackTabComponent, DynamicCarousel2, TitleComponent],
     providers: [LocationProfileService]
 })
@@ -96,7 +96,7 @@ export class SchoolListsPage implements OnInit{
    var displayCity = globeFunc.toTitleCase(this.locCity);
    this.titleComponentData = {
        imageURL: '/app/public/joyfulhome_house.png',
-       smallText1: 'Last Updated: ' + moment(new Date()).format('dddd, MMMM Do, YYYY'),
+       smallText1: 'Last Updated: ' + globeFunc.formatGlobalDate(new Date(),'dayOfWeek'),
        smallText2: displayCity + ', ' + displayState,
        heading1: this.globalFunctions.toTitleCase(this.category) + ' schools in and around ' + displayCity + ', ' + displayState,
        icon: 'fa fa-map-marker',

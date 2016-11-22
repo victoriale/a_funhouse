@@ -57,14 +57,14 @@ export class InfoListModule implements OnInit {
             if(val.listingDate === null || typeof val.listingDate == 'undefined') {
               val.valTitle = "Last Updated Since";
               var timeFallback = val.modificationTimestamp;
-              val.listingDate = moment(timeFallback.split(' ')[0], 'YYYY-MM-DD').format("M/D/YYYY");
+              val.listingDate = self._globalFunctions.formatGlobalDate(timeFallback,'shortDate');
                 if(timeFallback === null || typeof timeFallback == 'undefined'){
                   val.valTitle = "On The Market Since";
                   val.listingDate = 'N/A';
                 }
             }else {
               val.valTitle = "On The Market Since";
-              val.listingDate = moment(val.listingDate.split(' ')[0], 'YYYY-MM-DD').format("M/D/YYYY");
+              val.listingDate = self._globalFunctions.formatGlobalDate(val.listingDate,'shortDate');
             }
             // Counter for rank #
             val.counter = index++;

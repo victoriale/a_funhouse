@@ -4,7 +4,7 @@ import {Image100} from '../../components/images/image-100/image-100.component';
 @Component({
     selector: 'title-component',
     templateUrl: './app/components/title/title.component.html',
-    
+
     directives: [Image100],
     inputs: ['titleData']
 })
@@ -31,5 +31,4 @@ export class TitleComponent{
     ngOnInit(){
         this.titleComp();
     }
-
 }
