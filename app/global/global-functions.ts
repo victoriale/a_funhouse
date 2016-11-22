@@ -52,23 +52,18 @@ export class GlobalFunctions{
       switch(identifier) {
         case 'defaultDate':
           newDate = month + ' ' + shortDay + ', ' + year; // Oct. 03, 2006
-          console.log(newDate);
           return newDate;
         case 'shortDate':
           newDate = shortDate; // 10/03/06
-          console.log(newDate);
           return newDate;
         case 'timeZone':
           newDate = day + ', ' + month + ' ' + shortDay + ', ' + year + ' ' + timeZone; //Tuesday, Oct. 03, 2006 5:30:10PM (EDT)
-          console.log(newDate);
           return newDate;
         case 'dayOfWeek':
           newDate = day + ', ' + month + ' ' + shortDay + ', ' + year; //Tuesday, Oct. 03, 2006
-          console.log(newDate);
           return newDate;
         case 'time':
           newDate = timeZone;
-          console.log(newDate);
           return newDate;
         default:
           return month + ' ' + day + ', ' + year;
