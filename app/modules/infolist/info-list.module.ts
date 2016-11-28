@@ -57,7 +57,6 @@ export class InfoListModule implements OnInit {
             if(val.listingDate === null || typeof val.listingDate == 'undefined') {
               val.valTitle = "Last Updated Since";
               var timeFallback = val.modificationTimestamp;
-              console.log('alex',timeFallback);
               val.listingDate = self._globalFunctions.formatGlobalDate(timeFallback,'shortDate');
                 if(timeFallback === null || typeof timeFallback == 'undefined'){
                   val.valTitle = "On The Market Since";
