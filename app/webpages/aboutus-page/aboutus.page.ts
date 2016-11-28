@@ -85,7 +85,7 @@ export class AboutUsPage implements OnInit{
       this.titleData = {
           imageURL : '/app/public/joyfulhome_house.png',
           smallText1 : this.globalFunctions.formatGlobalDate(new Date(),'dayOfWeek'),
-          smallText2 : ' United States of America',
+          smallText2 : ' United States',
           heading1 : 'About Us',
           heading2 : '',
           heading3 : 'Take a seat and get to know us better.',

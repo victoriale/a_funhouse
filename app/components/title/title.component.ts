@@ -17,7 +17,7 @@ export class TitleComponent{
             [{
                 imageURL : '/app/public/joyfulhome_house.png',
                 smallText1 : 'Monday, February 23, 2016',
-                smallText2 : ' United States of America',
+                smallText2 : ' United States',
                 heading1 : 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet',
                 heading2 : '',
                 heading3 : 'Lorem ipsum dolor sit amet Lorem',

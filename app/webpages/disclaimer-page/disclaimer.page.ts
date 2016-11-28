@@ -63,7 +63,7 @@ export class DisclaimerPage implements OnInit {
       this.title_data = {
           imageURL : '/app/public/joyfulhome_house.png',
           smallText1 : 'Last Updated: Saturday, December 19, 2015.',
-          smallText2 : ' United States of America',
+          smallText2 : ' United States',
           heading1 : 'Disclaimer',
           heading2 : '',
           heading3 : 'For ' + this.pageName,
