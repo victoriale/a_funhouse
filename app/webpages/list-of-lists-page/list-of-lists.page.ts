@@ -101,7 +101,7 @@ export class ListOfListsPage implements OnInit{
             {
                 imageURL: '/app/public/joyfulhome_house.png',
                 smallText1: this._globalFunctions.formatGlobalDate(new Date(),'dayOfWeek'),
-                smallText2: ' United States of America',
+                smallText2: ' United States',
                 heading1: this._globalFunctions.toTitleCase(this.cityLocation) + ', ' + this._globalFunctions.stateToAP(this.stateLocation) + ' Top Lists',
                 heading2: '',
                 heading3: '',
@@ -114,7 +114,7 @@ export class ListOfListsPage implements OnInit{
             {
                 imageURL: '/app/public/joyfulhome_house.png',
                 smallText1: this._globalFunctions.formatGlobalDate(new Date(),'dayOfWeek'),
-                smallText2: ' United States of America',
+                smallText2: ' United States',
                 heading1: this._globalFunctions.fullstate(this.stateLocation) + ' Top Lists',
                 heading2: '',
                 heading3: '',
