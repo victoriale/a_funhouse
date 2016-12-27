@@ -10,6 +10,15 @@ export class GlobalFunctions{
         return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     };
 
+
+    toCapititalization(str){
+      //capitalizes first letter of each word of string
+      var strMod = str.split('-').join(' ');
+      return strMod.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+        return letter.toUpperCase();
+      });
+    }
+
     //Transforms a phone number to a human readable format
     //Formats
     // 10 character length (000) 000-0000
@@ -226,7 +235,8 @@ export class GlobalFunctions{
             WA: 'Wash.',
             WV: 'W.Va.',
             WI: 'Wis.',
-            WY: 'Wyo.'
+            WY: 'Wyo.',
+            PR: 'P.R.'
         };
         if ( state !== undefined && state !== null ) {
           state = state.toUpperCase();

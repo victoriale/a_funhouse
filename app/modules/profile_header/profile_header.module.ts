@@ -53,12 +53,10 @@ export class ProfileHeader implements OnInit{
 
     transformData(){
         var data = this.profileHeaderData;
-
         //Sanitize city/state values
         data.city = this.globalFunctions.toTitleCase(data.city);
         data.state = this.globalFunctions.stateToAP(data.state);
         var location = data.city + ", " + data.state;
-
         if(this.profileType== 'LocationPage'){
             //Location Profile Header
 
@@ -93,6 +91,11 @@ export class ProfileHeader implements OnInit{
             this.mainImageURL = data.locationImage;
         }else if(this.profileType === 'ProfilePage') {
             //Listing Profile Header
+            if(data.propertyType == 'Rental'){
+              var listType = 'Rental Price: $';
+            } else {
+              var listType = 'Listing Price: $';
+            }
             this.titleComponentData = {
                 imageURL: data.listingImage,
                 //Unused field of component for this module
@@ -100,7 +103,7 @@ export class ProfileHeader implements OnInit{
                 smallText2: data.city + ', ' + data.state + ' > ' + this.globalFunctions.formatGlobalDate(data.lastUpdated,'timeZone'),
                 heading1: this.globalFunctions.toTitleCase(data.address),
                 heading2: data.listingStatus === null ? '' : '- ' + data.listingStatus,
-                heading3: 'Listing Price: $' + this.globalFunctions.commaSeparateNumber(data.listingPrice),
+                heading3: listType + this.globalFunctions.commaSeparateNumber(data.listingPrice),
                 heading4: data.squareFeet === null ? '' : '- Area: ' + this.globalFunctions.commaSeparateNumber(data.squareFeet) + ' Sq ft.',
                 icon: 'fa fa-map-marker',
                 hasHover: false,

@@ -34,6 +34,11 @@
       width: 400px;
       height: 42px;
       overflow: hidden;
+      &-first{
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
       div:first-child{
         .globalDefaultModFont(18px, 900, @white);
       }
