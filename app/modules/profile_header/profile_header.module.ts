@@ -27,6 +27,7 @@ export class ProfileHeader implements OnInit{
     public descriptionContact: string;
     public descriptionLocation: string;
     public emailLink: string;
+    public propertyType: string;
     public mainImageURL: string;
     public subImageURL: string;
     public main_hasSubImg: boolean;
@@ -57,6 +58,7 @@ export class ProfileHeader implements OnInit{
         data.city = this.globalFunctions.toTitleCase(data.city);
         data.state = this.globalFunctions.stateToAP(data.state);
         var location = data.city + ", " + data.state;
+
         if(this.profileType== 'LocationPage'){
             //Location Profile Header
 
@@ -82,8 +84,8 @@ export class ProfileHeader implements OnInit{
             this.descriptionLocation += data.averageRentalPrice === null ? '' : ' the average rental price is $' + this.globalFunctions.commaSeparateNumber(data.averageRentalPrice) + '/month,';
             this.descriptionLocation += data.averageListingPrice === null ? '' : ' and the average home sells for $' + this.globalFunctions.commaSeparateNumber(data.averageListingPrice) + '?';
 
-            if(this.descriptionLocation == '' || this.descriptionLocation == ' '){
-              this.descriptionLocation = fallback + this.descriptionLocation;
+            if(this.descriptionLocation == '' || this.descriptionLocation == ' ' || data.averageListingPrice === '0') {
+              this.descriptionLocation = fallback;
             }else{
               this.descriptionLocation = defaultText + this.descriptionLocation;
             }
