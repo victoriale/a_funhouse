@@ -5,7 +5,7 @@ import {GlobalFunctions} from './global-functions';
 @Injectable()
 
 export class DirectoryService{
-    public apiUrl: string = 'http://api2.joyfulhome.com';
+    public apiUrl: string = 'http://prod-joyfulhome-api.synapsys.us';
     public apiToken: string = 'BApA7KEfj';
     public headerName: string = 'X-SNT-TOKEN';
 
@@ -70,8 +70,8 @@ export class DirectoryService{
 
         var skip = encodeURI(pageNumber);
         state = encodeURI(state);
-        var url = this.apiUrl + '/directory/cities/cityList/'+ state + '/' + 20 + '/' + skip;        
-        
+        var url = this.apiUrl + '/directory/cities/cityList/'+ state + '/' + 20 + '/' + skip;
+
         if ( cityStartsWithLetter !== undefined && cityStartsWithLetter !== null ) {
           url += '/' + cityStartsWithLetter;
         }
@@ -87,7 +87,7 @@ export class DirectoryService{
                     if(data.success == false){
                         throw new Error('Error: getAllCities api success, message failed');
                     }
-                    
+
                     return data.data;
                 }
             )

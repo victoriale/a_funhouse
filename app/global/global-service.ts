@@ -15,7 +15,7 @@ import {GlobalFunctions} from './global-functions';
 
 export class PartnerHeader {
   public protocolToUse: string = (location.protocol == "https:") ? "https" : "http";
-  public apiUrl: string = '://dev-real-api.synapsys.us/listhuv/?action=get_partner_data&domain=';
+  public apiUrl: string = '://apireal.synapsys.us/listhuv/?action=get_partner_data&domain=';
 
   constructor(public http: Http) {
 
@@ -23,21 +23,23 @@ export class PartnerHeader {
 
   //API for listing profile
   getPartnerData(partner_id) {
+    let _env = window.location.hostname.split('.')[0];
+    if (_env == 'localhost') {
+      var partnerID = partner_id.split('-');
 
-    // var partnerID = partner_id.split('-');
-    //
-    // //handles some cases where domain registries are different
-    // var combinedID = [];
-    // var domainRegisters = [];
-    // for(var i = 0; i < partnerID.length; i++){
-    //     if(partnerID[i] == "com" || partnerID[i] == "gov" || partnerID[i] == "net" || partnerID[i] == "org" || partnerID[i] == "co"){
-    //       combinedID.push(partnerID[i]);
-    //     }else{
-    //       domainRegisters.push(partnerID[i]);
-    //     }
-    // }
-    //
-    // partner_id = domainRegisters.join('-')+ "." + combinedID.join('.');
+      //handles some cases where domain registries are different
+      var combinedID = [];
+      var domainRegisters = [];
+      for(var i = 0; i < partnerID.length; i++){
+         if(partnerID[i] == "com" || partnerID[i] == "gov" || partnerID[i] == "net" || partnerID[i] == "org" || partnerID[i] == "co"){
+           combinedID.push(partnerID[i]);
+         }else{
+           domainRegisters.push(partnerID[i]);
+         }
+      }
+
+      partner_id = domainRegisters.join('-')+ "." + combinedID.join('.');
+    }
 
     var fullUrl = this.protocolToUse + this.apiUrl + partner_id;
     return this.http.get(fullUrl, {
@@ -57,7 +59,7 @@ export class PartnerHeader {
 
 export class listViewPage {
   public protocolToUse: string = (location.protocol == "https:") ? "https" : "http";
-  public apiUrl: string = '://api2.joyfulhome.com';
+  public apiUrl: string = '://prod-joyfulhome-api.synapsys.us';
 
   constructor(public http: Http, private globalFunctions: GlobalFunctions) {}
 
@@ -67,7 +69,7 @@ export class listViewPage {
       //only reformat if listname is actually in kabab case, as it will change camelCase to lowercase
       listname = this.globalFunctions.kababCaseToCamelCase(listname);
     }
-    
+
     var query:any  = {
       listname: listname,
       state: state,
@@ -134,7 +136,7 @@ export class ListOfListPage {
 
   constructor(public http: Http, private _globalFunctions: GlobalFunctions) { }
 
-  public apiUrl: string = 'http://api2.joyfulhome.com';
+  public apiUrl: string = 'http://prod-joyfulhome-api.synapsys.us';
 
   getAddressListOfListPage(address){
     address = encodeURIComponent(address);
@@ -185,7 +187,7 @@ export class ListOfListPage {
 @Injectable()
 
 export class GlobalPage {
-  public apiUrl: string = 'http://api2.joyfulhome.com';
+  public apiUrl: string = 'http://prod-joyfulhome-api.synapsys.us';
 
   constructor(public http: Http){}
   //Function to set custom headers
@@ -206,7 +208,7 @@ export class GlobalPage {
 @Injectable()
 
 export class DynamicWidgetCall {
-  public apiUrl: string = "http://108.170.11.234:190/list_creator_api.php";
+  public apiUrl: string = "http://dw.synapsys.us/list_creator_api.php";
 
   constructor(public http: Http) { }
   //Function to set custom headers
