@@ -29,6 +29,7 @@ import {GeoLocationService} from "../global/geo-location.service";
 
 import {MyWebApp} from "../app-layout/app.mylayout";
 import {PartnerHeader} from "../global/global-service";
+import {GlobalSettings} from "../global/global-settings";
 import {GlobalFunctions} from "../global/global-functions";
 import {CityViewPage} from "../webpages/city-view-page/city-view.page";
 
@@ -65,11 +66,6 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
     {
         path: '/loc',
         name: 'Deprecated-location-page',
-        component: LocationPage,
-    },
-    {
-        path: '/loc/:loc',
-        name: 'Location-page',
         component: LocationPage,
     },
     {
@@ -256,8 +252,14 @@ export class MyAppComponent implements OnInit {
 
     constructor(private _injector: Injector,private _partnerData: PartnerHeader, private _params: RouteParams, private route: Router, private routeData: RouteData, private routerLink: RouterLink, private _globalFunctions: GlobalFunctions, private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService){
       var parentParams = this._injector.get(MyWebApp);
+      var hostname = window.location.hostname;
+
       if(typeof parentParams.partnerID != 'undefined'){
           this.partnerID = parentParams.partnerID;
+      }
+
+      if (GlobalSettings.getHomeInfo().isSubdomainPartner) {
+        this.partnerID = hostname.split(".")[1] + "." + hostname.split(".")[2];
       }
     }
 
