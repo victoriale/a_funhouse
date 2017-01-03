@@ -29,13 +29,14 @@ import {GeoLocationService} from "../global/geo-location.service";
 
 import {WebApp} from "../app-layout/app.layout";
 import {PartnerHeader} from "../global/global-service";
+import {GlobalSettings} from "../global/global-settings";
 import {GlobalFunctions} from "../global/global-functions";
 import {CityViewPage} from "../webpages/city-view-page/city-view.page";
 
 @Component({
     selector: 'my-app',
     templateUrl: './app/app-webpage/app.webpage.html',
-    
+
     directives: [PartnerHomePage, RouterOutlet, ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ListPage, ListOfListsPage, AmenitiesListPage, ROUTER_DIRECTIVES, DirectoryPage, SchoolListsPage],
     providers: [PartnerHeader, ROUTER_DIRECTIVES, GeoLocationService, NearByCitiesService, ErrorPage],
 })
@@ -181,8 +182,14 @@ export class AppComponent implements OnInit {
 
     constructor(private _injector: Injector,private _partnerData: PartnerHeader, private _params: RouteParams, private route: Router, private routeData: RouteData, private routerLink: RouterLink, private _globalFunctions: GlobalFunctions, private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService){
         var parentParams = this._injector.get(WebApp);
+        var hostname = window.location.hostname;
+
         if(typeof parentParams.partnerID != 'undefined'){
             this.partnerID = parentParams.partnerID;
+        }
+
+        if (GlobalSettings.getHomeInfo().isSubdomainPartner) {
+          this.partnerID = hostname.split(".")[1] + "." + hostname.split(".")[2];
         }
     }
 
