@@ -5,6 +5,7 @@ import {bootstrap}    from 'angular2/platform/browser'
 import {ROUTER_PROVIDERS, ROUTER_DIRECTIVES} from 'angular2/router'
 import {AppDomain} from './app-domain/app.domain'
 import {GlobalFunctions} from './global/global-functions'
+import {GlobalSettings} from './global/global-settings';
 import {WebApp} from "./app-layout/app.layout";
 import {MyWebApp} from "./app-layout/app.mylayout";
 import {provide} from "angular2/core"
@@ -13,7 +14,10 @@ import 'rxjs/add/operator/map';
 import {HTTP_PROVIDERS} from "angular2/http";
 
 import {enableProdMode} from 'angular2/core';
+
 // enable production mode and thus disable debugging information
-enableProdMode();
+if(GlobalSettings.isProd()) {
+  enableProdMode();
+}
 
 bootstrap(AppDomain,[ROUTER_PROVIDERS, HTTP_PROVIDERS, ROUTER_DIRECTIVES, GlobalFunctions,MyWebApp,WebApp]);
