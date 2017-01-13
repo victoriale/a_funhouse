@@ -100,7 +100,7 @@ export class ListOfListsPage implements OnInit{
             this.titleData =
             {
                 imageURL: '/app/public/joyfulhome_house.png',
-                smallText1: this._globalFunctions.formatGlobalDate(new Date(),'dayOfWeek'),
+                smallText1: 'Last Updated: ' + this._globalFunctions.formatGlobalDate(new Date(),'timeZone'),
                 smallText2: ' United States',
                 heading1: this._globalFunctions.toCapititalization(this.cityLocation) + ', ' + this._globalFunctions.stateToAP(this.stateLocation) + ' Top Lists',
                 heading2: '',
@@ -113,7 +113,7 @@ export class ListOfListsPage implements OnInit{
             this.titleData =
             {
                 imageURL: '/app/public/joyfulhome_house.png',
-                smallText1: this._globalFunctions.formatGlobalDate(new Date(),'dayOfWeek'),
+                smallText1: 'Last Updated: ' + this._globalFunctions.formatGlobalDate(new Date(),'timeZone'),
                 smallText2: ' United States',
                 heading1: this._globalFunctions.fullstate(this.stateLocation) + ' Top Lists',
                 heading2: '',
