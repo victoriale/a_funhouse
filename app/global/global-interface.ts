@@ -202,6 +202,7 @@ export interface ProfileHeaderInterface {
     phoneNumber: number;
     squareFeet: string;
     zipCode: string;
+    propertyType: string;
     //Location data
     numberOfListings: string;
     averageListingPrice: string;

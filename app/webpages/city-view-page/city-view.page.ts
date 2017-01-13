@@ -17,7 +17,7 @@ declare var moment: any;
 @Component({
     selector: 'city-view-page',
     templateUrl: './app/webpages/city-view-page/city-view.page.html',
-    
+
     directives: [PaginationFooter, WidgetModule, TitleComponent, HeroListComponent, DynamicCarousel2, BackTabComponent, ROUTER_DIRECTIVES, LoadingComponent, ErrorComponent],
     providers: [CityViewService, GlobalFunctions],
 })
@@ -59,7 +59,7 @@ export class CityViewPage implements OnInit{
         this.titleData =
           {
               imageURL : '/app/public/joyfulhome_house.png',
-              smallText1 : 'Last Updated: ' + moment(new Date()).format('dddd, MMMM Do, YYYY'),
+              smallText1 : 'Last Updated: ' + this._globalFunctions.formatGlobalDate(new Date(),'timeZone'),
               smallText2 : ''+ this.displayCity + ', ' + this.displayAPState + '',
               heading1 : 'Nearby Cities for the ' + this.displayCity + ', ' + this.displayAPState + ' Area',
               heading2 : '',
@@ -148,13 +148,13 @@ export class CityViewPage implements OnInit{
         this.index = index-1;
         this.sanitizeListofListData();
     }
-    
+
     ngOnInit() {
         // Get City & State from route params
         this.paramState = decodeURI(this._params.get('state'));
         this.paramCity = decodeURI(this._params.get('city')).replace(/-/g, " ");
         this.displayAPState =  this._globalFunctions.stateToAP(this.paramState);
-        this.displayCity = this._globalFunctions.toTitleCase(this.paramCity);        
+        this.displayCity = this._globalFunctions.toTitleCase(this.paramCity);
         this.cityStateLocationKey = this._globalFunctions.toLowerKebab(this.paramState) + '-' + this.paramCity.toLowerCase();
         this.getData();
     }

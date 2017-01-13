@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from 'angular2/core';
 import {Router, ROUTER_DIRECTIVES} from "angular2/router";
 
 import {HeaderSearchComponent} from "./header-search/header-search.component";
+import {GlobalSettings} from "../../global/global-settings";
 declare var jQuery: any;
 declare var stButtons: any;
 @Component({
@@ -23,6 +24,7 @@ export class HeaderComponent implements OnInit{
     pageNum: string = "1";
     curRoute: any;
     partnerUrl: string;
+    isSubdomain: boolean;
 
     constructor(public router: Router) {
        this.directoryVisible = false;
@@ -34,21 +36,26 @@ export class HeaderComponent implements OnInit{
                     var partnerID = this.curRoute.split('/');
                     var hostname = window.location.hostname;
                     var partnerIdExists = partnerID[0] != '' ? true : false;
+                    this.isSubdomain = GlobalSettings.getHomeInfo().isSubdomainPartner;
 
                     var myhousekit = /myhousekit/.test(hostname);
                     //var myhousekit = /localhost/.test(hostname); //used for testing locally
-                    //checks if partner ID exists
-                    if(!partnerIdExists){
+                    // Check for subdomain
+                    if(this.isSubdomain){
+                      this.isMyHouseKit = true;
+                      this.partnerUrl = '/location';
+                    // Checks if partner ID exists
+                    }else if (!partnerIdExists){
                       this.partnerID = null;
                       this.isMyHouseKit = false;
-                    }else{
+                    } else {
                       this.partnerID = partnerID[0];
                       this.isMyHouseKit = true;
                       this.partnerUrl = '/'+this.partnerID+'/loc';
                     }
 
-                    //check to make sure if home page is being displayed
-                    if(partnerIdExists && myhousekit && partnerID.length == 1){
+                    // Check to make sure if home page is being displayed
+                    if( (partnerIdExists && myhousekit && partnerID.length == 1) || (partnerID.length == 1 && this.isSubdomain) ){
                       this.isHomePage = true;
                     }else if(!partnerIdExists && partnerID.length == 1){
                       this.isHomePage = true;

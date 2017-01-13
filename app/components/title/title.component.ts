@@ -4,7 +4,7 @@ import {Image100} from '../../components/images/image-100/image-100.component';
 @Component({
     selector: 'title-component',
     templateUrl: './app/components/title/title.component.html',
-    
+
     directives: [Image100],
     inputs: ['titleData']
 })
@@ -17,7 +17,7 @@ export class TitleComponent{
             [{
                 imageURL : '/app/public/joyfulhome_house.png',
                 smallText1 : 'Monday, February 23, 2016',
-                smallText2 : ' United States of America',
+                smallText2 : ' United States',
                 heading1 : 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet',
                 heading2 : '',
                 heading3 : 'Lorem ipsum dolor sit amet Lorem',
@@ -31,5 +31,4 @@ export class TitleComponent{
     ngOnInit(){
         this.titleComp();
     }
-
 }

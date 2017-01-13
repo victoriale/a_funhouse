@@ -23,21 +23,23 @@ export class PartnerHeader {
 
   //API for listing profile
   getPartnerData(partner_id) {
+    let _env = window.location.hostname.split('.')[0];
+    if (_env == 'localhost') {
+      var partnerID = partner_id.split('-');
 
-    // var partnerID = partner_id.split('-');
-    //
-    // //handles some cases where domain registries are different
-    // var combinedID = [];
-    // var domainRegisters = [];
-    // for(var i = 0; i < partnerID.length; i++){
-    //     if(partnerID[i] == "com" || partnerID[i] == "gov" || partnerID[i] == "net" || partnerID[i] == "org" || partnerID[i] == "co"){
-    //       combinedID.push(partnerID[i]);
-    //     }else{
-    //       domainRegisters.push(partnerID[i]);
-    //     }
-    // }
-    //
-    // partner_id = domainRegisters.join('-')+ "." + combinedID.join('.');
+      //handles some cases where domain registries are different
+      var combinedID = [];
+      var domainRegisters = [];
+      for(var i = 0; i < partnerID.length; i++){
+         if(partnerID[i] == "com" || partnerID[i] == "gov" || partnerID[i] == "net" || partnerID[i] == "org" || partnerID[i] == "co"){
+           combinedID.push(partnerID[i]);
+         }else{
+           domainRegisters.push(partnerID[i]);
+         }
+      }
+
+      partner_id = domainRegisters.join('-')+ "." + combinedID.join('.');
+    }
 
     var fullUrl = this.protocolToUse + this.apiUrl + partner_id;
     return this.http.get(fullUrl, {
@@ -67,7 +69,7 @@ export class listViewPage {
       //only reformat if listname is actually in kabab case, as it will change camelCase to lowercase
       listname = this.globalFunctions.kababCaseToCamelCase(listname);
     }
-    
+
     var query:any  = {
       listname: listname,
       state: state,

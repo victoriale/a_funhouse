@@ -29,13 +29,14 @@ import {GeoLocationService} from "../global/geo-location.service";
 
 import {MyWebApp} from "../app-layout/app.mylayout";
 import {PartnerHeader} from "../global/global-service";
+import {GlobalSettings} from "../global/global-settings";
 import {GlobalFunctions} from "../global/global-functions";
 import {CityViewPage} from "../webpages/city-view-page/city-view.page";
 
 @Component({
     selector: 'my-house',
     templateUrl: './app/app-webpage/app.webpage.html',
-    
+
     directives: [PartnerHomePage, RouterOutlet, ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ListPage, ListOfListsPage, AmenitiesListPage, ROUTER_DIRECTIVES, DirectoryPage, SchoolListsPage],
     providers: [PartnerHeader, ROUTER_DIRECTIVES, GeoLocationService, NearByCitiesService, ErrorPage],
 })
@@ -48,18 +49,23 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
        useAsDefault: true,
     },
     {
-        path: '/index/:address',
+        path: '/listing/:address',
         name: 'Profile-page',
         component: ProfilePage,
     },
     {
-        path: '/loc',
+        path: '/index/:address',
+        name: 'Deprecated-profile-page',
+        component: ProfilePage,
+    },
+    {
+        path: '/location/:loc',
         name: 'Location-page',
         component: LocationPage,
     },
     {
         path: '/loc/:loc',
-        name: 'Location-page',
+        name: 'Deprecated-location-page',
         component: LocationPage,
     },
     {
@@ -78,23 +84,43 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
         component: ListPage,
     },
     {
-        path: '/lists/:state/:city',
+        path: '/list-of-lists/:state/:city',
         name: 'List-of-lists-page',
         component: ListOfListsPage,
     },
     {
-        path: '/lists/:state',
+        path: '/lists/:state/:city',
+        name: 'Deprecated-list-of-lists-page',
+        component: ListOfListsPage,
+    },
+    {
+        path: '/list-of-lists/:state',
         name: 'List-of-lists-page-state',
         component: ListOfListsPage,
     },
     {
-        path: '/view-amenities/:listname/:state/:city',
+        path: '/lists/:state',
+        name: 'Deprecated-list-of-lists-page-state',
+        component: ListOfListsPage,
+    },
+    {
+        path: '/amenities-lists-page/:listname/:state/:city',
         name: 'Amenities-lists-page',
         component: AmenitiesListPage,
     },
     {
-        path: '/view-school/:listname/:state/:city',
+        path: '/view-amenities/:listname/:state/:city',
+        name: 'Deprecated-amenities-lists-page',
+        component: AmenitiesListPage,
+    },
+    {
+        path: '/school-lists-page/:listname/:state/:city',
         name: 'School-lists-page',
+        component: SchoolListsPage,
+    },
+    {
+        path: '/view-school/:listname/:state/:city',
+        name: 'Deprecated-school-lists-page',
         component: SchoolListsPage,
     },
     {
@@ -103,36 +129,66 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
         component: ComponentPage,
     },
     {
-        path: '/About',
+        path: '/aboutus',
         name: 'Aboutus-page',
         component: AboutUsPage,
     },
     {
-        path: '/Contact',
+        path: '/About',
+        name: 'Deprecated-aboutus-page',
+        component: AboutUsPage,
+    },
+    {
+        path: '/contactus',
         name: 'Contactus-page',
         component: ContactUsPage,
     },
     {
-        path: '/Disclaimer',
+        path: '/Contact',
+        name: 'Deprecated-contactus-page',
+        component: ContactUsPage,
+    },
+    {
+        path: '/disclaimer',
         name: 'Disclaimer-page',
+        component: DisclaimerPage,
+    },
+    {
+        path: '/Disclaimer',
+        name: 'Deprecated-disclaimer-page',
         component: DisclaimerPage,
     },
     //National directory page
     {
-        path: '/listing_index/:listTitle/page/:pageNumber',
+        path: '/directory/:listTitle/page/:pageNumber',
         name: 'Directory-page',
+        component: DirectoryPage
+    },
+    {
+        path: '/listing_index/:listTitle/page/:pageNumber',
+        name: 'Deprecated-directory-page',
         component: DirectoryPage
     },
     //State directory page
     {
-        path: '/listing_index/:state/:listTitle/page/:pageNumber',
+        path: '/directory/:state/:listTitle/page/:pageNumber',
         name: 'Directory-page-state',
+        component: DirectoryPage
+    },
+    {
+        path: '/listing_index/:state/:listTitle/page/:pageNumber',
+        name: 'Deprecated-directory-page-state',
         component: DirectoryPage
     },
     //City directory page
     {
-        path: '/listing_index/:state/:city/:listTitle/page/:pageNumber',
+        path: '/directory/:state/:city/:listTitle/page/:pageNumber',
         name: 'Directory-page-city',
+        component: DirectoryPage
+    },
+    {
+        path: '/listing_index/:state/:city/:listTitle/page/:pageNumber',
+        name: 'Deprecated-directory-page-city',
         component: DirectoryPage
     },
     //All Cities directory page
@@ -144,13 +200,23 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
     //},
     //Zipcode directory page
     {
-        path: '/listing_index/:state/:city/:zipcode/:listTitle/page/:pageNumber',
+        path: '/directory/:state/:city/:zipcode/:listTitle/page/:pageNumber',
         name: 'Directory-page-zipcode',
         component: DirectoryPage
     },
     {
-        path: '/s/:query',
+        path: '/listing_index/:state/:city/:zipcode/:listTitle/page/:pageNumber',
+        name: 'Deprecated-directory-page-zipcode',
+        component: DirectoryPage
+    },
+    {
+        path: '/search/:query',
         name: 'Search-page',
+        component: SearchPage
+    },
+    {
+        path: '/s/:query',
+        name: 'Deprecated-search-page',
         component: SearchPage
     },
     {
@@ -186,8 +252,14 @@ export class MyAppComponent implements OnInit {
 
     constructor(private _injector: Injector,private _partnerData: PartnerHeader, private _params: RouteParams, private route: Router, private routeData: RouteData, private routerLink: RouterLink, private _globalFunctions: GlobalFunctions, private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService){
       var parentParams = this._injector.get(MyWebApp);
+      var hostname = window.location.hostname;
+
       if(typeof parentParams.partnerID != 'undefined'){
           this.partnerID = parentParams.partnerID;
+      }
+
+      if (GlobalSettings.getHomeInfo().isSubdomainPartner) {
+        this.partnerID = hostname.split(".")[1] + "." + hostname.split(".")[2];
       }
     }
 
