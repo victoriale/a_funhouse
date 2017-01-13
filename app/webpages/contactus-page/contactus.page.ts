@@ -35,7 +35,7 @@ export class ContactUsPage implements OnInit{
         //Contact us data
         this.title_data = {
             imageURL : '/app/public/joyfulhome_house.png',
-            smallText1 : this.globalFunctions.formatGlobalDate(new Date(),'dayOfWeek'),
+            smallText1 :'Last Updated: ' + this.globalFunctions.formatGlobalDate(new Date(),'timeZone'),
             smallText2 : ' United States',
             heading1 : 'Contact Us',
             heading2 : '',

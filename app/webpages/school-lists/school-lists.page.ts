@@ -96,7 +96,7 @@ export class SchoolListsPage implements OnInit{
    var displayCity = globeFunc.toTitleCase(this.locCity);
    this.titleComponentData = {
        imageURL: '/app/public/joyfulhome_house.png',
-       smallText1: 'Last Updated: ' + globeFunc.formatGlobalDate(new Date(),'dayOfWeek'),
+       smallText1: 'Last Updated: ' + globeFunc.formatGlobalDate(new Date(),'timeZone'),
        smallText2: displayCity + ', ' + displayState,
        heading1: this.globalFunctions.toTitleCase(this.category) + ' schools in and around ' + displayCity + ', ' + displayState,
        icon: 'fa fa-map-marker',
