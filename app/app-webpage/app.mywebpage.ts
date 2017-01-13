@@ -64,7 +64,7 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
         component: LocationPage,
     },
     {
-        path: '/loc',
+        path: '/loc/:loc',
         name: 'Deprecated-location-page',
         component: LocationPage,
     },
