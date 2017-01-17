@@ -7,7 +7,7 @@ import {RouteParams, Router, RouteData, RouteConfig, RouterOutlet, ROUTER_DIRECT
 @Component({
     selector: 'web-app',
     templateUrl: './app/app-layout/app.layout.html',
-    
+
     directives: [MagazinePage, MyAppComponent,RouterOutlet, ROUTER_DIRECTIVES],
     providers: [],
 })

@@ -6,13 +6,14 @@ import {BackTabComponent} from '../../components/backtab/backtab.component';
 import {TitleComponent} from '../../components/title/title.component';
 import {WidgetModule} from "../../modules/widget/widget.module";
 import {AuHeaderComponent} from '../../components/au-header/au-header.component';
+import {GlobalFunctions} from '../../global/global-functions';
 
 declare var jQuery: any;
 
 @Component({
     selector: 'Contactus-page',
     templateUrl: './app/webpages/contactus-page/contactus.page.html',
-    
+
     directives: [BackTabComponent, TitleComponent, AuHeaderComponent, WidgetModule],
     providers: [],
 })
@@ -25,8 +26,7 @@ export class ContactUsPage implements OnInit{
     title_data: {};
     submissionform: any;
     auHeaderTitle = "Contact Us";
-
-    constructor() {
+    constructor(private globalFunctions: GlobalFunctions) {
     // Scroll page to top to fix routerLink bug
     window.scrollTo(0, 0);
   }
@@ -35,8 +35,8 @@ export class ContactUsPage implements OnInit{
         //Contact us data
         this.title_data = {
             imageURL : '/app/public/joyfulhome_house.png',
-            smallText1 : 'Last Updated: Friday, February 26, 2016',
-            smallText2 : ' United States of America',
+            smallText1 :'Last Updated: ' + this.globalFunctions.formatGlobalDate(new Date(),'timeZone'),
+            smallText2 : ' United States',
             heading1 : 'Contact Us',
             heading2 : '',
             heading3 : 'Help Us, Help You Faster.',

@@ -22,7 +22,7 @@ declare var moment: any;
 @Component({
   selector: 'List-page',
   templateUrl: './app/webpages/dynamic-list-page/dynamic-list.page.html',
-  
+
   directives: [PaginationFooter, TitleComponent, DynamicListComponent, DynamicCarousel2, DropdownComponent, ListMenuComponent, WidgetModule, ErrorComponent, BackTabComponent],
   providers: [DynamicWidgetCall],
 })
@@ -114,9 +114,8 @@ export class DynamicListPage implements OnInit {
     this.headerData = {
         // Old placeholder image:  http://www.myinvestkit.com/StateImages/Location_National.jpg
         imageURL : '/app/public/joyfulhome_house.png',
-
-        smallText1 : 'Last Updated: ' + moment(data.date).format('dddd, MMMM Do, YYYY'),
-        smallText2 : ' United States of America',
+        smallText1: 'Last Updated: ' + globalFunc.formatGlobalDate(data.date,'timeZone'),
+        smallText2 : ' United States',
         heading1 : data.title,
         heading2 : '',
         heading3 : '',

@@ -4,7 +4,7 @@ import {Image100} from '../../components/images/image-100/image-100.component';
 
 @Component({
     selector: 'title-loc-component',
-    
+
     templateUrl: './app/components/title/title.component.html',
     directives: [TitleComponent, Image100],
     inputs: ['data']
@@ -18,7 +18,7 @@ export class TitleLocComponent implements OnInit{
             {
                 titleImg : '/app/public/img_bckgnd.png',
                 smallText1 : '',
-                smallText2 : 'Location: United States of America',
+                smallText2 : 'Location: United States',
                 heading1 : '[City]',
                 heading2 : '[State]',
                 heading3 : '[##]',

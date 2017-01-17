@@ -1,6 +1,14 @@
 <div *ngFor="#list of listData; #i = odd" class="dynamic-list detailed-list" [ngClass]="{'odd': i == true}">
     <div class='detailed-imagebox'>
-        <a href="{{list.url}}">
+        <a *ngIf="list.routePath" [routerLink]="list.routePath">
+            <img src='{{list.img}}' onerror="this.src='/app/public/placeholder-location.jpg';" alt='' />
+            <div>
+                <p>View</p>
+                <p>Profile</p>
+            </div>
+            <div class="detailed-rank">#{{list.rank}}</div>
+        </a>
+        <a *ngIf="!list.routePath && list.url" [href]="list.url">
             <img src='{{list.img}}' onerror="this.src='/app/public/placeholder-location.jpg';" alt='' />
             <div>
                 <p>View</p>
