@@ -11,7 +11,7 @@ declare var stButtons: any;
 
     directives: [HeaderSearchComponent, ROUTER_DIRECTIVES],
     providers: [],
-    inputs: ['partnerID'],
+    inputs: ['partnerID', 'cityStateLocation'],
 })
 
 export class HeaderComponent implements OnInit{
@@ -19,10 +19,12 @@ export class HeaderComponent implements OnInit{
     public isHomePage: boolean = false;
     public isMyHouseKit: boolean = true;
     partnerID: string;
+    cityStateLocation: string;
     directoryVisible: boolean;
     isScrolling: boolean;
     pageNum: string = "1";
     curRoute: any;
+    routeSub: any;
     partnerUrl: string;
     isSubdomain: boolean;
 
@@ -43,7 +45,7 @@ export class HeaderComponent implements OnInit{
                     // Check for subdomain
                     if(this.isSubdomain){
                       this.isMyHouseKit = true;
-                      this.partnerUrl = '/location';
+                      this.partnerUrl = '/';
                     // Checks if partner ID exists
                     }else if (!partnerIdExists){
                       this.partnerID = null;
@@ -51,7 +53,7 @@ export class HeaderComponent implements OnInit{
                     } else {
                       this.partnerID = partnerID[0];
                       this.isMyHouseKit = true;
-                      this.partnerUrl = '/'+this.partnerID+'/loc';
+                      this.partnerUrl = '/'+this.partnerID+'/';
                     }
 
                     // Check to make sure if home page is being displayed
