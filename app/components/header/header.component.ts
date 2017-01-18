@@ -24,13 +24,14 @@ export class HeaderComponent implements OnInit{
     isScrolling: boolean;
     pageNum: string = "1";
     curRoute: any;
+    routeSub: any;
     partnerUrl: string;
     isSubdomain: boolean;
 
     constructor(public router: Router) {
        this.directoryVisible = false;
 
-        this.router.root
+        this.routeSub = this.router.root
             .subscribe(
                 route => {
                     this.curRoute = route;
@@ -44,7 +45,7 @@ export class HeaderComponent implements OnInit{
                     // Check for subdomain
                     if(this.isSubdomain){
                       this.isMyHouseKit = true;
-                      this.partnerUrl = '/location/' + this.cityStateLocation;
+                      this.partnerUrl = '/';
                     // Checks if partner ID exists
                     }else if (!partnerIdExists){
                       this.partnerID = null;
@@ -52,7 +53,7 @@ export class HeaderComponent implements OnInit{
                     } else {
                       this.partnerID = partnerID[0];
                       this.isMyHouseKit = true;
-                      this.partnerUrl = '/'+this.partnerID+'/location/' + this.cityStateLocation;
+                      this.partnerUrl = '/'+this.partnerID+'/';
                     }
 
                     // Check to make sure if home page is being displayed
@@ -107,7 +108,6 @@ export class HeaderComponent implements OnInit{
     }
 
     ngOnInit() {
-      console.log(this.cityStateLocation);
     }
     locateShareThis() {
       stButtons.locateElements();

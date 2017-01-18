@@ -10,12 +10,14 @@ import {Injectable} from 'angular2/core';
 import {HomePageData} from "./global-interface";
 import {Http, Headers} from 'angular2/http';
 import {GlobalFunctions} from './global-functions';
+import {Observable} from 'rxjs/Rx';
 
 @Injectable()
 
 export class PartnerHeader {
   public protocolToUse: string = (location.protocol == "https:") ? "https" : "http";
   public apiUrl: string = '://apireal.synapsys.us/listhuv/?action=get_partner_data&domain=';
+  cachedPartnerData: any;
 
   constructor(public http: Http) {
 
@@ -42,16 +44,23 @@ export class PartnerHeader {
     }
 
     var fullUrl = this.protocolToUse + this.apiUrl + partner_id;
-    return this.http.get(fullUrl, {
-    })
-    .map(
-      res => res.json()
-    )
-    .map(
-      data => {
-        return data;
-      }
-    )
+    if (this.cachedPartnerData) {
+        return Observable.of(this.cachedPartnerData);
+    } else {
+      return this.http.get(fullUrl, {
+      })
+      .map(
+        res => res.json()
+      )
+      .map(
+        data => {
+          return data;
+        }
+      )
+      .do((data) => {
+        this.cachedPartnerData = data;
+      });
+    }
   }
 }
 
@@ -209,6 +218,7 @@ export class GlobalPage {
 
 export class DynamicWidgetCall {
   public apiUrl: string = "http://dw.synapsys.us/list_creator_api.php";
+  public apiCountyUrl: string = "http://dev-dw.synapsys.us/ajc_list_api.php";
 
   constructor(public http: Http) { }
   //Function to set custom headers
@@ -246,6 +256,33 @@ export class DynamicWidgetCall {
         gzip: true
       }
     };
+
+    return this.http.get(url, {
+    })
+      .map(
+      res => res.json()
+      )
+      .map(
+      data => {
+        return data;
+      },
+      err =>{
+        return err;
+      }
+  )
+  }
+
+  // Method to get data for the list for the dynamic county widget
+  getCountyWidgetData(category, location, metro, rand) {
+
+    // Build the URL
+    var url = this.apiCountyUrl + "?list=true";
+    url += category.length ? "&category=" + category : "&category=demographics";
+    url += location.length ? "&location=" + location : "";
+    url += metro.length ? "&metro=" + metro : "";
+    url += rand.length ? "&rand=" + rand : "&rand=1";
+
+    console.log('COUNTY WIDGET CALL:', url);
 
     return this.http.get(url, {
     })
