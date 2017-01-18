@@ -10,6 +10,7 @@ import {Injectable} from 'angular2/core';
 import {HomePageData} from "./global-interface";
 import {Http, Headers} from 'angular2/http';
 import {GlobalFunctions} from './global-functions';
+import {GlobalSettings} from './global-settings';
 import {Observable} from 'rxjs/Rx';
 
 @Injectable()
@@ -217,10 +218,15 @@ export class GlobalPage {
 @Injectable()
 
 export class DynamicWidgetCall {
-  public apiUrl: string = "http://dw.synapsys.us/list_creator_api.php";
+  public apiUrl: string = "http://dev-dw.synapsys.us/list_creator_api.php";
   public apiCountyUrl: string = "http://dev-dw.synapsys.us/ajc_list_api.php";
 
-  constructor(public http: Http) { }
+  constructor(public http: Http) {
+    if (GlobalSettings.isProd()) {
+      this.apiUrl = "http://dw.synapsys.us/list_creator_api.php";
+      this.apiCountyUrl = "http://dw.synapsys.us/ajc_list_api.php"
+    }
+  }
   //Function to set custom headers
 
   // Method to get data for the list for the dynamic widget
