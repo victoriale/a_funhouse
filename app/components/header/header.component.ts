@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit{
     constructor(public router: Router) {
        this.directoryVisible = false;
 
-        this.routeSub = this.router.root
+        this.router.root
             .subscribe(
                 route => {
                     this.curRoute = route;

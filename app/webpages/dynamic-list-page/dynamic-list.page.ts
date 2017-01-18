@@ -105,9 +105,6 @@ export class DynamicListPage implements OnInit {
   getDynamicList() {// GET DATA FROM GLOBAL SERVICE
     //EXAMPLE
     //this.dynamicWidget.getWidgetData('1', 103, 'TAMPA')
-    // TODO CHECK FOR CAT
-    // IF CAT -> DANIEL API
-    // ELSE - > OLD DW API
 
     // Check for rand value in query
     if (this.rand) {
