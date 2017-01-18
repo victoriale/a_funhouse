@@ -11,7 +11,7 @@ declare var stButtons: any;
 
     directives: [HeaderSearchComponent, ROUTER_DIRECTIVES],
     providers: [],
-    inputs: ['partnerID'],
+    inputs: ['partnerID', 'cityStateLocation'],
 })
 
 export class HeaderComponent implements OnInit{
@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit{
     public isHomePage: boolean = false;
     public isMyHouseKit: boolean = true;
     partnerID: string;
+    cityStateLocation: string;
     directoryVisible: boolean;
     isScrolling: boolean;
     pageNum: string = "1";
@@ -43,7 +44,7 @@ export class HeaderComponent implements OnInit{
                     // Check for subdomain
                     if(this.isSubdomain){
                       this.isMyHouseKit = true;
-                      this.partnerUrl = '/';
+                      this.partnerUrl = '/location/' + this.cityStateLocation;
                     // Checks if partner ID exists
                     }else if (!partnerIdExists){
                       this.partnerID = null;
@@ -51,7 +52,7 @@ export class HeaderComponent implements OnInit{
                     } else {
                       this.partnerID = partnerID[0];
                       this.isMyHouseKit = true;
-                      this.partnerUrl = '/'+this.partnerID+'/';
+                      this.partnerUrl = '/'+this.partnerID+'/location/' + this.cityStateLocation;
                     }
 
                     // Check to make sure if home page is being displayed
@@ -106,6 +107,7 @@ export class HeaderComponent implements OnInit{
     }
 
     ngOnInit() {
+      console.log(this.cityStateLocation);
     }
     locateShareThis() {
       stButtons.locateElements();

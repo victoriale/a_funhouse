@@ -1,6 +1,6 @@
 <div id="partner" *ngIf="partnerScript" [innerHTML]="partnerScript"></div>
 <div class=webpage-home>
-  <header-component [partnerID]="partnerID"></header-component>
+  <header-component [partnerID]="partnerID" [cityStateLocation]="cityStateLocation"></header-component>
 </div>
 <div class="container" style="min-height: 900px;">
     <router-outlet></router-outlet>
