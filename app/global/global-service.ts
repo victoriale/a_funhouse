@@ -288,8 +288,6 @@ export class DynamicWidgetCall {
     url += metro.length ? "&metro=" + metro : "";
     url += rand.length ? "&rand=" + rand : "&rand=1";
 
-    console.log('COUNTY WIDGET CALL:', url);
-
     return this.http.get(url, {
     })
       .map(
