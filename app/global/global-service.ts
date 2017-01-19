@@ -69,7 +69,7 @@ export class PartnerHeader {
 
 export class listViewPage {
   public protocolToUse: string = (location.protocol == "https:") ? "https" : "http";
-  public apiUrl: string = '://prod-joyfulhome-api.synapsys.us';
+  public apiUrl: string = GlobalSettings.getApiUrl();
 
   constructor(public http: Http, private globalFunctions: GlobalFunctions) {}
 
@@ -92,7 +92,7 @@ export class listViewPage {
     if(sort !== null){
       query.sort = sort;
     }
-    var fullUrl = this.protocolToUse + this.apiUrl +"/list";
+    var fullUrl = this.apiUrl +"/list";
 
     //list/homesAtLeast5YearsOld/KS/Wichita/empty/10/1
     for (var q in query) {
@@ -125,7 +125,7 @@ export class listViewPage {
     city = encodeURI(city);
     state = encodeURI(state);
 
-    var fullUrl = this.protocolToUse + this.apiUrl
+    var fullUrl = this.apiUrl
 
     // location/findYourHome/{state}/{city}/{priceLowerBound}/{priceUpperBound}/{type}/{bedrooms}/{bathrooms}/{squareFeet}/{lotSize}/{limit}/{page}
     // types: Townhouse, Condominium, Apartment, and Single Family Attached
@@ -146,7 +146,7 @@ export class ListOfListPage {
 
   constructor(public http: Http, private _globalFunctions: GlobalFunctions) { }
 
-  public apiUrl: string = 'http://prod-joyfulhome-api.synapsys.us';
+  public apiUrl: string = GlobalSettings.getApiUrl();
 
   getAddressListOfListPage(address){
     address = encodeURIComponent(address);
@@ -197,7 +197,7 @@ export class ListOfListPage {
 @Injectable()
 
 export class GlobalPage {
-  public apiUrl: string = 'http://prod-joyfulhome-api.synapsys.us';
+  public apiUrl: string = GlobalSettings.getApiUrl();
 
   constructor(public http: Http){}
   //Function to set custom headers
@@ -218,6 +218,10 @@ export class GlobalPage {
 @Injectable()
 
 export class DynamicWidgetCall {
+  /* you can replace apis with this proper call please test before you do
+  public apiUrl: string = GlobalSettings.getDynamicUrl + "/list_creator_api.php";
+  public apiCountyUrl: string = GlobalSettings.getDynamicUrl + "/ajc_list_api.php";
+  */
   public apiUrl: string = "http://dev-dw.synapsys.us/list_creator_api.php";
   public apiCountyUrl: string = "http://dev-dw.synapsys.us/ajc_list_api.php";
 

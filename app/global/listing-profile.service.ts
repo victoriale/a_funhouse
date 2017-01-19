@@ -1,10 +1,11 @@
 import {Injectable} from 'angular2/core';
 import {Http, Headers} from 'angular2/http';
+import {GlobalSettings} from './global-settings';
 
 @Injectable()
 
 export class ListingProfileService{
-    public apiUrl: string = 'http://prod-joyfulhome-api.synapsys.us';
+    public apiUrl: string = GlobalSettings.getApiUrl();
     public apiToken: string = 'BApA7KEfj';
     public headerName: string = 'X-SNT-TOKEN';
 
