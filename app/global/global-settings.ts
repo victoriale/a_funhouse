@@ -23,7 +23,7 @@ export class GlobalSettings {
   }
 
   static getDynamicWidgetEnv(env:string):string {
-    if (env == "localhost" || env != "dev" || env != "qa"){
+    if (env == "localhost" || env == "dev" || env == "qa"){
         env = "dev-";
     }else{
       env = '';
