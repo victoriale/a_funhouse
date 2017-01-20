@@ -35,6 +35,10 @@ export class DynamicListPage implements OnInit {
   tw: any;
   sw: any;
   input: any;
+  category: any;
+  rand: any;
+  location: any;
+  metro: any;
   isError: boolean = false;
   curRoute: any;
   partnerID: string;
@@ -62,6 +66,16 @@ export class DynamicListPage implements OnInit {
           this.sw = swArr != null && swArr.length > 1 ? swArr[1] : null;
       let inputArr = query.match(/input-(.*)/);
           this.input = inputArr != null &&  inputArr.length > 1 ? inputArr[1] : null;
+
+      // Setup query values for county dynamic widget
+      let catArr = query.match(/category-(.*?)\+/);
+          this.category = catArr != null && catArr.length > 1 ? catArr[1] : '';
+      let locationArr = query.match(/location-(.*)\+/);
+          this.location = locationArr != null &&  locationArr.length > 1 ? locationArr[1] : '';
+      let metroArr = query.match(/metro-(.*)\+/);
+          this.metro = metroArr != null &&  metroArr.length > 1 ? metroArr[1] : '';
+      let randArr = query.match(/rand-(.*?)$/);
+          this.rand = randArr != null && randArr.length > 0 ? randArr[1] : '';
 
     // Scroll page to top to fix routerLink bug
     window.scrollTo(0, 0);
@@ -91,20 +105,39 @@ export class DynamicListPage implements OnInit {
   getDynamicList() {// GET DATA FROM GLOBAL SERVICE
     //EXAMPLE
     //this.dynamicWidget.getWidgetData('1', 103, 'TAMPA')
-    if( !this.tw || !this.sw || !this.input ){
-      // Not enough parameter : display error message
-      this.isError = true;
-      return;
+
+    // Check for rand value in query
+    if (this.rand) {
+      if(!this.category){
+        // Not enough parameter : display error message
+        this.isError = true;
+        return;
+      }
+      this.dynamicWidget.getCountyWidgetData(this.category, this.location, this.metro, this.rand)
+        .subscribe(data => {
+          this.data = this.transformData(data);
+        },
+            err => {
+                this.isError = true;
+                console.log(err);
+            }
+        );
+    } else {
+      if( !this.tw || !this.sw || !this.input ){
+        // Not enough parameter : display error message
+        this.isError = true;
+        return;
+      }
+      this.dynamicWidget.getWidgetData(this.tw, this.sw, this.input)
+        .subscribe(data => {
+          this.data = this.transformData(data);
+        },
+            err => {
+                this.isError = true;
+                console.log(err);
+            }
+        );
     }
-    this.dynamicWidget.getWidgetData(this.tw, this.sw, this.input)
-      .subscribe(data => {
-        this.data = this.transformData(data);
-      },
-          err => {
-              this.isError = true;
-              console.log(err);
-          }
-      );
   }
 
   transformData(data){// TRANSFORM DATA TO PLUG INTO COMPONENTS
