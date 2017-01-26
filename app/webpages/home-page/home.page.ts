@@ -51,19 +51,19 @@ export class HomePage implements OnInit {
             .subscribe(
                 route => {
                   var curRoute = route;
-                  var partnerID = curRoute.split('/');
+                  var partnerID = GlobalSettings.storedPartnerId();
                   var hostname = window.location.hostname;
-                  var partnerIdExists = partnerID[0] != '' ? true : false;
 
                   var myhousekit = /myhousekit/.test(hostname);
+                  var isSubDomain = GlobalSettings.getHomeInfo().isSubdomainPartner;
 
-                  if( !partnerIdExists &&  myhousekit){
+                  if(!partnerID && myhousekit){
                     jQuery('.webpage-home').css('display','none');
                     this.isMyHouseKitHome = true;
                     document.title = "MyHousekit";
-                  }else if( partnerIdExists && myhousekit){
+                  }else if(partnerID && myhousekit || partnerID && isSubDomain){
                     jQuery('.webpage-home').css('display','block');
-                    document.title = "MyHousekit " + partnerID[0].replace('-', ' ');
+                    document.title = "MyHousekit " + partnerID;
                   }else{
                     jQuery('.webpage-home').css('display','block');
                     this.isMyHouseKitHome = false;
