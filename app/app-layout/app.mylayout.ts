@@ -43,7 +43,7 @@ export class MyWebApp {
   }
   constructor(private _params: RouteParams, private _geoLocation: GeoLocation){
     var partnerName = this._params.get('partner_id');
-    document.title = "JoyfulHome";
+    document.title = "MyHousekit "+ partnerName;
 
         //function that grabs the designated location needed for the client and if a partnerID is sent through then it will also set the partnerID and partnerScript for their Header
         if(GlobalSettings.getHomeInfo().isSubdomainPartner) {
