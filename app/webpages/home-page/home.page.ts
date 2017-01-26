@@ -74,7 +74,7 @@ export class HomePage implements OnInit {
     }
 
     getGeoLocation() {
-      this._geoLocation.getGeoLocation().subscribe(res => {
+      this._geoLocation.grabLocation().subscribe(res => {
         if (res.city == null || res.state == null){
           this.defaultCity();
         } else {
