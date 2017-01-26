@@ -23,15 +23,15 @@ export interface geoLocate {
 @Injectable()
 
 export class GeoLocation{
-    geoData: geoLocate;
+    geoData: any;
     geoObservable: Observable<any>;
 
     constructor(public http: Http) { }
 
 
     getPartnerData(partner_id) {
-      // let env = window.location.hostname.split('.')[0];
-      let env = 'localhost';
+      let env = window.location.hostname.split('.')[0];
+      //let env = 'localhost';
       if(env == 'localhost'){
         var partnerID = partner_id.split('-');
 

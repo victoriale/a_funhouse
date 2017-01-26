@@ -43,6 +43,14 @@ export class GlobalSettings {
     }
   }
 
+  static getAiUrl():string {
+    if (this._env == "localhost" || this._env == "dev" || this._env == "qa") {
+      return this._proto + "//" + this.getEnv(this._env) + "-realestate-ai.synapsys.us";
+    }else{
+      return this._proto + "//" + this.getEnv(this._env) + "-joyfulhome-ai.synapsys.us";
+    }
+  }
+
   static getApiUrl():string {
       return this._proto + "//" + this.getEnv(this._env) + this._apiUrl;
   }

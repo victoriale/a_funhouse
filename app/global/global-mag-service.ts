@@ -16,9 +16,10 @@ import {GlobalSettings} from './global-settings';
 @Injectable()
 
 export class MagazineDataService {
-    public apiUrl: string = GlobalSettings.getApiUrl();
+    public aiUrl: string = GlobalSettings.getAiUrl();
     cachedData : MagData;
     public partnerID: string;
+
     constructor( private _router:Router, private _injector: Injector, public http: Http) {
       this._router.root
           .subscribe(
@@ -32,20 +33,20 @@ export class MagazineDataService {
                 }
               }
           )//end of route subscribe
-    };
+    }
 
     getMagazineData(address) {
         if ( this.cachedData ) {
             return Observable.of(this.cachedData);
         } else {
             if (this.partnerID == null) {
-                return this.http.get(this.apiUrl + '/' + address)
+                return this.http.get(this.aiUrl + '/' + address)
                     .map(res => res.json())
                     .do((data) => {
                         this.cachedData = data;
                     });
             } else {
-                return this.http.get(this.apiUrl + '/' + address + '?partner=' + this.partnerID)
+                return this.http.get(this.aiUrl + '/' + address + '?partner=' + this.partnerID)
                     .map(res => res.json())
                     .do((data) => {
                         this.cachedData = data;

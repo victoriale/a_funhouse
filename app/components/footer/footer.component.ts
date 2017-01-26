@@ -9,7 +9,7 @@ declare var jQuery:any;
     templateUrl: './app/components/footer/footer.component.html',
 
     directives: [ROUTER_DIRECTIVES],
-    inputs: ['cityLocation', 'stateLocation', 'partnerID', 'geoData'],
+    inputs: ['partnerID', 'geoData'],
     providers: [],
 })
 
@@ -33,7 +33,7 @@ export class FooterComponent implements OnInit {
       this.router.root
           .subscribe(
               route => {
-                  this.curRoute = route;
+              		this.curRoute = route;
                   var partnerID = this.curRoute.split('/');
                   var hostname = window.location.hostname;
                   var partnerIdExists = partnerID[0] != '' ? true : false;
