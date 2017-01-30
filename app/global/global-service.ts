@@ -28,7 +28,6 @@ export class GeoLocation{
 
     constructor(public http: Http) { }
 
-
     getPartnerData(partner_id) {
       let env = window.location.hostname.split('.')[0];
       //let env = 'localhost';
@@ -63,16 +62,16 @@ export class GeoLocation{
                     }
                     this.geoData['partner_id'] = partner_id;
                     this.geoData['partner_script'] = partnerScript;
-                    if (partnerLocation.state && partnerLocation.city) {
+                    // if (partnerLocation.state && partnerLocation.city) {
                         this.geoData['state'] = partnerLocation.state;
                         this.geoData['city'] = partnerLocation.city;
-                        return new Observable(observer => {
-                            observer.next(this.geoData);
-                            observer.complete();
-                        });
-                    } else {
                         return this.getGeoLocation();
-                    }
+                        
+                        // return new Observable(observer => {
+                        //     observer.next(this.geoData);
+                        //     observer.complete();
+                        // });
+                    // }
                 }
                 // return data;
             }
@@ -96,9 +95,9 @@ export class GeoLocation{
                 if (!this.geoData) {
                     this.geoData = {};
                 }
-                this.geoData['state'] = state;
-                this.geoData['city'] = city;
-                this.geoData['zipcode'] = zipcode;
+                this.geoData['userState'] = state;
+                this.geoData['userCity'] = city;
+                this.geoData['userZipcode'] = zipcode;
                 return this.geoData;
             })
             .share();

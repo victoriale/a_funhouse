@@ -57,11 +57,11 @@ export class HomePage implements OnInit {
                   var myhousekit = /myhousekit/.test(hostname);
                   var isSubDomain = GlobalSettings.getHomeInfo().isSubdomainPartner;
 
-                  if(!partnerID && myhousekit){
+                  if( !partnerID && myhousekit){
                     jQuery('.webpage-home').css('display','none');
                     this.isMyHouseKitHome = true;
                     document.title = "MyHousekit";
-                  }else if(partnerID && myhousekit || partnerID && isSubDomain){
+                  }else if( partnerID && myhousekit || partnerID && isSubDomain){
                     jQuery('.webpage-home').css('display','block');
                     document.title = "MyHousekit " + partnerID;
                   }else{
@@ -75,15 +75,15 @@ export class HomePage implements OnInit {
 
     getGeoLocation() {
       this._geoLocation.getGeoLocation().subscribe(res => {
-        if (res.city == null || res.state == null){
+        if (res.userCity == null || res.userState == null){
           this.defaultCity();
         } else {
           this.geoData = {
-            cityUrl          : this._globalFunctions.toLowerKebab(res.city),
-            cityNameDisplay  : this._globalFunctions.toTitleCase(res.city.replace(/%20/g, ' ')),
-            stateNameDisplay : this._globalFunctions.stateToAP(res.state),
-            stateUrl         : this._globalFunctions.toLowerKebab(res.state),
-            stateAPLocation  : this._globalFunctions.stateToAP(res.state)
+            cityUrl          : this._globalFunctions.toLowerKebab(res.userCity),
+            cityNameDisplay  : this._globalFunctions.toTitleCase(res.userCity.replace(/%20/g, ' ')),
+            stateNameDisplay : this._globalFunctions.stateToAP(res.userState),
+            stateUrl         : this._globalFunctions.toLowerKebab(res.userState),
+            stateAPLocation  : this._globalFunctions.stateToAP(res.userState)
           }
           this.getNearByCities();
         }

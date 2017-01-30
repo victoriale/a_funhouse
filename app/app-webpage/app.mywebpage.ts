@@ -64,8 +64,18 @@ import {GeoLocation} from "../global/global-service";
         component: LocationPage,
     },
     {
+        path: '/location',
+        name: 'Empty-Location-page',
+        component: LocationPage,
+    },
+    {
         path: '/loc/:loc',
         name: 'Deprecated-location-page',
+        component: LocationPage,
+    },
+    {
+        path: '/loc',
+        name: 'Deprecated-Empty-location-page',
         component: LocationPage,
     },
     {
@@ -261,8 +271,8 @@ export class MyAppComponent implements OnInit {
           this.stateLocation = decodeURI(res.state);
           this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
         } else {
-          this.cityLocation = res.city;
-          this.stateLocation = res.state;
+          this.cityLocation = res.userCity;
+          this.stateLocation = res.userState;
           this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
         }
         if(res.partner_script){
@@ -275,15 +285,15 @@ export class MyAppComponent implements OnInit {
 
     getGeoLocation() {
       this._geoLocation.getGeoLocation().subscribe(res => {
-        if (res.city == null || res.state == null){
+        if (res.userCity == null || res.userState == null){
           this.defaultCity();
         } else {
           this.geoData = {
-            cityUrl          : this._globalFunctions.toLowerKebab(res.city),
-            cityNameDisplay  : this._globalFunctions.toTitleCase(res.city.replace(/%20/g, ' ')),
-            stateNameDisplay : this._globalFunctions.stateToAP(res.state),
-            stateUrl         : this._globalFunctions.toLowerKebab(res.state),
-            stateAPLocation  : this._globalFunctions.stateToAP(res.state)
+            cityUrl          : this._globalFunctions.toLowerKebab(res.userCity),
+            cityNameDisplay  : this._globalFunctions.toTitleCase(res.userCity.replace(/%20/g, ' ')),
+            stateNameDisplay : this._globalFunctions.stateToAP(res.userState),
+            stateUrl         : this._globalFunctions.toLowerKebab(res.userState),
+            stateAPLocation  : this._globalFunctions.stateToAP(res.userState)
           }
         }
       },
