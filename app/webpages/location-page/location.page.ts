@@ -101,7 +101,6 @@ export class LocationPage implements OnInit {
     }
 
     getProfileHeader(){
-        console.log('PROFILE');
         this._locationProfileService.getLocationProfile(this.locCity, this.locState)
             .subscribe(
                 data => {
