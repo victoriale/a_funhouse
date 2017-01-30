@@ -25,7 +25,7 @@ import {DirectoryPage} from "../webpages/directory-page/directory.page";
 import {SearchPage} from "../webpages/search-page/search.page";
 import {DynamicListPage} from "../webpages/dynamic-list-page/dynamic-list.page";
 import {NearByCitiesService} from "../global/geo-location.service";
-import {GeoLocationService} from "../global/geo-location.service";
+import {GeoLocation} from "../global/global-service";
 
 import {WebApp} from "../app-layout/app.layout";
 import {PartnerHeader} from "../global/global-service";
@@ -38,7 +38,7 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
     templateUrl: './app/app-webpage/app.webpage.html',
 
     directives: [PartnerHomePage, RouterOutlet, ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ListPage, ListOfListsPage, AmenitiesListPage, ROUTER_DIRECTIVES, DirectoryPage, SchoolListsPage],
-    providers: [PartnerHeader, ROUTER_DIRECTIVES, GeoLocationService, NearByCitiesService, ErrorPage],
+    providers: [PartnerHeader, ROUTER_DIRECTIVES, NearByCitiesService, ErrorPage, GeoLocation],
 })
 
 @RouteConfig([
@@ -56,6 +56,11 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
     {
         path: '/location/:loc',
         name: 'Location-page',
+        component: LocationPage,
+    },
+    {
+        path: '/location',
+        name: 'Empty-Location-page',
         component: LocationPage,
     },
     {
@@ -167,79 +172,75 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
 ])
 
 export class AppComponent implements OnInit {
-
     //declare variables to grab potential partner header
+    geoData: any;
     public partnerID: string;
-    public partnerData: Object;
     public listTitle: string = 'homes-largest';
     public pageNumber: number = 1;
     public partnerScript:string;
     public cityStateLocation: string;
     public cityLocation: string;
     public stateLocation: string;
-    // address: string = "503-C-Avenue-Vinton-IA";
+    private _activatedRoute: any;
+    private partner_script: string;
+
     nearByCities: Object;
 
-    constructor(private _injector: Injector,private _partnerData: PartnerHeader, private _params: RouteParams, private route: Router, private routeData: RouteData, private routerLink: RouterLink, private _globalFunctions: GlobalFunctions, private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService){
-        var parentParams = this._injector.get(WebApp);
-        var hostname = window.location.hostname;
-
-        if(typeof parentParams.partnerID != 'undefined'){
-            this.partnerID = parentParams.partnerID;
-        }
-
-        if (GlobalSettings.getHomeInfo().isSubdomainPartner) {
-          this.partnerID = hostname.split(".")[1] + "." + hostname.split(".")[2];
-        }
+    constructor(private _injector: Injector,private _partnerData: PartnerHeader, private _params: RouteParams, private route: Router, private routeData: RouteData, private routerLink: RouterLink, private _globalFunctions: GlobalFunctions, private _nearByCitiesService: NearByCitiesService, private _geoLocation: GeoLocation){
     }
 
-    getPartnerHeader(){
-        this._partnerData.getPartnerData(this.partnerID)
-            .subscribe(
-                partnerScript => {
-                    this.partnerData = partnerScript;
-                    // console.log(this.partnerData);
-                    this.partnerScript = this.partnerData['results'].header.script;
-                }
-            );
+    getPartnerData() {
+      this.partnerID = GlobalSettings.storedPartnerId();
+      this._geoLocation.grabLocation(this.partnerID).subscribe(geo => {
+        if(geo.partner_id){
+          GlobalSettings.storedPartnerId(geo.partner_id);
+          this.partnerID = geo.partner_id;
+          this.cityLocation = this._globalFunctions.toTitleCase(decodeURI(geo.city));
+          this.stateLocation = decodeURI(geo.state);
+          this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
+        } else {
+          this.cityLocation = geo.userCity;
+          this.stateLocation = geo.userState;
+          this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
+        }
+        if(geo.partner_script){
+          this.partnerScript = geo.partner_script;
+        }
+      },
+      err => this.defaultCity()
+      );
     }
 
-    //Subscribe to getGeoLocation in geo-location.service.ts. On Success call getNearByCities function.
     getGeoLocation() {
-        this._geoLocationService.getGeoLocation()
-            .subscribe(
-                geoLocationData => {
-                  if( typeof this.partnerData != 'undefined' && this.partnerData['results']['location']['realestate']['location']['city'].length != 0){
-                    var dataPartner = this.partnerData['results']['location']['realestate'];
-                    this.cityLocation = this._globalFunctions.toTitleCase(decodeURI(dataPartner['location']['city'][0].city));
-                    this.stateLocation = decodeURI(dataPartner['location']['city'][0].state);
-                    this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
-                  }else{
-                    this.cityLocation = geoLocationData[0].city;
-                    this.stateLocation = geoLocationData[0].state;
-                    this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
-                  }
-                },
-                err => this.defaultCity()
-            );
+      this._geoLocation.getGeoLocation().subscribe(res => {
+        if (res.userCity == null || res.userState == null){
+          this.defaultCity();
+        } else {
+          this.geoData = {
+            cityUrl          : this._globalFunctions.toLowerKebab(res.userCity),
+            cityNameDisplay  : this._globalFunctions.toTitleCase(res.userCity.replace(/%20/g, ' ')),
+            stateNameDisplay : this._globalFunctions.stateToAP(res.userState),
+            stateUrl         : this._globalFunctions.toLowerKebab(res.userState),
+            stateAPLocation  : this._globalFunctions.stateToAP(res.userState)
+          }
+        }
+      },
+      err => this.defaultCity()
+      );
     }
-
 
     defaultCity() {
         // Set default city and state if geo location call fails
-        // console.log('Geo Location is Borked!');
         this.stateLocation = "KS";
         this.cityLocation = "Wichita";
         this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
     }
 
-    ngOnInit(){
-        if (this.partnerID != null){
-            this.getPartnerHeader();
-        }
-        // Call to get current State and City
-        this.getGeoLocation();
+    ngOnInit() {
+      this.getPartnerData();
+      this.getGeoLocation();
     }
+
     /* Navigates to top of page on navigation */
     routerOnDeactivate(){
         window.scrollTo(0,0);

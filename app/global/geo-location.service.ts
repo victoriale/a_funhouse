@@ -1,11 +1,13 @@
 import {Injectable} from 'angular2/core';
 import {Http} from 'angular2/http';
 import {Observable} from 'rxjs/Rx';
+import {GlobalSettings} from './global-settings';
 
 @Injectable()
 
 export class GeoLocationService {
     cachedGeoLocation: any;
+    public geoApiUrl: string = GlobalSettings.getGeoLocation();
     constructor(public http:Http) {}
 
     getGeoLocation() {
@@ -14,7 +16,7 @@ export class GeoLocationService {
         if (this.cachedGeoLocation) {
             return Observable.of(this.cachedGeoLocation);
         } else {
-            return this.http.get('http://w1.synapsys.us/listhuv/?action=get_remote_addr2')
+            return this.http.get(this.geoApiUrl + '/listhuv/?action=get_remote_addr2')
                 .map(
                     res => res.json()
                 )
@@ -30,6 +32,7 @@ export class GeoLocationService {
 
 export class NearByCitiesService {
     cachedNearByCities: any;
+    public apiUrl: string = GlobalSettings.getApiUrl();
 
     constructor(public http:Http) {}
 
@@ -38,7 +41,7 @@ export class NearByCitiesService {
         if (this.cachedNearByCities) {
             return Observable.of(this.cachedNearByCities);
         } else {
-            return this.http.get('http://prod-joyfulhome-api.synapsys.us/nearbyCities/' + state + '/' + city)
+            return this.http.get(this.apiUrl + '/nearbyCities/' + state + '/' + city)
                 .map(
                     res => res.json()
                 )
@@ -58,6 +61,7 @@ export class NearByCitiesService {
 
 export class CityViewService {
     cachedCityView: any;
+    public apiUrl: string = GlobalSettings.getApiUrl();
 
     constructor(public http:Http) {}
 
@@ -66,7 +70,7 @@ export class CityViewService {
         if (this.cachedCityView) {
             return Observable.of(this.cachedCityView);
         } else {
-            return this.http.get('http://prod-joyfulhome-api.synapsys.us/cityView/' + state + '/' + city)
+            return this.http.get(this.apiUrl + '/cityView/' + state + '/' + city)
                 .map(
                     res => res.json()
                 )

@@ -10,8 +10,10 @@ import {HeroBottomComponent} from "../../components/hero/hero-bottom/hero-bottom
 import {FeatureTilesComponent} from "../../components/feature-tiles/feature-tiles.component";
 import {GeoLocationService} from "../../global/geo-location.service";
 import {NearByCitiesService} from "../../global/geo-location.service";
+import {GlobalSettings} from "../../global/global-settings";
 import {GlobalFunctions} from "../../global/global-functions";
 import {PartnerHomePage} from "../partner-home-page/partner-home-page";
+import {GeoLocation} from "../../global/global-service";
 //import map = webdriver.promise.map;
 
 declare var jQuery:any;
@@ -29,14 +31,8 @@ export class HomePage implements OnInit {
 
     // Location data
     geoData: any;
-    //cityName: string;
-    //cityLocation: string;
-    //stateLocation: string;
-    //stateAPLocation: string;
-    //cityStateLocation: string;
+    public partnerID: string;
     nearByCities: Object;
-
-    //selectValue: string;
 
     // Buttons
     buttonTitle: string;
@@ -48,26 +44,26 @@ export class HomePage implements OnInit {
     heroButtonIcon: string;
     isMyHouseKitHome: boolean;//determine which homepage to show myhousekit or joyfulhome.
 
-    constructor(private _router: Router, private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService, private _globalFunctions: GlobalFunctions) {
+    constructor(private _router: Router, private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService, private _globalFunctions: GlobalFunctions, private _geoLocation: GeoLocation) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
         this._router.root
             .subscribe(
                 route => {
                   var curRoute = route;
-                  var partnerID = curRoute.split('/');
+                  var partnerID = GlobalSettings.storedPartnerId();
                   var hostname = window.location.hostname;
-                  var partnerIdExists = partnerID[0] != '' ? true : false;
 
                   var myhousekit = /myhousekit/.test(hostname);
+                  var isSubDomain = GlobalSettings.getHomeInfo().isSubdomainPartner;
 
-                  if( !partnerIdExists &&  myhousekit){
+                  if( !partnerID && myhousekit){
                     jQuery('.webpage-home').css('display','none');
                     this.isMyHouseKitHome = true;
                     document.title = "MyHousekit";
-                  }else if( partnerIdExists && myhousekit){
+                  }else if( partnerID && myhousekit || partnerID && isSubDomain){
                     jQuery('.webpage-home').css('display','block');
-                    document.title = "MyHousekit " + partnerID[0].replace('-', ' ');
+                    document.title = "MyHousekit " + partnerID;
                   }else{
                     jQuery('.webpage-home').css('display','block');
                     this.isMyHouseKitHome = false;
@@ -77,30 +73,26 @@ export class HomePage implements OnInit {
             )//end of route subscribe
     }
 
-    //Subscribe to getGeoLocation in geo-location.service.ts. On Success call getNearByCities function.
     getGeoLocation() {
-        this._geoLocationService.getGeoLocation()
-            .subscribe(
-                geoLocationData => {
-                    if( geoLocationData[0].city == null || geoLocationData[0].state == null){
-                      this.defaultCity();
-                    }else {
-                      this.geoData = {
-                        cityUrl          : this._globalFunctions.toLowerKebab(geoLocationData[0].city),
-                        cityNameDisplay  : this._globalFunctions.toTitleCase(geoLocationData[0].city),
-                        stateNameDisplay : this._globalFunctions.stateToAP(geoLocationData[0].state),
-                        stateUrl         : this._globalFunctions.toLowerKebab(geoLocationData[0].state),
-                        stateAPLocation  : this._globalFunctions.stateToAP(geoLocationData[0].state)
-                      }
-                      this.getNearByCities();
-                    }
-                },
-                err => this.defaultCity()
-            );
+      this._geoLocation.getGeoLocation().subscribe(res => {
+        if (res.userCity == null || res.userState == null){
+          this.defaultCity();
+        } else {
+          this.geoData = {
+            cityUrl          : this._globalFunctions.toLowerKebab(res.userCity),
+            cityNameDisplay  : this._globalFunctions.toTitleCase(res.userCity.replace(/%20/g, ' ')),
+            stateNameDisplay : this._globalFunctions.stateToAP(res.userState),
+            stateUrl         : this._globalFunctions.toLowerKebab(res.userState),
+            stateAPLocation  : this._globalFunctions.stateToAP(res.userState)
+          }
+          this.getNearByCities();
+        }
+      },
+      err => this.defaultCity()
+      );
     }
 
     // Subscribe to getNearByCities in geo-location.service.ts
-
     getNearByCities() {
         this._nearByCitiesService.getNearByCities(this.geoData['stateUrl'], this.geoData['cityNameDisplay'])
             .subscribe(
@@ -125,10 +117,6 @@ export class HomePage implements OnInit {
           stateUrl  : "ca",
           stateAPLocation   : "Calif."
         }
-        //this.stateLocation = "KS";
-        //this.stateAPLocation = this._globalFunctions.stateToAP(this.stateLocation);
-        //this.cityLocation = "Wichita";
-        //this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
         this.getNearByCities();
     }
 

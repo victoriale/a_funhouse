@@ -113,6 +113,11 @@ export class DynamicListPage implements OnInit {
         this.isError = true;
         return;
       }
+      // Check for metro
+      if(this.location == 'atl_metro') {
+          this.metro = 'true';
+          this.location = '';
+      }
       this.dynamicWidget.getCountyWidgetData(this.category, this.location, this.metro, this.rand)
         .subscribe(data => {
           this.data = this.transformData(data);
