@@ -39,6 +39,7 @@ gulp.task('copy:libs', ['clean'], function() {
       'node_modules/highcharts/highcharts.js',
       'node_modules/moment/moment.js',
       'node_modules/moment-timezone/builds/moment-timezone-with-data-2010-2020.js',
+      'node_modules/jquery/dist/jquery.min.js'
     ])
     .pipe(gulp.dest('dist/lib'))
 });
