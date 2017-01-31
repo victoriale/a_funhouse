@@ -111,11 +111,11 @@ export class HomePage implements OnInit {
     defaultCity() {
         // Set default city and state if geo location call fails
         this.geoData = {
-          cityUrl           : "los-angeles",
-          cityNameDisplay   : "Los Angeles",
-          stateNameDisplay  : "California",
-          stateUrl  : "ca",
-          stateAPLocation   : "Calif."
+          cityUrl           : "wichita",
+          cityNameDisplay   : "Wichita",
+          stateNameDisplay  : "Kansas",
+          stateUrl  : "ks",
+          stateAPLocation   : "Kan."
         }
         this.getNearByCities();
     }

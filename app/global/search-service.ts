@@ -22,7 +22,7 @@ export class SearchService{
             //return new Observable.return([]);
         }
 
-        var url = this.apiUrl + '/' + input;
+        var url = this.apiUrl + '/search/' + input;
 
         if(type === 'list'){
             url += '/true';
