@@ -19,7 +19,7 @@ export class FooterComponent implements OnInit {
     stateLocation: string;
     geoData: any;
 
-    public isMyHouseKit: boolean = true;
+    public isMyHouseKit: boolean = false;
     public isHomePage: boolean = false;
     partnerID: string;
     title: string = "National Real Estate";
@@ -34,9 +34,8 @@ export class FooterComponent implements OnInit {
           .subscribe(
               route => {
               		this.curRoute = route;
-                  var partnerID = this.curRoute.split('/');
+                  var partnerID = GlobalSettings.storedPartnerId();
                   var hostname = window.location.hostname;
-                  var partnerIdExists = partnerID[0] != '' ? true : false;
                   this.isSubdomain = GlobalSettings.getHomeInfo().isSubdomainPartner;
 
                   var myhousekit = /myhousekit/.test(hostname);
@@ -45,18 +44,18 @@ export class FooterComponent implements OnInit {
                   if(this.isSubdomain){
                     this.isMyHouseKit = true;
                   // Checks if partner ID exists
-                  }else if (!partnerIdExists){
+                  }else if (!partnerID){
                     this.partnerID = null;
                     this.isMyHouseKit = false;
                   } else {
-                    this.partnerID = partnerID[0];
+                    this.partnerID = partnerID;
                     this.isMyHouseKit = true;
                   }
 
                   // Check to make sure if home page is being displayed
-                  if( (partnerIdExists && myhousekit && partnerID.length == 1)  || (partnerID.length == 1 && this.isSubdomain) ){
+                  if( (partnerID && myhousekit) || this.isSubdomain ){
                     this.isHomePage = true;
-                  }else if(!partnerIdExists && partnerID.length == 1){
+                  }else if(!partnerID){
                     this.isHomePage = true;
                   }else{
                     this.isHomePage = false;

@@ -35,9 +35,8 @@ export class HeaderComponent implements OnInit{
             .subscribe(
                 route => {
                     this.curRoute = route;
-                    var partnerID = this.curRoute.split('/');
+                    var partnerID = GlobalSettings.storedPartnerId();
                     var hostname = window.location.hostname;
-                    var partnerIdExists = partnerID[0] != '' ? true : false;
                     this.isSubdomain = GlobalSettings.getHomeInfo().isSubdomainPartner;
 
                     var myhousekit = /myhousekit/.test(hostname);
@@ -47,22 +46,20 @@ export class HeaderComponent implements OnInit{
                       this.isMyHouseKit = true;
                       this.partnerUrl = '/';
                     // Checks if partner ID exists
-                    }else if (!partnerIdExists){
+                    }else if (!partnerID){
                       this.partnerID = null;
                       this.isMyHouseKit = false;
                     } else {
-                      this.partnerID = partnerID[0];
+                      this.partnerID = partnerID;
                       this.isMyHouseKit = true;
                       this.partnerUrl = '/'+this.partnerID+'/';
                     }
 
                     // Check to make sure if home page is being displayed
-                    if( (partnerIdExists && myhousekit && partnerID.length == 1) || (partnerID.length == 1 && this.isSubdomain) ){
-                      this.isHomePage = true;
-                    }else if(!partnerIdExists && partnerID.length == 1){
-                      this.isHomePage = true;
-                    }else{
+                    if(this.curRoute){
                       this.isHomePage = false;
+                    }else{
+                      this.isHomePage = true;
                     }
                 }
             )
