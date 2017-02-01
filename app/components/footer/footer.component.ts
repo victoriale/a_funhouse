@@ -35,13 +35,14 @@ export class FooterComponent implements OnInit {
               route => {
               		this.curRoute = route;
                   var partnerID = GlobalSettings.storedPartnerId();
+                  this.isMyHouseKit = GlobalSettings.getHomeInfo().isPartner;
                   var hostname = window.location.hostname;
                   this.isSubdomain = GlobalSettings.getHomeInfo().isSubdomainPartner;
 
-                  var myhousekit = /myhousekit/.test(hostname);
+                  // var myhousekit = /myhousekit/.test(hostname);
                   //var myhousekit = /localhost/.test(hostname); //used for testing locally
                   // Check for subdomain
-                  if(this.isSubdomain){
+                  if(this.isSubdomain || this.isMyHouseKit){
                     this.isMyHouseKit = true;
                   // Checks if partner ID exists
                   }else if (!partnerID){
@@ -53,7 +54,7 @@ export class FooterComponent implements OnInit {
                   }
 
                   // Check to make sure if home page is being displayed
-                  if( (partnerID && myhousekit) || this.isSubdomain ){
+                  if(GlobalSettings.getHomeInfo().isHome){
                     this.isHomePage = true;
                   }else if(!partnerID){
                     this.isHomePage = true;
