@@ -33,29 +33,29 @@ export class FooterComponent implements OnInit {
       this.router.root
           .subscribe(
               route => {
-              		this.curRoute = route;
-                  var partnerID = GlobalSettings.storedPartnerId();
+                  this.curRoute = route;
+                  var partnerID = this.curRoute.split('/');
                   var hostname = window.location.hostname;
+                  var partnerIdExists = partnerID[0] != '' ? true : false;
                   this.isSubdomain = GlobalSettings.getHomeInfo().isSubdomainPartner;
 
-                  var myhousekit = /myhousekit/.test(hostname);
+                  var myhousekit = /myhousekit/.test(hostname) || /localhost/.test(hostname);
                   //var myhousekit = /localhost/.test(hostname); //used for testing locally
                   // Check for subdomain
                   if(this.isSubdomain){
                     this.isMyHouseKit = true;
                   // Checks if partner ID exists
-                  }else if (!partnerID){
+                  }else if (!partnerIdExists){
                     this.partnerID = null;
                     this.isMyHouseKit = false;
                   } else {
-                    this.partnerID = partnerID;
                     this.isMyHouseKit = true;
                   }
 
                   // Check to make sure if home page is being displayed
-                  if( (partnerID && myhousekit) || this.isSubdomain ){
+                  if( (partnerIdExists && myhousekit && partnerID.length == 1)  || (partnerID.length == 1 && this.isSubdomain) ){
                     this.isHomePage = true;
-                  }else if(!partnerID){
+                  }else if(!partnerIdExists && partnerID.length == 1){
                     this.isHomePage = true;
                   }else{
                     this.isHomePage = false;

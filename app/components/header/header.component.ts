@@ -16,8 +16,8 @@ declare var stButtons: any;
 
 export class HeaderComponent implements OnInit{
 
-    public isHomePage: boolean = false;
-    public isMyHouseKit: boolean = true;
+    public isHomePage;
+    public isMyHouseKit;
     partnerID: string;
     cityStateLocation: string;
     directoryVisible: boolean;
@@ -35,31 +35,34 @@ export class HeaderComponent implements OnInit{
             .subscribe(
                 route => {
                     this.curRoute = route;
-                    var partnerID = GlobalSettings.storedPartnerId();
+                    var partnerID = this.curRoute.split('/');
                     var hostname = window.location.hostname;
+                    var partnerIdExists = partnerID[0] != '' ? true : false;
                     this.isSubdomain = GlobalSettings.getHomeInfo().isSubdomainPartner;
 
-                    var myhousekit = /myhousekit/.test(hostname);
+                    var myhousekit = /myhousekit/.test(hostname) || /localhost/.test(hostname);
                     //var myhousekit = /localhost/.test(hostname); //used for testing locally
                     // Check for subdomain
                     if(this.isSubdomain){
                       this.isMyHouseKit = true;
                       this.partnerUrl = '/';
                     // Checks if partner ID exists
-                    }else if (!partnerID){
+                    }else if (!partnerIdExists){
                       this.partnerID = null;
                       this.isMyHouseKit = false;
                     } else {
-                      this.partnerID = partnerID;
+                      this.partnerID = partnerID[0];
                       this.isMyHouseKit = true;
                       this.partnerUrl = '/'+this.partnerID+'/';
                     }
 
                     // Check to make sure if home page is being displayed
-                    if(this.curRoute){
-                      this.isHomePage = false;
-                    }else{
+                    if( (partnerIdExists && myhousekit && partnerID.length == 1) || (partnerID.length == 1 && this.isSubdomain) ){
                       this.isHomePage = true;
+                    }else if(!partnerIdExists && partnerID.length == 1){
+                      this.isHomePage = true;
+                    }else{
+                      this.isHomePage = false;
                     }
                 }
             )
