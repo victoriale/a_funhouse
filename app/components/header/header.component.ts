@@ -33,14 +33,14 @@ export class HeaderComponent implements OnInit{
 
         this.router.root
             .subscribe(
-                route => route => {
+                route => {
                     this.curRoute = route;
                     var partnerID = this.curRoute.split('/');
                     var hostname = window.location.hostname;
                     var partnerIdExists = partnerID[0] != '' ? true : false;
                     this.isSubdomain = GlobalSettings.getHomeInfo().isSubdomainPartner;
 
-                    var myhousekit = /myhousekit/.test(hostname);
+                    var myhousekit = /myhousekit/.test(hostname) || /localhost/.test(hostname);
                     //var myhousekit = /localhost/.test(hostname); //used for testing locally
                     // Check for subdomain
                     if(this.isSubdomain){

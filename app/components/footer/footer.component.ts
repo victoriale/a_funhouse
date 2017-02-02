@@ -39,7 +39,7 @@ export class FooterComponent implements OnInit {
                   var partnerIdExists = partnerID[0] != '' ? true : false;
                   this.isSubdomain = GlobalSettings.getHomeInfo().isSubdomainPartner;
 
-                  var myhousekit = /myhousekit/.test(hostname);
+                  var myhousekit = /myhousekit/.test(hostname) || /localhost/.test(hostname);
                   //var myhousekit = /localhost/.test(hostname); //used for testing locally
                   // Check for subdomain
                   if(this.isSubdomain){
@@ -49,7 +49,6 @@ export class FooterComponent implements OnInit {
                     this.partnerID = null;
                     this.isMyHouseKit = false;
                   } else {
-                    this.partnerID = partnerID[0];
                     this.isMyHouseKit = true;
                   }
 

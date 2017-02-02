@@ -78,12 +78,14 @@ export class GlobalSettings {
     var isHome = false;
     var hide = false;
     var hostname = window.location.hostname;
-    var partnerPage = /myhousekit/.test(hostname) || /^realestate\./.test(hostname);
+    var partnerPage = /myhousekit/.test(hostname) || /^realestate\./.test(hostname) || /localhost/.test(hostname);
     var name = window.location.pathname.split('/')[1];
     var isSubdomainPartner = /^realestate\./.test(hostname);
     //PLEASE REVISIT and change
     if (partnerPage && name == '') {
       hide = true;
+      isHome = true;
+    }else if(partnerPage && name != ''){
       isHome = true;
     } else if(!partnerPage && name == '') {
       hide = false;
