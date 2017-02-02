@@ -234,6 +234,13 @@ export class AppComponent implements OnInit {
         this.stateLocation = "KS";
         this.cityLocation = "Wichita";
         this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
+        this.geoData = {
+            cityUrl          : "wichita",
+            cityNameDisplay  : "Wichita, Ks",
+            stateNameDisplay : "Kansas",
+            stateUrl         : "ks",
+            stateAPLocation  : "Kan."
+        }
     }
 
     ngOnInit() {
