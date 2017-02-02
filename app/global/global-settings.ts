@@ -78,16 +78,16 @@ export class GlobalSettings {
     var isHome = false;
     var hide = false;
     var hostname = window.location.hostname;
-    var partnerPage = /myhousekit/.test(hostname) || /^realestate\./.test(hostname) || /localhost/.test(hostname);
+    var partnerPage = /myhousekit/.test(hostname) || /^realestate\./.test(hostname);
+    // var partnerPage = /localhost/.test(hostname);
     var name = window.location.pathname.split('/')[1];
+    var nameArr = window.location.pathname.split('/');
     var isSubdomainPartner = /^realestate\./.test(hostname);
     //PLEASE REVISIT and change
-    if (partnerPage && name == '') {
+    if (partnerPage && name == '' || nameArr.length == 1) {
       hide = true;
       isHome = true;
-    }else if(partnerPage && name != ''){
-      isHome = true;
-    } else if(!partnerPage && name == '') {
+    } else if (!partnerPage && name == '') {
       hide = false;
       isHome = true;
     } else {
@@ -98,6 +98,7 @@ export class GlobalSettings {
     if (partnerPage) {
       partner = partnerPage;
     }
+   
     return {
       isPartner: partner,
       hide:hide,
