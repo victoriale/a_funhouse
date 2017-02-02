@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from 'angular2/core';
 import {Router, ROUTER_DIRECTIVES} from "angular2/router";
-
 import {HeaderSearchComponent} from "./header-search/header-search.component";
 import {GlobalSettings} from "../../global/global-settings";
+
 declare var jQuery: any;
 declare var stButtons: any;
 @Component({
@@ -16,8 +16,8 @@ declare var stButtons: any;
 
 export class HeaderComponent implements OnInit{
 
-    public isHomePage;
-    public isMyHouseKit;
+    public isHomePage: boolean;
+    public isMyHouseKit: boolean;
     partnerID: string;
     cityStateLocation: string;
     directoryVisible: boolean;
@@ -35,34 +35,17 @@ export class HeaderComponent implements OnInit{
             .subscribe(
                 route => {
                     this.curRoute = route;
-                    var partnerID = this.curRoute.split('/');
                     var hostname = window.location.hostname;
-                    var partnerIdExists = partnerID[0] != '' ? true : false;
+                  
+                    var partnerID = GlobalSettings.getHomeInfo().partnerName;
                     this.isSubdomain = GlobalSettings.getHomeInfo().isSubdomainPartner;
+                    this.isHomePage = GlobalSettings.getHomeInfo().isHome;
+                    this.isMyHouseKit = GlobalSettings.getHomeInfo().isPartner;
 
-                    var myhousekit = /myhousekit/.test(hostname) || /localhost/.test(hostname);
-                    //var myhousekit = /localhost/.test(hostname); //used for testing locally
-                    // Check for subdomain
-                    if(this.isSubdomain){
-                      this.isMyHouseKit = true;
+                    if(!this.isMyHouseKit){
                       this.partnerUrl = '/';
-                    // Checks if partner ID exists
-                    }else if (!partnerIdExists){
-                      this.partnerID = null;
-                      this.isMyHouseKit = false;
                     } else {
-                      this.partnerID = partnerID[0];
-                      this.isMyHouseKit = true;
                       this.partnerUrl = '/'+this.partnerID+'/';
-                    }
-
-                    // Check to make sure if home page is being displayed
-                    if( (partnerIdExists && myhousekit && partnerID.length == 1) || (partnerID.length == 1 && this.isSubdomain) ){
-                      this.isHomePage = true;
-                    }else if(!partnerIdExists && partnerID.length == 1){
-                      this.isHomePage = true;
-                    }else{
-                      this.isHomePage = false;
                     }
                 }
             )
