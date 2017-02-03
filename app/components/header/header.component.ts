@@ -42,7 +42,7 @@ export class HeaderComponent implements OnInit{
                     this.isHomePage = GlobalSettings.getHomeInfo().isHome;
                     this.isMyHouseKit = GlobalSettings.getHomeInfo().isPartner;
 
-                    if(!this.isMyHouseKit){
+                    if(!this.isMyHouseKit || this.isSubdomain){
                       this.partnerUrl = '/';
                     } else {
                       this.partnerUrl = '/'+this.partnerID+'/';
