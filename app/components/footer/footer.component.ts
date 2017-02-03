@@ -9,7 +9,7 @@ declare var jQuery:any;
     templateUrl: './app/components/footer/footer.component.html',
 
     directives: [ROUTER_DIRECTIVES],
-    inputs: ['cityLocation', 'stateLocation', 'partnerID'],
+    inputs: ['partnerID', 'geoData'],
     providers: [],
 })
 
@@ -17,10 +17,11 @@ export class FooterComponent implements OnInit {
 
     cityLocation: string;
     stateLocation: string;
-
-    public isMyHouseKit: boolean = true;
-    public isHomePage: boolean = false;
+    geoData: any;
+    public isMyHouseKit: boolean;
+    public isHomePage: boolean;
     partnerID: string;
+    partnerUrl: string;
     title: string = "National Real Estate";
     pageNumber: string = "1";
     listTitle: string = "listings-most-recent";
@@ -29,43 +30,30 @@ export class FooterComponent implements OnInit {
     isSubdomain: boolean;
 
     constructor(public router: Router){
-      this.router.root
-          .subscribe(
-              route => {
-                  this.curRoute = route;
-                  var partnerID = this.curRoute.split('/');
-                  var hostname = window.location.hostname;
-                  var partnerIdExists = partnerID[0] != '' ? true : false;
-                  this.isSubdomain = GlobalSettings.getHomeInfo().isSubdomainPartner;
-
-                  var myhousekit = /myhousekit/.test(hostname);
-                  //var myhousekit = /localhost/.test(hostname); //used for testing locally
-                  // Check for subdomain
-                  if(this.isSubdomain){
-                    this.isMyHouseKit = true;
-                  // Checks if partner ID exists
-                  }else if (!partnerIdExists){
-                    this.partnerID = null;
-                    this.isMyHouseKit = false;
-                  } else {
-                    this.partnerID = partnerID[0];
-                    this.isMyHouseKit = true;
-                  }
-
-                  // Check to make sure if home page is being displayed
-                  if( (partnerIdExists && myhousekit && partnerID.length == 1)  || (partnerID.length == 1 && this.isSubdomain) ){
-                    this.isHomePage = true;
-                  }else if(!partnerIdExists && partnerID.length == 1){
-                    this.isHomePage = true;
-                  }else{
-                    this.isHomePage = false;
-                  }
-              }
-          )
+        this.router.root
+            .subscribe(
+                route => {
+                    this.curRoute = route;
+                    var hostname = window.location.hostname;
+                  
+                    var partnerID = GlobalSettings.getHomeInfo().partnerName;
+                    this.isSubdomain = GlobalSettings.getHomeInfo().isSubdomainPartner;
+                    this.isHomePage = GlobalSettings.getHomeInfo().isHome;
+                    this.isMyHouseKit = GlobalSettings.getHomeInfo().isPartner;
+                }
+            )
     }
+
     ngOnInit() {
         //set min-width to prevent responsiveness
         jQuery('body').css("min-width", "1044px");
+        var partnerID = GlobalSettings.getHomeInfo().partnerName;
+        this.isSubdomain = GlobalSettings.getHomeInfo().isSubdomainPartner;
+        this.isHomePage = GlobalSettings.getHomeInfo().isHome;
+        this.isMyHouseKit = GlobalSettings.getHomeInfo().isPartner;
+
+        this.cityLocation = this.geoData.cityNameDisplay;
+        this.stateLocation = this.geoData.stateUrl.toUpperCase();
         // Get current URL for social sharing
         this.currentUrl = window.location.href;
     }

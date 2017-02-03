@@ -1,6 +1,9 @@
 import {Component} from 'angular2/core';
 import {MyAppComponent} from "../app-webpage/app.mywebpage";
 import {MagazinePage} from "../app-webpage/magazine.webpage";
+import {GlobalFunctions} from "../global/global-functions";
+import {GlobalSettings} from "../global/global-settings";
+import {GeoLocation} from "../global/global-service";
 
 import {RouteParams, Router, RouteData, RouteConfig, RouterOutlet, ROUTER_DIRECTIVES, LocationStrategy} from 'angular2/router';
 
@@ -9,7 +12,7 @@ import {RouteParams, Router, RouteData, RouteConfig, RouterOutlet, ROUTER_DIRECT
     templateUrl: './app/app-layout/app.layout.html',
 
     directives: [MagazinePage, MyAppComponent,RouterOutlet, ROUTER_DIRECTIVES],
-    providers: [],
+    providers: [GeoLocation, GlobalSettings, GlobalFunctions],
 })
 
 @RouteConfig([
@@ -27,9 +30,7 @@ import {RouteParams, Router, RouteData, RouteConfig, RouterOutlet, ROUTER_DIRECT
 ])
 
 export class MyWebApp {
-
-  public partnerID: string;
-
+  partnerID: string;
   address:string = '1324-N-Manchester-CT-Wichita-KS';
   camelCaseToRegularCase(str){// GRABBED FROM GLOBAL FUNCTION app/global/global-functions.ts
       str = str
@@ -40,10 +41,19 @@ export class MyWebApp {
           .replace(/^./, function(str){ return str.toUpperCase(); })
       return str;
   }
-  constructor(private _params: RouteParams){
-    this.partnerID = this._params.get('partner_id');
-    var partnerID = this.camelCaseToRegularCase(this.partnerID.replace('-',' '));
-    document.title = "MyHousekit "+ partnerID;
+  constructor(private _params: RouteParams, private _geoLocation: GeoLocation){
+    var partnerName = this._params.get('partner_id');
+    document.title = "MyHousekit "+ partnerName;
 
+        //function that grabs the designated location needed for the client and if a partnerID is sent through then it will also set the partnerID and partnerScript for their Header
+        if(GlobalSettings.getHomeInfo().isSubdomainPartner) {
+          var hostname = window.location.hostname;
+          var parnterName = window.location.hostname.split('.')[1] + '.' + window.location.hostname.split('.')[2];
+          GlobalSettings.storedPartnerId(parnterName);
+        } else {
+          GlobalSettings.storedPartnerId(partnerName);
+          this.partnerID = partnerName;
+        }
   }
+
 }

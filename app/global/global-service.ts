@@ -5,13 +5,123 @@
  _@BATCH-1
  _@BATCH
  */
-import {List, List2} from './global-interface';
 import {Injectable} from 'angular2/core';
-import {HomePageData} from "./global-interface";
 import {Http, Headers} from 'angular2/http';
-import {GlobalFunctions} from './global-functions';
-import {GlobalSettings} from './global-settings';
-import {Observable} from 'rxjs/Rx';
+import {Observable} from "rxjs/Observable";
+import {GlobalFunctions} from "../global/global-functions";
+import {GlobalSettings} from "../global/global-settings";
+import {List, List2, HomePageData} from './global-interface';
+
+export interface geoLocate {
+    partner_id?: string;
+    partner_script?: string;
+    state?: string;
+    city?: string;
+    zipcode?: string;
+};
+
+@Injectable()
+
+export class GeoLocation{
+    geoData: any;
+    geoObservable: Observable<any>;
+
+    constructor(public http: Http) { }
+
+    getPartnerData(partner_id) {
+      let env = window.location.hostname.split('.')[0];
+      //let env = 'localhost';
+      if(env == 'localhost'){
+        var partnerID = partner_id.split('-');
+
+        //handles some cases where domain registries are different
+        var combinedID = [];
+        var domainRegisters = [];
+        for (var i = 0; i < partnerID.length; i++) {
+            if (partnerID[i] == "com" || partnerID[i] == "gov" || partnerID[i] == "net" || partnerID[i] == "org" || partnerID[i] == "co") {
+                combinedID.push(partnerID[i]);
+            } else {
+                domainRegisters.push(partnerID[i]);
+            }
+        }
+        partner_id = domainRegisters.join('-') + "." + combinedID.join('.');
+      }
+
+        var fullUrl = GlobalSettings.getPartnerApiUrl(partner_id);
+        return this.http.get(fullUrl)
+            .map(
+              res => res.json()
+            )
+            .flatMap(
+            data => {
+                if (data['results'] != null) {
+                    let partnerScript = data['results'].header.script;
+                    let partnerLocation = data['results']['location']['realestate']['location']['city'][0];
+                    if (!this.geoData) {
+                        this.geoData = {};
+                    }
+                    this.geoData['partner_id'] = partner_id;
+                    this.geoData['partner_script'] = partnerScript;
+                    // if (partnerLocation.state && partnerLocation.city) {
+                        this.geoData['state'] = partnerLocation.state;
+                        this.geoData['city'] = partnerLocation.city;
+                        return this.getGeoLocation();
+                        
+                        // return new Observable(observer => {
+                        //     observer.next(this.geoData);
+                        //     observer.complete();
+                        // });
+                    // }
+                }
+                // return data;
+            }
+            )
+            .share();
+    };
+
+    //api to get geo location
+    getGeoLocation() {
+        var getGeoLocation = GlobalSettings.getGeoLocation() + '/listhuv/?action=get_remote_addr2';
+        return this.http.get(getGeoLocation)
+            .map(
+              res => res.json()
+            )
+            .map(
+            data => {
+                data[0].state = data[0].state == null ? "us" : data[0].state;
+                let state = data[0].state.toLowerCase();
+                let city = data[0].city.replace(/ /g, "%20");
+                let zipcode = data[0].zipcode;
+                if (!this.geoData) {
+                    this.geoData = {};
+                }
+                this.geoData['userState'] = state;
+                this.geoData['userCity'] = city;
+                this.geoData['userZipcode'] = zipcode;
+                return this.geoData;
+            })
+            .share();
+    };
+
+    grabLocation(partnerID?: string) {
+        if (this.geoData) {
+            return new Observable(observer => {
+                observer.next(this.geoData);
+                observer.complete();
+            });
+        } else if (this.geoObservable) {
+            return this.geoObservable;
+        } else {
+            if (partnerID) {
+                this.geoObservable = this.getPartnerData(partnerID);
+            } else {
+                this.geoObservable = this.getGeoLocation();
+            }
+            return this.geoObservable;
+        }
+    };
+}
+
 
 @Injectable()
 
@@ -69,7 +179,7 @@ export class PartnerHeader {
 
 export class listViewPage {
   public protocolToUse: string = (location.protocol == "https:") ? "https" : "http";
-  public apiUrl: string = '://prod-joyfulhome-api.synapsys.us';
+  public apiUrl: string = GlobalSettings.getApiUrl();
 
   constructor(public http: Http, private globalFunctions: GlobalFunctions) {}
 
@@ -92,7 +202,7 @@ export class listViewPage {
     if(sort !== null){
       query.sort = sort;
     }
-    var fullUrl = this.protocolToUse + this.apiUrl +"/list";
+    var fullUrl = this.apiUrl +"/list";
 
     //list/homesAtLeast5YearsOld/KS/Wichita/empty/10/1
     for (var q in query) {
@@ -125,7 +235,7 @@ export class listViewPage {
     city = encodeURI(city);
     state = encodeURI(state);
 
-    var fullUrl = this.protocolToUse + this.apiUrl
+    var fullUrl = this.apiUrl
 
     // location/findYourHome/{state}/{city}/{priceLowerBound}/{priceUpperBound}/{type}/{bedrooms}/{bathrooms}/{squareFeet}/{lotSize}/{limit}/{page}
     // types: Townhouse, Condominium, Apartment, and Single Family Attached
@@ -146,7 +256,7 @@ export class ListOfListPage {
 
   constructor(public http: Http, private _globalFunctions: GlobalFunctions) { }
 
-  public apiUrl: string = 'http://prod-joyfulhome-api.synapsys.us';
+  public apiUrl: string = GlobalSettings.getApiUrl();
 
   getAddressListOfListPage(address){
     address = encodeURIComponent(address);
@@ -197,7 +307,7 @@ export class ListOfListPage {
 @Injectable()
 
 export class GlobalPage {
-  public apiUrl: string = 'http://prod-joyfulhome-api.synapsys.us';
+  public apiUrl: string = GlobalSettings.getApiUrl();
 
   constructor(public http: Http){}
   //Function to set custom headers
@@ -218,6 +328,10 @@ export class GlobalPage {
 @Injectable()
 
 export class DynamicWidgetCall {
+  /* you can replace apis with this proper call please test before you do
+  public apiUrl: string = GlobalSettings.getDynamicUrl + "/list_creator_api.php";
+  public apiCountyUrl: string = GlobalSettings.getDynamicUrl + "/ajc_list_api.php";
+  */
   public apiUrl: string = "http://dev-dw.synapsys.us/list_creator_api.php";
   public apiCountyUrl: string = "http://dev-dw.synapsys.us/ajc_list_api.php";
 

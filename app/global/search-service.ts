@@ -2,10 +2,12 @@ import {Injectable} from 'angular2/core';
 import {Http, Headers} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 import {GlobalFunctions} from "./global-functions";
+import {GlobalSettings} from './global-settings';
 
 @Injectable()
 
 export class SearchService{
+    public apiUrl: string = GlobalSettings.getApiUrl();
     result: Array<Object>;
     constructor(public http: Http, private _globalFunctions: GlobalFunctions){}
 
@@ -20,7 +22,7 @@ export class SearchService{
             //return new Observable.return([]);
         }
 
-        var url = 'http://prod-joyfulhome-api.synapsys.us/search/' + input;
+        var url = this.apiUrl + '/search/' + input;
 
         if(type === 'list'){
             url += '/true';
