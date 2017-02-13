@@ -40,7 +40,12 @@ export class GlobalFunctions{
         return val;
     }
     formatGlobalDate(value,identifier){
-      var unixValue = moment(value).unix();
+      if(value == null || typeof value == 'undefined'){
+        console.warn('formatGlobalDate() value is undefined. Defaulting to Todays Date');
+        unixValue = moment(new Date()).unix() * 1000;
+      } else {
+        var unixValue = moment(value).unix();
+      }
       if(unixValue.toString().length <= 11){
         unixValue = Number(unixValue) * 1000;
       } else {
@@ -54,10 +59,6 @@ export class GlobalFunctions{
       var timeZone = moment(unixValue).tz('America/New_York').format('hh:mmA (z)');
       var shortDate = moment(unixValue).format('MM/DD/YY');
       var year = moment(unixValue).format('YYYY');
-      if(unixValue.toString().length <= 11){
-        console.log('Error in formatGlobalDate() [globalfunc.js]');
-        return 'wrong date';
-      }
       switch(identifier) {
         case 'defaultDate':
           newDate = month + ' ' + shortDay + ', ' + year; // Oct. 03, 2006
