@@ -9,6 +9,7 @@ import {List} from "../../global/global-interface";
 import {HeroListComponent} from "../../components/hero/hero-list/hero-list.component";
 import {WidgetModule} from "../../modules/widget/widget.module";
 import {GlobalFunctions} from "../../global/global-functions";
+import {GlobalSettings} from "../../global/global-settings";
 import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
 
@@ -33,8 +34,10 @@ export class ListOfListsPage implements OnInit{
     listOfLists: any;
     lists: Array<any> = [];
     titleData: Object;
+    dataProvidedBy: string;
 
     constructor(private _params: RouteParams, private _listOfListPageService: ListOfListPage, private _listOfListPageServiceState: ListOfListPage, private _globalFunctions: GlobalFunctions) {
+        this.dataProvidedBy = GlobalSettings.getDataProvidedBy();
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }

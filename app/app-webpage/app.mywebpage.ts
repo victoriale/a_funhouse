@@ -264,19 +264,19 @@ export class MyAppComponent implements OnInit {
     getPartnerData() {
       this.partnerID = GlobalSettings.storedPartnerId();
       this._geoLocation.grabLocation(this.partnerID).subscribe(res => {
-        if(res.partner_id){
-          GlobalSettings.storedPartnerId(res.partner_id);
-          this.partnerID = res.partner_id;
-          this.cityLocation = this._globalFunctions.toTitleCase(decodeURI(res.city));
-          this.stateLocation = decodeURI(res.state);
+        if(res['partner_id']){
+          GlobalSettings.storedPartnerId(res['partner_id']);
+          this.partnerID = res['partner_id'];
+          this.cityLocation = this._globalFunctions.toTitleCase(decodeURI(res['city']));
+          this.stateLocation = decodeURI(res['state']);
           this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
         } else {
-          this.cityLocation = res.userCity;
-          this.stateLocation = res.userState;
+          this.cityLocation = res['userCity'];
+          this.stateLocation = res['userState'];
           this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
         }
-        if(res.partner_script){
-          this.partnerScript = res.partner_script;
+        if(res['partner_script']){
+          this.partnerScript = res['partner_script'];
         }
       },
       err => this.defaultCity()

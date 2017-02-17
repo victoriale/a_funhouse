@@ -192,19 +192,19 @@ export class AppComponent implements OnInit {
     getPartnerData() {
       this.partnerID = GlobalSettings.storedPartnerId();
       this._geoLocation.grabLocation(this.partnerID).subscribe(geo => {
-        if(geo.partner_id){
-          GlobalSettings.storedPartnerId(geo.partner_id);
-          this.partnerID = geo.partner_id;
-          this.cityLocation = this._globalFunctions.toTitleCase(decodeURI(geo.city));
-          this.stateLocation = decodeURI(geo.state);
+        if(geo['partner_id']){
+          GlobalSettings.storedPartnerId(geo['partner_id']);
+          this.partnerID = geo['partner_id'];
+          this.cityLocation = this._globalFunctions.toTitleCase(decodeURI(geo['city']));
+          this.stateLocation = decodeURI(geo['state']);
           this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
         } else {
-          this.cityLocation = geo.userCity;
-          this.stateLocation = geo.userState;
+          this.cityLocation = geo['userCity'];
+          this.stateLocation = geo['userState'];
           this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
         }
-        if(geo.partner_script){
-          this.partnerScript = geo.partner_script;
+        if(geo['partner_script']){
+          this.partnerScript = geo['partner_script'];
         }
       },
       err => this.defaultCity()
