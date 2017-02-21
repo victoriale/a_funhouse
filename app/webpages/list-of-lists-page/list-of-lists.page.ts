@@ -34,10 +34,8 @@ export class ListOfListsPage implements OnInit{
     listOfLists: any;
     lists: Array<any> = [];
     titleData: Object;
-    dataProvidedBy: string;
 
     constructor(private _params: RouteParams, private _listOfListPageService: ListOfListPage, private _listOfListPageServiceState: ListOfListPage, private _globalFunctions: GlobalFunctions) {
-        this.dataProvidedBy = GlobalSettings.getDataProvidedBy();
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }
@@ -104,7 +102,7 @@ export class ListOfListsPage implements OnInit{
             {
                 imageURL: '/app/public/joyfulhome_house.png',
                 smallText1: 'Last Updated: ' + this._globalFunctions.formatGlobalDate(new Date(),'timeZone'),
-                smallText2: ' United States',
+                smallText2: 'United States &nbsp;' + '| &nbsp;<p class="data-by-text">Data Provided By: ' + '<b>' + GlobalSettings.getDataProvidedBy() + '</b></p>',
                 heading1: this._globalFunctions.toCapititalization(this.cityLocation) + ', ' + this._globalFunctions.stateToAP(this.stateLocation) + ' Top Lists',
                 heading2: '',
                 heading3: '',
@@ -117,7 +115,7 @@ export class ListOfListsPage implements OnInit{
             {
                 imageURL: '/app/public/joyfulhome_house.png',
                 smallText1: 'Last Updated: ' + this._globalFunctions.formatGlobalDate(new Date(),'timeZone'),
-                smallText2: ' United States',
+                smallText2: 'United States &nbsp;' + '| &nbsp;<p class="data-by-text">Data Provided By: ' + '<b>' + GlobalSettings.getDataProvidedBy() + '</b></p>',
                 heading1: this._globalFunctions.fullstate(this.stateLocation) + ' Top Lists',
                 heading2: '',
                 heading3: '',

@@ -46,6 +46,9 @@
                 </div>
 
                 <!-- Sort Options -->
+                <div class="data-provider">
+                    <p class="data-by-text">Data Provided By: <b>{{dataProvidedBy}}</b></p>
+                </div>
                 <div *ngIf="listName !== 'filter'" class="lv-sort">
                     Sort by:
                     <select (change)="sortChange($event)" id="sort_by" style = "margin-top: 1px;">
@@ -130,9 +133,6 @@
 
                 <!-- Pagination Footer -->
                 <pagination-footer *ngIf="paginationParameters" [paginationParameters]="paginationParameters"></pagination-footer>
-                <div class="data-provider">
-                    <p class="data-by-text">Data Provided By: <b>{{dataProvidedBy}}</b></p>
-                </div>
             </section>
         </section>
         <div class="four-col">
