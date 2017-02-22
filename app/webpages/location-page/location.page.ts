@@ -77,8 +77,8 @@ export class LocationPage implements OnInit {
                   .subscribe(
                       res => {
                       this.partnerData = res;
-                      this.locCity = this._globalFunctions.toTitleCase(decodeURI(res.userCity));
-                      this.locState = decodeURI(res.userState).toUpperCase();
+                      this.locCity = this._globalFunctions.toTitleCase(decodeURI(res['userCity']));
+                      this.locState = decodeURI(res['userState']).toUpperCase();
                       this.dataCalls();
                       }
                   );
