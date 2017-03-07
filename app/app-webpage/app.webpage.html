@@ -1,7 +1,10 @@
-<div id="partner" *ngIf="partnerScript" [innerHTML]="partnerScript"></div>
-<div class=webpage-home>
-  <header-component [partnerID]="partnerID"></header-component>
+<div class="header_container">
+    <div id="partner" *ngIf="partnerScript" [innerHTML]="partnerScript"></div>
+    <div class=webpage-home>
+      <header-component [partnerID]="partnerID"></header-component>
+    </div>
 </div>
+
 <div class="container" style="min-height: 900px;">
     <router-outlet></router-outlet>
 </div>
