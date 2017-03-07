@@ -1,4 +1,4 @@
-<div id="partner" *ngIf="partnerScript" [innerHTML]="partnerScript"></div>
+<div id="partner" *ngIf="partnerScript" style="position: relative; z-index: 1000;" [style.height]="iframeMaxHeight" [innerHTML]="partnerScript"></div>
 <div class=webpage-home>
   <header-component [partnerID]="partnerID"></header-component>
 </div>
