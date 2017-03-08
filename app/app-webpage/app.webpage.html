@@ -1,13 +1,20 @@
-<div class="header_container">
+<div id="header_container"
+    [style.top]="headerAdjustment"
+    [ngClass]="{'slide-up': scrollMenuUp, 'slide-down': !scrollMenuUp}"
+    (window:scroll)="onScroll($event)">
     <div id="partner" *ngIf="partnerScript" [innerHTML]="partnerScript"></div>
     <div class=webpage-home>
-      <header-component [partnerID]="partnerID"></header-component>
+      <header-component
+          id="stickyHeader"
+          [partnerID]="partnerID">
+      </header-component>
     </div>
 </div>
 
-<div class="container" style="min-height: 900px;">
+<div class="container" style="min-height: 900px;" [style.padding-top]="scrollPadding">
     <router-outlet></router-outlet>
 </div>
+
 <div class=webpage-home>
   <footer-component *ngIf="geoData" [partnerID]="partnerID" [geoData]="geoData"></footer-component>
 </div>

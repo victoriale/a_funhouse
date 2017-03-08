@@ -1,4 +1,4 @@
-import {Component, OnInit, Injector} from 'angular2/core';
+import {Component, OnInit, Injector, AfterContentChecked} from 'angular2/core';
 import {RouteParams, Router, RouteData, RouteConfig, RouterOutlet, ROUTER_DIRECTIVES, LocationStrategy, RouterLink} from 'angular2/router';
 import {ProfilePage} from "../webpages/profile-page/profile.page";
 import {LocationPage} from "../webpages/location-page/location.page";
@@ -171,7 +171,7 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
     }
 ])
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterContentChecked {
     //declare variables to grab potential partner header
     geoData: any;
     public partnerID: string;
@@ -184,10 +184,43 @@ export class AppComponent implements OnInit {
     private _activatedRoute: any;
     private partner_script: string;
 
+    private scrollPadding:any = '100px';
+    private headerAdjustment:any = '0px';
+
+    public scrollTopPrev: number = 0;
+    public scrollMenuUp: boolean = false;
+    public headerTransitionAmount: number = 0;
+    public pageHeader: any;
+    public pageHeaderHeight: number = 0;
+    public currentPageHeaderVal: number = 0;
+
     nearByCities: Object;
 
-    constructor(private _injector: Injector,private _partnerData: PartnerHeader, private _params: RouteParams, private route: Router, private routeData: RouteData, private routerLink: RouterLink, private _globalFunctions: GlobalFunctions, private _nearByCitiesService: NearByCitiesService, private _geoLocation: GeoLocation){
+    constructor(
+        private _injector: Injector,
+        private _partnerData: PartnerHeader,
+        private _params: RouteParams,
+        private route: Router,
+        private routeData: RouteData,
+        private routerLink: RouterLink,
+        private _globalFunctions: GlobalFunctions,
+        private _nearByCitiesService: NearByCitiesService,
+        private _geoLocation: GeoLocation) {}
+
+
+
+    ngOnInit() {
+      this.getPartnerData();
+      this.getGeoLocation();
     }
+
+
+
+    ngAfterContentChecked() {
+        this.getHeaderHeight();
+    }
+
+
 
     getPartnerData() {
       this.partnerID = GlobalSettings.storedPartnerId();
@@ -243,10 +276,49 @@ export class AppComponent implements OnInit {
         }
     }
 
-    ngOnInit() {
-      this.getPartnerData();
-      this.getGeoLocation();
-    }
+
+
+    // Page is being scrolled
+    onScroll(event) {
+        var headerBottomBar = document.getElementById('stickyHeader');
+        var headerBottomBarHeight = 55;
+        var scrollTop = event.srcElement ? event.srcElement.body.scrollTop : document.documentElement.scrollTop; //fallback for firefox scroll events
+        var scrollPolarity = scrollTop - this.scrollTopPrev; //determines if user is scrolling up or down
+        var headerHeight = this.pageHeaderHeight - headerBottomBarHeight;
+        if (scrollPolarity > 0) {
+            this.scrollMenuUp = true;
+            if (this.headerTransitionAmount >= -headerHeight) {
+                this.headerTransitionAmount = this.headerTransitionAmount - scrollPolarity;
+                if (this.headerTransitionAmount < -headerHeight) { //if the value doesn't calculate quick enough based on scroll speed set it manually
+                    this.headerTransitionAmount = -headerHeight;
+                }
+            }
+        }
+        else if (scrollPolarity < 0) {
+            this.scrollMenuUp = false;
+            this.headerTransitionAmount = 0;
+        }
+        // fix for 'page overscroll' in safari
+        if (scrollTop == 0) {
+            this.headerTransitionAmount = 0;
+        }
+        this.headerAdjustment = this.headerTransitionAmount;
+        this.scrollTopPrev = scrollTop; //defines scrollPolarity
+    } // onScroll
+
+
+
+    getHeaderHeight() {
+        var pageHeader = document.getElementById('header_container');
+        this.pageHeaderHeight = pageHeader.offsetHeight;
+        if ( this.pageHeaderHeight != this.currentPageHeaderVal ) {
+            this.scrollPadding = this.pageHeaderHeight;
+            this.currentPageHeaderVal = this.pageHeaderHeight;
+        }
+        return this.pageHeaderHeight;
+    } //getHeaderHeight
+
+
 
     /* Navigates to top of page on navigation */
     routerOnDeactivate(){
