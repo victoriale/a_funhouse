@@ -4,9 +4,7 @@
     (window:scroll)="onScroll($event)">
     <div id="partner" *ngIf="partnerScript" [innerHTML]="partnerScript"></div>
     <div class=webpage-home>
-      <header-component
-          id="stickyHeader"
-          [partnerID]="partnerID">
+      <header-component id="stickyHeader" [partnerID]="partnerID">
       </header-component>
     </div>
 </div>
