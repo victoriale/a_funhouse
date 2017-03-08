@@ -9,6 +9,7 @@ import {List} from "../../global/global-interface";
 import {HeroListComponent} from "../../components/hero/hero-list/hero-list.component";
 import {WidgetModule} from "../../modules/widget/widget.module";
 import {GlobalFunctions} from "../../global/global-functions";
+import {GlobalSettings} from "../../global/global-settings";
 import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
 
@@ -101,7 +102,7 @@ export class ListOfListsPage implements OnInit{
             {
                 imageURL: '/app/public/joyfulhome_house.png',
                 smallText1: 'Last Updated: ' + this._globalFunctions.formatGlobalDate(new Date(),'timeZone'),
-                smallText2: ' United States',
+                smallText2: 'United States &nbsp;' + '| &nbsp;<p class="data-by-text">Data Provided By: ' + '<b>' + GlobalSettings.getDataProvidedBy() + '</b></p>',
                 heading1: this._globalFunctions.toCapititalization(this.cityLocation) + ', ' + this._globalFunctions.stateToAP(this.stateLocation) + ' Top Lists',
                 heading2: '',
                 heading3: '',
@@ -114,7 +115,7 @@ export class ListOfListsPage implements OnInit{
             {
                 imageURL: '/app/public/joyfulhome_house.png',
                 smallText1: 'Last Updated: ' + this._globalFunctions.formatGlobalDate(new Date(),'timeZone'),
-                smallText2: ' United States',
+                smallText2: 'United States &nbsp;' + '| &nbsp;<p class="data-by-text">Data Provided By: ' + '<b>' + GlobalSettings.getDataProvidedBy() + '</b></p>',
                 heading1: this._globalFunctions.fullstate(this.stateLocation) + ' Top Lists',
                 heading2: '',
                 heading3: '',
