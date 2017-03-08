@@ -1,3 +1,15 @@
+//this container holds bother parter header and site header, HTML is in app.webpage
+#header_container {
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    z-index: 999;
+    &.slide-down {
+        transition: top .35s ease-in-out;
+    }
+} //header-container
+
+
 .header-top-bar-wrapper {
   width: 100%;
   background-color: #fff;
@@ -39,7 +51,7 @@
   z-index: 10000 !important;
 }
 .header-margin {
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
 }
 .header-share {
   height:56px;
