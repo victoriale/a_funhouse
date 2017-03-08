@@ -253,6 +253,7 @@ export class MyAppComponent implements OnInit, AfterContentChecked {
     public listTitle: string = 'homes-largest';
     public pageNumber: number = 1;
     public partnerScript:string;
+    public iframeMaxHeight: any;
     public cityStateLocation: string;
     public cityLocation: string;
     public stateLocation: string;
@@ -277,6 +278,7 @@ export class MyAppComponent implements OnInit, AfterContentChecked {
         if(res['partner_id']){
           GlobalSettings.storedPartnerId(res['partner_id']);
           this.partnerID = res['partner_id'];
+          this.iframeMaxHeight = res['height'];
           this.cityLocation = this._globalFunctions.toTitleCase(decodeURI(res['city']));
           this.stateLocation = decodeURI(res['state']);
           this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();

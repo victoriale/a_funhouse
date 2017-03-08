@@ -2,10 +2,9 @@
     [style.top]="headerAdjustment"
     [ngClass]="{'slide-up': scrollMenuUp, 'slide-down': !scrollMenuUp}"
     (window:scroll)="onScroll($event)">
-    <div id="partner" *ngIf="partnerScript" [innerHTML]="partnerScript"></div>
+    <div id="partner" *ngIf="partnerScript" style="position: relative; z-index: 1000;" [style.height]="iframeMaxHeight" [innerHTML]="partnerScript"></div>
     <div class=webpage-home>
-      <header-component id="stickyHeader" [partnerID]="partnerID">
-      </header-component>
+      <header-component [partnerID]="partnerID"></header-component>
     </div>
 </div>
 
