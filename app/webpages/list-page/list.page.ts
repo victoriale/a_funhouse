@@ -8,6 +8,7 @@ import {DetailedListComponent} from '../../components/detailed-list/detailed-lis
 import {PhotoListComponent} from '../../components/photo-list/photo-list.component';
 import {WidgetModule} from "../../modules/widget/widget.module";
 import {GlobalFunctions} from "../../global/global-functions";
+import {GlobalSettings} from "../../global/global-settings";
 import {TitleComponent} from '../../components/title/title.component';
 import {PaginationFooter} from "../../components/pagination-footer/pagination-footer.component";
 import {listViewPage} from '../../global/global-service';
@@ -87,7 +88,10 @@ export class ListPage implements OnInit{
     filterLot: string;
     filterType: string;
 
+    dataProvidedBy: string;
+
     constructor(private _params: RouteParams, private globalFunctions: GlobalFunctions, private listViewData: listViewPage, private _router: Router) {
+        this.dataProvidedBy = GlobalSettings.getDataProvidedBy();
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }

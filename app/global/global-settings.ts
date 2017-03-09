@@ -15,6 +15,8 @@ export class GlobalSettings {
   private static _dynamicApiUrl:string = 'dw.synapsys.us';
   private static _partnerApiUrl: string = 'apireal.synapsys.us/listhuv/?action=get_partner_data&domain=';
 
+  private static _dataProvidedBy: string = 'ListHub';
+
 
   static getEnv(env:string):string {
     if (env == "localhost"){
@@ -70,6 +72,10 @@ export class GlobalSettings {
   static getImageUrl(relativePath):string {
       var relPath = relativePath != null && relativePath != "" ? this._proto + "//" + this._imageUrl + relativePath: '/app/public/placeholder_XL.png';
       return relPath;
+  }
+
+  static getDataProvidedBy():string {
+    return this._dataProvidedBy;
   }
 
   //grabs the domain name of the site and sees if it is our partner page

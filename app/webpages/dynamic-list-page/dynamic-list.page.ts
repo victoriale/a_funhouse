@@ -10,6 +10,7 @@ import {DynamicListComponent} from '../../components/dynamic-list/dynamic-list.c
 import {WidgetModule} from "../../modules/widget/widget.module";
 import {DynamicWidgetCall} from '../../global/global-service';
 import {GlobalFunctions} from "../../global/global-functions";
+import {GlobalSettings} from "../../global/global-settings";
 import {TitleComponent} from '../../components/title/title.component';
 import {PaginationFooter} from "../../components/pagination-footer/pagination-footer.component";
 import {ErrorComponent} from "../../components/error/error.component";
@@ -47,9 +48,11 @@ export class DynamicListPage implements OnInit {
   paginationParameters: Object;
   displayData: {}; //this is what is being inputed into the DOM
   index: number = 0;
+  dataProvidedBy: string;
 
 
   constructor(private _params: RouteParams, private _globalFunctions: GlobalFunctions, private dynamicWidget: DynamicWidgetCall, public router: Router) {
+      this.dataProvidedBy = GlobalSettings.getDataProvidedBy();
     //parse out needed values from single param
       //this.dynamicWidget.getWidgetData('1', 103, 'TAMPA')//EXAMPLE NEED TO MAKE IT DYNAMIC TO ACCEPT ANYTHING
       //query USED TO look something like this "tw=1&sw=103&input=TAMPA";

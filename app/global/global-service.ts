@@ -15,6 +15,7 @@ import {List, List2, HomePageData} from './global-interface';
 export interface geoLocate {
     partner_id?: string;
     partner_script?: string;
+    height?:any;
     state?: string;
     city?: string;
     zipcode?: string;
@@ -56,17 +57,19 @@ export class GeoLocation{
             data => {
                 if (data['results'] != null) {
                     let partnerScript = data['results'].header.script;
+                    let partnerHeight = data['results'].header.height;
                     let partnerLocation = data['results']['location']['realestate']['location']['city'][0];
                     if (!this.geoData) {
                         this.geoData = {};
                     }
                     this.geoData['partner_id'] = partner_id;
                     this.geoData['partner_script'] = partnerScript;
+                    this.geoData['height'] = partnerHeight;
                     // if (partnerLocation.state && partnerLocation.city) {
                         this.geoData['state'] = partnerLocation.state;
                         this.geoData['city'] = partnerLocation.city;
                         return this.getGeoLocation();
-                        
+
                         // return new Observable(observer => {
                         //     observer.next(this.geoData);
                         //     observer.complete();

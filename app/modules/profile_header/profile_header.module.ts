@@ -58,7 +58,6 @@ export class ProfileHeader implements OnInit{
         data.city = this.globalFunctions.toTitleCase(data.city);
         data.state = this.globalFunctions.stateToAP(data.state);
         var location = data.city + ", " + data.state;
-
         if(this.profileType== 'LocationPage'){
             //Location Profile Header
 
