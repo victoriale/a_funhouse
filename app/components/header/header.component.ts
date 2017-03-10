@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from 'angular2/core';
+import {Component} from 'angular2/core';
 import {Router, ROUTER_DIRECTIVES} from "angular2/router";
 import {HeaderSearchComponent} from "./header-search/header-search.component";
 import {GlobalSettings} from "../../global/global-settings";
@@ -14,8 +14,7 @@ declare var stButtons: any;
     inputs: ['partnerID', 'cityStateLocation'],
 })
 
-export class HeaderComponent implements OnInit{
-
+export class HeaderComponent {
     public isHomePage: boolean;
     public isMyHouseKit: boolean;
     partnerID: string;
@@ -36,7 +35,7 @@ export class HeaderComponent implements OnInit{
                 route => {
                     this.curRoute = route;
                     var hostname = window.location.hostname;
-                  
+
                     var partnerID = GlobalSettings.getHomeInfo().partnerName;
                     this.isSubdomain = GlobalSettings.getHomeInfo().isSubdomainPartner;
                     this.isHomePage = GlobalSettings.getHomeInfo().isHome;
@@ -79,19 +78,6 @@ export class HeaderComponent implements OnInit{
         this.directoryVisible = !this.directoryVisible;
     }
 
-    // Page is being scrolled
-    onScroll(event) {
-        var scrollTop = jQuery(window).scrollTop();
-        if ((55) > scrollTop) {
-            this.isScrolling = false;
-        }else{
-            this.isScrolling = true;
-        }
-       //console.log('scroll event', event, scrollTop, this.isScrolling);
-    }
-
-    ngOnInit() {
-    }
     locateShareThis() {
       stButtons.locateElements();
     }
