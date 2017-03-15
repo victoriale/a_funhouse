@@ -177,7 +177,8 @@ export class MagazinePage {
                     'es_page_type': 'Magazine',
                 },
                 {
-                    'es_keywords': 'joyful home, Magazine, ' + keywords
+                    'es_keywords': 'joyful home, Magazine, ' +data1.contact.address.fullStreetAddress+', '+ data1.contact.address.city +', '+data1.contact.address.state+', '+data1.contact.address.postalCode+', '+data1.info.demographics.formattedPrice
+                    +', '+keywords
                 },
                 {
                     'es_image_url':image
