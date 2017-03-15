@@ -22,11 +22,6 @@
                         <!--Map Section-->
                         <map-module *ngIf="mapData && addressObject" [addressObject]="addressObject" [mapData]="mapData"></map-module>
 
-                        <!--Comment Section-->
-                        <section *ngIf="!partnerCheck">
-                          <comment-module></comment-module>
-                        </section>
-
                         <!-- Crime Section -->
                         <headline-component *ngIf="crimeData" [data]="headlineCrime"></headline-component>
                         <crime-module *ngIf="crimeData" [crimeData]="crimeData"></crime-module>
@@ -55,6 +50,10 @@
                         <!--Like Us On FB Module-->
                         <section *ngIf="!partnerCheck">
                           <like-us-module></like-us-module>
+                        </section>
+                        <!--Comment Section-->
+                        <section *ngIf="!partnerCheck">
+                          <comment-module></comment-module>
                         </section>
                         <!--Learn More About Us-->
                         <about-us-module *ngIf="isChecked" [partnerID]="partnerID"></about-us-module>
