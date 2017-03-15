@@ -15,6 +15,7 @@ import {ErrorComponent} from '../../components/error/error.component';
 import {TitleComponent} from '../../components/title/title.component';
 import {DynamicCarousel2} from "../../components/carousel/dynamic-carousel2/dynamic-carousel2";
 import {PaginationFooter} from '../../components/pagination-footer/pagination-footer.component';
+import {SeoService} from "../../global/seo.service";
 
 declare var moment: any;
 
@@ -23,7 +24,7 @@ declare var moment: any;
     templateUrl: './app/webpages/amenities-lists/amenities-lists.page.html',
 
     directives: [PaginationFooter, WidgetModule, moduleHeader, HeroListComponent, ROUTER_DIRECTIVES, LoadingComponent, BackTabComponent, ErrorComponent, TitleComponent, DynamicCarousel2],
-    providers: [LocationProfileService]
+    providers: [LocationProfileService, SeoService]
 })
 
 export class AmenitiesListPage implements OnInit{
@@ -53,9 +54,11 @@ export class AmenitiesListPage implements OnInit{
   public locUrl: Object;
   @Input() amenitiesNearListingData: any;
 
+  amenitiesDataForSeo:any;
+
   public isError: boolean = false;
 
-  constructor(private _params: RouteParams, private router: Router, private globalFunctions: GlobalFunctions,  private _locationService: LocationProfileService, params: RouteParams){
+  constructor(private _params: RouteParams, private router: Router, private globalFunctions: GlobalFunctions,  private _locationService: LocationProfileService, params: RouteParams, private _seo:SeoService){
       this.paramCategory = params.params['listname'];
       if(this.paramCategory == 'restaurant'){
         this.displayCategory = 'restaurants';
@@ -71,13 +74,16 @@ export class AmenitiesListPage implements OnInit{
           .subscribe(
               amenitiesData => {
                 this.amenitiesData = this.dataFormatter(amenitiesData);
+                this.amenitiesDataForSeo = this.amenitiesData;
                 this.sanitizeListofListData();
+                this.createMetaTags(this.titleComponentData,this.amenitiesData);
               },
               err => {
                 console.log('Error: Amenities Page API', err);
                 this.isError = true;
               }
           );
+
   }
 
   dataFormatter(data){
@@ -199,6 +205,7 @@ export class AmenitiesListPage implements OnInit{
     this.locUrl = {loc: this.globalFunctions.toLowerKebab(this.locCity) + '-' + this.locState.toLowerCase()};
     this.location = this.globalFunctions.toTitleCase(this.locCity) + ', ' + this.globalFunctions.stateToAP(this.locState);
     this.getData();
+
   }//end ngOnInit
 
   // On Change Call
@@ -214,5 +221,75 @@ export class AmenitiesListPage implements OnInit{
     /* Navigates to top of page on navigation */
     routerOnDeactivate(){
         window.scrollTo(0,0);
+    }
+
+    createMetaTags(data1,data2){
+        this._seo.removeMetaTags();
+        var kArray = [];
+        for(var i=0;i<data2.length;i++){
+            let searchKey = data2[i].categories;
+            let searchName = data2[i].name;
+            let searchCity = data2[i].location.city;
+            if(SeoService.checkData(searchKey)){
+               kArray.push(searchKey)
+            }
+            if(SeoService.checkData(searchName)){
+                kArray.push(searchName)
+            }
+            if(SeoService.checkData(searchCity)){
+                kArray.push(searchCity)
+            }
+
+
+        }
+        var filteredkArray = kArray.filter((item,pos)=>{
+            return kArray.indexOf(item) == pos;
+        })
+        let metaDesc = data1.heading1;
+        let link = window.location.href;
+        let title = 'Near-By Amenities List Page';
+        let ImageU = data1.imageURL;
+        this._seo.setTitle(title);
+        this._seo.setMetaDescription(metaDesc);
+        this._seo.setCanonicalLink(this._params,this.router);
+
+        this._seo.setMetaTags(
+            [
+                {
+                    'og:title': title,
+                },
+                {
+                    'og:description': metaDesc,
+                },
+                {
+                    'og:type':'website',
+                },
+                {
+                    'og:url':link,
+                },
+                {
+                    'og:image': ImageU,
+                },
+                {
+                    'es_page_title': title,
+                },
+                {
+                    'es_page_url': link
+                },
+                {
+                    'es_description': metaDesc,
+                },
+                {
+                    'es_page_type': 'Amenities List Page',
+                },
+                {
+                    'es-category':data2[0].categories,
+                },
+                {
+                    'es_keywords': filteredkArray.join(',')
+                }
+            ]
+        )
+
     }
 }

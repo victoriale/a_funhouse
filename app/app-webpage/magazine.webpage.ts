@@ -13,6 +13,7 @@ import {KeyInformation} from "../modules/magazine/key-information/key-informatio
 import {NavLeftComponent} from "../components/magazine/mag-nav-left/mag-nav-left.component";
 import {NavRightComponent} from "../components/magazine/mag-nav-right/mag-nav-right.component";
 import {MagErrorModule} from "../modules/magazine/mag-error/mag-error.module";
+import {SeoService} from "../global/seo.service";
 
 declare var jQuery:any;
 
@@ -21,7 +22,7 @@ declare var jQuery:any;
     templateUrl: './app/app-webpage/magazine.webpage.html',
 
     directives: [Contact, Neighborhood, Recommendations, Amenities, MagHeaderModule, FooterComponent, ROUTER_DIRECTIVES, MagOverviewModule, NavLeftComponent, NavRightComponent, MagErrorModule],
-    providers: [MagazineDataService],
+    providers: [MagazineDataService, SeoService],
 })
 
 @RouteConfig([
@@ -62,7 +63,7 @@ declare var jQuery:any;
     }
 ])
 
-export class MagazinePage implements OnInit {
+export class MagazinePage {
     address:string;
     toc:any;
     magazineData:MagData;
@@ -70,7 +71,7 @@ export class MagazinePage implements OnInit {
     showErrorPage:boolean = false;
     static timeout:number;
 
-    constructor(private _params:RouteParams, private _magazineDataService:MagazineDataService, private _router:Router) {
+    constructor(private _params:RouteParams, private _magazineDataService:MagazineDataService, private _router:Router, private _seo:SeoService) {
         this.address = _params.get('addr');
         this.getMagServiceData();
     }
@@ -81,6 +82,8 @@ export class MagazinePage implements OnInit {
                 rawData => {
                     this.magazineData = rawData;
                     this.toc = this.buildToc(rawData);
+                    this.createMetaTags(this.magazineData, this.toc);
+
                 },
                 err => {
                     this._router.navigate(['../Webpages', 'Profile-page', {address: this.address}]);
@@ -128,6 +131,59 @@ export class MagazinePage implements OnInit {
         jQuery('.page-wrapper').css('min-height', 0);
     }
 
-    ngOnInit() {
+    createMetaTags(data1, data2){
+        this._seo.removeMetaTags();
+
+        var keywords=[];
+        let metaDesc = data1.overview!=null||data1.overview!=undefined?data1.overview.content[0]+data1.overview.content[1]:'';
+        data2.forEach((val)=>{
+            keywords.push(val.label);
+        })
+        keywords.join(',')
+        let link = window.location.href;
+        let title = 'Magazine';
+        this._seo.setTitle(title);
+        this._seo.setMetaDescription(metaDesc.substr(0,167)+'...');
+        this._seo.setCanonicalLink(this._params,this._router);
+        let image = data1.overview!=null||data1.overview!=undefined? data1.overview.photos[0]:'';
+
+        this._seo.setMetaTags(
+            [
+                {
+                    'og:title': title,
+                },
+                {
+                    'og:description': metaDesc,
+                },
+                {
+                    'og:type':'website',
+                },
+                {
+                    'og:url':link,
+                },
+                {
+                    'og:image':image,
+                },
+                {
+                    'es_page_title': title,
+                },
+                {
+                    'es_page_url': link
+                },
+                {
+                    'es_description': metaDesc,
+                },
+                {
+                    'es_page_type': 'Magazine',
+                },
+                {
+                    'es_keywords': 'joyful home, Magazine, ' + keywords
+                },
+                {
+                    'es_image_url':image
+                }
+            ]
+        )
+
     }
 }
