@@ -21,7 +21,6 @@ import {TrendingHomes} from "../../modules/trending-homes/trending-homes.module"
 import {Injector} from 'angular2/core';
 import {WebApp} from '../../app-layout/app.layout';
 import {MyWebApp} from '../../app-layout/app.mylayout';
-import {PartnerHeader} from "../../global/global-service";
 import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
 import {GlobalSettings} from "../../global/global-settings";
@@ -33,7 +32,7 @@ import {GeoLocation} from "../../global/global-service";
     templateUrl: './app/webpages/location-page/location.page.html',
 
     directives: [ListOfListModule, HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, FindYourHomeModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule, WidgetModule, AmenitiesModule, TrendingHomes, ErrorComponent, LoadingComponent],
-    providers: [PartnerHeader, ListOfListPage, LocationProfileService, GlobalFunctions]
+    providers: [ListOfListPage, LocationProfileService, GlobalFunctions]
 })
 
 export class LocationPage implements OnInit {
@@ -63,7 +62,13 @@ export class LocationPage implements OnInit {
     public isError: boolean = false;
     public isChecked: boolean;
 
-    constructor(private _partnerData:PartnerHeader, private _router:Router, private _params: RouteParams, private _locationProfileService: LocationProfileService, private _listService: ListOfListPage, private _globalFunctions: GlobalFunctions, private _geoLocation: GeoLocation) {
+    constructor(
+      private _router:Router,
+      private _params: RouteParams,
+      private _locationProfileService: LocationProfileService,
+      private _listService: ListOfListPage,
+      private _globalFunctions: GlobalFunctions,
+      private _geoLocation: GeoLocation) {
 
         this._router.root
             .subscribe(
@@ -72,7 +77,7 @@ export class LocationPage implements OnInit {
                   var hostname = window.location.hostname;
                   var myhousekit = /myhousekit/.test(hostname);
                   var isSubDomain = GlobalSettings.getHomeInfo().isSubdomainPartner;
-                  
+
                   this._geoLocation.grabLocation(this.partnerID)
                   .subscribe(
                       res => {

@@ -27,7 +27,6 @@ import {DynamicListPage} from "../webpages/dynamic-list-page/dynamic-list.page";
 import {NearByCitiesService} from "../global/geo-location.service";
 
 import {MyWebApp} from "../app-layout/app.mylayout";
-import {PartnerHeader} from "../global/global-service";
 import {GlobalSettings} from "../global/global-settings";
 import {GlobalFunctions} from "../global/global-functions";
 import {CityViewPage} from "../webpages/city-view-page/city-view.page";
@@ -38,7 +37,7 @@ import {GeoLocation} from "../global/global-service";
     templateUrl: './app/app-webpage/app.webpage.html',
 
     directives: [PartnerHomePage, RouterOutlet, ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ListPage, ListOfListsPage, AmenitiesListPage, ROUTER_DIRECTIVES, DirectoryPage, SchoolListsPage],
-    providers: [PartnerHeader, ROUTER_DIRECTIVES, NearByCitiesService, ErrorPage],
+    providers: [ROUTER_DIRECTIVES, NearByCitiesService, ErrorPage],
 })
 
 @RouteConfig([
@@ -269,7 +268,15 @@ export class MyAppComponent implements OnInit, AfterContentChecked {
     public pageHeaderHeight: number = 0;
     public currentPageHeaderVal: number = 0;
 
-    constructor(private _injector: Injector,private _partnerData: PartnerHeader, private _params: RouteParams, private route: Router, private routeData: RouteData, private routerLink: RouterLink, private _globalFunctions: GlobalFunctions, private _nearByCitiesService: NearByCitiesService,  private _geoLocation: GeoLocation){
+    constructor(
+      private _injector: Injector,
+      private _params: RouteParams,
+      private route: Router,
+      private routeData: RouteData,
+      private routerLink: RouterLink,
+      private _globalFunctions: GlobalFunctions,
+      private _nearByCitiesService: NearByCitiesService,
+      private _geoLocation: GeoLocation){
     }
 
     getPartnerData() {
