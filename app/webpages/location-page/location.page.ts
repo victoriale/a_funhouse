@@ -36,7 +36,7 @@ import {SeoService} from "../../global/seo.service";
     providers: [ListOfListPage, LocationProfileService, GlobalFunctions, SeoService]
 })
 
-export class LocationPage implements OnInit {
+export class LocationPage {
     loc: string;
     locCity: string;
     locState: string;

@@ -157,7 +157,6 @@ export class CityViewPage implements OnInit{
         this.displayCity = this._globalFunctions.toTitleCase(this.paramCity);
         this.cityStateLocationKey = this._globalFunctions.toLowerKebab(this.paramState) + '-' + this.paramCity.toLowerCase();
         this.getData();
-        console.log("cityview page");
     }
 
     /* Navigates to top of page on navigation */
