@@ -28,7 +28,6 @@ import {NearByCitiesService} from "../global/geo-location.service";
 import {GeoLocation} from "../global/global-service";
 
 import {WebApp} from "../app-layout/app.layout";
-import {PartnerHeader} from "../global/global-service";
 import {GlobalSettings} from "../global/global-settings";
 import {GlobalFunctions} from "../global/global-functions";
 import {CityViewPage} from "../webpages/city-view-page/city-view.page";
@@ -38,137 +37,212 @@ import {CityViewPage} from "../webpages/city-view-page/city-view.page";
     templateUrl: './app/app-webpage/app.webpage.html',
 
     directives: [PartnerHomePage, RouterOutlet, ProfilePage, HomePage, ExploreButtonComponent, ComponentPage, HeaderComponent, FooterComponent, HeroComponent, HeroSearchComponent, ExploreTilesComponent, HeroBottomComponent, FeatureTilesComponent, ListPage, ListOfListsPage, AmenitiesListPage, ROUTER_DIRECTIVES, DirectoryPage, SchoolListsPage],
-    providers: [PartnerHeader, ROUTER_DIRECTIVES, NearByCitiesService, ErrorPage, GeoLocation],
+    providers: [ROUTER_DIRECTIVES, NearByCitiesService, ErrorPage, GeoLocation],
 })
 
 @RouteConfig([
-    {
-       path: '/',
-       name: 'Home-page',
-       component: HomePage,
-       useAsDefault: true,
-    },
-    {
-        path: '/listing/:address',
-        name: 'Profile-page',
-        component: ProfilePage,
-    },
-    {
-        path: '/location/:loc',
-        name: 'Location-page',
-        component: LocationPage,
-    },
-    {
-        path: '/location',
-        name: 'Empty-Location-page',
-        component: LocationPage,
-    },
-    {
-        path: '/:viewType/:listname/:state/:city/page/:page',
-        name: 'List-page',
-        component: ListPage,
-    },
-    {
-        path: '/:viewType/:listname/:state/page/:page',
-        name: 'List-page-state',
-        component: ListPage,
-    },
-    {
-        path: '/:viewType/:listname/:state/:city/:priceLowerBound/:priceUpperBound/:type/:bedrooms/:bathrooms/:squareFeet/:lotSize/:limit/:page',
-        name: 'List-page-filter',
-        component: ListPage,
-    },
-    {
-        path: '/list-of-lists/:state/:city',
-        name: 'List-of-lists-page',
-        component: ListOfListsPage,
-    },
-    {
-        path: '/list-of-lists/:state',
-        name: 'List-of-lists-page-state',
-        component: ListOfListsPage,
-    },
-    {
-        path: '/amenities-lists-page/:listname/:state/:city',
-        name: 'Amenities-lists-page',
-        component: AmenitiesListPage,
-    },
-    {
-        path: '/school-lists-page/:listname/:state/:city',
-        name: 'School-lists-page',
-        component: SchoolListsPage,
-    },
-    {
-        path: '/component',
-        name: 'Component-page',
-        component: ComponentPage,
-    },
-    {
-        path: '/aboutus',
-        name: 'Aboutus-page',
-        component: AboutUsPage,
-    },
-    {
-        path: '/contactus',
-        name: 'Contactus-page',
-        component: ContactUsPage,
-    },
-    {
-        path: '/disclaimer',
-        name: 'Disclaimer-page',
-        component: DisclaimerPage,
-    },
-    //National directory page
-    {
-        path: '/directory/:listTitle/page/:pageNumber',
-        name: 'Directory-page',
-        component: DirectoryPage
-    },
-    //State directory page
-    {
-        path: '/directory/:state/:listTitle/page/:pageNumber',
-        name: 'Directory-page-state',
-        component: DirectoryPage
-    },
-    //City directory page
-    {
-        path: '/directory/:state/:city/:listTitle/page/:pageNumber',
-        name: 'Directory-page-city',
-        component: DirectoryPage
-    },
-    //All Cities directory page
-    //Currently Disabled: Currently No known way to pull router name to use this route. (This route conflicts with the Directory-page-state route. We can't differentiate in the code between this route and the state route) Query parameter is used instead for now
-    //{
-    //    path: '/directory/:state/all-cities/:listTitle/page/:pageNumber',
-    //    name: 'Directory-page-all-cities',
-    //    component: DirectoryPage
-    //},
-    //Zipcode directory page
-    {
-        path: '/directory/:state/:city/:zipcode/:listTitle/page/:pageNumber',
-        name: 'Directory-page-zipcode',
-        component: DirectoryPage
-    },
-    {
-        path: '/search/:query',
-        name: 'Search-page',
-        component: SearchPage
-    },
-    {
-        path: '/wlist/:query',
-        name: 'Widget-page',
-        component: DynamicListPage
-    },
-    {
-        path: '/cityview/:state/:city',
-        name: 'City-view-page',
-        component: CityViewPage
-    },
-    {
-        path: '/error',
-        name: 'Error-page',
-        component: ErrorPage
-    }
+  {
+     path: '/',
+     name: 'Home-page',
+     component: HomePage,
+     useAsDefault: true,
+  },
+  {
+      path: '/listing/:address',
+      name: 'Profile-page',
+      component: ProfilePage,
+  },
+  {
+      path: '/index/:address',
+      name: 'Deprecated-profile-page',
+      component: ProfilePage,
+  },
+  {
+      path: '/location/:loc',
+      name: 'Location-page',
+      component: LocationPage,
+  },
+  {
+      path: '/location',
+      name: 'Empty-Location-page',
+      component: LocationPage,
+  },
+  {
+      path: '/loc/:loc',
+      name: 'Deprecated-location-page',
+      component: LocationPage,
+  },
+  {
+      path: '/loc',
+      name: 'Deprecated-Empty-location-page',
+      component: LocationPage,
+  },
+  {
+      path: '/:viewType/:listname/:state/:city/page/:page',
+      name: 'List-page',
+      component: ListPage,
+  },
+  {
+      path: '/:viewType/:listname/:state/page/:page',
+      name: 'List-page-state',
+      component: ListPage,
+  },
+  {
+      path: '/:viewType/:listname/:state/:city/:priceLowerBound/:priceUpperBound/:type/:bedrooms/:bathrooms/:squareFeet/:lotSize/:limit/:page',
+      name: 'List-page-filter',
+      component: ListPage,
+  },
+  {
+      path: '/list-of-lists/:state/:city',
+      name: 'List-of-lists-page',
+      component: ListOfListsPage,
+  },
+  {
+      path: '/lists/:state/:city',
+      name: 'Deprecated-list-of-lists-page',
+      component: ListOfListsPage,
+  },
+  {
+      path: '/list-of-lists/:state',
+      name: 'List-of-lists-page-state',
+      component: ListOfListsPage,
+  },
+  {
+      path: '/lists/:state',
+      name: 'Deprecated-list-of-lists-page-state',
+      component: ListOfListsPage,
+  },
+  {
+      path: '/amenities-lists-page/:listname/:state/:city',
+      name: 'Amenities-lists-page',
+      component: AmenitiesListPage,
+  },
+  {
+      path: '/view-amenities/:listname/:state/:city',
+      name: 'Deprecated-amenities-lists-page',
+      component: AmenitiesListPage,
+  },
+  {
+      path: '/school-lists-page/:listname/:state/:city',
+      name: 'School-lists-page',
+      component: SchoolListsPage,
+  },
+  {
+      path: '/view-school/:listname/:state/:city',
+      name: 'Deprecated-school-lists-page',
+      component: SchoolListsPage,
+  },
+  {
+      path: '/component',
+      name: 'Component-page',
+      component: ComponentPage,
+  },
+  {
+      path: '/aboutus',
+      name: 'Aboutus-page',
+      component: AboutUsPage,
+  },
+  {
+      path: '/About',
+      name: 'Deprecated-aboutus-page',
+      component: AboutUsPage,
+  },
+  {
+      path: '/contactus',
+      name: 'Contactus-page',
+      component: ContactUsPage,
+  },
+  {
+      path: '/Contact',
+      name: 'Deprecated-contactus-page',
+      component: ContactUsPage,
+  },
+  {
+      path: '/disclaimer',
+      name: 'Disclaimer-page',
+      component: DisclaimerPage,
+  },
+  {
+      path: '/Disclaimer',
+      name: 'Deprecated-disclaimer-page',
+      component: DisclaimerPage,
+  },
+  //National directory page
+  {
+      path: '/directory/:listTitle/page/:pageNumber',
+      name: 'Directory-page',
+      component: DirectoryPage
+  },
+  {
+      path: '/listing_index/:listTitle/page/:pageNumber',
+      name: 'Deprecated-directory-page',
+      component: DirectoryPage
+  },
+  //State directory page
+  {
+      path: '/directory/:state/:listTitle/page/:pageNumber',
+      name: 'Directory-page-state',
+      component: DirectoryPage
+  },
+  {
+      path: '/listing_index/:state/:listTitle/page/:pageNumber',
+      name: 'Deprecated-directory-page-state',
+      component: DirectoryPage
+  },
+  //City directory page
+  {
+      path: '/directory/:state/:city/:listTitle/page/:pageNumber',
+      name: 'Directory-page-city',
+      component: DirectoryPage
+  },
+  {
+      path: '/listing_index/:state/:city/:listTitle/page/:pageNumber',
+      name: 'Deprecated-directory-page-city',
+      component: DirectoryPage
+  },
+  //All Cities directory page
+  //Currently Disabled: Currently No known way to pull router name to use this route. (This route conflicts with the Directory-page-state route. We can't differentiate in the code between this route and the state route) Query parameter is used instead for now
+  //{
+  //    path: '/directory/:state/all-cities/:listTitle/page/:pageNumber',
+  //    name: 'Directory-page-all-cities',
+  //    component: DirectoryPage
+  //},
+  //Zipcode directory page
+  {
+      path: '/directory/:state/:city/:zipcode/:listTitle/page/:pageNumber',
+      name: 'Directory-page-zipcode',
+      component: DirectoryPage
+  },
+  {
+      path: '/listing_index/:state/:city/:zipcode/:listTitle/page/:pageNumber',
+      name: 'Deprecated-directory-page-zipcode',
+      component: DirectoryPage
+  },
+  {
+      path: '/search/:query',
+      name: 'Search-page',
+      component: SearchPage
+  },
+  {
+      path: '/s/:query',
+      name: 'Deprecated-search-page',
+      component: SearchPage
+  },
+  {
+      path: '/wlist/:query',
+      name: 'Widget-page',
+      component: DynamicListPage
+  },
+  {
+      path: '/cityview/:state/:city',
+      name: 'City-view-page',
+      component: CityViewPage
+  },
+  {
+      path: '/error',
+      name: 'Error-page',
+      component: ErrorPage
+  }
 ])
 
 export class AppComponent implements OnInit, AfterContentChecked {
@@ -199,7 +273,6 @@ export class AppComponent implements OnInit, AfterContentChecked {
 
     constructor(
         private _injector: Injector,
-        private _partnerData: PartnerHeader,
         private _params: RouteParams,
         private route: Router,
         private routeData: RouteData,
@@ -215,31 +288,27 @@ export class AppComponent implements OnInit, AfterContentChecked {
       this.getGeoLocation();
     }
 
-
-
     ngAfterContentChecked() {
         this.getHeaderHeight();
     }
 
-
-
     getPartnerData() {
       this.partnerID = GlobalSettings.storedPartnerId();
-      this._geoLocation.grabLocation(this.partnerID).subscribe(geo => {
-        if(geo['partner_id']){
-          GlobalSettings.storedPartnerId(geo['partner_id']);
-          this.partnerID = geo['partner_id'];
-          this.iframeMaxHeight = geo['height'];
-          this.cityLocation = this._globalFunctions.toTitleCase(decodeURI(geo['city']));
-          this.stateLocation = decodeURI(geo['state']);
+      this._geoLocation.grabLocation(this.partnerID).subscribe(res => {
+        if(res['partner_id']){
+          GlobalSettings.storedPartnerId(res['partner_id']);
+          this.partnerID = res['partner_id'];
+          this.iframeMaxHeight = res['height'];
+          this.cityLocation = this._globalFunctions.toTitleCase(decodeURI(res['city']));
+          this.stateLocation = decodeURI(res['state']);
           this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
         } else {
-          this.cityLocation = geo['userCity'];
-          this.stateLocation = geo['userState'];
+          this.cityLocation = res['userCity'];
+          this.stateLocation = res['userState'];
           this.cityStateLocation = this._globalFunctions.toLowerKebab(this.cityLocation) + '-' + this.stateLocation.toLowerCase();
         }
-        if(geo['partner_script']){
-          this.partnerScript = geo['partner_script'];
+        if(res['partner_script']){
+          this.partnerScript = res['partner_script'];
         }
       },
       err => this.defaultCity()
@@ -277,8 +346,6 @@ export class AppComponent implements OnInit, AfterContentChecked {
             stateAPLocation  : "Kan."
         }
     }
-
-
 
     // Page is being scrolled
     onScroll(event) {
