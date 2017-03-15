@@ -290,52 +290,5 @@ export class DynamicListPage implements OnInit {
         window.scrollTo(0,0);
     }
 
-    createMetaTags(data1){
- /*       this._seo.removeMetaTags();
-
-
-        let metaDesc ="All of the information on this website is published in good faith and is for general information purposes only. "+this.pageName+" does not make any warranties about the completeness, reliability and accuracy of this information.";
-        let link = window.location.href;
-        let title = data1.heading1+ " " + data1.heading3;
-        this._seo.setTitle(title);
-        this._seo.setMetaDescription(metaDesc.substr(0,167)+'...');
-        this._seo.setCanonicalLink(this._routeParams,this._router);
-
-        this._seo.setMetaTags(
-            [
-                {
-                    'og:title': title,
-                },
-                {
-                    'og:description': metaDesc,
-                },
-                {
-                    'og:type':'website',
-                },
-                {
-                    'og:url':link,
-                },
-                {
-                    'og:image':'/app/public/joyfulhome_house.png',
-                },
-                {
-                    'es_page_title': title,
-                },
-                {
-                    'es_page_url': link
-                },
-                {
-                    'es_description': metaDesc,
-                },
-                {
-                    'es_page_type': 'Disclaimer page',
-                },
-                {
-                    'es_keywords': 'joyful home, Disclaimer'
-                }
-            ]
-        )*/
-
-    }
 
 }
