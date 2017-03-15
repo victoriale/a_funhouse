@@ -255,7 +255,6 @@ export class DynamicListPage implements OnInit {
         }else{
             this.paginationParameters = false;
         }
-        console.log(this.listData,'sodfsdjidszijfdsi');
     }
 
     //Function to set up parameters for pagination footer
