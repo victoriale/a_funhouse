@@ -14,9 +14,6 @@
                         <headline-component [data]="headlineAbout"></headline-component>
                         <profile-header *ngIf="profileHeaderData" [profileHeaderData]="profileHeaderData"></profile-header>
                         <find-your-home-module [locData]="locData"></find-your-home-module>
-                        <section *ngIf="!partnerCheck">
-                          <comment-module></comment-module>
-                        </section>
 
                         <!--List of List Section-->
                         <list-of-lists-module *ngIf="lists" [listOfLists]="lists"></list-of-lists-module>
@@ -47,8 +44,12 @@
                         <section *ngIf="!partnerCheck">
                           <like-us-module></like-us-module>
                         </section>
+                        <section *ngIf="!partnerCheck">
+                          <comment-module></comment-module>
+                        </section>
                         <!--Learn More About Us-->
                         <about-us-module *ngIf="isChecked" [partnerID]="partnerID"></about-us-module>
+
                     </div>
                 </section>
                 <div class="four-col">
