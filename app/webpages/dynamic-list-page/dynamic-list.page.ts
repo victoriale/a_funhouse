@@ -17,6 +17,7 @@ import {ErrorComponent} from "../../components/error/error.component";
 import {BackTabComponent} from "../../components/backtab/backtab.component";
 import {DynamicCarousel2} from "../../components/carousel/dynamic-carousel2/dynamic-carousel2";
 import {Router} from "angular2/router";
+import {SeoService} from "../../global/seo.service";
 
 declare var moment: any;
 
@@ -25,7 +26,7 @@ declare var moment: any;
   templateUrl: './app/webpages/dynamic-list-page/dynamic-list.page.html',
 
   directives: [PaginationFooter, TitleComponent, DynamicListComponent, DynamicCarousel2, DropdownComponent, ListMenuComponent, WidgetModule, ErrorComponent, BackTabComponent],
-  providers: [DynamicWidgetCall],
+  providers: [DynamicWidgetCall,SeoService],
 })
 
 export class DynamicListPage implements OnInit {
@@ -51,7 +52,7 @@ export class DynamicListPage implements OnInit {
   dataProvidedBy: string;
 
 
-  constructor(private _params: RouteParams, private _globalFunctions: GlobalFunctions, private dynamicWidget: DynamicWidgetCall, public router: Router) {
+  constructor(private _params: RouteParams, private _globalFunctions: GlobalFunctions, private dynamicWidget: DynamicWidgetCall, public router: Router, public _seo:SeoService) {
       this.dataProvidedBy = GlobalSettings.getDataProvidedBy();
     //parse out needed values from single param
       //this.dynamicWidget.getWidgetData('1', 103, 'TAMPA')//EXAMPLE NEED TO MAKE IT DYNAMIC TO ACCEPT ANYTHING
@@ -254,6 +255,7 @@ export class DynamicListPage implements OnInit {
         }else{
             this.paginationParameters = false;
         }
+        console.log(this.listData,'sodfsdjidszijfdsi');
     }
 
     //Function to set up parameters for pagination footer
@@ -286,6 +288,54 @@ export class DynamicListPage implements OnInit {
     /* Navigates to top of page on navigation */
     routerOnDeactivate(){
         window.scrollTo(0,0);
+    }
+
+    createMetaTags(data1){
+ /*       this._seo.removeMetaTags();
+
+
+        let metaDesc ="All of the information on this website is published in good faith and is for general information purposes only. "+this.pageName+" does not make any warranties about the completeness, reliability and accuracy of this information.";
+        let link = window.location.href;
+        let title = data1.heading1+ " " + data1.heading3;
+        this._seo.setTitle(title);
+        this._seo.setMetaDescription(metaDesc.substr(0,167)+'...');
+        this._seo.setCanonicalLink(this._routeParams,this._router);
+
+        this._seo.setMetaTags(
+            [
+                {
+                    'og:title': title,
+                },
+                {
+                    'og:description': metaDesc,
+                },
+                {
+                    'og:type':'website',
+                },
+                {
+                    'og:url':link,
+                },
+                {
+                    'og:image':'/app/public/joyfulhome_house.png',
+                },
+                {
+                    'es_page_title': title,
+                },
+                {
+                    'es_page_url': link
+                },
+                {
+                    'es_description': metaDesc,
+                },
+                {
+                    'es_page_type': 'Disclaimer page',
+                },
+                {
+                    'es_keywords': 'joyful home, Disclaimer'
+                }
+            ]
+        )*/
+
     }
 
 }

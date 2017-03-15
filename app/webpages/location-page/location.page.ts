@@ -27,13 +27,14 @@ import {ErrorComponent} from '../../components/error/error.component';
 import {GlobalSettings} from "../../global/global-settings";
 import {GlobalFunctions} from "../../global/global-functions";
 import {GeoLocation} from "../../global/global-service";
+import {SeoService} from "../../global/seo.service";
 
 @Component({
     selector: 'location-page',
     templateUrl: './app/webpages/location-page/location.page.html',
 
     directives: [ListOfListModule, HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, FindYourHomeModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule, WidgetModule, AmenitiesModule, TrendingHomes, ErrorComponent, LoadingComponent],
-    providers: [PartnerHeader, ListOfListPage, LocationProfileService, GlobalFunctions]
+    providers: [PartnerHeader, ListOfListPage, LocationProfileService, GlobalFunctions, SeoService]
 })
 
 export class LocationPage implements OnInit {
@@ -63,7 +64,7 @@ export class LocationPage implements OnInit {
     public isError: boolean = false;
     public isChecked: boolean;
 
-    constructor(private _partnerData:PartnerHeader, private _router:Router, private _params: RouteParams, private _locationProfileService: LocationProfileService, private _listService: ListOfListPage, private _globalFunctions: GlobalFunctions, private _geoLocation: GeoLocation) {
+    constructor(private _partnerData:PartnerHeader, private _router:Router, private _params: RouteParams, private _locationProfileService: LocationProfileService, private _listService: ListOfListPage, private _globalFunctions: GlobalFunctions, private _geoLocation: GeoLocation, private _seo:SeoService) {
 
         this._router.root
             .subscribe(
@@ -112,12 +113,14 @@ export class LocationPage implements OnInit {
                       stateAbbreviation: this.profileHeaderData['state'],
                       locationImage:this.profileHeaderData['locationImage']
                     }
+                    this.createMetaTags(this.profileHeaderData);
                 },
                 err => {
                     console.log('Error - Location Profile Header Data: ', err),
                     this.isError = true
                 }
             )
+
     }
 
     getTrendingListings(){
@@ -185,7 +188,9 @@ export class LocationPage implements OnInit {
         });
     }
 
-    ngOnInit(){}
+    ngOnInit(){
+
+    }
 
     dataCalls() {
       //checks if it is a partner page with no location then grab partner location infomation
@@ -228,5 +233,57 @@ export class LocationPage implements OnInit {
     /* Navigates to top of page on navigation */
     routerOnDeactivate(){
         window.scrollTo(0,0);
+    }
+
+    createMetaTags(data){
+        this._seo.removeMetaTags();
+
+
+        let metaDesc = "Did you know that average rental price for a wichita resident is " + data.averageRentalPrice + "/month, average age is " + data.averageAge + " and the average home sells for " + data.averageListingPrice+'?'
+
+        let link = window.location.href;
+        let title = 'Location View Page';
+        this._seo.setTitle(title);
+        this._seo.setMetaDescription(metaDesc);
+        this._seo.setCanonicalLink(this._params,this._router);
+
+        this._seo.setMetaTags(
+            [
+                {
+                    'og:title': title,
+                },
+                {
+                    'og:description': metaDesc,
+                },
+                {
+                    'og:type':'website',
+                },
+                {
+                    'og:url':link,
+                },
+                {
+                    'og:image':data.locationImage
+                },
+                {
+                    'es_page_title': title,
+                },
+                {
+                    'es_page_url': link
+                },
+                {
+                    'es_description': metaDesc,
+                },
+                {
+                    'es_page_type': 'Location Page',
+                },
+                {
+                    'es_keywords': 'joyful home, location, ' + data.city+ ', ' + data.state
+                },
+                {
+                    'es_image_url':data.locationImage
+                }
+            ]
+        )
+
     }
 }
