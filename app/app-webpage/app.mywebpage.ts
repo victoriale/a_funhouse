@@ -282,7 +282,6 @@ export class MyAppComponent implements OnInit, AfterContentChecked {
     getPartnerData() {
       this.partnerID = GlobalSettings.storedPartnerId();
       this._geoLocation.grabLocation(this.partnerID).subscribe(res => {
-        console.log('app.mywebpage',res);
         if(res['partner_id']){
           GlobalSettings.storedPartnerId(res['partner_id']);
           this.partnerID = res['partner_id'];
