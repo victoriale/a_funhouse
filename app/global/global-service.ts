@@ -125,59 +125,6 @@ export class GeoLocation{
     };
 }
 
-
-@Injectable()
-
-export class PartnerHeader {
-  public protocolToUse: string = (location.protocol == "https:") ? "https" : "http";
-  public apiUrl: string = '://apireal.synapsys.us/listhuv/?action=get_partner_data&domain=';
-  cachedPartnerData: any;
-
-  constructor(public http: Http) {
-
-  }
-
-  //API for listing profile
-  getPartnerData(partner_id) {
-    let _env = window.location.hostname.split('.')[0];
-    if (_env == 'localhost') {
-      var partnerID = partner_id.split('-');
-
-      //handles some cases where domain registries are different
-      var combinedID = [];
-      var domainRegisters = [];
-      for(var i = 0; i < partnerID.length; i++){
-         if(partnerID[i] == "com" || partnerID[i] == "gov" || partnerID[i] == "net" || partnerID[i] == "org" || partnerID[i] == "co"){
-           combinedID.push(partnerID[i]);
-         }else{
-           domainRegisters.push(partnerID[i]);
-         }
-      }
-
-      partner_id = domainRegisters.join('-')+ "." + combinedID.join('.');
-    }
-
-    var fullUrl = this.protocolToUse + this.apiUrl + partner_id;
-    if (this.cachedPartnerData) {
-        return Observable.of(this.cachedPartnerData);
-    } else {
-      return this.http.get(fullUrl, {
-      })
-      .map(
-        res => res.json()
-      )
-      .map(
-        data => {
-          return data;
-        }
-      )
-      .do((data) => {
-        this.cachedPartnerData = data;
-      });
-    }
-  }
-}
-
 @Injectable()
 
 export class listViewPage {

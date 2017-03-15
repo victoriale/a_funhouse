@@ -21,7 +21,6 @@ import {TrendingHomes} from "../../modules/trending-homes/trending-homes.module"
 import {Injector} from 'angular2/core';
 import {WebApp} from '../../app-layout/app.layout';
 import {MyWebApp} from '../../app-layout/app.mylayout';
-import {PartnerHeader} from "../../global/global-service";
 import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
 import {GlobalSettings} from "../../global/global-settings";
@@ -34,7 +33,7 @@ import {SeoService} from "../../global/seo.service";
     templateUrl: './app/webpages/location-page/location.page.html',
 
     directives: [ListOfListModule, HeadlineComponent, ProfileHeader, CrimeModule, FeaturedListsModule, FindYourHomeModule, InfoListModule, CommentModule, LikeUs, ShareModule, AboutUsModule, SchoolModule, WidgetModule, AmenitiesModule, TrendingHomes, ErrorComponent, LoadingComponent],
-    providers: [PartnerHeader, ListOfListPage, LocationProfileService, GlobalFunctions, SeoService]
+    providers: [ListOfListPage, LocationProfileService, GlobalFunctions, SeoService]
 })
 
 export class LocationPage implements OnInit {
@@ -64,7 +63,14 @@ export class LocationPage implements OnInit {
     public isError: boolean = false;
     public isChecked: boolean;
 
-    constructor(private _partnerData:PartnerHeader, private _router:Router, private _params: RouteParams, private _locationProfileService: LocationProfileService, private _listService: ListOfListPage, private _globalFunctions: GlobalFunctions, private _geoLocation: GeoLocation, private _seo:SeoService) {
+    constructor(
+      private _router:Router,
+      private _params: RouteParams,
+      private _locationProfileService: LocationProfileService,
+      private _listService: ListOfListPage,
+      private _globalFunctions: GlobalFunctions,
+      private _geoLocation: GeoLocation,
+    private  _seo:SeoService) {
 
         this._router.root
             .subscribe(
@@ -73,7 +79,7 @@ export class LocationPage implements OnInit {
                   var hostname = window.location.hostname;
                   var myhousekit = /myhousekit/.test(hostname);
                   var isSubDomain = GlobalSettings.getHomeInfo().isSubdomainPartner;
-                  
+
                   this._geoLocation.grabLocation(this.partnerID)
                   .subscribe(
                       res => {
@@ -113,14 +119,13 @@ export class LocationPage implements OnInit {
                       stateAbbreviation: this.profileHeaderData['state'],
                       locationImage:this.profileHeaderData['locationImage']
                     }
-                    this.createMetaTags(this.profileHeaderData);
+                    this.createMetaTags(this.profileHeaderData)
                 },
                 err => {
                     console.log('Error - Location Profile Header Data: ', err),
                     this.isError = true
                 }
             )
-
     }
 
     getTrendingListings(){
@@ -186,10 +191,6 @@ export class LocationPage implements OnInit {
         .subscribe(lists => {
           this.lists = lists
         });
-    }
-
-    ngOnInit(){
-
     }
 
     dataCalls() {
