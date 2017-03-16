@@ -11,6 +11,8 @@ export class GlobalSettings {
   private static _apiUrl:string = '-joyfulhome-api.synapsys.us';
   public static _imageUrl:string = 'images.synapsys.us';
   private static _geoUrl: string = 'w1.synapsys.us';
+  private static _baseTitle:string = "Joyful Home";
+  private static _basePartnerTitle:string = "My HouseKit";
 
   private static _dynamicApiUrl:string = 'dw.synapsys.us';
   private static _partnerApiUrl: string = 'apireal.synapsys.us/listhuv/?action=get_partner_data&domain=';
@@ -114,10 +116,19 @@ export class GlobalSettings {
     };
   }
 
+
   static storedPartnerId(partnerId?) {
     if(partnerId != null && this._partnerId == null){
       this._partnerId = partnerId;
     }
     return this._partnerId;
+  }
+
+  static getBaseTitle() {
+    return this._baseTitle;
+  }
+
+  static getBasePartnerTitle() {
+    return this._basePartnerTitle;
   }
 }

@@ -17,6 +17,7 @@ import {ErrorComponent} from "../../components/error/error.component";
 import {BackTabComponent} from "../../components/backtab/backtab.component";
 import {DynamicCarousel2} from "../../components/carousel/dynamic-carousel2/dynamic-carousel2";
 import {Router} from "angular2/router";
+import {SeoService} from "../../global/seo.service";
 
 declare var moment: any;
 
@@ -25,7 +26,7 @@ declare var moment: any;
   templateUrl: './app/webpages/dynamic-list-page/dynamic-list.page.html',
 
   directives: [PaginationFooter, TitleComponent, DynamicListComponent, DynamicCarousel2, DropdownComponent, ListMenuComponent, WidgetModule, ErrorComponent, BackTabComponent],
-  providers: [DynamicWidgetCall],
+  providers: [DynamicWidgetCall,SeoService],
 })
 
 export class DynamicListPage implements OnInit {
@@ -51,7 +52,7 @@ export class DynamicListPage implements OnInit {
   dataProvidedBy: string;
 
 
-  constructor(private _params: RouteParams, private _globalFunctions: GlobalFunctions, private dynamicWidget: DynamicWidgetCall, public router: Router) {
+  constructor(private _params: RouteParams, private _globalFunctions: GlobalFunctions, private dynamicWidget: DynamicWidgetCall, public router: Router, public _seo:SeoService) {
       this.dataProvidedBy = GlobalSettings.getDataProvidedBy();
     //parse out needed values from single param
       //this.dynamicWidget.getWidgetData('1', 103, 'TAMPA')//EXAMPLE NEED TO MAKE IT DYNAMIC TO ACCEPT ANYTHING
@@ -287,5 +288,6 @@ export class DynamicListPage implements OnInit {
     routerOnDeactivate(){
         window.scrollTo(0,0);
     }
+
 
 }
