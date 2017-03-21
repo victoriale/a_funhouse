@@ -284,13 +284,13 @@ export class ProfilePage implements OnInit{
                     'og:url':link,
                 },
                 {
-                    'og:image':image
+                    'og:image':image,
                 },
                 {
                     'es_page_title': title,
                 },
                 {
-                    'es_page_url': link
+                    'es_page_url': link,
                 },
                 {
                     'es_description': metaDesc,
@@ -299,10 +299,13 @@ export class ProfilePage implements OnInit{
                     'es_page_type': 'Profile Page',
                 },
                 {
-                    'es_keywords': 'joyful home, Profile, ' + data.city+ ', ' + data.state + ', ' + data.zipcode + ', ' +data.address + ', ' + data.agent+  ', ' +data.brokerageName+  ', ' +data.propertyType+  ', ' +data.listingPrice
+                    'es_keywords': 'joyful home, Profile, ' + data.city+ ', ' + data.state + ', ' + data.zipcode + ', ' +data.address + ', ' + data.agent+  ', ' +data.brokerageName+  ', ' +data.propertyType+  ', ' +data.listingPrice,
                 },
                 {
-                    'es_image_url':image
+                    'es_image_url':image,
+                },
+                {
+                    'es_category':'real estate',
                 }
             ]
         )

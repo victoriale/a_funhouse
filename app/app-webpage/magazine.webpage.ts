@@ -168,7 +168,7 @@ export class MagazinePage {
                     'es_page_title': title,
                 },
                 {
-                    'es_page_url': link
+                    'es_page_url': link,
                 },
                 {
                     'es_description': metaDesc,
@@ -178,10 +178,13 @@ export class MagazinePage {
                 },
                 {
                     'es_keywords': 'joyful home, Magazine, ' +data1.contact.address.fullStreetAddress+', '+ data1.contact.address.city +', '+data1.contact.address.state+', '+data1.contact.address.postalCode+', '+data1.info.demographics.formattedPrice
-                    +', '+keywords
+                    +', ' + keywords,
                 },
                 {
-                    'es_image_url':image
+                    'es_image_url':image,
+                },
+                {
+                    'es_category':'real estate'
                 }
             ]
         )

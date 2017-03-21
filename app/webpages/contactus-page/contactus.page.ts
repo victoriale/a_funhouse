@@ -118,7 +118,10 @@ export class ContactUsPage implements OnInit{
                     'es_page_type': 'Contact us page',
                 },
                 {
-                    'es_keywords': 'joyful home, contact us'
+                    'es_keywords': 'joyful home, contact us',
+                },
+                {
+                    'es_category':'real estate',
                 }
             ]
         )
