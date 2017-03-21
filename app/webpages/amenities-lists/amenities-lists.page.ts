@@ -231,14 +231,14 @@ export class AmenitiesListPage implements OnInit{
             let searchName = data2[i].name;
             let searchCity = data2[i].location.city;
             if(SeoService.checkData(searchKey)){
-               kArray.push(searchKey)
-            }
+                kArray.push(searchKey);
+            };
             if(SeoService.checkData(searchName)){
-                kArray.push(searchName)
-            }
+                kArray.push(searchName);
+            };
             if(SeoService.checkData(searchCity)){
-                kArray.push(searchCity)
-            }
+                kArray.push(searchCity);
+            };
 
 
         }
@@ -286,7 +286,7 @@ export class AmenitiesListPage implements OnInit{
                     'es-category':data2[0].categories,
                 },
                 {
-                    'es_keywords': filteredkArray.join(',')
+                    'es_keywords': filteredkArray.join(','),
                 }
             ]
         )

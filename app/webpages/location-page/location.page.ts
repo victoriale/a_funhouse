@@ -240,7 +240,7 @@ export class LocationPage {
         this._seo.removeMetaTags();
 
 
-        let metaDesc = "Did you know that average rental price for a wichita resident is " + data.averageRentalPrice + "/month, average age is " + data.averageAge + " and the average home sells for " + data.averageListingPrice+'?'
+        let metaDesc = "Did you know that average rental price for a wichita resident is " + data.averageRentalPrice + "/month, average age is " + data.averageAge + " and the average home sells for " + data.averageListingPrice+'?';
 
         let link = window.location.href;
         let title = 'Location View Page';
