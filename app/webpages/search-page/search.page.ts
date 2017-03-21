@@ -17,7 +17,7 @@ declare var jQuery: any;
 @Component({
   selector: 'Search-page',
   templateUrl: './app/webpages/search-page/search.page.html',
-  
+
   directives: [PaginationFooter, ROUTER_DIRECTIVES, BackTabComponent, WidgetModule, LoadingComponent, ErrorComponent],
   providers: [SearchService, SeoService],
   inputs: ['searchResults', 'showResults']
@@ -294,7 +294,7 @@ export class SearchPage implements OnInit {
               total++;
           })
       }
-      
+
     //group zipcodes && location together, routerLink links to city, state
     if (typeof data.zipcode !== 'undefined' && data.zipcode !== null) {
       data.zipcode.forEach(function(item, index) {
@@ -406,7 +406,7 @@ export class SearchPage implements OnInit {
                     'es_page_title': title,
                 },
                 {
-                    'es_page_url': link
+                    'es_page_url': link,
                 },
                 {
                     'es_description': metaDesc,
@@ -419,6 +419,9 @@ export class SearchPage implements OnInit {
                 },
                 {
                     'es_image_url':'/app/public/joyfulhome_house.png'
+                },
+                {
+                    'es_category':'real estate',
                 }
             ]
         )

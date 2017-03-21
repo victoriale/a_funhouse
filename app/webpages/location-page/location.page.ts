@@ -269,7 +269,7 @@ export class LocationPage {
                     'es_page_title': title,
                 },
                 {
-                    'es_page_url': link
+                    'es_page_url': link,
                 },
                 {
                     'es_description': metaDesc,
@@ -278,10 +278,13 @@ export class LocationPage {
                     'es_page_type': 'Location Page',
                 },
                 {
-                    'es_keywords': 'joyful home, location, ' + data.city+ ', ' + data.state
+                    'es_keywords': 'joyful home, location, ' + data.city+ ', ' + data.state,
                 },
                 {
-                    'es_image_url':data.locationImage
+                    'es_image_url':data.locationImage,
+                },
+                {
+                    'es_category':'real estate',
                 }
             ]
         )
