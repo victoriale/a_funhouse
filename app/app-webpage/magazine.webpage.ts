@@ -139,7 +139,7 @@ export class MagazinePage {
         data2.forEach((val)=>{
             keywords.push(val.label);
         })
-        keywords.join(',')
+        keywords.join(',');
         let link = window.location.href;
         let title = 'Magazine';
         this._seo.setTitle(title);
@@ -184,7 +184,7 @@ export class MagazinePage {
                     'es_image_url':image,
                 },
                 {
-                    'es_category':'real estate'
+                    'es_category':'real estate',
                 }
             ]
         )

@@ -146,7 +146,7 @@ export class HomePage implements OnInit {
 
         let metaDesc ="Enter the address or location you are interested in purchasing a home. Also explore the rich content written about your home.";
         let link = window.location.href;
-        let title = 'Home Page'
+        let title = 'Home Page';
         this._seo.setTitle(title);
         this._seo.setMetaDescription(metaDesc);
         this._seo.setCanonicalLink(this._routeParams,this._router);
