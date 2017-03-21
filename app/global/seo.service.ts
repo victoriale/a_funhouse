@@ -1,6 +1,3 @@
-/**
- * Created by navyaeetaram on 3/13/17.
- */
 import {Injectable} from "angular2/src/core/di/decorators";
 import {GlobalSettings} from "./global-settings";
 import {DOM, DomAdapter} from "angular2/src/platform/dom/dom_adapter";
@@ -53,7 +50,7 @@ export class SeoService{
     static checkData(data) {
         var check;
         check = !!(data != null && data != "");
-        return check
+        return check;
     }
 
     /**
@@ -105,9 +102,9 @@ export class SeoService{
             let metaKey = Object.keys(metaAttr[i])[0];
             if(SeoService.checkData(metaAttr[i][metaKey])){
                 if(!this.document.querySelector('meta[property = ogKey]')){
-                    this.ogElement = this.getOrCreateElement('property', metaKey, 'meta')
+                    this.ogElement = this.getOrCreateElement('property', metaKey, 'meta');
                 }
-                this.setElementAttribute(this.ogElement,'content',metaAttr[i][metaKey])
+                this.setElementAttribute(this.ogElement,'content',metaAttr[i][metaKey]);
             }
 
         }

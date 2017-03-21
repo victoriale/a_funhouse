@@ -377,7 +377,7 @@ export class SearchPage implements OnInit {
         this._seo.removeMetaTags();
 
 
-        let metaDesc = "Discover more home in real estate based on address, location or zip code"
+        let metaDesc = "Discover more home in real estate based on address, location or zip code";
 
         let link = window.location.href;
         let title = 'Find homes in your area';
@@ -400,7 +400,7 @@ export class SearchPage implements OnInit {
                     'og:url':link,
                 },
                 {
-                    'og:image':'/app/public/joyfulhome_house.png'
+                    'og:image':'/app/public/joyfulhome_house.png',
                 },
                 {
                     'es_page_title': title,
@@ -415,10 +415,10 @@ export class SearchPage implements OnInit {
                     'es_page_type': 'Search Page',
                 },
                 {
-                    'es_keywords': 'joyful home, Search page'
+                    'es_keywords': 'joyful home, Search page',
                 },
                 {
-                    'es_image_url':'/app/public/joyfulhome_house.png'
+                    'es_image_url':'/app/public/joyfulhome_house.png',
                 },
                 {
                     'es_category':'real estate',

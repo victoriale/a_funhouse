@@ -518,8 +518,6 @@ export class DirectoryPage {
 
     createMetaTags(){
         this._seo.removeMetaTags();
-
-
         let metaDesc = 'Lists most recent homes for sale';
         let link = window.location.href;
         let title = "Directory Page";
@@ -557,7 +555,7 @@ export class DirectoryPage {
                     'es_page_type': 'Directory page',
                 },
                 {
-                    'es_keywords': 'joyful home, Directory'
+                    'es_keywords': 'joyful home, Directory',
                 },
                 {
                     'es_category':'real estate',

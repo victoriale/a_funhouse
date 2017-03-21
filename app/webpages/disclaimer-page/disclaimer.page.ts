@@ -131,7 +131,7 @@ export class DisclaimerPage implements OnInit {
                     'es_page_type': 'Disclaimer page',
                 },
                 {
-                    'es_keywords': 'joyful home, Disclaimer'
+                    'es_keywords': 'joyful home, Disclaimer',
                 },
                 {
                     'es_category':'real estate',

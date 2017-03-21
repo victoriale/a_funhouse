@@ -140,7 +140,7 @@ export class AboutUsPage implements OnInit{
                     'es_page_title': title,
                 },
                 {
-                    'es_page_url': link
+                    'es_page_url': link,
                 },
                 {
                     'es_description': metaDesc,

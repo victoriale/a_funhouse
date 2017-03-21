@@ -260,7 +260,7 @@ export class ProfilePage implements OnInit{
         this._seo.removeMetaTags();
 
 
-        let metaDesc = "This " + data.propertyType + " listing is located at " + data.address+', '+data.city+', '+data.state + " The living area is around " + data.squareFeet + ". Agent: " + data.agent+'. Listing status: '+data.listingStatus
+        let metaDesc = "This " + data.propertyType + " listing is located at " + data.address+', '+data.city+', '+data.state + " The living area is around " + data.squareFeet + ". Agent: " + data.agent+'. Listing status: '+data.listingStatus;
 
         let link = window.location.href;
         let title = 'Listing Profile Page';
