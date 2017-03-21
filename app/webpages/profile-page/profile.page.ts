@@ -26,6 +26,7 @@ import {Injector} from 'angular2/core';
 import {GlobalFunctions} from '../../global/global-functions';
 import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
+import {SeoService} from "../../global/seo.service";
 
 declare var lh: any;
 
@@ -34,7 +35,7 @@ declare var lh: any;
     templateUrl: './app/webpages/profile-page/profile.page.html',
 
     directives: [magazineModule, magazineBanner, TrendingHomes, MediaImages, HeadlineComponent, ProfileHeader, MediaFeatureModule, CommentModule, CrimeModule, ListOfListModule, AboutUsModule, HeaderComponent, FooterComponent, LikeUs, ShareModule, FeaturedListsModule, AmenitiesModule, WidgetModule, MapModule, LoadingComponent, ErrorComponent],
-    providers: [ListOfListPage, ListingProfileService]
+    providers: [ListOfListPage, ListingProfileService, SeoService]
 })
 
 export class ProfilePage implements OnInit{
@@ -74,7 +75,7 @@ export class ProfilePage implements OnInit{
         propertyType: string;
     };
     //  Get current route name
-    constructor(private _router:Router, private _listingProfileService: ListingProfileService, private _params: RouteParams, private _listService:ListOfListPage, private globalFunctions: GlobalFunctions){
+    constructor(private _router:Router, private _listingProfileService: ListingProfileService, private _params: RouteParams, private _listService:ListOfListPage, private globalFunctions: GlobalFunctions, private _seo:SeoService){
       this._router.root
           .subscribe(
               route => {
@@ -131,6 +132,7 @@ export class ProfilePage implements OnInit{
                     var listingKey = data['listingKey']; //send key to listhub
                     lh('submit', 'DETAIL_PAGE_VIEWED', {lkey:listingKey});
                     this.profileHeaderData['paramAddress'] = this.paramAddress;
+                    this.createMetaTags(this.profileHeaderData);
                 },
                 err => {
                     console.log('Error - Listing Profile Header Data: ', err);
@@ -252,5 +254,61 @@ export class ProfilePage implements OnInit{
     /* Navigates to top of page on navigation */
     routerOnDeactivate(){
         window.scrollTo(0,0);
+    }
+
+    createMetaTags(data){
+        this._seo.removeMetaTags();
+
+
+        let metaDesc = "This " + data.propertyType + " listing is located at " + data.address+', '+data.city+', '+data.state + " The living area is around " + data.squareFeet + ". Agent: " + data.agent+'. Listing status: '+data.listingStatus;
+
+        let link = window.location.href;
+        let title = 'Listing Profile Page';
+        this._seo.setTitle(title);
+        this._seo.setMetaDescription(metaDesc);
+        this._seo.setCanonicalLink(this._params,this._router);
+        let image = data.listingImage;
+
+        this._seo.setMetaTags(
+            [
+                {
+                    'og:title': title,
+                },
+                {
+                    'og:description': metaDesc,
+                },
+                {
+                    'og:type':'website',
+                },
+                {
+                    'og:url':link,
+                },
+                {
+                    'og:image':image,
+                },
+                {
+                    'es_page_title': title,
+                },
+                {
+                    'es_page_url': link,
+                },
+                {
+                    'es_description': metaDesc,
+                },
+                {
+                    'es_page_type': 'Profile Page',
+                },
+                {
+                    'es_keywords': 'joyful home, Profile, ' + data.city+ ', ' + data.state + ', ' + data.zipcode + ', ' +data.address + ', ' + data.agent+  ', ' +data.brokerageName+  ', ' +data.propertyType+  ', ' +data.listingPrice,
+                },
+                {
+                    'es_image_url':image,
+                },
+                {
+                    'es_category':'real estate',
+                }
+            ]
+        )
+
     }
 }

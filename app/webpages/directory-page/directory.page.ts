@@ -5,6 +5,7 @@ import {GlobalFunctions} from '../../global/global-functions';
 import {DirectoryService} from '../../global/directory.service';
 import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
+import {SeoService} from "../../global/seo.service";
 
 declare var moment: any;
 declare var lh: any;
@@ -14,7 +15,7 @@ declare var lh: any;
     templateUrl: './app/webpages/directory-page/directory.page.html',
 
     directives: [ROUTER_DIRECTIVES, NgClass, LoadingComponent, ErrorComponent],
-    providers: [DirectoryService],
+    providers: [DirectoryService, SeoService],
 })
 
 export class DirectoryPage {
@@ -74,7 +75,7 @@ export class DirectoryPage {
     public listingNameSingular = "Home";
     public listingNamePlural = "Homes";
 
-    constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions, private _directoryService: DirectoryService){//Grab static parameters
+    constructor(private router: Router, private _params: RouteParams, private globalFunctions: GlobalFunctions, private _directoryService: DirectoryService, private _seo:SeoService){//Grab static parameters
 
         this.paramListTitle = this._params.get('listTitle');
         this.paramPageNumber = this._params.get('pageNumber');
@@ -451,6 +452,7 @@ export class DirectoryPage {
     ngOnInit(){
         this.setStaticData();
         this.getDirectoryData();
+        this.createMetaTags();
     }
 
     setupData(data) {
@@ -511,5 +513,55 @@ export class DirectoryPage {
     /* Navigates to top of page on navigation */
     routerOnDeactivate(){
         window.scrollTo(0,0);
+    }
+
+
+    createMetaTags(){
+        this._seo.removeMetaTags();
+        let metaDesc = 'Lists most recent homes for sale';
+        let link = window.location.href;
+        let title = "Directory Page";
+        this._seo.setTitle(title);
+        this._seo.setMetaDescription(metaDesc);
+        this._seo.setCanonicalLink(this._params,this.router);
+
+        this._seo.setMetaTags(
+            [
+                {
+                    'og:title': title,
+                },
+                {
+                    'og:description': metaDesc,
+                },
+                {
+                    'og:type':'website',
+                },
+                {
+                    'og:url':link,
+                },
+                {
+                    'og:image':'/app/public/joyfulhome_house.png',
+                },
+                {
+                    'es_page_title': title,
+                },
+                {
+                    'es_page_url': link,
+                },
+                {
+                    'es_description': metaDesc,
+                },
+                {
+                    'es_page_type': 'Directory page',
+                },
+                {
+                    'es_keywords': 'joyful home, Directory',
+                },
+                {
+                    'es_category':'real estate',
+                }
+            ]
+        )
+
     }
 }

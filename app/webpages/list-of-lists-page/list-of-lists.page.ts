@@ -12,13 +12,15 @@ import {GlobalFunctions} from "../../global/global-functions";
 import {GlobalSettings} from "../../global/global-settings";
 import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
+import {SeoService} from "../../global/seo.service";
+import {Router} from "angular2/src/router/router";
 
 @Component({
     selector: 'list-of-lists-page',
     templateUrl: './app/webpages/list-of-lists-page/list-of-lists.page.html',
 
     directives: [BackTabComponent, TitleComponent, ListCarouselComponent, contentList, HeroListComponent, WidgetModule, LoadingComponent, ErrorComponent],
-    providers: [ListOfListPage],
+    providers: [ListOfListPage,SeoService],
 })
 
 export class ListOfListsPage implements OnInit{
@@ -35,7 +37,7 @@ export class ListOfListsPage implements OnInit{
     lists: Array<any> = [];
     titleData: Object;
 
-    constructor(private _params: RouteParams, private _listOfListPageService: ListOfListPage, private _listOfListPageServiceState: ListOfListPage, private _globalFunctions: GlobalFunctions) {
+    constructor(private _params: RouteParams, private _seo:SeoService, private _router:Router, private _listOfListPageService: ListOfListPage, private _listOfListPageServiceState: ListOfListPage, private _globalFunctions: GlobalFunctions) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
     }
@@ -44,6 +46,7 @@ export class ListOfListsPage implements OnInit{
         this._listOfListPageService.getListOfListPage(this.stateLocation, this.cityLocation)
             .subscribe(
                 listOfLists => this.listOfLists = listOfLists,
+
                 err => {
                     console.log('Error: List of List Page API: ', err);
                     this.isError = true;
@@ -94,7 +97,9 @@ export class ListOfListsPage implements OnInit{
                     this.lists.push(this.listOfLists[i]);
                 }
             }
+
         }
+
 
         // Data for Title component
         if (!this.isStateOnly) {
@@ -124,6 +129,9 @@ export class ListOfListsPage implements OnInit{
                 hasHover: false
             };
         }
+        this.createMetaTags(this.lists,this.titleData);
+
+
     }
 
     ngOnInit(){
@@ -141,5 +149,55 @@ export class ListOfListsPage implements OnInit{
     /* Navigates to top of page on navigation */
     routerOnDeactivate(){
         window.scrollTo(0,0);
+    }
+    createMetaTags(data1, data2){
+        this._seo.removeMetaTags();
+
+
+        let metaDesc ="Explore list of " + data1[0].listTitle + ". There are currently " + data1[0].listData[0].totalListings + " listings in this category";
+        let link = window.location.href;
+        let title = data1[0].listTitle;
+        this._seo.setTitle(title);
+        this._seo.setMetaDescription(metaDesc);
+        this._seo.setCanonicalLink(this._params,this._router);
+
+        this._seo.setMetaTags(
+            [
+                {
+                    'og:title': title,
+                },
+                {
+                    'og:description': metaDesc,
+                },
+                {
+                    'og:type':'website',
+                },
+                {
+                    'og:url':link,
+                },
+                {
+                    'og:image':'/app/public/joyfulhome_house.png',
+                },
+                {
+                    'es_page_title': title,
+                },
+                {
+                    'es_page_url': link,
+                },
+                {
+                    'es_description': metaDesc,
+                },
+                {
+                    'es_page_type': 'List of lists page',
+                },
+                {
+                    'es_keywords': 'joyful home, list of lists, ' + data2.heading1,
+                },
+                {
+                    'es_category':'real estate',
+                }
+            ]
+        )
+
     }
 }

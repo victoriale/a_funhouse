@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from 'angular2/core';
-import {Router, ROUTER_DIRECTIVES} from 'angular2/router';
+import {Router, ROUTER_DIRECTIVES,RouteParams} from 'angular2/router';
 
 import {HeaderComponent} from "../../components/header/header.component";
 import {FooterComponent} from "../../components/footer/footer.component";
@@ -14,6 +14,7 @@ import {GlobalSettings} from "../../global/global-settings";
 import {GlobalFunctions} from "../../global/global-functions";
 import {PartnerHomePage} from "../partner-home-page/partner-home-page";
 import {GeoLocation} from "../../global/global-service";
+import {SeoService} from "../../global/seo.service";
 //import map = webdriver.promise.map;
 
 declare var jQuery:any;
@@ -23,7 +24,7 @@ declare var jQuery:any;
     templateUrl: './app/webpages/home-page/home.page.html',
 
     directives: [PartnerHomePage, HeaderComponent, FooterComponent, HeroComponent, ExploreTilesComponent, ExploreButtonComponent, HeroBottomComponent, FeatureTilesComponent, ROUTER_DIRECTIVES],
-    providers: [GeoLocationService, NearByCitiesService],
+    providers: [GeoLocationService, NearByCitiesService, SeoService],
     inputs: [],
 })
 
@@ -44,7 +45,7 @@ export class HomePage implements OnInit {
     heroButtonIcon: string;
     isMyHouseKitHome: boolean;//determine which homepage to show myhousekit or joyfulhome.
 
-    constructor(private _router: Router, private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService, private _globalFunctions: GlobalFunctions, private _geoLocation: GeoLocation) {
+    constructor(private _router: Router, private _routeParams:RouteParams, private _geoLocationService: GeoLocationService, private _nearByCitiesService: NearByCitiesService, private _globalFunctions: GlobalFunctions, private _geoLocation: GeoLocation, private _seo:SeoService) {
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
         this._router.root
@@ -133,9 +134,60 @@ export class HomePage implements OnInit {
 
         // Call to get current State and City
         this.getGeoLocation();
+        this.createMetaTags();
     }
     /* Navigates to top of page on navigation */
     routerOnDeactivate(){
         window.scrollTo(0,0);
+    }
+    createMetaTags(){
+        this._seo.removeMetaTags();
+
+
+        let metaDesc ="Enter the address or location you are interested in purchasing a home. Also explore the rich content written about your home.";
+        let link = window.location.href;
+        let title = 'Home Page';
+        this._seo.setTitle(title);
+        this._seo.setMetaDescription(metaDesc);
+        this._seo.setCanonicalLink(this._routeParams,this._router);
+
+        this._seo.setMetaTags(
+            [
+                {
+                    'og:title': title,
+                },
+                {
+                    'og:description': metaDesc,
+                },
+                {
+                    'og:type':'website',
+                },
+                {
+                    'og:url':link,
+                },
+                {
+                    'og:image':'/app/public/joyfulhome_house.png',
+                },
+                {
+                    'es_page_title': title,
+                },
+                {
+                    'es_page_url': link,
+                },
+                {
+                    'es_description': metaDesc,
+                },
+                {
+                    'es_page_type': 'Home page',
+                },
+                {
+                    'es_keywords': 'joyful home, Home page, search',
+                },
+                {
+                    'es_category':'real estate',
+                }
+            ]
+        )
+
     }
 }

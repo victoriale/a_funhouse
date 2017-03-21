@@ -10,15 +10,16 @@ import {PaginationFooter} from '../../components/pagination-footer/pagination-fo
 
 import {Observable} from 'rxjs/Rx';
 import {Control} from 'angular2/common';
+import {SeoService} from "../../global/seo.service";
 
 declare var jQuery: any;
 
 @Component({
   selector: 'Search-page',
   templateUrl: './app/webpages/search-page/search.page.html',
-  
+
   directives: [PaginationFooter, ROUTER_DIRECTIVES, BackTabComponent, WidgetModule, LoadingComponent, ErrorComponent],
-  providers: [SearchService],
+  providers: [SearchService, SeoService],
   inputs: ['searchResults', 'showResults']
 })
 
@@ -43,7 +44,7 @@ export class SearchPage implements OnInit {
     public isError: boolean = false;
     public term: any = new Control();
 
-    constructor(private _searchService: SearchService, private params: RouteParams, private _router:Router, private globalFunctions: GlobalFunctions) {
+    constructor(private _searchService: SearchService, private params: RouteParams, private _router:Router, private globalFunctions: GlobalFunctions, private _seo:SeoService) {
         var query = this.params.get('query');
         if(query !== null) {
             this.loadCall(query);
@@ -293,7 +294,7 @@ export class SearchPage implements OnInit {
               total++;
           })
       }
-      
+
     //group zipcodes && location together, routerLink links to city, state
     if (typeof data.zipcode !== 'undefined' && data.zipcode !== null) {
       data.zipcode.forEach(function(item, index) {
@@ -365,9 +366,65 @@ export class SearchPage implements OnInit {
 
     ngOnInit() {
         this.showCurrentData();
+        this.createMetaTags();
     }
     /* Navigates to top of page on navigation */
     routerOnDeactivate(){
         window.scrollTo(0,0);
+    }
+
+    createMetaTags(){
+        this._seo.removeMetaTags();
+
+
+        let metaDesc = "Discover more home in real estate based on address, location or zip code";
+
+        let link = window.location.href;
+        let title = 'Find homes in your area';
+        this._seo.setTitle(title);
+        this._seo.setMetaDescription(metaDesc);
+        this._seo.setCanonicalLink(this.params,this._router);
+
+        this._seo.setMetaTags(
+            [
+                {
+                    'og:title': title,
+                },
+                {
+                    'og:description': metaDesc,
+                },
+                {
+                    'og:type':'website',
+                },
+                {
+                    'og:url':link,
+                },
+                {
+                    'og:image':'/app/public/joyfulhome_house.png',
+                },
+                {
+                    'es_page_title': title,
+                },
+                {
+                    'es_page_url': link,
+                },
+                {
+                    'es_description': metaDesc,
+                },
+                {
+                    'es_page_type': 'Search Page',
+                },
+                {
+                    'es_keywords': 'joyful home, Search page',
+                },
+                {
+                    'es_image_url':'/app/public/joyfulhome_house.png',
+                },
+                {
+                    'es_category':'real estate',
+                }
+            ]
+        )
+
     }
 }

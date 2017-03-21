@@ -15,6 +15,7 @@ import {listViewPage} from '../../global/global-service';
 import {LoadingComponent} from '../../components/loading/loading.component';
 import {ErrorComponent} from '../../components/error/error.component';
 import {MapComponent} from '../../components/map/map.component';
+import {SeoService} from "../../global/seo.service";
 
 declare var jQuery: any;
 declare var moment: any;
@@ -25,7 +26,7 @@ declare var lh: any;
     templateUrl: './app/webpages/list-page/list.page.html',
 
     directives: [PhotoListComponent, ROUTER_DIRECTIVES, DetailedListComponent, ListViewCarousel, WidgetModule, PaginationFooter, LoadingComponent, ErrorComponent, MapComponent],
-    providers: [listViewPage]
+    providers: [listViewPage, SeoService]
 })
 
 export class ListPage implements OnInit{
@@ -90,7 +91,7 @@ export class ListPage implements OnInit{
 
     dataProvidedBy: string;
 
-    constructor(private _params: RouteParams, private globalFunctions: GlobalFunctions, private listViewData: listViewPage, private _router: Router) {
+    constructor(private _params: RouteParams, private globalFunctions: GlobalFunctions, private listViewData: listViewPage, private _router: Router, private _seo: SeoService) {
         this.dataProvidedBy = GlobalSettings.getDataProvidedBy();
         // Scroll page to top to fix routerLink bug
         window.scrollTo(0, 0);
@@ -478,6 +479,8 @@ export class ListPage implements OnInit{
     //send array of keys for listhub to track
     lh('submit', 'SEARCH_DISPLAY', listhubKeys);
 
+    this.createMetaTags(this.listData);
+
     // console.log('listhubKeys', listhubKeys);
     // console.log('ListData', this.listData);
     // console.log('carouselData', this.carouselData);
@@ -601,6 +604,58 @@ export class ListPage implements OnInit{
     /* Navigates to top of page on navigation */
     routerOnDeactivate(){
         window.scrollTo(0,0);
+    }
+
+    createMetaTags(data){
+        this._seo.removeMetaTags();
+
+
+        let metaDesc = data[0].desc.length>167?data[0].desc.substr(0,167)+'...':data[0].desc;
+
+        let link = window.location.href;
+        let title = 'Featured Listing';
+        this._seo.setTitle(title);
+        this._seo.setMetaDescription(metaDesc);
+        this._seo.setCanonicalLink(this._params,this._router);
+
+        this._seo.setMetaTags(
+            [
+                {
+                    'og:title': title,
+                },
+                {
+                    'og:description': metaDesc,
+                },
+                {
+                    'og:type':'website',
+                },
+                {
+                    'og:url':link,
+                },
+                {
+                    'og:image':'/app/public/joyfulhome_house.png',
+                },
+                {
+                    'es_page_title': title,
+                },
+                {
+                    'es_page_url': link,
+                },
+                {
+                    'es_description': metaDesc,
+                },
+                {
+                    'es_page_type': 'List page',
+                },
+                {
+                    'es_keywords': 'joyful home, list, ' + data[0].listPrice +', ' + data[0].list_sub+ ', '+ data[0].market+', ' + data[0].location,
+                },
+                {
+                    'es_category':'real estate',
+                }
+            ]
+        )
+
     }
 
 }
