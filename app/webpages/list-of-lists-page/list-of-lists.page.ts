@@ -129,7 +129,7 @@ export class ListOfListsPage implements OnInit{
                 hasHover: false
             };
         }
-        this.createMetaTags(this.lists,this.titleData)
+        this.createMetaTags(this.lists,this.titleData);
 
 
     }

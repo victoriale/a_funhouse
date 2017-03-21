@@ -119,7 +119,7 @@ export class LocationPage {
                       stateAbbreviation: this.profileHeaderData['state'],
                       locationImage:this.profileHeaderData['locationImage']
                     }
-                    this.createMetaTags(this.profileHeaderData)
+                    this.createMetaTags(this.profileHeaderData);
                 },
                 err => {
                     console.log('Error - Location Profile Header Data: ', err),
