@@ -182,7 +182,7 @@ export class ListOfListsPage implements OnInit{
                     'es_page_title': title,
                 },
                 {
-                    'es_page_url': link
+                    'es_page_url': link,
                 },
                 {
                     'es_description': metaDesc,
@@ -191,7 +191,10 @@ export class ListOfListsPage implements OnInit{
                     'es_page_type': 'List of lists page',
                 },
                 {
-                    'es_keywords': 'joyful home, list of lists, ' + data2.heading1
+                    'es_keywords': 'joyful home, list of lists, ' + data2.heading1,
+                },
+                {
+                    'es_category':'real estate',
                 }
             ]
         )

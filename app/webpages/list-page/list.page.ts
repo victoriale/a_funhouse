@@ -639,7 +639,7 @@ export class ListPage implements OnInit{
                     'es_page_title': title,
                 },
                 {
-                    'es_page_url': link
+                    'es_page_url': link,
                 },
                 {
                     'es_description': metaDesc,
@@ -648,7 +648,10 @@ export class ListPage implements OnInit{
                     'es_page_type': 'List page',
                 },
                 {
-                    'es_keywords': 'joyful home, list, ' + data[0].listPrice +', ' +data[0].list_sub+ ', '+data[0].market+', '+data[0].location
+                    'es_keywords': 'joyful home, list, ' + data[0].listPrice +', ' + data[0].list_sub+ ', '+ data[0].market+', ' + data[0].location,
+                },
+                {
+                    'es_category':'real estate',
                 }
             ]
         )

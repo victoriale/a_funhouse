@@ -548,7 +548,7 @@ export class DirectoryPage {
                     'es_page_title': title,
                 },
                 {
-                    'es_page_url': link
+                    'es_page_url': link,
                 },
                 {
                     'es_description': metaDesc,
@@ -558,6 +558,9 @@ export class DirectoryPage {
                 },
                 {
                     'es_keywords': 'joyful home, Directory'
+                },
+                {
+                    'es_category':'real estate',
                 }
             ]
         )

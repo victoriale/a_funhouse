@@ -172,7 +172,7 @@ export class HomePage implements OnInit {
                     'es_page_title': title,
                 },
                 {
-                    'es_page_url': link
+                    'es_page_url': link,
                 },
                 {
                     'es_description': metaDesc,
@@ -181,7 +181,10 @@ export class HomePage implements OnInit {
                     'es_page_type': 'Home page',
                 },
                 {
-                    'es_keywords': 'joyful home, Home page, search'
+                    'es_keywords': 'joyful home, Home page, search',
+                },
+                {
+                    'es_category':'real estate',
                 }
             ]
         )

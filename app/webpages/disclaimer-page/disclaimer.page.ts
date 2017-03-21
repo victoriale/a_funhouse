@@ -122,7 +122,7 @@ export class DisclaimerPage implements OnInit {
                     'es_page_title': title,
                 },
                 {
-                    'es_page_url': link
+                    'es_page_url': link,
                 },
                 {
                     'es_description': metaDesc,
@@ -132,6 +132,9 @@ export class DisclaimerPage implements OnInit {
                 },
                 {
                     'es_keywords': 'joyful home, Disclaimer'
+                },
+                {
+                    'es_category':'real estate',
                 }
             ]
         )
